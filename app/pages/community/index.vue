@@ -33,7 +33,12 @@
 
       <!-- Featured post - large cinematic card -->
       <div v-if="featuredPost && activeTab === 'all'" class="mb-14 reveal">
-        <div class="group relative overflow-hidden rounded-3xl border border-charcoal-850 aspect-[21/8] min-h-[340px]">
+        <NuxtLink
+          :to="`/community/${featuredPost.id}`"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="block group relative overflow-hidden rounded-3xl border border-charcoal-850 aspect-[21/8] min-h-[340px]"
+        >
           <img :src="featuredPost.coverImage" :alt="featuredPost.title" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[8000ms] ease-out-expo group-hover:scale-105" />
           <div class="absolute inset-0 bg-gradient-to-r from-charcoal-950 via-charcoal-950/60 to-transparent" />
           <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-transparent to-transparent" />
@@ -61,14 +66,17 @@
               </div>
             </div>
           </div>
-        </div>
+        </NuxtLink>
       </div>
 
       <!-- Posts grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div
+        <NuxtLink
           v-for="(post, i) in filteredPosts"
           :key="post.id"
+          :to="`/community/${post.id}`"
+          target="_blank"
+          rel="noopener noreferrer"
           class="bg-charcoal-950/40 rounded-2xl overflow-hidden shadow-xl border border-charcoal-850 hover:border-gold-500/30 transition-all duration-500 group cursor-pointer reveal flex flex-col justify-between"
           :style="{ animationDelay: `${i * 0.05}s` }"
         >
@@ -104,7 +112,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </NuxtLink>
       </div>
 
       <!-- Contribute CTA -->

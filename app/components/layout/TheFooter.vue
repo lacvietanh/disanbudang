@@ -61,15 +61,11 @@
           <div class="space-y-3 text-sm text-charcoal-300">
             <p class="flex items-start gap-2">
               <Icon name="mdi:map-marker-outline" class="w-4 h-4 text-gold-500 mt-0.5 shrink-0" />
-              UBND Huyện Bù Đăng, Tỉnh Bình Phước, Việt Nam
+              Bù Đăng, Bình Phước, Việt Nam
             </p>
             <p class="flex items-center gap-2">
               <Icon name="mdi:email-outline" class="w-4 h-4 text-gold-500 shrink-0" />
-              disanbudang@binhphuoc.gov.vn
-            </p>
-            <p class="flex items-center gap-2">
-              <Icon name="mdi:phone-outline" class="w-4 h-4 text-gold-500 shrink-0" />
-              (0271) 3 567 890
+              nguyenxuankiet294@gmail.com
             </p>
           </div>
 
@@ -88,11 +84,11 @@
 
       <!-- Bottom Bar -->
       <div class="mt-14 pt-8 border-t border-charcoal-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-charcoal-500">
-        <p>© {{ currentYear }} Di Sản Bù Đăng. Bảo lưu mọi quyền.</p>
+        <p>© {{ currentYear }} Nguyễn Xuân Kiệt. Bảo lưu mọi quyền.</p>
         <div class="flex items-center gap-1">
-          <span>Dự án của</span>
-          <span class="text-gold-400 font-medium mx-1">UBND Huyện Bù Đăng</span>
-          <span>• Bình Phước, Việt Nam</span>
+          <span>Người thực hiện:</span>
+          <span class="text-gold-400 font-medium mx-1">Nguyễn Xuân Kiệt</span>
+          <span>• Cổng thông tin Di sản Bù Đăng</span>
         </div>
       </div>
     </div>

@@ -149,10 +149,9 @@ const goals = [
 ]
 
 const teams = [
-  { name: 'Ban Văn Hóa Huyện Bù Đăng', role: 'Chủ trì nội dung và kiểm duyệt', icon: 'mdi:office-building' },
-  { name: 'Đội Nghiên Cứu Học Sinh', role: 'Thu thập dữ liệu và viết nội dung', icon: 'mdi:account-school' },
-  { name: 'Nghệ Nhân Cộng Đồng', role: 'Cố vấn nội dung văn hóa dân tộc', icon: 'mdi:account-star' },
-  { name: 'Nhóm Kỹ Thuật Số', role: 'Phát triển và vận hành nền tảng', icon: 'mdi:code-braces' },
+  { name: 'Nguyễn Xuân Kiệt', role: 'Người thực hiện dự án (Product Designer, Frontend Engineer & SEO Specialist)', icon: 'mdi:account-star' },
+  { name: 'Ban Văn Hóa Huyện Bù Đăng', role: 'Đồng hành, cung cấp & kiểm duyệt tài liệu', icon: 'mdi:office-building' },
+  { name: 'Nghệ Nhân & Cộng Đồng', role: 'Cố vấn văn hóa và âm nhạc bản địa', icon: 'mdi:account-group' },
 ]
 
 const projectStats = [

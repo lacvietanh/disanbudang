@@ -2,7 +2,7 @@ import type { Heritage, NewsArticle } from '~/types'
 
 const SITE_NAME = 'Di Sản Bù Đăng'
 const SITE_DESCRIPTION = 'Bảo tàng số địa phương về lịch sử, văn hóa, thiên nhiên và ký ức cộng đồng huyện Bù Đăng.'
-const SITE_URL = 'https://disanbudang.vn'
+const SITE_URL = 'https://disanbudang.com'
 const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1586348943529-beaae6c28db9?w=1200&q=85'
 
 interface MuseumSeoInput {

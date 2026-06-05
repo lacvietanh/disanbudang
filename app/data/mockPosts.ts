@@ -6,8 +6,14 @@ export const MOCK_COMMUNITY_POSTS: CommunityPost[] = [
     type: 'story',
     title: 'Ông nội tôi và những đêm cồng chiêng',
     excerpt: 'Mỗi lần nghe tiếng cồng chiêng vang lên, tôi lại nhớ đến ông nội — người đã dạy tôi rằng mỗi nhịp chiêng là một lời kể về tổ tiên, về đất rừng, về những gì không bao giờ được phép quên.',
-    content: 'Ông nội tôi — già làng Điểu Minh — đã 78 tuổi nhưng đôi tay vẫn còn gõ chiêng vững chắc...',
-    coverImage: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=85',
+    content: `Ông nội tôi — già làng Điểu Minh — năm nay đã bước sang tuổi 78. Dù mái tóc đã bạc phơ như mây ngàn và những nếp nhăn hằn sâu trên khuôn mặt, đôi tay ông vẫn vô cùng rắn rỏi mỗi khi cầm dùi gõ chiêng. Tiếng chiêng của ông không chỉ vang vọng khắp căn nhà sàn mà như thấm sâu vào lòng đất, đánh thức linh hồn của đại ngàn Bù Đăng hùng vĩ.
+
+Tôi lớn lên trong những đêm hội buôn làng, nơi ánh lửa bập bùng soi rõ những gương mặt rạng rỡ của người S'tiêng. Khi ấy, ông nội thường gọi tôi lại gần, chỉ vào chiếc chiêng cổ treo trang trọng trên vách nứa và bảo: "Cháu ơi, chiếc chiêng này có linh hồn. Khi tiếng chiêng cất lên, tổ tiên đang lắng nghe và trò chuyện với chúng ta. Nhịp chiêng nhanh là niềm vui ngày mùa, nhịp chậm dãi là nỗi nhớ người xưa. Người S'tiêng mình dù đi đâu cũng không được quên tiếng chiêng."
+
+Tôi nhớ nhất đêm hội Mừng lúa mới năm tôi học lớp 8. Đêm đó trời lộng gió, cả buôn làng quây quần bên đống lửa lớn. Ông nội cùng những người cao niên trong làng bước vào vòng xoang. Tiếng chiêng bắt đầu trầm hùng, vang vọng như tiếng sấm từ đỉnh núi cao, rồi chuyển dần sang nhịp điệu rộn rã, thôi thúc. Cả đất trời như hòa làm một. Từ những nhịp gõ thô sơ thuở bé được ông cầm tay uốn nắn, tôi đã hiểu thế nào là sợi dây vô hình kết nối các thế hệ thông qua âm nhạc di sản này.
+
+Giờ đây, khi xã hội ngày càng hiện đại, lớp trẻ trong buôn thích nghe nhạc trẻ hơn. Nhưng với tôi, tiếng cồng chiêng của ông nội vẫn là âm thanh đẹp nhất. Nó nhắc nhở tôi về nguồn cội, về niềm tự hào là một người con của vùng đất Bù Đăng đầy nắng gió.`,
+    coverImage: 'https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=800&q=85',
     author: {
       id: 'author-001',
       name: 'Điểu Thị Lan',
@@ -26,7 +32,14 @@ export const MOCK_COMMUNITY_POSTS: CommunityPost[] = [
     type: 'artwork',
     title: 'Rừng Chiến Khu trong mắt em',
     excerpt: 'Bức tranh màu nước của em Nguyễn Văn Hùng — vẽ lại cảnh tượng những chiến sĩ băng rừng trong đêm, ánh trăng lọt qua tán lá rừng già.',
-    coverImage: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=800&q=85',
+    content: `Bức tranh "Rừng Chiến Khu trong mắt em" được thực hiện bằng chất liệu màu nước trên giấy vẽ khổ A3, là kết quả của chuyến đi thực tế của em Nguyễn Văn Hùng cùng các bạn học sinh trường THCS Bù Đăng tới Khu di tích lịch sử Căn cứ nửa lon - Chiến Khu Đ huyền thoại.
+
+Hùng chia sẻ: "Khi đứng dưới những tán cây cổ thụ hàng trăm năm tuổi, lắng nghe tiếng chim kêu và gió xào xạc, em như cảm nhận được những gian khổ nhưng vô cùng anh dũng của thế hệ cha ông đi trước. Em muốn vẽ lại một đêm hành quân của các chiến sĩ giải phóng quân."
+
+Trong bức tranh, tác giả nhí đã khéo léo sử dụng các tông màu xanh lục đậm, đen và xanh lam để tái hiện sự huyền bí, sâu thẳm của rừng già Nam Bộ. Điểm nhấn của tác phẩm là những tia sáng trăng dịu mát len lỏi qua từng kẽ lá, rọi xuống con đường mòn nhỏ. Bóng dáng đoàn quân gùi đồ trên lưng lấp ló xa xa, tạo nên cảm giác hào hùng nhưng cũng rất đỗi bình dị, yên ả.
+
+Bức tranh không chỉ thể hiện năng khiếu hội họa xuất sắc của một học sinh lớp 8 mà còn là tình yêu quê hương đất nước, lòng biết ơn sâu sắc đối với những người đã ngã xuống vì nền độc lập của tổ quốc trên mảnh đất Bù Đăng lịch sử này. Tác phẩm đã đạt giải Nhất tại Hội thi vẽ tranh "Di sản quê hương em" năm học vừa qua.`,
+    coverImage: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=85',
     author: {
       id: 'author-002',
       name: 'Nguyễn Văn Hùng',
@@ -37,7 +50,7 @@ export const MOCK_COMMUNITY_POSTS: CommunityPost[] = [
     heritageId: 'hrt-001',
     tags: ['tranh vẽ', 'chiến khu', 'nghệ thuật', 'học sinh'],
     likes: 189,
-    featured: true,
+    featured: false,
     publishedAt: '2024-05-12',
   },
   {
@@ -45,7 +58,16 @@ export const MOCK_COMMUNITY_POSTS: CommunityPost[] = [
     type: 'memory',
     title: 'Ba tôi kể chuyện về những ngày tải đạn',
     excerpt: 'Ba tôi năm nay 65 tuổi. Khi còn 15 tuổi, ông đã cùng các bạn thiếu nhi đội mũ tai bèo, gùi đạn qua rừng Chiến Khu Đ. Đây là câu chuyện của ông, qua lời kể của tôi.',
-    coverImage: 'https://images.unsplash.com/photo-1447684808650-354ae64db5b8?w=800&q=85',
+    content: `Ba tôi — ông Trần Văn Nam — năm nay đã ngoài sáu mươi. Mỗi khi rảnh rỗi hoặc có dịp con cháu quây quần, ba lại lấy chiếc nón tai bèo cũ kỹ từ trong tủ kính ra, ngắm nghía rồi kể lại những kỷ niệm hào hùng của thời thanh xuân cống hiến cho cách mạng tại vùng căn cứ kháng chiến Bù Đăng.
+
+Vào những năm 1970, khi mới chỉ là một cậu thiếu niên 15 tuổi, ba tôi cùng nhiều bạn bè đồng trang lứa trong buôn đã tình nguyện tham gia vào đội du kích địa phương. Nhiệm vụ chính của đội quân tóc măng non lúc bấy giờ là gùi lương thực, tải đạn dược và dẫn đường cho các chiến sĩ qua những cánh rừng rậm rạp của Chiến Khu Đ.
+
+"Hồi đó rừng thiêng nước độc, vắt nhiều vô kể, bom đạn dội xuống bất cứ lúc nào," ba tôi kể, mắt hướng về phía những cánh rừng xa xăm. "Mỗi đứa trẻ tụi ba lúc đó gùi trên lưng chiếc gùi tre nặng gần bằng trọng lượng cơ thể mình. Ban ngày thì ẩn nấp dưới hầm nứa, ban đêm mới dám tranh thủ đi. Những đêm không trăng, tụi ba phải cài lá cây phát quang lên mũ của người đi trước để bám đuôi nhau bước đi trong tĩnh lặng."
+
+Ba nhớ nhất lần cả đội bị trực thăng địch càn quét. Trong khoảnh khắc ngàn cân treo sợi tóc, ba đã nhanh trí ôm chiếc gùi đạn nhảy xuống một hốc cây lớn bị cháy xém, lấy cành lá che lên. Nhờ sự gan dạ và may mắn đó, chuyến hàng đã cập bến an toàn, kịp thời cung cấp đạn dược cho trận đánh then chốt của sư đoàn.
+
+Những câu chuyện của ba không có trong sách giáo khoa một cách chi tiết như vậy. Đó là lịch sử sống, là ký ức được viết bằng mồ hôi, xương máu và lòng quả cảm của thế hệ đi trước để vùng đất Bù Đăng hôm nay mãi mãi xanh tươi.`,
+    coverImage: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&q=85',
     author: {
       id: 'author-003',
       name: 'Trần Quốc Toàn',
@@ -55,7 +77,7 @@ export const MOCK_COMMUNITY_POSTS: CommunityPost[] = [
     heritageId: 'hrt-001',
     tags: ['ký ức', 'kháng chiến', 'gia đình', 'tải đạn'],
     likes: 312,
-    featured: true,
+    featured: false,
     publishedAt: '2024-05-08',
   },
   {
@@ -63,7 +85,14 @@ export const MOCK_COMMUNITY_POSTS: CommunityPost[] = [
     type: 'photo',
     title: 'Buổi sáng ở Thác Mơ',
     excerpt: 'Sương mù buổi sáng ở Thác Mơ tạo nên một khung cảnh huyền ảo như chốn thần tiên. Tôi đã dậy từ 5 giờ sáng để chụp được khoảnh khắc này.',
-    coverImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=85',
+    content: `Thác Mơ Bù Đăng vốn nổi tiếng với vẻ đẹp hoang sơ, hùng vĩ của vùng đất Tây Nguyên. Nhưng để cảm nhận được trọn vẹn phần hồn thơ mộng, huyền ảo của ngọn thác này thì có lẽ phải ghé thăm vào lúc bình minh, khi những giọt sương mai còn đang ôm lấy cành cây ngọn cỏ.
+
+Để bắt được khoảnh khắc sương mù bảng lảng bao phủ dòng thác, tôi đã phải chuẩn bị máy ảnh từ đêm hôm trước và xuất phát từ lúc 4h30 sáng. Khi đến nơi, xung quanh vẫn là một màn đêm tĩnh mịch, chỉ có tiếng nước đổ rì rầm từ trên cao vọng lại như bản nhạc của núi rừng.
+
+Khoảng 5h15, những tia sáng đầu tiên của ngày mới bắt đầu hé lộ ở chân trời phía đông. Làn sương trắng muốt, dày đặc bốc lên từ mặt hồ dưới chân thác, gặp nắng sớm tạo nên những dải màu lấp lánh như cầu vồng mờ ảo. Những ngọn tre, tán lá rừng già hiện lên mập mờ trong làn khói nước, vẽ nên bức tranh sơn thủy hữu tình vô cùng ấn tượng.
+
+Bức ảnh này tôi chụp bằng máy ảnh cơ, phơi sáng khoảng 2 giây để dòng nước trông mềm mại như dải lụa trắng vắt qua sườn núi. Qua tác phẩm này, tôi hy vọng bạn bè muôn phương sẽ biết đến nhiều hơn một địa điểm du lịch sinh thái tuyệt vời và hoang sơ tại huyện Bù Đăng của chúng ta.`,
+    coverImage: 'https://images.unsplash.com/photo-1542856391-010fb87dcfed?w=800&q=85',
     author: {
       id: 'author-004',
       name: 'Lê Minh Tâm',
@@ -80,7 +109,17 @@ export const MOCK_COMMUNITY_POSTS: CommunityPost[] = [
     type: 'research',
     title: 'Tìm hiểu hoa văn thổ cẩm S\'tiêng — Nghiên cứu của nhóm học sinh lớp 9',
     excerpt: 'Chúng em đã dành 3 tháng gặp gỡ các nghệ nhân, ghi chép hơn 20 mẫu hoa văn thổ cẩm truyền thống. Đây là kết quả nghiên cứu của nhóm chúng em về ý nghĩa của từng hoa văn.',
-    coverImage: 'https://images.unsplash.com/photo-1558618047-3c8c7692fdcb?w=800&q=85',
+    content: `Nghề dệt thổ cẩm của đồng bào dân tộc S'tiêng tại Bù Đăng là một di sản văn hóa phi vật thể vô cùng độc đáo. Tuy nhiên, cùng với thời gian, số lượng nghệ nhân biết dệt và hiểu ý nghĩa của các hoa văn đang ngày một ít đi. Nhận thức được điều đó, nhóm học sinh lớp 9A trường THCS Minh Hưng đã thực hiện đề tài nghiên cứu trải nghiệm sáng tạo về chủ đề này dưới sự hướng dẫn của giáo viên Lịch sử địa phương.
+
+Trong suốt 3 tháng ròng rã, cứ vào dịp cuối tuần, nhóm chúng em lại lặn lội đến các buôn làng xa xôi như buôn Bù Bông, Bù Sa để gặp gỡ các nghệ nhân dệt thổ cẩm. Chúng em đã chụp ảnh, vẽ lại và ghi chép tỉ mỉ hơn 20 mẫu hoa văn cổ truyền.
+
+Kết quả nghiên cứu cho thấy, hoa văn thổ cẩm S'tiêng chủ yếu mang tính đối xứng, phản ánh thế giới quan sinh động của cư dân bản địa về vũ trụ và thiên nhiên.
+- Hình thoi chéo biểu tượng cho hạt gạo, hạt bắp — mong ước về sự no đủ.
+- Hình răng cưa dọc theo viền vải đại diện cho những dãy núi đồi trập trùng bảo bọc buôn làng.
+- Các họa tiết cách điệu hình con chim, con rùa thể hiện sự hòa hợp tuyệt đối giữa con người với muôn thú xung quanh.
+
+Nghiên cứu này không chỉ giúp nhóm hiểu rõ hơn về văn hóa truyền thống của quê hương mà còn đề xuất một số giải pháp thiết thực nhằm ứng dụng hoa văn S'tiêng vào các sản phẩm thời trang hiện đại để giới trẻ tiếp cận dễ dàng hơn.`,
+    coverImage: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800&q=85',
     author: {
       id: 'author-005',
       name: 'Nhóm HS Lớp 9A',
@@ -99,7 +138,14 @@ export const MOCK_COMMUNITY_POSTS: CommunityPost[] = [
     type: 'story',
     title: 'Mùa lúa mới và tiếng cười của buôn làng',
     excerpt: 'Năm nào cũng vậy, khi lúa nếp bắt đầu vàng trên nương, cả buôn làng tôi lại rộn ràng chuẩn bị cho lễ hội. Đó là thời điểm mà mọi lo toan của cuộc sống đều được gác lại.',
-    coverImage: 'https://images.unsplash.com/photo-1504609813442-a8924e83f76e?w=800&q=85',
+    content: `Lễ hội Mừng lúa mới (hay còn gọi là Lễ hội đâm trâu tạ ơn tổ tiên) là ngày hội lớn nhất trong năm của cộng đồng người M'nông sinh sống tại vùng cao Bù Đăng. Khi những cơn mưa cuối mùa dứt hẳn, để lại bầu trời trong xanh cao vời vợi, cũng là lúc lúa nếp trên nương chín vàng rực, trĩu hạt. Cả buôn làng rộn rã bước vào một mùa thu hoạch đầy phấn khởi.
+
+Từ tờ mờ sáng, tiếng chày giã gạo đã vang lên khắp buôn. Các bà, các chị trong trang phục thổ cẩm đẹp nhất nhanh tay giã những hạt nếp mới để đồ xôi, làm bánh nếp nướng thơm lừng cả một góc rừng. Thanh niên trai tráng thì chuẩn bị cọc nêu trang trí sặc sỡ và những ché rượu cần thơm ngon nhất đã được ủ kỹ từ nhiều tháng trước.
+
+Tối đến, khi đống lửa trung tâm buôn làng được đốt lên, già làng làm lễ cúng thần lúa, thần rừng cầu mong cho mưa thuận gió hòa, buôn làng bình an khỏe mạnh. Ngay sau đó, tiếng cồng chiêng ngân vang réo rắt báo hiệu hội vui bắt đầu. Mọi người cầm tay nhau tạo thành vòng xoang lớn xung quanh ngọn lửa, uống rượu cần và cùng nhảy múa theo nhịp chiêng.
+
+Những nụ cười giòn giã của trẻ thơ hòa cùng tiếng nói chuyện rôm rả của các cụ già tạo nên một không khí ấm cúng, gắn kết bền chặt. Với người M'nông, mùa lúa mới không chỉ là thành quả lao động vất vả mà còn là dịp để gia đình sum họp, thắt chặt tình đoàn kết cộng đồng buôn làng bền bỉ qua năm tháng.`,
+    coverImage: 'https://images.unsplash.com/photo-1536657235019-0309129d136a?w=800&q=85',
     author: {
       id: 'author-006',
       name: 'Thị Hoa',
@@ -203,3 +249,4 @@ export const MOCK_EVENTS: Event[] = [
     isOnline: false,
   },
 ]
+

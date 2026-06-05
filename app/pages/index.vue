@@ -1,16 +1,28 @@
 <template>
   <div>
+    <!-- 1. Giới thiệu -->
     <HeroSection />
     <StorytellingIntro />
-    <CulturalTimelineSection />
+
+    <!-- 2. Điểm nổi bật -->
     <FeaturedHeritage />
-    <HeritageCategoriesSection />
+    <CulturalTimelineSection />
+
+    <!-- 3. Trải nghiệm -->
     <MapPreviewSection />
     <AudioGuideSection />
+
+    <!-- 4. Di sản -->
+    <HeritageCategoriesSection />
+
+    <!-- 5. Cộng đồng -->
     <CommunityStoriesSection />
+
+    <!-- 6. Khám phá thêm -->
     <QuizSection />
     <SchoolCornerSection />
     <NewsSection />
+    <FAQSection />
     <ContributionCTA />
   </div>
 </template>

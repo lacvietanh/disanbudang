@@ -29,7 +29,6 @@
             <div>
               <p class="text-charcoal-400 text-xs uppercase tracking-wider mb-1">{{ info.label }}</p>
               <p class="font-medium text-charcoal-800 text-sm">{{ info.value }}</p>
-              <p v-if="info.sub" class="text-charcoal-400 text-xs mt-0.5">{{ info.sub }}</p>
             </div>
           </div>
 
@@ -109,10 +108,8 @@ const isSubmitting = ref(false)
 const submitted = ref(false)
 
 const contactInfo = [
-  { icon: 'mdi:map-marker-outline', label: 'Địa Chỉ', value: 'UBND Huyện Bù Đăng', sub: 'Tỉnh Bình Phước, Việt Nam' },
-  { icon: 'mdi:email-outline', label: 'Email', value: 'disanbudang@binhphuoc.gov.vn' },
-  { icon: 'mdi:phone-outline', label: 'Điện Thoại', value: '(0271) 3 567 890', sub: 'Thứ 2 – Thứ 6, 8:00 – 17:00' },
-  { icon: 'mdi:clock-outline', label: 'Giờ Làm Việc', value: 'Thứ 2 – Thứ 6', sub: '08:00 – 17:00 (GMT+7)' },
+  { icon: 'mdi:map-marker-outline', label: 'Địa Chỉ', value: 'Bù Đăng, Bình Phước, Việt Nam' },
+  { icon: 'mdi:email-outline', label: 'Email', value: 'nguyenxuankiet294@gmail.com' },
 ]
 
 async function handleSubmit() {

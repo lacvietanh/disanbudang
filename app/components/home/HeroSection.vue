@@ -75,15 +75,8 @@
             </NuxtLink>
             <NuxtLink to="/map" class="btn-ghost text-base px-8 py-4">
               <Icon name="mdi:map-outline" class="w-5 h-5" />
-              Mở Bản Đồ
+              Bản Đồ Tương Tác
             </NuxtLink>
-            <button
-              class="btn-ghost text-base px-8 py-4"
-              @click="playFeaturedAudio"
-            >
-              <Icon name="mdi:headphones" class="w-5 h-5" />
-              Nghe Audio Guide
-            </button>
           </div>
 
           <!-- Floating Stats -->
@@ -99,7 +92,7 @@
               <Icon :name="stat.icon" class="w-5 h-5 text-gold-400 flex-shrink-0" />
               <div>
                 <p class="font-heading font-bold text-ivory text-xl leading-none">
-                  {{ stat.count.toLocaleString() }}{{ stat.suffix }}
+                  {{ stat.value }}{{ stat.suffix }}
                 </p>
                 <p class="text-charcoal-400 text-xs mt-0.5">{{ stat.label }}</p>
               </div>
@@ -131,11 +124,6 @@
 </template>
 
 <script setup lang="ts">
-import { MOCK_HERITAGES } from '~/data/mockHeritages'
-import { useCountUp } from '~/composables/useAnimations'
-
-const audioStore = useAudioStore()
-
 const slides = [
   {
     image: 'https://images.unsplash.com/photo-1586348943529-beaae6c28db9?w=1920&q=90',
@@ -158,41 +146,16 @@ onMounted(() => {
   slideInterval = setInterval(() => {
     currentSlide.value = (currentSlide.value + 1) % slides.length
   }, 6000)
-
-  // Start stats countup
-  stats.forEach(s => s.start())
 })
 
 onUnmounted(() => clearInterval(slideInterval))
 
-const statsData = [
-  { icon: 'mdi:castle', value: 8, suffix: '+', label: 'Di sản' },
-  { icon: 'mdi:book-open-variant', value: 50, suffix: '+', label: 'Câu chuyện' },
-  { icon: 'mdi:headphones', value: 12, suffix: '', label: 'Audio guide' },
-  { icon: 'mdi:account-school', value: 2000, suffix: '+', label: 'Học sinh' },
+const stats = [
+  { icon: 'mdi:castle', value: '8', suffix: '+', label: 'Di sản' },
+  { icon: 'mdi:book-open-variant', value: '50', suffix: '+', label: 'Câu chuyện' },
+  { icon: 'mdi:headphones', value: '12', suffix: '', label: 'Audio guide' },
+  { icon: 'mdi:account-school', value: '2.000', suffix: '+', label: 'Học sinh' },
 ]
-
-const stats = reactive(
-  statsData.map((s) => {
-    const { count, start } = useCountUp(s.value, 2000)
-    return {
-      icon: s.icon,
-      value: s.value,
-      suffix: s.suffix,
-      label: s.label,
-      count,
-      start,
-    }
-  })
-)
-
-function playFeaturedAudio() {
-  const featured = MOCK_HERITAGES.find((h) => h.audio)
-  if (featured?.audio) {
-    audioStore.loadTrack(featured.audio, featured.id)
-    audioStore.play()
-  }
-}
 </script>
 
 <style scoped>
