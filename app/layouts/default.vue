@@ -17,6 +17,11 @@ import TheHeader from '~/components/layout/TheHeader.vue'
 import TheFooter from '~/components/layout/TheFooter.vue'
 import AudioMiniPlayer from '~/components/audio/AudioMiniPlayer.vue'
 
+// Basic content protection
+if (import.meta.client) {
+  document.addEventListener('contextmenu', (e) => e.preventDefault())
+}
+
 // Scroll reveal on route change
 const { observeAll } = useScrollReveal()
 const route = useRoute()

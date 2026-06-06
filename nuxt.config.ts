@@ -10,7 +10,25 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@vueuse/nuxt',
     '@vueuse/motion/nuxt',
+    'nuxt-security',
   ],
+
+  security: {
+    headers: {
+      contentSecurityPolicy: {
+        'img-src': ["'self'", 'data:', 'https://images.unsplash.com', 'https://*.tile.openstreetmap.org'],
+      },
+    },
+    rateLimiter: {
+      tokensPerInterval: 150,
+      interval: 'hour',
+      fireImmediately: true,
+    },
+    corsHandler: {
+      origin: '*',
+      methods: ['GET', 'POST'],
+    },
+  },
 
   css: ['~/assets/css/main.css'],
 
