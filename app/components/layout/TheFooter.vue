@@ -23,7 +23,7 @@
             </div>
           </div>
           <p class="text-charcoal-300 text-sm leading-relaxed">
-            Dự án bảo tồn và phát huy di sản văn hóa – lịch sử huyện Bù Đăng, tỉnh Bình Phước.
+            Dự án bảo tồn và phát huy di sản văn hóa – lịch sử Xã Bù Đăng Thành Phố Đồng Nai (Tỉnh Bình Phước cũ).
             Nơi lưu giữ ký ức cộng đồng cho thế hệ hôm nay và mai sau.
           </p>
           <!-- Social -->
@@ -61,7 +61,7 @@
           <div class="space-y-3 text-sm text-charcoal-300">
             <p class="flex items-start gap-2">
               <Icon name="mdi:map-marker-outline" class="w-4 h-4 text-gold-500 mt-0.5 shrink-0" />
-              Bù Đăng, Bình Phước, Việt Nam
+              Xã Bù Đăng Thành Phố Đồng Nai (Tỉnh Bình Phước cũ)
             </p>
             <p class="flex items-center gap-2">
               <Icon name="mdi:email-outline" class="w-4 h-4 text-gold-500 shrink-0" />
