@@ -1,0 +1,193 @@
+{
+  "images": [
+    {
+      "id": "img-bu-lach",
+      "title": "Trảng cỏ Bù Lạch",
+      "source": "https://vietnamtourism.vn/tin-tuc/trang-co-bu-lach-binh-phuoc",
+      "location": "Xã Đồng Nai, Huyện Bù Đăng, Bình Phước",
+      "category": "danh-thang",
+      "alt": {
+        "vi": "Cánh đồng cỏ xanh mướt trải dài của Trảng cỏ Bù Lạch bên cạnh hồ nước tự nhiên hùng vĩ.",
+        "en": "Lush green grassland of Bu Lach stretching next to a majestic natural lake."
+      },
+      "dominantColors": [
+        "#87969C"
+      ],
+      "orientation": "landscape",
+      "placeholder": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAADwAQCdASoQABAABUB8JaACdH8AFbJcmaAA/uF7Ir/hsspggIetjNbyrdPJwA+y0mXTsJ+lTY8fvxnpZiNQYZrGuSCOqWTEg4zAAA==",
+      "sizes": {
+        "sm": "/images/heritage/danh-thang/bu-lach-sm.webp",
+        "md": "/images/heritage/danh-thang/bu-lach-md.webp",
+        "lg": "/images/heritage/danh-thang/bu-lach-lg.webp"
+      }
+    },
+    {
+      "id": "img-soc-bom-bo",
+      "title": "Sóc Bom Bo",
+      "source": "https://binhphuoc.gov.vn/di-tich-lich-su-soc-bom-bo",
+      "location": "Xã Bình Minh, Huyện Bù Đăng, Bình Phước",
+      "category": "lich-su",
+      "alt": {
+        "vi": "Khu bảo tồn văn hóa Sóc Bom Bo với chày cối giã gạo truyền thống của đồng bào S’tiêng.",
+        "en": "Bom Bo Village cultural conservation area with traditional rice pestles of S’tiêng ethnic group."
+      },
+      "dominantColors": [
+        "#92684D"
+      ],
+      "orientation": "landscape",
+      "placeholder": "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAADwAQCdASoQABAABUB8JbACdAEHI2fPrgAA/sVS3Llx1PqssJF4wZx2euNGm2XqjX4d3VluXulAT7ORsAA=",
+      "sizes": {
+        "sm": "/images/heritage/lich-su/soc-bom-bo-sm.webp",
+        "md": "/images/heritage/lich-su/soc-bom-bo-md.webp",
+        "lg": "/images/heritage/lich-su/soc-bom-bo-lg.webp"
+      }
+    },
+    {
+      "id": "img-van-hoa-stieng",
+      "title": "Văn hóa người S’tiêng Bù Đăng",
+      "source": "https://binhphuoc.gov.vn/van-hoa-dan-toc-stieng",
+      "location": "Huyện Bù Đăng, Bình Phước",
+      "category": "van-hoa-phi-vat-the",
+      "alt": {
+        "vi": "Đồng bào dân tộc S’tiêng mặc trang phục thổ cẩm truyền thống trong ngày hội địa phương.",
+        "en": "S’tiêng ethnic people wearing traditional brocade clothing during a local festival."
+      },
+      "dominantColors": [
+        "#3C2D1E"
+      ],
+      "orientation": "landscape",
+      "placeholder": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAAAwAgCdASoQABAABUB8JaACdAEVy55vqlp0AAD+5fCRBoplT3m4kxYh80P0Dm9sNjw9a+8CUMbWKN51g8O6PCkAAAA=",
+      "sizes": {
+        "sm": "/images/heritage/van-hoa-phi-vat-the/van-hoa-stieng-sm.webp",
+        "md": "/images/heritage/van-hoa-phi-vat-the/van-hoa-stieng-md.webp",
+        "lg": "/images/heritage/van-hoa-phi-vat-the/van-hoa-stieng-lg.webp"
+      }
+    },
+    {
+      "id": "img-nha-dai",
+      "title": "Nhà dài truyền thống S’tiêng",
+      "source": "https://binhphuoc.gov.vn/nha-dai-stieng-binh-phuoc",
+      "location": "Sóc Bom Bo, Huyện Bù Đăng, Bình Phước",
+      "category": "doi-song-cong-dong",
+      "alt": {
+        "vi": "Ngôi nhà dài truyền thống của người S’tiêng được làm từ tranh, tre, nứa lá.",
+        "en": "Traditional longhouse of S’tiêng people constructed from thatch, bamboo, and wood."
+      },
+      "dominantColors": [
+        "#AFB3B2"
+      ],
+      "orientation": "landscape",
+      "placeholder": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAACwAQCdASoQABAABUB8JZwAAuXEBksAAP7Dg2e0kLlW9+FqplN26l3fxR+7noKoNqaLEs8ltR+m0trM0YeGY0Jm+OAAAA==",
+      "sizes": {
+        "sm": "/images/heritage/doi-song-cong-dong/nha-dai-sm.webp",
+        "md": "/images/heritage/doi-song-cong-dong/nha-dai-md.webp",
+        "lg": "/images/heritage/doi-song-cong-dong/nha-dai-lg.webp"
+      }
+    },
+    {
+      "id": "img-cong-chieng",
+      "title": "Nghệ thuật Cồng chiêng Bù Đăng",
+      "source": "https://binhphuoc.gov.vn/di-san-cong-chieng-stieng",
+      "location": "Huyện Bù Đăng, Bình Phước",
+      "category": "van-hoa-phi-vat-the",
+      "alt": {
+        "vi": "Nghệ nhân S’tiêng biểu diễn cồng chiêng trong không gian văn hóa bản địa.",
+        "en": "S’tiêng artists performing gong music in the native cultural space."
+      },
+      "dominantColors": [
+        "#296087"
+      ],
+      "orientation": "landscape",
+      "placeholder": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAACwAQCdASoQABAABUB8JbACdAC91454AP1Hf4NhQ9Z9BuXEapmrCLHaNag3cfZW3aNRPfzIUPPwXLj1v1tXvfX2vFIn4M/ypt+IAA==",
+      "sizes": {
+        "sm": "/images/heritage/van-hoa-phi-vat-the/cong-chieng-sm.webp",
+        "md": "/images/heritage/van-hoa-phi-vat-the/cong-chieng-md.webp",
+        "lg": "/images/heritage/van-hoa-phi-vat-the/cong-chieng-lg.webp"
+      }
+    },
+    {
+      "id": "img-rung-nguyen-sinh",
+      "title": "Rừng nguyên sinh Bù Đăng",
+      "source": "https://www.vietnamtourism.org.vn/tin-tuc/rung-bu-dang",
+      "location": "Xã Đắk Nhau, Huyện Bù Đăng, Bình Phước",
+      "category": "danh-thang",
+      "alt": {
+        "vi": "Những tán cây cổ thụ cao vút trong lõi rừng già nguyên sinh Bù Đăng.",
+        "en": "Towering ancient trees in the core of Bu Dang primeval forest."
+      },
+      "dominantColors": [
+        "#4B474C"
+      ],
+      "orientation": "landscape",
+      "placeholder": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAADwAQCdASoQABAABUB8JZQAAuivye7Ja8AA/tkJ570gXm4P1yhwSL+fszSb8cBKmhYG9hgPgAA=",
+      "sizes": {
+        "sm": "/images/heritage/danh-thang/rung-nguyen-sinh-sm.webp",
+        "md": "/images/heritage/danh-thang/rung-nguyen-sinh-md.webp",
+        "lg": "/images/heritage/danh-thang/rung-nguyen-sinh-lg.webp"
+      }
+    },
+    {
+      "id": "img-thac-dung",
+      "title": "Thác Đứng Bù Đăng",
+      "source": "https://vietnamtourism.vn/tin-tuc/thac-dung-binh-phuoc",
+      "location": "Xã Đoàn Kết, Huyện Bù Đăng, Bình Phước",
+      "category": "danh-thang",
+      "alt": {
+        "vi": "Dòng nước Thác Đứng cuồn cuộn đổ xuống những khối đá hình trụ kỳ vĩ.",
+        "en": "The cascading flow of Dung Waterfall pouring onto magnificent columnar basalt rocks."
+      },
+      "dominantColors": [
+        "#6C7067"
+      ],
+      "orientation": "landscape",
+      "placeholder": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAADQAQCdASoQABAABUB8JQBYdiHcWLVgAAD307dbnr1LjWXlVW5nocT2w3uE00OyY7L/LHlOHPUAAA==",
+      "sizes": {
+        "sm": "/images/heritage/danh-thang/thac-dung-sm.webp",
+        "md": "/images/heritage/danh-thang/thac-dung-md.webp",
+        "lg": "/images/heritage/danh-thang/thac-dung-lg.webp"
+      }
+    },
+    {
+      "id": "img-thien-nhien",
+      "title": "Thiên nhiên Bình Phước hoang sơ",
+      "source": "https://binhphuoc.gov.vn/canh-quan-thien-nhien",
+      "location": "Tỉnh Bình Phước",
+      "category": "danh-thang",
+      "alt": {
+        "vi": "Cảnh quan sông hồ xanh mát và đồi cao đặc trưng của tỉnh Bình Phước.",
+        "en": "Scenic fresh lakes and highlands typical of Binh Phuoc province."
+      },
+      "dominantColors": [
+        "#475736"
+      ],
+      "orientation": "landscape",
+      "placeholder": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAAAQAgCdASoQABAABUB8JZACdAEVvOts/KrAAMyFVbgLij9wy0BkuDYURtPlgNeDOAO6XhTfdMXPoeT9LEMAAA==",
+      "sizes": {
+        "sm": "/images/heritage/danh-thang/thien-nhien-sm.webp",
+        "md": "/images/heritage/danh-thang/thien-nhien-md.webp",
+        "lg": "/images/heritage/danh-thang/thien-nhien-lg.webp"
+      }
+    },
+    {
+      "id": "img-di-san-ban-dia",
+      "title": "Di sản văn hóa bản địa Bù Đăng",
+      "source": "https://binhphuoc.gov.vn/bao-ton-van-hoa-ban-dia",
+      "location": "Huyện Bù Đăng, Bình Phước",
+      "category": "van-hoa-phi-vat-the",
+      "alt": {
+        "vi": "Các vật dụng sinh hoạt và dệt thổ cẩm truyền thống thể hiện bản sắc di sản độc đáo.",
+        "en": "Traditional lifestyle items and brocade weaving displaying unique heritage identity."
+      },
+      "dominantColors": [
+        "#837875"
+      ],
+      "orientation": "landscape",
+      "placeholder": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAADQAQCdASoQABAABUB8JZwAAjHcTpXGAAD+ToYAVWAPwB8bgU4fdG0g/n14zFIOBq6zUO9uiwpXCs6P4w8gAA==",
+      "sizes": {
+        "sm": "/images/heritage/van-hoa-phi-vat-the/di-san-ban-dia-sm.webp",
+        "md": "/images/heritage/van-hoa-phi-vat-the/di-san-ban-dia-md.webp",
+        "lg": "/images/heritage/van-hoa-phi-vat-the/di-san-ban-dia-lg.webp"
+      }
+    }
+  ]
+}

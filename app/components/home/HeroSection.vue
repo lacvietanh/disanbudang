@@ -50,8 +50,8 @@
 
           <!-- Main Heading -->
           <h1 class="text-display text-ivory text-shadow-hero mb-4 animate-fade-up" style="animation-delay: 0.25s">
-            Di Sản
-            <span class="block text-gradient-gold">Bù Đăng</span>
+            Bảo Tàng Số
+            <span class="block text-gradient-gold">Di Sản Bù Đăng</span>
           </h1>
 
           <!-- Tagline -->
@@ -59,23 +59,26 @@
             class="text-cinematic text-ivory/80 mb-6 animate-fade-up max-w-2xl"
             style="animation-delay: 0.4s"
           >
-            "Những câu chuyện còn sống giữa đại ngàn Bù Đăng"
+            "Linh hồn đại ngàn, tiếng vang lịch sử và bản sắc ngàn đời"
           </p>
 
           <p class="text-charcoal-300 text-lg leading-relaxed mb-10 max-w-xl animate-fade-up" style="animation-delay: 0.5s">
-            Hành trình khám phá di sản văn hóa, lịch sử và thiên nhiên của vùng đất hào hùng,
-            nơi lưu giữ ký ức của hàng nghìn con người và nhiều thế hệ.
+            Không gian lưu trữ di sản văn hóa, thiên nhiên kỳ vĩ và những câu chuyện lịch sử hào hùng của mảnh đất Bù Đăng.
           </p>
 
           <!-- CTAs -->
           <div class="flex flex-wrap gap-4 mb-16 animate-fade-up" style="animation-delay: 0.65s">
-            <NuxtLink to="/library" class="btn-primary text-base px-8 py-4">
-              <Icon name="mdi:compass-outline" class="w-5 h-5" />
-              Khám Phá Di Sản
-            </NuxtLink>
-            <NuxtLink to="/map" class="btn-ghost text-base px-8 py-4">
+            <NuxtLink to="/map" class="btn-primary text-base px-8 py-4">
               <Icon name="mdi:map-outline" class="w-5 h-5" />
-              Bản Đồ Tương Tác
+              Bản Đồ Di Sản
+            </NuxtLink>
+            <NuxtLink to="/gallery" class="btn-secondary text-base px-8 py-4 border-gold-500 text-gold-400 hover:bg-gold-500 hover:text-charcoal-900">
+              <Icon name="mdi:image-multiple-outline" class="w-5 h-5" />
+              Triển Lãm Số
+            </NuxtLink>
+            <NuxtLink to="/library" class="btn-ghost text-base px-8 py-4">
+              <Icon name="mdi:book-open-outline" class="w-5 h-5" />
+              Thư Viện Di Sản
             </NuxtLink>
           </div>
 
@@ -126,16 +129,20 @@
 <script setup lang="ts">
 const slides = [
   {
-    image: 'https://images.unsplash.com/photo-1586348943529-beaae6c28db9?w=1920&q=90',
-    alt: 'Rừng Chiến Khu Đ hùng vĩ',
+    image: '/images/heritage/danh-thang/bu-lach-lg.webp',
+    alt: 'Trảng cỏ Bù Lạch hùng vĩ',
   },
   {
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=90',
-    alt: 'Thác Mơ Bù Đăng',
+    image: '/images/heritage/danh-thang/thac-dung-lg.webp',
+    alt: 'Thác Đứng Bù Đăng cuồn cuộn đổ xuống',
   },
   {
-    image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=1920&q=90',
-    alt: 'Rừng nguyên sinh Bù Đăng',
+    image: '/images/heritage/danh-thang/rung-nguyen-sinh-lg.webp',
+    alt: 'Rừng nguyên sinh Bù Đăng già cội',
+  },
+  {
+    image: '/images/heritage/lich-su/soc-bom-bo-lg.webp',
+    alt: 'Sóc Bom Bo lịch sử giã gạo nuôi quân',
   },
 ]
 

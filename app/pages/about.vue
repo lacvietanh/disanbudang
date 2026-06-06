@@ -2,7 +2,7 @@
   <div class="bg-ivory">
     <!-- Hero cinematic -->
     <section class="relative min-h-[60vh] flex items-end overflow-hidden">
-      <img src="https://images.unsplash.com/photo-1586348943529-beaae6c28db9?w=1600&q=85"
+      <img src="/images/heritage/danh-thang/rung-nguyen-sinh-lg.webp"
         alt="Rừng Bù Đăng" class="absolute inset-0 w-full h-full object-cover" />
       <div class="absolute inset-0 bg-gradient-to-t from-charcoal-900 via-charcoal-900/50 to-transparent" />
       <div class="absolute inset-0 bg-gradient-to-r from-charcoal-900/70 to-transparent" />
@@ -27,7 +27,7 @@
             </h2>
             <div class="prose-heritage">
               <p>
-                <strong>Di Sản Bù Đăng</strong> là một dự án bảo tàng số cộng đồng — nơi toàn bộ di sản văn hóa, lịch sử và thiên nhiên của huyện Bù Đăng, tỉnh Bình Phước được số hóa, lưu trữ và chia sẻ rộng rãi đến mọi tầng lớp nhân dân.
+                <strong>Di Sản Bù Đăng</strong> là một dự án bảo tàng số cộng đồng — nơi toàn bộ di sản văn hóa, lịch sử và thiên nhiên của Xã Bù Đăng Thành Phố Đồng Nai (Tỉnh Bình Phước cũ) được số hóa, lưu trữ và chia sẻ rộng rãi đến mọi tầng lớp nhân dân.
               </p>
               <p>
                 Bù Đăng là vùng đất giàu truyền thống — từ Chiến Khu Đ anh hùng trong hai cuộc kháng chiến, đến những cánh rừng nguyên sinh hùng vĩ, từ văn hóa cồng chiêng của người S'tiêng được UNESCO vinh danh, đến những ngôi nhà dài truyền thống, làng nghề dệt thổ cẩm tinh tế. Tất cả đều xứng đáng được lưu giữ và tôn vinh.
@@ -89,28 +89,6 @@
             </div>
           </div>
 
-          <!-- Partners -->
-          <div class="bg-white rounded-2xl p-6 shadow-card">
-            <h3 class="font-heading font-bold text-charcoal-800 text-lg mb-5">Đơn Vị Thực Hiện</h3>
-            <div class="space-y-3 text-sm text-charcoal-600">
-              <div class="flex items-center gap-2">
-                <Icon name="mdi:office-building" class="w-4 h-4 text-gold-500" />
-                UBND Huyện Bù Đăng
-              </div>
-              <div class="flex items-center gap-2">
-                <Icon name="mdi:school" class="w-4 h-4 text-gold-500" />
-                Phòng GD&ĐT Huyện Bù Đăng
-              </div>
-              <div class="flex items-center gap-2">
-                <Icon name="mdi:bank" class="w-4 h-4 text-gold-500" />
-                Sở Văn hóa Bình Phước
-              </div>
-              <div class="flex items-center gap-2">
-                <Icon name="mdi:domain" class="w-4 h-4 text-gold-500" />
-                Các trường THCS & THPT
-              </div>
-            </div>
-          </div>
 
           <!-- Timeline -->
           <div class="bg-beige-50 rounded-2xl p-6">
@@ -150,8 +128,8 @@ const goals = [
 
 const teams = [
   { name: 'Nguyễn Xuân Kiệt', role: 'Người thực hiện dự án (Product Designer, Frontend Engineer & SEO Specialist)', icon: 'mdi:account-star' },
-  { name: 'Ban Văn Hóa Huyện Bù Đăng', role: 'Đồng hành, cung cấp & kiểm duyệt tài liệu', icon: 'mdi:office-building' },
-  { name: 'Nghệ Nhân & Cộng Đồng', role: 'Cố vấn văn hóa và âm nhạc bản địa', icon: 'mdi:account-group' },
+  { name: 'Vũ Thị Thanh', role: 'Giáo viên hướng dẫn - Giáo viên trường THPT Lê Quý Đôn', icon: 'mdi:school' },
+  { name: 'Lạc Việt Anh', role: 'Mentor - Cố vấn, hỗ trợ', icon: 'mdi:account-tie' },
 ]
 
 const projectStats = [

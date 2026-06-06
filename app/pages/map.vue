@@ -1,22 +1,22 @@
 <template>
   <div class="min-h-screen bg-charcoal-900 flex flex-col relative">
     <!-- Page header -->
-    <div class="border-b border-charcoal-850 py-4 bg-charcoal-950/80 backdrop-blur-xl relative z-30">
+    <div class="border-b border-charcoal-800/80 py-5 bg-charcoal-950/90 backdrop-blur-xl relative z-30 shadow-lg shadow-charcoal-950/40">
       <div class="container-heritage flex items-center justify-between">
         <div>
-          <span class="eyebrow text-gold-400 text-3xs mb-0.5 block">Không Gian Bản Đồ Tương Tác</span>
-          <h1 class="font-heading font-bold text-ivory text-2xl leading-none">Bản Đồ Di Sản Bù Đăng</h1>
+          <span class="eyebrow text-gold-400 text-3xs mb-1.5 block tracking-widest font-bold">Không Gian Bản Đồ Tương Tác</span>
+          <h1 class="font-heading font-bold text-ivory text-2xl leading-none tracking-tight">Bản Đồ Di Sản Bù Đăng</h1>
         </div>
         <div class="flex items-center gap-3">
-          <span class="text-charcoal-400 text-xs hidden sm:inline-flex items-center gap-1.5 bg-charcoal-900 border border-charcoal-800 rounded-full px-3 py-1">
-            <span class="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse-gold"></span>
+          <span class="text-charcoal-355 text-xs hidden sm:inline-flex items-center gap-2 bg-charcoal-900 border border-charcoal-800 rounded-full px-3.5 py-1.5 font-medium">
+            <span class="w-2 h-2 rounded-full bg-gold-400 animate-pulse-gold"></span>
             {{ store.filteredHeritages.length }} di sản hiển thị
           </span>
           <button
-            class="lg:hidden btn-ghost text-xs"
+            class="lg:hidden btn-ghost text-xs border border-charcoal-800 rounded-xl px-4 py-2 hover:border-gold-500/40"
             @click="sidebarOpen = !sidebarOpen"
           >
-            <Icon :name="sidebarOpen ? 'mdi:close' : 'mdi:filter-outline'" class="w-4 h-4 text-gold-400" />
+            <Icon :name="sidebarOpen ? 'mdi:close' : 'mdi:filter-outline'" class="w-4 h-4 text-gold-400 mr-1" />
             Bộ lọc & Tuyến
           </button>
         </div>
@@ -30,40 +30,40 @@
         :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
       >
         <!-- Tab Selectors -->
-        <div class="grid grid-cols-2 border-b border-charcoal-850 bg-charcoal-900/50">
+        <div class="grid grid-cols-2 border-b border-charcoal-850 bg-charcoal-900/40">
           <button
-            class="py-3.5 text-xs uppercase tracking-widest font-semibold text-center border-b-2 transition-all duration-300"
-            :class="activeTab === 'search' ? 'border-gold-500 text-gold-400 bg-charcoal-950' : 'border-transparent text-charcoal-400 hover:text-ivory'"
+            class="py-4 text-2xs uppercase tracking-widest font-bold text-center border-b-2 transition-all duration-300 flex items-center justify-center gap-2"
+            :class="activeTab === 'search' ? 'border-gold-500 text-gold-400 bg-charcoal-950/80' : 'border-transparent text-charcoal-400 hover:text-ivory'"
             @click="activeTab = 'search'"
           >
-            <Icon name="mdi:magnify" class="w-4 h-4 inline-block mr-1.5" />
+            <Icon name="mdi:magnify" class="w-4 h-4 text-gold-500" />
             Tìm Di Sản
           </button>
           <button
-            class="py-3.5 text-xs uppercase tracking-widest font-semibold text-center border-b-2 transition-all duration-300"
-            :class="activeTab === 'route' ? 'border-gold-500 text-gold-400 bg-charcoal-950' : 'border-transparent text-charcoal-400 hover:text-ivory'"
+            class="py-4 text-2xs uppercase tracking-widest font-bold text-center border-b-2 transition-all duration-300 flex items-center justify-center gap-2"
+            :class="activeTab === 'route' ? 'border-gold-500 text-gold-400 bg-charcoal-950/80' : 'border-transparent text-charcoal-400 hover:text-ivory'"
             @click="activeTab = 'route'"
           >
-            <Icon name="mdi:road-variant" class="w-4 h-4 inline-block mr-1.5" />
-            Tuyến Đường
+            <Icon name="mdi:road-variant" class="w-4 h-4 text-gold-500" />
+            Tuyến Lộ Trình
           </button>
         </div>
 
         <!-- SEARCH & FILTER TAB -->
         <div v-if="activeTab === 'search'" class="flex-1 flex flex-col min-h-0">
           <!-- Search input -->
-          <div class="p-4 border-b border-charcoal-850">
+          <div class="p-4 border-b border-charcoal-850 bg-charcoal-950/40">
             <div class="relative">
-              <Icon name="mdi:magnify" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-charcoal-500" />
+              <Icon name="mdi:magnify" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-charcoal-400" />
               <input
                 v-model="searchQuery"
                 type="text"
-                placeholder="Tìm tên, kỷ nguyên, thẻ..."
-                class="w-full pl-9 pr-8 py-2.5 bg-charcoal-900 border border-charcoal-800 rounded-xl text-ivory text-sm placeholder-charcoal-500 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/20 transition-all duration-300"
+                placeholder="Tìm di tích, văn hóa, danh thắng..."
+                class="w-full pl-9 pr-9 py-2.5 bg-charcoal-900 border border-charcoal-800 rounded-xl text-ivory text-sm placeholder-charcoal-500 focus:outline-none focus:border-gold-500/60 focus:ring-1 focus:ring-gold-500/20 transition-all duration-300 shadow-inner"
               />
               <button
                 v-if="searchQuery"
-                class="absolute right-3 top-1/2 -translate-y-1/2 text-charcoal-400 hover:text-ivory"
+                class="absolute right-3.5 top-1/2 -translate-y-1/2 text-charcoal-400 hover:text-ivory transition-colors"
                 @click="searchQuery = ''"
               >
                 <Icon name="mdi:close-circle" class="w-4 h-4" />
@@ -72,53 +72,57 @@
           </div>
 
           <!-- Category filter list -->
-          <div class="p-4 border-b border-charcoal-850 space-y-3 shrink-0">
-            <p class="eyebrow text-gold-400 text-3xs tracking-wider">Danh Mục Di Sản</p>
+          <div class="p-4 border-b border-charcoal-850 space-y-3 shrink-0 bg-charcoal-950/20">
+            <p class="eyebrow text-gold-400 text-3xs tracking-widest font-bold">DANH MỤC DI SẢN BÙ ĐĂNG</p>
             <div class="flex flex-col gap-1.5 max-h-52 overflow-y-auto scrollbar-none pr-1">
               <button
-                class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium transition-all duration-200 border border-transparent"
-                :class="activeCategory === '' ? 'bg-gold-500/15 text-gold-300 border-gold-500/35 shadow-sm' : 'text-charcoal-400 hover:bg-charcoal-900 hover:text-ivory'"
+                class="w-full flex items-center gap-3 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 border border-charcoal-800 hover:border-charcoal-700 hover:text-ivory"
+                :class="activeCategory === '' ? 'bg-gold-500/10 text-gold-300 border-gold-500/30 shadow-md' : 'text-charcoal-400 bg-charcoal-900/20'"
                 @click="setCategory('')"
               >
                 <Icon name="mdi:apps" class="w-4 h-4 text-gold-400" />
-                Tất cả di sản ({{ store.totalCount }})
+                Tất cả di sản
+                <span class="ml-auto text-3xs font-medium text-charcoal-400 bg-charcoal-800 px-2 py-0.5 rounded-full border border-charcoal-700">{{ store.totalCount }}</span>
               </button>
               <button
                 v-for="cat in categories"
                 :key="cat.id"
-                class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium transition-all duration-200 border border-transparent"
-                :class="activeCategory === cat.id ? 'text-ivory border-gold-500/20' : 'text-charcoal-400 hover:bg-charcoal-900 hover:text-ivory'"
-                :style="activeCategory === cat.id ? { backgroundColor: `${cat.color}20` } : {}"
+                class="w-full flex items-center gap-3 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 border"
+                :class="activeCategory === cat.id ? 'text-ivory border-gold-500/30 shadow-md' : 'text-charcoal-400 bg-charcoal-900/20 border-charcoal-800 hover:border-charcoal-700 hover:text-ivory'"
+                :style="activeCategory === cat.id ? { backgroundColor: `${cat.color}15`, borderColor: `${cat.color}35` } : {}"
                 @click="setCategory(cat.id)"
               >
                 <Icon :name="cat.icon" class="w-4 h-4" :style="{ color: cat.color }" />
                 {{ cat.labelShort }}
-                <span class="ml-auto text-3xs text-charcoal-550 bg-charcoal-900 px-2 py-0.5 rounded-full">{{ heritagesByCategory[cat.id]?.length ?? 0 }}</span>
+                <span class="ml-auto text-3xs font-medium text-charcoal-400 bg-charcoal-800 px-2 py-0.5 rounded-full border border-charcoal-700">{{ heritagesByCategory[cat.id]?.length ?? 0 }}</span>
               </button>
             </div>
           </div>
 
           <!-- Heritage list result -->
-          <div class="flex-1 overflow-y-auto scrollbar-none bg-charcoal-950/20">
-            <div class="p-3 space-y-2">
+          <div class="flex-1 overflow-y-auto scrollbar-none bg-charcoal-950/40">
+            <div class="p-3.5 space-y-2">
               <div
                 v-for="heritage in store.filteredHeritages"
                 :key="heritage.id"
-                class="group flex gap-3 p-3 rounded-xl cursor-pointer transition-all duration-300 border bg-charcoal-900/40"
+                class="group flex gap-3.5 p-3 rounded-xl cursor-pointer transition-all duration-300 border relative overflow-hidden"
                 :class="selectedId === heritage.id
-                  ? 'bg-gold-500/10 border-gold-500/30 shadow-md shadow-gold-500/5'
-                  : 'border-transparent hover:border-charcoal-800 hover:bg-charcoal-900/80'"
+                  ? 'bg-gold-500/5 border-gold-500/40 shadow-lg shadow-gold-500/5'
+                  : 'bg-charcoal-900/30 border-charcoal-800/40 hover:border-charcoal-750 hover:bg-charcoal-900/70 hover:translate-x-0.5'"
                 @click="selectHeritage(heritage)"
               >
-                <div class="w-16 h-12 rounded-lg overflow-hidden flex-shrink-0 relative border border-charcoal-800">
-                  <img :src="heritage.coverImage" :alt="heritage.title" class="w-full h-full object-cover" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950/60 to-transparent" />
+                <!-- Indicator block left -->
+                <div v-if="selectedId === heritage.id" class="absolute left-0 top-0 bottom-0 w-1 bg-gold-400 rounded-r-md"></div>
+                
+                <div class="w-18 h-13 rounded-lg overflow-hidden flex-shrink-0 relative border border-charcoal-700 shadow-md">
+                  <img :src="heritage.coverImage" :alt="heritage.title" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950/70 via-transparent to-transparent" />
                 </div>
                 <div class="flex-1 min-w-0">
-                  <p class="text-ivory text-sm font-medium leading-snug line-clamp-1 group-hover:text-gold-300 transition-colors">
+                  <p class="text-ivory text-sm font-semibold leading-snug line-clamp-1 group-hover:text-gold-300 transition-colors">
                     {{ heritage.title }}
                   </p>
-                  <p class="text-charcoal-400 text-2xs mt-1 flex items-center gap-1.5">
+                  <p class="text-charcoal-400 text-3xs uppercase tracking-wider font-bold mt-1.5 flex items-center gap-1.5">
                     <Icon name="mdi:tag-outline" class="w-3.5 h-3.5 text-gold-500" />
                     {{ getCategoryLabel(heritage.category) }}
                   </p>
@@ -127,7 +131,7 @@
 
               <div v-if="store.filteredHeritages.length === 0" class="py-16 text-center">
                 <Icon name="mdi:map-marker-off" class="w-12 h-12 text-charcoal-700 mx-auto mb-3" />
-                <p class="text-charcoal-400 text-sm">Không tìm thấy di sản nào</p>
+                <p class="text-charcoal-400 text-sm font-medium">Không tìm thấy di sản nào</p>
                 <p class="text-charcoal-500 text-xs mt-1">Vui lòng nhập từ khóa tìm kiếm khác</p>
               </div>
             </div>
@@ -135,10 +139,10 @@
         </div>
 
         <!-- JOURNEY / ROUTES TAB -->
-        <div v-if="activeTab === 'route'" class="flex-1 flex flex-col min-h-0 overflow-y-auto scrollbar-none p-4 space-y-6">
+        <div v-if="activeTab === 'route'" class="flex-1 flex flex-col min-h-0 overflow-y-auto scrollbar-none p-4 space-y-5 bg-charcoal-950/20">
           <div class="space-y-1">
-            <p class="eyebrow text-gold-400 text-3xs">Tuyến Đường Đề Xuất</p>
-            <p class="text-xs text-charcoal-400">Trải nghiệm du hành văn hóa theo lộ trình liên kết.</p>
+            <p class="eyebrow text-gold-400 text-3xs tracking-widest font-bold">TUYẾN ĐƯỜNG ĐỀ XUẤT</p>
+            <p class="text-xs text-charcoal-450 leading-relaxed">Khám phá dòng chảy lịch sử và văn hóa bản địa Bù Đăng theo các tuyến đề xuất chuyên sâu.</p>
           </div>
 
           <div class="space-y-4">
@@ -146,30 +150,30 @@
             <div
               v-for="route in suggestedRoutes"
               :key="route.id"
-              class="border rounded-2xl p-4 cursor-pointer transition-all duration-300 relative overflow-hidden"
+              class="border rounded-2xl p-4.5 cursor-pointer transition-all duration-300 relative overflow-hidden"
               :class="selectedRouteId === route.id
-                ? 'bg-charcoal-900 border-gold-500/40 shadow-lg'
-                : 'bg-charcoal-900/30 border-charcoal-850 hover:border-charcoal-800'"
+                ? 'bg-charcoal-900 border-gold-500/50 shadow-lg shadow-gold-500/5'
+                : 'bg-charcoal-900/30 border-charcoal-850 hover:border-charcoal-800 hover:bg-charcoal-900/50'"
               @click="toggleRoute(route)"
             >
-              <div class="flex items-center gap-3 mb-2">
+              <div class="flex items-center gap-3.5 mb-2.5">
                 <div
-                  class="w-9 h-9 rounded-xl flex items-center justify-center text-ivory shrink-0"
-                  :style="{ backgroundColor: `${route.color}25`, color: route.color }"
+                  class="w-10 h-10 rounded-xl flex items-center justify-center text-ivory shrink-0 border border-white/5"
+                  :style="{ backgroundColor: `${route.color}15`, color: route.color, borderColor: `${route.color}25` }"
                 >
-                  <Icon :name="route.icon" class="w-5 h-5" />
+                  <Icon :name="route.icon" class="w-5.5 h-5.5" />
                 </div>
                 <div>
                   <h4 class="font-heading font-bold text-sm text-ivory leading-tight">{{ route.name }}</h4>
-                  <p class="text-3xs text-charcoal-400 mt-0.5">{{ route.stops.length }} điểm dừng</p>
+                  <p class="text-3xs text-charcoal-400 font-bold uppercase mt-0.5 tracking-wider">{{ route.stops.length }} điểm khám phá</p>
                 </div>
               </div>
-              <p class="text-2xs text-charcoal-400 leading-normal">{{ route.description }}</p>
+              <p class="text-xs text-charcoal-405 leading-relaxed">{{ route.description }}</p>
 
               <!-- Route Stops Sequence -->
-              <div v-if="selectedRouteId === route.id" class="mt-4 pt-4 border-t border-charcoal-800 space-y-3.5">
+              <div v-if="selectedRouteId === route.id" class="mt-4 pt-4 border-t border-charcoal-800/80 space-y-4">
                 <p class="text-3xs uppercase text-gold-400 tracking-widest font-bold">Lộ trình chi tiết</p>
-                <div class="relative pl-4 border-l border-charcoal-800 ml-2 space-y-4">
+                <div class="relative pl-5 border-l border-charcoal-800 ml-2 space-y-4">
                   <div
                     v-for="(stop, sIdx) in route.stops"
                     :key="stop.id"
@@ -178,11 +182,12 @@
                   >
                     <!-- Small marker bullet -->
                     <span
-                      class="absolute -left-[21px] top-1 w-2.5 h-2.5 rounded-full border border-charcoal-950 transition-all"
+                      class="absolute -left-[25.5px] top-1 w-2.5 h-2.5 rounded-full border-2 border-charcoal-950 transition-all duration-300"
                       :class="selectedId === stop.id ? 'bg-gold-400 scale-125 ring-4 ring-gold-500/20' : 'bg-charcoal-600 group-hover/stop:bg-ivory'"
+                      :style="selectedId === stop.id ? {} : { backgroundColor: route.color }"
                     />
-                    <p class="text-2xs text-charcoal-400 font-semibold uppercase">Điểm dừng {{ sIdx + 1 }}</p>
-                    <p class="text-xs text-ivory font-medium group-hover/stop:text-gold-300 transition-colors">{{ stop.title }}</p>
+                    <p class="text-3xs text-charcoal-455 font-bold uppercase tracking-wider">Điểm dừng {{ sIdx + 1 }}</p>
+                    <p class="text-xs text-ivory font-semibold group-hover/stop:text-gold-300 transition-colors mt-0.5">{{ stop.title }}</p>
                   </div>
                 </div>
               </div>
@@ -191,9 +196,9 @@
         </div>
 
         <!-- Clear filters button -->
-        <div v-if="(activeCategory || searchQuery || selectedRouteId) && activeTab === 'search'" class="p-4 border-t border-charcoal-850 shrink-0">
-          <button class="w-full text-charcoal-400 hover:text-ivory text-xs flex items-center justify-center gap-2 transition-colors py-2 rounded-xl bg-charcoal-900 border border-charcoal-800" @click="clearAll">
-            <Icon name="mdi:filter-remove-outline" class="w-4 h-4" />
+        <div v-if="(activeCategory || searchQuery || selectedRouteId) && activeTab === 'search'" class="p-4 border-t border-charcoal-850 shrink-0 bg-charcoal-950/60">
+          <button class="w-full text-charcoal-400 hover:text-ivory text-xs flex items-center justify-center gap-2 transition-colors py-2.5 rounded-xl bg-charcoal-900 border border-charcoal-800 font-semibold" @click="clearAll">
+            <Icon name="mdi:filter-remove-outline" class="w-4 h-4 text-gold-500" />
             Xóa mọi bộ lọc
           </button>
         </div>
@@ -213,7 +218,7 @@
             <div class="w-full h-full bg-charcoal-950 flex items-center justify-center">
               <div class="text-center space-y-4">
                 <div class="w-16 h-16 border-2 border-gold-500 border-t-transparent rounded-full animate-spin mx-auto" />
-                <p class="text-charcoal-450 text-sm">Đang kết nối vệ tinh di sản Bù Đăng...</p>
+                <p class="text-charcoal-455 text-sm">Đang kết nối vệ tinh di sản Bù Đăng...</p>
               </div>
             </div>
           </template>
@@ -225,32 +230,36 @@
             v-if="selectedHeritage"
             class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 w-full max-w-lg px-4"
           >
-            <div class="bg-charcoal-950/98 backdrop-blur-xl rounded-2xl overflow-hidden border border-gold-500/25 shadow-warm-xl">
-              <div class="flex gap-4 p-4 items-start">
-                <div class="w-24 h-18 rounded-xl overflow-hidden shrink-0 border border-charcoal-800 relative">
+            <div class="bg-charcoal-950/98 backdrop-blur-xl rounded-2xl overflow-hidden border border-gold-500/30 shadow-2xl shadow-charcoal-950/80">
+              <!-- Golden accent line on top of panel -->
+              <div class="h-[2px] w-full bg-gradient-to-r from-transparent via-gold-500 to-transparent"></div>
+              
+              <div class="flex gap-4 p-5 items-start">
+                <div class="w-24 h-18 rounded-xl overflow-hidden shrink-0 border border-charcoal-800 relative shadow-inner">
                   <img :src="selectedHeritage.coverImage" :alt="selectedHeritage.title" class="w-full h-full object-cover" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950/70 to-transparent" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950/60 via-transparent to-transparent" />
                 </div>
                 <div class="flex-1 min-w-0">
-                  <BaseBadge :variant="getCategoryVariant(selectedHeritage.category)" size="sm" class="mb-2">
+                  <BaseBadge :variant="getCategoryVariant(selectedHeritage.category)" size="sm" class="mb-2 uppercase tracking-widest font-bold">
                     {{ getCategoryLabel(selectedHeritage.category) }}
                   </BaseBadge>
-                  <h3 class="font-heading font-bold text-ivory text-base leading-tight">{{ selectedHeritage.title }}</h3>
-                  <p class="text-charcoal-400 text-xs mt-1.5 line-clamp-2 leading-relaxed">{{ selectedHeritage.shortDescription }}</p>
+                  <h3 class="font-heading font-bold text-ivory text-base leading-tight tracking-tight mt-1">{{ selectedHeritage.title }}</h3>
+                  <p class="text-charcoal-400 text-xs mt-2 line-clamp-2 leading-relaxed">{{ selectedHeritage.shortDescription }}</p>
                 </div>
-                <button class="text-charcoal-500 hover:text-ivory transition-colors shrink-0 p-1 hover:bg-charcoal-900 rounded-lg" @click="selectedId = null">
+                <button class="text-charcoal-500 hover:text-gold-400 transition-colors shrink-0 p-1 hover:bg-charcoal-900 rounded-lg" @click="selectedId = null">
                   <Icon name="mdi:close" class="w-4 h-4" />
                 </button>
               </div>
 
-              <div class="px-4 pb-4 pt-1 flex gap-2.5">
-                <NuxtLink :to="`/heritage/${selectedHeritage.slug}`" class="btn-primary text-xs flex-1 justify-center py-2.5">
-                  <Icon name="mdi:book-open-outline" class="w-3.5 h-3.5" />
-                  Hồ sơ chi tiết
+              <div class="px-5 pb-5 pt-0 flex gap-2.5">
+                <NuxtLink :to="`/heritage/${selectedHeritage.slug}`" class="btn-primary text-xs flex-1 justify-center py-2.5 font-bold tracking-wide">
+                  <Icon name="mdi:book-open-outline" class="w-4 h-4 mr-1" />
+                  Chi Tiết Di Sản
                 </NuxtLink>
                 <button
                   v-if="selectedHeritage.audio"
-                  class="btn-ghost text-xs px-4 border-charcoal-800 hover:border-gold-500/40 text-gold-400"
+                  class="btn-ghost text-xs px-4.5 border-charcoal-800 hover:border-gold-500/40 text-gold-400 hover:bg-gold-500/5 transition-all duration-300 rounded-xl"
+                  title="Nghe Audio Guide"
                   @click="playAudio"
                 >
                   <Icon name="mdi:headphones" class="w-4 h-4" />

@@ -5,7 +5,7 @@
       <div class="relative overflow-hidden rounded-3xl reveal">
         <!-- Background image -->
         <img
-          src="https://images.unsplash.com/photo-1447684808650-354ae64db5b8?w=1600&q=80"
+          src="/images/heritage/van-hoa-phi-vat-the/di-san-ban-dia-lg.webp"
           alt="Ký ức địa phương"
           class="absolute inset-0 w-full h-full object-cover"
         />

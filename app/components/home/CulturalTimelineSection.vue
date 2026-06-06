@@ -96,7 +96,7 @@ const timeline = [
     quote: 'Tiếng cồng chiêng sinh ra từ núi rừng, là tiếng lòng dâng lên Yang cầu mong nương rẫy xanh tốt.',
     artifact: 'Trống cổ & Cồng Chiêng quý',
     related: 'Nhà Dài S\'tiêng, Thác Mơ',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=85',
+    image: '/images/heritage/van-hoa-phi-vat-the/cong-chieng-md.webp',
     imageTitle: 'Không gian lễ hội văn hóa cồng chiêng',
   },
   {
@@ -106,7 +106,7 @@ const timeline = [
     quote: 'Mỗi gốc cây là một người lính, mỗi buôn làng là một pháo đài nuôi giấu bộ đội.',
     artifact: 'Bia di tích Chiến Khu Đ',
     related: 'Chiến Khu Đ, Nhà Giáo Kháng Chiến',
-    image: 'https://images.unsplash.com/photo-1586348943529-beaae6c28db9?w=800&q=85',
+    image: '/images/heritage/danh-thang/rung-nguyen-sinh-md.webp',
     imageTitle: 'Tán rừng nguyên sinh Chiến Khu Đ oai hùng',
   },
   {
@@ -116,7 +116,7 @@ const timeline = [
     quote: 'Khung cửi lách cách vang lên trong nhà dài là dấu chỉ cho thấy bản sắc vẫn luôn tuôn chảy.',
     artifact: 'Khung dệt thổ cẩm thủ công',
     related: 'Làng Dệt Thổ Cẩm S\'tiêng',
-    image: 'https://images.unsplash.com/photo-1558618047-3c8c7692fdcb?w=800&q=85',
+    image: '/images/heritage/van-hoa-phi-vat-the/di-san-ban-dia-md.webp',
     imageTitle: 'Bàn tay khéo léo của nghệ nhân dệt thổ cẩm',
   },
   {
@@ -126,7 +126,7 @@ const timeline = [
     quote: 'Bảo tàng số đưa lịch sử Bù Đăng vượt không gian đến gần hơn với những người con xa xứ và du khách toàn cầu.',
     artifact: 'Bản đồ di sản thông minh',
     related: 'Cổng thông tin Di Sản Bù Đăng',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=85',
+    image: '/images/heritage/danh-thang/thac-dung-md.webp',
     imageTitle: 'Không gian số hóa danh thắng Thác Mơ',
   },
 ]

@@ -64,23 +64,35 @@ function addMarkers(L: any) {
 
   props.heritages.forEach((h) => {
     const color = categoryColors[h.category] ?? '#C9922A'
+    const isSelected = props.selectedId === h.id
 
     const icon = L.divIcon({
       html: `
-        <div style="position:relative;" class="heritage-pin-wrapper group">
+        <div style="position:relative;" class="heritage-pin-wrapper group flex items-center justify-center">
+          <!-- Pulse wave ring -->
+          <div class="absolute rounded-full pointer-events-none ${isSelected ? 'animate-ping opacity-60' : 'animate-pulse-slow opacity-25'}" 
+               style="background: ${color}; border: 1px solid ${color}; width: 38px; height: 38px; animation-duration: ${isSelected ? '1.8s' : '3.0s'}"></div>
+          
+          <!-- Outer gold glow ring -->
+          <div class="absolute rounded-full border border-gold-500/50 pointer-events-none transition-all duration-300 ${isSelected ? 'scale-125 opacity-100' : 'scale-110 opacity-0 group-hover:opacity-100'}" 
+               style="width: 38px; height: 38px; box-shadow: 0 0 15px ${color};"></div>
+          
+          <!-- Main marker circle -->
           <div style="
             width:38px;height:38px;border-radius:50%;background:${color};
-            border:3px solid rgba(255,255,255,0.95);display:flex;align-items:center;
-            justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,0.5);
-            cursor:pointer;transition:transform 0.2s;
-          " class="heritage-circle hover:scale-110">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+            border:${isSelected ? '3px solid #E6C587' : '2px solid rgba(255,255,255,0.9)'};
+            display:flex;align-items:center;justify-content:center;
+            box-shadow:0 0 20px ${color}70;
+            cursor:pointer;transition:all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+          " class="heritage-circle relative z-10 ${isSelected ? 'scale-115' : 'group-hover:scale-110'}">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
               <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
             </svg>
           </div>
+          
           <!-- Custom Tooltip -->
-          <div style="z-index:9999;" class="absolute bottom-11 left-1/2 -translate-x-1/2 bg-charcoal-950 text-ivory text-[10px] font-medium py-1.5 px-3 rounded-lg border border-charcoal-800 shadow-xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-            ${h.title}
+          <div style="z-index:9999;" class="absolute bottom-12 left-1/2 -translate-x-1/2 bg-charcoal-950/95 backdrop-blur-md text-ivory text-2xs font-heading font-medium tracking-wide py-2 px-3.5 rounded-lg border border-gold-500/30 shadow-2xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none transform translate-y-1 group-hover:translate-y-0">
+            <span style="color: ${color}; font-weight: bold; margin-right: 4px;">✦</span> ${h.title}
           </div>
         </div>`,
       className: '',
@@ -103,6 +115,9 @@ watch(() => props.selectedId, (id) => {
   if (h) {
     map.flyTo([h.coordinates.lat, h.coordinates.lng], 13, { duration: 1.2 })
   }
+  if (map && LInstance) {
+    addMarkers(LInstance)
+  }
 })
 
 // Update markers when filtered heritages change
@@ -116,3 +131,17 @@ onUnmounted(() => {
   map?.remove()
 })
 </script>
+
+<style scoped>
+@keyframes pulse-slow {
+  0%, 100% { transform: scale(1); opacity: 0.25; }
+  50% { transform: scale(1.2); opacity: 0.55; }
+}
+:deep(.animate-pulse-slow) {
+  animation: pulse-slow 3s infinite ease-in-out;
+}
+:deep(.leaflet-div-icon) {
+  background: transparent !important;
+  border: none !important;
+}
+</style>

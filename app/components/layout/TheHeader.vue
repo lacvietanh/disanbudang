@@ -21,11 +21,11 @@
         </NuxtLink>
 
         <!-- Desktop Nav -->
-        <ul class="hidden lg:flex items-center gap-1">
+        <ul class="hidden lg:flex items-center gap-0.5 xl:gap-1">
           <li v-for="item in navItems" :key="item.to">
             <NuxtLink
               :to="item.to"
-              class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 text-ivory/80 hover:text-ivory hover:bg-ivory/10"
+              class="px-2 py-1 xl:px-4 xl:py-2 rounded-full text-xs xl:text-sm font-medium transition-all duration-300 text-ivory/80 hover:text-ivory hover:bg-ivory/10"
               active-class="text-gold-400 bg-gold-500/10"
             >
               {{ item.label }}
@@ -104,7 +104,7 @@ const navItems = [
   { to: '/community', label: 'Cộng Đồng', icon: 'mdi:account-group-outline' },
   { to: '/quiz', label: 'Quiz', icon: 'mdi:help-circle-outline' },
   { to: '/school', label: 'Góc Học Tập', icon: 'mdi:school-outline' },
-  { to: '/news', label: 'Tin Tức', icon: 'mdi:newspaper-outline' },
+  { to: '/news', label: 'Tin Tức', icon: 'mdi:newspaper-variant-outline' },
   { to: '/about', label: 'Giới Thiệu', icon: 'mdi:information-outline' },
 ]
 

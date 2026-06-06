@@ -6,31 +6,19 @@
 
     <!-- 2. Điểm nổi bật -->
     <FeaturedHeritage />
-    <CulturalTimelineSection />
 
-    <!-- 3. Trải nghiệm -->
+    <!-- 3. Trải nghiệm Bản đồ -->
     <MapPreviewSection />
-    <AudioGuideSection />
 
-    <!-- 4. Di sản -->
-    <HeritageCategoriesSection />
-
-    <!-- 5. Cộng đồng -->
-    <CommunityStoriesSection />
-
-    <!-- 6. Khám phá thêm -->
-    <QuizSection />
-    <SchoolCornerSection />
-    <NewsSection />
-    <FAQSection />
+    <!-- 4. Kêu gọi đóng góp di sản -->
     <ContributionCTA />
   </div>
 </template>
 
 <script setup lang="ts">
 useMuseumSeo({
-  description: 'Khám phá di sản văn hóa, lịch sử và thiên nhiên huyện Bù Đăng qua không gian số hiện đại — hành trình trải nghiệm sống động dành cho mọi thế hệ.',
-  image: 'https://images.unsplash.com/photo-1586348943529-beaae6c28db9?w=1200&q=85',
+  description: 'Khám phá di sản văn hóa, lịch sử và thiên nhiên Xã Bù Đăng Thành Phố Đồng Nai (Tỉnh Bình Phước cũ) qua không gian số hiện đại — hành trình trải nghiệm sống động dành cho mọi thế hệ.',
+  image: '/images/heritage/danh-thang/rung-nguyen-sinh-lg.webp',
 })
 
 definePageMeta({ layout: 'default' })

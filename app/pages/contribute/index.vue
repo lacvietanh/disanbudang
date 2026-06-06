@@ -3,7 +3,7 @@
     <!-- Hero -->
     <div class="relative py-24 overflow-hidden border-b border-charcoal-850">
       <img
-        src="https://images.unsplash.com/photo-1447684808650-354ae64db5b8?w=1600&q=80"
+        src="/images/heritage/van-hoa-phi-vat-the/di-san-ban-dia-lg.webp"
         alt="Đóng góp tư liệu"
         class="absolute inset-0 w-full h-full object-cover opacity-60"
       />

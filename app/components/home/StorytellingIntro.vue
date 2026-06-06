@@ -10,8 +10,8 @@
         <div class="lg:col-span-7 space-y-6 reveal">
           <span class="section-label">Âm Vang Đại Ngàn</span>
           <h2 class="section-title">Nơi Đất Trời Gặp Gỡ Lịch Sử</h2>
-          <p class="text-charcoal-300 text-lg leading-relaxed">
-            Huyện Bù Đăng, tỉnh Bình Phước không chỉ là một tọa độ trên bản đồ Đông Nam Bộ. Đây là miền đất của những cánh rừng nguyên sinh ngút ngàn che chở cách mạng, nơi tiếng thác đổ hoang sơ hòa quyện cùng tiếng cồng chiêng vang vọng khắp sườn đồi từ bao đời nay.
+          <p class="text-charcoal-400 text-lg leading-relaxed max-w-2xl mx-auto mb-8 animate-fade-up" style="animation-delay: 0.2s">
+            Xã Bù Đăng Thành Phố Đồng Nai (Tỉnh Bình Phước cũ) không chỉ là một tọa độ trên bản đồ Đông Nam Bộ. Đây là miền đất của những cánh rừng nguyên sinh ngút ngàn che chở cách mạng, nơi tiếng thác đổ hoang sơ hòa quyện cùng tiếng cồng chiêng vang vọng khắp sườn đồi từ bao đời nay.
           </p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
             <div class="flex gap-4">
@@ -58,14 +58,14 @@
           <div class="space-y-4">
             <div class="rounded-2xl overflow-hidden aspect-[3/4] shadow-warm-lg border border-charcoal-700/50 group">
               <img
-                src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&q=85"
+                src="/images/heritage/danh-thang/rung-nguyen-sinh-lg.webp"
                 alt="Rừng nguyên sinh Bù Đăng"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
             </div>
             <div class="rounded-2xl overflow-hidden aspect-square shadow-warm-lg border border-charcoal-700/50 group">
               <img
-                src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=85"
+                src="/images/heritage/van-hoa-phi-vat-the/cong-chieng-lg.webp"
                 alt="Lễ hội cồng chiêng"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -74,14 +74,14 @@
           <div class="space-y-4 pt-8">
             <div class="rounded-2xl overflow-hidden aspect-square shadow-warm-lg border border-charcoal-700/50 group">
               <img
-                src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=85"
+                src="/images/heritage/danh-thang/thac-dung-lg.webp"
                 alt="Thác Mơ Bù Đăng"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
             </div>
             <div class="rounded-2xl overflow-hidden aspect-[3/4] shadow-warm-lg border border-charcoal-700/50 group">
               <img
-                src="https://images.unsplash.com/photo-1586348943529-beaae6c28db9?w=600&q=85"
+                src="/images/heritage/lich-su/soc-bom-bo-lg.webp"
                 alt="Chiến Khu Đ"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />

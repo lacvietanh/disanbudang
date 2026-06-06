@@ -13,7 +13,7 @@ Tôi lớn lên trong những đêm hội buôn làng, nơi ánh lửa bập bù
 Tôi nhớ nhất đêm hội Mừng lúa mới năm tôi học lớp 8. Đêm đó trời lộng gió, cả buôn làng quây quần bên đống lửa lớn. Ông nội cùng những người cao niên trong làng bước vào vòng xoang. Tiếng chiêng bắt đầu trầm hùng, vang vọng như tiếng sấm từ đỉnh núi cao, rồi chuyển dần sang nhịp điệu rộn rã, thôi thúc. Cả đất trời như hòa làm một. Từ những nhịp gõ thô sơ thuở bé được ông cầm tay uốn nắn, tôi đã hiểu thế nào là sợi dây vô hình kết nối các thế hệ thông qua âm nhạc di sản này.
 
 Giờ đây, khi xã hội ngày càng hiện đại, lớp trẻ trong buôn thích nghe nhạc trẻ hơn. Nhưng với tôi, tiếng cồng chiêng của ông nội vẫn là âm thanh đẹp nhất. Nó nhắc nhở tôi về nguồn cội, về niềm tự hào là một người con của vùng đất Bù Đăng đầy nắng gió.`,
-    coverImage: 'https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=800&q=85',
+    coverImage: '/images/heritage/van-hoa-phi-vat-the/cong-chieng-md.webp',
     author: {
       id: 'author-001',
       name: 'Điểu Thị Lan',
@@ -39,7 +39,7 @@ Hùng chia sẻ: "Khi đứng dưới những tán cây cổ thụ hàng trăm n
 Trong bức tranh, tác giả nhí đã khéo léo sử dụng các tông màu xanh lục đậm, đen và xanh lam để tái hiện sự huyền bí, sâu thẳm của rừng già Nam Bộ. Điểm nhấn của tác phẩm là những tia sáng trăng dịu mát len lỏi qua từng kẽ lá, rọi xuống con đường mòn nhỏ. Bóng dáng đoàn quân gùi đồ trên lưng lấp ló xa xa, tạo nên cảm giác hào hùng nhưng cũng rất đỗi bình dị, yên ả.
 
 Bức tranh không chỉ thể hiện năng khiếu hội họa xuất sắc của một học sinh lớp 8 mà còn là tình yêu quê hương đất nước, lòng biết ơn sâu sắc đối với những người đã ngã xuống vì nền độc lập của tổ quốc trên mảnh đất Bù Đăng lịch sử này. Tác phẩm đã đạt giải Nhất tại Hội thi vẽ tranh "Di sản quê hương em" năm học vừa qua.`,
-    coverImage: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=85',
+    coverImage: '/images/heritage/danh-thang/rung-nguyen-sinh-md.webp',
     author: {
       id: 'author-002',
       name: 'Nguyễn Văn Hùng',
@@ -67,7 +67,7 @@ Vào những năm 1970, khi mới chỉ là một cậu thiếu niên 15 tuổi,
 Ba nhớ nhất lần cả đội bị trực thăng địch càn quét. Trong khoảnh khắc ngàn cân treo sợi tóc, ba đã nhanh trí ôm chiếc gùi đạn nhảy xuống một hốc cây lớn bị cháy xém, lấy cành lá che lên. Nhờ sự gan dạ và may mắn đó, chuyến hàng đã cập bến an toàn, kịp thời cung cấp đạn dược cho trận đánh then chốt của sư đoàn.
 
 Những câu chuyện của ba không có trong sách giáo khoa một cách chi tiết như vậy. Đó là lịch sử sống, là ký ức được viết bằng mồ hôi, xương máu và lòng quả cảm của thế hệ đi trước để vùng đất Bù Đăng hôm nay mãi mãi xanh tươi.`,
-    coverImage: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&q=85',
+    coverImage: '/images/heritage/lich-su/soc-bom-bo-md.webp',
     author: {
       id: 'author-003',
       name: 'Trần Quốc Toàn',
@@ -92,7 +92,7 @@ Những câu chuyện của ba không có trong sách giáo khoa một cách chi
 Khoảng 5h15, những tia sáng đầu tiên của ngày mới bắt đầu hé lộ ở chân trời phía đông. Làn sương trắng muốt, dày đặc bốc lên từ mặt hồ dưới chân thác, gặp nắng sớm tạo nên những dải màu lấp lánh như cầu vồng mờ ảo. Những ngọn tre, tán lá rừng già hiện lên mập mờ trong làn khói nước, vẽ nên bức tranh sơn thủy hữu tình vô cùng ấn tượng.
 
 Bức ảnh này tôi chụp bằng máy ảnh cơ, phơi sáng khoảng 2 giây để dòng nước trông mềm mại như dải lụa trắng vắt qua sườn núi. Qua tác phẩm này, tôi hy vọng bạn bè muôn phương sẽ biết đến nhiều hơn một địa điểm du lịch sinh thái tuyệt vời và hoang sơ tại huyện Bù Đăng của chúng ta.`,
-    coverImage: 'https://images.unsplash.com/photo-1542856391-010fb87dcfed?w=800&q=85',
+    coverImage: '/images/heritage/danh-thang/thac-dung-md.webp',
     author: {
       id: 'author-004',
       name: 'Lê Minh Tâm',
@@ -119,7 +119,7 @@ Kết quả nghiên cứu cho thấy, hoa văn thổ cẩm S'tiêng chủ yếu 
 - Các họa tiết cách điệu hình con chim, con rùa thể hiện sự hòa hợp tuyệt đối giữa con người với muôn thú xung quanh.
 
 Nghiên cứu này không chỉ giúp nhóm hiểu rõ hơn về văn hóa truyền thống của quê hương mà còn đề xuất một số giải pháp thiết thực nhằm ứng dụng hoa văn S'tiêng vào các sản phẩm thời trang hiện đại để giới trẻ tiếp cận dễ dàng hơn.`,
-    coverImage: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800&q=85',
+    coverImage: '/images/heritage/van-hoa-phi-vat-the/di-san-ban-dia-md.webp',
     author: {
       id: 'author-005',
       name: 'Nhóm HS Lớp 9A',
@@ -145,7 +145,7 @@ Từ tờ mờ sáng, tiếng chày giã gạo đã vang lên khắp buôn. Các
 Tối đến, khi đống lửa trung tâm buôn làng được đốt lên, già làng làm lễ cúng thần lúa, thần rừng cầu mong cho mưa thuận gió hòa, buôn làng bình an khỏe mạnh. Ngay sau đó, tiếng cồng chiêng ngân vang réo rắt báo hiệu hội vui bắt đầu. Mọi người cầm tay nhau tạo thành vòng xoang lớn xung quanh ngọn lửa, uống rượu cần và cùng nhảy múa theo nhịp chiêng.
 
 Những nụ cười giòn giã của trẻ thơ hòa cùng tiếng nói chuyện rôm rả của các cụ già tạo nên một không khí ấm cúng, gắn kết bền chặt. Với người M'nông, mùa lúa mới không chỉ là thành quả lao động vất vả mà còn là dịp để gia đình sum họp, thắt chặt tình đoàn kết cộng đồng buôn làng bền bỉ qua năm tháng.`,
-    coverImage: 'https://images.unsplash.com/photo-1536657235019-0309129d136a?w=800&q=85',
+    coverImage: '/images/heritage/van-hoa-phi-vat-the/van-hoa-stieng-md.webp',
     author: {
       id: 'author-006',
       name: 'Thị Hoa',
@@ -166,7 +166,7 @@ export const MOCK_NEWS: NewsArticle[] = [
     title: 'Festival Di Sản Bù Đăng 2024: "Đại Ngàn Thức Giấc"',
     subtitle: 'Sự kiện văn hóa lớn nhất huyện Bù Đăng trong năm',
     excerpt: 'Festival Di Sản Bù Đăng 2024 với chủ đề "Đại Ngàn Thức Giấc" sẽ quy tụ hàng chục nghệ nhân, cộng đồng dân tộc và du khách trong suốt 3 ngày trải nghiệm văn hóa đặc sắc.',
-    coverImage: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=85',
+    coverImage: '/images/heritage/van-hoa-phi-vat-the/cong-chieng-lg.webp',
     category: 'su-kien',
     author: 'Ban Tổ Chức Festival',
     publishedAt: '2024-09-15',
@@ -180,7 +180,7 @@ export const MOCK_NEWS: NewsArticle[] = [
     title: 'Cồng Chiêng S\'tiêng Vào Trường Học: Dự Án Giáo Dục Di Sản',
     subtitle: 'Học sinh 5 trường THCS tại Bù Đăng được học đánh cồng chiêng',
     excerpt: 'Dự án đưa nghệ nhân cồng chiêng vào trường học đang được triển khai thí điểm tại 5 trường THCS trên địa bàn huyện Bù Đăng, mở ra hướng mới trong giáo dục di sản văn hóa.',
-    coverImage: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1200&q=85',
+    coverImage: '/images/heritage/van-hoa-phi-vat-the/van-hoa-stieng-lg.webp',
     category: 'hoat-dong',
     author: 'Phòng GD&ĐT Bù Đăng',
     publishedAt: '2024-08-20',
@@ -194,7 +194,7 @@ export const MOCK_NEWS: NewsArticle[] = [
     title: 'Số Hóa Chi Tiết Chiến Khu Đ: Bảo Tàng 3D Sắp Ra Mắt',
     subtitle: 'Dự án số hóa di tích với công nghệ 3D scanning và VR',
     excerpt: 'UBND huyện Bù Đăng phối hợp với Đại học Quốc gia TP.HCM thực hiện dự án số hóa toàn diện Chiến Khu Đ — tạo ra bảo tàng 3D trực tuyến đầu tiên về di tích lịch sử quốc gia.',
-    coverImage: 'https://images.unsplash.com/photo-1586348943529-beaae6c28db9?w=1200&q=85',
+    coverImage: '/images/heritage/danh-thang/rung-nguyen-sinh-lg.webp',
     category: 'tin-tuc',
     author: 'Ban Quản lý Di tích',
     publishedAt: '2024-07-10',
@@ -208,7 +208,7 @@ export const MOCK_NEWS: NewsArticle[] = [
     title: 'Hội Thảo Bảo Tồn Nhà Dài S\'tiêng: Kiến Trúc Không Được Lãng Quên',
     subtitle: 'Chuyên gia và cộng đồng cùng tìm hướng bảo tồn nhà dài truyền thống',
     excerpt: 'Hội thảo khoa học về bảo tồn nhà dài S\'tiêng quy tụ hơn 50 chuyên gia kiến trúc, nhân học và đại diện cộng đồng để cùng thảo luận về chiến lược bảo tồn và phát huy giá trị.',
-    coverImage: 'https://images.unsplash.com/photo-1580711508728-f9f4ccae4b32?w=1200&q=85',
+    coverImage: '/images/heritage/doi-song-cong-dong/nha-dai-lg.webp',
     category: 'nghien-cuu',
     author: 'Viện Khoa học Xã hội Nam Bộ',
     publishedAt: '2024-06-05',
