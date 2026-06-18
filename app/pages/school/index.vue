@@ -42,7 +42,7 @@
               </div>
               <span class="ml-auto text-charcoal-400 text-xs">{{ res.grade }}</span>
             </div>
-            <h3 class="font-heading font-bold text-charcoal-800 text-base leading-tight mb-2 line-clamp-2 group-hover:text-earth-600 transition-colors">{{ res.title }}</h3>
+            <h2 class="font-heading font-bold text-charcoal-800 text-base leading-tight mb-2 line-clamp-2 group-hover:text-earth-600 transition-colors">{{ res.title }}</h2>
             <p class="text-charcoal-500 text-sm line-clamp-2 mb-4">{{ res.description }}</p>
             <div class="border-t border-beige-100 pt-3 flex items-center justify-between">
               <div>

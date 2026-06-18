@@ -27,7 +27,7 @@
             </h2>
             <div class="prose-heritage">
               <p>
-                <strong>Di Sản Bù Đăng</strong> là một dự án bảo tàng số cộng đồng — nơi toàn bộ di sản văn hóa, lịch sử và thiên nhiên của Xã Bù Đăng Thành Phố Đồng Nai (Tỉnh Bình Phước cũ) được số hóa, lưu trữ và chia sẻ rộng rãi đến mọi tầng lớp nhân dân.
+                <strong>Di Sản Bù Đăng</strong> là một dự án bảo tàng số cộng đồng — nơi toàn bộ di sản văn hóa, lịch sử và thiên nhiên của Huyện Bù Đăng, Tỉnh Bình Phước được số hóa, lưu trữ và chia sẻ rộng rãi đến mọi tầng lớp nhân dân.
               </p>
               <p>
                 Bù Đăng là vùng đất giàu truyền thống — từ Chiến Khu Đ anh hùng trong hai cuộc kháng chiến, đến những cánh rừng nguyên sinh hùng vĩ, từ văn hóa cồng chiêng của người S'tiêng được UNESCO vinh danh, đến những ngôi nhà dài truyền thống, làng nghề dệt thổ cẩm tinh tế. Tất cả đều xứng đáng được lưu giữ và tôn vinh.

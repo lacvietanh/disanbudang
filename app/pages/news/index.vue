@@ -71,7 +71,7 @@
 
       <!-- Events -->
       <div>
-        <h2 class="font-heading font-bold text-charcoal-800 text-2xl mb-6">Sự Kiện Sắp Tới</h2>
+        <h2 class="font-heading font-bold text-charcoal-800 text-2xl mb-6">Sự Kiện & Hoạt Động Tiêu Biểu</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
           <div
             v-for="event in events"
@@ -109,7 +109,36 @@ import { MOCK_NEWS, MOCK_EVENTS } from '~/data/mockPosts'
 import type { NewsCategory } from '~/types'
 
 definePageMeta({ layout: 'default' })
-useSeoMeta({ title: 'Tin Tức & Sự Kiện — Di Sản Bù Đăng', description: 'Tin tức, sự kiện và hoạt động mới nhất về di sản Bù Đăng.' })
+useMuseumSeo({
+  title: 'Tin Tức & Sự Kiện',
+  description: 'Tin tức, sự kiện và hoạt động mới nhất về di sản Bù Đăng.'
+})
+
+useHead({
+  script: MOCK_EVENTS.map(event => ({
+    type: 'application/ld+json',
+    innerHTML: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Event',
+      name: event.title,
+      description: event.description,
+      startDate: event.startDate,
+      endDate: event.endDate ?? event.startDate,
+      eventAttendanceMode: event.isOnline ? 'https://schema.org/OnlineEventAttendanceMode' : 'https://schema.org/OfflineEventAttendanceMode',
+      eventStatus: 'https://schema.org/EventScheduled',
+      location: {
+        '@type': 'Place',
+        name: event.location,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Huyện Bù Đăng',
+          addressRegion: 'Huyện Bù Đăng, Tỉnh Bình Phước',
+          addressCountry: 'VN'
+        }
+      }
+    })
+  }))
+})
 
 const { observeAll } = useScrollReveal()
 onMounted(() => nextTick(() => observeAll()))

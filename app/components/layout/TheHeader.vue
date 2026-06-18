@@ -21,11 +21,11 @@
         </NuxtLink>
 
         <!-- Desktop Nav -->
-        <ul class="hidden lg:flex items-center gap-0.5 xl:gap-1">
+        <ul class="hidden lg:flex items-center gap-0.5 xl:gap-1" aria-label="Menu điều hướng chính">
           <li v-for="item in navItems" :key="item.to">
             <NuxtLink
               :to="item.to"
-              class="px-2 py-1 xl:px-4 xl:py-2 rounded-full text-xs xl:text-sm font-medium transition-all duration-300 text-ivory/80 hover:text-ivory hover:bg-ivory/10"
+              class="px-2 py-1 xl:px-4 xl:py-2 rounded-full text-xs xl:text-sm font-medium transition-all duration-300 text-ivory/80 hover:text-ivory hover:bg-ivory/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500 focus-visible:outline-offset-2"
               active-class="text-gold-400 bg-gold-500/10"
             >
               {{ item.label }}
@@ -37,7 +37,8 @@
         <div class="flex items-center gap-3">
           <!-- Search -->
           <button
-            class="hidden md:flex items-center gap-2 px-4 py-2 rounded-full border border-ivory/20 text-ivory/70 text-sm hover:border-gold-500/50 hover:text-gold-400 transition-all duration-300"
+            class="hidden md:flex items-center gap-2 px-4 py-2 rounded-full border border-ivory/20 text-ivory/70 text-sm hover:border-gold-500/50 hover:text-gold-400 transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500"
+            aria-label="Tìm kiếm di sản"
             @click="isSearchOpen = true"
           >
             <Icon name="mdi:magnify" class="w-4 h-4" />
@@ -45,14 +46,16 @@
           </button>
 
           <!-- Explore CTA -->
-          <NuxtLink to="/map" class="btn-primary text-sm hidden md:inline-flex">
+          <NuxtLink to="/map" class="btn-primary text-sm hidden md:inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-500">
             <Icon name="mdi:map-outline" class="w-4 h-4" />
             Bản Đồ
           </NuxtLink>
 
           <!-- Hamburger -->
           <button
-            class="lg:hidden p-2 rounded-lg text-ivory hover:bg-ivory/10 transition-colors"
+            class="lg:hidden p-2 rounded-lg text-ivory hover:bg-ivory/10 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500"
+            aria-label="Menu di động"
+            :aria-expanded="isMobileOpen"
             @click="isMobileOpen = !isMobileOpen"
           >
             <Icon :name="isMobileOpen ? 'mdi:close' : 'mdi:menu'" class="w-6 h-6" />
@@ -67,12 +70,12 @@
         v-if="isMobileOpen"
         class="lg:hidden bg-charcoal-900/98 backdrop-blur-xl border-t border-earth-800/30"
       >
-        <div class="container-heritage py-6 space-y-1">
+        <div class="container-heritage py-6 space-y-1" aria-label="Menu di động">
           <NuxtLink
             v-for="item in navItems"
             :key="item.to"
             :to="item.to"
-            class="flex items-center gap-3 px-4 py-3 rounded-xl text-ivory/80 hover:text-ivory hover:bg-ivory/8 transition-all duration-200"
+            class="flex items-center gap-3 px-4 py-3 rounded-xl text-ivory/80 hover:text-ivory hover:bg-ivory/8 transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500"
             active-class="text-gold-400 bg-gold-500/10"
             @click="isMobileOpen = false"
           >
@@ -81,7 +84,7 @@
           </NuxtLink>
 
           <div class="pt-4 border-t border-earth-800/30">
-            <NuxtLink to="/map" class="btn-primary w-full justify-center" @click="isMobileOpen = false">
+            <NuxtLink to="/map" class="btn-primary w-full justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500" @click="isMobileOpen = false">
               <Icon name="mdi:map-outline" class="w-4 h-4" />
               Khám Phá Bản Đồ
             </NuxtLink>

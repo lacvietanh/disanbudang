@@ -383,14 +383,14 @@ function prevImage() {
   if (!activeLightboxImage.value) return
   const currentIndex = filteredImages.value.findIndex((img) => img.id === activeLightboxImage.value?.id)
   const prevIndex = (currentIndex - 1 + filteredImages.value.length) % filteredImages.value.length
-  activeLightboxImage.value = filteredImages.value[prevIndex]
+  activeLightboxImage.value = filteredImages.value[prevIndex] || null
 }
 
 function nextImage() {
   if (!activeLightboxImage.value) return
   const currentIndex = filteredImages.value.findIndex((img) => img.id === activeLightboxImage.value?.id)
   const nextIndex = (currentIndex + 1) % filteredImages.value.length
-  activeLightboxImage.value = filteredImages.value[nextIndex]
+  activeLightboxImage.value = filteredImages.value[nextIndex] || null
 }
 </script>
 

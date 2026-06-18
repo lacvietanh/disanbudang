@@ -99,6 +99,29 @@
             </div>
           </div>
 
+          <!-- Period filter timeline -->
+          <div class="p-4 border-b border-charcoal-850 space-y-3 shrink-0 bg-charcoal-950/20">
+            <p class="eyebrow text-gold-400 text-3xs tracking-widest font-bold">THỜI KỲ LỊCH SỬ</p>
+            <div class="flex gap-2 overflow-x-auto scrollbar-none pb-1">
+              <button
+                class="flex-shrink-0 px-3.5 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all border"
+                :class="activePeriod === '' ? 'bg-gold-500/10 text-gold-300 border-gold-500/30 shadow-md' : 'text-charcoal-400 bg-charcoal-900/20 border-charcoal-800 hover:border-charcoal-700 hover:text-ivory'"
+                @click="activePeriod = ''"
+              >
+                Tất cả
+              </button>
+              <button
+                v-for="per in periods"
+                :key="per.id"
+                class="flex-shrink-0 px-3.5 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all border"
+                :class="activePeriod === per.id ? 'bg-gold-500/15 text-gold-300 border-gold-500/40 shadow-md' : 'text-charcoal-400 bg-charcoal-900/20 border-charcoal-800 hover:border-charcoal-700 hover:text-ivory'"
+                @click="activePeriod = per.id"
+              >
+                {{ per.label }}
+              </button>
+            </div>
+          </div>
+
           <!-- Heritage list result -->
           <div class="flex-1 overflow-y-auto scrollbar-none bg-charcoal-950/40">
             <div class="p-3.5 space-y-2">
@@ -274,7 +297,7 @@
 </template>
 
 <script setup lang="ts">
-import { CATEGORIES } from '~/data/categories'
+import { CATEGORIES, PERIODS } from '~/data/categories'
 import { MOCK_HERITAGES } from '~/data/mockHeritages'
 import type { Heritage } from '~/types'
 
@@ -292,10 +315,12 @@ const sidebarOpen = ref(true)
 const selectedId = ref<string | null>(null)
 const searchQuery = ref('')
 const activeCategory = ref('')
+const activePeriod = ref('')
 const activeTab = ref('search')
 const selectedRouteId = ref<string | null>(null)
 
 const categories = CATEGORIES
+const periods = PERIODS
 const selectedHeritage = computed(() =>
   selectedId.value ? store.getById(selectedId.value) ?? null : null,
 )
@@ -343,6 +368,7 @@ const suggestedRoutes = [
 
 watch(searchQuery, (q) => store.setSearch(q))
 watch(activeCategory, (c) => store.setCategory(c))
+watch(activePeriod, (p) => store.setPeriod(p))
 
 // If a query parameter "select" is passed, trigger selection automatically
 onMounted(() => {
@@ -360,6 +386,7 @@ function setCategory(id: string) {
 function clearAll() {
   searchQuery.value = ''
   activeCategory.value = ''
+  activePeriod.value = ''
   selectedRouteId.value = null
   store.clearFilters()
 }

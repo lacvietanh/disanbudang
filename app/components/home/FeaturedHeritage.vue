@@ -65,14 +65,11 @@
               <p class="text-charcoal-300 text-base leading-relaxed mb-6 max-w-xl line-clamp-3">
                 {{ displayFeatured[0].shortDescription }}
               </p>
-              <div class="flex items-center gap-4">
-                <NuxtLink
-                  :to="`/heritage/${displayFeatured[0].slug}`"
-                  class="btn-primary"
-                >
-                  Khám Phá Chi Tiết
-                  <Icon name="mdi:arrow-right" class="w-4 h-4" />
-                </NuxtLink>
+              <div class="flex items-center gap-6">
+                <span class="text-gold-400 font-body text-sm font-medium flex items-center gap-2 group-hover:text-gold-300 transition-colors">
+                  Đọc câu chuyện di sản
+                  <Icon name="mdi:arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </span>
                 <span class="eyebrow text-charcoal-500 text-2xs">{{ displayFeatured[0].year }}</span>
               </div>
             </div>

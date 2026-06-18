@@ -55,6 +55,14 @@ onMounted(async () => {
   addMarkers(L)
 })
 
+const categoryIcons: Record<string, string> = {
+  'lich-su': `<path d="M19,20H5V8H7V5H9V8H11V5H13V8H15V5H17V8H19V20M11,10H9V12H11V10M15,10H13V12H15V10M11,14H9V16H11V14M15,14H13V16H15V14Z" />`,
+  'danh-thang': `<path d="M14,6L10.25,11L13.1,14.8L11.5,16C9.81,13.75 7,10 7,10L1,18H23L14,6Z" />`,
+  'van-hoa-phi-vat-the': `<path d="M12,3V13.55C11.41,13.21 10.73,13 10,13C7.79,13 6,14.79 6,17C6,19.21 7.79,21 10,21C12.21,21 14,19.21 14,17V7H18V3H12Z" />`,
+  'doi-song-cong-dong': `<path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z" />`,
+  'giao-duc-truyen-thong': `<path d="M12,11.55C9.64,9.35 6.48,8 3,8V19C6.48,19 9.64,20.35 12,22.55C14.36,20.35 17.52,19 21,19V8C17.52,8 14.36,9.35 12,11.55Z" />`,
+}
+
 function addMarkers(L: any) {
   // Clear old markers first
   Object.keys(markers).forEach((key) => {
@@ -65,6 +73,7 @@ function addMarkers(L: any) {
   props.heritages.forEach((h) => {
     const color = categoryColors[h.category] ?? '#C9922A'
     const isSelected = props.selectedId === h.id
+    const iconSvgPath = categoryIcons[h.category] ?? `<path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>`
 
     const icon = L.divIcon({
       html: `
@@ -85,8 +94,8 @@ function addMarkers(L: any) {
             box-shadow:0 0 20px ${color}70;
             cursor:pointer;transition:all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
           " class="heritage-circle relative z-10 ${isSelected ? 'scale-115' : 'group-hover:scale-110'}">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+              ${iconSvgPath}
             </svg>
           </div>
           

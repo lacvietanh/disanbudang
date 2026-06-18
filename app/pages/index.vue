@@ -17,8 +17,8 @@
 
 <script setup lang="ts">
 useMuseumSeo({
-  description: 'Khám phá di sản văn hóa, lịch sử và thiên nhiên Xã Bù Đăng Thành Phố Đồng Nai (Tỉnh Bình Phước cũ) qua không gian số hiện đại — hành trình trải nghiệm sống động dành cho mọi thế hệ.',
-  image: '/images/heritage/danh-thang/rung-nguyen-sinh-lg.webp',
+  description: 'Khám phá di sản văn hóa, lịch sử và thiên nhiên Huyện Bù Đăng, Tỉnh Bình Phước qua không gian số hiện đại — hành trình trải nghiệm sống động dành cho mọi thế hệ.',
+  image: '/images/og/home-og.jpg',
 })
 
 definePageMeta({ layout: 'default' })

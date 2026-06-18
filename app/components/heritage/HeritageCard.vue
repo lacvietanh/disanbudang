@@ -57,10 +57,9 @@
 
         <!-- CTA -->
         <div
-          class="flex items-center gap-1 text-gold-400 text-sm font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0"
+          class="flex items-center justify-center w-8 h-8 rounded-full bg-gold-500 text-charcoal-900 opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 ease-out-expo"
         >
-          <span>Khám phá</span>
-          <Icon name="mdi:arrow-right" class="w-4 h-4" />
+          <Icon name="mdi:arrow-right" class="w-4.5 h-4.5" />
         </div>
       </div>
     </div>

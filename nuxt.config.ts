@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
     '@nuxt/image',
     '@nuxt/content',
     '@nuxt/icon',
@@ -22,7 +23,6 @@ export default defineNuxtConfig({
     rateLimiter: {
       tokensPerInterval: 150,
       interval: 'hour',
-      fireImmediately: true,
     },
     corsHandler: {
       origin: '*',

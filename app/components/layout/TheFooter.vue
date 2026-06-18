@@ -23,7 +23,7 @@
             </div>
           </div>
           <p class="text-charcoal-300 text-sm leading-relaxed">
-            Dự án bảo tồn và phát huy di sản văn hóa – lịch sử Xã Bù Đăng Thành Phố Đồng Nai (Tỉnh Bình Phước cũ).
+            Dự án bảo tồn và phát huy di sản văn hóa – lịch sử Huyện Bù Đăng, Tỉnh Bình Phước.
             Nơi lưu giữ ký ức cộng đồng cho thế hệ hôm nay và mai sau.
           </p>
           <!-- Social -->
@@ -47,7 +47,7 @@
             <li v-for="link in col.links" :key="link.to">
               <NuxtLink
                 :to="link.to"
-                class="text-sm text-charcoal-300 hover:text-ivory transition-colors duration-200 link-underline"
+                class="text-sm text-charcoal-300 hover:text-gold-400 transition-colors duration-200 link-underline"
               >
                 {{ link.label }}
               </NuxtLink>
@@ -61,7 +61,8 @@
           <div class="space-y-3 text-sm text-charcoal-300">
             <p class="flex items-start gap-2">
               <Icon name="mdi:map-marker-outline" class="w-4 h-4 text-gold-500 mt-0.5 shrink-0" />
-              Xã Bù Đăng Thành Phố Đồng Nai (Tỉnh Bình Phước cũ)
+              <span class="sr-only">Địa chỉ</span>
+              Huyện Bù Đăng, Tỉnh Bình Phước
             </p>
             <p class="flex items-center gap-2">
               <Icon name="mdi:email-outline" class="w-4 h-4 text-gold-500 shrink-0" />

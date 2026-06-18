@@ -45,7 +45,7 @@
           <!-- Eyebrow -->
           <div class="flex items-center gap-3 mb-6 animate-fade-up" style="animation-delay: 0.1s">
             <span class="w-8 h-px bg-gold-400" />
-            <span class="eyebrow text-gold-400">Xã Bù Đăng Thành Phố Đồng Nai (Tỉnh Bình Phước cũ)</span>
+            <span class="eyebrow text-gold-400">Huyện Bù Đăng, Tỉnh Bình Phước</span>
           </div>
 
           <!-- Main Heading -->
@@ -59,11 +59,11 @@
             class="text-cinematic text-ivory/80 mb-6 animate-fade-up max-w-2xl"
             style="animation-delay: 0.4s"
           >
-            "Linh hồn đại ngàn, tiếng vang lịch sử và bản sắc ngàn đời"
+            "Khám phá Di sản Bù Đăng qua bảo tàng số sống động — từ chiến khu lịch sử đến tiếng cồng chiêng đại ngàn"
           </p>
 
           <p class="text-charcoal-300 text-lg leading-relaxed mb-10 max-w-xl animate-fade-up" style="animation-delay: 0.5s">
-            Không gian lưu trữ di sản văn hóa, thiên nhiên kỳ vĩ và những câu chuyện lịch sử hào hùng của mảnh đất Bù Đăng.
+            Bảo tàng số cộng đồng lưu giữ ký ức địa phương, kết nối thế hệ trẻ qua bản đồ tương tác, câu chuyện kể và tư liệu văn hoá của đồng bào S'tiêng, M'nông.
           </p>
 
           <!-- CTAs -->
