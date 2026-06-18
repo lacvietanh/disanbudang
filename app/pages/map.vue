@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-charcoal-900 flex flex-col relative">
+  <div class="min-h-screen bg-charcoal-900 flex flex-col relative pt-[72px]">
     <!-- Page header -->
     <div class="border-b border-charcoal-800/80 py-5 bg-charcoal-950/90 backdrop-blur-xl relative z-30 shadow-lg shadow-charcoal-950/40">
       <div class="container-heritage flex items-center justify-between">

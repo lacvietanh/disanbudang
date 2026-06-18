@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-ivory min-h-screen">
+  <div class="bg-ivory min-h-screen pt-[72px]">
     <div class="bg-warm-paper border-b border-beige-200 py-20">
       <div class="container-heritage">
         <span class="section-label">Góc Học Tập</span>

@@ -1,10 +1,10 @@
 <template>
   <header
-    class="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
+    class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-[env(safe-area-inset-top,0px)]"
     :class="[
       isScrolled
-        ? 'bg-charcoal-900/95 backdrop-blur-md shadow-warm border-b border-earth-800/30'
-        : 'bg-transparent',
+        ? 'bg-charcoal-950/80 backdrop-blur-xl border-b border-gold-500/10 shadow-lg shadow-charcoal-950/40 py-1'
+        : 'bg-charcoal-950/20 backdrop-blur-sm lg:bg-transparent lg:backdrop-blur-none py-2',
     ]"
   >
     <div class="container-heritage">

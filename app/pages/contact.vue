@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-ivory min-h-screen">
+  <div class="bg-ivory min-h-screen pt-[72px]">
     <!-- Hero -->
     <div class="bg-dark-earth py-20 relative overflow-hidden">
       <div class="absolute top-0 right-0 w-96 h-96 bg-gold-500/6 rounded-full blur-3xl" />

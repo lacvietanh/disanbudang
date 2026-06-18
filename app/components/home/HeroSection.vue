@@ -12,8 +12,8 @@
           <img
             :src="slide.image"
             :alt="slide.alt"
-            class="w-full h-full object-cover scale-[1.08] transition-transform duration-[12000ms] ease-out"
-            :class="{ 'scale-100': currentSlide === i }"
+            class="w-full h-full object-cover"
+            :class="{ 'ken-burns-active': currentSlide === i }"
           />
         </div>
       </TransitionGroup>
@@ -21,7 +21,7 @@
 
     <!-- Cinematic Overlay -->
     <div class="absolute inset-0 z-10 overlay-hero" />
-    <div class="absolute inset-0 z-10 bg-gradient-to-t from-charcoal-900 via-charcoal-900/30 to-transparent" />
+    <div class="absolute inset-0 z-10 bg-gradient-to-t from-charcoal-900 via-charcoal-900/40 to-transparent" />
 
     <!-- Atmospheric particles -->
     <div class="absolute inset-0 z-10 pointer-events-none">
@@ -39,13 +39,13 @@
     </div>
 
     <!-- Main Content -->
-    <div class="relative z-20 flex-1 flex flex-col justify-end pb-20 md:pb-24">
+    <div class="relative z-20 flex-1 flex flex-col justify-end pb-20 md:pb-24 pt-28 lg:pt-32 env-safe-bottom">
       <div class="container-heritage">
         <div class="max-w-4xl">
           <!-- Eyebrow -->
-          <div class="flex items-center gap-3 mb-6 animate-fade-up" style="animation-delay: 0.1s">
+          <div class="flex items-center gap-3 mb-4 md:mb-6 animate-fade-up" style="animation-delay: 0.1s">
             <span class="w-8 h-px bg-gold-400" />
-            <span class="eyebrow text-gold-400">Xã Bù Đăng Thành Phố Đồng Nai (Bình Phước Cũ)</span>
+            <span class="eyebrow text-gold-400 text-[10px] md:text-xs">Xã Bù Đăng Thành Phố Đồng Nai (Bình Phước Cũ)</span>
           </div>
 
           <!-- Main Heading -->
@@ -56,48 +56,48 @@
 
           <!-- Tagline -->
           <p
-            class="text-cinematic text-ivory/80 mb-6 animate-fade-up max-w-2xl"
+            class="text-cinematic text-ivory/80 mb-5 md:mb-6 animate-fade-up max-w-2xl text-lg md:text-2xl"
             style="animation-delay: 0.4s"
           >
             "Khám phá Di sản Bù Đăng qua bảo tàng số sống động — từ chiến khu lịch sử đến tiếng cồng chiêng đại ngàn"
           </p>
 
-          <p class="text-charcoal-300 text-lg leading-relaxed mb-10 max-w-xl animate-fade-up" style="animation-delay: 0.5s">
+          <p class="text-charcoal-300 text-sm md:text-lg leading-relaxed mb-8 md:mb-10 max-w-xl animate-fade-up" style="animation-delay: 0.5s">
             Bảo tàng số cộng đồng lưu giữ ký ức địa phương, kết nối thế hệ trẻ qua bản đồ tương tác, câu chuyện kể và tư liệu văn hoá của đồng bào S'tiêng, M'nông.
           </p>
 
           <!-- CTAs -->
-          <div class="flex flex-wrap gap-4 mb-16 animate-fade-up" style="animation-delay: 0.65s">
-            <NuxtLink to="/map" class="btn-primary text-base px-8 py-4">
+          <div class="flex flex-wrap gap-3 mb-12 md:mb-16 animate-fade-up" style="animation-delay: 0.65s">
+            <NuxtLink to="/map" class="btn-primary text-sm px-6 py-3.5 flex-1 sm:flex-initial justify-center">
               <Icon name="mdi:map-outline" class="w-5 h-5" />
               Bản Đồ Di Sản
             </NuxtLink>
-            <NuxtLink to="/gallery" class="btn-secondary text-base px-8 py-4 border-gold-500 text-gold-400 hover:bg-gold-500 hover:text-charcoal-900">
+            <NuxtLink to="/gallery" class="btn-secondary text-sm px-6 py-3.5 border-gold-500 text-gold-400 hover:bg-gold-500 hover:text-charcoal-900 flex-1 sm:flex-initial justify-center">
               <Icon name="mdi:image-multiple-outline" class="w-5 h-5" />
               Triển Lãm Số
             </NuxtLink>
-            <NuxtLink to="/library" class="btn-ghost text-base px-8 py-4">
+            <NuxtLink to="/library" class="btn-ghost text-sm px-6 py-3.5 flex-1 sm:flex-initial justify-center">
               <Icon name="mdi:book-open-outline" class="w-5 h-5" />
-              Thư Viện Di Sản
+              Thư Viện
             </NuxtLink>
           </div>
 
           <!-- Floating Stats -->
           <div
-            class="flex flex-wrap gap-4 animate-fade-up"
+            class="flex flex-wrap gap-3 animate-fade-up"
             style="animation-delay: 0.8s"
           >
             <div
               v-for="stat in stats"
               :key="stat.label"
-              class="glass-dark rounded-xl px-5 py-3 flex items-center gap-3 border border-gold-500/20 hover:border-gold-500/50 transition-colors duration-300"
+              class="glass-dark rounded-xl px-4 py-2.5 md:px-5 md:py-3 flex items-center gap-3 border border-gold-500/20 hover:border-gold-500/50 transition-colors duration-300 flex-1 min-w-[140px]"
             >
               <Icon :name="stat.icon" class="w-5 h-5 text-gold-400 flex-shrink-0" />
               <div>
-                <p class="font-heading font-bold text-ivory text-xl leading-none">
+                <p class="font-heading font-bold text-ivory text-base md:text-xl leading-none">
                   {{ stat.value }}{{ stat.suffix }}
                 </p>
-                <p class="text-charcoal-400 text-xs mt-0.5">{{ stat.label }}</p>
+                <p class="text-charcoal-400 text-[10px] md:text-xs mt-0.5 whitespace-nowrap">{{ stat.label }}</p>
               </div>
             </div>
           </div>
@@ -118,7 +118,7 @@
 
     <!-- Scroll indicator -->
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2">
-      <span class="eyebrow text-ivory/40 text-2xs">Cuộn xuống</span>
+      <span class="eyebrow text-ivory/40 text-[9px]">Cuộn xuống</span>
       <div class="w-5 h-8 border border-ivory/30 rounded-full flex justify-center pt-1.5">
         <div class="w-1 h-2 bg-gold-400 rounded-full animate-bounce" />
       </div>
@@ -175,5 +175,18 @@ const stats = [
 .hero-slide-enter-from,
 .hero-slide-leave-to {
   opacity: 0;
+}
+
+.ken-burns-active {
+  animation: kenburns 12s ease-out forwards;
+}
+
+@keyframes kenburns {
+  0% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>

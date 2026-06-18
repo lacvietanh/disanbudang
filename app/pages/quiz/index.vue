@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-ivory min-h-screen">
+  <div class="bg-ivory min-h-screen pt-[72px]">
     <!-- Quiz not active -->
     <div v-if="!quizStore.isQuizActive && !quizStore.isQuizCompleted">
       <!-- Header -->

@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen flex flex-col bg-charcoal-900 transition-colors duration-500">
     <TheHeader />
-    <main class="flex-1 pt-[72px]">
+    <main class="flex-1">
       <slot />
     </main>
     <TheFooter />

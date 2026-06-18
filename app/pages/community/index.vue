@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-charcoal-900 min-h-screen text-ivory">
+  <div class="bg-charcoal-900 min-h-screen text-ivory pt-[72px]">
     <!-- Header -->
     <div class="bg-dark-earth border-b border-charcoal-850 py-20 relative overflow-hidden">
       <div class="absolute inset-0 bg-noise opacity-30 pointer-events-none" />
