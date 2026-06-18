@@ -11,7 +11,7 @@
           <span class="section-label">Âm Vang Đại Ngàn</span>
           <h2 class="section-title">Nơi Đất Trời Gặp Gỡ Lịch Sử</h2>
           <p class="text-charcoal-400 text-lg leading-relaxed max-w-2xl mx-auto mb-8 animate-fade-up" style="animation-delay: 0.2s">
-            Huyện Bù Đăng, Tỉnh Bình Phước không chỉ là một tọa độ trên bản đồ Đông Nam Bộ. Đây là miền đất của những cánh rừng nguyên sinh ngút ngàn che chở cách mạng, nơi tiếng thác đổ hoang sơ hòa quyện cùng tiếng cồng chiêng vang vọng khắp sườn đồi từ bao đời nay.
+            Xã Bù Đăng Thành Phố Đồng Nai (Bình Phước Cũ) không chỉ là một tọa độ trên bản đồ Đông Nam Bộ. Đây là miền đất của những cánh rừng nguyên sinh ngút ngàn che chở cách mạng, nơi tiếng thác đổ hoang sơ hòa quyện cùng tiếng cồng chiêng vang vọng khắp sườn đồi từ bao đời nay.
           </p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
             <div class="flex gap-4">

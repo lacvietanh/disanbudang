@@ -37,7 +37,7 @@
             <div class="text-center">
               <Icon name="mdi:map-marker" class="w-10 h-10 text-gold-400 mx-auto mb-2" />
               <h3 class="text-white text-lg font-bold font-heading">Địa Chỉ</h3>
-              <p class="text-charcoal-300 text-sm">Huyện Bù Đăng, Tỉnh Bình Phước</p>
+              <p class="text-charcoal-300 text-sm">Xã Bù Đăng Thành Phố Đồng Nai (Bình Phước Cũ)</p>
             </div>
           </div>
         </div>
@@ -108,7 +108,7 @@ const isSubmitting = ref(false)
 const submitted = ref(false)
 
 const contactInfo = [
-  { icon: 'mdi:map-marker-outline', label: 'Địa Chỉ', value: 'Huyện Bù Đăng, Tỉnh Bình Phước' },
+  { icon: 'mdi:map-marker-outline', label: 'Địa Chỉ', value: 'Xã Bù Đăng Thành Phố Đồng Nai (Bình Phước Cũ)' },
   { icon: 'mdi:email-outline', label: 'Email', value: 'nguyenxuankiet294@gmail.com' },
 ]
 

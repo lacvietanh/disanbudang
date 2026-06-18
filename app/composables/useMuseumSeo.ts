@@ -93,7 +93,7 @@ export function useMuseumSeo(input: MuseumSeoInput = {}) {
         'address': {
           '@type': 'PostalAddress',
           'addressLocality': 'Huyện Bù Đăng',
-          'addressRegion': 'Huyện Bù Đăng, Tỉnh Bình Phước',
+          'addressRegion': 'Xã Bù Đăng Thành Phố Đồng Nai (Bình Phước Cũ)',
           'addressCountry': 'VN'
         }
       })
@@ -142,7 +142,7 @@ export function useHeritageSeo(heritage: Ref<Heritage | null>) {
             address: {
               '@type': 'PostalAddress',
               'addressLocality': 'Huyện Bù Đăng',
-              'addressRegion': 'Huyện Bù Đăng, Tỉnh Bình Phước',
+              'addressRegion': 'Xã Bù Đăng Thành Phố Đồng Nai (Bình Phước Cũ)',
               'addressCountry': 'VN'
             },
             geo: {

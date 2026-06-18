@@ -45,7 +45,7 @@
           <!-- Eyebrow -->
           <div class="flex items-center gap-3 mb-6 animate-fade-up" style="animation-delay: 0.1s">
             <span class="w-8 h-px bg-gold-400" />
-            <span class="eyebrow text-gold-400">Huyện Bù Đăng, Tỉnh Bình Phước</span>
+            <span class="eyebrow text-gold-400">Xã Bù Đăng Thành Phố Đồng Nai (Bình Phước Cũ)</span>
           </div>
 
           <!-- Main Heading -->

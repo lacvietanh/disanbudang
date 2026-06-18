@@ -60,7 +60,7 @@ const faqs = [
   },
   {
     question: "Sóc Bom Bo lịch sử nằm ở đâu và có thể tham quan như thế nào?",
-    answer: "Sóc Bom Bo thuộc xã Bình Minh, Huyện Bù Đăng, Tỉnh Bình Phước. Đây là địa danh lịch sử anh hùng nơi đồng bào S'tiêng ngày đêm giã gạo nuôi quân kháng chiến. Ngày nay, du khách có thể đến tham quan Khu bảo tồn văn hóa dân tộc S'tiêng sóc Bom Bo để trực tiếp trải nghiệm giã gạo, nghe cồng chiêng và thưởng thức rượu cần."
+    answer: "Sóc Bom Bo thuộc xã Bình Minh, Xã Bù Đăng Thành Phố Đồng Nai (Bình Phước Cũ). Đây là địa danh lịch sử anh hùng nơi đồng bào S'tiêng ngày đêm giã gạo nuôi quân kháng chiến. Ngày nay, du khách có thể đến tham quan Khu bảo tồn văn hóa dân tộc S'tiêng sóc Bom Bo để trực tiếp trải nghiệm giã gạo, nghe cồng chiêng và thưởng thức rượu cần."
   },
   {
     question: "Cổng thông tin Di sản Bù Đăng do ai thực hiện?",
