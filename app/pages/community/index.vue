@@ -35,8 +35,6 @@
       <div v-if="featuredPost && activeTab === 'all'" class="mb-14 reveal">
         <NuxtLink
           :to="`/community/${featuredPost.id}`"
-          target="_blank"
-          rel="noopener noreferrer"
           class="block group relative overflow-hidden rounded-3xl border border-charcoal-850 aspect-[21/8] min-h-[340px]"
         >
           <img :src="featuredPost.coverImage" :alt="featuredPost.title" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[8000ms] ease-out-expo group-hover:scale-105" />
@@ -75,8 +73,6 @@
           v-for="(post, i) in filteredPosts"
           :key="post.id"
           :to="`/community/${post.id}`"
-          target="_blank"
-          rel="noopener noreferrer"
           class="bg-charcoal-950/40 rounded-2xl overflow-hidden shadow-xl border border-charcoal-850 hover:border-gold-500/30 transition-all duration-500 group cursor-pointer reveal flex flex-col justify-between"
           :style="{ animationDelay: `${i * 0.05}s` }"
         >
@@ -159,8 +155,10 @@ const tabs = [
 const featuredPost = computed(() => MOCK_COMMUNITY_POSTS.find((p) => p.featured))
 
 const filteredPosts = computed(() => {
-  const posts = MOCK_COMMUNITY_POSTS.filter((p) => !p.featured || activeTab.value !== 'all')
-  return activeTab.value === 'all' ? MOCK_COMMUNITY_POSTS : posts.filter((p) => p.type === activeTab.value)
+  if (activeTab.value === 'all') {
+    return MOCK_COMMUNITY_POSTS.filter((p) => !p.featured)
+  }
+  return MOCK_COMMUNITY_POSTS.filter((p) => p.type === activeTab.value)
 })
 
 const typeLabels: Record<PostType, string> = {
@@ -170,4 +168,3 @@ const typeIcons: Record<PostType, string> = {
   story: 'mdi:book-open-variant', artwork: 'mdi:palette', photo: 'mdi:camera', memory: 'mdi:heart', research: 'mdi:magnify',
 }
 </script>
-

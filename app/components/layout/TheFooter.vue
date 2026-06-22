@@ -23,7 +23,7 @@
             </div>
           </div>
           <p class="text-charcoal-300 text-sm leading-relaxed">
-            Dự án bảo tồn và phát huy di sản văn hóa – lịch sử Xã Bù Đăng Thành Phố Đồng Nai (Bình Phước Cũ).
+            Dự án bảo tồn và phát huy di sản văn hóa – lịch sử Xã Bù Đăng Thành Phố Đồng Nai (Tỉnh Bình Phước cũ).
             Nơi lưu giữ ký ức cộng đồng cho thế hệ hôm nay và mai sau.
           </p>
           <!-- Social -->
@@ -32,6 +32,8 @@
               v-for="social in socials"
               :key="social.name"
               :href="social.url"
+              target="_blank"
+              rel="noopener noreferrer"
               :aria-label="social.name"
               class="w-9 h-9 rounded-lg bg-charcoal-800 flex items-center justify-center text-charcoal-400 hover:bg-gold-500 hover:text-charcoal-900 transition-all duration-300"
             >
@@ -62,11 +64,11 @@
             <p class="flex items-start gap-2">
               <Icon name="mdi:map-marker-outline" class="w-4 h-4 text-gold-500 mt-0.5 shrink-0" />
               <span class="sr-only">Địa chỉ</span>
-              Xã Bù Đăng Thành Phố Đồng Nai (Bình Phước Cũ)
+              Xã Bù Đăng Thành Phố Đồng Nai (Tỉnh Bình Phước cũ)
             </p>
             <p class="flex items-center gap-2">
               <Icon name="mdi:email-outline" class="w-4 h-4 text-gold-500 shrink-0" />
-              nguyenxuankiet294@gmail.com
+              Nguyenxuankiet294@gmail.com
             </p>
           </div>
 
@@ -100,10 +102,10 @@
 const currentYear = new Date().getFullYear()
 
 const socials = [
-  { name: 'Facebook', icon: 'mdi:facebook', url: '#' },
-  { name: 'YouTube', icon: 'mdi:youtube', url: '#' },
-  { name: 'Instagram', icon: 'mdi:instagram', url: '#' },
-  { name: 'TikTok', icon: 'mdi:music-note', url: '#' },
+  { name: 'Facebook', icon: 'mdi:facebook', url: 'https://facebook.com' },
+  { name: 'YouTube', icon: 'mdi:youtube', url: 'https://youtube.com' },
+  { name: 'Instagram', icon: 'mdi:instagram', url: 'https://instagram.com' },
+  { name: 'TikTok', icon: 'mdi:music-note', url: 'https://tiktok.com' },
 ]
 
 const footerLinks = [

@@ -6,7 +6,7 @@
       <div class="container-heritage relative z-10">
         <span class="section-label text-gold-400">Liên Hệ</span>
         <h1 class="font-heading font-bold text-ivory text-5xl lg:text-6xl leading-none mb-4">
-          Kết Nối<br/><span class="text-gradient-gold">Với Chúng Tôi</span>
+          Kết Nối<br/> <span class="text-gradient-gold">Với Chúng Tôi</span>
         </h1>
         <p class="text-charcoal-300 text-lg max-w-xl">
           Có thắc mắc, đề xuất hoặc muốn hợp tác? Chúng tôi luôn sẵn lòng lắng nghe
@@ -32,14 +32,25 @@
             </div>
           </div>
 
-          <!-- Map placeholder -->
-          <div class="bg-charcoal-800 rounded-2xl aspect-video flex items-center justify-center reveal">
-            <div class="text-center">
-              <Icon name="mdi:map-marker" class="w-10 h-10 text-gold-400 mx-auto mb-2" />
-              <h3 class="text-white text-lg font-bold font-heading">Địa Chỉ</h3>
-              <p class="text-charcoal-300 text-sm">Xã Bù Đăng Thành Phố Đồng Nai (Bình Phước Cũ)</p>
+          <!-- Map placeholder with Google Maps Link -->
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=Bù+Đăng+Bình+Phước"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block bg-charcoal-800 rounded-2xl aspect-video flex items-center justify-center relative overflow-hidden group border border-charcoal-700 hover:border-gold-500/50 transition-all duration-500 shadow-md reveal"
+          >
+            <div class="absolute inset-0 bg-[url('/images/heritage/danh-thang/bu-lach-sm.webp')] bg-cover bg-center opacity-25 filter blur-xs group-hover:scale-105 transition-transform duration-700" />
+            <div class="absolute inset-0 bg-charcoal-950/60" />
+            <div class="relative z-10 text-center p-6">
+              <Icon name="mdi:map-marker-radius" class="w-10 h-10 text-gold-450 mx-auto mb-2 group-hover:scale-110 transition-transform duration-300" />
+              <h3 class="text-white text-base font-bold font-heading">Bản Đồ Chỉ Đường</h3>
+              <p class="text-charcoal-350 text-xs mt-1">Xã Bù Đăng, Tỉnh Bình Phước</p>
+              <span class="inline-flex items-center gap-1 text-gold-450 text-2xs uppercase tracking-widest font-semibold mt-3 group-hover:text-gold-400 transition-colors">
+                Xem trên Google Maps
+                <Icon name="mdi:open-in-new" class="w-3 h-3" />
+              </span>
             </div>
-          </div>
+          </a>
         </div>
 
         <!-- Form -->
@@ -62,7 +73,7 @@
 
             <div>
               <label class="block text-charcoal-600 text-sm font-medium mb-2" for="c-subject">Chủ Đề</label>
-              <select id="c-subject" v-model="form.subject"
+              <select id="c-subject" v-model="form.subject" aria-label="Chủ đề liên hệ"
                 class="w-full px-4 py-3 border border-beige-200 rounded-xl text-charcoal-800 focus:outline-none focus:border-gold-500 transition-colors bg-white">
                 <option value="general">Thắc mắc chung</option>
                 <option value="contribute">Đóng góp tư liệu</option>
@@ -89,6 +100,13 @@
                 <p class="text-green-700 text-sm font-medium">Cảm ơn! Chúng tôi sẽ phản hồi trong 1–3 ngày làm việc.</p>
               </div>
             </Transition>
+
+            <Transition name="fade">
+              <div v-if="submitError" class="p-4 rounded-xl bg-red-50 border border-red-200 flex items-center gap-3">
+                <Icon name="mdi:alert-circle" class="w-6 h-6 text-red-600 flex-shrink-0" />
+                <p class="text-red-700 text-sm font-medium">{{ submitError }}</p>
+              </div>
+            </Transition>
           </form>
         </div>
       </div>
@@ -106,18 +124,30 @@ onMounted(() => nextTick(() => observeAll()))
 const form = reactive({ name: '', email: '', subject: 'general', message: '' })
 const isSubmitting = ref(false)
 const submitted = ref(false)
+const submitError = ref('')
 
 const contactInfo = [
   { icon: 'mdi:map-marker-outline', label: 'Địa Chỉ', value: 'Xã Bù Đăng Thành Phố Đồng Nai (Bình Phước Cũ)' },
-  { icon: 'mdi:email-outline', label: 'Email', value: 'nguyenxuankiet294@gmail.com' },
+  { icon: 'mdi:email-outline', label: 'Email', value: 'Nguyenxuankiet294@gmail.com' },
 ]
 
 async function handleSubmit() {
   isSubmitting.value = true
-  await new Promise(r => setTimeout(r, 1500))
-  isSubmitting.value = false
-  submitted.value = true
-  Object.assign(form, { name: '', email: '', message: '' })
+  submitted.value = false
+  submitError.value = ''
+
+  try {
+    await $fetch('/api/contact', {
+      method: 'POST',
+      body: { ...form },
+    })
+    submitted.value = true
+    Object.assign(form, { name: '', email: '', subject: 'general', message: '' })
+  } catch (error: any) {
+    submitError.value = error?.statusMessage || 'Chưa gửi được tin nhắn. Vui lòng thử lại sau.'
+  } finally {
+    isSubmitting.value = false
+  }
 }
 </script>
 

@@ -25,7 +25,7 @@
               <span class="w-1 h-8 bg-gold-500 rounded-full" />
               Dự Án Là Gì?
             </h2>
-            <div class="prose-heritage">
+            <div class="prose prose-stone max-w-none text-charcoal-800 prose-p:leading-relaxed prose-strong:text-charcoal-900">
               <p>
                 <strong>Di Sản Bù Đăng</strong> là một dự án bảo tàng số cộng đồng — nơi toàn bộ di sản văn hóa, lịch sử và thiên nhiên của Xã Bù Đăng Thành Phố Đồng Nai (Bình Phước Cũ) được số hóa, lưu trữ và chia sẻ rộng rãi đến mọi tầng lớp nhân dân.
               </p>
@@ -133,18 +133,17 @@ const teams = [
 ]
 
 const projectStats = [
-  { icon: 'mdi:castle', label: 'Di sản số hóa', value: '8+' },
+  { icon: 'mdi:castle', label: 'Di sản số hóa', value: '11' },
   { icon: 'mdi:headphones', label: 'Audio guide', value: '12' },
-  { icon: 'mdi:help-circle', label: 'Câu hỏi quiz', value: '15+' },
+  { icon: 'mdi:help-circle', label: 'Câu hỏi quiz', value: '35+' },
   { icon: 'mdi:account-group', label: 'Người đóng góp', value: '80+' },
   { icon: 'mdi:eye', label: 'Lượt truy cập', value: '15K+' },
 ]
 
 const milestones = [
-  { date: 'Q1 2024', title: 'Khởi động dự án & thu thập dữ liệu', done: true },
-  { date: 'Q2 2024', title: 'Xây dựng nền tảng kỹ thuật số', done: true },
-  { date: 'Q3 2024', title: 'Ra mắt phiên bản beta', done: true },
-  { date: 'Q4 2024', title: 'Mở rộng nội dung & cộng đồng', done: false },
-  { date: '2025', title: 'Tích hợp VR/AR trải nghiệm thực địa', done: false },
+  { date: '2024', title: 'Thu thập dữ liệu, xây dựng và ra mắt cổng thông tin', done: true },
+  { date: '2025', title: 'Tích hợp bản đồ di sản 2D và bổ sung audio guide', done: true },
+  { date: '2026', title: 'Cập nhật 11 di sản, hoàn thiện quiz và chuẩn hóa dữ liệu thực địa', done: true },
+  { date: '2027', title: 'Tích hợp trải nghiệm thực tế ảo VR/AR thực địa', done: false },
 ]
 </script>

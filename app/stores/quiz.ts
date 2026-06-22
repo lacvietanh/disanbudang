@@ -105,6 +105,14 @@ export const useQuizStore = defineStore(
         userProgress.value.totalScore += score
       }
 
+      // Award Explorer badge if all quizzes are completed
+      if (userProgress.value.completedQuizzes.length >= quizzes.value.length) {
+        if (!userProgress.value.earnedBadges.includes('badge-explorer')) {
+          userProgress.value.earnedBadges.push('badge-explorer')
+          result.badgeEarned = 'badge-explorer'
+        }
+      }
+
       isQuizCompleted.value = true
       isQuizActive.value = false
     }

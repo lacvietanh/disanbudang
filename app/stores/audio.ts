@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { AudioPlayerState, HeritageAudio } from '~/types'
+import type { HeritageAudio } from '~/types'
 
 export const useAudioStore = defineStore('audio', () => {
   const isPlaying = ref(false)
@@ -9,6 +9,8 @@ export const useAudioStore = defineStore('audio', () => {
   const isMuted = ref(false)
   const currentTrack = ref<HeritageAudio | null>(null)
   const heritageId = ref<string | null>(null)
+  const errorMessage = ref('')
+  const audioEl = shallowRef<HTMLAudioElement | null>(null)
 
   const isMiniPlayerVisible = ref(false)
   const isExpanded = ref(false)
@@ -23,36 +25,72 @@ export const useAudioStore = defineStore('audio', () => {
 
   // Actions
   function loadTrack(audio: HeritageAudio, hId: string) {
+    cleanupAudio()
     currentTrack.value = audio
     heritageId.value = hId
     currentTime.value = 0
     duration.value = audio.duration
+    errorMessage.value = ''
     isMiniPlayerVisible.value = true
+
+    if (import.meta.client) {
+      const player = new Audio(audio.url)
+      player.preload = 'metadata'
+      player.volume = isMuted.value ? 0 : volume.value
+
+      player.addEventListener('loadedmetadata', () => {
+        if (Number.isFinite(player.duration)) duration.value = player.duration
+      })
+      player.addEventListener('timeupdate', () => {
+        currentTime.value = player.currentTime
+      })
+      player.addEventListener('ended', () => {
+        isPlaying.value = false
+        currentTime.value = 0
+      })
+      player.addEventListener('error', () => {
+        isPlaying.value = false
+        errorMessage.value = 'Chưa tải được file audio cho bản thuyết minh này.'
+      })
+
+      audioEl.value = player
+    }
   }
 
   function play() {
     isPlaying.value = true
+    errorMessage.value = ''
+    audioEl.value?.play().catch(() => {
+      isPlaying.value = false
+      errorMessage.value = 'Trình duyệt chưa thể phát audio. Vui lòng thử lại.'
+    })
   }
 
   function pause() {
     isPlaying.value = false
+    audioEl.value?.pause()
   }
 
   function togglePlay() {
-    isPlaying.value = !isPlaying.value
+    if (isPlaying.value) pause()
+    else play()
   }
 
   function setCurrentTime(time: number) {
-    currentTime.value = Math.max(0, Math.min(time, duration.value))
+    const nextTime = Math.max(0, Math.min(time, duration.value))
+    currentTime.value = nextTime
+    if (audioEl.value) audioEl.value.currentTime = nextTime
   }
 
   function setVolume(v: number) {
     volume.value = Math.max(0, Math.min(1, v))
     if (v > 0) isMuted.value = false
+    if (audioEl.value) audioEl.value.volume = isMuted.value ? 0 : volume.value
   }
 
   function toggleMute() {
     isMuted.value = !isMuted.value
+    if (audioEl.value) audioEl.value.volume = isMuted.value ? 0 : volume.value
   }
 
   function skip(seconds: number) {
@@ -61,8 +99,10 @@ export const useAudioStore = defineStore('audio', () => {
 
   function closeMiniPlayer() {
     isPlaying.value = false
+    cleanupAudio()
     currentTrack.value = null
     heritageId.value = null
+    errorMessage.value = ''
     isMiniPlayerVisible.value = false
     isExpanded.value = false
   }
@@ -77,6 +117,14 @@ export const useAudioStore = defineStore('audio', () => {
     return `${m}:${s.toString().padStart(2, '0')}`
   }
 
+  function cleanupAudio() {
+    if (!audioEl.value) return
+    audioEl.value.pause()
+    audioEl.value.src = ''
+    audioEl.value.load()
+    audioEl.value = null
+  }
+
   return {
     isPlaying,
     currentTime,
@@ -85,6 +133,7 @@ export const useAudioStore = defineStore('audio', () => {
     isMuted,
     currentTrack,
     heritageId,
+    errorMessage,
     isMiniPlayerVisible,
     isExpanded,
     progressPercent,

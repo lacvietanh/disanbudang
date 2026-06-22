@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-charcoal-900 min-h-screen text-ivory">
+  <div class="bg-charcoal-900 min-h-screen text-ivory pt-[72px]">
     <!-- Hero -->
     <div class="relative py-24 overflow-hidden border-b border-charcoal-850">
       <img
@@ -11,7 +11,7 @@
       <div class="container-heritage relative z-10">
         <span class="section-label text-gold-400">Không Gian Hiến Tặng Ký Ức</span>
         <h1 class="font-heading font-bold text-ivory text-5xl lg:text-6xl leading-none mb-5">
-          Chung Tay Kiến Tạo<br/><span class="text-gradient-gold">Bản Đồ Di Sản</span>
+          Chung Tay Kiến Tạo<br/> <span class="text-gradient-gold">Bản Đồ Di Sản</span>
         </h1>
         <p class="text-charcoal-300 text-lg max-w-xl leading-relaxed">
           Mỗi hiện vật, bức ảnh cũ hay câu chuyện truyền miệng bạn hiến tặng sẽ giúp làm sâu sắc thêm chiều sâu lịch sử địa phương.
@@ -160,6 +160,19 @@
                   </select>
                 </div>
 
+                <div>
+                  <label class="block text-charcoal-400 text-xs font-semibold uppercase tracking-wider mb-2" for="files">Tệp tư liệu đính kèm</label>
+                  <input
+                    id="files"
+                    ref="fileInput"
+                    type="file"
+                    multiple
+                    accept="image/*,video/*,audio/*,.pdf,.doc,.docx"
+                    class="block w-full text-sm text-charcoal-300 file:mr-4 file:rounded-lg file:border-0 file:bg-gold-500 file:px-4 file:py-2.5 file:text-sm file:font-semibold file:text-charcoal-900 hover:file:bg-gold-400"
+                  />
+                  <p class="mt-2 text-xs text-charcoal-500">Có thể gửi ảnh, video, audio, PDF hoặc tài liệu văn bản.</p>
+                </div>
+
                 <!-- Trust verification checkbox list -->
                 <div class="bg-charcoal-900 border border-charcoal-800 rounded-2xl p-5 space-y-3">
                   <p class="text-xs uppercase text-gold-400 font-semibold tracking-wider flex items-center gap-1.5">
@@ -198,6 +211,13 @@
                     <p class="text-green-400 font-semibold text-sm">Gửi hiến tặng thành công!</p>
                     <p class="text-green-500/80 text-xs mt-0.5">Hồ sơ của bạn đã được chuyển tới Ban Quản lý Di tích Huyện Bù Đăng kiểm duyệt.</p>
                   </div>
+                </div>
+              </Transition>
+
+              <Transition name="fade-in-up">
+                <div v-if="submitError" class="p-4 rounded-xl bg-red-950/30 border border-red-800/40 flex items-center gap-3.5 mt-4">
+                  <Icon name="mdi:alert-circle" class="w-6 h-6 text-red-500 shrink-0" />
+                  <p class="text-red-300 text-sm font-medium">{{ submitError }}</p>
                 </div>
               </Transition>
             </div>
@@ -261,6 +281,8 @@ const selectedType = ref('story')
 const currentStep = ref(1)
 const isSubmitting = ref(false)
 const isSubmitted = ref(false)
+const submitError = ref('')
+const fileInput = ref<HTMLInputElement | null>(null)
 
 const steps = [
   { title: 'Chọn Loại' },
@@ -289,14 +311,39 @@ const reasons = [
 
 async function handleSubmit() {
   isSubmitting.value = true
-  await new Promise((r) => setTimeout(r, 1500))
-  isSubmitting.value = false
-  isSubmitted.value = true
-  Object.assign(form, { name: '', title: '', content: '', heritageId: '' })
-  setTimeout(() => {
-    isSubmitted.value = false
-    currentStep.value = 1
-  }, 4000)
+  isSubmitted.value = false
+  submitError.value = ''
+
+  try {
+    const body = new FormData()
+    body.set('type', selectedType.value)
+    body.set('name', form.name)
+    body.set('role', form.role)
+    body.set('title', form.title)
+    body.set('content', form.content)
+    body.set('heritageId', form.heritageId)
+
+    for (const file of Array.from(fileInput.value?.files ?? [])) {
+      body.append('files', file)
+    }
+
+    await $fetch('/api/contribute', {
+      method: 'POST',
+      body,
+    })
+
+    isSubmitted.value = true
+    Object.assign(form, { name: '', role: 'resident', title: '', content: '', heritageId: '' })
+    if (fileInput.value) fileInput.value.value = ''
+    setTimeout(() => {
+      isSubmitted.value = false
+      currentStep.value = 1
+    }, 4000)
+  } catch (error: any) {
+    submitError.value = error?.statusMessage || 'Chưa gửi được tư liệu. Vui lòng thử lại sau.'
+  } finally {
+    isSubmitting.value = false
+  }
 }
 </script>
 
@@ -304,4 +351,3 @@ async function handleSubmit() {
 .fade-in-up-enter-active { transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1); }
 .fade-in-up-enter-from { opacity: 0; transform: translateY(10px); }
 </style>
-

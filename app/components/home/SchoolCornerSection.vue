@@ -94,7 +94,7 @@ const resources: SchoolResource[] = [
     grade: 'Lớp 12',
     school: 'THPT Bù Đăng',
     author: 'Nhóm HS 12A1',
-    coverImage: '/images/heritage/lich-su/soc-bom-bo-md.webp',
+    coverImage: '/images/heritage/lich-su/chien-khu-d-md.webp',
     publishedAt: '2024-04-10',
     featured: true,
     downloadCount: 234,

@@ -16,7 +16,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <!-- Featured news -->
         <div v-if="news[0]" class="lg:col-span-7 reveal">
-          <NuxtLink to="/news" class="group block">
+          <NuxtLink :to="'/news/' + news[0].slug" class="group block">
             <div class="relative overflow-hidden rounded-3xl aspect-[16/9]">
               <img
                 :src="news[0].coverImage"
@@ -44,7 +44,7 @@
           <NuxtLink
             v-for="item in news.slice(1, 4)"
             :key="item.id"
-            to="/news"
+            :to="'/news/' + item.slug"
             class="group flex gap-4 p-4 rounded-2xl border border-charcoal-700/50 hover:border-gold-500/30 hover:bg-charcoal-800/50 transition-all duration-300 reveal"
           >
             <img :src="item.coverImage" :alt="item.title" class="w-20 h-16 rounded-xl object-cover flex-shrink-0 transition-transform duration-500 group-hover:scale-105" />

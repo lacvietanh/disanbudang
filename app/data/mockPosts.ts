@@ -67,7 +67,7 @@ Vào những năm 1970, khi mới chỉ là một cậu thiếu niên 15 tuổi,
 Ba nhớ nhất lần cả đội bị trực thăng địch càn quét. Trong khoảnh khắc ngàn cân treo sợi tóc, ba đã nhanh trí ôm chiếc gùi đạn nhảy xuống một hốc cây lớn bị cháy xém, lấy cành lá che lên. Nhờ sự gan dạ và may mắn đó, chuyến hàng đã cập bến an toàn, kịp thời cung cấp đạn dược cho trận đánh then chốt của sư đoàn.
 
 Những câu chuyện của ba không có trong sách giáo khoa một cách chi tiết như vậy. Đó là lịch sử sống, là ký ức được viết bằng mồ hôi, xương máu và lòng quả cảm của thế hệ đi trước để vùng đất Bù Đăng hôm nay mãi mãi xanh tươi.`,
-    coverImage: '/images/heritage/lich-su/soc-bom-bo-md.webp',
+    coverImage: '/images/heritage/lich-su/chien-khu-d-md.webp',
     author: {
       id: 'author-003',
       name: 'Trần Quốc Toàn',
@@ -92,7 +92,7 @@ Những câu chuyện của ba không có trong sách giáo khoa một cách chi
 Khoảng 5h15, những tia sáng đầu tiên của ngày mới bắt đầu hé lộ ở chân trời phía đông. Làn sương trắng muốt, dày đặc bốc lên từ mặt hồ dưới chân thác, gặp nắng sớm tạo nên những dải màu lấp lánh như cầu vồng mờ ảo. Những ngọn tre, tán lá rừng già hiện lên mập mờ trong làn khói nước, vẽ nên bức tranh sơn thủy hữu tình vô cùng ấn tượng.
 
 Bức ảnh này tôi chụp bằng máy ảnh cơ, phơi sáng khoảng 2 giây để dòng nước trông mềm mại như dải lụa trắng vắt qua sườn núi. Qua tác phẩm này, tôi hy vọng bạn bè muôn phương sẽ biết đến nhiều hơn một địa điểm du lịch sinh thái tuyệt vời và hoang sơ tại huyện Bù Đăng của chúng ta.`,
-    coverImage: '/images/heritage/danh-thang/thac-dung-md.webp',
+    coverImage: '/images/heritage/danh-thang/thien-nhien-md.webp',
     author: {
       id: 'author-004',
       name: 'Lê Minh Tâm',
@@ -162,17 +162,26 @@ Những nụ cười giòn giã của trẻ thơ hòa cùng tiếng nói chuyệ
 export const MOCK_NEWS: NewsArticle[] = [
   {
     id: 'news-001',
-    slug: 'festival-di-san-bu-dang-2024',
-    title: 'Festival Di Sản Bù Đăng 2024: "Đại Ngàn Thức Giấc"',
+    slug: 'festival-di-san-bu-dang-2026',
+    title: 'Festival Di Sản Bù Đăng 2026: "Đại Ngàn Thức Giấc"',
     subtitle: 'Sự kiện văn hóa lớn nhất huyện Bù Đăng trong năm',
-    excerpt: 'Festival Di Sản Bù Đăng 2024 với chủ đề "Đại Ngàn Thức Giấc" sẽ quy tụ hàng chục nghệ nhân, cộng đồng dân tộc và du khách trong suốt 3 ngày trải nghiệm văn hóa đặc sắc.',
+    excerpt: 'Festival Di Sản Bù Đăng 2026 với chủ đề "Đại Ngàn Thức Giấc" sẽ quy tụ hàng chục nghệ nhân, cộng đồng dân tộc và du khách trong suốt 3 ngày trải nghiệm văn hóa đặc sắc.',
+    content: `Festival Di Sản Bù Đăng 2026 với chủ đề "Đại Ngàn Thức Giấc" sẽ chính thức khai mạc vào tháng 11 năm nay tại trung tâm huyện Bù Đăng. Đây là sự kiện quy mô lớn nhất trong năm nhằm kỷ niệm và giới thiệu các di sản văn hóa, lịch sử và thắng cảnh thiên nhiên của địa phương tới bạn bè cả nước.
+
+Trong suốt 3 ngày diễn ra lễ hội, du khách sẽ được hòa mình vào không gian trải nghiệm văn hóa vô cùng độc đáo:
+- Đêm nhạc hội cồng chiêng S'tiêng bên lửa trại bập bùng với sự tham gia của các nghệ nhân cao tuổi và các đội thanh thiếu niên địa phương.
+- Hội thi giã gạo truyền thống tái hiện không khí oai hùng của đêm giã gạo nuôi quân tại sóc Bom Bo năm xưa.
+- Không gian văn hóa ẩm thực giới thiệu các món ăn đặc sắc như cơm lam suối, thịt nướng ống tre, rượu cần ủ bằng men lá rừng truyền thống.
+- Các gian hàng giới thiệu thổ cẩm dệt tay tinh xảo của đồng bào S'tiêng, M'nông.
+
+Ban Tổ chức kỳ vọng lễ hội sẽ thu hút hơn 10.000 lượt khách tham quan trực tiếp và trực tuyến, góp phần thúc đẩy du lịch sinh thái bền vững cho huyện Bù Đăng.`,
     coverImage: '/images/heritage/van-hoa-phi-vat-the/cong-chieng-lg.webp',
     category: 'su-kien',
     author: 'Ban Tổ Chức Festival',
-    publishedAt: '2024-09-15',
+    publishedAt: '2026-09-15',
     readTime: 5,
     featured: true,
-    tags: ['festival', 'sự kiện', 'văn hóa', '2024'],
+    tags: ['festival', 'sự kiện', 'văn hóa', '2026'],
   },
   {
     id: 'news-002',
@@ -180,10 +189,18 @@ export const MOCK_NEWS: NewsArticle[] = [
     title: 'Cồng Chiêng S\'tiêng Vào Trường Học: Dự Án Giáo Dục Di Sản',
     subtitle: 'Học sinh 5 trường THCS tại Bù Đăng được học đánh cồng chiêng',
     excerpt: 'Dự án đưa nghệ nhân cồng chiêng vào trường học đang được triển khai thí điểm tại 5 trường THCS trên địa bàn huyện Bù Đăng, mở ra hướng mới trong giáo dục di sản văn hóa.',
+    content: `Nhằm bảo tồn bản sắc văn hóa phi vật thể của địa phương, Phòng Giáo dục và Đào tạo huyện Bù Đăng đã chính thức khởi động dự án đưa nghệ thuật trình diễn cồng chiêng S'tiêng vào chương trình giáo dục ngoại khóa tại 5 trường THCS điểm trên địa bàn.
+
+Dự án có sự đồng hành mật thiết của các già làng và nghệ nhân cồng chiêng ưu tú tại địa phương. Các em học sinh sẽ được học:
+- Cách cầm dùi, cách gõ và giữ nhịp chiêng theo đúng giai điệu cổ truyền.
+- Ý nghĩa lịch sử và tâm linh của bộ cồng chiêng trong đời sống tinh thần của đồng bào dân tộc S'tiêng.
+- Kỹ năng diễn xướng xoang múa phụ họa xung quanh dàn nhạc cồng chiêng.
+
+Thầy Nguyễn Văn Hải, trưởng phòng GD&ĐT huyện, cho biết: "Dự án không chỉ giúp các em học sinh có thêm sân chơi bổ ích mà quan trọng hơn là khơi dậy lòng tự hào về di sản văn hóa quê hương trong lòng thế hệ trẻ, tạo lực lượng kế thừa gìn giữ bản sắc dân tộc."`,
     coverImage: '/images/heritage/van-hoa-phi-vat-the/van-hoa-stieng-lg.webp',
     category: 'hoat-dong',
     author: 'Phòng GD&ĐT Bù Đăng',
-    publishedAt: '2024-08-20',
+    publishedAt: '2026-08-20',
     readTime: 4,
     featured: true,
     tags: ['giáo dục', 'cồng chiêng', 'trường học', 'di sản'],
@@ -194,10 +211,20 @@ export const MOCK_NEWS: NewsArticle[] = [
     title: 'Số Hóa Chi Tiết Chiến Khu Đ: Bảo Tàng 3D Sắp Ra Mắt',
     subtitle: 'Dự án số hóa di tích với công nghệ 3D scanning và VR',
     excerpt: 'UBND huyện Bù Đăng phối hợp với Đại học Quốc gia TP.HCM thực hiện dự án số hóa toàn diện Chiến Khu Đ — tạo ra bảo tàng 3D trực tuyến đầu tiên về di tích lịch sử quốc gia.',
+    content: `Trong nỗ lực ứng dụng chuyển đổi số vào hoạt động bảo tồn lịch sử, UBND huyện Bù Đăng đã phối hợp cùng nhóm chuyên gia Đại học Quốc gia TP.HCM hoàn thành giai đoạn 1 của dự án số hóa 3D toàn diện Khu di tích lịch sử Căn cứ nửa lon - Chiến Khu Đ.
+
+Dự án áp dụng công nghệ quét 3D scanner cầm tay và chụp ảnh hồng ngoại độ phân giải cao để dựng lại toàn bộ cấu trúc địa hình rừng, hầm trú ẩn, phòng họp dã chiến và các hiện vật lịch sử tại di tích. 
+
+Khi hệ thống chính thức chạy thử nghiệm vào quý tới, người xem trên toàn thế giới chỉ cần truy cập trang web là có thể:
+- Thực hiện chuyến tham quan ảo VR 360 độ quanh cánh rừng chiến khu.
+- Tương tác xoay 3 chiều xem chi tiết từng chiếc gùi, cối giã gạo, hay mảnh bom chiến tranh được trưng bày.
+- Nghe các đoạn âm thanh thuyết minh lịch sử tự động bằng cả tiếng Việt và tiếng Anh.
+
+Đây được coi là bước ngoặt quan trọng giúp quảng bá lịch sử cách mạng của Bù Đăng đến gần hơn với độc giả và du khách trẻ trong nước và quốc tế.`,
     coverImage: '/images/heritage/danh-thang/rung-nguyen-sinh-lg.webp',
     category: 'tin-tuc',
     author: 'Ban Quản lý Di tích',
-    publishedAt: '2024-07-10',
+    publishedAt: '2026-07-10',
     readTime: 6,
     featured: false,
     tags: ['số hóa', 'chiến khu đ', 'công nghệ', '3D', 'VR'],
@@ -208,10 +235,18 @@ export const MOCK_NEWS: NewsArticle[] = [
     title: 'Hội Thảo Bảo Tồn Nhà Dài S\'tiêng: Kiến Trúc Không Được Lãng Quên',
     subtitle: 'Chuyên gia và cộng đồng cùng tìm hướng bảo tồn nhà dài truyền thống',
     excerpt: 'Hội thảo khoa học về bảo tồn nhà dài S\'tiêng quy tụ hơn 50 chuyên gia kiến trúc, nhân học và đại diện cộng đồng để cùng thảo luận về chiến lược bảo tồn và phát huy giá trị.',
+    content: `Vừa qua, tại Khu bảo tồn văn hóa dân tộc Sóc Bom Bo đã diễn ra hội thảo khoa học "Bảo tồn nhà dài truyền thống của người S'tiêng Bù Đăng trong đời sống hiện đại". Hội thảo do Viện Khoa học Xã hội Nam Bộ phối hợp cùng Sở Văn hóa tỉnh tổ chức.
+
+Hội thảo quy tụ hơn 50 nhà nghiên cứu kiến trúc, nhân học cùng đông đảo các nghệ nhân, già làng đại diện cho cộng đồng các buôn sóc tại Bù Đăng. Các đại biểu đã tập trung làm rõ:
+- Thực trạng suy giảm số lượng nhà dài truyền thống do đô thị hóa và sự thay đổi về nhu cầu cư trú của người dân.
+- Các giải pháp vật liệu thay thế bền vững để phục dựng nhà dài mà vẫn giữ nguyên hồn cốt kiến trúc tre nứa lá.
+- Hướng đi kết hợp bảo tồn nhà dài gắn với phát triển mô hình du lịch homestay cộng đồng nhằm tạo sinh kế bền vững cho đồng bào.
+
+Hội thảo đã thông qua bản khuyến nghị gửi Ủy ban nhân dân tỉnh nhằm cấp kinh phí khẩn cấp để tu bổ, bảo tồn 3 ngôi nhà dài cổ tiêu biểu trên địa bàn huyện trong giai đoạn 2026-2027.`,
     coverImage: '/images/heritage/doi-song-cong-dong/nha-dai-lg.webp',
     category: 'nghien-cuu',
     author: 'Viện Khoa học Xã hội Nam Bộ',
-    publishedAt: '2024-06-05',
+    publishedAt: '2026-06-05',
     readTime: 7,
     featured: false,
     tags: ['hội thảo', 'nhà dài', 'S\'tiêng', 'bảo tồn', 'kiến trúc'],
@@ -221,11 +256,11 @@ export const MOCK_NEWS: NewsArticle[] = [
 export const MOCK_EVENTS: Event[] = [
   {
     id: 'event-001',
-    title: 'Festival Di Sản Bù Đăng 2024',
+    title: 'Festival Di Sản Bù Đăng 2026',
     description: 'Ba ngày hội tụ di sản — trải nghiệm văn hóa, âm nhạc và ẩm thực truyền thống S\'tiêng, M\'nông.',
     location: 'Trung tâm Văn hóa Huyện Bù Đăng',
-    startDate: '2024-11-01',
-    endDate: '2024-11-03',
+    startDate: '2026-11-01',
+    endDate: '2026-11-03',
     type: 'su-kien',
     isOnline: false,
   },
@@ -234,8 +269,8 @@ export const MOCK_EVENTS: Event[] = [
     title: 'Triển Lãm Ảnh "Ánh Sáng Đại Ngàn"',
     description: 'Triển lãm 120 tác phẩm nhiếp ảnh về thiên nhiên, con người và di sản Bù Đăng.',
     location: 'Nhà Văn hóa Huyện & Trực tuyến',
-    startDate: '2024-10-15',
-    endDate: '2024-10-30',
+    startDate: '2026-10-15',
+    endDate: '2026-10-30',
     type: 'trien-lam',
     isOnline: true,
   },
@@ -244,7 +279,7 @@ export const MOCK_EVENTS: Event[] = [
     title: 'Ngày Hội Di Sản Trường Học',
     description: 'Học sinh các trường THCS, THPT trình bày nghiên cứu, tranh vẽ và dự án về di sản Bù Đăng.',
     location: 'Các trường học trên địa bàn huyện',
-    startDate: '2024-09-20',
+    startDate: '2026-09-20',
     type: 'hoat-dong-truong-hoc',
     isOnline: false,
   },

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!post" class="min-h-screen flex items-center justify-center bg-charcoal-900 text-ivory">
+  <div v-if="!post" class="min-h-screen flex items-center justify-center bg-charcoal-900 text-ivory pt-[72px]">
     <div class="text-center">
       <Icon name="mdi:alert-circle-outline" class="w-16 h-16 text-gold-500 mx-auto mb-4" />
       <h2 class="font-heading font-bold text-2xl mb-4">Không tìm thấy câu chuyện</h2>
@@ -7,7 +7,7 @@
     </div>
   </div>
 
-  <div v-else class="bg-charcoal-900 min-h-screen text-ivory pb-20">
+  <div v-else class="bg-charcoal-900 min-h-screen text-ivory pb-20 pt-[72px]">
     <!-- Header/Hero -->
     <div class="relative h-[55vh] min-h-[400px] flex items-end border-b border-charcoal-850 overflow-hidden">
       <img
@@ -41,7 +41,7 @@
             <span class="w-1 h-1 bg-charcoal-700 rounded-full" />
             <span class="flex items-center gap-1.5">
               <Icon name="mdi:heart" class="w-4 h-4 text-brick-500" />
-              {{ post.likes }} lượt thích
+              {{ likesCount }} lượt thích
             </span>
           </div>
         </div>
@@ -123,7 +123,7 @@
                 @click="likePost"
               >
                 <Icon name="mdi:heart" :class="isLiked ? 'text-brick-500' : 'text-charcoal-500'" class="w-4 h-4 transition-colors" />
-                <span>{{ isLiked ? 'Đã thích' : 'Thích bài viết' }} ({{ post.likes }})</span>
+                <span>{{ isLiked ? 'Đã thích' : 'Thích bài viết' }} ({{ likesCount }})</span>
               </button>
             </div>
           </div>
@@ -145,6 +145,13 @@ const id = computed(() => route.params.id as string)
 const post = computed(() => MOCK_COMMUNITY_POSTS.find(p => p.id === id.value) || null)
 
 const isLiked = ref(false)
+const likesCount = ref(0)
+
+watchEffect(() => {
+  if (post.value) {
+    likesCount.value = post.value.likes
+  }
+})
 
 const typeLabels: Record<PostType, string> = {
   story: 'Câu Chuyện', artwork: 'Tranh Vẽ', photo: 'Ảnh Tư Liệu', memory: 'Ký Ức', research: 'Khảo Cứu',
@@ -153,10 +160,10 @@ const typeLabels: Record<PostType, string> = {
 function likePost() {
   if (!post.value) return
   if (!isLiked.value) {
-    post.value.likes++
+    likesCount.value++
     isLiked.value = true
   } else {
-    post.value.likes--
+    likesCount.value--
     isLiked.value = false
   }
 }

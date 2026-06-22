@@ -92,6 +92,75 @@
         </div>
       </div>
     </Transition>
+
+    <!-- Search modal -->
+    <Transition name="mobile-menu">
+      <div
+        v-if="isSearchOpen"
+        class="fixed inset-0 z-[80] bg-charcoal-950/90 backdrop-blur-xl"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Tìm kiếm di sản"
+        @click.self="closeSearch"
+        @keydown="handleModalTab"
+      >
+        <div ref="modalContainerRef" class="container-narrow pt-28">
+          <div class="rounded-2xl border border-charcoal-800 bg-charcoal-950 shadow-2xl overflow-hidden">
+            <div class="flex items-center gap-3 border-b border-charcoal-850 px-4 py-3">
+              <Icon name="mdi:magnify" class="w-5 h-5 text-gold-400 shrink-0" />
+              <input
+                ref="searchInput"
+                v-model="searchQuery"
+                type="search"
+                placeholder="Tìm di sản, danh thắng, văn hóa..."
+                class="w-full bg-transparent text-ivory placeholder-charcoal-500 focus:outline-none"
+                @keydown.esc="closeSearch"
+                @keydown.enter="goToLibrary"
+              />
+              <button
+                class="p-2 rounded-lg text-charcoal-400 hover:text-ivory hover:bg-charcoal-900"
+                aria-label="Đóng tìm kiếm"
+                @click="closeSearch"
+              >
+                <Icon name="mdi:close" class="w-5 h-5" />
+              </button>
+            </div>
+
+            <div class="max-h-[60vh] overflow-y-auto p-3">
+              <NuxtLink
+                v-for="heritage in searchResults"
+                :key="heritage.id"
+                :to="`/heritage/${heritage.slug}`"
+                class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-charcoal-900"
+                @click="closeSearch"
+              >
+                <img :src="heritage.coverImage" :alt="heritage.title" class="w-14 h-12 rounded-lg object-cover" />
+                <span class="min-w-0">
+                  <span class="block text-ivory text-sm font-semibold truncate">{{ heritage.title }}</span>
+                  <span class="block text-charcoal-400 text-xs truncate">{{ heritage.subtitle }}</span>
+                </span>
+              </NuxtLink>
+
+              <button
+                v-if="searchQuery"
+                class="w-full mt-2 btn-primary justify-center"
+                @click="goToLibrary"
+              >
+                Xem tất cả kết quả
+                <Icon name="mdi:arrow-right" class="w-4 h-4" />
+              </button>
+
+              <p v-if="searchQuery && searchResults.length === 0" class="text-center text-charcoal-400 text-sm py-10">
+                Không tìm thấy di sản phù hợp.
+              </p>
+              <p v-if="!searchQuery" class="text-center text-charcoal-500 text-sm py-10">
+                Nhập tên di sản, địa danh hoặc từ khóa để tra cứu nhanh.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Transition>
   </header>
 </template>
 
@@ -99,6 +168,22 @@
 const isScrolled = ref(false)
 const isMobileOpen = ref(false)
 const isSearchOpen = ref(false)
+const searchQuery = ref('')
+const searchInput = ref<HTMLInputElement | null>(null)
+const heritageStore = useHeritageStore()
+
+const searchResults = computed(() => {
+  const q = searchQuery.value.trim().toLowerCase()
+  if (!q) return []
+  return heritageStore.publishedHeritages
+    .filter((heritage) =>
+      heritage.title.toLowerCase().includes(q) ||
+      heritage.subtitle.toLowerCase().includes(q) ||
+      heritage.shortDescription.toLowerCase().includes(q) ||
+      heritage.tags.some((tag) => tag.toLowerCase().includes(q)),
+    )
+    .slice(0, 6)
+})
 
 const navItems = [
   { to: '/', label: 'Trang Chủ', icon: 'mdi:home-outline' },
@@ -120,6 +205,65 @@ if (import.meta.client) {
 // Close menu on route change
 const route = useRoute()
 watch(() => route.path, () => { isMobileOpen.value = false })
+
+watch(isSearchOpen, async (open) => {
+  if (!open) return
+  await nextTick()
+  searchInput.value?.focus()
+})
+
+const modalContainerRef = ref<HTMLElement | null>(null)
+
+watch([isMobileOpen, isSearchOpen], ([mobileOpen, searchOpen]) => {
+  if (import.meta.client) {
+    if (mobileOpen || searchOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+  }
+})
+
+onUnmounted(() => {
+  if (import.meta.client) {
+    document.body.style.overflow = ''
+  }
+})
+
+function handleModalTab(e: KeyboardEvent) {
+  if (e.key !== 'Tab') return
+  if (!modalContainerRef.value) return
+
+  const focusables = modalContainerRef.value.querySelectorAll(
+    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+  )
+  if (focusables.length === 0) return
+
+  const firstEl = focusables[0] as HTMLElement
+  const lastEl = focusables[focusables.length - 1] as HTMLElement
+
+  if (e.shiftKey) {
+    if (document.activeElement === firstEl) {
+      lastEl.focus()
+      e.preventDefault()
+    }
+  } else {
+    if (document.activeElement === lastEl) {
+      firstEl.focus()
+      e.preventDefault()
+    }
+  }
+}
+
+function closeSearch() {
+  isSearchOpen.value = false
+}
+
+function goToLibrary() {
+  const query = searchQuery.value.trim()
+  closeSearch()
+  navigateTo(query ? `/library?search=${encodeURIComponent(query)}` : '/library')
+}
 </script>
 
 <style scoped>

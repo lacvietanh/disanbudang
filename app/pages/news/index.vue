@@ -33,7 +33,7 @@
       <!-- Featured + side layout -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
         <div v-if="filteredNews[0]" class="lg:col-span-7">
-          <NuxtLink to="/news" class="group block">
+          <NuxtLink :to="'/news/' + filteredNews[0].slug" class="group block">
             <div class="relative overflow-hidden rounded-3xl aspect-[16/9]">
               <img :src="filteredNews[0].coverImage" :alt="filteredNews[0].title" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
               <div class="absolute inset-0 bg-gradient-cinematic" />
@@ -53,7 +53,7 @@
           <NuxtLink
             v-for="item in filteredNews.slice(1, 5)"
             :key="item.id"
-            to="/news"
+            :to="'/news/' + item.slug"
             class="group flex gap-4 p-4 rounded-2xl border border-beige-200 hover:border-earth-200 hover:bg-beige-50 transition-all duration-200"
           >
             <img :src="item.coverImage" :alt="item.title" class="w-20 h-16 rounded-xl object-cover flex-shrink-0 transition-transform duration-500 group-hover:scale-105" />

@@ -9,7 +9,7 @@
       <div class="container-heritage relative z-10">
         <span class="section-label text-gold-400">Không Gian Nghệ Thuật Số</span>
         <h1 class="font-heading font-bold text-ivory text-4xl md:text-5xl lg:text-6xl leading-none mb-5">
-          Triển Lãm Ảnh<br/><span class="text-gradient-gold">Di Sản Bù Đăng</span>
+          Triển Lãm Ảnh<br/> <span class="text-gradient-gold">Di Sản Bù Đăng</span>
         </h1>
         <p class="text-charcoal-350 text-base max-w-2xl leading-relaxed">
           Chiêm ngưỡng kho tư liệu ảnh tư liệu lịch sử, cảnh quan thiên nhiên và con người Bù Đăng chân thực. Hình ảnh được sưu tầm và tối ưu hóa chất lượng nguyên bản.
@@ -108,7 +108,7 @@
             <img
               :src="img.sizes.md"
               :srcset="`${img.sizes.sm} 480w, ${img.sizes.md} 800w, ${img.sizes.lg} 1200w`"
-              sizes="(max-w: 640px) 100vw, (max-w: 1024px) 50vw, 33vw"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               :alt="lang === 'vi' ? img.alt.vi : img.alt.en"
               loading="lazy"
               class="w-full h-full object-cover transition-all duration-1000 ease-out-expo group-hover:scale-105"
@@ -155,6 +155,7 @@
         <!-- Close Button -->
         <button
           class="absolute top-6 right-6 z-50 w-12 h-12 rounded-full bg-charcoal-900 border border-charcoal-800 text-ivory hover:text-gold-400 flex items-center justify-center transition-all duration-300"
+          aria-label="Đóng ảnh"
           @click="closeLightbox"
         >
           <Icon name="mdi:close" class="w-6 h-6" />
@@ -163,12 +164,14 @@
         <!-- Navigation Buttons -->
         <button
           class="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-charcoal-900/50 border border-charcoal-800/50 text-ivory hover:text-gold-400 hover:bg-charcoal-900 flex items-center justify-center transition-all duration-300"
+          aria-label="Ảnh trước"
           @click="prevImage"
         >
           <Icon name="mdi:chevron-left" class="w-8 h-8" />
         </button>
         <button
           class="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-charcoal-900/50 border border-charcoal-800/50 text-ivory hover:text-gold-400 hover:bg-charcoal-900 flex items-center justify-center transition-all duration-300"
+          aria-label="Ảnh tiếp theo"
           @click="nextImage"
         >
           <Icon name="mdi:chevron-right" class="w-8 h-8" />
@@ -298,6 +301,40 @@ const activeCategory = ref('')
 const lang = ref<'vi' | 'en'>('vi')
 const loadedImages = ref<Record<string, boolean>>({})
 const activeLightboxImage = ref<HeritageImage | null>(null)
+
+watch(activeLightboxImage, (newVal) => {
+  if (import.meta.client) {
+    if (newVal) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+  }
+})
+
+function handleKeydown(e: KeyboardEvent) {
+  if (!activeLightboxImage.value) return
+  if (e.key === 'Escape') {
+    closeLightbox()
+  } else if (e.key === 'ArrowLeft') {
+    prevImage()
+  } else if (e.key === 'ArrowRight') {
+    nextImage()
+  }
+}
+
+onMounted(() => {
+  if (import.meta.client) {
+    window.addEventListener('keydown', handleKeydown)
+  }
+})
+
+onUnmounted(() => {
+  if (import.meta.client) {
+    window.removeEventListener('keydown', handleKeydown)
+    document.body.style.overflow = ''
+  }
+})
 
 // Unique categories list
 const uniqueCategories = computed(() => {

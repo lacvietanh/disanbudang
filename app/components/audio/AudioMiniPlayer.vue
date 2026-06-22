@@ -23,7 +23,9 @@
           <!-- Info + Progress -->
           <div class="flex-1 min-w-0">
             <p class="text-ivory text-sm font-medium truncate">{{ audio.currentTrack.title }}</p>
-            <p class="text-charcoal-400 text-xs truncate">{{ audio.currentTrack.narrator }}</p>
+            <p class="text-charcoal-400 text-xs truncate">
+              {{ audio.errorMessage || audio.currentTrack.narrator }}
+            </p>
 
             <!-- Progress bar -->
             <div class="mt-2 relative h-1 bg-charcoal-700 rounded-full cursor-pointer" @click="onProgressClick">
@@ -44,6 +46,7 @@
           <div class="flex items-center gap-2 flex-shrink-0">
             <button
               class="w-9 h-9 rounded-full bg-gold-500 flex items-center justify-center hover:bg-gold-400 transition-colors shadow-gold"
+              :aria-label="audio.isPlaying ? 'Tạm dừng audio' : 'Phát audio'"
               @click="audio.togglePlay()"
             >
               <Icon
@@ -53,6 +56,7 @@
             </button>
             <button
               class="w-8 h-8 rounded-full flex items-center justify-center text-charcoal-400 hover:text-ivory transition-colors"
+              aria-label="Đóng trình phát audio"
               @click="audio.closeMiniPlayer()"
             >
               <Icon name="mdi:close" class="w-4 h-4" />

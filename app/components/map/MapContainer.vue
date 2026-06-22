@@ -5,6 +5,7 @@
 <script setup lang="ts">
 import type { Heritage } from '~/types'
 import { CATEGORY_MAP } from '~/data/categories'
+import 'leaflet/dist/leaflet.css'
 
 const props = defineProps<{
   heritages: Heritage[]
@@ -33,7 +34,6 @@ onMounted(async () => {
 
   // Dynamically import Leaflet
   const L = await import('leaflet')
-  await import('leaflet/dist/leaflet.css')
   LInstance = L
 
   // Init map centered on Bù Đăng district

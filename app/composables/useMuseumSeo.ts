@@ -2,7 +2,7 @@ import type { Ref } from 'vue'
 import type { Heritage, NewsArticle } from '~/types'
 
 const SITE_NAME = 'Di Sản Bù Đăng'
-const SITE_DESCRIPTION = 'Bảo tàng số địa phương về lịch sử, văn hóa, thiên nhiên và ký ức cộng đồng huyện Bù Đăng.'
+const SITE_DESCRIPTION = 'Bảo tàng số địa phương về lịch sử, văn hóa, thiên nhiên và ký ức cộng đồng Xã Bù Đăng Thành Phố Đồng Nai (Tỉnh Bình Phước cũ).'
 const SITE_URL = 'https://disanbudang.com'
 const DEFAULT_IMAGE = '/images/heritage/danh-thang/rung-nguyen-sinh-lg.webp'
 
@@ -92,8 +92,8 @@ export function useMuseumSeo(input: MuseumSeoInput = {}) {
         'description': SITE_DESCRIPTION,
         'address': {
           '@type': 'PostalAddress',
-          'addressLocality': 'Huyện Bù Đăng',
-          'addressRegion': 'Xã Bù Đăng Thành Phố Đồng Nai (Bình Phước Cũ)',
+          'addressLocality': 'Xã Bù Đăng',
+          'addressRegion': 'Thành Phố Đồng Nai (Tỉnh Bình Phước cũ)',
           'addressCountry': 'VN'
         }
       })
@@ -141,8 +141,8 @@ export function useHeritageSeo(heritage: Ref<Heritage | null>) {
             url: `${SITE_URL}/heritage/${heritage.value.slug}`,
             address: {
               '@type': 'PostalAddress',
-              'addressLocality': 'Huyện Bù Đăng',
-              'addressRegion': 'Xã Bù Đăng Thành Phố Đồng Nai (Bình Phước Cũ)',
+              'addressLocality': 'Xã Bù Đăng',
+              'addressRegion': 'Thành Phố Đồng Nai (Tỉnh Bình Phước cũ)',
               'addressCountry': 'VN'
             },
             geo: {
@@ -181,3 +181,27 @@ export function buildArticleSchema(article: NewsArticle) {
     },
   }
 }
+
+export function useNewsSeo(article: Ref<NewsArticle | null>) {
+  watchEffect(() => {
+    if (!article.value) return
+
+    useMuseumSeo({
+      title: article.value.title,
+      description: article.value.excerpt,
+      image: article.value.coverImage,
+      path: `/news/${article.value.slug}`,
+      type: 'article',
+    })
+
+    useHead({
+      script: [
+        {
+          type: 'application/ld+json',
+          innerHTML: JSON.stringify(buildArticleSchema(article.value)),
+        },
+      ],
+    })
+  })
+}
+

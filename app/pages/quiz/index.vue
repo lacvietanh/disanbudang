@@ -8,7 +8,7 @@
         <div class="container-heritage relative z-10">
           <span class="section-label text-gold-400">Gamified Learning</span>
           <h1 class="font-heading font-bold text-ivory text-5xl lg:text-6xl leading-none mb-5">
-            Quiz Khám Phá<br/><span class="text-gradient-gold">Di Sản</span>
+            Quiz Khám Phá<br/> <span class="text-gradient-gold">Di Sản</span>
           </h1>
           <p class="text-charcoal-300 text-lg max-w-xl">
             Thử thách kiến thức, giành huy hiệu và trở thành Nhà Khám Phá Di Sản Bù Đăng đích thực
@@ -39,14 +39,14 @@
             class="bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-500 group cursor-pointer reveal"
             :style="{ animationDelay: `${i * 0.1}s` }"
           >
-            <div class="h-2 w-full" :style="{ background: quizColors[i] ?? '#C9922A' }" />
+            <div class="h-2 w-full" :style="{ background: getQuizColor(quiz.heritageId, i) }" />
             <div class="p-6">
               <div class="flex items-center gap-4 mb-5">
                 <div
                   class="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
-                  :style="{ background: `${quizColors[i]}15`, border: `1px solid ${quizColors[i]}25` }"
+                  :style="{ background: `${getQuizColor(quiz.heritageId, i)}15`, border: `1px solid ${getQuizColor(quiz.heritageId, i)}25` }"
                 >
-                  <Icon :name="quizIcons[i] ?? 'mdi:help'" class="w-7 h-7" :style="{ color: quizColors[i] }" />
+                  <Icon :name="getQuizIcon(quiz.heritageId, i)" class="w-7 h-7" :style="{ color: getQuizColor(quiz.heritageId, i) }" />
                 </div>
                 <div>
                   <h3 class="font-heading font-bold text-charcoal-800 text-lg leading-tight">{{ quiz.title }}</h3>
@@ -69,7 +69,7 @@
 
               <button
                 class="w-full py-3 rounded-xl font-medium text-sm transition-all duration-300 group-hover:shadow-warm"
-                :style="{ backgroundColor: `${quizColors[i]}`, color: i === 2 ? '#1C1A18' : '#FDFAF3' }"
+                :style="{ backgroundColor: getQuizColor(quiz.heritageId, i), color: '#FDFAF3' }"
                 @click="startQuiz(quiz)"
               >
                 {{ lastResult(quiz.id) ? 'Làm Lại' : 'Bắt Đầu Quiz' }}
@@ -244,8 +244,36 @@ const quizStore = useQuizStore()
 const { observeAll } = useScrollReveal()
 onMounted(() => nextTick(() => observeAll()))
 
-const quizColors = ['#8B3A2A', '#2D5016', '#C9922A']
+const heritageStore = useHeritageStore()
+
+const quizColors = ['#8B3A2A', '#2D5016', '#C9922A', '#6B4C35', '#B87333']
 const quizIcons = ['mdi:castle', 'mdi:music-circle', 'mdi:water']
+
+function getQuizColor(heritageId: string, index: number): string {
+  const heritage = heritageStore.getById(heritageId)
+  if (!heritage) return quizColors[index % quizColors.length] || '#8B3A2A'
+  const map: Record<string, string> = {
+    'lich-su': '#8B3A2A',
+    'danh-thang': '#2D5016',
+    'van-hoa-phi-vat-the': '#C9922A',
+    'doi-song-cong-dong': '#6B4C35',
+    'giao-duc-truyen-thong': '#B87333',
+  }
+  return map[heritage.category] ?? quizColors[index % quizColors.length] ?? '#8B3A2A'
+}
+
+function getQuizIcon(heritageId: string, index: number): string {
+  const heritage = heritageStore.getById(heritageId)
+  if (!heritage) return quizIcons[index % quizIcons.length] || 'mdi:help-circle'
+  const map: Record<string, string> = {
+    'lich-su': 'mdi:shield-outline',
+    'danh-thang': 'mdi:image-filter-hdr',
+    'van-hoa-phi-vat-the': 'mdi:music-clef-treble',
+    'doi-song-cong-dong': 'mdi:home-group',
+    'giao-duc-truyen-thong': 'mdi:school',
+  }
+  return map[heritage.category] ?? quizIcons[index % quizIcons.length] ?? 'mdi:help-circle'
+}
 
 const selectedAnswerIndex = ref<number | null>(null)
 const showExplanation = ref(false)

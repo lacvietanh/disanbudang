@@ -45,7 +45,7 @@
           <!-- Eyebrow -->
           <div class="flex items-center gap-3 mb-4 md:mb-6 animate-fade-up" style="animation-delay: 0.1s">
             <span class="w-8 h-px bg-gold-400" />
-            <span class="eyebrow text-gold-400 text-[10px] md:text-xs">Xã Bù Đăng Thành Phố Đồng Nai (Bình Phước Cũ)</span>
+            <span class="eyebrow text-gold-400 text-[10px] md:text-xs">Xã Bù Đăng Thành Phố Đồng Nai (Tỉnh Bình Phước cũ)</span>
           </div>
 
           <!-- Main Heading -->
@@ -59,11 +59,11 @@
             class="text-cinematic text-ivory/80 mb-5 md:mb-6 animate-fade-up max-w-2xl text-lg md:text-2xl"
             style="animation-delay: 0.4s"
           >
-            "Khám phá Di sản Bù Đăng qua bảo tàng số sống động — từ chiến khu lịch sử đến tiếng cồng chiêng đại ngàn"
+            "Linh hồn đại ngàn, tiếng vang lịch sử và bản sắc ngàn đời"
           </p>
 
           <p class="text-charcoal-300 text-sm md:text-lg leading-relaxed mb-8 md:mb-10 max-w-xl animate-fade-up" style="animation-delay: 0.5s">
-            Bảo tàng số cộng đồng lưu giữ ký ức địa phương, kết nối thế hệ trẻ qua bản đồ tương tác, câu chuyện kể và tư liệu văn hoá của đồng bào S'tiêng, M'nông.
+            Không gian lưu trữ di sản văn hóa, thiên nhiên kỳ vĩ và những câu chuyện lịch sử hào hùng của mảnh đất Bù Đăng.
           </p>
 
           <!-- CTAs -->
@@ -112,6 +112,7 @@
         :key="i"
         class="h-1 rounded-full transition-all duration-500"
         :class="currentSlide === i ? 'w-8 bg-gold-400' : 'w-3 bg-ivory/30 hover:bg-ivory/50'"
+        :aria-label="`Xem slide thứ ${i + 1}`"
         @click="currentSlide = i"
       />
     </div>

@@ -1,5 +1,13 @@
 <template>
-  <div class="relative group overflow-hidden rounded-2xl card-heritage" @click="$emit('click')">
+  <div
+    class="relative group overflow-hidden rounded-2xl card-heritage cursor-pointer"
+    role="button"
+    tabindex="0"
+    :aria-label="`Chi tiết di sản: ${heritage.title}`"
+    @click="$emit('click')"
+    @keydown.enter.prevent="$emit('click')"
+    @keydown.space.prevent="$emit('click')"
+  >
     <!-- Image -->
     <div class="aspect-[4/3] overflow-hidden">
       <img

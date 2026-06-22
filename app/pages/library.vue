@@ -9,7 +9,7 @@
       <div class="container-heritage relative z-10">
         <span class="section-label text-gold-400">Không Gian Lưu Trữ Kỹ Thuật Số</span>
         <h1 class="font-heading font-bold text-ivory text-4xl md:text-5xl lg:text-6xl leading-none mb-5">
-          Thư Viện<br/><span class="text-gradient-gold">Di Sản Bù Đăng</span>
+          Thư Viện<br/> <span class="text-gradient-gold">Di Sản Bù Đăng</span>
         </h1>
         <p class="text-charcoal-350 text-base max-w-2xl leading-relaxed">
           Tra cứu toàn bộ tư liệu di tích lịch sử kháng chiến, danh lam thắng cảnh sinh thái và di sản văn hóa phi vật thể địa phương đã được số hóa chính thống.
@@ -126,6 +126,7 @@ useSeoMeta({
 
 const store = useHeritageStore()
 const { observeAll } = useScrollReveal()
+const route = useRoute()
 
 const categories = CATEGORIES
 const searchQuery = ref('')
@@ -152,11 +153,17 @@ watch(sortedAndFilteredHeritages, () => {
 })
 
 onMounted(() => {
-  const route = useRoute()
   if (route.query.category) {
     activeCategory.value = route.query.category as string
   }
+  if (route.query.search) {
+    searchQuery.value = route.query.search as string
+  }
   nextTick(() => observeAll())
+})
+
+watch(() => route.query.search, (value) => {
+  searchQuery.value = typeof value === 'string' ? value : ''
 })
 
 function clearFilters() {

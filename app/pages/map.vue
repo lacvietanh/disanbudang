@@ -10,7 +10,7 @@
         <div class="flex items-center gap-3">
           <span class="text-charcoal-355 text-xs hidden sm:inline-flex items-center gap-2 bg-charcoal-900 border border-charcoal-800 rounded-full px-3.5 py-1.5 font-medium">
             <span class="w-2 h-2 rounded-full bg-gold-400 animate-pulse-gold"></span>
-            {{ store.filteredHeritages.length }} di sản hiển thị
+            {{ displayedHeritages.length }} di sản hiển thị
           </span>
           <button
             class="lg:hidden btn-ghost text-xs border border-charcoal-800 rounded-xl px-4 py-2 hover:border-gold-500/40"
@@ -26,7 +26,7 @@
     <div class="flex flex-1 overflow-hidden relative">
       <!-- Sidebar -->
       <aside
-        class="absolute lg:relative z-20 w-80 lg:w-90 h-full bg-charcoal-950/95 backdrop-blur-xl border-r border-charcoal-850 flex flex-col transition-transform duration-300 lg:translate-x-0"
+        class="map-sidebar absolute lg:relative z-20 w-80 lg:w-90 h-full bg-charcoal-950/95 backdrop-blur-xl border-r border-charcoal-850 flex flex-col transition-transform duration-300 lg:translate-x-0"
         :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
       >
         <!-- Tab Selectors -->
@@ -126,7 +126,7 @@
           <div class="flex-1 overflow-y-auto scrollbar-none bg-charcoal-950/40">
             <div class="p-3.5 space-y-2">
               <div
-                v-for="heritage in store.filteredHeritages"
+                v-for="heritage in displayedHeritages"
                 :key="heritage.id"
                 class="group flex gap-3.5 p-3 rounded-xl cursor-pointer transition-all duration-300 border relative overflow-hidden"
                 :class="selectedId === heritage.id
@@ -152,7 +152,7 @@
                 </div>
               </div>
 
-              <div v-if="store.filteredHeritages.length === 0" class="py-16 text-center">
+              <div v-if="displayedHeritages.length === 0" class="py-16 text-center">
                 <Icon name="mdi:map-marker-off" class="w-12 h-12 text-charcoal-700 mx-auto mb-3" />
                 <p class="text-charcoal-400 text-sm font-medium">Không tìm thấy di sản nào</p>
                 <p class="text-charcoal-500 text-xs mt-1">Vui lòng nhập từ khóa tìm kiếm khác</p>
@@ -232,7 +232,7 @@
         <!-- Interactive map component -->
         <ClientOnly>
           <MapContainer
-            :heritages="store.filteredHeritages"
+            :heritages="displayedHeritages"
             :selected-id="selectedId"
             class="w-full h-full"
             @select="selectHeritage"
@@ -311,7 +311,7 @@ const store = useHeritageStore()
 const audioStore = useAudioStore()
 const { getCategoryLabel } = useHeritage()
 
-const sidebarOpen = ref(true)
+const sidebarOpen = ref(false)
 const selectedId = ref<string | null>(null)
 const searchQuery = ref('')
 const activeCategory = ref('')
@@ -324,6 +324,14 @@ const periods = PERIODS
 const selectedHeritage = computed(() =>
   selectedId.value ? store.getById(selectedId.value) ?? null : null,
 )
+const selectedRoute = computed(() =>
+  suggestedRoutes.find((route) => route.id === selectedRouteId.value) ?? null,
+)
+const displayedHeritages = computed(() => {
+  if (!selectedRoute.value) return store.filteredHeritages
+  const stopIds = new Set(selectedRoute.value.stops.map((stop) => stop.id))
+  return store.filteredHeritages.filter((heritage) => stopIds.has(heritage.id))
+})
 
 const heritagesByCategory = store.heritagesByCategory
 
@@ -373,6 +381,7 @@ watch(activePeriod, (p) => store.setPeriod(p))
 // If a query parameter "select" is passed, trigger selection automatically
 onMounted(() => {
   const route = useRoute()
+  sidebarOpen.value = window.matchMedia('(min-width: 1024px)').matches
   if (route.query.select) {
     selectedId.value = route.query.select as string
   }
@@ -399,17 +408,8 @@ function selectHeritage(heritage: Heritage) {
 function toggleRoute(route: any) {
   if (selectedRouteId.value === route.id) {
     selectedRouteId.value = null
-    store.clearFilters()
   } else {
     selectedRouteId.value = route.id
-    // Filter heritages on map to only show this route
-    store.clearFilters()
-    const matching = MOCK_HERITAGES.filter(h => route.stops.some((s: any) => s.id === h.id))
-    // We update search/filters manually to only show those
-    store.searchQuery = ''
-    store.activeCategory = ''
-    store.heritages = matching
-    // Auto select first stop
     if (route.stops.length > 0) {
       selectStop(route.stops[0])
     }
@@ -422,12 +422,6 @@ function selectStop(stop: any) {
     selectedId.value = matching.id
   }
 }
-
-// Reset store heritages on unmount
-onUnmounted(() => {
-  store.heritages = MOCK_HERITAGES
-  store.clearFilters()
-})
 
 function getCategoryVariant(cat: string) {
   const map: Record<string, any> = {
@@ -453,5 +447,11 @@ function playAudio() {
 .popup-slide-enter-from, .popup-slide-leave-to {
   opacity: 0;
   transform: translateX(-50%) translateY(16px);
+}
+@media (min-width: 1024px) {
+  .map-sidebar {
+    transform: none !important;
+    transition: none !important;
+  }
 }
 </style>
