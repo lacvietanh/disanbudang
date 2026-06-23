@@ -10,8 +10,8 @@
         <div class="lg:col-span-7 space-y-6 reveal">
           <span class="section-label">Âm Vang Đại Ngàn</span>
           <h2 class="section-title">Nơi Đất Trời Gặp Gỡ Lịch Sử</h2>
-          <p class="text-charcoal-400 text-lg leading-relaxed max-w-2xl mx-auto mb-8 animate-fade-up" style="animation-delay: 0.2s">
-            Xã Bù Đăng Thành Phố Đồng Nai (Tỉnh Bình Phước cũ) không chỉ là một tọa độ trên bản đồ Đông Nam Bộ. Đây là miền đất của những cánh rừng nguyên sinh ngút ngàn che chở cách mạng, nơi tiếng thác đổ hoang sơ hòa quyện cùng tiếng cồng chiêng vang vọng khắp sườn đồi từ bao đời nay.
+          <p class="text-charcoal-300 text-lg leading-relaxed max-w-2xl mb-8 animate-fade-up" style="animation-delay: 0.2s">
+            Năm 1965, giữa đêm đen rừng già Bù Đăng, tiếng chày giã gạo của đồng bào S'tiêng vang lên không ngừng. Hàng trăm người — từ già làng đến trẻ em — cùng giã gạo nuôi quân suốt đêm dưới ánh đuốc lồ ô. Nhịp chày ấy đã đi vào huyền thoại, trở thành bài hát <em class="text-gold-400 not-italic">"Tiếng chày trên Sóc Bom Bo"</em> mà cả nước thuộc lòng. Bù Đăng không phải tên đất trên bản đồ — đây là nơi 11 di sản đang chờ bạn khám phá và lắng nghe.
           </p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
             <div class="flex gap-4">

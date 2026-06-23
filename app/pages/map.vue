@@ -15,6 +15,7 @@
           <button
             class="lg:hidden btn-ghost text-xs border border-charcoal-800 rounded-xl px-4 py-2 hover:border-gold-500/40"
             @click="sidebarOpen = !sidebarOpen"
+            aria-label="Mở bộ lọc di động"
           >
             <Icon :name="sidebarOpen ? 'mdi:close' : 'mdi:filter-outline'" class="w-4 h-4 text-gold-400 mr-1" />
             Bộ lọc & Tuyến
@@ -24,10 +25,21 @@
     </div>
 
     <div class="flex flex-1 overflow-hidden relative">
+      <!-- Mobile backdrop overlay -->
+      <Transition name="mobile-menu">
+        <div
+          v-if="sidebarOpen"
+          class="lg:hidden fixed inset-0 bg-charcoal-950/60 backdrop-blur-sm z-10"
+          @click="sidebarOpen = false"
+        />
+      </Transition>
+
       <!-- Sidebar -->
       <aside
         class="map-sidebar absolute lg:relative z-20 w-80 lg:w-90 h-full bg-charcoal-950/95 backdrop-blur-xl border-r border-charcoal-850 flex flex-col transition-transform duration-300 lg:translate-x-0"
         :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
+        role="complementary"
+        aria-label="Bảng tìm kiếm và bộ lọc"
       >
         <!-- Tab Selectors -->
         <div class="grid grid-cols-2 border-b border-charcoal-850 bg-charcoal-900/40">
@@ -35,6 +47,7 @@
             class="py-4 text-2xs uppercase tracking-widest font-bold text-center border-b-2 transition-all duration-300 flex items-center justify-center gap-2"
             :class="activeTab === 'search' ? 'border-gold-500 text-gold-400 bg-charcoal-950/80' : 'border-transparent text-charcoal-400 hover:text-ivory'"
             @click="activeTab = 'search'"
+            aria-label="Tab tìm di sản"
           >
             <Icon name="mdi:magnify" class="w-4 h-4 text-gold-500" />
             Tìm Di Sản
@@ -43,6 +56,7 @@
             class="py-4 text-2xs uppercase tracking-widest font-bold text-center border-b-2 transition-all duration-300 flex items-center justify-center gap-2"
             :class="activeTab === 'route' ? 'border-gold-500 text-gold-400 bg-charcoal-950/80' : 'border-transparent text-charcoal-400 hover:text-ivory'"
             @click="activeTab = 'route'"
+            aria-label="Tab tuyến lộ trình"
           >
             <Icon name="mdi:road-variant" class="w-4 h-4 text-gold-500" />
             Tuyến Lộ Trình
@@ -54,19 +68,44 @@
           <!-- Search input -->
           <div class="p-4 border-b border-charcoal-850 bg-charcoal-950/40">
             <div class="relative">
-              <Icon name="mdi:magnify" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-charcoal-400" />
+              <Icon
+                v-if="!searchQuery"
+                name="mdi:magnify"
+                class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-charcoal-400 pointer-events-none z-10"
+              />
               <input
                 v-model="searchQuery"
                 type="text"
                 placeholder="Tìm di tích, văn hóa, danh thắng..."
-                class="w-full pl-9 pr-9 py-2.5 bg-charcoal-900 border border-charcoal-800 rounded-xl text-ivory text-sm placeholder-charcoal-500 focus:outline-none focus:border-gold-500/60 focus:ring-1 focus:ring-gold-500/20 transition-all duration-300 shadow-inner"
+                :style="{ paddingLeft: searchQuery ? '0.875rem' : '2.25rem', paddingRight: searchQuery ? '2.25rem' : '0.875rem', paddingTop: '0.625rem', paddingBottom: '0.625rem' }"
+                class="w-full bg-charcoal-900 border border-charcoal-800 rounded-xl text-ivory text-sm placeholder-charcoal-500 focus:outline-none focus:border-gold-500/60 focus:ring-1 focus:ring-gold-500/20 transition-all duration-300 shadow-inner"
+                aria-label="Tìm kiếm di sản"
               />
               <button
                 v-if="searchQuery"
                 class="absolute right-3.5 top-1/2 -translate-y-1/2 text-charcoal-400 hover:text-ivory transition-colors"
                 @click="searchQuery = ''"
+                aria-label="Xóa nội dung tìm kiếm"
               >
                 <Icon name="mdi:close-circle" class="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+
+          <!-- Feature Filters -->
+          <div class="p-4 border-b border-charcoal-850 space-y-3 shrink-0 bg-charcoal-950/20">
+            <p class="eyebrow text-gold-400 text-3xs tracking-widest font-bold">LỌC NHANH ĐẶC TRƯNG</p>
+            <div class="flex flex-wrap gap-1.5 max-h-36 overflow-y-auto scrollbar-none pr-1">
+              <button
+                v-for="feat in featureFilters"
+                :key="feat.id"
+                class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-3xs font-bold uppercase tracking-wider transition-all border"
+                :class="activeFilterFeature === feat.id ? 'bg-gold-500/10 text-gold-300 border-gold-500/30 shadow-md' : 'text-charcoal-400 bg-charcoal-900/20 border-charcoal-800 hover:border-charcoal-700 hover:text-ivory'"
+                @click="toggleFeatureFilter(feat.id)"
+                :aria-label="'Lọc theo ' + feat.label"
+              >
+                <Icon :name="feat.icon" class="w-3.5 h-3.5" />
+                {{ feat.label }}
               </button>
             </div>
           </div>
@@ -74,11 +113,12 @@
           <!-- Category filter list -->
           <div class="p-4 border-b border-charcoal-850 space-y-3 shrink-0 bg-charcoal-950/20">
             <p class="eyebrow text-gold-400 text-3xs tracking-widest font-bold">DANH MỤC DI SẢN BÙ ĐĂNG</p>
-            <div class="flex flex-col gap-1.5 max-h-52 overflow-y-auto scrollbar-none pr-1">
+            <div class="flex flex-col gap-1.5 max-h-48 overflow-y-auto scrollbar-none pr-1">
               <button
                 class="w-full flex items-center gap-3 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 border border-charcoal-800 hover:border-charcoal-700 hover:text-ivory"
                 :class="activeCategory === '' ? 'bg-gold-500/10 text-gold-300 border-gold-500/30 shadow-md' : 'text-charcoal-400 bg-charcoal-900/20'"
                 @click="setCategory('')"
+                aria-label="Hiện tất cả danh mục"
               >
                 <Icon name="mdi:apps" class="w-4 h-4 text-gold-400" />
                 Tất cả di sản
@@ -91,6 +131,7 @@
                 :class="activeCategory === cat.id ? 'text-ivory border-gold-500/30 shadow-md' : 'text-charcoal-400 bg-charcoal-900/20 border-charcoal-800 hover:border-charcoal-700 hover:text-ivory'"
                 :style="activeCategory === cat.id ? { backgroundColor: `${cat.color}15`, borderColor: `${cat.color}35` } : {}"
                 @click="setCategory(cat.id)"
+                :aria-label="'Lọc theo danh mục ' + cat.labelShort"
               >
                 <Icon :name="cat.icon" class="w-4 h-4" :style="{ color: cat.color }" />
                 {{ cat.labelShort }}
@@ -107,6 +148,7 @@
                 class="flex-shrink-0 px-3.5 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all border"
                 :class="activePeriod === '' ? 'bg-gold-500/10 text-gold-300 border-gold-500/30 shadow-md' : 'text-charcoal-400 bg-charcoal-900/20 border-charcoal-800 hover:border-charcoal-700 hover:text-ivory'"
                 @click="activePeriod = ''"
+                aria-label="Tất cả thời kỳ"
               >
                 Tất cả
               </button>
@@ -116,6 +158,7 @@
                 class="flex-shrink-0 px-3.5 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all border"
                 :class="activePeriod === per.id ? 'bg-gold-500/15 text-gold-300 border-gold-500/40 shadow-md' : 'text-charcoal-400 bg-charcoal-900/20 border-charcoal-800 hover:border-charcoal-700 hover:text-ivory'"
                 @click="activePeriod = per.id"
+                :aria-label="'Lọc theo thời kỳ ' + per.label"
               >
                 {{ per.label }}
               </button>
@@ -133,12 +176,15 @@
                   ? 'bg-gold-500/5 border-gold-500/40 shadow-lg shadow-gold-500/5'
                   : 'bg-charcoal-900/30 border-charcoal-800/40 hover:border-charcoal-750 hover:bg-charcoal-900/70 hover:translate-x-0.5'"
                 @click="selectHeritage(heritage)"
+                tabindex="0"
+                @keypress.enter="selectHeritage(heritage)"
+                :aria-label="heritage.title + ', nhấn Enter để xem chi tiết trên bản đồ'"
               >
                 <!-- Indicator block left -->
                 <div v-if="selectedId === heritage.id" class="absolute left-0 top-0 bottom-0 w-1 bg-gold-400 rounded-r-md"></div>
                 
                 <div class="w-18 h-13 rounded-lg overflow-hidden flex-shrink-0 relative border border-charcoal-700 shadow-md">
-                  <img :src="heritage.coverImage" :alt="heritage.title" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <img :src="heritage.coverImage" :alt="heritage.title" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                   <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950/70 via-transparent to-transparent" />
                 </div>
                 <div class="flex-1 min-w-0">
@@ -155,7 +201,7 @@
               <div v-if="displayedHeritages.length === 0" class="py-16 text-center">
                 <Icon name="mdi:map-marker-off" class="w-12 h-12 text-charcoal-700 mx-auto mb-3" />
                 <p class="text-charcoal-400 text-sm font-medium">Không tìm thấy di sản nào</p>
-                <p class="text-charcoal-500 text-xs mt-1">Vui lòng nhập từ khóa tìm kiếm khác</p>
+                <p class="text-charcoal-500 text-xs mt-1">Vui lòng chọn bộ lọc khác hoặc nhập từ khóa mới</p>
               </div>
             </div>
           </div>
@@ -178,6 +224,9 @@
                 ? 'bg-charcoal-900 border-gold-500/50 shadow-lg shadow-gold-500/5'
                 : 'bg-charcoal-900/30 border-charcoal-850 hover:border-charcoal-800 hover:bg-charcoal-900/50'"
               @click="toggleRoute(route)"
+              tabindex="0"
+              @keypress.enter="toggleRoute(route)"
+              :aria-label="route.name + ', tuyến đường đề xuất'"
             >
               <div class="flex items-center gap-3.5 mb-2.5">
                 <div
@@ -219,8 +268,8 @@
         </div>
 
         <!-- Clear filters button -->
-        <div v-if="(activeCategory || searchQuery || selectedRouteId) && activeTab === 'search'" class="p-4 border-t border-charcoal-850 shrink-0 bg-charcoal-950/60">
-          <button class="w-full text-charcoal-400 hover:text-ivory text-xs flex items-center justify-center gap-2 transition-colors py-2.5 rounded-xl bg-charcoal-900 border border-charcoal-800 font-semibold" @click="clearAll">
+        <div v-if="(activeCategory || searchQuery || selectedRouteId || activeFilterFeature) && activeTab === 'search'" class="p-4 border-t border-charcoal-850 shrink-0 bg-charcoal-950/60">
+          <button class="w-full text-charcoal-400 hover:text-ivory text-xs flex items-center justify-center gap-2 transition-colors py-2.5 rounded-xl bg-charcoal-900 border border-charcoal-800 font-semibold" @click="clearAll" aria-label="Xóa tất cả các bộ lọc hiện tại">
             <Icon name="mdi:filter-remove-outline" class="w-4 h-4 text-gold-500" />
             Xóa mọi bộ lọc
           </button>
@@ -229,7 +278,6 @@
 
       <!-- Map Area -->
       <div class="flex-1 relative">
-        <!-- Interactive map component -->
         <ClientOnly>
           <MapContainer
             :heritages="displayedHeritages"
@@ -247,47 +295,324 @@
           </template>
         </ClientOnly>
 
-        <!-- Selected Heritage Overlay details panel -->
-        <Transition name="popup-slide">
+        <!-- DESKTOP PANEL (Floating Right Side Card) -->
+        <Transition name="panel-slide-right">
           <div
-            v-if="selectedHeritage"
-            class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 w-full max-w-lg px-4"
+            v-if="selectedHeritage && isDesktop"
+            class="absolute top-6 right-6 bottom-6 z-[500] w-100 bg-charcoal-950/98 backdrop-blur-xl rounded-2xl overflow-hidden border border-gold-500/20 shadow-2xl flex flex-col"
+            role="dialog"
+            :aria-label="'Thông tin chi tiết: ' + selectedHeritage.title"
           >
-            <div class="bg-charcoal-950/98 backdrop-blur-xl rounded-2xl overflow-hidden border border-gold-500/30 shadow-2xl shadow-charcoal-950/80">
-              <!-- Golden accent line on top of panel -->
-              <div class="h-[2px] w-full bg-gradient-to-r from-transparent via-gold-500 to-transparent"></div>
+            <!-- Golden Top border accent line -->
+            <div class="h-1 w-full bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600"></div>
+
+            <!-- Banner Photo -->
+            <div class="relative h-48 flex-shrink-0 bg-charcoal-900 group">
+              <img :src="selectedHeritage.coverImage" :alt="selectedHeritage.title" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-950/40 to-transparent"></div>
               
-              <div class="flex gap-4 p-5 items-start">
-                <div class="w-24 h-18 rounded-xl overflow-hidden shrink-0 border border-charcoal-800 relative shadow-inner">
+              <!-- Badge -->
+              <div class="absolute bottom-4 left-4">
+                <BaseBadge :variant="getCategoryVariant(selectedHeritage.category)" size="sm" class="uppercase tracking-widest font-bold">
+                  {{ getCategoryLabel(selectedHeritage.category) }}
+                </BaseBadge>
+              </div>
+
+              <!-- Close button -->
+              <button
+                class="absolute top-4 right-4 text-charcoal-300 hover:text-ivory bg-charcoal-950/60 hover:bg-charcoal-900 rounded-full p-2 transition-all border border-charcoal-800"
+                @click="selectedId = null"
+                aria-label="Đóng bảng thông tin di sản"
+              >
+                <Icon name="mdi:close" class="w-4 h-4" />
+              </button>
+            </div>
+
+            <!-- Scrollable Content -->
+            <div class="flex-1 overflow-y-auto scrollbar-none p-5 space-y-6">
+              <div>
+                <h3 class="font-heading font-bold text-ivory text-xl leading-tight tracking-tight mb-2">{{ selectedHeritage.title }}</h3>
+                <p class="text-gold-400/90 text-xs font-accent italic mb-3">{{ selectedHeritage.subtitle }}</p>
+                <p class="text-charcoal-300 text-xs leading-relaxed font-normal bg-charcoal-900/40 p-3.5 rounded-xl border border-charcoal-800/40">
+                  {{ selectedHeritage.shortDescription }}
+                </p>
+              </div>
+
+              <!-- Quick Facts Grid -->
+              <div v-if="selectedHeritage.quickFacts && selectedHeritage.quickFacts.length > 0" class="grid grid-cols-2 gap-3.5">
+                <div
+                  v-for="(fact, fIdx) in selectedHeritage.quickFacts"
+                  :key="fIdx"
+                  class="flex items-center gap-2.5 bg-charcoal-900/50 p-2.5 rounded-xl border border-charcoal-800/30"
+                >
+                  <div class="w-8 h-8 rounded-lg bg-gold-500/10 flex items-center justify-center text-gold-400 shrink-0">
+                    <Icon :name="fact.icon ?? 'mdi:information-outline'" class="w-4 h-4" />
+                  </div>
+                  <div class="min-w-0">
+                    <p class="text-[10px] text-charcoal-400 uppercase font-bold tracking-wider truncate">{{ fact.label }}</p>
+                    <p class="text-xs text-ivory font-semibold truncate mt-0.5">{{ fact.value }}</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Video Player -->
+              <div v-if="selectedHeritage.video" class="space-y-2.5">
+                <h4 class="text-3xs uppercase text-gold-400 tracking-widest font-bold flex items-center gap-2">
+                  <Icon name="mdi:video-outline" class="w-4 h-4" />
+                  Phim tư liệu di sản
+                </h4>
+                <div class="rounded-xl overflow-hidden border border-charcoal-800 aspect-video bg-charcoal-950 relative shadow-inner">
+                  <video :src="selectedHeritage.video.url" controls class="w-full h-full object-cover" preload="metadata" />
+                </div>
+              </div>
+
+              <!-- Audio Player integration -->
+              <div v-if="selectedHeritage.audio" class="space-y-2.5">
+                <h4 class="text-3xs uppercase text-gold-400 tracking-widest font-bold flex items-center gap-2">
+                  <Icon name="mdi:headphones" class="w-4 h-4" />
+                  Audio Guide Thuyết Minh
+                </h4>
+                <div class="bg-gradient-to-r from-gold-500/10 to-transparent p-4 rounded-xl border border-gold-500/20 flex items-center justify-between">
+                  <div class="min-w-0">
+                    <p class="text-xs font-semibold text-ivory truncate">{{ selectedHeritage.audio.title }}</p>
+                    <p class="text-[10px] text-charcoal-400 truncate mt-0.5">Giọng đọc: {{ selectedHeritage.audio.narrator }}</p>
+                  </div>
+                  <button
+                    class="w-10 h-10 rounded-full bg-gold-500 hover:bg-gold-400 text-charcoal-950 flex items-center justify-center transition-all duration-300 shadow-lg shadow-gold-500/20 shrink-0"
+                    @click="playAudio"
+                    :aria-label="'Phát thuyết minh âm thanh cho ' + selectedHeritage.title"
+                  >
+                    <Icon :name="isPlayingCurrentTrack ? 'mdi:pause' : 'mdi:play'" class="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
+
+              <!-- Photo Gallery -->
+              <div v-if="selectedHeritage.gallery && selectedHeritage.gallery.length > 0" class="space-y-2.5">
+                <h4 class="text-3xs uppercase text-gold-400 tracking-widest font-bold flex items-center gap-2">
+                  <Icon name="mdi:image-multiple-outline" class="w-4 h-4" />
+                  Bộ sưu tập hình ảnh
+                </h4>
+                <div class="grid grid-cols-3 gap-2">
+                  <div
+                    v-for="(img, gIdx) in selectedHeritage.gallery"
+                    :key="gIdx"
+                    class="aspect-video rounded-lg overflow-hidden border border-charcoal-850 cursor-pointer hover:border-gold-400/50 transition-all relative group"
+                    @click="activeImageIndex = gIdx"
+                  >
+                    <img :src="img.src" :alt="img.alt" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <Icon name="mdi:magnify-plus-outline" class="w-4 h-4 text-ivory" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- History / Lore story -->
+              <div class="space-y-2.5">
+                <h4 class="text-3xs uppercase text-gold-400 tracking-widest font-bold flex items-center gap-2">
+                  <Icon name="mdi:book-open-variant" class="w-4 h-4" />
+                  Câu chuyện di sản & Lịch sử
+                </h4>
+                <div class="text-xs text-charcoal-350 leading-relaxed font-sans space-y-3 whitespace-pre-line">
+                  {{ selectedHeritage.longStory }}
+                </div>
+              </div>
+            </div>
+
+            <!-- Footer Action buttons -->
+            <div class="p-4 border-t border-charcoal-850 bg-charcoal-900/60 grid grid-cols-2 gap-3 shrink-0">
+              <NuxtLink
+                :to="`/heritage/${selectedHeritage.slug}`"
+                class="btn-primary text-xs justify-center py-3 font-bold tracking-wide rounded-xl shadow-lg shadow-gold-500/10"
+              >
+                <Icon name="mdi:file-document-outline" class="w-4 h-4 mr-1.5" />
+                Xem Chi Tiết
+              </NuxtLink>
+              <a
+                :href="getGoogleMapsDirectionUrl(selectedHeritage)"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-ghost text-xs border border-charcoal-700 hover:border-gold-500/40 text-charcoal-300 hover:text-gold-400 hover:bg-gold-500/5 transition-all duration-300 rounded-xl flex items-center justify-center gap-1.5"
+                title="Mở chỉ đường trên Google Maps"
+              >
+                <Icon name="mdi:directions" class="w-4.5 h-4.5 text-gold-500" />
+                Chỉ đường
+              </a>
+            </div>
+          </div>
+        </Transition>
+
+        <!-- MOBILE BOTTOM SHEET PANEL -->
+        <Transition name="bottom-sheet-slide">
+          <div
+            v-if="selectedHeritage && !isDesktop"
+            class="fixed bottom-0 left-0 right-0 z-[500] bg-charcoal-950/98 backdrop-blur-xl border-t border-gold-500/20 rounded-t-3xl shadow-2xl flex flex-col transition-all duration-300 overflow-hidden"
+            :style="{ height: mobilePanelHeight }"
+            role="dialog"
+            :aria-label="'Thông tin: ' + selectedHeritage.title"
+          >
+            <!-- Drag Handle / Toggle Header -->
+            <div class="w-full py-3.5 bg-charcoal-900/60 flex flex-col items-center cursor-pointer shrink-0 border-b border-charcoal-850/50" @click="toggleMobileHeight">
+              <div class="w-10 h-1 bg-charcoal-700 rounded-full mb-1"></div>
+              <span class="text-4xs text-charcoal-400 uppercase tracking-widest font-bold">
+                {{ mobilePanelHeight === '13rem' ? 'Vuốt hoặc Chạm để xem thêm' : 'Chạm để thu nhỏ' }}
+              </span>
+            </div>
+
+            <!-- Content Container -->
+            <div class="flex-1 overflow-y-auto p-4 space-y-5 scrollbar-none pb-28">
+              <!-- Header info layout (always visible in Peek) -->
+              <div class="flex gap-4">
+                <div class="w-24 h-18 rounded-lg overflow-hidden shrink-0 border border-charcoal-800 shadow-md">
                   <img :src="selectedHeritage.coverImage" :alt="selectedHeritage.title" class="w-full h-full object-cover" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950/60 via-transparent to-transparent" />
                 </div>
-                <div class="flex-1 min-w-0">
-                  <BaseBadge :variant="getCategoryVariant(selectedHeritage.category)" size="sm" class="mb-2 uppercase tracking-widest font-bold">
-                    {{ getCategoryLabel(selectedHeritage.category) }}
-                  </BaseBadge>
-                  <h3 class="font-heading font-bold text-ivory text-base leading-tight tracking-tight mt-1">{{ selectedHeritage.title }}</h3>
-                  <p class="text-charcoal-400 text-xs mt-2 line-clamp-2 leading-relaxed">{{ selectedHeritage.shortDescription }}</p>
+                <div class="min-w-0 flex-1">
+                  <span class="text-[10px] uppercase font-bold text-gold-400">{{ getCategoryLabel(selectedHeritage.category) }}</span>
+                  <h3 class="font-heading font-bold text-ivory text-base leading-tight mt-0.5 truncate">{{ selectedHeritage.title }}</h3>
+                  <p class="text-charcoal-400 text-xs line-clamp-2 mt-1 leading-normal">{{ selectedHeritage.shortDescription }}</p>
                 </div>
-                <button class="text-charcoal-500 hover:text-gold-400 transition-colors shrink-0 p-1 hover:bg-charcoal-900 rounded-lg" @click="selectedId = null">
-                  <Icon name="mdi:close" class="w-4 h-4" />
+              </div>
+
+              <!-- Extra actions (always visible in Peek) -->
+              <div class="grid grid-cols-3 gap-2 pt-1 shrink-0">
+                <NuxtLink
+                  :to="`/heritage/${selectedHeritage.slug}`"
+                  class="btn-primary text-2xs justify-center py-2.5 font-bold rounded-lg"
+                >
+                  Chi tiết
+                </NuxtLink>
+                <a
+                  :href="getGoogleMapsDirectionUrl(selectedHeritage)"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-ghost text-2xs border border-charcoal-700 text-charcoal-300 rounded-lg flex items-center justify-center gap-1"
+                >
+                  <Icon name="mdi:directions" class="w-3.5 h-3.5 text-gold-500" />
+                  Chỉ đường
+                </a>
+                <button
+                  v-if="selectedHeritage.audio"
+                  class="btn-ghost text-2xs border border-charcoal-700 text-gold-400 rounded-lg flex items-center justify-center gap-1"
+                  @click="playAudio"
+                >
+                  <Icon :name="isPlayingCurrentTrack ? 'mdi:pause' : 'mdi:headphones'" class="w-3.5 h-3.5" />
+                  Nghe audio
                 </button>
               </div>
 
-              <div class="px-5 pb-5 pt-0 flex gap-2.5">
-                <NuxtLink :to="`/heritage/${selectedHeritage.slug}`" class="btn-primary text-xs flex-1 justify-center py-2.5 font-bold tracking-wide">
-                  <Icon name="mdi:book-open-outline" class="w-4 h-4 mr-1" />
-                  Chi Tiết Di Sản
-                </NuxtLink>
-                <button
-                  v-if="selectedHeritage.audio"
-                  class="btn-ghost text-xs px-4.5 border-charcoal-800 hover:border-gold-500/40 text-gold-400 hover:bg-gold-500/5 transition-all duration-300 rounded-xl"
-                  title="Nghe Audio Guide"
-                  @click="playAudio"
-                >
-                  <Icon name="mdi:headphones" class="w-4 h-4" />
-                </button>
+              <!-- Expanded Details (Only scrollable / meaningful when expanded) -->
+              <div v-if="mobilePanelHeight !== '13rem'" class="space-y-5 pt-3 border-t border-charcoal-850/80">
+                <!-- Video Player -->
+                <div v-if="selectedHeritage.video" class="space-y-2">
+                  <h4 class="text-3xs uppercase text-gold-400 tracking-widest font-bold flex items-center gap-1.5">
+                    <Icon name="mdi:video-outline" class="w-3.5 h-3.5" />
+                    Phim tư liệu di sản
+                  </h4>
+                  <div class="rounded-xl overflow-hidden border border-charcoal-800 aspect-video bg-charcoal-950 relative">
+                    <video :src="selectedHeritage.video.url" controls class="w-full h-full object-cover" preload="metadata" />
+                  </div>
+                </div>
+
+                <!-- Gallery -->
+                <div v-if="selectedHeritage.gallery && selectedHeritage.gallery.length > 0" class="space-y-2">
+                  <h4 class="text-3xs uppercase text-gold-400 tracking-widest font-bold flex items-center gap-1.5">
+                    <Icon name="mdi:image-multiple-outline" class="w-3.5 h-3.5" />
+                    Hình ảnh di sản
+                  </h4>
+                  <div class="grid grid-cols-3 gap-1.5">
+                    <div
+                      v-for="(img, gIdx) in selectedHeritage.gallery"
+                      :key="gIdx"
+                      class="aspect-video rounded-lg overflow-hidden border border-charcoal-850 cursor-pointer"
+                      @click="activeImageIndex = gIdx"
+                    >
+                      <img :src="img.src" :alt="img.alt" class="w-full h-full object-cover" loading="lazy" />
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Story text -->
+                <div class="space-y-2">
+                  <h4 class="text-3xs uppercase text-gold-400 tracking-widest font-bold flex items-center gap-1.5">
+                    <Icon name="mdi:book-open-variant" class="w-3.5 h-3.5" />
+                    Lịch sử & ý nghĩa di sản
+                  </h4>
+                  <p class="text-xs text-charcoal-350 leading-relaxed font-sans whitespace-pre-line">
+                    {{ selectedHeritage.longStory }}
+                  </p>
+                </div>
               </div>
+            </div>
+
+            <!-- Absolute close button for mobile bottom sheet -->
+            <button
+              class="absolute top-2 right-4 text-charcoal-400 hover:text-ivory bg-charcoal-900 rounded-full p-1.5 border border-charcoal-800 z-50"
+              @click="selectedId = null"
+              aria-label="Đóng"
+            >
+              <Icon name="mdi:close" class="w-4 h-4" />
+            </button>
+          </div>
+        </Transition>
+
+        <!-- GALLERY LIGHTBOX VIEWER -->
+        <Transition name="fade">
+          <div
+            v-if="activeImageIndex !== null && selectedHeritage && selectedHeritage.gallery && selectedHeritage.gallery[activeImageIndex!] != null"
+            class="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-4"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Xem ảnh lớn"
+            @click.self="activeImageIndex = null"
+          >
+            <!-- Top Controls -->
+            <div class="absolute top-4 right-4 flex items-center gap-2">
+              <button
+                class="text-ivory/80 hover:text-ivory bg-charcoal-900/60 hover:bg-charcoal-800 p-2.5 rounded-full border border-charcoal-800 transition-colors"
+                @click="activeImageIndex = null"
+                aria-label="Đóng chế độ xem ảnh lớn"
+              >
+                <Icon name="mdi:close" class="w-6 h-6" />
+              </button>
+            </div>
+
+            <!-- Left / Right arrows -->
+            <button
+              v-if="selectedHeritage.gallery && selectedHeritage.gallery.length > 1"
+              class="absolute left-4 top-1/2 -translate-y-1/2 text-ivory/80 hover:text-ivory bg-charcoal-900/60 p-3 rounded-full hover:bg-charcoal-800 border border-charcoal-800 z-10 transition-colors"
+              @click="prevImage"
+              aria-label="Ảnh trước"
+            >
+              <Icon name="mdi:chevron-left" class="w-6 h-6" />
+            </button>
+            <button
+              v-if="selectedHeritage.gallery && selectedHeritage.gallery.length > 1"
+              class="absolute right-4 top-1/2 -translate-y-1/2 text-ivory/80 hover:text-ivory bg-charcoal-900/60 p-3 rounded-full hover:bg-charcoal-800 border border-charcoal-800 z-10 transition-colors"
+              @click="nextImage"
+              aria-label="Ảnh tiếp theo"
+            >
+              <Icon name="mdi:chevron-right" class="w-6 h-6" />
+            </button>
+
+            <!-- Main Image -->
+            <div class="max-w-4xl max-h-[75vh] flex items-center justify-center">
+              <img
+                :src="selectedHeritage.gallery![activeImageIndex!]!.src"
+                :alt="selectedHeritage.gallery![activeImageIndex!]!.alt"
+                class="max-w-full max-h-[75vh] object-contain rounded-lg border border-charcoal-850 shadow-2xl"
+              />
+            </div>
+
+            <!-- Image Info Caption -->
+            <div class="mt-4 text-center max-w-2xl px-4 space-y-1">
+              <p class="text-ivory text-sm font-semibold">{{ selectedHeritage.gallery![activeImageIndex!]!.alt }}</p>
+              <p v-if="selectedHeritage.gallery![activeImageIndex!]!.caption" class="text-charcoal-400 text-xs leading-relaxed">
+                {{ selectedHeritage.gallery![activeImageIndex!]!.caption }}
+              </p>
+              <p v-if="selectedHeritage.gallery![activeImageIndex!]!.photographer" class="text-gold-400/90 text-3xs font-accent italic">
+                Nhiếp ảnh gia: {{ selectedHeritage.gallery![activeImageIndex!]!.photographer }}
+              </p>
             </div>
           </div>
         </Transition>
@@ -300,6 +625,7 @@
 import { CATEGORIES, PERIODS } from '~/data/categories'
 import { MOCK_HERITAGES } from '~/data/mockHeritages'
 import type { Heritage } from '~/types'
+import { useEventListener } from '@vueuse/core'
 
 definePageMeta({ layout: 'default' })
 useSeoMeta({
@@ -311,31 +637,88 @@ const store = useHeritageStore()
 const audioStore = useAudioStore()
 const { getCategoryLabel } = useHeritage()
 
+// Track desktop vs mobile — must be client-side only
+const isDesktop = ref(false)
+
 const sidebarOpen = ref(false)
 const selectedId = ref<string | null>(null)
 const searchQuery = ref('')
 const activeCategory = ref('')
 const activePeriod = ref('')
+const activeFilterFeature = ref('')
 const activeTab = ref('search')
 const selectedRouteId = ref<string | null>(null)
 
+// Gallery Lightbox State
+const activeImageIndex = ref<number | null>(null)
+
+// Mobile Bottom Sheet Height State
+const mobilePanelHeight = ref('13rem') // 13rem = Peek state, '80vh' = Expanded state
+
 const categories = CATEGORIES
 const periods = PERIODS
+
 const selectedHeritage = computed(() =>
   selectedId.value ? store.getById(selectedId.value) ?? null : null,
 )
+
 const selectedRoute = computed(() =>
   suggestedRoutes.find((route) => route.id === selectedRouteId.value) ?? null,
 )
+
+// Feature Filters configuration list
+const featureFilters = [
+  { id: 'noi-bat', label: 'Nổi bật', icon: 'mdi:star' },
+  { id: 'co-audio', label: 'Có Audio', icon: 'mdi:headphones' },
+  { id: 'co-anh', label: 'Có Ảnh', icon: 'mdi:image-multiple' },
+  { id: 'co-video', label: 'Có Video', icon: 'mdi:video' },
+  { id: 'di-tich', label: 'Di Tích', icon: 'mdi:castle' },
+  { id: 'danh-lam', label: 'Danh Thắng', icon: 'mdi:mountain' },
+  { id: 'thac', label: 'Thác Nước', icon: 'mdi:waves' },
+  { id: 'suoi', label: 'Suối nguồn', icon: 'mdi:water' },
+  { id: 'van-hoa', label: 'Văn Hóa', icon: 'mdi:music-note' },
+  { id: 'le-hoi', label: 'Lễ Hội', icon: 'mdi:calendar-star' },
+  { id: 'cong-dong', label: 'Cộng Đồng', icon: 'mdi:home-group' },
+]
+
+// Computed list of heritages that handles both route selection, basic store filters, and advanced feature filters
 const displayedHeritages = computed(() => {
-  if (!selectedRoute.value) return store.filteredHeritages
-  const stopIds = new Set(selectedRoute.value.stops.map((stop) => stop.id))
-  return store.filteredHeritages.filter((heritage) => stopIds.has(heritage.id))
+  let list = store.filteredHeritages
+
+  if (selectedRoute.value) {
+    const stopIds = new Set(selectedRoute.value.stops.map((stop) => stop.id))
+    list = list.filter((heritage) => stopIds.has(heritage.id))
+  }
+
+  if (activeFilterFeature.value) {
+    const feature = activeFilterFeature.value
+    list = list.filter((h) => {
+      if (feature === 'di-tich') return h.category === 'lich-su'
+      if (feature === 'danh-lam') return h.category === 'danh-thang'
+      if (feature === 'thac') return h.title.toLowerCase().includes('thác') || h.tags.some(t => t.toLowerCase().includes('thác'))
+      if (feature === 'suoi') return h.title.toLowerCase().includes('suối') || h.tags.some(t => t.toLowerCase().includes('suối'))
+      if (feature === 'van-hoa') return h.category === 'van-hoa-phi-vat-the'
+      if (feature === 'le-hoi') return h.title.toLowerCase().includes('lễ hội') || h.tags.some(t => t.toLowerCase().includes('lễ hội'))
+      if (feature === 'cong-dong') return h.category === 'doi-song-cong-dong'
+      if (feature === 'noi-bat') return h.featured
+      if (feature === 'co-audio') return !!h.audio
+      if (feature === 'co-anh') return h.gallery && h.gallery.length > 0
+      if (feature === 'co-video') return !!h.video
+      return true
+    })
+  }
+
+  return list
 })
 
 const heritagesByCategory = store.heritagesByCategory
 
-// Suggested routes
+// Audio check
+const isPlayingCurrentTrack = computed(() => {
+  return audioStore.isPlaying && audioStore.currentTrack?.id === selectedHeritage.value?.audio?.id
+})
+
+// Suggested routes list
 const suggestedRoutes = [
   {
     id: 'route-history',
@@ -374,14 +757,48 @@ const suggestedRoutes = [
   }
 ]
 
-watch(searchQuery, (q) => store.setSearch(q))
+// Watches
+watch(searchQuery, (q) => {
+  store.setSearch(q)
+  if (q) {
+    // Search match auto-focus & select
+    const match = displayedHeritages.value.find(h => h.title.toLowerCase().includes(q.toLowerCase()))
+    if (match) {
+      selectedId.value = match.id
+    }
+  }
+})
+
 watch(activeCategory, (c) => store.setCategory(c))
 watch(activePeriod, (p) => store.setPeriod(p))
 
-// If a query parameter "select" is passed, trigger selection automatically
+// Reset mobile panel state when selection changes
+watch(selectedId, (id) => {
+  if (id) {
+    mobilePanelHeight.value = '13rem'
+  }
+})
+
+// Global listeners for keybind access
+useEventListener('keydown', (e: KeyboardEvent) => {
+  if (e.key === 'Escape') {
+    if (activeImageIndex.value !== null) {
+      activeImageIndex.value = null
+    } else {
+      selectedId.value = null
+    }
+  }
+})
+
 onMounted(() => {
   const route = useRoute()
-  sidebarOpen.value = window.matchMedia('(min-width: 1024px)').matches
+  // Determine desktop state client-side
+  const checkDesktop = () => { isDesktop.value = window.innerWidth >= 1024 }
+  checkDesktop()
+  window.addEventListener('resize', checkDesktop)
+  onUnmounted(() => window.removeEventListener('resize', checkDesktop))
+
+  sidebarOpen.value = isDesktop.value
   if (route.query.select) {
     selectedId.value = route.query.select as string
   }
@@ -392,17 +809,29 @@ function setCategory(id: string) {
   selectedRouteId.value = null // reset route if manual filtering occurs
 }
 
+function toggleFeatureFilter(id: string) {
+  if (activeFilterFeature.value === id) {
+    activeFilterFeature.value = ''
+  } else {
+    activeFilterFeature.value = id
+  }
+}
+
 function clearAll() {
   searchQuery.value = ''
   activeCategory.value = ''
   activePeriod.value = ''
+  activeFilterFeature.value = ''
   selectedRouteId.value = null
   store.clearFilters()
 }
 
 function selectHeritage(heritage: Heritage) {
   selectedId.value = heritage.id
-  sidebarOpen.value = false
+  // Only close sidebar on mobile to avoid layout shifts on desktop
+  if (!isDesktop.value) {
+    sidebarOpen.value = false
+  }
 }
 
 function toggleRoute(route: any) {
@@ -434,24 +863,87 @@ function getCategoryVariant(cat: string) {
 
 function playAudio() {
   if (selectedHeritage.value?.audio) {
-    audioStore.loadTrack(selectedHeritage.value.audio, selectedHeritage.value.id)
-    audioStore.play()
+    if (isPlayingCurrentTrack.value) {
+      audioStore.pause()
+    } else {
+      audioStore.loadTrack(selectedHeritage.value.audio, selectedHeritage.value.id)
+      audioStore.play()
+    }
   }
+}
+
+function getGoogleMapsDirectionUrl(heritage: Heritage): string {
+  if (heritage.coordinates && heritage.coordinates.lat && heritage.coordinates.lng) {
+    return `https://www.google.com/maps/dir/?api=1&destination=${heritage.coordinates.lat},${heritage.coordinates.lng}`
+  }
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(heritage.title + ' Bù Đăng Bình Phước')}`
+}
+
+function toggleMobileHeight() {
+  mobilePanelHeight.value = mobilePanelHeight.value === '13rem' ? '80vh' : '13rem'
+}
+
+// Lightbox navigation functions
+function prevImage() {
+  if (!selectedHeritage.value?.gallery || activeImageIndex.value === null) return
+  const total = selectedHeritage.value.gallery.length
+  activeImageIndex.value = (activeImageIndex.value - 1 + total) % total
+}
+
+function nextImage() {
+  if (!selectedHeritage.value?.gallery || activeImageIndex.value === null) return
+  const total = selectedHeritage.value.gallery.length
+  activeImageIndex.value = (activeImageIndex.value + 1) % total
 }
 </script>
 
 <style scoped>
-.popup-slide-enter-active, .popup-slide-leave-active {
+/* Desktop Slide In Animations */
+.panel-slide-right-enter-active, .panel-slide-right-leave-active {
   transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
 }
-.popup-slide-enter-from, .popup-slide-leave-to {
+.panel-slide-right-enter-from, .panel-slide-right-leave-to {
   opacity: 0;
-  transform: translateX(-50%) translateY(16px);
+  transform: translateX(40px);
 }
+
+/* Mobile Bottom Sheet Animations */
+.bottom-sheet-slide-enter-active, .bottom-sheet-slide-leave-active {
+  transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.bottom-sheet-slide-enter-from, .bottom-sheet-slide-leave-to {
+  transform: translateY(100%);
+}
+
+/* Fade animation for lightbox */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+
 @media (min-width: 1024px) {
   .map-sidebar {
     transform: none !important;
     transition: none !important;
   }
+}
+.mobile-menu-enter-active,
+.mobile-menu-leave-active {
+  transition: opacity 0.3s ease;
+}
+.mobile-menu-enter-from,
+.mobile-menu-leave-to {
+  opacity: 0;
+}
+
+/* Hide default scrollbar for panels */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 </style>

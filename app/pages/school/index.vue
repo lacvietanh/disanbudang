@@ -1,12 +1,13 @@
 <template>
-  <div class="bg-ivory min-h-screen pt-[72px]">
-    <div class="bg-warm-paper border-b border-beige-200 py-20">
-      <div class="container-heritage">
-        <span class="section-label">Góc Học Tập</span>
-        <h1 class="font-heading font-bold text-charcoal-900 text-5xl lg:text-6xl leading-none mb-5">
-          Nghiên Cứu<br/><span class="text-gradient-earth">Di Sản Địa Phương</span>
+  <div class="bg-charcoal-900 min-h-screen pt-[72px]">
+    <div class="bg-dark-earth py-20 relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-gold-500/5 rounded-full blur-3xl" />
+      <div class="container-heritage relative z-10">
+        <span class="section-label text-gold-400">Góc Học Tập</span>
+        <h1 class="font-heading font-bold text-ivory text-5xl lg:text-6xl leading-none mb-5">
+          Nghiên Cứu<br/><span class="text-gradient-gold">Di Sản Địa Phương</span>
         </h1>
-        <p class="text-charcoal-500 text-lg max-w-xl">Kho học liệu — bài nghiên cứu, thuyết trình và dự án học tập của học sinh các trường trên địa bàn huyện Bù Đăng</p>
+        <p class="text-charcoal-300 text-lg max-w-xl">Kho học liệu — bài nghiên cứu, thuyết trình và dự án học tập của học sinh các trường trên địa bàn huyện Bù Đăng</p>
       </div>
     </div>
 
@@ -17,17 +18,18 @@
           v-for="subj in subjects"
           :key="subj"
           class="px-5 py-2.5 rounded-full text-sm font-medium transition-all border"
-          :class="activeSubject === subj ? 'bg-earth-500 text-ivory border-earth-500' : 'border-beige-200 text-charcoal-600 hover:border-earth-300'"
+          :class="activeSubject === subj ? 'bg-gold-500 text-charcoal-900 border-transparent' : 'border-charcoal-800 text-charcoal-400 hover:border-gold-500/50 hover:text-ivory bg-charcoal-950/40'"
           @click="activeSubject = subj"
         >{{ subj }}</button>
       </div>
 
       <!-- Resources grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div
+        <NuxtLink
           v-for="(res, i) in filteredResources"
           :key="res.id"
-          class="bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-500 group cursor-pointer reveal"
+          :to="`/school/${res.id}`"
+          class="bg-charcoal-950 border border-charcoal-850 rounded-2xl overflow-hidden shadow-lg hover:border-gold-500/30 transition-all duration-500 group cursor-pointer reveal block"
           :style="{ animationDelay: `${i * 0.08}s` }"
         >
           <div class="h-1.5 w-full" :style="{ background: typeColors[res.type] }" />
@@ -42,24 +44,24 @@
               </div>
               <span class="ml-auto text-charcoal-400 text-xs">{{ res.grade }}</span>
             </div>
-            <h2 class="font-heading font-bold text-charcoal-800 text-base leading-tight mb-2 line-clamp-2 group-hover:text-earth-600 transition-colors">{{ res.title }}</h2>
-            <p class="text-charcoal-500 text-sm line-clamp-2 mb-4">{{ res.description }}</p>
-            <div class="border-t border-beige-100 pt-3 flex items-center justify-between">
+            <h2 class="font-heading font-bold text-ivory text-base leading-tight mb-2 line-clamp-2 group-hover:text-gold-300 transition-colors">{{ res.title }}</h2>
+            <p class="text-charcoal-400 text-sm line-clamp-2 mb-4">{{ res.description }}</p>
+            <div class="border-t border-charcoal-800 pt-3 flex items-center justify-between">
               <div>
-                <p class="text-charcoal-700 text-xs font-medium">{{ res.author }}</p>
+                <p class="text-charcoal-300 text-xs font-medium">{{ res.author }}</p>
                 <p class="text-charcoal-400 text-xs">{{ res.school }}</p>
               </div>
               <div class="flex items-center gap-3">
                 <div class="flex items-center gap-1 text-charcoal-400 text-xs">
                   <Icon name="mdi:download-outline" class="w-3.5 h-3.5" />{{ res.downloadCount }}
                 </div>
-                <button class="w-8 h-8 rounded-lg bg-earth-50 flex items-center justify-center hover:bg-earth-100 transition-colors">
-                  <Icon name="mdi:download" class="w-4 h-4 text-earth-600" />
+                <button class="w-8 h-8 rounded-lg bg-gold-500/10 border border-gold-500/20 flex items-center justify-center hover:bg-gold-500 hover:text-charcoal-900 transition-all duration-200">
+                  <Icon name="mdi:download" class="w-4 h-4 text-gold-400" />
                 </button>
               </div>
             </div>
           </div>
-        </div>
+        </NuxtLink>
       </div>
 
       <!-- CTA submit -->

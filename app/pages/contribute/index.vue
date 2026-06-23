@@ -76,7 +76,7 @@
                 </button>
               </div>
               <div class="pt-6 flex justify-end">
-                <button type="button" class="btn-primary" @click="currentStep = 2">
+                <button type="button" class="btn-primary" @click="handleNextStep">
                   Tiếp Tục
                   <Icon name="mdi:arrow-right" class="w-4 h-4" />
                 </button>
@@ -96,7 +96,13 @@
                     required
                     placeholder="Nhập họ và tên đầy đủ"
                     class="w-full px-4 py-3.5 bg-charcoal-900 border border-charcoal-800 rounded-xl text-ivory text-sm placeholder-charcoal-600 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/20 transition-all"
+                    :class="{ 'border-red-500/60 focus:border-red-500 focus:ring-red-500/20': stepErrors.name }"
+                    @input="stepErrors.name = ''"
                   />
+                  <p v-if="stepErrors.name" class="text-red-400 text-xs mt-1.5 flex items-center gap-1">
+                    <Icon name="mdi:alert-circle" class="w-3.5 h-3.5 animate-pulse" />
+                    {{ stepErrors.name }}
+                  </p>
                 </div>
                 <div>
                   <label class="block text-charcoal-400 text-xs font-semibold uppercase tracking-wider mb-2" for="role">Vai Trò</label>
@@ -115,7 +121,7 @@
               </div>
               <div class="pt-6 flex justify-between">
                 <button type="button" class="btn-secondary text-xs" @click="currentStep = 1">Quay lại</button>
-                <button type="button" class="btn-primary" @click="currentStep = 3">
+                <button type="button" class="btn-primary" @click="handleNextStep">
                   Tiếp Tục
                   <Icon name="mdi:arrow-right" class="w-4 h-4" />
                 </button>
@@ -180,11 +186,11 @@
                     Cam kết chất lượng tư liệu
                   </p>
                   <label class="flex items-start gap-2.5 cursor-pointer text-xs text-charcoal-400 hover:text-ivory transition-colors">
-                    <input type="checkbox" required class="mt-0.5 rounded border-charcoal-800 bg-charcoal-950 text-gold-500 focus:ring-gold-500/20" />
+                    <input v-model="acceptQuality" type="checkbox" required class="mt-0.5 rounded border-charcoal-800 bg-charcoal-950 text-gold-500 focus:ring-gold-500/20" />
                     <span>Tôi xác nhận tư liệu cung cấp là chính xác, không xuyên tạc lịch sử.</span>
                   </label>
                   <label class="flex items-start gap-2.5 cursor-pointer text-xs text-charcoal-400 hover:text-ivory transition-colors">
-                    <input type="checkbox" required class="mt-0.5 rounded border-charcoal-800 bg-charcoal-950 text-gold-500 focus:ring-gold-500/20" />
+                    <input v-model="acceptDisplay" type="checkbox" required class="mt-0.5 rounded border-charcoal-800 bg-charcoal-950 text-gold-500 focus:ring-gold-500/20" />
                     <span>Tôi đồng ý ủy quyền số hóa và trưng bày phi thương mại trên Bản đồ Di sản Bù Đăng.</span>
                   </label>
                 </div>
@@ -284,6 +290,14 @@ const isSubmitted = ref(false)
 const submitError = ref('')
 const fileInput = ref<HTMLInputElement | null>(null)
 
+// Checkboxes and inline errors
+const acceptQuality = ref(false)
+const acceptDisplay = ref(false)
+const stepErrors = reactive({
+  type: '',
+  name: '',
+})
+
 const steps = [
   { title: 'Chọn Loại' },
   { title: 'Tác Giả' },
@@ -309,7 +323,43 @@ const reasons = [
   { icon: 'mdi:medal-outline', title: 'Ghi Danh Tôn Vinh', desc: 'Tên tuổi và vai trò hiến tặng của bạn được hiển thị vinh dự trên cổng thông tin.' },
 ]
 
+function handleNextStep() {
+  if (currentStep.value === 1) {
+    if (!selectedType.value) {
+      stepErrors.type = 'Vui lòng chọn loại hình hiến tặng'
+      return
+    }
+    stepErrors.type = ''
+    currentStep.value = 2
+  } else if (currentStep.value === 2) {
+    if (!form.name.trim()) {
+      stepErrors.name = 'Vui lòng nhập họ và tên của bạn'
+      return
+    }
+    stepErrors.name = ''
+    currentStep.value = 3
+  }
+}
+
 async function handleSubmit() {
+  if (!form.name.trim()) {
+    currentStep.value = 2
+    stepErrors.name = 'Vui lòng nhập họ và tên của bạn'
+    return
+  }
+  if (!form.title.trim()) {
+    submitError.value = 'Vui lòng nhập tiêu đề đóng góp'
+    return
+  }
+  if (!form.content.trim()) {
+    submitError.value = 'Vui lòng điền nội dung / ghi chú tư liệu'
+    return
+  }
+  if (!acceptQuality.value || !acceptDisplay.value) {
+    submitError.value = 'Vui lòng cam kết chất lượng tư liệu và ủy quyền số hóa'
+    return
+  }
+
   isSubmitting.value = true
   isSubmitted.value = false
   submitError.value = ''
@@ -334,6 +384,8 @@ async function handleSubmit() {
 
     isSubmitted.value = true
     Object.assign(form, { name: '', role: 'resident', title: '', content: '', heritageId: '' })
+    acceptQuality.value = false
+    acceptDisplay.value = false
     if (fileInput.value) fileInput.value.value = ''
     setTimeout(() => {
       isSubmitted.value = false

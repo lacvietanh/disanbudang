@@ -1,17 +1,34 @@
 <template>
   <div>
-    <!-- 1. Giới thiệu -->
+    <!-- 1. Hero cinematic -->
     <HeroSection />
+
+    <!-- 2. Câu chuyện về Bù Đăng -->
     <StorytellingIntro />
 
-    <!-- 2. Điểm nổi bật -->
+    <!-- 3. Điểm di sản nổi bật -->
     <FeaturedHeritage />
 
-    <!-- 3. Trải nghiệm Bản đồ -->
+    <!-- 4. Trải nghiệm Bản đồ -->
     <MapPreviewSection />
 
-    <!-- 4. Kêu gọi đóng góp di sản -->
+    <!-- 4. Ký ức cộng đồng -->
+    <CommunityStoriesSection />
+
+    <!-- 5. Tin tức mới -->
+    <NewsSection />
+
+    <!-- 6. Khám phá di sản -->
+    <QuizSection />
+
+    <!-- 7. Góc học tập -->
+    <SchoolCornerSection />
+
+    <!-- 8. Kêu gọi đóng góp di sản -->
     <ContributionCTA />
+
+    <!-- 9. Câu hỏi thường gặp -->
+    <FAQSection />
   </div>
 </template>
 
@@ -23,3 +40,4 @@ useMuseumSeo({
 
 definePageMeta({ layout: 'default' })
 </script>
+

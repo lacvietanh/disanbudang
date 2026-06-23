@@ -86,6 +86,11 @@ export interface Heritage {
   quickFacts: HeritageQuickFact[]
   timeline: HeritageTimelineItem[]
   audio?: HeritageAudio
+  video?: {
+    title: string
+    url: string
+    coverImage?: string
+  }
   quiz?: HeritageQuiz
   relatedIds: string[]
   tags: string[]
@@ -138,7 +143,8 @@ export interface CommunityPost {
   author: CommunityAuthor
   heritageId?: string
   tags: string[]
-  likes: number
+  likes?: number
+  viewCount?: number
   featured: boolean
   publishedAt: string
 }
@@ -255,4 +261,29 @@ export interface AudioPlayerState {
   isMuted: boolean
   currentTrack: HeritageAudio | null
   heritageId: string | null
+}
+
+// =========================================================
+// TOURISM & INVESTMENT MVP
+// =========================================================
+
+export interface TourismService {
+  id: string
+  name: string
+  type: 'homestay' | 'restaurant' | 'specialty' | 'tour'
+  description: string
+  image?: string
+  address: string
+  phone?: string
+  priceRange?: string
+  coordinates?: HeritageCoordinates
+}
+
+export interface InvestmentOpportunity {
+  id: string
+  title: string
+  category: 'agriculture' | 'tourism' | 'infrastructure' | 'industry'
+  description: string
+  potential: string
+  contactEmail: string
 }

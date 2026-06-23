@@ -131,7 +131,7 @@ const timeline = [
   },
 ]
 
-const activeEra = computed(() => timeline[activeIndex.value] || timeline[0])
+const activeEra = computed(() => (timeline[activeIndex.value] ?? timeline[0])!)
 
 const { observeAll } = useScrollReveal()
 onMounted(() => nextTick(() => observeAll()))

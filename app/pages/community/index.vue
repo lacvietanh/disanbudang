@@ -58,9 +58,9 @@
                   <span class="text-charcoal-500 text-[10px]">{{ featuredPost.author.role }}</span>
                 </div>
               </div>
-              <div class="flex items-center gap-1.5 text-gold-400 ml-auto bg-charcoal-950/60 border border-charcoal-850 rounded-full px-3 py-1 text-xs">
-                <Icon name="mdi:heart" class="w-4 h-4 text-brick-500" />
-                <span>{{ featuredPost.likes }} thích</span>
+              <div class="flex items-center gap-1.5 text-charcoal-400 ml-auto bg-charcoal-950/60 border border-charcoal-850 rounded-full px-3 py-1 text-xs">
+                <Icon name="mdi:eye-outline" class="w-4 h-4" />
+                <span>{{ featuredPost.viewCount ?? 0 }} lượt xem</span>
               </div>
             </div>
           </div>
@@ -88,8 +88,8 @@
                   {{ typeLabels[post.type] }}
                 </span>
                 <div class="flex items-center gap-1 text-charcoal-400 text-xs bg-charcoal-900 border border-charcoal-800 px-2 py-0.5 rounded-full">
-                  <Icon name="mdi:heart" class="w-3.5 h-3.5 text-brick-550" />
-                  <span>{{ post.likes }}</span>
+                  <Icon name="mdi:eye-outline" class="w-3.5 h-3.5" />
+                  <span>{{ post.viewCount ?? 0 }}</span>
                 </div>
               </div>
               <h3 class="font-heading font-bold text-ivory text-base leading-snug mb-2.5 line-clamp-2 group-hover:text-gold-300 transition-colors">{{ post.title }}</h3>
@@ -109,6 +109,16 @@
             </div>
           </div>
         </NuxtLink>
+        <!-- Empty state for filtered tab -->
+        <div v-if="filteredPosts.length === 0" class="col-span-full py-24 text-center">
+          <Icon name="mdi:book-open-page-variant-outline" class="w-14 h-14 text-charcoal-700 mx-auto mb-4" />
+          <p class="text-charcoal-400 font-heading font-semibold text-lg mb-2">Chưa có nội dung trong danh mục này</p>
+          <p class="text-charcoal-500 text-sm mb-6">Hãy là người đầu tiên chia sẻ câu chuyện của bạn!</p>
+          <NuxtLink to="/contribute" class="btn-primary inline-flex">
+            <Icon name="mdi:upload" class="w-4 h-4" />
+            Đóng Góp Ngay
+          </NuxtLink>
+        </div>
       </div>
 
       <!-- Contribute CTA -->

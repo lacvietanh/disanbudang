@@ -22,7 +22,7 @@
                   <p class="text-charcoal-400 text-xs">Thuyết minh di sản</p>
                 </div>
               </div>
-              <BaseBadge variant="gold" size="sm">LIVE</BaseBadge>
+              <BaseBadge variant="earth" size="sm">Sắp Ra Mắt</BaseBadge>
             </div>
 
             <!-- Track info -->

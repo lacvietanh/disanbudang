@@ -77,8 +77,8 @@ const options = [
 ]
 
 const contributionStats = [
-  { value: '200+', label: 'Tư liệu' },
-  { value: '1.2K', label: 'Ảnh' },
-  { value: '80+', label: 'Người đóng góp' },
+  { value: '11', label: 'Di sản số hóa' },
+  { value: '6', label: 'Bài chia sẻ' },
+  { value: '4', label: 'Audio guide' },
 ]
 </script>

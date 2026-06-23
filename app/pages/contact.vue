@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-ivory min-h-screen pt-[72px]">
+  <div class="bg-charcoal-900 min-h-screen pt-[72px]">
     <!-- Hero -->
     <div class="bg-dark-earth py-20 relative overflow-hidden">
       <div class="absolute top-0 right-0 w-96 h-96 bg-gold-500/6 rounded-full blur-3xl" />
@@ -21,20 +21,20 @@
           <div
             v-for="info in contactInfo"
             :key="info.label"
-            class="flex gap-4 p-5 bg-white rounded-2xl shadow-card reveal"
+            class="flex gap-4 p-5 bg-charcoal-950 border border-charcoal-850 rounded-2xl shadow-lg reveal"
           >
-            <div class="w-11 h-11 rounded-xl bg-gold-500/10 flex items-center justify-center flex-shrink-0">
-              <Icon :name="info.icon" class="w-5 h-5 text-gold-500" />
+            <div class="w-11 h-11 rounded-xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center flex-shrink-0">
+              <Icon :name="info.icon" class="w-5 h-5 text-gold-400" />
             </div>
             <div>
               <p class="text-charcoal-400 text-xs uppercase tracking-wider mb-1">{{ info.label }}</p>
-              <p class="font-medium text-charcoal-800 text-sm">{{ info.value }}</p>
+              <p class="font-medium text-ivory text-sm">{{ info.value }}</p>
             </div>
           </div>
 
           <!-- Map placeholder with Google Maps Link -->
           <a
-            href="https://www.google.com/maps/search/?api=1&query=Bù+Đăng+Bình+Phước"
+            href="https://www.google.com/maps/search/?api=1&query=Bù+Đăng+Đồng+Nai"
             target="_blank"
             rel="noopener noreferrer"
             class="block bg-charcoal-800 rounded-2xl aspect-video flex items-center justify-center relative overflow-hidden group border border-charcoal-700 hover:border-gold-500/50 transition-all duration-500 shadow-md reveal"
@@ -44,7 +44,7 @@
             <div class="relative z-10 text-center p-6">
               <Icon name="mdi:map-marker-radius" class="w-10 h-10 text-gold-450 mx-auto mb-2 group-hover:scale-110 transition-transform duration-300" />
               <h3 class="text-white text-base font-bold font-heading">Bản Đồ Chỉ Đường</h3>
-              <p class="text-charcoal-350 text-xs mt-1">Xã Bù Đăng, Tỉnh Bình Phước</p>
+              <p class="text-charcoal-350 text-xs mt-1">Xã Bù Đăng, Thành Phố Đồng Nai (nguyên Tỉnh Bình Phước)</p>
               <span class="inline-flex items-center gap-1 text-gold-450 text-2xs uppercase tracking-widest font-semibold mt-3 group-hover:text-gold-400 transition-colors">
                 Xem trên Google Maps
                 <Icon name="mdi:open-in-new" class="w-3 h-3" />
@@ -55,26 +55,26 @@
 
         <!-- Form -->
         <div class="lg:col-span-2">
-          <form class="space-y-6 bg-white rounded-3xl p-8 shadow-card reveal" @submit.prevent="handleSubmit">
-            <h2 class="font-heading font-bold text-charcoal-800 text-2xl mb-2">Gửi Tin Nhắn</h2>
+          <form class="space-y-6 bg-charcoal-950 border border-charcoal-850 rounded-3xl p-8 shadow-2xl reveal" @submit.prevent="handleSubmit">
+            <h2 class="font-heading font-bold text-ivory text-2xl mb-2">Gửi Tin Nhắn</h2>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
-                <label class="block text-charcoal-600 text-sm font-medium mb-2" for="c-name">Họ Tên *</label>
+                <label class="block text-charcoal-300 text-sm font-medium mb-2" for="c-name">Họ Tên *</label>
                 <input id="c-name" v-model="form.name" type="text" required placeholder="Nguyễn Văn A"
-                  class="w-full px-4 py-3 border border-beige-200 rounded-xl text-charcoal-800 focus:outline-none focus:border-gold-500 transition-colors" />
+                  class="w-full px-4 py-3 bg-[#111111] border border-charcoal-800 rounded-xl text-ivory placeholder-charcoal-600 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/20 transition-all duration-300" />
               </div>
               <div>
-                <label class="block text-charcoal-600 text-sm font-medium mb-2" for="c-email">Email *</label>
+                <label class="block text-charcoal-300 text-sm font-medium mb-2" for="c-email">Email *</label>
                 <input id="c-email" v-model="form.email" type="email" required placeholder="email@example.com"
-                  class="w-full px-4 py-3 border border-beige-200 rounded-xl text-charcoal-800 focus:outline-none focus:border-gold-500 transition-colors" />
+                  class="w-full px-4 py-3 bg-[#111111] border border-charcoal-800 rounded-xl text-ivory placeholder-charcoal-600 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/20 transition-all duration-300" />
               </div>
             </div>
 
             <div>
-              <label class="block text-charcoal-600 text-sm font-medium mb-2" for="c-subject">Chủ Đề</label>
+              <label class="block text-charcoal-300 text-sm font-medium mb-2" for="c-subject">Chủ Đề</label>
               <select id="c-subject" v-model="form.subject" aria-label="Chủ đề liên hệ"
-                class="w-full px-4 py-3 border border-beige-200 rounded-xl text-charcoal-800 focus:outline-none focus:border-gold-500 transition-colors bg-white">
+                class="w-full px-4 py-3 bg-[#111111] border border-charcoal-800 rounded-xl text-ivory focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/20 transition-all duration-300">
                 <option value="general">Thắc mắc chung</option>
                 <option value="contribute">Đóng góp tư liệu</option>
                 <option value="partnership">Hợp tác</option>
@@ -84,27 +84,27 @@
             </div>
 
             <div>
-              <label class="block text-charcoal-600 text-sm font-medium mb-2" for="c-message">Nội Dung *</label>
+              <label class="block text-charcoal-300 text-sm font-medium mb-2" for="c-message">Nội Dung *</label>
               <textarea id="c-message" v-model="form.message" required rows="5" placeholder="Nội dung tin nhắn..."
-                class="w-full px-4 py-3 border border-beige-200 rounded-xl text-charcoal-800 focus:outline-none focus:border-gold-500 transition-colors resize-none" />
+                class="w-full px-4 py-3 bg-[#111111] border border-charcoal-800 rounded-xl text-ivory placeholder-charcoal-600 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/20 transition-all duration-300 resize-none" />
             </div>
 
             <button type="submit" class="btn-primary w-full justify-center py-4 text-base" :disabled="isSubmitting">
-              <Icon :name="isSubmitting ? 'mdi:loading' : 'mdi:send'" class="w-5 h-5" :class="{ 'animate-spin': isSubmitting }" />
+              <Icon :name="isSubmitting ? 'mdi:loading' : 'mdi:send'" class="w-5 h-5 animate-pulse-gold" :class="{ 'animate-spin': isSubmitting }" />
               {{ isSubmitting ? 'Đang Gửi...' : 'Gửi Tin Nhắn' }}
             </button>
 
             <Transition name="fade">
-              <div v-if="submitted" class="p-4 rounded-xl bg-green-50 border border-green-200 flex items-center gap-3">
-                <Icon name="mdi:check-circle" class="w-6 h-6 text-green-600 flex-shrink-0" />
-                <p class="text-green-700 text-sm font-medium">Cảm ơn! Chúng tôi sẽ phản hồi trong 1–3 ngày làm việc.</p>
+              <div v-if="submitted" class="p-4 rounded-xl bg-green-950/40 border border-green-800/40 flex items-center gap-3">
+                <Icon name="mdi:check-circle" class="w-6 h-6 text-green-500 flex-shrink-0 animate-bounce" />
+                <p class="text-green-400 text-sm font-medium">Cảm ơn! Chúng tôi sẽ phản hồi trong 1–3 ngày làm việc.</p>
               </div>
             </Transition>
 
             <Transition name="fade">
-              <div v-if="submitError" class="p-4 rounded-xl bg-red-50 border border-red-200 flex items-center gap-3">
-                <Icon name="mdi:alert-circle" class="w-6 h-6 text-red-600 flex-shrink-0" />
-                <p class="text-red-700 text-sm font-medium">{{ submitError }}</p>
+              <div v-if="submitError" class="p-4 rounded-xl bg-red-950/40 border border-red-800/40 flex items-center gap-3">
+                <Icon name="mdi:alert-circle" class="w-6 h-6 text-red-500 flex-shrink-0" />
+                <p class="text-red-400 text-sm font-medium">{{ submitError }}</p>
               </div>
             </Transition>
           </form>
@@ -127,7 +127,7 @@ const submitted = ref(false)
 const submitError = ref('')
 
 const contactInfo = [
-  { icon: 'mdi:map-marker-outline', label: 'Địa Chỉ', value: 'Xã Bù Đăng Thành Phố Đồng Nai (Bình Phước Cũ)' },
+  { icon: 'mdi:map-marker-outline', label: 'Địa Chỉ', value: 'Xã Bù Đăng, Thành Phố Đồng Nai (nguyên Tỉnh Bình Phước)' },
   { icon: 'mdi:email-outline', label: 'Email', value: 'Nguyenxuankiet294@gmail.com' },
 ]
 

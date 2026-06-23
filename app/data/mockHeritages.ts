@@ -66,6 +66,10 @@ Ngày nay, dấu tích của Chiến Khu Đ vẫn còn hiện diện qua những
       url: '/audio/chien-khu-d.mp3',
       coverImage: '/images/heritage/lich-su/chien-khu-d-lg.webp',
     },
+    video: {
+      title: 'Phim tư liệu hào hùng Chiến Khu Đ Bù Đăng',
+      url: 'https://www.w3schools.com/html/mov_bbb.mp4'
+    },
     relatedIds: ['hrt-005', 'hrt-006'],
     tags: ['cách mạng', 'lịch sử', 'kháng chiến', 'rừng', 'căn cứ địa', 'bình phước'],
     references: [
@@ -515,6 +519,10 @@ Ngày nay, Khu bảo tồn văn hóa dân tộc Sóc Bom Bo đã được xây d
       duration: 310,
       url: '/audio/soc-bom-bo.mp3',
       coverImage: '/images/heritage/lich-su/soc-bom-bo-lg.webp',
+    },
+    video: {
+      title: 'Phim tư liệu Sóc Bom Bo những năm tháng kháng chiến',
+      url: 'https://www.w3schools.com/html/mov_bbb.mp4'
     },
     relatedIds: ['hrt-003', 'hrt-001'],
     tags: ['sóc bom bo', 'giã gạo', 'S\'tiêng', 'kháng chiến', 'di tích lịch sử'],

@@ -2,28 +2,9 @@
 
 Một không gian số hiện đại nhằm lưu trữ, tôn vinh và lan tỏa các giá trị di sản văn hóa, lịch sử và thiên nhiên của huyện Bù Đăng.
 
-## 🌟 Tính năng chính
+📖 **Tài liệu dự án đầy đủ:** Vui lòng xem tại [docs/index.md](./docs/index.md) (bao gồm Tính năng, Kiến trúc hệ thống, Kế hoạch triển khai).
 
-- **Khám phá Di sản:** Danh mục các di tích, thắng cảnh và di sản văn hóa phi vật thể.
-- **Bản đồ Di sản:** Trải nghiệm vị trí các điểm di sản qua bản đồ tương tác sử dụng Leaflet.
-- **Thư viện Số:** Lưu trữ tài liệu, hình ảnh và video về văn hóa Bù Đăng.
-- **Góc Học Đường & Quiz:** Không gian giáo dục và kiểm tra kiến thức di sản dành cho học sinh.
-- **Câu chuyện Cộng đồng:** Nơi người dân và khách du lịch chia sẻ những cảm nhận và ký ức.
-- **Audio Guide:** Trải nghiệm âm thanh sống động (Podcast/Thuyết minh) cho từng điểm đến.
-
-## 🛠 Công nghệ sử dụng
-
-Dự án được phát triển dựa trên hệ sinh thái Nuxt hiện đại:
-
-- **Framework:** [Nuxt 4](https://nuxt.com/) (Module-based architecture)
-- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
-- **Quản lý trạng thái:** [Pinia](https://pinia.vuejs.org/)
-- **Quản lý nội dung:** [Nuxt Content v3](https://content.nuxt.com/)
-- **Bản đồ:** [Leaflet](https://leafletjs.com/) & [Vue-Leaflet](https://vue-leaflet.github.io/VueLeaflet/)
-- **Âm thanh:** [Howler.js](https://howlerjs.com/)
-- **Hiệu ứng:** [GSAP](https://gsap.com/) & [VueUse Motion](https://motion.vueuse.org/)
-
-## 🚀 Bắt đầu
+## 🚀 Bắt đầu (Setup)
 
 ### Yêu cầu hệ thống
 

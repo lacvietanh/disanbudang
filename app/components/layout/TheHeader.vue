@@ -11,13 +11,7 @@
       <nav class="flex items-center justify-between h-[72px]">
         <!-- Logo -->
         <NuxtLink to="/" class="flex items-center gap-3 group">
-          <div class="w-9 h-9 rounded-lg bg-gradient-earth flex items-center justify-center shadow-gold/30 shadow-md">
-            <span class="text-ivory font-heading font-bold text-lg leading-none">D</span>
-          </div>
-          <div class="hidden sm:block">
-            <p class="font-heading font-bold text-ivory text-base leading-tight">Di Sản</p>
-            <p class="font-accent italic text-gold-400 text-xs leading-tight tracking-wide">Bù Đăng</p>
-          </div>
+          <img src="/logo-bd.png" alt="Logo Di Sản Bù Đăng" class="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
         </NuxtLink>
 
         <!-- Desktop Nav -->
@@ -25,7 +19,7 @@
           <li v-for="item in navItems" :key="item.to">
             <NuxtLink
               :to="item.to"
-              class="px-2 py-1 xl:px-4 xl:py-2 rounded-full text-xs xl:text-sm font-medium transition-all duration-300 text-ivory/80 hover:text-ivory hover:bg-ivory/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500 focus-visible:outline-offset-2"
+              class="px-2 py-1 xl:px-3 xl:py-2 rounded-full text-xs xl:text-sm font-medium whitespace-nowrap transition-all duration-300 text-ivory/80 hover:text-ivory hover:bg-ivory/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500 focus-visible:outline-offset-2"
               active-class="text-gold-400 bg-gold-500/10"
             >
               {{ item.label }}
@@ -188,8 +182,10 @@ const searchResults = computed(() => {
 const navItems = [
   { to: '/', label: 'Trang Chủ', icon: 'mdi:home-outline' },
   { to: '/map', label: 'Bản Đồ', icon: 'mdi:map-outline' },
+  { to: '/tourism', label: 'Dịch Vụ', icon: 'mdi:silverware-fork-knife' },
   { to: '/library', label: 'Thư Viện', icon: 'mdi:library' },
   { to: '/community', label: 'Cộng Đồng', icon: 'mdi:account-group-outline' },
+  { to: '/invest', label: 'Đầu Tư', icon: 'mdi:chart-line' },
   { to: '/quiz', label: 'Quiz', icon: 'mdi:help-circle-outline' },
   { to: '/school', label: 'Góc Học Tập', icon: 'mdi:school-outline' },
   { to: '/news', label: 'Tin Tức', icon: 'mdi:newspaper-variant-outline' },

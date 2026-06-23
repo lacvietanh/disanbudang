@@ -18,12 +18,17 @@
         <!-- Search bar -->
         <div class="mt-8 max-w-xl">
           <div class="relative">
-            <Icon name="mdi:magnify" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-charcoal-400" />
+            <Icon
+              v-if="!searchQuery"
+              name="mdi:magnify"
+              class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-charcoal-400 pointer-events-none z-10"
+            />
             <input
               v-model="searchQuery"
               type="text"
               placeholder="Nhập tên di sản, kỷ nguyên, thẻ từ khóa..."
-              class="w-full pl-12 pr-10 py-4 bg-charcoal-950 border border-charcoal-800 rounded-2xl text-ivory text-base placeholder-charcoal-550 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/20 transition-all duration-300"
+              :style="{ paddingLeft: searchQuery ? '1rem' : '3rem', paddingRight: searchQuery ? '2.5rem' : '1rem', paddingTop: '1rem', paddingBottom: '1rem' }"
+              class="w-full bg-charcoal-950 border border-charcoal-800 rounded-2xl text-ivory text-base placeholder-charcoal-550 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/20 transition-all duration-300"
             />
             <button
               v-if="searchQuery"
@@ -92,14 +97,26 @@
         </button>
       </div>
 
+      <!-- Loading Skeleton -->
+      <div v-if="isLoading" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div v-for="n in 8" :key="'skel-'+n" class="rounded-2xl overflow-hidden border border-charcoal-850 bg-charcoal-950/30 animate-pulse">
+          <div class="aspect-[4/3] bg-charcoal-800/60" />
+          <div class="p-5 space-y-3">
+            <div class="h-3 w-16 bg-charcoal-800/60 rounded-full" />
+            <div class="h-5 w-full bg-charcoal-800/60 rounded-lg" />
+            <div class="h-4 w-3/4 bg-charcoal-800/60 rounded-lg" />
+            <div class="h-3 w-1/3 bg-charcoal-800/60 rounded-full mt-3" />
+          </div>
+        </div>
+      </div>
+
       <!-- Archival Grid -->
-      <div v-if="sortedAndFilteredHeritages.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div v-else-if="sortedAndFilteredHeritages.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         <HeritageCard
           v-for="(heritage, i) in sortedAndFilteredHeritages"
           :key="heritage.id"
           :heritage="heritage"
-          class="reveal border border-charcoal-850"
-          :style="{ animationDelay: `${(i % 8) * 0.05}s` }"
+          class="border border-charcoal-850"
           @click="navigateTo(`/heritage/${heritage.slug}`)"
         />
       </div>
@@ -132,8 +149,22 @@ const categories = CATEGORIES
 const searchQuery = ref('')
 const activeCategory = ref('')
 const sortOrder = ref('views')
+const isLoading = ref(true)
 
-watch(searchQuery, (q) => store.setSearch(q))
+let debounceTimer: ReturnType<typeof setTimeout> | null = null
+watch(searchQuery, (q) => {
+  if (debounceTimer) clearTimeout(debounceTimer)
+  if (!q) {
+    store.setSearch(q)
+  } else {
+    debounceTimer = setTimeout(() => {
+      store.setSearch(q)
+    }, 300)
+  }
+})
+onUnmounted(() => {
+  if (debounceTimer) clearTimeout(debounceTimer)
+})
 watch(activeCategory, (c) => store.setCategory(c))
 
 const sortedAndFilteredHeritages = computed(() => {
@@ -148,18 +179,18 @@ const sortedAndFilteredHeritages = computed(() => {
   }
 })
 
-watch(sortedAndFilteredHeritages, () => {
-  nextTick(() => observeAll())
-})
-
 onMounted(() => {
+  // Brief skeleton delay for perceived performance
+  setTimeout(() => {
+    isLoading.value = false
+  }, 300)
+
   if (route.query.category) {
     activeCategory.value = route.query.category as string
   }
   if (route.query.search) {
     searchQuery.value = route.query.search as string
   }
-  nextTick(() => observeAll())
 })
 
 watch(() => route.query.search, (value) => {

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-ivory min-h-screen pt-[72px]">
+  <div class="bg-charcoal-900 min-h-screen pt-[72px]">
     <!-- Quiz not active -->
     <div v-if="!quizStore.isQuizActive && !quizStore.isQuizCompleted">
       <!-- Header -->
@@ -22,21 +22,21 @@
           <div
             v-for="stat in progressStats"
             :key="stat.label"
-            class="bg-white rounded-2xl p-5 text-center shadow-card"
+            class="bg-charcoal-950 border border-charcoal-850 rounded-2xl p-5 text-center shadow-lg"
           >
             <Icon :name="stat.icon" class="w-7 h-7 mx-auto mb-2" :class="stat.colorClass" />
-            <p class="font-heading font-bold text-charcoal-800 text-2xl">{{ stat.value }}</p>
+            <p class="font-heading font-bold text-ivory text-2xl">{{ stat.value }}</p>
             <p class="text-charcoal-400 text-xs mt-0.5">{{ stat.label }}</p>
           </div>
         </div>
 
         <!-- Quiz cards -->
-        <h2 class="font-heading font-bold text-charcoal-800 text-2xl mb-7">Chọn Quiz</h2>
+        <h2 class="font-heading font-bold text-ivory text-2xl mb-7">Chọn Quiz</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-14">
           <div
             v-for="(quiz, i) in quizStore.quizzes"
             :key="quiz.id"
-            class="bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-500 group cursor-pointer reveal"
+            class="bg-charcoal-950 border border-charcoal-850 rounded-2xl overflow-hidden shadow-lg hover:border-gold-500/30 hover:shadow-gold-500/5 transition-all duration-500 group cursor-pointer reveal"
             :style="{ animationDelay: `${i * 0.1}s` }"
           >
             <div class="h-2 w-full" :style="{ background: getQuizColor(quiz.heritageId, i) }" />
@@ -49,18 +49,18 @@
                   <Icon :name="getQuizIcon(quiz.heritageId, i)" class="w-7 h-7" :style="{ color: getQuizColor(quiz.heritageId, i) }" />
                 </div>
                 <div>
-                  <h3 class="font-heading font-bold text-charcoal-800 text-lg leading-tight">{{ quiz.title }}</h3>
+                  <h3 class="font-heading font-bold text-ivory text-lg leading-tight">{{ quiz.title }}</h3>
                   <p class="text-charcoal-400 text-sm">{{ quiz.questions.length }} câu hỏi</p>
                 </div>
               </div>
 
-              <p class="text-charcoal-500 text-sm leading-relaxed mb-6">{{ quiz.description }}</p>
+              <p class="text-charcoal-400 text-sm leading-relaxed mb-6">{{ quiz.description }}</p>
 
               <!-- Last result -->
-              <div v-if="lastResult(quiz.id)" class="mb-4 p-3 rounded-xl bg-beige-100 flex items-center gap-3">
-                <Icon name="mdi:check-circle" class="w-5 h-5 text-green-600" />
+              <div v-if="lastResult(quiz.id)" class="mb-4 p-3 rounded-xl bg-green-500/10 border border-green-500/20 flex items-center gap-3">
+                <Icon name="mdi:check-circle" class="w-5 h-5 text-green-400" />
                 <div>
-                  <p class="text-charcoal-700 text-sm font-medium">
+                  <p class="text-ivory text-sm font-medium">
                     Đạt {{ lastResult(quiz.id)!.score }}/{{ lastResult(quiz.id)!.total }} điểm
                   </p>
                   <p class="text-charcoal-400 text-xs">Đã hoàn thành</p>

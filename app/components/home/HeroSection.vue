@@ -38,6 +38,17 @@
       />
     </div>
 
+    <!-- Slide Caption Overlay -->
+    <Transition name="caption-fade">
+      <div
+        :key="currentSlide"
+        class="absolute bottom-8 left-8 z-20 max-w-md pointer-events-none"
+      >
+        <p class="text-gold-400 text-[10px] uppercase tracking-[0.25em] font-semibold mb-1.5">{{ slides[currentSlide]?.label }}</p>
+        <p class="text-ivory/70 text-sm leading-relaxed">{{ slides[currentSlide]?.caption }}</p>
+      </div>
+    </Transition>
+
     <!-- Main Content -->
     <div class="relative z-20 flex-1 flex flex-col justify-end pb-20 md:pb-24 pt-28 lg:pt-32 env-safe-bottom">
       <div class="container-heritage">
@@ -132,18 +143,26 @@ const slides = [
   {
     image: '/images/heritage/danh-thang/bu-lach-lg.webp',
     alt: 'Trảng cỏ Bù Lạch hùng vĩ',
+    label: 'TRẢNG CỎ BÙ LẠCH',
+    caption: 'Thảo nguyên hoang sơ giữa đại ngàn Bù Đăng',
   },
   {
     image: '/images/heritage/danh-thang/thac-dung-lg.webp',
     alt: 'Thác Đứng Bù Đăng cuồn cuộn đổ xuống',
+    label: 'THÁC ĐỨNG BÙ ĐĂNG',
+    caption: 'Bản hùng ca nước đổ bên những khối đá kỳ vĩ',
   },
   {
     image: '/images/heritage/danh-thang/rung-nguyen-sinh-lg.webp',
     alt: 'Rừng nguyên sinh Bù Đăng già cội',
+    label: 'RỪNG NGUYÊN SINH BÙ ĐĂNG',
+    caption: 'Kho báu đa dạng sinh học của Đông Nam Bộ',
   },
   {
     image: '/images/heritage/lich-su/soc-bom-bo-lg.webp',
     alt: 'Sóc Bom Bo lịch sử giã gạo nuôi quân',
+    label: 'SÓC BOM BO',
+    caption: 'Nơi nhịp chày giã gạo đi vào huyền thoại cách mạng',
   },
 ]
 
@@ -159,10 +178,10 @@ onMounted(() => {
 onUnmounted(() => clearInterval(slideInterval))
 
 const stats = [
-  { icon: 'mdi:castle', value: '8', suffix: '+', label: 'Di sản' },
-  { icon: 'mdi:book-open-variant', value: '50', suffix: '+', label: 'Câu chuyện' },
-  { icon: 'mdi:headphones', value: '12', suffix: '', label: 'Audio guide' },
-  { icon: 'mdi:account-school', value: '2.000', suffix: '+', label: 'Học sinh' },
+  { icon: 'mdi:castle', value: '11', suffix: '', label: 'Di sản số hóa' },
+  { icon: 'mdi:book-open-variant', value: '6', suffix: '', label: 'Ký ức cộng đồng' },
+  { icon: 'mdi:headphones', value: '4', suffix: '', label: 'Audio guide' },
+  { icon: 'mdi:school-outline', value: '5', suffix: '+', label: 'Trường học tham gia' },
 ]
 </script>
 
@@ -175,6 +194,17 @@ const stats = [
 }
 .hero-slide-enter-from,
 .hero-slide-leave-to {
+  opacity: 0;
+}
+
+.caption-fade-enter-active {
+  transition: opacity 0.8s ease 0.3s;
+}
+.caption-fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.caption-fade-enter-from,
+.caption-fade-leave-to {
   opacity: 0;
 }
 

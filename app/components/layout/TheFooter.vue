@@ -14,13 +14,7 @@
         <!-- Brand Column -->
         <div class="lg:col-span-1 space-y-6">
           <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-gradient-earth flex items-center justify-center">
-              <span class="text-ivory font-heading font-bold text-xl">D</span>
-            </div>
-            <div>
-              <p class="font-heading font-bold text-ivory text-lg leading-tight">Di Sản Bù Đăng</p>
-              <p class="font-accent italic text-gold-400 text-sm">Bảo Tàng Số Địa Phương</p>
-            </div>
+            <img src="/logo-bd.png" alt="Logo Di Sản Bù Đăng" class="h-14 lg:h-16 w-auto object-contain" />
           </div>
           <p class="text-charcoal-300 text-sm leading-relaxed">
             Dự án bảo tồn và phát huy di sản văn hóa – lịch sử Xã Bù Đăng Thành Phố Đồng Nai (Tỉnh Bình Phước cũ).
@@ -101,31 +95,29 @@
 <script setup lang="ts">
 const currentYear = new Date().getFullYear()
 
-const socials = [
-  { name: 'Facebook', icon: 'mdi:facebook', url: 'https://facebook.com' },
-  { name: 'YouTube', icon: 'mdi:youtube', url: 'https://youtube.com' },
-  { name: 'Instagram', icon: 'mdi:instagram', url: 'https://instagram.com' },
-  { name: 'TikTok', icon: 'mdi:music-note', url: 'https://tiktok.com' },
+const socials: Array<{ name: string; icon: string; url: string }> = [
+  // Social links sẽ được cập nhật khi có trang chính thức
+  // { name: 'Facebook', icon: 'mdi:facebook', url: 'https://facebook.com/disanbudang' },
 ]
 
 const footerLinks = [
   {
-    title: 'Di Sản',
+    title: 'Di Sản & Du Lịch',
     links: [
       { to: '/map', label: 'Bản Đồ Tương Tác' },
       { to: '/library', label: 'Thư Viện Di Sản' },
+      { to: '/tourism', label: 'Dịch Vụ Lưu Trú & Ẩm Thực' },
       { to: '/heritage/chien-khu-d-bu-dang', label: 'Chiến Khu Đ' },
       { to: '/heritage/thac-mo-bu-dang', label: 'Thác Mơ' },
-      { to: '/heritage/le-hoi-cong-chieng-stieng', label: 'Cồng Chiêng S\'tiêng' },
     ],
   },
   {
-    title: 'Tham Gia',
+    title: 'Tham Gia & Đầu Tư',
     links: [
+      { to: '/invest', label: 'Cơ Hội Đầu Tư' },
       { to: '/community', label: 'Di Sản Trong Tôi' },
       { to: '/quiz', label: 'Quiz Khám Phá' },
       { to: '/school', label: 'Góc Học Tập' },
-      { to: '/contribute', label: 'Đóng Góp Tư Liệu' },
       { to: '/news', label: 'Tin Tức & Sự Kiện' },
     ],
   },

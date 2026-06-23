@@ -76,6 +76,17 @@ export function useMuseumSeo(input: MuseumSeoInput = {}) {
     twitterCard: 'summary_large_image',
   })
 
+  // Geo position meta tag (homepage only)
+  if (route.path === '/') {
+    useHead({
+      meta: [
+        { name: 'geo.position', content: '11.8281;107.0937' },
+        { name: 'geo.placename', content: 'Xã Bù Đăng, Thành Phố Đồng Nai' },
+        { name: 'geo.region', content: 'VN-ĐN' },
+      ],
+    })
+  }
+
   // Build scripts array
   const scripts: any[] = []
 
@@ -88,7 +99,7 @@ export function useMuseumSeo(input: MuseumSeoInput = {}) {
         '@type': 'Organization',
         'name': SITE_NAME,
         'url': SITE_URL,
-        'logo': `${SITE_URL}/favicon.svg`,
+        'logo': `${SITE_URL}/logo-bd.png`,
         'description': SITE_DESCRIPTION,
         'address': {
           '@type': 'PostalAddress',
@@ -127,28 +138,26 @@ export function useHeritageSeo(heritage: Ref<Heritage | null>) {
       type: 'article',
     })
 
-    // Inject enhanced Place/TouristAttraction schema
+    // Inject enhanced LandmarkFeature schema
     useHead({
       script: [
         {
           type: 'application/ld+json',
           innerHTML: JSON.stringify({
             '@context': 'https://schema.org',
-            '@type': 'TouristAttraction',
+            '@type': 'LandmarkFeature',
             name: heritage.value.title,
             description: heritage.value.shortDescription,
             image: heritage.value.coverImage,
             url: `${SITE_URL}/heritage/${heritage.value.slug}`,
-            address: {
-              '@type': 'PostalAddress',
-              'addressLocality': 'Xã Bù Đăng',
-              'addressRegion': 'Thành Phố Đồng Nai (Tỉnh Bình Phước cũ)',
-              'addressCountry': 'VN'
-            },
             geo: {
               '@type': 'GeoCoordinates',
               latitude: heritage.value.coordinates.lat,
               longitude: heritage.value.coordinates.lng,
+            },
+            containedInPlace: {
+              '@type': 'AdministrativeArea',
+              name: 'Xã Bù Đăng, Thành Phố Đồng Nai (nguyên Tỉnh Bình Phước)',
             },
             isPartOf: {
               '@type': 'WebSite',
@@ -176,7 +185,7 @@ export function buildArticleSchema(article: NewsArticle) {
       name: SITE_NAME,
       logo: {
         '@type': 'ImageObject',
-        url: `${SITE_URL}/favicon.svg`
+        url: `${SITE_URL}/logo-bd.png`
       }
     },
   }

@@ -36,7 +36,12 @@
           <div class="flex flex-wrap gap-4 items-center text-xs text-charcoal-350 bg-charcoal-950/50 backdrop-blur-sm border border-charcoal-800/60 rounded-full px-4 py-2 w-fit">
             <span class="flex items-center gap-1.5">
               <Icon name="mdi:calendar-range" class="w-4 h-4 text-gold-450" />
-              {{ post.publishedAt }}
+              {{ formatDate(post.publishedAt) }}
+            </span>
+            <span class="w-1 h-1 bg-charcoal-700 rounded-full" />
+            <span class="flex items-center gap-1.5">
+              <Icon name="mdi:clock-outline" class="w-4 h-4 text-gold-450" />
+              {{ readingTime }} phút đọc
             </span>
             <span class="w-1 h-1 bg-charcoal-700 rounded-full" />
             <span class="flex items-center gap-1.5">
@@ -51,14 +56,16 @@
     <!-- Main Content -->
     <div class="container-heritage py-16">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        <!-- Author Profile Sidebar (Desktop) / Header (Mobile) -->
+        <!-- Author Profile Sidebar -->
         <div class="lg:col-span-4 space-y-6">
-          <div class="bg-charcoal-950/50 border border-charcoal-850 rounded-3xl p-6 lg:p-8 backdrop-blur-md relative overflow-hidden shadow-2xl">
+          <div class="bg-charcoal-950/50 border border-charcoal-850 rounded-3xl p-6 lg:p-8 backdrop-blur-md relative overflow-hidden shadow-2xl lg:sticky lg:top-[100px]">
             <div class="absolute top-0 right-0 w-24 h-24 bg-gold-500/5 rounded-full blur-xl pointer-events-none" />
-            
+
             <div class="flex items-center gap-4 mb-6">
               <div class="w-14 h-14 rounded-full bg-gold-500/10 border-2 border-gold-550/30 flex items-center justify-center shrink-0">
-                <Icon name="mdi:account" class="w-7 h-7 text-gold-400" />
+                <span class="text-gold-400 font-heading font-bold text-xl">
+                  {{ post.author.name.charAt(0) }}
+                </span>
               </div>
               <div>
                 <span class="text-charcoal-450 text-[10px] uppercase tracking-wider block">Người chia sẻ</span>
@@ -85,7 +92,8 @@
                 <span
                   v-for="tag in post.tags"
                   :key="tag"
-                  class="bg-charcoal-900 border border-charcoal-800 text-charcoal-300 rounded-lg px-2.5 py-1 text-2xs hover:border-gold-500/30 transition-colors"
+                  class="bg-charcoal-900 border border-charcoal-800 text-charcoal-300 rounded-lg px-2.5 py-1 text-2xs hover:border-gold-500/30 transition-colors cursor-pointer"
+                  @click="searchTag(tag)"
                 >
                   #{{ tag }}
                 </span>
@@ -117,7 +125,8 @@
               {{ post.content || post.excerpt }}
             </div>
 
-            <div class="mt-12 pt-8 border-t border-charcoal-850/80 flex items-center justify-between">
+            <!-- Actions row -->
+            <div class="mt-12 pt-8 border-t border-charcoal-850/80 flex items-center justify-between flex-wrap gap-3">
               <button
                 class="flex items-center gap-2 bg-charcoal-900 border border-charcoal-800 hover:border-brick-500/50 hover:bg-brick-950/10 text-charcoal-300 hover:text-ivory rounded-full px-5 py-2.5 text-xs transition-all duration-300"
                 @click="likePost"
@@ -125,7 +134,65 @@
                 <Icon name="mdi:heart" :class="isLiked ? 'text-brick-500' : 'text-charcoal-500'" class="w-4 h-4 transition-colors" />
                 <span>{{ isLiked ? 'Đã thích' : 'Thích bài viết' }} ({{ likesCount }})</span>
               </button>
+
+              <button
+                class="flex items-center gap-2 bg-charcoal-900 border border-charcoal-800 hover:border-gold-500/50 text-charcoal-300 hover:text-ivory rounded-full px-5 py-2.5 text-xs transition-all duration-300"
+                @click="sharePost"
+              >
+                <Icon name="mdi:share-variant" class="w-4 h-4 text-gold-400" />
+                <span>Chia sẻ</span>
+              </button>
             </div>
+          </div>
+
+          <!-- Related Heritage -->
+          <div v-if="relatedHeritages.length > 0" class="mt-12">
+            <div class="flex items-center gap-3 mb-6">
+              <span class="w-1 h-5 bg-gold-500 rounded-full inline-block" />
+              <h2 class="font-heading font-bold text-ivory text-xl">Di Sản Liên Quan</h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <NuxtLink
+                v-for="h in relatedHeritages"
+                :key="h.id"
+                :to="`/heritage/${h.slug}`"
+                class="group flex gap-4 bg-charcoal-950/40 border border-charcoal-850 rounded-2xl p-4 hover:border-gold-500/30 transition-all duration-500"
+              >
+                <div class="w-24 h-20 rounded-xl overflow-hidden shrink-0 border border-charcoal-800">
+                  <img :src="h.coverImage" :alt="h.title" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                </div>
+                <div class="min-w-0 flex-1">
+                  <p class="text-charcoal-450 text-2xs uppercase tracking-wider font-semibold">{{ getCategoryLabel(h.category) }}</p>
+                  <h3 class="font-heading font-bold text-ivory text-sm leading-snug mt-0.5 group-hover:text-gold-300 transition-colors line-clamp-2">{{ h.title }}</h3>
+                </div>
+              </NuxtLink>
+            </div>
+          </div>
+
+          <!-- Prev / Next Navigation -->
+          <div v-if="prevPost || nextPost" class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <NuxtLink
+              v-if="prevPost"
+              :to="`/community/${prevPost.id}`"
+              class="group flex items-center gap-3 bg-charcoal-950/30 border border-charcoal-850 rounded-2xl p-5 hover:border-gold-500/30 transition-all duration-500 text-left"
+            >
+              <Icon name="mdi:arrow-left" class="w-5 h-5 text-gold-400 shrink-0" />
+              <div class="min-w-0">
+                <p class="text-charcoal-500 text-2xs uppercase tracking-wider">Bài trước</p>
+                <p class="text-ivory text-sm font-semibold truncate group-hover:text-gold-300 transition-colors">{{ prevPost.title }}</p>
+              </div>
+            </NuxtLink>
+            <NuxtLink
+              v-if="nextPost"
+              :to="`/community/${nextPost.id}`"
+              class="group flex items-center gap-3 bg-charcoal-950/30 border border-charcoal-850 rounded-2xl p-5 hover:border-gold-500/30 transition-all duration-500 text-right sm:col-start-2"
+            >
+              <div class="min-w-0 flex-1">
+                <p class="text-charcoal-500 text-2xs uppercase tracking-wider">Bài tiếp theo</p>
+                <p class="text-ivory text-sm font-semibold truncate group-hover:text-gold-300 transition-colors">{{ nextPost.title }}</p>
+              </div>
+              <Icon name="mdi:arrow-right" class="w-5 h-5 text-gold-400 shrink-0" />
+            </NuxtLink>
           </div>
         </div>
       </div>
@@ -135,12 +202,15 @@
 
 <script setup lang="ts">
 import { MOCK_COMMUNITY_POSTS } from '~/data/mockPosts'
-import type { PostType } from '~/types'
+import { MOCK_HERITAGES } from '~/data/mockHeritages'
+import type { PostType, Heritage } from '~/types'
 
 definePageMeta({ layout: 'default' })
 
 const route = useRoute()
+const router = useRouter()
 const id = computed(() => route.params.id as string)
+const { getCategoryLabel } = useHeritage()
 
 const post = computed(() => MOCK_COMMUNITY_POSTS.find(p => p.id === id.value) || null)
 
@@ -149,12 +219,60 @@ const likesCount = ref(0)
 
 watchEffect(() => {
   if (post.value) {
-    likesCount.value = post.value.likes
+    likesCount.value = post.value.likes ?? 0
+    // Load like state from localStorage
+    const saved = localStorage.getItem(`community-like-${post.value.id}`)
+    isLiked.value = saved === 'true'
   }
+})
+
+// Reading time estimate (100 words per minute for Vietnamese)
+const readingTime = computed(() => {
+  if (!post.value) return 0
+  const text = post.value.content || post.value.excerpt
+  const wordCount = text.split(/\s+/).length
+  return Math.max(1, Math.ceil(wordCount / 100))
+})
+
+// Related heritages (by matching tags)
+const relatedHeritages = computed(() => {
+  if (!post.value) return []
+  const allHeritages = MOCK_HERITAGES
+  return allHeritages
+    .filter((h: Heritage) => {
+      // Match tags between post and heritage
+      const sharedTags = post.value!.tags.some(t => h.tags.includes(t))
+      return sharedTags
+    })
+    .slice(0, 3)
+})
+
+// Prev/next posts
+const sortedPosts = computed(() => {
+  return [...MOCK_COMMUNITY_POSTS].sort((a, b) =>
+    new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+  )
+})
+
+const prevPost = computed(() => {
+  if (!post.value) return null
+  const idx = sortedPosts.value.findIndex(p => p.id === post.value!.id)
+  return idx < sortedPosts.value.length - 1 ? sortedPosts.value[idx + 1] : null
+})
+
+const nextPost = computed(() => {
+  if (!post.value) return null
+  const idx = sortedPosts.value.findIndex(p => p.id === post.value!.id)
+  return idx > 0 ? sortedPosts.value[idx - 1] : null
 })
 
 const typeLabels: Record<PostType, string> = {
   story: 'Câu Chuyện', artwork: 'Tranh Vẽ', photo: 'Ảnh Tư Liệu', memory: 'Ký Ức', research: 'Khảo Cứu',
+}
+
+function formatDate(dateStr: string) {
+  const d = new Date(dateStr)
+  return d.toLocaleDateString('vi-VN', { year: 'numeric', month: 'long', day: 'numeric' })
 }
 
 function likePost() {
@@ -166,6 +284,27 @@ function likePost() {
     likesCount.value--
     isLiked.value = false
   }
+  localStorage.setItem(`community-like-${post.value.id}`, String(isLiked.value))
+}
+
+async function sharePost() {
+  if (!post.value) return
+  const url = `${window.location.origin}/community/${post.value.id}`
+  if (navigator.share) {
+    await navigator.share({
+      title: post.value.title,
+      text: post.value.excerpt,
+      url,
+    })
+  } else {
+    // Fallback: copy to clipboard
+    await navigator.clipboard.writeText(url)
+    alert('Đã sao chép đường dẫn vào bộ nhớ tạm!')
+  }
+}
+
+function searchTag(tag: string) {
+  router.push({ path: '/community', query: { tag } })
 }
 
 useSeoMeta({
