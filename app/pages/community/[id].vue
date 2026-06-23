@@ -221,8 +221,10 @@ watchEffect(() => {
   if (post.value) {
     likesCount.value = post.value.likes ?? 0
     // Load like state from localStorage
-    const saved = localStorage.getItem(`community-like-${post.value.id}`)
-    isLiked.value = saved === 'true'
+    if (import.meta.client) {
+      const saved = localStorage.getItem(`community-like-${post.value.id}`)
+      isLiked.value = saved === 'true'
+    }
   }
 })
 
@@ -299,7 +301,13 @@ async function sharePost() {
   } else {
     // Fallback: copy to clipboard
     await navigator.clipboard.writeText(url)
-    alert('Đã sao chép đường dẫn vào bộ nhớ tạm!')
+    const swal = useSwal()
+    swal.fire({
+      icon: 'success',
+      title: 'Thành công',
+      text: 'Đã sao chép đường dẫn vào bộ nhớ tạm!',
+      confirmButtonColor: '#e18c1b'
+    })
   }
 }
 
