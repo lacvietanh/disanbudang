@@ -70,7 +70,7 @@ export default defineNuxtConfig({
           content:
             'Khám phá di sản văn hóa, lịch sử và thiên nhiên huyện Bù Đăng qua không gian số hiện đại — hành trình trải nghiệm sống động dành cho mọi thế hệ.',
         },
-        { name: 'theme-color', content: '#1C1A18' },
+        { name: 'theme-color', content: '#e18c1b' },
         { property: 'og:type', content: 'website' },
         { property: 'og:locale', content: 'vi_VN' },
         {
@@ -79,7 +79,12 @@ export default defineNuxtConfig({
         },
       ],
       link: [
-        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+        { rel: 'icon', href: '/favicon/favicon.ico', sizes: '32x32' },
+        { rel: 'icon', type: 'image/png', sizes: '48x48', href: '/favicon/icon-48.png' },
+        { rel: 'icon', type: 'image/png', sizes: '96x96', href: '/favicon/icon-96.png' },
+        { rel: 'icon', type: 'image/png', sizes: '192x192', href: '/favicon/icon-192.png' },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/favicon/apple-touch-icon.png' },
+        { rel: 'manifest', href: '/favicon/manifest.json' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         {
           rel: 'preconnect',

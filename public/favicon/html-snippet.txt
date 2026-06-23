@@ -1,0 +1,7 @@
+<link rel="icon" href="/favicon/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon/icon-48.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon/icon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+<link rel="manifest" href="/favicon/manifest.json">
+<meta name="theme-color" content="#e18c1b">

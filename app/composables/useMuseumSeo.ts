@@ -99,7 +99,7 @@ export function useMuseumSeo(input: MuseumSeoInput = {}) {
         '@type': 'Organization',
         'name': SITE_NAME,
         'url': SITE_URL,
-        'logo': `${SITE_URL}/logo-bd.png`,
+        'logo': `${SITE_URL}/favicon/icon-192.png`,
         'description': SITE_DESCRIPTION,
         'address': {
           '@type': 'PostalAddress',
@@ -185,7 +185,7 @@ export function buildArticleSchema(article: NewsArticle) {
       name: SITE_NAME,
       logo: {
         '@type': 'ImageObject',
-        url: `${SITE_URL}/logo-bd.png`
+        url: `${SITE_URL}/favicon/icon-192.png`
       }
     },
   }

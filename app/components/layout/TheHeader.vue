@@ -11,7 +11,7 @@
       <nav class="flex items-center justify-between h-[72px]">
         <!-- Logo -->
         <NuxtLink to="/" class="flex items-center gap-3 group">
-          <img src="/logo-bd.png" alt="Logo Di Sản Bù Đăng" class="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
+          <img src="/favicon/icon-192.png" alt="Logo Di Sản Bù Đăng" class="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
         </NuxtLink>
 
         <!-- Desktop Nav -->

@@ -14,7 +14,7 @@
         <!-- Brand Column -->
         <div class="lg:col-span-1 space-y-6">
           <div class="flex items-center gap-3">
-            <img src="/logo-bd.png" alt="Logo Di Sản Bù Đăng" class="h-14 lg:h-16 w-auto object-contain" />
+            <img src="/favicon/icon-192.png" alt="Logo Di Sản Bù Đăng" class="h-14 lg:h-16 w-auto object-contain" />
           </div>
           <p class="text-charcoal-300 text-sm leading-relaxed">
             Dự án bảo tồn và phát huy di sản văn hóa – lịch sử Xã Bù Đăng Thành Phố Đồng Nai (Tỉnh Bình Phước cũ).
