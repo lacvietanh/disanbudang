@@ -12,6 +12,9 @@
         <!-- Logo -->
         <NuxtLink to="/" class="flex items-center gap-3 group">
           <img src="/favicon/icon-192.png" alt="Logo Di Sản Bù Đăng" class="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
+          <span class="hidden md:block font-heading font-bold text-ivory text-base lg:text-lg leading-tight tracking-tight group-hover:text-gold-300 transition-colors duration-300">
+            Di Sản<br class="hidden lg:block" /><span class="lg:block text-gold-400">Bù Đăng</span>
+          </span>
         </NuxtLink>
 
         <!-- Desktop Nav -->
@@ -181,15 +184,10 @@ const searchResults = computed(() => {
 
 const navItems = [
   { to: '/', label: 'Trang Chủ', icon: 'mdi:home-outline' },
-  { to: '/map', label: 'Bản Đồ', icon: 'mdi:map-outline' },
-  { to: '/tourism', label: 'Dịch Vụ', icon: 'mdi:silverware-fork-knife' },
-  { to: '/library', label: 'Thư Viện', icon: 'mdi:library' },
-  { to: '/community', label: 'Cộng Đồng', icon: 'mdi:account-group-outline' },
-  { to: '/invest', label: 'Đầu Tư', icon: 'mdi:chart-line' },
-  { to: '/quiz', label: 'Quiz', icon: 'mdi:help-circle-outline' },
-  { to: '/school', label: 'Góc Học Tập', icon: 'mdi:school-outline' },
-  { to: '/news', label: 'Tin Tức', icon: 'mdi:newspaper-variant-outline' },
   { to: '/about', label: 'Giới Thiệu', icon: 'mdi:information-outline' },
+  { to: '/map', label: 'Bản Đồ', icon: 'mdi:map-outline' },
+  { to: '/library', label: 'Thư Viện', icon: 'mdi:library-outline' },
+  { to: '/news', label: 'Tin Tức', icon: 'mdi:newspaper-variant-outline' },
 ]
 
 if (import.meta.client) {

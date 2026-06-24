@@ -8,7 +8,7 @@
           <span class="section-label">Góc Học Tập</span>
           <h2 class="section-title">Học Sinh Nghiên Cứu Di Sản</h2>
         </div>
-        <NuxtLink to="/school" class="btn-dark flex-shrink-0">
+        <NuxtLink to="/explore" class="btn-dark flex-shrink-0">
           Xem Tất Cả Nghiên Cứu
           <Icon name="mdi:arrow-right" class="w-4 h-4" />
         </NuxtLink>
@@ -70,7 +70,7 @@
           <h3 class="font-heading font-bold text-ivory text-xl mb-1">Dự Án Di Sản Trường Học</h3>
           <p class="text-ivory/80 text-sm">Hơn 50 bài nghiên cứu từ học sinh các trường THCS & THPT Bù Đăng được lưu giữ trên hệ thống</p>
         </div>
-        <NuxtLink to="/school" class="btn-ghost flex-shrink-0">
+        <NuxtLink to="/explore" class="btn-ghost flex-shrink-0">
           Tham Gia Dự Án
         </NuxtLink>
       </div>

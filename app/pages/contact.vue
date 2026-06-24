@@ -116,7 +116,7 @@
 
 <script setup lang="ts">
 definePageMeta({ layout: 'default' })
-useSeoMeta({ title: 'Liên Hệ — Di Sản Bù Đăng', description: 'Liên hệ với dự án Di Sản Bù Đăng.' })
+useSeoMeta({ title: 'Liên Hệ — Di Sản Bù Đăng', description: 'Liên hệ với dự án Di Sản Bù Đăng để hợp tác, đóng góp tư liệu, hoặc tìm hiểu thêm về di sản văn hóa Xã Bù Đăng, Bình Phước.' })
 
 const { observeAll } = useScrollReveal()
 onMounted(() => nextTick(() => observeAll()))

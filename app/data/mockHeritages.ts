@@ -99,7 +99,7 @@ Ngày nay, dấu tích của Chiến Khu Đ vẫn còn hiện diện qua những
     ],
     coordinates: { lat: 11.7891, lng: 107.0234 },
     shortDescription:
-      'Thác Mơ là thắng cảnh thiên nhiên nổi tiếng của huyện Bù Đăng, nơi dòng nước trong xanh từ thượng nguồn đổ xuống tạo thành những hồ nước thơ mộng giữa đại ngàn nguyên sinh.',
+      'Thác Mơ là thắng cảnh thiên nhiên nổi tiếng của Xã Bù Đăng, nơi dòng nước trong xanh từ thượng nguồn đổ xuống tạo thành những hồ nước thơ mộng giữa đại ngàn nguyên sinh.',
     longStory: `Ẩn mình giữa những cánh rừng nguyên sinh của Bù Đăng, Thác Mơ hiện ra như một giấc mơ của thiên nhiên. Dòng nước trong vắt từ thượng nguồn đổ xuống qua nhiều tầng đá, tạo nên những màn nước tung bọt trắng xóa tinh khiết, tiếng nước chảy rì rào như bản nhạc ru hồn người lữ khách.
 
 Người S'tiêng địa phương từ bao đời nay xem Thác Mơ là nơi linh thiêng. Theo truyền thuyết, nàng Mơ — một cô gái S'tiêng xinh đẹp và tài giỏi — đã hóa thành dòng thác để bảo vệ buôn làng khỏi thiên tai. Chính vì vậy, trước mỗi mùa vụ, người dân thường tổ chức lễ cúng thác để cầu mưa thuận gió hòa, mùa màng bội thu.
@@ -176,8 +176,8 @@ Người S'tiêng quan niệm rằng mỗi bộ cồng chiêng đều có linh h
     audio: {
       id: 'aud-003',
       title: 'Tiếng Cồng Chiêng Núi Rừng',
-      narrator: 'Già làng Điểu Minh',
-      narratorRole: 'Nghệ nhân ưu tú cồng chiêng S\'tiêng',
+      narrator: 'Già làng Điểu Đố',
+      narratorRole: 'Nghệ nhân ưu tú cồng chiêng S\'tiêng Bù Đăng',
       duration: 324,
       url: '/audio/cong-chieng.mp3',
       coverImage: '/images/heritage/van-hoa-phi-vat-the/cong-chieng-lg.webp',
@@ -485,11 +485,41 @@ Vào mùa mưa, dòng suối Đăk Wuar cuồn cuộn đổ nước từ độ c
     period: 'khang-chien',
     year: '1965–1975',
     coverImage: '/images/heritage/lich-su/soc-bom-bo-lg.webp',
-    gallery: [
+        gallery: [
       {
         src: '/images/heritage/lich-su/soc-bom-bo-lg.webp',
         alt: 'Giã gạo tại Sóc Bom Bo',
         caption: 'Khu di tích lịch sử Sóc Bom Bo tái hiện cảnh giã gạo nuôi quân',
+      },
+      {
+        src: '/images/heritage/Bombo/h.png',
+        alt: 'Lễ công bố di sản tại sóc Bom Bo',
+        caption: 'Lễ công bố Quyết định công nhận di sản văn hóa phi vật thể quốc gia tại khu bảo tồn',
+      },
+      {
+        src: '/images/heritage/Bombo/TAN08183.jpg',
+        alt: 'Trang phục truyền thống S\'tiêng Bù Đăng',
+        caption: 'Đồng bào S\'tiêng trong trang phục thổ cẩm truyền thống biểu diễn cồng chiêng',
+      },
+      {
+        src: '/images/heritage/Bombo/TAN08194.jpg',
+        alt: 'Nghệ thuật cồng chiêng Sóc Bom Bo',
+        caption: 'Các thế hệ nghệ nhân S\'tiêng giữ gìn nhịp chiêng cồng truyền thống',
+      },
+      {
+        src: '/images/heritage/Bombo/TAN08196.jpg',
+        alt: 'Đồng bào S\'tiêng sóc Bom Bo',
+        caption: 'Giao lưu văn hóa cồng chiêng và sinh hoạt cộng đồng tại nhà dài',
+      },
+      {
+        src: '/images/heritage/Bombo/TAN08217.jpg',
+        alt: 'Cộng đồng S\'tiêng tại sóc Bom Bo',
+        caption: 'Các hoạt động biểu diễn nhạc cụ truyền thống của đồng bào',
+      },
+      {
+        src: '/images/heritage/Bombo/TAN08220.jpg',
+        alt: 'Nghệ nhân S\'tiêng truyền dạy cồng chiêng',
+        caption: 'Nghệ nhân lớn tuổi hướng dẫn thanh thiếu niên sóc Bom Bo thực hành nhạc cụ dân tộc',
       },
     ],
     coordinates: { lat: 11.7589, lng: 107.1812 },
@@ -503,7 +533,7 @@ Ngày nay, Khu bảo tồn văn hóa dân tộc Sóc Bom Bo đã được xây d
     quickFacts: [
       { label: 'Thời kỳ hoạt động', value: 'Chiến dịch kháng chiến (1965)', icon: 'mdi:calendar-star' },
       { label: 'Dân tộc chủ thể', value: 'Đồng bào S\'tiêng Bù Đăng', icon: 'mdi:account-group' },
-      { label: 'Vị trí hiện tại', value: 'Xã Bình Minh, Huyện Bù Đăng', icon: 'mdi:map-marker' },
+      { label: 'Vị trí hiện tại', value: 'Xã Bình Minh, Xã Bù Đăng', icon: 'mdi:map-marker' },
       { label: 'Đặc sản di sản', value: 'Văn hóa ẩm thực rượu cần, cơm lam', icon: 'mdi:food-variant' },
     ],
     timeline: [
@@ -527,7 +557,7 @@ Ngày nay, Khu bảo tồn văn hóa dân tộc Sóc Bom Bo đã được xây d
     relatedIds: ['hrt-003', 'hrt-001'],
     tags: ['sóc bom bo', 'giã gạo', 'S\'tiêng', 'kháng chiến', 'di tích lịch sử'],
     references: [
-      'Ủy ban nhân dân huyện Bù Đăng. Kỷ yếu di tích lịch sử Sóc Bom Bo.',
+      'Ủy ban nhân dân Xã Bù Đăng. Kỷ yếu di tích lịch sử Sóc Bom Bo.',
     ],
     featured: true,
     status: 'published',

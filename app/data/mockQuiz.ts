@@ -18,7 +18,7 @@ export const MOCK_QUIZZES: HeritageQuiz[] = [
           'Bù Đăng, Phú Riềng, Lộc Ninh',
         ],
         correctIndex: 0,
-        explanation: 'Chiến Khu Đ trải dài qua ba huyện Bù Đăng, Bù Đốp và Đồng Phú — tạo thành một vùng căn cứ liên hoàn có địa hình hiểm trở.',
+        explanation: 'Chiến Khu Đ trải dài qua ba Xã Bù Đăng, Bù Đốp và Đồng Phú — tạo thành một vùng căn cứ liên hoàn có địa hình hiểm trở.',
       },
       {
         id: 'q-001-2',
@@ -251,7 +251,7 @@ export const MOCK_QUIZZES: HeritageQuiz[] = [
         question: 'Thác Đứng nằm trên dòng suối suối nào?',
         options: ['Suối Đăk Wuar', 'Sông Bé', 'Suối Cam Ly', 'Suối Bom Bo'],
         correctIndex: 0,
-        explanation: 'Thác Đứng chắn ngang suối Đăk Wuar tại địa bàn xã Đoàn Kết, huyện Bù Đăng.',
+        explanation: 'Thác Đứng chắn ngang suối Đăk Wuar tại địa bàn xã Đoàn Kết, Xã Bù Đăng.',
       },
     ],
   },

@@ -18,7 +18,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <!-- Main story -->
         <div v-if="posts[0]" class="lg:col-span-7 reveal">
-          <NuxtLink :to="`/community`" class="group block">
+          <NuxtLink :to="`/explore`" class="group block">
             <div class="relative overflow-hidden rounded-3xl aspect-[16/10]">
               <img
                 :src="posts[0].coverImage"
@@ -62,7 +62,7 @@
           <NuxtLink
             v-for="post in posts.slice(1, 4)"
             :key="post.id"
-            to="/community"
+            to="/explore"
             class="group flex gap-4 p-4 rounded-2xl hover:bg-earth-50 transition-colors duration-200 reveal"
           >
             <div class="w-24 h-20 rounded-xl overflow-hidden flex-shrink-0">
@@ -87,7 +87,7 @@
           <!-- CTA -->
           <div class="pt-2">
             <NuxtLink
-              to="/community"
+              to="/explore"
               class="flex items-center justify-center gap-2 py-4 border border-earth-200 rounded-2xl text-earth-600 font-medium text-sm hover:bg-earth-50 hover:border-earth-300 transition-all duration-300"
             >
               <Icon name="mdi:account-group-outline" class="w-4 h-4" />

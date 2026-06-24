@@ -12,7 +12,7 @@
         <h1 class="font-heading font-bold text-ivory text-4xl md:text-5xl lg:text-6xl leading-none mb-5">
           Thư Viện<br/> <span class="text-gradient-gold">Di Sản Bù Đăng</span>
         </h1>
-        <p class="text-charcoal-350 text-base max-w-2xl leading-relaxed">
+        <p class="text-charcoal-300 text-base max-w-2xl leading-relaxed">
           Toàn bộ kho tàng số hóa — từ hồ sơ di tích lịch sử oai hùng, danh thắng sinh thái đến những ký ức sống động do chính đồng bào Bù Đăng cùng gìn giữ và đóng góp.
         </p>
 
@@ -29,7 +29,7 @@
               type="text"
               placeholder="Nhập tên di sản, kỷ nguyên, thẻ từ khóa..."
               :style="{ paddingLeft: searchQuery ? '1rem' : '3rem', paddingRight: searchQuery ? '2.5rem' : '1rem', paddingTop: '1rem', paddingBottom: '1rem' }"
-              class="w-full bg-charcoal-950 border border-charcoal-800 rounded-2xl text-ivory text-base placeholder-charcoal-550 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/20 transition-all duration-300"
+              class="w-full bg-charcoal-950 border border-charcoal-800 rounded-2xl text-ivory text-base placeholder-charcoal-500 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/20 transition-all duration-300"
             />
             <button
               v-if="searchQuery"

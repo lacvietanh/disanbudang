@@ -20,20 +20,7 @@
             Dự án bảo tồn và phát huy di sản văn hóa – lịch sử Xã Bù Đăng Thành Phố Đồng Nai (Tỉnh Bình Phước cũ).
             Nơi lưu giữ ký ức cộng đồng cho thế hệ hôm nay và mai sau.
           </p>
-          <!-- Social -->
-          <div class="flex items-center gap-3">
-            <a
-              v-for="social in socials"
-              :key="social.name"
-              :href="social.url"
-              target="_blank"
-              rel="noopener noreferrer"
-              :aria-label="social.name"
-              class="w-9 h-9 rounded-lg bg-charcoal-800 flex items-center justify-center text-charcoal-400 hover:bg-gold-500 hover:text-charcoal-900 transition-all duration-300"
-            >
-              <Icon :name="social.icon" class="w-4 h-4" />
-            </a>
-          </div>
+
         </div>
 
         <!-- Navigation Columns -->
@@ -66,16 +53,7 @@
             </p>
           </div>
 
-          <!-- Mini QR -->
-          <div class="flex items-center gap-3 pt-2">
-            <div class="w-14 h-14 bg-ivory rounded-lg flex items-center justify-center">
-              <Icon name="mdi:qrcode" class="w-10 h-10 text-charcoal-800" />
-            </div>
-            <div class="text-xs text-charcoal-400">
-              <p class="text-charcoal-300 font-medium mb-0.5">Quét QR</p>
-              <p>Truy cập nhanh<br/>trên thiết bị di động</p>
-            </div>
-          </div>
+
         </div>
       </div>
 
@@ -95,30 +73,23 @@
 <script setup lang="ts">
 const currentYear = new Date().getFullYear()
 
-const socials: Array<{ name: string; icon: string; url: string }> = [
-  // Social links sẽ được cập nhật khi có trang chính thức
-  // { name: 'Facebook', icon: 'mdi:facebook', url: 'https://facebook.com/disanbudang' },
-]
-
 const footerLinks = [
   {
-    title: 'Di Sản & Du Lịch',
+    title: 'Khám Phá',
     links: [
       { to: '/map', label: 'Bản Đồ Tương Tác' },
       { to: '/library', label: 'Thư Viện Di Sản' },
-      { to: '/tourism', label: 'Dịch Vụ Lưu Trú & Ẩm Thực' },
+      { to: '/explore', label: 'Trải Nghiệm & Cộng Đồng' },
       { to: '/heritage/chien-khu-d-bu-dang', label: 'Chiến Khu Đ' },
       { to: '/heritage/thac-mo-bu-dang', label: 'Thác Mơ' },
     ],
   },
   {
-    title: 'Tham Gia & Đầu Tư',
+    title: 'Thông Tin & Đối Tác',
     links: [
-      { to: '/invest', label: 'Cơ Hội Đầu Tư' },
-      { to: '/community', label: 'Di Sản Trong Tôi' },
-      { to: '/quiz', label: 'Quiz Khám Phá' },
-      { to: '/school', label: 'Góc Học Tập' },
+      { to: '/about', label: 'Về Di Sản Bù Đăng' },
       { to: '/news', label: 'Tin Tức & Sự Kiện' },
+      { to: '/invest', label: 'Cơ Hội Đầu Tư' },
     ],
   },
 ]

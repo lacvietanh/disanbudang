@@ -144,97 +144,125 @@ Với người M'nông, đây không chỉ là thành quả lao động — đâ
 export const MOCK_NEWS: NewsArticle[] = [
   {
     id: 'news-001',
-    slug: 'festival-di-san-bu-dang-2025',
-    title: 'Festival Di Sản Bù Đăng 2025: "Đại Ngàn Thức Giấc"',
-    subtitle: 'Sự kiện văn hóa lớn nhất huyện Bù Đăng trong năm',
-    excerpt: 'Festival Di Sản Bù Đăng 2025 với chủ đề "Đại Ngàn Thức Giấc" đã quy tụ hàng chục nghệ nhân, cộng đồng dân tộc và du khách trong suốt 3 ngày trải nghiệm văn hóa đặc sắc.',
-    content: `Festival Di Sản Bù Đăng 2025 với chủ đề "Đại Ngàn Thức Giấc" đã chính thức khai mạc vào tháng 11 tại trung tâm huyện Bù Đăng. Đây là sự kiện quy mô lớn nhất trong năm nhằm kỷ niệm và giới thiệu các di sản văn hóa, lịch sử và thắng cảnh thiên nhiên của địa phương tới bạn bè cả nước.
+    slug: 'le-cong-bo-di-san-det-tho-cam-mnong',
+    title: 'Lễ Công Bố Di Sản Quốc Gia Nghề Dệt Thổ Cẩm Của Người M\'nông Bù Đăng',
+    subtitle: 'Nghề dệt truyền thống tại các xã Đồng Nai, Thọ Sơn, Phú Sơn, Đắk Nhau được vinh danh là Di sản văn hóa phi vật thể quốc gia',
+    excerpt: 'Tại Khu bảo tồn văn hóa dân tộc S\'tiêng sóc Bom Bo (Xã Bù Đăng), tỉnh Bình Phước đã trang trọng tổ chức Lễ công bố Quyết định ghi danh nghề dệt thổ cẩm của người M\'nông vào Danh mục Di sản văn hóa phi vật thể quốc gia.',
+    content: `Sự kiện công bố tại Khu bảo tồn văn hóa dân tộc S'tiêng sóc Bom Bo (Xã Bù Đăng) là một cột mốc lịch sử trong công tác bảo tồn bản sắc văn hóa dân tộc thiểu số tại Bình Phước. Bộ Văn hóa, Thể thao và Du lịch trước đó đã ban hành Quyết định số 1838/QĐ-BVHTTDL chính thức công nhận "Nghề thủ công truyền thống dệt thổ cẩm của người M'nông" tại xã Bù Gia Mập (huyện Bù Gia Mập) và các xã Đồng Nai, Thọ Sơn, Phú Sơn, Đắk Nhau (Xã Bù Đăng) là Di sản văn hóa phi vật thể quốc gia.
 
-Trong suốt 3 ngày diễn ra lễ hội, du khách đã được hòa mình vào không gian trải nghiệm văn hóa vô cùng độc đáo:
-- Đêm nhạc hội cồng chiêng S'tiêng bên lửa trại bập bùng với sự tham gia của các nghệ nhân cao tuổi.
-- Hội thi giã gạo truyền thống tái hiện không khí oai hùng của đêm giã gạo nuôi quân tại sóc Bom Bo năm xưa.
-- Không gian văn hóa ẩm thực: cơm lam suối, thịt nướng ống tre, rượu cần truyền thống.
+Buổi lễ có sự góp mặt của các cấp lãnh đạo tỉnh Bình Phước, Xã Bù Đăng cùng đông đảo nghệ nhân M'nông, S'tiêng trong trang phục thổ cẩm rực rỡ truyền thống. Đây không chỉ là nghi thức trao bằng công nhận đơn thuần mà còn là dịp để cộng đồng tôn vinh bàn tay khéo léo, óc sáng tạo nghệ thuật độc đáo của những người mẹ, người chị đã bền bỉ dệt nên những dải màu đại ngàn suốt nhiều thế hệ qua.
 
-Lễ hội thu hút hơn 8.000 lượt khách tham quan, góp phần thúc đẩy du lịch sinh thái bền vững cho huyện.`,
-    coverImage: '/images/heritage/van-hoa-phi-vat-the/cong-chieng-lg.webp',
+**Bản sắc kết tinh trong từng sợi chỉ**
+
+Đối với đồng bào M'nông Bù Đăng, thổ cẩm không đơn thuần là tấm vải may mặc thông thường. Đó là vật phẩm thiêng liêng gắn liền với đời sống tín ngưỡng và là thước đo sự thịnh vượng, sang trọng của mỗi gia đình. Thổ cẩm xuất hiện trong mọi nghi lễ quan trọng của đời người như lễ thổi tai cho trẻ sơ sinh, cưới hỏi, lễ mừng lúa mới, về nhà mới và lễ tiễn người quá cố.
+
+Quy trình dệt thổ cẩm đòi hỏi sự kiên nhẫn phi thường và tri thức bản địa tích lũy qua nhiều đời. Người phụ nữ M'nông phải tự tay trồng bông, kéo sợi, sử dụng các loại lá, rễ và vỏ cây rừng để nhuộm màu tự nhiên: màu đen lấy từ lá cây chàm, màu đỏ lấy từ vỏ cây Krông, màu vàng từ củ nghệ... Các hoa văn trên vải như hình thoi chéo (hạt lúa), răng cưa (dãy núi), hình con chim hay dòng suối đều là những mã hóa độc đáo về nhân sinh quan hòa hợp giữa con người và thiên nhiên.
+
+**Bài toán bảo tồn và hướng đi bền vững**
+
+Nghề dệt thổ cẩm của người M'nông đang phải đối mặt với nguy cơ mai một trước làn sóng hiện đại hóa khi giới trẻ không còn mặn mà học nghề và sợi tổng hợp công nghiệp dần thay thế sợi tự nhiên nhuộm thủ công. 
+
+Để giữ gìn di sản, UBND Xã Bù Đăng đã phối hợp với các ban ngành triển khai các hoạt động thiết thực: mở lớp truyền dạy dệt thổ cẩm cho thanh thiếu niên địa phương tại các xã Đồng Nai, Đắk Nhau; hỗ trợ kinh phí thu mua nguyên liệu cho nghệ nhân; đồng thời liên kết sản phẩm thổ cẩm với các tour du lịch sinh thái và văn hóa tại sóc Bom Bo và Trảng cỏ Bù Lạch nhằm tạo nguồn thu nhập ổn định cho bà con, đưa di sản sống lại bền vững trong đời sống hiện đại.`,
+    coverImage: '/images/heritage/Bombo/h.png',
     category: 'su-kien',
-    author: 'Ban Tổ Chức Festival',
-    publishedAt: '2025-11-05',
-    readTime: 5,
+    author: 'Báo Bình Phước',
+    publishedAt: '2023-05-19',
+    readTime: 6,
     featured: true,
-    tags: ['festival', 'sự kiện', 'văn hóa', '2025'],
+    tags: ['dệt thổ cẩm', 'M\'nông', 'di sản quốc gia', 'sóc Bom Bo', 'Bù Đăng'],
   },
   {
     id: 'news-002',
-    slug: 'cong-chieng-stieng-vao-truong-hoc',
-    title: 'Cồng Chiêng S\'tiêng Vào Trường Học: Dự Án Giáo Dục Di Sản',
-    subtitle: 'Học sinh 5 trường THCS tại Bù Đăng được học đánh cồng chiêng',
-    excerpt: 'Dự án đưa nghệ nhân cồng chiêng vào trường học đang được triển khai thí điểm tại 5 trường THCS trên địa bàn huyện Bù Đăng, mở ra hướng mới trong giáo dục di sản văn hóa.',
-    content: `Nhằm bảo tồn bản sắc văn hóa phi vật thể, Phòng Giáo dục và Đào tạo huyện Bù Đăng đã chính thức khởi động dự án đưa nghệ thuật trình diễn cồng chiêng S'tiêng vào chương trình giáo dục ngoại khóa tại 5 trường THCS điểm.
+    slug: 'ruou-can-stieng-di-san-quoc-gia',
+    title: 'Kỹ Thuật Chế Biến Rượu Cần Của Người S\'tiêng: Bí Quyết Từ Men Lá Rừng',
+    subtitle: 'Tìm hiểu tri thức dân gian độc đáo của di sản văn hóa phi vật thể quốc gia đầu tiên tại tỉnh Bình Phước',
+    excerpt: 'Rượu cần của người S\'tiêng (Đ\'rắp S\'lung) được vinh danh là Di sản văn hóa phi vật thể quốc gia nhờ quy trình chế biến men rượu từ các loại lá và vỏ cây rừng vô cùng công phu và độc đáo.',
+    content: `Theo Quyết định số 4597/QĐ-BVHTTDL của Bộ Văn hóa, Thể thao và Du lịch, "Tri thức dân gian, nghề thủ công truyền thống kỹ thuật chế biến rượu cần của người S'tiêng tỉnh Bình Phước" đã chính thức được ghi danh vào Danh mục Di sản văn hóa phi vật thể quốc gia. Đây là di sản văn hóa phi vật thể quốc gia đầu tiên của Bình Phước, khẳng định vị thế và giá trị văn hóa độc đáo của tri thức dân gian S'tiêng.
 
-Dự án có sự đồng hành của các già làng và nghệ nhân cồng chiêng ưu tú. Các em học sinh sẽ được học:
-- Cách cầm dùi, gõ và giữ nhịp chiêng theo đúng giai điệu cổ truyền.
-- Ý nghĩa lịch sử và tâm linh của bộ cồng chiêng trong đời sống người S'tiêng.
-- Kỹ năng diễn xướng xoang múa phụ họa.
+Rượu cần trong tiếng S'tiêng gọi là "Đ'rắp S'lung" hay "Rơ nơm Đ'rắp". Đây không chỉ là thức uống đơn thuần trong các dịp lễ tết mà còn là biểu tượng tinh thần đại diện cho lòng hiếu khách, văn hóa ứng xử cộng đồng và là nhịp cầu giao tiếp tâm linh giữa con người với các vị thần sông, thần núi, thần lúa.
 
-Đây là bước tiến quan trọng trong việc trao truyền di sản cho thế hệ trẻ.`,
-    coverImage: '/images/heritage/van-hoa-phi-vat-the/van-hoa-stieng-lg.webp',
-    category: 'hoat-dong',
-    author: 'Phòng GD&ĐT Bù Đăng',
-    publishedAt: '2025-08-20',
-    readTime: 4,
+**Bí quyết men lá độc nhất vô nhị**
+
+Điểm mấu chốt tạo nên chất lượng và hương vị đặc trưng của rượu cần S'tiêng nằm ở bánh men rượu được làm hoàn toàn từ nguyên liệu rừng tự nhiên. Người S'tiêng không dùng men hóa học hay men công nghiệp mà tự đi tìm vỏ cây krông, rễ cây rừng cùng một số loại lá bản địa đặc trưng. Việc nhận biết và phối trộn đúng tỷ lệ các loại thảo mộc rừng đòi hỏi người làm rượu phải có kinh nghiệm lâu năm và một sự am hiểu tường tận về hệ sinh thái đại ngàn.
+
+Vỏ và lá cây sau khi đem về được rửa sạch, giã nhỏ, phơi khô rồi trộn đều với bột gạo tẻ hoặc gạo nếp nương. Hỗn hợp này được nặn thành những bánh men tròn, ủ trong trấu ấm vài ngày cho đến khi lên men đều và dậy mùi thơm đặc trưng, sau đó tiếp tục phơi trên gác bếp để dùng dần. Nguyên liệu ủ rượu có thể là lúa, ngô, sắn hoặc bo bo. Tất cả được nấu chín, để nguội rồi trộn đều với bánh men rừng đã tán nhỏ, cho vào các ché (bình đất nung) bịt kín bằng lá chuối khô. Rượu được ủ ít nhất một tháng mới có thể dùng, ủ càng lâu thì nước rượu càng đậm đà, nồng nàn và ngọt giọng.
+
+**Nghi thức uống rượu và tính gắn kết cộng đồng**
+
+Uống rượu cần của người S'tiêng có những quy tắc rất trang trọng và thú vị. Khi tiếp khách quý, gia chủ sẽ đặt bình rượu cần ở vị trí trung tâm nhà dài hoặc cạnh cột nêu. Người uống dùng những chiếc cần (ống hút dài bằng trúc) cắm sâu vào đáy ché để hút dòng rượu nguyên chất. 
+
+Đặc biệt, để đảm bảo sự công bằng và bày tỏ tình cảm quý mến giữa chủ và khách, người S'tiêng sử dụng một cành cây nhỏ khía vạch (gọi là Kê Nhệt Pê) đặt ngang miệng ché để đo mực nước đổ thêm vào bình. Khách hút rượu đến đâu, chủ nhà sẽ rót thêm nước lã vào đến đó theo đúng vạch đo, thể hiện tấm lòng chân thành, công minh, chia ngọt sẻ bùi cùng nhau.
+
+Công tác bảo tồn di sản rượu cần S'tiêng hiện đang được chính quyền Xã Bù Đăng chú trọng bằng việc tổ chức các lớp tập huấn kỹ thuật làm men lá rừng cho thanh niên tại các buôn sóc xã Bình Minh, Bom Bo nhằm duy trì đúng hương vị truyền thống độc bản giữa nhịp sống hiện đại.`,
+    coverImage: '/images/heritage/Bombo/TAN08220.jpg',
+    category: 'nghien-cuu',
+    author: 'Sở VHTT&DL Bình Phước',
+    publishedAt: '2024-12-10',
+    readTime: 8,
     featured: true,
-    tags: ['giáo dục', 'cồng chiêng', 'trường học', 'di sản'],
+    tags: ['rượu cần', 'S\'tiêng', 'di sản phi vật thể', 'tri thức dân gian', 'văn hóa ẩm thực'],
   },
   {
     id: 'news-003',
-    slug: 'so-hoa-chi-tiet-chien-khu-d',
-    title: 'Khởi Động Số Hóa Chiến Khu Đ: Bảo Tàng Số Trực Tuyến',
-    subtitle: 'Dự án số hóa di tích với công nghệ 3D scanning',
-    excerpt: 'UBND huyện Bù Đăng phối hợp với các chuyên gia thực hiện dự án số hóa Chiến Khu Đ — lưu trữ vĩnh viễn ký ức lịch sử cho thế hệ hôm nay và mai sau.',
-    content: `Trong nỗ lực ứng dụng chuyển đổi số vào bảo tồn lịch sử, UBND huyện Bù Đăng đã khởi động dự án số hóa Khu di tích lịch sử Chiến Khu Đ.
+    slug: 'tieng-chay-gia-gao-soc-bom-bo',
+    title: 'Tiếng Chày Giã Gạo Nuôi Quân Sóc Bom Bo: Từ Lịch Sử Đến Điểm Hẹn Di Sản',
+    subtitle: 'Tìm hiểu huyền thoại cách mạng thời kháng chiến chống Mỹ và nỗ lực bảo tồn bản sắc văn hóa S\'tiêng tại Xã Bù Đăng',
+    excerpt: 'Hình ảnh nhịp chày giã gạo thâu đêm dưới ánh đuốc lồ ô của đồng bào S\'tiêng sóc Bom Bo năm xưa phục vụ chiến trường đã đi vào lịch sử oai hùng của dân tộc. Ngày nay, nhịp điệu ấy vẫn vang lên đầy tự hào tại Khu bảo tồn văn hóa.',
+    content: `Trong những năm tháng kháng chiến chống Mỹ cứu nước ác liệt (giai đoạn 1964 - 1965), phong trào đấu tranh cách mạng của quân và dân miền Nam đòi hỏi sự tiếp tế lương thực rất lớn, đặc biệt là chuẩn bị cho các chiến dịch quy mô lớn như chiến dịch Đồng Xoài. Hưởng ứng lời kêu gọi của cách mạng, đồng bào dân tộc S'tiêng tại sóc Bom Bo (nay thuộc xã Bình Minh, Xã Bù Đăng) đã có một quyết định lịch sử: đồng lòng giã gạo nuôi quân.
 
-Dự án sử dụng công nghệ quét 3D và chụp ảnh độ phân giải cao để dựng lại toàn bộ cấu trúc địa hình, hầm trú ẩn và các hiện vật lịch sử tại di tích.
+Vì ban ngày giặc càn quét bắn phá ác liệt, bà con trong sóc đã tập trung nổi lửa, đốt đuốc lồ ô giã gạo thâu đêm suốt sáng. Không phân biệt già trẻ trai gái, cả sóc Bom Bo vang lên tiếng chày đôi, chày ba nhịp nhàng nện xuống cối gỗ. Đồng bào sẵn sàng nhường cơm sẻ áo, đóng góp toàn bộ thóc, mì nương rẫy của gia đình mình để tiếp tế cho bộ đội chủ lực giải phóng miền Nam.
 
-Khi hoàn thành, du khách toàn thế giới có thể tham quan ảo 360 độ, xem chi tiết từng hiện vật và nghe thuyết minh lịch sử ngay trên trình duyệt web.`,
-    coverImage: '/images/heritage/danh-thang/rung-nguyen-sinh-lg.webp',
+**Bài ca đi cùng năm tháng**
+
+Hình ảnh đầy xúc động và khí thế cách mạng cuồn cuộn ấy của đồng bào S'tiêng đã trở thành nguồn cảm hứng vô tận để nhạc sĩ Xuân Hồng sáng tác nên ca khúc huyền thoại "Tiếng chày trên Sóc Bom Bo" vào năm 1965. Bài hát với giai điệu rộn ràng, vui tươi, khắc họa chân thực tinh thần kiên cường, yêu nước và tình nghĩa quân dân thắm thiết đã nhanh chóng lan tỏa khắp cả nước, đưa tên tuổi của sóc Bom Bo trở thành một biểu tượng oai hùng trong lòng người dân Việt Nam.
+
+**Khu bảo tồn văn hóa Bom Bo ngày nay**
+
+Sóc Bom Bo hôm nay đã được công nhận là Di tích lịch sử cấp quốc gia. Để giữ gìn và phát huy những giá trị lịch sử vô giá này, tỉnh Bình Phước đã xây dựng Khu bảo tồn văn hóa dân tộc S'tiêng sóc Bom Bo với quy mô rộng hơn 113 ha tại xã Bình Minh, Xã Bù Đăng.
+
+Nơi đây hiện lưu giữ và trưng bày hàng trăm hiện vật gốc quý báu của thời chiến đấu gian khổ như bộ cối chày gỗ giã gạo năm xưa, những chiếc gùi tre tải lương thực, các loại vũ khí tự chế và tư liệu chiến tranh. Đặc biệt, khu bảo tồn còn sở hữu bộ cồng chiêng bằng đồng lớn nhất Việt Nam và hai ngôi nhà dài truyền thống được phục dựng nguyên bản bằng tranh, tre, nứa. Du khách đến đây không chỉ để tham quan di tích lịch sử, mà còn được trực tiếp trải nghiệm hoạt động giã gạo chày tay dưới ánh lửa, thưởng thức hương vị cơm lam, rượu cần và hòa mình vào vũ điệu cồng chiêng trầm hùng cùng đồng bào địa phương.`,
+    coverImage: '/images/heritage/Bombo/TAN08183.jpg',
     category: 'tin-tuc',
-    author: 'Ban Quản lý Di tích',
-    publishedAt: '2025-06-10',
-    readTime: 6,
+    author: 'Khu Di tích Sóc Bom Bo',
+    publishedAt: '2025-05-15',
+    readTime: 7,
     featured: false,
-    tags: ['số hóa', 'chiến khu đ', 'công nghệ', '3D'],
+    tags: ['sóc bom bo', 'giã gạo nuôi quân', 'lịch sử', 'S\'tiêng', 'kháng chiến'],
   },
   {
     id: 'news-004',
-    slug: 'hoi-thao-bao-ton-nha-dai-stieng',
-    title: 'Hội Thảo Bảo Tồn Nhà Dài S\'tiêng: Kiến Trúc Không Được Lãng Quên',
-    subtitle: 'Chuyên gia và cộng đồng cùng tìm hướng bảo tồn nhà dài truyền thống',
-    excerpt: 'Hội thảo khoa học quy tụ hơn 50 chuyên gia kiến trúc, nhân học và đại diện cộng đồng để thảo luận về chiến lược bảo tồn nhà dài S\'tiêng.',
-    content: `Tại Khu bảo tồn văn hóa dân tộc Sóc Bom Bo đã diễn ra hội thảo khoa học "Bảo tồn nhà dài truyền thống của người S'tiêng Bù Đăng trong đời sống hiện đại".
+    slug: 'trang-co-bu-lach-ky-quan-thien-nhien',
+    title: 'Trảng Cỏ Bù Lạch: Thảo Nguyên Xanh Giữa Lòng Đại Ngàn Bù Đăng',
+    subtitle: 'Khám phá quần thể gần 500 ha trảng cỏ tự nhiên bao quanh hồ nước ngọt hoang sơ và bài toán phát triển du lịch sinh thái bền vững',
+    excerpt: 'Nằm ẩn mình giữa những cánh rừng già nguyên sinh bạt ngàn của Xã Bù Đăng, Trảng cỏ Bù Lạch hiện lên như một bức tranh sơn thủy hữu tình độc nhất vô nhị với thảm cỏ xanh mướt tự nhiên chạy quanh lòng hồ mát rượi.',
+    content: `Trảng cỏ Bù Lạch (hay còn gọi là trảng cỏ Bàu Lạch) tọa lạc tại xã Đồng Nai, Xã Bù Đăng, tỉnh Bình Phước là một danh thắng thiên nhiên kỳ thú bậc nhất của vùng đất Đông Nam Bộ. Khác biệt hoàn toàn với những cánh rừng già rậm rạp xung quanh, nơi đây mở ra một không gian thảo nguyên xanh mướt, rộng bao la với quần thể gồm khoảng 20 trảng cỏ lớn nhỏ khác nhau, trải rộng trên tổng diện tích gần 500 ha.
 
-Hội thảo quy tụ hơn 50 nhà nghiên cứu kiến trúc, nhân học cùng đông đảo già làng đại diện các buôn sóc. Các đại biểu đã thảo luận về:
-- Thực trạng suy giảm nhà dài do đô thị hóa.
-- Giải pháp vật liệu thay thế bền vững giữ nguyên hồn cốt kiến trúc.
-- Hướng gắn bảo tồn nhà dài với phát triển du lịch homestay cộng đồng.
+Điểm nhấn đắt giá nhất của trảng cỏ Bù Lạch là hồ nước ngọt tự nhiên trong vắt nằm ngay trung tâm trảng cỏ. Sự kết hợp hài hòa giữa thảm cỏ kim mịn màng mọc tự nhiên, mặt hồ phẳng lặng lộng gió và bức tường thành rừng nguyên sinh bạt ngàn bao bọc xung quanh tạo nên một bức tranh thiên nhiên tuyệt mỹ, mang lại cảm giác bình yên, hoang sơ hiếm có cho bất kỳ ai đặt chân đến.
 
-Hội thảo thông qua bản khuyến nghị cấp kinh phí khẩn cấp tu bổ 3 ngôi nhà dài cổ tiêu biểu.`,
-    coverImage: '/images/heritage/doi-song-cong-dong/nha-dai-lg.webp',
-    category: 'nghien-cuu',
-    author: 'Viện Khoa học Xã hội Nam Bộ',
-    publishedAt: '2025-04-05',
-    readTime: 7,
+**Huyền thoại hồ nước trong tâm thức người bản địa**
+
+Khu vực xung quanh trảng cỏ Bù Lạch từ bao đời nay là địa bàn sinh sống lâu đời của các cộng đồng dân tộc M'nông, S'tiêng, Mạ. Người dân bản địa lưu truyền nhiều truyền thuyết linh thiêng về hồ nước Bàu Lạch. Họ tin rằng hồ nước là "mắt trời" soi bóng vạn vật, cung cấp sinh khí và nguồn nước mát vô tận nuôi dưỡng buôn làng giữa đại ngàn. Nơi đây cũng thường diễn ra các hoạt động kết bạn, giao lưu văn hóa cồng chiêng truyền thống của bà con các buôn làng vào mỗi dịp lễ hội.
+
+**Hướng đi cho du lịch sinh thái bền vững**
+
+Nhờ vẻ đẹp hoang sơ tự nhiên, Trảng cỏ Bù Lạch là địa điểm dã ngoại, cắm trại và chụp ảnh yêu thích của du khách trong và ngoài tỉnh Bình Phước. Tuy nhiên, hoạt động du lịch tại đây hiện tại hầu hết vẫn ở dạng tự phát, chưa có hạ tầng dịch vụ lưu trú chuyên nghiệp.
+
+Vấn đề bảo vệ cảnh quan tự nhiên đang là thách thức lớn nhất tại danh thắng này. Do lượng khách cắm trại tự phát tăng cao, tình trạng xả rác bừa bãi sau mỗi buổi picnic đã gây ảnh hưởng tiêu cực đến môi trường sinh thái của trảng cỏ. Phòng Văn hóa - Thông tin Xã Bù Đăng cùng đoàn thanh niên địa phương đang đẩy mạnh các chiến dịch truyền thông "Du lịch xanh - Không để lại rác", hướng dẫn du khách nâng cao ý thức bảo vệ môi trường, mang rác thải về nơi quy định và tiến tới quy hoạch trảng cỏ thành khu du lịch sinh thái bền vững, giữ trọn vẹn vẻ đẹp nguyên sơ của thảo nguyên xanh Bù Đăng.`,
+    coverImage: '/images/heritage/danh-thang/bu-lach-lg.webp',
+    category: 'hoat-dong',
+    author: 'Phòng Văn hóa - Thông tin Bù Đăng',
+    publishedAt: '2025-06-02',
+    readTime: 5,
     featured: false,
-    tags: ['hội thảo', 'nhà dài', 'S\'tiêng', 'bảo tồn', 'kiến trúc'],
+    tags: ['trảng cỏ bù lạch', 'cắm trại', 'du lịch sinh thái', 'bảo tồn thiên nhiên', 'Bù Đăng'],
   },
 ]
-
 export const MOCK_EVENTS: Event[] = [
   {
     id: 'event-001',
     title: 'Festival Di Sản Bù Đăng 2026',
     description: 'Ba ngày hội tụ di sản — trải nghiệm văn hóa, âm nhạc và ẩm thực truyền thống S\'tiêng, M\'nông.',
-    location: 'Trung tâm Văn hóa Huyện Bù Đăng',
+    location: 'Trung tâm Văn hóa Xã Bù Đăng',
     startDate: '2026-11-01',
     endDate: '2026-11-03',
     type: 'su-kien',

@@ -42,7 +42,7 @@
               <Icon name="mdi:upload" class="w-5 h-5" />
               Đóng Góp Tư Liệu
             </NuxtLink>
-            <NuxtLink to="/community" class="btn-ghost text-base px-8 py-4">
+            <NuxtLink to="/explore" class="btn-ghost text-base px-8 py-4">
               <Icon name="mdi:account-group-outline" class="w-5 h-5" />
               Xem Cộng Đồng
             </NuxtLink>

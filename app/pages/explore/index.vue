@@ -4,12 +4,12 @@
     <div class="bg-dark-earth border-b border-charcoal-850 py-20 relative overflow-hidden">
       <div class="absolute inset-0 bg-noise opacity-30 pointer-events-none" />
       <div class="container-heritage relative z-10">
-        <span class="section-label text-gold-400">Di Sản Trong Tôi</span>
+        <span class="section-label text-gold-400">Trải Nghiệm & Cộng Đồng</span>
         <h1 class="font-heading font-bold text-ivory text-5xl lg:text-6xl leading-none mb-5">
-          Ký Ức<br/><span class="text-gradient-gold">Cộng Đồng Bù Đăng</span>
+          Khám Phá &<br/><span class="text-gradient-gold">Giao Lưu Di Sản</span>
         </h1>
         <p class="text-charcoal-350 text-base max-w-2xl leading-relaxed">
-          Nơi gìn giữ những câu chuyện vụn vặt, ký ức chân thực, những bức tranh vẽ hay ảnh tư liệu quý báu về đất và người Bù Đăng — được đóng góp bởi chính đồng bào địa phương và các thế hệ học sinh.
+          Không gian tương tác, học hỏi và đóng góp. Nơi gìn giữ những câu chuyện vụn vặt, ký ức chân thực, những bức tranh vẽ hay ảnh tư liệu quý báu về đất và người Bù Đăng — được đóng góp bởi chính đồng bào địa phương và các thế hệ học sinh.
         </p>
       </div>
     </div>
@@ -34,7 +34,7 @@
       <!-- Featured post - large cinematic card -->
       <div v-if="featuredPost && activeTab === 'all'" class="mb-14 reveal">
         <NuxtLink
-          :to="`/community/${featuredPost.id}`"
+          :to="`/explore/${featuredPost.id}`"
           class="block group relative overflow-hidden rounded-3xl border border-charcoal-850 aspect-[21/8] min-h-[340px]"
         >
           <img :src="featuredPost.coverImage" :alt="featuredPost.title" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[8000ms] ease-out-expo group-hover:scale-105" />
@@ -72,7 +72,7 @@
         <NuxtLink
           v-for="(post, i) in filteredPosts"
           :key="post.id"
-          :to="`/community/${post.id}`"
+          :to="`/explore/${post.id}`"
           class="bg-charcoal-950/40 rounded-2xl overflow-hidden shadow-xl border border-charcoal-850 hover:border-gold-500/30 transition-all duration-500 group cursor-pointer reveal flex flex-col justify-between"
           :style="{ animationDelay: `${i * 0.05}s` }"
         >
@@ -144,8 +144,8 @@ import type { PostType } from '~/types'
 
 definePageMeta({ layout: 'default' })
 useSeoMeta({
-  title: 'Ký Ức Cộng Đồng — Di Sản Bù Đăng',
-  description: 'Nơi lưu giữ các tác phẩm tranh vẽ, ghi chép ký ức chân thực và tư liệu quý báu về di sản do người dân Bù Đăng cùng đóng góp.',
+  title: 'Trải Nghiệm & Cộng Đồng — Di Sản Bù Đăng',
+  description: 'Không gian học hỏi, tương tác và lưu giữ các tác phẩm tranh vẽ, ghi chép ký ức chân thực về di sản do người dân Bù Đăng cùng đóng góp.',
 })
 
 const { observeAll } = useScrollReveal()

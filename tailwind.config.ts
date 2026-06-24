@@ -111,6 +111,7 @@ export default {
         accent: ['"Cormorant Garamond"', 'Georgia', 'serif'],
       },
       fontSize: {
+        '3xs': ['0.5rem', { lineHeight: '0.75rem' }],
         '2xs': ['0.625rem', { lineHeight: '1rem' }],
         xs: ['0.75rem', { lineHeight: '1.1rem' }],
         sm: ['0.875rem', { lineHeight: '1.35rem' }],
@@ -206,6 +207,7 @@ export default {
         'slide-in-right': 'slideInRight 0.7s cubic-bezier(0.19, 1, 0.22, 1) forwards',
         'scale-in': 'scaleIn 0.5s cubic-bezier(0.19, 1, 0.22, 1) forwards',
         'pulse-gold': 'pulseGold 2s ease-in-out infinite',
+        'animate-pulse-gold': 'pulseGold 2s ease-in-out infinite',
         'float': 'float 6s ease-in-out infinite',
         'shimmer': 'shimmer 2s linear infinite',
         'spin-slow': 'spin 8s linear infinite',

@@ -35,7 +35,7 @@
               class="transition-all duration-300 ease-in-out"
               :style="{ maxHeight: openIndex === index ? '300px' : '0px' }"
             >
-              <div class="p-6 pt-0 text-charcoal-300 text-sm leading-relaxed border-t border-charcoal-800/40">
+              <div class="p-6 pt-0 text-charcoal-200 text-sm leading-relaxed border-t border-charcoal-800/40">
                 {{ faq.answer }}
               </div>
             </div>
@@ -51,7 +51,7 @@ const openIndex = ref<number | null>(null)
 
 const faqs = [
   {
-    question: "Di sản nổi bật nhất của huyện Bù Đăng gồm những gì?",
+    question: "Di sản nổi bật nhất của Xã Bù Đăng gồm những gì?",
     answer: "Bù Đăng nổi tiếng với các di tích lịch sử và danh thắng thiên nhiên kỳ vĩ như Chiến khu Đ Bù Đăng, Thác Mơ, sóc Bom Bo lịch sử gắn liền với bài ca 'Tiếng chày trên sóc Bom Bo', cùng không gian văn hóa cồng chiêng và dệt thổ cẩm độc đáo của đồng bào S'tiêng."
   },
   {
@@ -60,11 +60,11 @@ const faqs = [
   },
   {
     question: "Sóc Bom Bo lịch sử nằm ở đâu và có thể tham quan như thế nào?",
-    answer: "Sóc Bom Bo thuộc xã Bình Minh, huyện Bù Đăng, tỉnh Bình Phước. Đây là địa danh lịch sử anh hùng nơi đồng bào S'tiêng ngày đêm giã gạo nuôi quân kháng chiến. Ngày nay, du khách có thể đến tham quan Khu bảo tồn văn hóa dân tộc S'tiêng sóc Bom Bo để trực tiếp trải nghiệm giã gạo, nghe cồng chiêng và thưởng thức rượu cần."
+    answer: "Sóc Bom Bo thuộc Xã Bù Đăng, Thành Phố Đồng Nai. Đây là địa danh lịch sử anh hùng nơi đồng bào S'tiêng ngày đêm giã gạo nuôi quân kháng chiến. Ngày nay, du khách có thể đến tham quan Khu bảo tồn văn hóa dân tộc S'tiêng sóc Bom Bo để trực tiếp trải nghiệm giã gạo, nghe cồng chiêng và thưởng thức rượu cần."
   },
   {
     question: "Cổng thông tin Di sản Bù Đăng do ai thực hiện?",
-    answer: "Cổng thông tin Di sản Bù Đăng (disanbudang.com) là dự án bảo tồn di sản số do nhà thiết kế và phát triển Nguyễn Xuân Kiệt thực hiện nhằm số hóa, quảng bá các giá trị lịch sử, văn hóa và thiên nhiên của huyện Bù Đăng đến với độc giả toàn quốc."
+    answer: "Cổng thông tin Di sản Bù Đăng (disanbudang.com) là dự án bảo tồn di sản số do nhà thiết kế và phát triển Nguyễn Xuân Kiệt thực hiện nhằm số hóa, quảng bá các giá trị lịch sử, văn hóa và thiên nhiên của Xã Bù Đăng đến với độc giả toàn quốc."
   }
 ]
 

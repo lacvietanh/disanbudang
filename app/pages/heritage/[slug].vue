@@ -91,14 +91,17 @@
           <!-- Main story column -->
           <div class="lg:col-span-8 space-y-16">
 
-            <!-- Section: Story -->
             <div id="story" class="reveal scroll-mt-28">
               <div class="flex items-center gap-3 mb-6">
                 <span class="w-1.5 h-6 bg-gold-500 rounded-full inline-block" />
                 <h2 class="font-heading font-bold text-ivory text-2xl lg:text-3xl">Cội Nguồn Di Sản</h2>
               </div>
-              <div class="prose-heritage drop-cap whitespace-pre-line text-charcoal-300">
-                {{ heritage.longStory }}
+              <div class="prose-heritage space-y-5">
+                <p
+                  v-for="(paragraph, idx) in storyParagraphs"
+                  :key="idx"
+                  :class="idx === 0 ? 'drop-cap text-charcoal-300 text-base leading-relaxed' : 'text-charcoal-300 text-base leading-relaxed'"
+                >{{ paragraph }}</p>
               </div>
             </div>
 
@@ -264,6 +267,10 @@ const currentActiveTab = ref('story')
 const heritage = computed(() => store.getBySlug(slug.value) ?? null)
 const related = computed(() => heritage.value ? store.getRelated(heritage.value) : [])
 const relatedQuiz = computed(() => heritage.value ? quizStore.getQuizByHeritageId(heritage.value.id) : null)
+const storyParagraphs = computed(() => {
+  if (!heritage.value?.longStory) return []
+  return heritage.value.longStory.split('\n\n').map((p) => p.trim()).filter(Boolean)
+})
 
 const activeTabsList = computed(() => {
   const tabs = [{ id: 'story', name: 'Cội nguồn' }]
@@ -332,7 +339,7 @@ function playAudio() {
 function startQuiz() {
   if (relatedQuiz.value) {
     quizStore.startQuiz(relatedQuiz.value)
-    navigateTo('/quiz')
+    navigateTo('/explore')
   }
 }
 

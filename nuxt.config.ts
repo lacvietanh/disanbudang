@@ -68,7 +68,7 @@ export default defineNuxtConfig({
         {
           name: 'description',
           content:
-            'Khám phá di sản văn hóa, lịch sử và thiên nhiên huyện Bù Đăng qua không gian số hiện đại — hành trình trải nghiệm sống động dành cho mọi thế hệ.',
+            'Khám phá di sản văn hóa, lịch sử và thiên nhiên Xã Bù Đăng qua không gian số hiện đại — hành trình trải nghiệm sống động dành cho mọi thế hệ.',
         },
         { name: 'theme-color', content: '#e18c1b' },
         { property: 'og:type', content: 'website' },

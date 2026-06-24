@@ -3,7 +3,7 @@
     <div class="text-center">
       <Icon name="mdi:alert-circle-outline" class="w-16 h-16 text-gold-500 mx-auto mb-4" />
       <h2 class="font-heading font-bold text-2xl mb-4">Không tìm thấy câu chuyện</h2>
-      <NuxtLink to="/community" class="btn-primary inline-flex">Quay lại Cộng Đồng</NuxtLink>
+      <NuxtLink to="/explore" class="btn-primary inline-flex">Quay lại Trải Nghiệm</NuxtLink>
     </div>
   </div>
 
@@ -22,7 +22,7 @@
         <nav class="flex items-center gap-2 text-xs text-charcoal-400 mb-6">
           <NuxtLink to="/" class="hover:text-gold-400 transition-colors">Trang Chủ</NuxtLink>
           <Icon name="mdi:chevron-right" class="w-3.5 h-3.5" />
-          <NuxtLink to="/community" class="hover:text-gold-400 transition-colors">Cộng Đồng</NuxtLink>
+          <NuxtLink to="/explore" class="hover:text-gold-400 transition-colors">Trải Nghiệm</NuxtLink>
           <Icon name="mdi:chevron-right" class="w-3.5 h-3.5 text-charcoal-550" />
           <span class="text-ivory/60 truncate max-w-[200px] sm:max-w-xs">{{ post.title }}</span>
         </nav>
@@ -103,7 +103,7 @@
 
           <!-- Quick link back to Community -->
           <NuxtLink
-            to="/community"
+            to="/explore"
             class="flex items-center justify-center gap-2 w-full py-3.5 border border-charcoal-800 rounded-2xl text-xs font-semibold uppercase tracking-wider text-charcoal-400 hover:text-ivory hover:border-gold-500/50 transition-all duration-300"
           >
             <Icon name="mdi:arrow-left" class="w-4 h-4" />
@@ -173,7 +173,7 @@
           <div v-if="prevPost || nextPost" class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <NuxtLink
               v-if="prevPost"
-              :to="`/community/${prevPost.id}`"
+              :to="`/explore/${prevPost.id}`"
               class="group flex items-center gap-3 bg-charcoal-950/30 border border-charcoal-850 rounded-2xl p-5 hover:border-gold-500/30 transition-all duration-500 text-left"
             >
               <Icon name="mdi:arrow-left" class="w-5 h-5 text-gold-400 shrink-0" />
@@ -184,7 +184,7 @@
             </NuxtLink>
             <NuxtLink
               v-if="nextPost"
-              :to="`/community/${nextPost.id}`"
+              :to="`/explore/${nextPost.id}`"
               class="group flex items-center gap-3 bg-charcoal-950/30 border border-charcoal-850 rounded-2xl p-5 hover:border-gold-500/30 transition-all duration-500 text-right sm:col-start-2"
             >
               <div class="min-w-0 flex-1">
@@ -291,7 +291,7 @@ function likePost() {
 
 async function sharePost() {
   if (!post.value) return
-  const url = `${window.location.origin}/community/${post.value.id}`
+  const url = `${window.location.origin}/explore/${post.value.id}`
   if (navigator.share) {
     await navigator.share({
       title: post.value.title,
@@ -312,7 +312,7 @@ async function sharePost() {
 }
 
 function searchTag(tag: string) {
-  router.push({ path: '/community', query: { tag } })
+  router.push({ path: '/explore', query: { tag } })
 }
 
 useSeoMeta({

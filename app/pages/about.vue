@@ -32,7 +32,7 @@
         <div class="text-center max-w-3xl mx-auto mb-16 reveal">
           <span class="eyebrow text-brick-500">THỰC TRẠNG</span>
           <h2 class="font-heading font-bold text-4xl lg:text-5xl mb-6">Tại sao chúng tôi bắt đầu?</h2>
-          <p class="text-charcoal-350 text-lg leading-relaxed">
+          <p class="text-charcoal-300 text-lg leading-relaxed">
             Trong kỷ nguyên số, chúng ta đối mặt với nguy cơ đánh mất bản sắc địa phương trước áp lực của đô thị hóa và sự thay đổi thế hệ.
           </p>
         </div>
@@ -129,7 +129,7 @@
         <div class="text-center max-w-3xl mx-auto mb-20 reveal">
           <span class="eyebrow text-gold-400">HIỆN TRẠNG</span>
           <h2 class="font-heading font-bold text-4xl lg:text-5xl mb-6">Kết Quả Đạt Được</h2>
-          <p class="text-charcoal-350 text-lg">Những con số biết nói chứng minh tính khả thi và tác động thực tiễn của dự án chỉ sau thời gian ngắn triển khai.</p>
+          <p class="text-charcoal-300 text-lg">Những con số biết nói chứng minh tính khả thi và tác động thực tiễn của dự án chỉ sau thời gian ngắn triển khai.</p>
         </div>
 
         <!-- Stats Grid -->
@@ -165,7 +165,7 @@
         <div class="text-center max-w-3xl mx-auto mb-20 reveal">
           <span class="eyebrow text-gold-400">TẦM NHÌN</span>
           <h2 class="font-heading font-bold text-4xl lg:text-5xl mb-6">Định Hướng Mở Rộng</h2>
-          <p class="text-charcoal-350 text-lg">Dự án không dừng lại ở ranh giới Bù Đăng, chúng tôi có tham vọng mở rộng và áp dụng công nghệ sâu hơn.</p>
+          <p class="text-charcoal-300 text-lg">Dự án không dừng lại ở ranh giới Bù Đăng, chúng tôi có tham vọng mở rộng và áp dụng công nghệ sâu hơn.</p>
         </div>
 
         <div class="max-w-4xl mx-auto relative reveal">
@@ -195,7 +195,7 @@
 
 <script setup lang="ts">
 definePageMeta({ layout: 'default' })
-useSeoMeta({ title: 'Pitch Deck — Di Sản Bù Đăng', description: 'Bài trình bày dự án số hoá Di Sản Bù Đăng phục vụ cuộc thi.' })
+useSeoMeta({ title: 'Giới Thiệu Dự Án — Di Sản Bù Đăng', description: 'Di Sản Bù Đăng là dự án bảo tàng số cộng đồng, số hóa và bảo tồn di sản văn hóa, lịch sử, thiên nhiên của vùng đất Bù Đăng cho thế hệ hôm nay và mai sau.' })
 
 const { observeAll } = useScrollReveal()
 onMounted(() => nextTick(() => observeAll()))

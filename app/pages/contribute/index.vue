@@ -215,7 +215,7 @@
                   <Icon name="mdi:check-circle" class="w-6 h-6 text-green-500 shrink-0 animate-bounce" />
                   <div>
                     <p class="text-green-400 font-semibold text-sm">Gửi hiến tặng thành công!</p>
-                    <p class="text-green-500/80 text-xs mt-0.5">Hồ sơ của bạn đã được chuyển tới Ban Quản lý Di tích Huyện Bù Đăng kiểm duyệt.</p>
+                    <p class="text-green-500/80 text-xs mt-0.5">Hồ sơ của bạn đã được chuyển tới Ban Quản lý Di tích Xã Bù Đăng kiểm duyệt.</p>
                   </div>
                 </div>
               </Transition>

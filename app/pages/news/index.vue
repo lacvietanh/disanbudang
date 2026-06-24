@@ -136,8 +136,8 @@ useHead({
         name: event.location,
         address: {
           '@type': 'PostalAddress',
-          addressLocality: 'Huyện Bù Đăng',
-          addressRegion: 'Xã Bù Đăng Thành Phố Đồng Nai (Bình Phước Cũ)',
+          addressLocality: 'Xã Bù Đăng',
+          addressRegion: 'Thành Phố Đồng Nai (Bình Phước cũ)',
           addressCountry: 'VN'
         }
       }

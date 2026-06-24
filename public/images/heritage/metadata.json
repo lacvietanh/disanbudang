@@ -4,7 +4,7 @@
       "id": "img-bu-lach",
       "title": "Trảng cỏ Bù Lạch",
       "source": "https://vietnamtourism.vn/tin-tuc/trang-co-bu-lach-binh-phuoc",
-      "location": "Xã Đồng Nai, Huyện Bù Đăng, Bình Phước",
+      "location": "Xã Đồng Nai, Xã Bù Đăng, Bình Phước",
       "category": "danh-thang",
       "alt": {
         "vi": "Cánh đồng cỏ xanh mướt trải dài của Trảng cỏ Bù Lạch bên cạnh hồ nước tự nhiên hùng vĩ.",
@@ -25,7 +25,7 @@
       "id": "img-soc-bom-bo",
       "title": "Sóc Bom Bo",
       "source": "https://binhphuoc.gov.vn/di-tich-lich-su-soc-bom-bo",
-      "location": "Xã Bình Minh, Huyện Bù Đăng, Bình Phước",
+      "location": "Xã Bình Minh, Xã Bù Đăng, Bình Phước",
       "category": "lich-su",
       "alt": {
         "vi": "Khu bảo tồn văn hóa Sóc Bom Bo với chày cối giã gạo truyền thống của đồng bào S’tiêng.",
@@ -46,7 +46,7 @@
       "id": "img-van-hoa-stieng",
       "title": "Văn hóa người S’tiêng Bù Đăng",
       "source": "https://binhphuoc.gov.vn/van-hoa-dan-toc-stieng",
-      "location": "Huyện Bù Đăng, Bình Phước",
+      "location": "Xã Bù Đăng, Bình Phước",
       "category": "van-hoa-phi-vat-the",
       "alt": {
         "vi": "Đồng bào dân tộc S’tiêng mặc trang phục thổ cẩm truyền thống trong ngày hội địa phương.",
@@ -67,7 +67,7 @@
       "id": "img-nha-dai",
       "title": "Nhà dài truyền thống S’tiêng",
       "source": "https://binhphuoc.gov.vn/nha-dai-stieng-binh-phuoc",
-      "location": "Sóc Bom Bo, Huyện Bù Đăng, Bình Phước",
+      "location": "Sóc Bom Bo, Xã Bù Đăng, Bình Phước",
       "category": "doi-song-cong-dong",
       "alt": {
         "vi": "Ngôi nhà dài truyền thống của người S’tiêng được làm từ tranh, tre, nứa lá.",
@@ -88,7 +88,7 @@
       "id": "img-cong-chieng",
       "title": "Nghệ thuật Cồng chiêng Bù Đăng",
       "source": "https://binhphuoc.gov.vn/di-san-cong-chieng-stieng",
-      "location": "Huyện Bù Đăng, Bình Phước",
+      "location": "Xã Bù Đăng, Bình Phước",
       "category": "van-hoa-phi-vat-the",
       "alt": {
         "vi": "Nghệ nhân S’tiêng biểu diễn cồng chiêng trong không gian văn hóa bản địa.",
@@ -109,7 +109,7 @@
       "id": "img-rung-nguyen-sinh",
       "title": "Rừng nguyên sinh Bù Đăng",
       "source": "https://www.vietnamtourism.org.vn/tin-tuc/rung-bu-dang",
-      "location": "Xã Đắk Nhau, Huyện Bù Đăng, Bình Phước",
+      "location": "Xã Đắk Nhau, Xã Bù Đăng, Bình Phước",
       "category": "danh-thang",
       "alt": {
         "vi": "Những tán cây cổ thụ cao vút trong lõi rừng già nguyên sinh Bù Đăng.",
@@ -130,7 +130,7 @@
       "id": "img-thac-dung",
       "title": "Thác Đứng Bù Đăng",
       "source": "https://vietnamtourism.vn/tin-tuc/thac-dung-binh-phuoc",
-      "location": "Xã Đoàn Kết, Huyện Bù Đăng, Bình Phước",
+      "location": "Xã Đoàn Kết, Xã Bù Đăng, Bình Phước",
       "category": "danh-thang",
       "alt": {
         "vi": "Dòng nước Thác Đứng cuồn cuộn đổ xuống những khối đá hình trụ kỳ vĩ.",
@@ -172,7 +172,7 @@
       "id": "img-di-san-ban-dia",
       "title": "Di sản văn hóa bản địa Bù Đăng",
       "source": "https://binhphuoc.gov.vn/bao-ton-van-hoa-ban-dia",
-      "location": "Huyện Bù Đăng, Bình Phước",
+      "location": "Xã Bù Đăng, Bình Phước",
       "category": "van-hoa-phi-vat-the",
       "alt": {
         "vi": "Các vật dụng sinh hoạt và dệt thổ cẩm truyền thống thể hiện bản sắc di sản độc đáo.",

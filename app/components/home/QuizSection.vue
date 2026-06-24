@@ -17,9 +17,9 @@
         <div
           v-for="(quiz, i) in quizzes"
           :key="quiz.id"
-          class="relative overflow-hidden rounded-2xl bg-white border border-earth-100 shadow-card hover:shadow-card-hover transition-all duration-500 group cursor-pointer reveal"
+          class="relative overflow-hidden rounded-2xl bg-ivory border border-beige-200 shadow-card hover:shadow-card-hover transition-all duration-500 group cursor-pointer reveal"
           :style="{ animationDelay: `${i * 0.15}s` }"
-          @click="navigateTo('/quiz')"
+          @click="navigateTo('/explore')"
         >
           <!-- Color accent top -->
           <div class="h-1.5 w-full" :style="{ background: quizColors[i] ?? '#C9922A' }" />
@@ -102,7 +102,7 @@
               về hành trình khám phá di sản Bù Đăng của bạn.
             </p>
             <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
-              <NuxtLink to="/quiz" class="btn-primary">
+              <NuxtLink to="/explore" class="btn-primary">
                 <Icon name="mdi:play-circle" class="w-4 h-4" />
                 Bắt Đầu Quiz
               </NuxtLink>
