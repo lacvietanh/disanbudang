@@ -98,14 +98,17 @@
         <!-- Sort Select box -->
         <div class="flex items-center gap-3 shrink-0">
           <span class="text-xs text-charcoal-400 uppercase tracking-widest font-semibold">Sắp xếp:</span>
-          <select
-            v-model="sortOrder"
-            class="bg-charcoal-950 border border-charcoal-800 rounded-xl px-4 py-2.5 text-xs text-ivory font-medium focus:outline-none focus:border-gold-500 transition-colors"
-          >
-            <option value="views">Lượt xem nhiều nhất</option>
-            <option value="alpha">Tên di sản (A-Z)</option>
-            <option value="newest">Ngày số hóa gần nhất</option>
-          </select>
+          <div class="relative flex items-center">
+            <select
+              v-model="sortOrder"
+              class="appearance-none bg-charcoal-950 border border-charcoal-800 rounded-xl pl-4 pr-10 py-2.5 text-xs text-ivory font-medium focus:outline-none focus:border-gold-500/60 focus:ring-1 focus:ring-gold-500/20 transition-all cursor-pointer"
+            >
+              <option value="views">Lượt xem nhiều nhất</option>
+              <option value="alpha">Tên di sản (A-Z)</option>
+              <option value="newest">Ngày số hóa gần nhất</option>
+            </select>
+            <Icon name="mdi:chevron-down" class="w-4.5 h-4.5 text-gold-450 absolute right-3 pointer-events-none" />
+          </div>
         </div>
       </div>
 

@@ -141,28 +141,34 @@
 <script setup lang="ts">
 const slides = [
   {
-    image: '/images/heritage/danh-thang/bu-lach-lg.webp',
-    alt: 'Trảng cỏ Bù Lạch hùng vĩ',
-    label: 'TRẢNG CỎ BÙ LẠCH',
-    caption: 'Thảo nguyên hoang sơ giữa đại ngàn Bù Đăng',
+    image: '/images/heritage/Img disanbudang/Cong chieng.jpg',
+    alt: 'Văn hóa cồng chiêng',
+    label: 'VĂN HÓA CỒNG CHIÊNG',
+    caption: 'Linh hồn âm nhạc của núi rừng Tây Nguyên',
   },
   {
-    image: '/images/heritage/danh-thang/thac-dung-lg.webp',
-    alt: 'Thác Đứng Bù Đăng cuồn cuộn đổ xuống',
-    label: 'THÁC ĐỨNG BÙ ĐĂNG',
-    caption: 'Bản hùng ca nước đổ bên những khối đá kỳ vĩ',
-  },
-  {
-    image: '/images/heritage/danh-thang/rung-nguyen-sinh-lg.webp',
-    alt: 'Rừng nguyên sinh Bù Đăng già cội',
+    image: '/images/heritage/Img disanbudang/Khu Bao Ton 2.jpg',
+    alt: 'Rừng nguyên sinh Bù Đăng',
     label: 'RỪNG NGUYÊN SINH BÙ ĐĂNG',
     caption: 'Kho báu đa dạng sinh học của Đông Nam Bộ',
   },
   {
-    image: '/images/heritage/lich-su/soc-bom-bo-lg.webp',
-    alt: 'Sóc Bom Bo lịch sử giã gạo nuôi quân',
-    label: 'SÓC BOM BO',
-    caption: 'Nơi nhịp chày giã gạo đi vào huyền thoại cách mạng',
+    image: '/images/heritage/Img disanbudang/Nha Dai Truyen Thong.png',
+    alt: 'Nhà dài truyền thống S\'tiêng',
+    label: 'NHÀ DÀI TRUYỀN THỐNG',
+    caption: 'Kiến trúc cộng đồng độc đáo trên cao nguyên',
+  },
+  {
+    image: '/images/heritage/Img disanbudang/le hoi mung lua moi.png',
+    alt: 'Lễ hội mừng lúa mới M\'nông',
+    label: 'LỄ HỘI MỪNG LÚA MỚI',
+    caption: 'Lời tạ ơn của đất trời và mùa vàng bội thu',
+  },
+  {
+    image: '/images/heritage/Img disanbudang/thac-mo-dong-nai.png',
+    alt: 'Thác Mơ Bù Đăng',
+    label: 'THÁC MƠ BÙ ĐĂNG',
+    caption: 'Viên ngọc xanh giữa đại ngàn Đông Nam Bộ',
   },
 ]
 

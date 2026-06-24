@@ -2,11 +2,26 @@
   <div class="bg-charcoal-950 text-ivory">
     <!-- 1. THE HOOK: Hero cinematic -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <img src="/images/heritage/danh-thang/rung-nguyen-sinh-lg.webp"
-        alt="Rừng Bù Đăng" class="absolute inset-0 w-full h-full object-cover opacity-40 scale-105 animate-pulse-slow" />
-      <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-950/80 to-transparent" />
+      <!-- Background Images Slideshow -->
+      <div class="absolute inset-0 z-0">
+        <TransitionGroup name="fade">
+          <div
+            v-for="(slide, i) in slides"
+            v-show="currentSlide === i"
+            :key="i"
+            class="absolute inset-0"
+          >
+            <img
+              :src="slide"
+              alt="Giới thiệu Di sản Bù Đăng"
+              class="w-full h-full object-cover opacity-40 scale-105"
+            />
+          </div>
+        </TransitionGroup>
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-950/80 to-transparent z-10" />
       
-      <div class="relative z-10 container-heritage text-center pb-16 pt-32">
+      <div class="relative z-20 container-heritage text-center pb-16 pt-32">
         <span class="inline-block px-4 py-2 rounded-full border border-gold-500/30 bg-gold-500/10 text-gold-400 text-sm font-bold tracking-widest uppercase mb-6 reveal">
           Dự Án Bảo Tàng Số Cộng Đồng
         </span>
@@ -146,8 +161,8 @@
           <div class="text-center mb-10">
             <h3 class="font-heading font-bold text-3xl">Đội Ngũ Thực Hiện</h3>
           </div>
-          <div class="grid md:grid-cols-3 gap-8">
-            <div v-for="team in teams" :key="team.name" class="text-center group">
+          <div class="flex justify-center">
+            <div v-for="team in teams" :key="team.name" class="text-center group max-w-xs">
               <div class="w-20 h-20 mx-auto bg-gradient-earth rounded-2xl flex items-center justify-center mb-4 transform group-hover:-translate-y-2 transition-transform shadow-lg">
                 <Icon :name="team.icon" class="w-10 h-10 text-ivory" />
               </div>
@@ -197,8 +212,25 @@
 definePageMeta({ layout: 'default' })
 useSeoMeta({ title: 'Giới Thiệu Dự Án — Di Sản Bù Đăng', description: 'Di Sản Bù Đăng là dự án bảo tàng số cộng đồng, số hóa và bảo tồn di sản văn hóa, lịch sử, thiên nhiên của vùng đất Bù Đăng cho thế hệ hôm nay và mai sau.' })
 
+const slides = [
+  '/images/heritage/Bombo/TAN08217.jpg',
+  '/images/heritage/lich-su/nha-giao-truyen-thong-md.webp',
+  '/images/heritage/Img disanbudang/chien khu D.png'
+]
+const currentSlide = ref(0)
+let slideInterval: ReturnType<typeof setInterval>
+
 const { observeAll } = useScrollReveal()
-onMounted(() => nextTick(() => observeAll()))
+onMounted(() => {
+  nextTick(() => observeAll())
+  slideInterval = setInterval(() => {
+    currentSlide.value = (currentSlide.value + 1) % slides.length
+  }, 6000)
+})
+
+onUnmounted(() => {
+  if (slideInterval) clearInterval(slideInterval)
+})
 
 const scrollTo = (id: string) => {
   if (import.meta.client) {
@@ -237,9 +269,7 @@ const projectStats = [
 ]
 
 const teams = [
-  { name: 'Nguyễn Xuân Kiệt', role: 'Kỹ sư kiến tạo dự án (Founder & Developer)', icon: 'mdi:account-star' },
-  { name: 'Vũ Thị Thanh', role: 'Giáo viên hướng dẫn (THPT Lê Quý Đôn)', icon: 'mdi:school' },
-  { name: 'Lạc Việt Anh', role: 'Chuyên gia Cố vấn Kỹ thuật (Mentor)', icon: 'mdi:account-tie' },
+  { name: 'Nguyễn Xuân Kiệt', role: 'Founder disanbudang', icon: 'mdi:account-star' }
 ]
 
 const roadmap = [
@@ -262,5 +292,13 @@ const roadmap = [
 }
 .animate-bounce {
   animation: bounce 1s infinite;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1.5s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

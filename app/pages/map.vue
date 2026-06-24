@@ -299,7 +299,7 @@
         <Transition name="panel-slide-right">
           <div
             v-if="selectedHeritage && isDesktop"
-            class="absolute top-4 right-4 bottom-4 z-[500] w-[400px] bg-charcoal-950 backdrop-blur-xl rounded-2xl overflow-hidden border border-gold-500/30 shadow-2xl shadow-black/60 flex flex-col"
+            class="absolute top-4 right-4 max-h-[calc(100%-2rem)] z-[500] w-[400px] bg-charcoal-950/95 backdrop-blur-xl rounded-2xl overflow-hidden border border-gold-500/30 shadow-2xl shadow-black/60 flex flex-col h-fit"
             role="dialog"
             :aria-label="'Thông tin chi tiết: ' + selectedHeritage.title"
           >
@@ -454,8 +454,8 @@
         <Transition name="bottom-sheet-slide">
           <div
             v-if="selectedHeritage && !isDesktop"
-            class="fixed bottom-0 left-0 right-0 z-[500] bg-charcoal-950 border-t-2 border-gold-500/40 rounded-t-3xl shadow-2xl shadow-black/80 flex flex-col transition-all duration-300 overflow-hidden"
-            :style="{ height: mobilePanelHeight }"
+            class="fixed bottom-0 left-0 right-0 z-[500] bg-charcoal-950 border-t-2 border-gold-500/40 rounded-t-3xl shadow-2xl shadow-black/80 flex flex-col transition-all duration-500 overflow-hidden h-fit"
+            :style="{ maxHeight: mobilePanelHeight }"
             role="dialog"
             :aria-label="'Thông tin: ' + selectedHeritage.title"
           >
@@ -468,7 +468,7 @@
             </div>
 
             <!-- Content Container -->
-            <div class="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-none pb-28">
+            <div class="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-none pb-8">
               <!-- Header info layout - always visible in Peek -->
               <div class="flex gap-3.5">
                 <div class="w-24 h-20 rounded-xl overflow-hidden shrink-0 border border-charcoal-700 shadow-lg">

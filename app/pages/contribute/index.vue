@@ -383,6 +383,9 @@ async function handleSubmit() {
     })
 
     isSubmitted.value = true
+    if (import.meta.client) {
+      sessionStorage.removeItem('disanbudang_contribute_draft')
+    }
     Object.assign(form, { name: '', role: 'resident', title: '', content: '', heritageId: '' })
     acceptQuality.value = false
     acceptDisplay.value = false
@@ -397,6 +400,37 @@ async function handleSubmit() {
     isSubmitting.value = false
   }
 }
+
+// Caching form inputs in sessionStorage
+watch(
+  () => ({ type: selectedType.value, form }),
+  (state) => {
+    if (import.meta.client) {
+      sessionStorage.setItem('disanbudang_contribute_draft', JSON.stringify({
+        selectedType: state.type,
+        form: state.form,
+      }))
+    }
+  },
+  { deep: true }
+)
+
+onMounted(() => {
+  if (import.meta.client) {
+    const draftJson = sessionStorage.getItem('disanbudang_contribute_draft')
+    if (draftJson) {
+      try {
+        const draft = JSON.parse(draftJson)
+        if (draft.selectedType) selectedType.value = draft.selectedType
+        if (draft.form) {
+          Object.assign(form, draft.form)
+        }
+      } catch (e) {
+        console.error('Failed to parse draft form data', e)
+      }
+    }
+  }
+})
 </script>
 
 <style scoped>
