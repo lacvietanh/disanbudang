@@ -24,7 +24,7 @@ export const MOCK_HERITAGES: Heritage[] = [
         photographer: 'Nguyễn Hữu Phúc',
       },
     ],
-    coordinates: { lat: 11.8150, lng: 107.1200 },
+    coordinates: { lat: 11.264902, lng: 106.987597 },
     shortDescription:
       'Chiến Khu Đ là một trong những hệ thống căn cứ kháng chiến oai hùng nhất của miền Đông Nam Bộ. Nơi địa hình hiểm trở và tán rừng dày đặc đã trở thành tấm áo giáp tự nhiên che chở cho lực lượng cách mạng suốt hai cuộc kháng chiến.',
     longStory: `Giữa những cánh rừng già trải dài về phía đông tỉnh, có một vùng đất mà người dân vẫn quen gọi bằng cái tên giản dị nhưng đầy tự hào: Chiến Khu Đ. Đây không phải một địa danh đơn lẻ, mà là cả một hệ thống căn cứ kháng chiến trải rộng qua nhiều cánh rừng, nơi địa hình hiểm trở và tán rừng dày đặc đã trở thành tấm áo giáp tự nhiên che chở cho lực lượng cách mạng suốt hai cuộc kháng chiến.
