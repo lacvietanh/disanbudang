@@ -1,5 +1,5 @@
 <template>
-  <section class="section bg-beige-200 relative overflow-hidden">
+  <section id="school-corner" class="section bg-beige-200 relative overflow-hidden scroll-mt-20">
     <div class="absolute top-0 right-0 w-80 h-80 bg-copper-500/8 rounded-full blur-3xl pointer-events-none" />
 
     <div class="container-heritage relative z-10">

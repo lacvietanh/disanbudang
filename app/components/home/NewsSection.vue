@@ -4,8 +4,8 @@
       <!-- Header -->
       <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
         <div>
-          <span class="section-label text-gold-400">Tin Tức & Sự Kiện</span>
-          <h2 class="text-display-sm text-ivory">Cập Nhật Mới Nhất</h2>
+          <span class="section-label text-gold-400">Bài Viết & Sự Kiện</span>
+          <h2 class="text-display-sm text-ivory">Bài Viết & Di Sản Mới Nhất</h2>
         </div>
         <NuxtLink to="/news" class="btn-outline-gold flex-shrink-0">
           Xem Tất Cả
@@ -85,7 +85,7 @@ const nextEvent = MOCK_EVENTS[0]
 
 const categoryLabels: Record<NewsCategory, string> = {
   'su-kien': 'Sự Kiện',
-  'tin-tuc': 'Tin Tức',
+  'tin-tuc': 'Bài Viết',
   'nghien-cuu': 'Nghiên Cứu',
   'hoat-dong': 'Hoạt Động',
 }

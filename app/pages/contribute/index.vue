@@ -13,8 +13,8 @@
         <h1 class="font-heading font-bold text-ivory text-5xl lg:text-6xl leading-none mb-5">
           Chung Tay Kiến Tạo<br/> <span class="text-gradient-gold">Bản Đồ Di Sản</span>
         </h1>
-        <p class="text-charcoal-300 text-lg max-w-xl leading-relaxed">
-          Mỗi hiện vật, bức ảnh cũ hay câu chuyện truyền miệng bạn hiến tặng sẽ giúp làm sâu sắc thêm chiều sâu lịch sử địa phương.
+        <p class="text-charcoal-300 text-base lg:text-lg max-w-3xl leading-relaxed">
+          Mỗi hiện vật cũ kỹ, tấm hình ố màu thời gian hay câu chuyện truyền khẩu chưa từng ghi chép đều mang linh hồn di sản của cha ông để lại. Sự đóng góp của bạn không chỉ làm giàu thêm tư liệu số hóa bản địa, mà còn trực tiếp giúp thế hệ học sinh, nhà nghiên cứu và cộng đồng thấu hiểu hơn về cội nguồn lịch sử oai hùng và bản sắc tinh hoa đậm nét của các dân tộc S'tiêng, M'nông tại mảnh đất Bù Đăng. Hãy để ký ức cá nhân của bạn hòa vào dòng chảy di sản sống mãi của quê hương.
         </p>
       </div>
     </div>

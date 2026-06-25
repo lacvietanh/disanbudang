@@ -1,5 +1,5 @@
 <template>
-  <section class="section bg-warm-paper relative overflow-hidden">
+  <section id="quiz" class="section bg-warm-paper relative overflow-hidden scroll-mt-20">
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-500/4 rounded-full blur-3xl pointer-events-none" />
 
     <div class="container-heritage relative z-10">

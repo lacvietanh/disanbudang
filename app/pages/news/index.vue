@@ -4,12 +4,12 @@
     <div class="bg-dark-earth py-20 relative overflow-hidden">
       <div class="absolute top-0 left-0 w-64 h-64 bg-forest-500/10 rounded-full blur-3xl" />
       <div class="container-heritage relative z-10">
-        <span class="section-label text-gold-400">Tin Tức & Sự Kiện</span>
+        <span class="section-label text-gold-400">Góc Chia Sẻ & Nghiên Cứu</span>
         <h1 class="font-heading font-bold text-ivory text-5xl lg:text-6xl leading-none mb-5">
-          Cập Nhật<br/><span class="text-gradient-gold">Di Sản Bù Đăng</span>
+          Bài Viết &<br/><span class="text-gradient-gold">Di Sản Bù Đăng</span>
         </h1>
         <p class="text-charcoal-300 text-lg max-w-xl">
-          Tin tức, sự kiện, nghiên cứu và hoạt động mới nhất về di sản văn hóa địa phương
+          Các bài viết chuyên sâu về đời sống văn hóa, phong tục độc đáo và tư liệu quý giá của đồng bào Bù Đăng.
         </p>
       </div>
     </div>
@@ -30,79 +30,45 @@
         </button>
       </div>
 
-      <!-- Featured + side layout -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
-        <div v-if="filteredNews[0]" class="lg:col-span-7">
-          <NuxtLink :to="'/news/' + filteredNews[0].slug" class="group block">
-            <div class="relative overflow-hidden rounded-3xl aspect-[16/9]">
-              <img :src="filteredNews[0].coverImage" :alt="filteredNews[0].title" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div class="absolute inset-0 bg-gradient-cinematic" />
-              <div class="absolute top-5 left-5">
-                <BaseBadge variant="gold">{{ categoryLabels[filteredNews[0].category] }}</BaseBadge>
-              </div>
-              <div class="absolute bottom-0 left-0 right-0 p-7">
-                <p class="text-charcoal-300 text-xs mb-2">{{ formatDate(filteredNews[0].publishedAt) }} • {{ filteredNews[0].readTime }} phút</p>
-                <h2 class="font-heading font-bold text-ivory text-2xl leading-tight mb-2 text-shadow-hero group-hover:text-gold-200 transition-colors">{{ filteredNews[0].title }}</h2>
-                <p class="text-ivory/70 text-sm line-clamp-2">{{ filteredNews[0].excerpt }}</p>
-              </div>
-            </div>
-          </NuxtLink>
-        </div>
-
-        <div class="lg:col-span-5 space-y-4">
-          <NuxtLink
-            v-for="item in filteredNews.slice(1, 5)"
-            :key="item.id"
-            :to="'/news/' + item.slug"
-            class="group flex gap-4 p-4 rounded-2xl border border-charcoal-850 hover:border-gold-500/40 hover:bg-charcoal-950 transition-all duration-200"
-          >
-            <img :src="item.coverImage" :alt="item.title" class="w-20 h-16 rounded-xl object-cover flex-shrink-0 transition-transform duration-500 group-hover:scale-105" />
-            <div class="flex-1 min-w-0">
-              <div class="flex items-center gap-2 mb-1.5">
-                <BaseBadge :variant="categoryVariant[item.category]" size="sm">{{ categoryLabels[item.category] }}</BaseBadge>
-                <span class="text-charcoal-400 text-xs">{{ item.readTime }} phút</span>
-              </div>
-              <h4 class="font-heading font-semibold text-ivory text-sm leading-tight line-clamp-2 group-hover:text-gold-300 transition-colors">{{ item.title }}</h4>
-              <p class="text-charcoal-400 text-xs mt-1">{{ formatDate(item.publishedAt) }}</p>
-            </div>
-          </NuxtLink>
-        </div>
-      </div>
-
-      <!-- Events -->
-      <div>
-        <h2 class="font-heading font-bold text-ivory text-2xl mb-6">Sự Kiện & Hoạt Động Tiêu Biểu</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-          <div
-            v-for="event in events"
-            :key="event.id"
-            class="bg-charcoal-950 border border-charcoal-850 rounded-2xl p-6 shadow-lg hover:border-gold-500/30 hover:shadow-gold-500/5 transition-all duration-300 reveal flex flex-col"
-          >
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center">
-                <Icon name="mdi:calendar-star" class="w-6 h-6 text-gold-400" />
-              </div>
-              <div>
-                <p class="text-gold-400 text-sm font-semibold">{{ formatDate(event.startDate) }}</p>
-                <p v-if="event.endDate" class="text-charcoal-400 text-xs">Đến {{ formatDate(event.endDate) }}</p>
-              </div>
-            </div>
-            <h3 class="font-heading font-bold text-ivory text-base leading-tight mb-2">{{ event.title }}</h3>
-            <p class="text-charcoal-400 text-sm leading-relaxed line-clamp-2 mb-4 flex-1">{{ event.description }}</p>
-            <div class="flex items-center gap-2 text-charcoal-500 text-xs mb-4">
-              <Icon name="mdi:map-marker-outline" class="w-3.5 h-3.5 text-gold-500" />
-              {{ event.location }}
-            </div>
-            <div v-if="event.isOnline" class="mb-3 flex items-center gap-1.5">
-              <div class="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              <span class="text-green-400 text-xs">Trực tuyến</span>
-            </div>
-            <!-- CTA Button -->
-            <NuxtLink to="/contact" class="btn-outline-gold text-sm justify-center w-full py-2.5 mt-auto">
-              <Icon name="mdi:calendar-check" class="w-4 h-4" />
-              Đăng Ký Tham Dự
-            </NuxtLink>
+      <!-- Articles Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div
+          v-for="article in filteredNews"
+          :key="article.id"
+          class="bg-charcoal-950 border border-charcoal-850 rounded-2xl p-6 shadow-lg hover:border-gold-500/30 hover:shadow-gold-500/5 transition-all duration-300 reveal flex flex-col group"
+        >
+          <!-- Article Cover Image -->
+          <div class="relative overflow-hidden rounded-xl aspect-[16/10] mb-5 border border-charcoal-800/80">
+            <img :src="article.coverImage" :alt="article.title" class="w-full h-full object-cover transition-transform duration-750 ease-out-expo group-hover:scale-105" />
           </div>
+
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center">
+              <Icon name="mdi:book-open-page-variant-outline" class="w-6 h-6 text-gold-400" />
+            </div>
+            <div>
+              <p class="text-gold-400 text-sm font-semibold">{{ formatDate(article.publishedAt) }}</p>
+              <p class="text-charcoal-400 text-xs">{{ article.readTime }} phút đọc</p>
+            </div>
+          </div>
+          <h3 class="font-heading font-bold text-ivory text-base leading-tight mb-2 line-clamp-2 group-hover:text-gold-300 transition-colors">{{ article.title }}</h3>
+          <p class="text-charcoal-400 text-sm leading-relaxed line-clamp-3 mb-4 flex-1">{{ article.excerpt }}</p>
+          
+          <div class="flex items-center justify-between text-xs text-charcoal-400 mb-4 border-t border-charcoal-850 pt-3">
+            <span class="flex items-center gap-1">
+              <Icon name="mdi:account-outline" class="w-3.5 h-3.5 text-gold-500" />
+              Tác giả: {{ article.author }}
+            </span>
+            <span class="tag tag-gold text-[9px] uppercase tracking-wider">
+              {{ categoryLabels[article.category] }}
+            </span>
+          </div>
+
+          <!-- CTA Button -->
+          <NuxtLink :to="'/news/' + article.slug" class="btn-outline-gold text-sm justify-center w-full py-2.5 mt-auto">
+            <Icon name="mdi:book-open-page-variant" class="w-4 h-4" />
+            Đọc Bài Viết
+          </NuxtLink>
         </div>
       </div>
     </div>
@@ -115,8 +81,8 @@ import type { NewsCategory } from '~/types'
 
 definePageMeta({ layout: 'default' })
 useMuseumSeo({
-  title: 'Tin Tức & Sự Kiện',
-  description: 'Tin tức, sự kiện và hoạt động mới nhất về di sản Bù Đăng.'
+  title: 'Bài Viết & Blog Di Sản',
+  description: 'Các bài viết, nghiên cứu và hoạt động nổi bật về di sản văn hóa Bù Đăng.'
 })
 
 useHead({
@@ -152,7 +118,7 @@ const activeCategory = ref('all')
 const newsCategories: NewsCategory[] = ['su-kien', 'tin-tuc', 'nghien-cuu', 'hoat-dong']
 
 const categoryLabels: Record<NewsCategory, string> = {
-  'su-kien': 'Sự Kiện', 'tin-tuc': 'Tin Tức', 'nghien-cuu': 'Nghiên Cứu', 'hoat-dong': 'Hoạt Động',
+  'su-kien': 'Sự Kiện', 'tin-tuc': 'Bài Viết', 'nghien-cuu': 'Nghiên Cứu', 'hoat-dong': 'Hoạt Động',
 }
 const categoryVariant: Record<NewsCategory, any> = {
   'su-kien': 'brick', 'tin-tuc': 'gold', 'nghien-cuu': 'forest', 'hoat-dong': 'earth',

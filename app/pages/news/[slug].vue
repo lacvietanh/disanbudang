@@ -13,7 +13,7 @@
           <nav class="flex items-center gap-2 text-xs text-charcoal-400 mb-6">
             <NuxtLink to="/" class="hover:text-gold-400 transition-colors">Trang Chủ</NuxtLink>
             <Icon name="mdi:chevron-right" class="w-3.5 h-3.5" />
-            <NuxtLink to="/news" class="hover:text-gold-400 transition-colors">Tin Tức</NuxtLink>
+            <NuxtLink to="/news" class="hover:text-gold-400 transition-colors">Bài Viết</NuxtLink>
             <Icon name="mdi:chevron-right" class="w-3.5 h-3.5" />
             <span class="text-ivory/60 truncate max-w-[200px]">{{ article.title }}</span>
           </nav>
@@ -156,7 +156,7 @@ const otherNews = computed(() => {
 
 const categoryLabels: Record<NewsCategory, string> = {
   'su-kien': 'Sự Kiện',
-  'tin-tuc': 'Tin Tức',
+  'tin-tuc': 'Bài Viết',
   'nghien-cuu': 'Nghiên Cứu',
   'hoat-dong': 'Hoạt Động',
 }

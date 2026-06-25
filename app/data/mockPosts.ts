@@ -144,125 +144,195 @@ Với người M'nông, đây không chỉ là thành quả lao động — đâ
 export const MOCK_NEWS: NewsArticle[] = [
   {
     id: 'news-001',
-    slug: 'le-cong-bo-di-san-det-tho-cam-mnong',
-    title: 'Lễ Công Bố Di Sản Quốc Gia Nghề Dệt Thổ Cẩm Của Người M\'nông Bù Đăng',
-    subtitle: 'Nghề dệt truyền thống tại các xã Đồng Nai, Thọ Sơn, Phú Sơn, Đắk Nhau được vinh danh là Di sản văn hóa phi vật thể quốc gia',
-    excerpt: 'Tại Khu bảo tồn văn hóa dân tộc S\'tiêng sóc Bom Bo (Xã Bù Đăng), tỉnh Bình Phước đã trang trọng tổ chức Lễ công bố Quyết định ghi danh nghề dệt thổ cẩm của người M\'nông vào Danh mục Di sản văn hóa phi vật thể quốc gia.',
-    content: `Sự kiện công bố tại Khu bảo tồn văn hóa dân tộc S'tiêng sóc Bom Bo (Xã Bù Đăng) là một cột mốc lịch sử trong công tác bảo tồn bản sắc văn hóa dân tộc thiểu số tại Bình Phước. Bộ Văn hóa, Thể thao và Du lịch trước đó đã ban hành Quyết định số 1838/QĐ-BVHTTDL chính thức công nhận "Nghề thủ công truyền thống dệt thổ cẩm của người M'nông" tại xã Bù Gia Mập (huyện Bù Gia Mập) và các xã Đồng Nai, Thọ Sơn, Phú Sơn, Đắk Nhau (Xã Bù Đăng) là Di sản văn hóa phi vật thể quốc gia.
+    slug: 'canh-thut-doc-ban-stieng-bu-dang',
+    title: 'Canh Thụt S\'tiêng Bù Đăng: Món Ăn Độc Bản Từ Ống Lồ Ô Đại Ngàn',
+    subtitle: 'Khám phá tri thức ẩm thực độc đáo của đồng bào S\'tiêng tại sóc Bom Bo và các xã vùng cao Bù Đăng',
+    excerpt: 'Canh thụt là món ăn truyền thống mang tính biểu tượng cao nhất của người S\'tiêng Bù Đăng, được nấu kỳ công trong ống tre lồ ô với sự kết hợp tuyệt vời của đọt mây rừng, lá nhíp, ớt hiểm và cá suối.',
+    content: `Nếu có dịp ghé thăm các buôn sóc của người S'tiêng tại Bù Đăng như sóc Bom Bo (Bình Minh), sóc Đắk Nhau hay sóc Thọ Sơn, bạn chắc chắn không thể bỏ qua cơ hội thưởng thức món canh thụt (tiếng S'tiêng gọi là "Rơ-bột"). Đây là món ăn truyền thống lâu đời được đúc kết từ tri thức bản địa phong phú của đồng bào vùng cao Bình Phước, thể hiện sự hòa quyện tuyệt đối giữa ẩm thực và thiên nhiên hoang sơ.
 
-Buổi lễ có sự góp mặt của các cấp lãnh đạo tỉnh Bình Phước, Xã Bù Đăng cùng đông đảo nghệ nhân M'nông, S'tiêng trong trang phục thổ cẩm rực rỡ truyền thống. Đây không chỉ là nghi thức trao bằng công nhận đơn thuần mà còn là dịp để cộng đồng tôn vinh bàn tay khéo léo, óc sáng tạo nghệ thuật độc đáo của những người mẹ, người chị đã bền bỉ dệt nên những dải màu đại ngàn suốt nhiều thế hệ qua.
+**Sự kết hợp tinh tế từ sản vật rừng núi Bù Đăng**
 
-**Bản sắc kết tinh trong từng sợi chỉ**
+Nguyên liệu chính làm nên món canh thụt trứ danh là những sản vật tự nhiên được thu hái trực tiếp từ các cánh rừng nguyên sinh Bù Đăng. Điển hình là đọt mây (phần lõi non, ngọt đắng nhẹ của cây mây rừng) và lá nhíp (loại lá rừng có vị ngọt thanh, bùi, giàu dinh dưỡng mọc nhiều ở vùng đất đỏ Bom Bo). Bên cạnh đó, người S'tiêng còn thêm vào các nguyên liệu phụ như cá suối, tôm đá hoặc thịt thú rừng hun khói, kèm theo cà pháo rừng, măng tươi, sả, và đặc biệt không thể thiếu rất nhiều ớt hiểm.
 
-Đối với đồng bào M'nông Bù Đăng, thổ cẩm không đơn thuần là tấm vải may mặc thông thường. Đó là vật phẩm thiêng liêng gắn liền với đời sống tín ngưỡng và là thước đo sự thịnh vượng, sang trọng của mỗi gia đình. Thổ cẩm xuất hiện trong mọi nghi lễ quan trọng của đời người như lễ thổi tai cho trẻ sơ sinh, cưới hỏi, lễ mừng lúa mới, về nhà mới và lễ tiễn người quá cố.
+**Phương pháp nấu độc bản bằng cách "thụt" trong ống lồ ô**
 
-Quy trình dệt thổ cẩm đòi hỏi sự kiên nhẫn phi thường và tri thức bản địa tích lũy qua nhiều đời. Người phụ nữ M'nông phải tự tay trồng bông, kéo sợi, sử dụng các loại lá, rễ và vỏ cây rừng để nhuộm màu tự nhiên: màu đen lấy từ lá cây chàm, màu đỏ lấy từ vỏ cây Krông, màu vàng từ củ nghệ... Các hoa văn trên vải như hình thoi chéo (hạt lúa), răng cưa (dãy núi), hình con chim hay dòng suối đều là những mã hóa độc đáo về nhân sinh quan hòa hợp giữa con người và thiên nhiên.
+Điểm làm nên sự khác biệt hoàn toàn của canh thụt so với các món canh thông thường là phương pháp nấu chín bằng cách sử dụng ống tre lồ ô non làm nồi. 
+1. Người S'tiêng chọn những ống lồ ô bánh tẻ, còn nguyên nước tre tươi bên trong vách ống, chặt xéo một đầu để cho nguyên liệu vào.
+2. Các nguyên liệu sau khi làm sạch được xếp lần lượt vào ống, đổ thêm một chút nước suối sạch.
+3. Ống lồ ô được dựng nghiêng khoảng 45 độ trên bếp than hồng đỏ rực từ củi rừng. Người nấu phải quay đều ống tre để hơi nóng phân bổ đều, làm nguyên liệu chín dần bằng hơi nước và nhựa tre tươi tiết ra.
+4. Khi thấy khói bốc lên thơm ngát và nước trong ống sôi sùng sục, người ta dùng một chiếc que tre dài, đầu dẹt (gọi là cối thụt) tiến hành "thụt" - tức là giã nhẹ nhàng liên tục vào bên trong ống tre. Hành động này làm các nguyên liệu chín mềm như đọt mây, lá nhíp, cá suối, ớt hiểm hòa lẫn vào nhau tạo nên một hỗn hợp đặc sánh, mịn màng và vô cùng đậm đà.
 
-**Bài toán bảo tồn và hướng đi bền vững**
+**Hương vị nhân sinh độc đáo**
 
-Nghề dệt thổ cẩm của người M'nông đang phải đối mặt với nguy cơ mai một trước làn sóng hiện đại hóa khi giới trẻ không còn mặn mà học nghề và sợi tổng hợp công nghiệp dần thay thế sợi tự nhiên nhuộm thủ công. 
-
-Để giữ gìn di sản, UBND Xã Bù Đăng đã phối hợp với các ban ngành triển khai các hoạt động thiết thực: mở lớp truyền dạy dệt thổ cẩm cho thanh thiếu niên địa phương tại các xã Đồng Nai, Đắk Nhau; hỗ trợ kinh phí thu mua nguyên liệu cho nghệ nhân; đồng thời liên kết sản phẩm thổ cẩm với các tour du lịch sinh thái và văn hóa tại sóc Bom Bo và Trảng cỏ Bù Lạch nhằm tạo nguồn thu nhập ổn định cho bà con, đưa di sản sống lại bền vững trong đời sống hiện đại.`,
-    coverImage: '/images/heritage/Bombo/h.png',
-    category: 'su-kien',
-    author: 'Báo Bình Phước',
-    publishedAt: '2023-05-19',
+Canh thụt có vị đắng dịu của đọt mây rừng, vị bùi béo ngọt hậu của lá nhíp, vị cay nồng xé lưỡi của ớt hiểm Bù Đăng, xen lẫn vị ngọt thơm của cá suối và mùi thơm ngai ngái đặc trưng của ống lồ ô nướng cháy cạnh. Món ăn này không chỉ cung cấp dinh dưỡng, giữ ấm cơ thể trong những đêm rừng lạnh giá mà còn là biểu trưng cho tinh thần kiên cường, sự khéo léo thích ứng với hoàn cảnh sinh tồn của người S'tiêng vùng cao Bù Đăng.`,
+    coverImage: '/images/heritage/canh-thut-stieng.png',
+    category: 'tin-tuc',
+    author: 'Nghệ nhân Điểu Minh',
+    publishedAt: '2026-06-15',
     readTime: 6,
     featured: true,
-    tags: ['dệt thổ cẩm', 'M\'nông', 'di sản quốc gia', 'sóc Bom Bo', 'Bù Đăng'],
+    tags: ['canh thụt', 'S\'tiêng', 'ẩm thực Bù Đăng', 'sóc Bom Bo', 'đọt mây lá nhíp'],
   },
   {
     id: 'news-002',
-    slug: 'ruou-can-stieng-di-san-quoc-gia',
-    title: 'Kỹ Thuật Chế Biến Rượu Cần Của Người S\'tiêng: Bí Quyết Từ Men Lá Rừng',
-    subtitle: 'Tìm hiểu tri thức dân gian độc đáo của di sản văn hóa phi vật thể quốc gia đầu tiên tại tỉnh Bình Phước',
-    excerpt: 'Rượu cần của người S\'tiêng (Đ\'rắp S\'lung) được vinh danh là Di sản văn hóa phi vật thể quốc gia nhờ quy trình chế biến men rượu từ các loại lá và vỏ cây rừng vô cùng công phu và độc đáo.',
-    content: `Theo Quyết định số 4597/QĐ-BVHTTDL của Bộ Văn hóa, Thể thao và Du lịch, "Tri thức dân gian, nghề thủ công truyền thống kỹ thuật chế biến rượu cần của người S'tiêng tỉnh Bình Phước" đã chính thức được ghi danh vào Danh mục Di sản văn hóa phi vật thể quốc gia. Đây là di sản văn hóa phi vật thể quốc gia đầu tiên của Bình Phước, khẳng định vị thế và giá trị văn hóa độc đáo của tri thức dân gian S'tiêng.
+    slug: 'ruou-can-stieng-bu-dang-men-la-rung',
+    title: 'Rượu Cần Đ\'rắp S\'lung: Tuyệt Kỹ Men Lá Rừng Độc Bản Của Người S\'tiêng Bù Đăng',
+    subtitle: 'Tìm hiểu tri thức chế biến rượu cần cổ truyền được ghi danh là Di sản văn hóa phi vật thể quốc gia',
+    excerpt: 'Rượu cần S\'tiêng Bù Đăng (Đ\'rắp S\'lung) nổi tiếng khắp cả nước nhờ công thức bánh men ủ từ các loại vỏ cây rừng đặc hữu và quy trình lên men thủ công cực kỳ khắt khe của các nghệ nhân buôn sóc.',
+    content: `Quyết định đưa "Kỹ thuật chế biến rượu cần của người S'tiêng tỉnh Bình Phước" vào Danh mục Di sản văn hóa phi vật thể quốc gia là sự khẳng định giá trị vượt thời gian của thức uống này. Tại huyện Bù Đăng, đặc biệt là vùng Bom Bo và Minh Hưng, rượu cần (Đ'rắp S'lung) được xem là linh vật kết nối con người với thần linh và biểu thị cho lòng hiếu khách tuyệt đối của người bản địa.
 
-Rượu cần trong tiếng S'tiêng gọi là "Đ'rắp S'lung" hay "Rơ nơm Đ'rắp". Đây không chỉ là thức uống đơn thuần trong các dịp lễ tết mà còn là biểu tượng tinh thần đại diện cho lòng hiếu khách, văn hóa ứng xử cộng đồng và là nhịp cầu giao tiếp tâm linh giữa con người với các vị thần sông, thần núi, thần lúa.
+**Bí mật nằm ở bánh men làm từ lá rừng cổ truyền**
 
-**Bí quyết men lá độc nhất vô nhị**
+Khác với rượu của các vùng miền khác, người S'tiêng Bù Đăng hoàn toàn không dùng men công nghiệp. Men rượu cần Đ'rắp S'lung là sự kết hợp kỳ công của tri thức sinh thái học. Nghệ nhân làm rượu phải lặn lội vào sâu trong các khu rừng già Bù Đăng để tìm vỏ cây Krông, củ nghệ rừng, rễ cây Đơn và lá cây rừng đặc hữu. 
+- Vỏ và lá cây rừng sau khi mang về được giã nát, vắt lấy nước cốt đậm đặc màu nâu đất.
+- Nước cốt này được trộn đều với bột gạo nếp nương tự trồng trên rẫy đỏ Bù Đăng.
+- Hỗn hợp bột được nặn thành các bánh men tròn dẹt, xếp trên lớp rơm nếp ấm để ủ men tự nhiên trong vài ngày cho đến khi xuất hiện lớp mốc trắng thơm dịu.
+- Bánh men sau đó được treo trên gác bếp củi để khô tự nhiên, hấp thụ hơi ấm và khói bếp hun đúc hàng tháng trời trước khi đem ra sử dụng.
 
-Điểm mấu chốt tạo nên chất lượng và hương vị đặc trưng của rượu cần S'tiêng nằm ở bánh men rượu được làm hoàn toàn từ nguyên liệu rừng tự nhiên. Người S'tiêng không dùng men hóa học hay men công nghiệp mà tự đi tìm vỏ cây krông, rễ cây rừng cùng một số loại lá bản địa đặc trưng. Việc nhận biết và phối trộn đúng tỷ lệ các loại thảo mộc rừng đòi hỏi người làm rượu phải có kinh nghiệm lâu năm và một sự am hiểu tường tận về hệ sinh thái đại ngàn.
+**Quy trình ủ và hương vị rượu cần đại ngàn**
 
-Vỏ và lá cây sau khi đem về được rửa sạch, giã nhỏ, phơi khô rồi trộn đều với bột gạo tẻ hoặc gạo nếp nương. Hỗn hợp này được nặn thành những bánh men tròn, ủ trong trấu ấm vài ngày cho đến khi lên men đều và dậy mùi thơm đặc trưng, sau đó tiếp tục phơi trên gác bếp để dùng dần. Nguyên liệu ủ rượu có thể là lúa, ngô, sắn hoặc bo bo. Tất cả được nấu chín, để nguội rồi trộn đều với bánh men rừng đã tán nhỏ, cho vào các ché (bình đất nung) bịt kín bằng lá chuối khô. Rượu được ủ ít nhất một tháng mới có thể dùng, ủ càng lâu thì nước rượu càng đậm đà, nồng nàn và ngọt giọng.
+Nguyên liệu chính để ủ rượu thường là gạo nếp rẫy, hạt bo bo hoặc ngô nướng chín. Sau khi nguội, nghệ nhân trộn đều nguyên liệu với bánh men rừng đã được tán mịn, rải thêm một lớp trấu sạch để tạo độ thông thoáng rồi cho tất cả vào ché (bình nung bằng đất sét). Miệng ché được bịt kín bằng lá chuối rừng khô và ủ trong bóng tối ít nhất từ 1 đến 3 tháng. 
 
-**Nghi thức uống rượu và tính gắn kết cộng đồng**
+Rượu cần S'tiêng khi chín có màu vàng óng như mật ong rừng, tỏa mùi thơm nồng nàn của gỗ và thảo mộc. Khi uống bằng cần trúc, người dùng sẽ cảm nhận rõ rệt vị ngọt dịu, tê cay nhẹ nơi đầu lưỡi và cảm giác ấm nóng lan tỏa khắp cơ thể nhưng hoàn toàn không gây đau đầu.
 
-Uống rượu cần của người S'tiêng có những quy tắc rất trang trọng và thú vị. Khi tiếp khách quý, gia chủ sẽ đặt bình rượu cần ở vị trí trung tâm nhà dài hoặc cạnh cột nêu. Người uống dùng những chiếc cần (ống hút dài bằng trúc) cắm sâu vào đáy ché để hút dòng rượu nguyên chất. 
+**Nghi thức uống rượu thắt chặt tình bang giao**
 
-Đặc biệt, để đảm bảo sự công bằng và bày tỏ tình cảm quý mến giữa chủ và khách, người S'tiêng sử dụng một cành cây nhỏ khía vạch (gọi là Kê Nhệt Pê) đặt ngang miệng ché để đo mực nước đổ thêm vào bình. Khách hút rượu đến đâu, chủ nhà sẽ rót thêm nước lã vào đến đó theo đúng vạch đo, thể hiện tấm lòng chân thành, công minh, chia ngọt sẻ bùi cùng nhau.
-
-Công tác bảo tồn di sản rượu cần S'tiêng hiện đang được chính quyền Xã Bù Đăng chú trọng bằng việc tổ chức các lớp tập huấn kỹ thuật làm men lá rừng cho thanh niên tại các buôn sóc xã Bình Minh, Bom Bo nhằm duy trì đúng hương vị truyền thống độc bản giữa nhịp sống hiện đại.`,
-    coverImage: '/images/heritage/Bombo/TAN08220.jpg',
+Uống rượu cần là một nghi lễ cộng đồng thiêng liêng. Ché rượu được đặt giữa nhà dài, cắm sẵn những chiếc cần trúc dài cong vút. Khi khách quý tới nhà, già làng sẽ thực hiện nghi thức rót nước lọc vào ché, đo mực nước bằng một cành cây nhỏ khía vạch (gọi là Kê Nhệt Pê). Nghi thức này thể hiện sự công bằng, chân thành, chia ngọt sẻ bùi giữa chủ và khách. Rượu cần Đ'rắp S'lung Bù Đăng không chỉ là ẩm thực, mà là biểu tượng của văn hóa ứng xử đầy tính nhân văn giữa đại ngàn xanh.`,
+    coverImage: '/images/heritage/ruou-can-stieng.png',
     category: 'nghien-cuu',
     author: 'Sở VHTT&DL Bình Phước',
-    publishedAt: '2024-12-10',
+    publishedAt: '2026-05-20',
     readTime: 8,
     featured: true,
-    tags: ['rượu cần', 'S\'tiêng', 'di sản phi vật thể', 'tri thức dân gian', 'văn hóa ẩm thực'],
+    tags: ['rượu cần', 'S\'tiêng', 'Bù Đăng', 'men lá rừng', 'di sản phi vật thể'],
   },
   {
     id: 'news-003',
-    slug: 'tieng-chay-gia-gao-soc-bom-bo',
-    title: 'Tiếng Chày Giã Gạo Nuôi Quân Sóc Bom Bo: Từ Lịch Sử Đến Điểm Hẹn Di Sản',
-    subtitle: 'Tìm hiểu huyền thoại cách mạng thời kháng chiến chống Mỹ và nỗ lực bảo tồn bản sắc văn hóa S\'tiêng tại Xã Bù Đăng',
-    excerpt: 'Hình ảnh nhịp chày giã gạo thâu đêm dưới ánh đuốc lồ ô của đồng bào S\'tiêng sóc Bom Bo năm xưa phục vụ chiến trường đã đi vào lịch sử oai hùng của dân tộc. Ngày nay, nhịp điệu ấy vẫn vang lên đầy tự hào tại Khu bảo tồn văn hóa.',
-    content: `Trong những năm tháng kháng chiến chống Mỹ cứu nước ác liệt (giai đoạn 1964 - 1965), phong trào đấu tranh cách mạng của quân và dân miền Nam đòi hỏi sự tiếp tế lương thực rất lớn, đặc biệt là chuẩn bị cho các chiến dịch quy mô lớn như chiến dịch Đồng Xoài. Hưởng ứng lời kêu gọi của cách mạng, đồng bào dân tộc S'tiêng tại sóc Bom Bo (nay thuộc xã Bình Minh, Xã Bù Đăng) đã có một quyết định lịch sử: đồng lòng giã gạo nuôi quân.
+    slug: 'tieng-chay-gia-gao-soc-bom-bo-bu-dang',
+    title: 'Huyền Thoại Tiếng Chày Trên Sóc Bom Bo: Biểu Tượng Đoàn Kết Bù Đăng',
+    subtitle: 'Hành trình từ nhịp chày giã gạo nuôi quân trong chiến tranh đến không gian bảo tồn di sản văn hóa S\'tiêng',
+    excerpt: 'Nhịp chày đôi, chày ba giã gạo nuôi quân thâu đêm dưới ánh đuốc lồ ô của người dân S\'tiêng sóc Bom Bo (Bù Đăng) năm xưa đã đi vào lịch sử oai hùng và âm nhạc cách mạng Việt Nam.',
+    content: `Trong những năm tháng kháng chiến chống Mỹ cứu nước ác liệt (giai đoạn 1964 - 1965), phong trào cách mạng miền Nam đòi hỏi nguồn tiếp tế lương thực rất lớn cho chiến dịch Đồng Xoài. Hưởng ứng lời kêu gọi kháng chiến, đồng bào dân tộc S'tiêng tại sóc Bom Bo (nay thuộc xã Bình Minh, huyện Bù Đăng) đã có một quyết định lịch sử: huy động toàn bộ người dân ngày đêm giã gạo phục vụ bộ đội giải phóng.
 
-Vì ban ngày giặc càn quét bắn phá ác liệt, bà con trong sóc đã tập trung nổi lửa, đốt đuốc lồ ô giã gạo thâu đêm suốt sáng. Không phân biệt già trẻ trai gái, cả sóc Bom Bo vang lên tiếng chày đôi, chày ba nhịp nhàng nện xuống cối gỗ. Đồng bào sẵn sàng nhường cơm sẻ áo, đóng góp toàn bộ thóc, mì nương rẫy của gia đình mình để tiếp tế cho bộ đội chủ lực giải phóng miền Nam.
+**Cuộc giã gạo thâu đêm dưới ánh đuốc lồ ô**
 
-**Bài ca đi cùng năm tháng**
+Vì ban ngày giặc thường xuyên càn quét và ném bom oanh tạc, bà con sóc Bom Bo đã tập trung nổi lửa, đốt những bó đuốc làm từ tre lồ ô để giã gạo suốt đêm. Không phân biệt già trẻ, gái trai, cả buôn làng cùng quây quần bên các cối gỗ lớn. Tiếng chày đôi, chày ba nện đều đặn xuống cối đá, cối gỗ vang vọng khắp núi rừng Bù Đăng. Đồng bào sẵn sàng nhường cơm sẻ áo, đóng góp hàng chục tấn thóc rẫy, bắp ngô gùi xuyên rừng tiếp tế cho bộ đội chủ lực.
 
-Hình ảnh đầy xúc động và khí thế cách mạng cuồn cuộn ấy của đồng bào S'tiêng đã trở thành nguồn cảm hứng vô tận để nhạc sĩ Xuân Hồng sáng tác nên ca khúc huyền thoại "Tiếng chày trên Sóc Bom Bo" vào năm 1965. Bài hát với giai điệu rộn ràng, vui tươi, khắc họa chân thực tinh thần kiên cường, yêu nước và tình nghĩa quân dân thắm thiết đã nhanh chóng lan tỏa khắp cả nước, đưa tên tuổi của sóc Bom Bo trở thành một biểu tượng oai hùng trong lòng người dân Việt Nam.
+Nhạc sĩ Xuân Hồng khi đến thực tế tại đây đã vô cùng xúc động trước khí thế cách mạng cuồn cuộn này. Ông đã sáng tác ca khúc bất hủ "Tiếng chày trên Sóc Bom Bo" vào năm 1965, khắc họa chân thực tinh thần kiên cường, tình nghĩa quân dân thắm thiết của người S'tiêng Bù Đăng.
 
 **Khu bảo tồn văn hóa Bom Bo ngày nay**
 
-Sóc Bom Bo hôm nay đã được công nhận là Di tích lịch sử cấp quốc gia. Để giữ gìn và phát huy những giá trị lịch sử vô giá này, tỉnh Bình Phước đã xây dựng Khu bảo tồn văn hóa dân tộc S'tiêng sóc Bom Bo với quy mô rộng hơn 113 ha tại xã Bình Minh, Xã Bù Đăng.
+Sóc Bom Bo ngày nay đã trở thành Di tích lịch sử cấp Quốc gia và được quy hoạch thành Khu bảo tồn văn hóa dân tộc S'tiêng sóc Bom Bo với diện tích rộng hơn 113 ha tại xã Bình Minh, huyện Bù Đăng. 
 
-Nơi đây hiện lưu giữ và trưng bày hàng trăm hiện vật gốc quý báu của thời chiến đấu gian khổ như bộ cối chày gỗ giã gạo năm xưa, những chiếc gùi tre tải lương thực, các loại vũ khí tự chế và tư liệu chiến tranh. Đặc biệt, khu bảo tồn còn sở hữu bộ cồng chiêng bằng đồng lớn nhất Việt Nam và hai ngôi nhà dài truyền thống được phục dựng nguyên bản bằng tranh, tre, nứa. Du khách đến đây không chỉ để tham quan di tích lịch sử, mà còn được trực tiếp trải nghiệm hoạt động giã gạo chày tay dưới ánh lửa, thưởng thức hương vị cơm lam, rượu cần và hòa mình vào vũ điệu cồng chiêng trầm hùng cùng đồng bào địa phương.`,
-    coverImage: '/images/heritage/Bombo/TAN08183.jpg',
+Đến đây, du khách sẽ được tận mắt chiêm ngưỡng những chiếc cối chày gỗ lịch sử, bộ cồng chiêng bằng đồng lớn nhất Việt Nam và hai ngôi nhà dài truyền thống của đồng bào S'tiêng. Đặc biệt vào các dịp lễ hội, du khách có thể trực tiếp tham gia trải nghiệm giã gạo chày tay cùng các nghệ nhân bản địa, lắng nghe nhịp điệu chày tre trầm hùng vang vọng giữa rừng cây lồ ô bạt ngàn, cảm nhận trọn vẹn hào khí lịch sử cách mạng hào hùng của mảnh đất Bù Đăng kiên cường.`,
+    coverImage: '/images/heritage/giang-gao-bombo.png',
     category: 'tin-tuc',
     author: 'Khu Di tích Sóc Bom Bo',
-    publishedAt: '2025-05-15',
+    publishedAt: '2026-04-10',
     readTime: 7,
     featured: false,
-    tags: ['sóc bom bo', 'giã gạo nuôi quân', 'lịch sử', 'S\'tiêng', 'kháng chiến'],
+    tags: ['sóc bom bo', 'giã gạo nuôi quân', 'lịch sử Bù Đăng', 'S\'tiêng', 'Xuân Hồng'],
   },
   {
     id: 'news-004',
-    slug: 'trang-co-bu-lach-ky-quan-thien-nhien',
-    title: 'Trảng Cỏ Bù Lạch: Thảo Nguyên Xanh Giữa Lòng Đại Ngàn Bù Đăng',
-    subtitle: 'Khám phá quần thể gần 500 ha trảng cỏ tự nhiên bao quanh hồ nước ngọt hoang sơ và bài toán phát triển du lịch sinh thái bền vững',
-    excerpt: 'Nằm ẩn mình giữa những cánh rừng già nguyên sinh bạt ngàn của Xã Bù Đăng, Trảng cỏ Bù Lạch hiện lên như một bức tranh sơn thủy hữu tình độc nhất vô nhị với thảm cỏ xanh mướt tự nhiên chạy quanh lòng hồ mát rượi.',
-    content: `Trảng cỏ Bù Lạch (hay còn gọi là trảng cỏ Bàu Lạch) tọa lạc tại xã Đồng Nai, Xã Bù Đăng, tỉnh Bình Phước là một danh thắng thiên nhiên kỳ thú bậc nhất của vùng đất Đông Nam Bộ. Khác biệt hoàn toàn với những cánh rừng già rậm rạp xung quanh, nơi đây mở ra một không gian thảo nguyên xanh mướt, rộng bao la với quần thể gồm khoảng 20 trảng cỏ lớn nhỏ khác nhau, trải rộng trên tổng diện tích gần 500 ha.
+    slug: 'com-lam-nep-nuong-stieng-bu-dang',
+    title: 'Cơm Lam Nếp Nương S\'tiêng Bù Đăng: Hương Thơm Dẻo Ngọt Từ Ống Lồ Ô Tươi',
+    subtitle: 'Nét văn hóa ẩm thực rẫy nương giản dị nhưng đầy tinh tế của người dân vùng đất đỏ Bình Phước',
+    excerpt: 'Cơm lam nếp nương của người S\'tiêng Bù Đăng mang hương vị đặc biệt nhờ hạt nếp rẫy dẻo thơm nấu chín hoàn toàn bằng nước tre tự nhiên trong các ống lồ ô non nướng trên than củi rừng.',
+    content: `Cơm lam (tiếng S'tiêng gọi là "Biêng măn đừng ka") là món ăn vô cùng gần gũi nhưng chứa đựng tri thức ẩm thực độc đáo của đồng bào S'tiêng sinh sống dọc theo hệ thống sông Bé và các triền đồi đất đỏ Bù Đăng. Bắt nguồn từ những chuyến đi rừng dài ngày hay những mùa làm rẫy xa nhà, cơm lam đã trở thành nét văn hóa đặc sắc không thể thiếu trong các mâm cỗ lễ hội mừng lúa mới của người địa phương.
 
-Điểm nhấn đắt giá nhất của trảng cỏ Bù Lạch là hồ nước ngọt tự nhiên trong vắt nằm ngay trung tâm trảng cỏ. Sự kết hợp hài hòa giữa thảm cỏ kim mịn màng mọc tự nhiên, mặt hồ phẳng lặng lộng gió và bức tường thành rừng nguyên sinh bạt ngàn bao bọc xung quanh tạo nên một bức tranh thiên nhiên tuyệt mỹ, mang lại cảm giác bình yên, hoang sơ hiếm có cho bất kỳ ai đặt chân đến.
+**Lựa chọn hạt nếp nương và ống lồ ô tươi tiêu chuẩn**
 
-**Huyền thoại hồ nước trong tâm thức người bản địa**
+Sự tinh tế của món cơm lam S'tiêng Bù Đăng bắt đầu từ khâu lựa chọn nguyên liệu cực kỳ tỉ mỉ của các nghệ nhân:
+1. Gạo nấu cơm lam phải là loại gạo nếp nương hạt tròn trịa, trắng trong, gặt từ những rẫy lúa khô trên sườn đồi Bù Đăng. Hạt nếp này khi chín có độ dẻo cực cao và vị ngọt đậm đà khó lẫn.
+2. Ống nướng cơm phải là tre lồ ô non (hay tre bánh tẻ) được chặt trực tiếp từ rừng già. Ống phải tươi nguyên, vỏ mướt xanh để khi nướng lớp màng mỏng bên trong ống lồ ô bao bọc lấy hạt cơm, tạo thành một lớp áo mịn màng thơm ngát.
 
-Khu vực xung quanh trảng cỏ Bù Lạch từ bao đời nay là địa bàn sinh sống lâu đời của các cộng đồng dân tộc M'nông, S'tiêng, Mạ. Người dân bản địa lưu truyền nhiều truyền thuyết linh thiêng về hồ nước Bàu Lạch. Họ tin rằng hồ nước là "mắt trời" soi bóng vạn vật, cung cấp sinh khí và nguồn nước mát vô tận nuôi dưỡng buôn làng giữa đại ngàn. Nơi đây cũng thường diễn ra các hoạt động kết bạn, giao lưu văn hóa cồng chiêng truyền thống của bà con các buôn làng vào mỗi dịp lễ hội.
+**Quy trình nướng cơm tinh tế**
 
-**Hướng đi cho du lịch sinh thái bền vững**
+Gạo nếp rẫy được vo sạch, ngâm trong nước suối khoảng vài tiếng cho mềm rồi cho vào ống lồ ô. Người nấu không đổ đầy gạo mà chừa lại khoảng một gang tay, đổ nước suối ngập mặt gạo rồi dùng lá chuối rừng cuộn chặt bịt kín miệng ống lại.
 
-Nhờ vẻ đẹp hoang sơ tự nhiên, Trảng cỏ Bù Lạch là địa điểm dã ngoại, cắm trại và chụp ảnh yêu thích của du khách trong và ngoài tỉnh Bình Phước. Tuy nhiên, hoạt động du lịch tại đây hiện tại hầu hết vẫn ở dạng tự phát, chưa có hạ tầng dịch vụ lưu trú chuyên nghiệp.
+Quá trình nướng cơm đòi hỏi sự kiên nhẫn và khéo léo cao độ. Ống cơm lam được dựng nghiêng xung quanh bếp lửa than củi rừng hồng rực. Người nấu phải xoay đều ống liên tục để hơi nóng thấm đều qua lớp vỏ tre, làm hạt nếp nở chín mềm nhờ nước tre tươi tiết ra vách ống. Khi vỏ lồ ô chuyển sang màu vàng cháy sém và hương thơm của nếp quyện mùi tre tươi tỏa ra ngào ngạt, đó là lúc cơm đã chín hoàn hảo.
 
-Vấn đề bảo vệ cảnh quan tự nhiên đang là thách thức lớn nhất tại danh thắng này. Do lượng khách cắm trại tự phát tăng cao, tình trạng xả rác bừa bãi sau mỗi buổi picnic đã gây ảnh hưởng tiêu cực đến môi trường sinh thái của trảng cỏ. Phòng Văn hóa - Thông tin Xã Bù Đăng cùng đoàn thanh niên địa phương đang đẩy mạnh các chiến dịch truyền thông "Du lịch xanh - Không để lại rác", hướng dẫn du khách nâng cao ý thức bảo vệ môi trường, mang rác thải về nơi quy định và tiến tới quy hoạch trảng cỏ thành khu du lịch sinh thái bền vững, giữ trọn vẹn vẻ đẹp nguyên sơ của thảo nguyên xanh Bù Đăng.`,
-    coverImage: '/images/heritage/Img disanbudang/Trang co Bu Lach.png',
+**Cách thưởng thức đậm chất hoang sơ**
+
+Khi ăn, người ta dùng dao tước bỏ lớp vỏ lồ ô cháy bên ngoài, chỉ chừa lại một lớp vỏ mỏng màu trắng ngà ôm chặt lấy phần cơm nếp thon dài. Cắt cơm thành từng khúc nhỏ, chấm cùng muối mè (muối vừng) giã nhỏ với ớt hiểm hoặc ăn kèm thịt gà đồi Bù Đăng nướng than. Cơm lam dẻo quánh, ngọt bùi, đậm đà hương vị mộc mạc của tre rừng đại ngàn Bù Đăng sẽ mang lại một trải nghiệm ẩm thực vô cùng sâu sắc và khó quên cho bất kỳ du khách nào.`,
+    coverImage: '/images/heritage/com-lam-stieng.png',
     category: 'hoat-dong',
     author: 'Phòng Văn hóa - Thông tin Bù Đăng',
-    publishedAt: '2025-06-02',
+    publishedAt: '2026-03-05',
     readTime: 5,
     featured: false,
-    tags: ['trảng cỏ bù lạch', 'cắm trại', 'du lịch sinh thái', 'bảo tồn thiên nhiên', 'Bù Đăng'],
+    tags: ['cơm lam', 'S\'tiêng Bù Đăng', 'nếp nương', 'lồ ô tươi', 'ẩm thực rẫy nương'],
+  },
+  {
+    id: 'news-005',
+    slug: 'det-tho-cam-stieng-net-hoa-van-dai-ngan',
+    title: 'Nghề Dệt Thổ Cẩm S\'tiêng Bù Đăng: Bản Họa Đồ Của Rừng Già',
+    subtitle: 'Khám phá nghệ thuật dệt tay độc đáo và hệ thống hoa văn giàu ý nghĩa của người phụ nữ S\'tiêng',
+    excerpt: 'Nghề dệt thổ cẩm của người S\'tiêng Bù Đăng không chỉ là kỹ thuật xe tơ dệt vải, mà còn là phương thức lưu truyền ký ức dân tộc qua những nét hoa văn tinh tế mô tả hạt lúa, cánh chim và dãy núi.',
+    content: `Thổ cẩm S'tiêng Bù Đăng (tiếng địa phương gọi là "Krih") không chỉ là tấm vải che thân, mà là trang sử sống động viết bằng những sắc màu của đại ngàn. Nghệ thuật dệt thổ cẩm của đồng bào S'tiêng tại các buôn sóc xã Đắk Nhau, Bom Bo và Phú Sơn là kết tinh từ đôi bàn tay khéo léo cùng thế giới quan sâu sắc của người phụ nữ bản địa.
+
+**Kỹ thuật nhuộm màu tự nhiên từ thảo mộc rừng**
+
+Quy trình tạo nên một tấm thổ cẩm S'tiêng chuẩn mực vô cùng khắt khe, bắt đầu bằng việc đi tìm chất nhuộm màu thảo dã trong rừng sâu Bù Đăng. Người S'tiêng tuyệt đối không dùng phẩm màu hóa học:
+- **Màu đen (chủ đạo):** Được chiết xuất bằng cách ngâm lá cây chàm rừng, phối trộn cùng bùn non giàu khoáng chất để màu bám chắc vào sợi bông.
+- **Màu đỏ (tượng trưng cho lửa và sự sống):** Lấy từ vỏ cây Krông dập nát, đun sôi kỹ.
+- **Màu vàng (tượng trưng cho ánh mặt trời):** Nhuộm từ củ nghệ rừng mọc hoang quanh dòng suối.
+
+Sợi bông rẫy sau khi nhuộm nhiều lần sẽ được đem phơi khô trên gác bếp để tăng độ dẻo dai và bóng mượt trước khi đưa lên khung dệt gỗ (khung dệt dạng đai lưng vô cùng thô sơ nhưng linh hoạt).
+
+**Hệ hoa văn - ngôn ngữ không lời của người S'tiêng**
+
+Điểm đắt giá nhất trên tấm thổ cẩm S'tiêng Bù Đăng là dải hoa văn trang trí chạy dọc thân vải. Mỗi hoa văn là một biểu tượng văn hóa có ý nghĩa sâu sắc:
+- **Hình thoi chéo xếp nối tiếp:** Mô phỏng hạt lúa rẫy - biểu trưng cho sự no ấm, sinh sôi nảy nở.
+- **Hình răng cưa lượn sóng:** Tái hiện những dãy núi cao hiểm trở ôm lấy buôn làng và dòng sông Bé uốn lượn.
+- **Hình con chim đang bay:** Thể hiện ước mơ tự do và khát vọng sống hòa hợp bền bỉ cùng đất trời.
+
+**Giữ gìn hồn cốt di sản trước dòng chảy thời gian**
+
+Trước làn sóng của vải dệt công nghiệp giá rẻ, nghề dệt thổ cẩm S'tiêng từng đứng trước nguy cơ thất truyền khi lớp trẻ không mặn mà học dệt. Để cứu lấy di sản phi vật thể quý báu này, các nghệ nhân kỳ cựu như nghệ nhân Thị Rét tại sóc Đắk Nhau đã mở nhiều lớp dạy dệt miễn phí cho các em học sinh THCS, THPT tại địa phương. Những tấm thổ cẩm truyền thống nay được biến tấu thành khăn quàng, túi xách thời trang phục vụ du khách tại sóc Bom Bo, góp phần mang lại nguồn thu nhập bền vững giúp giữ lửa cho những chiếc khung dệt cổ truyền vang tiếng kẽo kẹt giữa buôn làng.`,
+    coverImage: '/images/heritage/det-tho-cam-stieng.png',
+    category: 'tin-tuc',
+    author: 'Nghệ nhân Thị Rét',
+    publishedAt: '2026-02-18',
+    readTime: 7,
+    featured: false,
+    tags: ['dệt thổ cẩm', 'S\'tiêng Bù Đăng', 'bản sắc văn hóa', 'hoa văn đại ngàn'],
+  },
+  {
+    id: 'news-006',
+    slug: 'dan-da-stieng-bu-dang-am-thanh-co-dai',
+    title: 'Đàn Đá S\'tiêng Bù Đăng: Tiếng Vọng Ngàn Năm Từ Lòng Đất Mẹ',
+    subtitle: 'Hành trình phục dựng và gìn giữ nhạc cụ gõ cổ xưa nhất của đồng bào S\'tiêng bên dòng thác đổ',
+    excerpt: 'Đàn đá là nhạc cụ gõ cổ xưa nhất của người S\'tiêng Bù Đăng, được tìm thấy trong lòng đất đỏ Bình Phước. Tiếng đàn đá thanh thót như tiếng suối chảy, trầm hùng như gió ngàn đại ngàn.',
+    content: `Trong không gian văn hóa cồng chiêng Tây Nguyên và Đông Nam Bộ, đàn đá (tiếng S'tiêng gọi là "Klong-put" đá hoặc "Goong-lú") được coi là báu vật linh thiêng bậc nhất. Tại Bù Đăng, những thanh đàn đá cổ được phát hiện ẩn sâu trong lòng đất đỏ bazan vùng Đắk Nhau, Bom Bo là minh chứng hùng hồn cho sự hiện diện lâu đời và đời sống tinh thần phong phú của đồng bào S'tiêng từ hàng ngàn năm trước.
+
+**Hành trình tìm kiếm đá hát của tổ tiên**
+
+Không phải loại đá nào cũng có thể phát ra âm nhạc. Để chế tác một bộ đàn đá chuẩn âm, nghệ nhân S'tiêng phải lặn lội dọc các dòng suối sâu quanh chân núi Bù Đăng để tìm kiếm chất liệu đá sừng (andesite hoặc rhyolite) đặc hữu. 
+- Nghệ nhân dùng búa gõ nhẹ vào từng phiến đá suối để lắng nghe âm vang. Phiến đá đạt chuẩn phải phát ra tiếng kêu đanh, thanh thoát, trong trẻo như tiếng kim khí chạm nhau.
+- Sau khi tìm được đá, quá trình đẽo gọt, ghè đẽo hoàn toàn thủ công bắt đầu. Nghệ nhân dùng đá ghè đá, bóc đi từng lớp vỏ ngoài để tinh chỉnh cao độ của từng thanh đá theo thang âm ngũ cung của nhạc cụ S'tiêng. Bộ đàn đá thường có từ 5 đến 9 thanh với độ dài ngắn, dày mỏng khác nhau, thanh dài phát ra âm trầm (tiếng Mẹ), thanh ngắn phát ra âm cao (tiếng Con).
+
+**Tiếng vang đại ngàn nối liền quá khứ và hiện tại**
+
+Tiếng đàn đá S'tiêng vô cùng kỳ diệu: khi trầm hùng sâu lắng như tiếng sấm gầm vang đầu mùa mưa, khi réo rắt thanh thoát tựa tiếng nước chảy qua khe đá của Thác Đứng. Người S'tiêng cổ xưa thường gõ đàn đá trên nương rẫy để xua đuổi thú dữ bảo vệ mùa màng, hoặc biểu diễn trong các lễ hội ăn trâu mừng nhà mới để mời gọi các đấng thần linh (Giàng) xuống chứng giám.
+
+Hiện nay, phong trào tập luyện diễn tấu đàn đá đang được khôi phục mạnh mẽ thông qua các câu lạc bộ di sản học đường tại huyện Bù Đăng. Dưới sự truyền dạy của nghệ nhân Điểu K'Giang, thế hệ trẻ S'tiêng đã biết nâng niu những thanh đá thô ráp, gõ lên những giai điệu cách mạng và dân ca rộn rã, giữ cho tiếng vọng ngàn năm của tổ tiên tiếp tục ngân vang thắm thiết giữa nhịp sống hiện đại.`,
+    coverImage: '/images/heritage/dan-da-stieng.png',
+    category: 'nghien-cuu',
+    author: 'Điểu K\'Giang',
+    publishedAt: '2026-01-25',
+    readTime: 8,
+    featured: false,
+    tags: ['đàn đá', 'S\'tiêng Bù Đăng', 'nhạc cụ cổ sơ', 'âm nhạc dân tộc'],
   },
 ]
 export const MOCK_EVENTS: Event[] = [
   {
     id: 'event-001',
-    title: 'Festival Di Sản Bù Đăng 2026',
-    description: 'Ba ngày hội tụ di sản — trải nghiệm văn hóa, âm nhạc và ẩm thực truyền thống S\'tiêng, M\'nông.',
-    location: 'Trung tâm Văn hóa Xã Bù Đăng',
+    title: 'Lễ Hội “Vang Mãi Tiếng Chày Trên Sóc Bom Bo”',
+    description: 'Tôn vinh truyền thống yêu nước của đồng bào S\'tiêng với hội thi giã gạo nuôi quân thâu đêm, biểu diễn đàn đá, cồng chiêng và thưởng thức ẩm thực truyền thống.',
+    location: 'Khu Bảo tồn Văn hóa Dân tộc S\'tiêng Sóc Bom Bo (Bình Minh, Bù Đăng)',
     startDate: '2026-11-01',
     endDate: '2026-11-03',
     type: 'su-kien',
@@ -270,21 +340,21 @@ export const MOCK_EVENTS: Event[] = [
   },
   {
     id: 'event-002',
-    title: 'Triển Lãm Ảnh "Ánh Sáng Đại Ngàn"',
-    description: 'Triển lãm 120 tác phẩm nhiếp ảnh về thiên nhiên, con người và di sản Bù Đăng.',
-    location: 'Nhà Văn hóa Huyện & Trực tuyến',
+    title: 'Lễ Hội Cầu Bông Miếu Đức Hòa',
+    description: 'Di sản văn hóa phi vật thể Quốc gia của cộng đồng người Kinh tại Bù Đăng, dâng hương cầu mưa thuận gió hòa, quốc thái dân an và tri ân các tiền nhân khai hoang.',
+    location: 'Di tích Lịch sử - Văn hóa Miếu Đức Hòa (Đức Phong, Bù Đăng)',
     startDate: '2026-10-15',
     endDate: '2026-10-30',
-    type: 'trien-lam',
-    isOnline: true,
+    type: 'su-kien',
+    isOnline: false,
   },
   {
     id: 'event-003',
-    title: 'Ngày Hội Di Sản Trường Học',
-    description: 'Học sinh các trường THCS, THPT trình bày nghiên cứu, tranh vẽ và dự án về di sản Bù Đăng.',
-    location: 'Các trường học trên địa bàn huyện',
+    title: 'Lễ Hội Mừng Lúa Mới Đất Đỏ Bù Đăng',
+    description: 'Nghi lễ độc đáo tạ ơn thần lúa (Yang Sri) của người M\'nông và S\'tiêng, tái hiện sinh hoạt cộng đồng cồng chiêng, giã gạo và giao lưu rượu cần.',
+    location: 'Nhà dài truyền thống các buôn sóc Bù Đăng',
     startDate: '2026-09-20',
-    type: 'hoat-dong-truong-hoc',
+    type: 'su-kien',
     isOnline: false,
   },
 ]

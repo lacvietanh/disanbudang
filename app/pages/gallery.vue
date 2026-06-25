@@ -11,8 +11,8 @@
         <h1 class="font-heading font-bold text-ivory text-4xl md:text-5xl lg:text-6xl leading-none mb-5">
           Triển Lãm Ảnh<br/> <span class="text-gradient-gold">Di Sản Bù Đăng</span>
         </h1>
-        <p class="text-charcoal-350 text-base max-w-2xl leading-relaxed">
-          Chiêm ngưỡng kho tư liệu ảnh tư liệu lịch sử, cảnh quan thiên nhiên và con người Bù Đăng chân thực. Hình ảnh được sưu tầm và tối ưu hóa chất lượng nguyên bản.
+        <p class="text-charcoal-350 text-base max-w-3xl leading-relaxed">
+          Nơi hội tụ những khoảnh khắc đắt giá ghi lại linh hồn và hơi thở của đại ngàn Bù Đăng. Từ những khung cảnh thiên nhiên hùng vĩ của Thác Đứng, trảng cỏ Bù Lạch, đến nếp sống sinh hoạt đậm đà bản sắc của đồng bào dân tộc S'tiêng, M'nông. Mỗi bức ảnh nghệ thuật và tư liệu lịch sử được trưng bày tại đây đều là một lát cắt chân thực giúp bảo tồn nguyên vẹn các giá trị văn hóa vô giá khỏi sự đào thải của thời gian, đồng thời đánh thức lòng tự hào và tình yêu quê hương trong mỗi người xem.
         </p>
 
         <!-- Search input -->

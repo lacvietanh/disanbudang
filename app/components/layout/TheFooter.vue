@@ -80,16 +80,18 @@ const footerLinks = [
       { to: '/map', label: 'Bản Đồ Tương Tác' },
       { to: '/library', label: 'Thư Viện Di Sản' },
       { to: '/explore', label: 'Trải Nghiệm & Cộng Đồng' },
-      { to: '/heritage/chien-khu-d-bu-dang', label: 'Chiến Khu Đ' },
-      { to: '/heritage/thac-mo-bu-dang', label: 'Thác Mơ' },
+      { to: '/#quiz', label: 'Trắc Nghiệm Di Sản' },
+      { to: '/#school-corner', label: 'Góc Học Tập Học Sinh' },
     ],
   },
   {
     title: 'Thông Tin & Đối Tác',
     links: [
       { to: '/about', label: 'Về Di Sản Bù Đăng' },
-      { to: '/news', label: 'Tin Tức & Sự Kiện' },
+      { to: '/news', label: 'Bài Viết & Sự Kiện' },
       { to: '/invest', label: 'Cơ Hội Đầu Tư' },
+      { to: '/gallery', label: 'Triển Lãm Ảnh' },
+      { to: '/contribute', label: 'Đóng Góp Di Sản' },
     ],
   },
 ]

@@ -141,31 +141,31 @@
 <script setup lang="ts">
 const slides = [
   {
-    image: '/images/heritage/Img disanbudang/Cong chieng.jpg',
-    alt: 'Văn hóa cồng chiêng',
-    label: 'VĂN HÓA CỒNG CHIÊNG',
-    caption: 'Linh hồn âm nhạc của núi rừng Tây Nguyên',
+    image: '/images/heritage/Bombo/TAN08220.jpg',
+    alt: 'Sóc Bom Bo',
+    label: 'SÓC BOM BO',
+    caption: 'Nhịp chày giã gạo vang vọng đại ngàn',
   },
   {
-    image: '/images/heritage/Img disanbudang/Khu Bao Ton 2.jpg',
+    image: '/images/heritage/Img%20disanbudang/Khu%20Bao%20Ton%202.jpg',
     alt: 'Rừng nguyên sinh Bù Đăng',
     label: 'RỪNG NGUYÊN SINH BÙ ĐĂNG',
     caption: 'Kho báu đa dạng sinh học của Đông Nam Bộ',
   },
   {
-    image: '/images/heritage/Img disanbudang/Nha Dai Truyen Thong.png',
+    image: '/images/heritage/Img%20disanbudang/Nha%20Dai%20Truyen%20Thong.png',
     alt: 'Nhà dài truyền thống S\'tiêng',
     label: 'NHÀ DÀI TRUYỀN THỐNG',
     caption: 'Kiến trúc cộng đồng độc đáo trên cao nguyên',
   },
   {
-    image: '/images/heritage/Img disanbudang/le hoi mung lua moi.png',
+    image: '/images/heritage/Img%20disanbudang/le%20hoi%20mung%20lua%20moi.png',
     alt: 'Lễ hội mừng lúa mới M\'nông',
     label: 'LỄ HỘI MỪNG LÚA MỚI',
     caption: 'Lời tạ ơn của đất trời và mùa vàng bội thu',
   },
   {
-    image: '/images/heritage/Img disanbudang/thac-mo-dong-nai.png',
+    image: '/images/heritage/Img%20disanbudang/thac-mo-dong-nai.png',
     alt: 'Thác Mơ Bù Đăng',
     label: 'THÁC MƠ BÙ ĐĂNG',
     caption: 'Viên ngọc xanh giữa đại ngàn Đông Nam Bộ',
