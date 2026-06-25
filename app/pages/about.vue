@@ -215,7 +215,7 @@ useSeoMeta({ title: 'Giới Thiệu Dự Án — Di Sản Bù Đăng', descripti
 const slides = [
   '/images/heritage/Bombo/TAN08217.jpg',
   '/images/heritage/lich-su/nha-giao-truyen-thong-md.webp',
-  '/images/heritage/Img disanbudang/chien khu D.png'
+  '/images/heritage/img-disanbudang/chien-khu-D.png'
 ]
 const currentSlide = ref(0)
 let slideInterval: ReturnType<typeof setInterval>
