@@ -127,7 +127,7 @@ Hệ sinh thái quanh Thác Mơ vô cùng phong phú. Những cánh rừng già 
       id: 'aud-002',
       title: 'Huyền Thoại Nàng Mơ',
       narrator: 'Em Trần Thị Lan Anh',
-      narratorRole: 'Học sinh lớp 8, Trường THCS Bù Đăng',
+      narratorRole: 'Học sinh lớp 8, Trường THCS Nguyễn Trường Tộ',
       duration: 198,
       url: '/audio/thac-mo.mp3',
       coverImage: '/images/heritage/img-disanbudang/thac-mo-dong-nai.png',
@@ -407,7 +407,7 @@ Phần hội là không gian văn hóa sôi động: các điệu múa truyền 
     ],
     coordinates: { lat: 11.8064, lng: 107.3552 },
     shortDescription:
-      'Trảng cỏ Bù Lạch là một danh thắng thiên nhiên độc đáo bậc nhất Bình Phước, nổi bật với trảng cỏ xanh mướt rộng gần 140 ha ôm trọn lòng hồ nước ngọt trong lành giữa rừng già.',
+      'Trảng cỏ Bù Lạch là một danh thắng thiên nhiên độc đáo bậc nhất Thành Phố Đồng Nai (Bình Phước cũ), nổi bật với trảng cỏ xanh mướt rộng gần 140 ha ôm trọn lòng hồ nước ngọt trong lành giữa rừng già.',
     longStory: `Nằm cách thị trấn Đức Phong khoảng 20 km, Trảng cỏ Bù Lạch hiện lên như một thảo nguyên hoang sơ kỳ vĩ giữa lòng đại ngàn Bù Đăng. Điểm độc đáo hiếm nơi nào có được là sự kết hợp hài hòa giữa rừng nguyên sinh bao bọc, trảng cỏ xanh mướt tự nhiên và hồ nước ngọt phẳng lặng ở trung tâm trảng cỏ.
 
 Trảng cỏ Bù Lạch rộng hơn 140 ha, bao gồm hơn 20 trảng cỏ lớn nhỏ khác nhau. Cỏ ở đây là loại cỏ kim mọc tự nhiên, dai và mịn, quanh năm giữ một màu xanh mướt dịu mắt. Bao quanh trảng cỏ là những khu rừng nguyên sinh rậm rạp với thảm thực vật đa dạng, tạo nên một bức tường thành thiên nhiên kiên cố bảo vệ thảo nguyên nhỏ bé này.

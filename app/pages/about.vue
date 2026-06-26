@@ -273,7 +273,7 @@ const teams = [
 ]
 
 const roadmap = [
-  { time: 'Tương lai gần', title: 'Mở Rộng Không Gian Văn Hoá', desc: 'Đưa mô hình chuyển đổi số này vượt ra khỏi ranh giới Bù Đăng, phủ sóng toàn vẹn bản đồ di sản của tỉnh Bình Phước.' },
+  { time: 'Tương lai gần', title: 'Mở Rộng Không Gian Văn Hoá', desc: 'Đưa mô hình chuyển đổi số này vượt ra khỏi ranh giới Bù Đăng, phủ sóng toàn vẹn bản đồ di sản của Thành Phố Đồng Nai.' },
   { time: 'Trung hạn', title: 'Xóa Nhòa Rào Cản Ngôn Ngữ', desc: 'Ứng dụng Trí tuệ nhân tạo (AI) tự động dịch thuật và tạo thuyết minh giọng nói (Text-to-Speech) đa ngữ, sẵn sàng đón làn sóng du khách quốc tế.' },
   { time: 'Tầm nhìn xa', title: 'Trải Nghiệm Thực Tế Ảo (VR/AR)', desc: 'Phục dựng 3D các không gian lễ hội thiêng liêng, cho phép người dùng từ bất cứ đâu trên thế giới đều có thể bước vào không gian văn hoá cồng chiêng.' },
 ]

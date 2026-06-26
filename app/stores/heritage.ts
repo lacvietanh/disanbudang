@@ -10,6 +10,7 @@ export const useHeritageStore = defineStore('heritage', () => {
   const searchQuery = ref('')
   const activeCategory = ref<string>('')
   const activePeriod = ref<string>('')
+  const mapGesturesEnabled = ref(true)
 
   // Getters
   const filteredHeritages = computed(() => {
@@ -100,6 +101,7 @@ export const useHeritageStore = defineStore('heritage', () => {
     searchQuery,
     activeCategory,
     activePeriod,
+    mapGesturesEnabled,
     filteredHeritages,
     featuredHeritages,
     publishedHeritages,

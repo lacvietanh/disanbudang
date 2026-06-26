@@ -148,10 +148,17 @@ useSeoMeta({
   description: 'Không gian học hỏi, tương tác và lưu giữ các tác phẩm tranh vẽ, ghi chép ký ức chân thực về di sản do người dân Bù Đăng cùng đóng góp.',
 })
 
-const { observeAll } = useScrollReveal()
-onMounted(() => nextTick(() => observeAll()))
-
+const route = useRoute()
 const activeTab = ref('all')
+
+const { observeAll } = useScrollReveal()
+onMounted(() => {
+  const tabParam = route.query.tab as string
+  if (tabParam && tabs.some((t) => t.id === tabParam)) {
+    activeTab.value = tabParam
+  }
+  nextTick(() => observeAll())
+})
 
 const tabs = [
   { id: 'all', label: 'Tất Cả Ký Ức', icon: 'mdi:apps' },

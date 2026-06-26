@@ -451,119 +451,16 @@
         </Transition>
 
         <!-- MOBILE BOTTOM SHEET PANEL -->
-        <Transition name="bottom-sheet-slide">
-          <div
+        <Transition name="sheet-slide">
+          <MapBottomSheet
             v-if="selectedHeritage && !isDesktop"
-            class="fixed bottom-0 left-0 right-0 z-[500] bg-charcoal-950 border-t-2 border-gold-500/40 rounded-t-3xl shadow-2xl shadow-black/80 flex flex-col transition-all duration-500 overflow-hidden h-fit"
-            :style="{ maxHeight: mobilePanelHeight }"
-            role="dialog"
-            :aria-label="'Thông tin: ' + selectedHeritage.title"
-          >
-            <!-- Drag Handle / Toggle Header -->
-            <div class="w-full py-3.5 bg-charcoal-900 flex flex-col items-center cursor-pointer shrink-0 border-b border-charcoal-800" @click="toggleMobileHeight">
-              <div class="w-10 h-1 bg-charcoal-600 rounded-full mb-1.5"></div>
-              <span class="text-[10px] text-charcoal-400 uppercase tracking-widest font-bold">
-                {{ mobilePanelHeight === '13rem' ? '▲ Chạm để xem thêm chi tiết' : '▼ Chạm để thu nhỏ' }}
-              </span>
-            </div>
-
-            <!-- Content Container -->
-            <div class="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-none pb-8">
-              <!-- Header info layout - always visible in Peek -->
-              <div class="flex gap-3.5">
-                <div class="w-24 h-20 rounded-xl overflow-hidden shrink-0 border border-charcoal-700 shadow-lg">
-                  <img :src="selectedHeritage.coverImage" :alt="selectedHeritage.title" class="w-full h-full object-cover" />
-                </div>
-                <div class="min-w-0 flex-1">
-                  <span class="text-[10px] uppercase font-bold tracking-wider" style="color: #d4a829">{{ getCategoryLabel(selectedHeritage.category) }}</span>
-                  <h3 class="font-heading font-bold text-white text-base leading-tight mt-0.5">{{ selectedHeritage.title }}</h3>
-                  <p class="text-charcoal-300 text-xs line-clamp-2 mt-1 leading-normal">{{ selectedHeritage.shortDescription }}</p>
-                </div>
-              </div>
-
-              <!-- CTA actions -->
-              <div class="grid grid-cols-3 gap-2 shrink-0">
-                <NuxtLink
-                  :to="`/heritage/${selectedHeritage.slug}`"
-                  class="btn-primary text-xs justify-center py-2.5 font-bold rounded-xl"
-                >
-                  Chi tiết
-                </NuxtLink>
-                <a
-                  :href="getGoogleMapsDirectionUrl(selectedHeritage)"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-xs border border-charcoal-700 text-charcoal-200 rounded-xl flex items-center justify-center gap-1 hover:border-gold-500/40 hover:text-gold-400 transition-colors bg-charcoal-900"
-                >
-                  <Icon name="mdi:directions" class="w-3.5 h-3.5 text-gold-400" />
-                  Chỉ đường
-                </a>
-                <button
-                  v-if="selectedHeritage.audio"
-                  class="text-xs border border-charcoal-700 text-gold-400 rounded-xl flex items-center justify-center gap-1 bg-charcoal-900 hover:bg-gold-500/10 transition-colors"
-                  @click="playAudio"
-                >
-                  <Icon :name="isPlayingCurrentTrack ? 'mdi:pause' : 'mdi:headphones'" class="w-3.5 h-3.5" />
-                  Audio
-                </button>
-              </div>
-
-              <!-- Expanded Details -->
-              <div v-if="mobilePanelHeight !== '13rem'" class="space-y-5 pt-3 border-t border-charcoal-800">
-                <!-- Video Player -->
-                <div v-if="selectedHeritage.video" class="space-y-2">
-                  <h4 class="text-[10px] uppercase text-gold-400 tracking-widest font-bold flex items-center gap-1.5">
-                    <Icon name="mdi:video-outline" class="w-3.5 h-3.5" />
-                    Phim tư liệu di sản
-                  </h4>
-                  <div class="rounded-xl overflow-hidden border border-charcoal-800 aspect-video bg-charcoal-950 relative">
-                    <video :src="selectedHeritage.video.url" controls class="w-full h-full object-cover" preload="metadata" />
-                  </div>
-                </div>
-
-                <!-- Gallery -->
-                <div v-if="selectedHeritage.gallery && selectedHeritage.gallery.length > 0" class="space-y-2">
-                  <h4 class="text-[10px] uppercase text-gold-400 tracking-widest font-bold flex items-center gap-1.5">
-                    <Icon name="mdi:image-multiple-outline" class="w-3.5 h-3.5" />
-                    Hình ảnh ({{ selectedHeritage.gallery.length }} ảnh)
-                  </h4>
-                  <div class="grid grid-cols-3 gap-1.5">
-                    <div
-                      v-for="(img, gIdx) in selectedHeritage.gallery"
-                      :key="gIdx"
-                      class="aspect-video rounded-lg overflow-hidden border border-charcoal-800 cursor-pointer hover:border-gold-400/50 transition-all relative group"
-                      @click="activeImageIndex = gIdx"
-                    >
-                      <img :src="img.src" :alt="img.alt" class="w-full h-full object-cover" loading="lazy" />
-                      <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <Icon name="mdi:magnify-plus-outline" class="w-4 h-4 text-white" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Story text -->
-                <div class="space-y-2">
-                  <h4 class="text-[10px] uppercase text-gold-400 tracking-widest font-bold flex items-center gap-1.5">
-                    <Icon name="mdi:book-open-variant" class="w-3.5 h-3.5" />
-                    Lịch sử & Ý nghĩa
-                  </h4>
-                  <p class="text-sm text-charcoal-200 leading-relaxed font-sans whitespace-pre-line">
-                    {{ selectedHeritage.longStory }}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Close button -->
-            <button
-              class="absolute top-3 right-4 text-charcoal-300 hover:text-white bg-charcoal-800 rounded-full p-1.5 border border-charcoal-700 z-50 transition-colors"
-              @click="selectedId = null"
-              aria-label="Đóng"
-            >
-              <Icon name="mdi:close" class="w-4 h-4" />
-            </button>
-          </div>
+            :selected-heritage="selectedHeritage"
+            :is-playing-current-track="isPlayingCurrentTrack"
+            @close="selectedId = null"
+            @play-audio="playAudio"
+            @open-gallery="(idx) => activeImageIndex = idx"
+            @select-heritage="(h) => selectHeritage(h)"
+          />
         </Transition>
 
         <!-- GALLERY LIGHTBOX VIEWER -->
@@ -636,6 +533,7 @@ import { CATEGORIES, PERIODS } from '~/data/categories'
 import { MOCK_HERITAGES } from '~/data/mockHeritages'
 import type { Heritage } from '~/types'
 import { useEventListener } from '@vueuse/core'
+import MapBottomSheet from '~/components/map/BottomSheet.vue'
 
 definePageMeta({ layout: 'default' })
 useSeoMeta({
@@ -662,8 +560,7 @@ const selectedRouteId = ref<string | null>(null)
 // Gallery Lightbox State
 const activeImageIndex = ref<number | null>(null)
 
-// Mobile Bottom Sheet Height State
-const mobilePanelHeight = ref('13rem') // 13rem = Peek state, '80vh' = Expanded state
+// Bottom sheet state is handled inside the component
 
 const categories = CATEGORIES
 const periods = PERIODS
@@ -782,12 +679,7 @@ watch(searchQuery, (q) => {
 watch(activeCategory, (c) => store.setCategory(c))
 watch(activePeriod, (p) => store.setPeriod(p))
 
-// Reset mobile panel state when selection changes
-watch(selectedId, (id) => {
-  if (id) {
-    mobilePanelHeight.value = '13rem'
-  }
-})
+// Selection changes are watched inside the child component to reset snap state
 
 // Global listeners for keybind access
 useEventListener('keydown', (e: KeyboardEvent) => {
@@ -802,8 +694,8 @@ useEventListener('keydown', (e: KeyboardEvent) => {
 
 onMounted(() => {
   const route = useRoute()
-  // Determine desktop state client-side
-  const checkDesktop = () => { isDesktop.value = window.innerWidth >= 1024 }
+  // Determine desktop state client-side (>= 768px for desktop layout)
+  const checkDesktop = () => { isDesktop.value = window.innerWidth >= 768 }
   checkDesktop()
   window.addEventListener('resize', checkDesktop)
   onUnmounted(() => window.removeEventListener('resize', checkDesktop))
@@ -889,9 +781,7 @@ function getGoogleMapsDirectionUrl(heritage: Heritage): string {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(heritage.title + ' Bù Đăng Bình Phước')}`
 }
 
-function toggleMobileHeight() {
-  mobilePanelHeight.value = mobilePanelHeight.value === '13rem' ? '80vh' : '13rem'
-}
+// toggleMobileHeight is handled by bottom sheet gestures
 
 // Lightbox navigation functions
 function prevImage() {
@@ -918,11 +808,11 @@ function nextImage() {
 }
 
 /* Mobile Bottom Sheet Animations */
-.bottom-sheet-slide-enter-active, .bottom-sheet-slide-leave-active {
-  transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+.sheet-slide-enter-active, .sheet-slide-leave-active {
+  transition: transform 0.45s cubic-bezier(0.19, 1, 0.22, 1);
 }
-.bottom-sheet-slide-enter-from, .bottom-sheet-slide-leave-to {
-  transform: translateY(100%);
+.sheet-slide-enter-from, .sheet-slide-leave-to {
+  transform: translateY(100%) !important;
 }
 
 /* Fade animation for lightbox */

@@ -367,6 +367,26 @@
     border-left-color: var(--color-gold) !important;
     color: #302D2A !important;
   }
+
+  .bg-warm-paper,
+  .bg-beige-200,
+  .bg-ivory,
+  .bg-white {
+    .section-title {
+      @apply text-charcoal-900 !important;
+    }
+    .section-desc {
+      @apply text-charcoal-600 !important;
+    }
+    .section-label {
+      @apply text-gold-600 !important;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      &:not([class*="text-ivory"]):not([class*="text-gold"]):not([class*="text-brick"]):not([class*="text-forest"]):not([class*="text-gradient"]):not([class*="text-shadow"]) {
+        color: var(--color-charcoal) !important;
+      }
+    }
+  }
 }
 
 /* =========================================================
@@ -597,5 +617,35 @@ textarea:disabled {
   opacity: 0.5 !important;
   cursor: not-allowed !important;
   background-color: #0b0b0b !important;
+}
+
+/* =========================================================
+   3D BOOK COVER & ACADEMIC CARD EFFECT
+   ========================================================= */
+.book-container {
+  perspective: 1200px;
+}
+
+.book-card {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.book-card:hover {
+  transform: rotateY(-12deg) rotateX(4deg) translateY(-6px);
+  box-shadow: -15px 20px 30px rgba(15, 14, 12, 0.18), 0 10px 15px rgba(107, 76, 53, 0.08);
+}
+
+.book-spine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.05) 40%, rgba(255, 255, 255, 0.15) 100%);
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.15);
+  z-index: 10;
 }
 

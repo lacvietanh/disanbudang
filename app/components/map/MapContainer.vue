@@ -15,6 +15,7 @@
 <script setup lang="ts">
 import type { Heritage } from '~/types'
 import { CATEGORY_MAP } from '~/data/categories'
+import { useHeritageStore } from '~/stores/heritage'
 import 'leaflet/dist/leaflet.css'
 
 const props = defineProps<{
@@ -309,6 +310,27 @@ watch(() => props.heritages, () => {
     addMarkers(LInstance)
   }
 }, { deep: true })
+
+const store = useHeritageStore()
+
+watch(() => store.mapGesturesEnabled, (enabled) => {
+  if (!map) return
+  if (enabled) {
+    map.dragging.enable()
+    map.touchZoom.enable()
+    map.doubleClickZoom.enable()
+    map.scrollWheelZoom.enable()
+    if (map.boxZoom) map.boxZoom.enable()
+    if (map.keyboard) map.keyboard.enable()
+  } else {
+    map.dragging.disable()
+    map.touchZoom.disable()
+    map.doubleClickZoom.disable()
+    map.scrollWheelZoom.disable()
+    if (map.boxZoom) map.boxZoom.disable()
+    if (map.keyboard) map.keyboard.disable()
+  }
+})
 
 onUnmounted(() => {
   map?.remove()

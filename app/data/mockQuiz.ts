@@ -10,7 +10,7 @@ export const MOCK_QUIZZES: HeritageQuiz[] = [
     questions: [
       {
         id: 'q-001-1',
-        question: 'Chiến Khu Đ nằm trải rộng qua các huyện nào của tỉnh Bình Phước?',
+        question: 'Chiến Khu Đ nằm trải rộng qua các khu vực nào của tỉnh Bình Phước cũ (nay thuộc Thành Phố Đồng Nai)?',
         options: [
           'Bù Đăng, Bù Đốp, Đồng Phú',
           'Lộc Ninh, Chơn Thành, Đồng Xoài',
@@ -18,7 +18,7 @@ export const MOCK_QUIZZES: HeritageQuiz[] = [
           'Bù Đăng, Phú Riềng, Lộc Ninh',
         ],
         correctIndex: 0,
-        explanation: 'Chiến Khu Đ trải dài qua ba Xã Bù Đăng, Bù Đốp và Đồng Phú — tạo thành một vùng căn cứ liên hoàn có địa hình hiểm trở.',
+        explanation: 'Chiến Khu Đ trải dài qua Bù Đăng, Bù Đốp và Đồng Phú (các khu vực thuộc tỉnh Bình Phước cũ, nay thuộc Thành Phố Đồng Nai) — tạo thành một vùng căn cứ liên hoàn có địa hình hiểm trở.',
       },
       {
         id: 'q-001-2',

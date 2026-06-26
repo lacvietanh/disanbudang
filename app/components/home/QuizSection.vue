@@ -19,7 +19,7 @@
           :key="quiz.id"
           class="relative overflow-hidden rounded-2xl bg-ivory border border-beige-200 shadow-card hover:shadow-card-hover transition-all duration-500 group cursor-pointer reveal"
           :style="{ animationDelay: `${i * 0.15}s` }"
-          @click="navigateTo('/explore')"
+          @click="quizStore.startQuiz(quiz)"
         >
           <!-- Color accent top -->
           <div class="h-1.5 w-full" :style="{ background: quizColors[i] ?? '#C9922A' }" />
@@ -41,7 +41,7 @@
             <h3 class="font-heading font-bold text-charcoal-800 text-lg leading-tight mb-2 group-hover:text-earth-600 transition-colors">
               {{ quiz.title }}
             </h3>
-            <p class="text-charcoal-500 text-sm leading-relaxed mb-5 line-clamp-2">
+            <p class="text-charcoal-600 text-sm leading-relaxed mb-5 line-clamp-2">
               {{ quiz.description }}
             </p>
 
@@ -53,7 +53,7 @@
                 </div>
                 <span class="text-gold-600 text-xs font-medium">Đã hoàn thành</span>
               </div>
-              <div v-else class="text-charcoal-400 text-xs">Chưa làm</div>
+              <div v-else class="text-charcoal-600 text-xs">Chưa làm</div>
 
               <div class="flex items-center gap-1 text-earth-500 text-sm font-medium opacity-0 group-hover:opacity-100 transition-all duration-300">
                 Bắt đầu
@@ -102,10 +102,10 @@
               về hành trình khám phá di sản Bù Đăng của bạn.
             </p>
             <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
-              <NuxtLink to="/explore" class="btn-primary">
+              <button class="btn-primary" @click="quizStore.startQuiz(quizzes[0])">
                 <Icon name="mdi:play-circle" class="w-4 h-4" />
                 Bắt Đầu Quiz
-              </NuxtLink>
+              </button>
               <div class="glass-dark rounded-full px-4 py-2.5 flex items-center gap-2">
                 <Icon name="mdi:trophy" class="w-4 h-4 text-gold-400" />
                 <span class="text-ivory text-sm font-medium">{{ quizStore.userProgress.totalScore }} điểm</span>

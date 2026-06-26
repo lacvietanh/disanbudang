@@ -9,6 +9,8 @@
     <AudioMiniPlayer />
     <!-- Page loading bar -->
     <NuxtLoadingIndicator color="#C9922A" :height="2" />
+    <!-- Global Quiz Player -->
+    <QuizPlayModal />
   </div>
 </template>
 
@@ -16,6 +18,7 @@
 import TheHeader from '~/components/layout/TheHeader.vue'
 import TheFooter from '~/components/layout/TheFooter.vue'
 import AudioMiniPlayer from '~/components/audio/AudioMiniPlayer.vue'
+import QuizPlayModal from '~/components/base/QuizPlayModal.vue'
 
 
 

@@ -9,7 +9,7 @@
           alt="Ký ức địa phương"
           class="absolute inset-0 w-full h-full object-cover"
         />
-        <div class="absolute inset-0 bg-gradient-to-r from-charcoal-900/92 via-charcoal-900/70 to-charcoal-900/40" />
+        <div class="absolute inset-0 bg-gradient-to-r from-charcoal-950 via-charcoal-950/92 via-[60%] to-charcoal-950/40" />
 
         <div class="relative z-10 py-20 px-8 lg:px-16 max-w-3xl">
           <!-- Quote mark -->
@@ -20,8 +20,8 @@
             <span class="text-gradient-gold">Cần Được Lưu Giữ</span>
           </h2>
 
-          <p class="text-charcoal-200 text-lg leading-relaxed mb-8 max-w-xl">
-            Mỗi tấm ảnh cũ, mỗi câu chuyện được kể lại, mỗi tư liệu được chia sẻ —
+          <p class="text-ivory/85 text-lg leading-relaxed mb-8 max-w-xl text-shadow-sm">
+            Mỗi tấm ảnh cũ, mỗi câu chuyện được kể lại, mỗi tư liệu được chia sẻ -
             đều là một viên gạch xây nên ngôi nhà ký ức của cộng đồng Bù Đăng.
           </p>
 

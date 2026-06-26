@@ -18,12 +18,17 @@
         <!-- Search input -->
         <div class="mt-8 max-w-xl">
           <div class="relative">
-            <Icon name="mdi:magnify" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-charcoal-400" />
+            <Icon
+              v-if="!searchQuery"
+              name="mdi:magnify"
+              class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-charcoal-400 pointer-events-none z-10"
+            />
             <input
               v-model="searchQuery"
               type="text"
               placeholder="Tìm kiếm hình ảnh di sản, địa danh..."
-              class="w-full pl-12 pr-10 py-4 bg-charcoal-950 border border-charcoal-800 rounded-2xl text-ivory text-base placeholder-charcoal-550 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/20 transition-all duration-300"
+              :style="{ paddingLeft: searchQuery ? '1rem' : '3rem', paddingRight: searchQuery ? '2.5rem' : '1rem', paddingTop: '1rem', paddingBottom: '1rem' }"
+              class="w-full bg-charcoal-950 border border-charcoal-800 rounded-2xl text-ivory text-base placeholder-charcoal-550 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/20 transition-all duration-300"
             />
             <button
               v-if="searchQuery"

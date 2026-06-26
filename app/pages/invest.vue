@@ -162,7 +162,7 @@ definePageMeta({ layout: 'default' })
 
 useSeoMeta({
   title: 'Đầu Tư Bù Đăng — Tiềm năng & Cơ hội',
-  description: 'Thông tin quy hoạch, hạ tầng và các cơ hội đầu tư phát triển kinh tế tại Xã Bù Đăng, Bình Phước — vùng đất giàu tiềm năng sinh thái và văn hóa.'
+  description: 'Thông tin quy hoạch, hạ tầng và các cơ hội đầu tư phát triển kinh tế tại Xã Bù Đăng, Thành Phố Đồng Nai (Bình Phước cũ) — vùng đất giàu tiềm năng sinh thái và văn hóa.'
 })
 
 const keyStats = [
