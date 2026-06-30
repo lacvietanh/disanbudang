@@ -12,6 +12,18 @@
             <span class="w-2 h-2 rounded-full bg-gold-400 animate-pulse-gold"></span>
             {{ displayedHeritages.length }} di sản hiển thị
           </span>
+          <!-- Autoplay Tour Button -->
+          <button
+            class="text-xs inline-flex items-center gap-2 rounded-full px-4 py-2 font-bold border transition-all duration-300 shadow-md cursor-pointer select-none"
+            :class="isPlayingTour
+              ? 'bg-red-500/10 text-red-400 border-red-500/30 animate-pulse'
+              : 'bg-gold-500/10 text-gold-400 border-gold-500/30 hover:bg-gold-500/25'"
+            @click="isPlayingTour ? stopTour() : startTour()"
+            :title="isPlayingTour ? 'Dừng hành trình tự động' : 'Bắt đầu hành trình tự động chạy tour di sản'"
+          >
+            <Icon :name="isPlayingTour ? 'mdi:stop-circle-outline' : 'mdi:play-circle-outline'" class="w-4 h-4" />
+            <span>{{ isPlayingTour ? 'Dừng Tour' : 'Tour Tự Động' }}</span>
+          </button>
           <button
             class="lg:hidden btn-ghost text-xs border border-charcoal-800 rounded-xl px-4 py-2 hover:border-gold-500/40"
             @click="sidebarOpen = !sidebarOpen"
@@ -196,6 +208,15 @@
                     {{ getCategoryLabel(heritage.category) }}
                   </p>
                 </div>
+                <!-- Link directly to detail page -->
+                <NuxtLink
+                  :to="`/heritage/${heritage.slug}`"
+                  class="self-center p-2 rounded-lg text-charcoal-400 hover:text-gold-400 hover:bg-charcoal-800/80 transition-all z-20 shrink-0"
+                  title="Xem trang chi tiết di sản"
+                  @click.stop
+                >
+                  <Icon name="mdi:arrow-right-circle-outline" class="w-5 h-5" />
+                </NuxtLink>
               </div>
 
               <div v-if="displayedHeritages.length === 0" class="py-16 text-center">
@@ -538,8 +559,8 @@ import { useEventListener } from '@vueuse/core'
 import MapBottomSheet from '~/components/map/BottomSheet.vue'
 
 definePageMeta({ layout: 'default' })
-useSeoMeta({
-  title: 'Bản Đồ Di Sản Bù Đăng — Cổng Khám Phá Số',
+useMuseumSeo({
+  title: 'Bản Đồ Di Sản Bù Đăng',
   description: 'Trực quan hóa vị trí địa lý cùng câu chuyện, audio guide, hình ảnh của toàn bộ di sản văn hóa, lịch sử và thiên nhiên tại Bù Đăng.',
 })
 
@@ -558,6 +579,10 @@ const activePeriod = ref('')
 const activeFilterFeature = ref('')
 const activeTab = ref('search')
 const selectedRouteId = ref<string | null>(null)
+
+const isPlayingTour = ref(false)
+let tourTimer: any = null
+let currentTourIndex = 0
 
 // Gallery Lightbox State
 const activeImageIndex = ref<number | null>(null)
@@ -728,17 +753,67 @@ useEventListener('keydown', (e: KeyboardEvent) => {
 
 onMounted(() => {
   const route = useRoute()
-  // Determine desktop state client-side (>= 768px for desktop layout)
   const checkDesktop = () => { isDesktop.value = window.innerWidth >= 768 }
   checkDesktop()
   window.addEventListener('resize', checkDesktop)
-  onUnmounted(() => window.removeEventListener('resize', checkDesktop))
+  onUnmounted(() => {
+    window.removeEventListener('resize', checkDesktop)
+    if (tourTimer) clearTimeout(tourTimer)
+  })
 
   sidebarOpen.value = isDesktop.value
   if (route.query.select) {
     selectedId.value = route.query.select as string
   }
 })
+
+function startTour() {
+  if (displayedHeritages.value.length === 0) return
+  isPlayingTour.value = true
+  currentTourIndex = 0
+  runTourStep()
+}
+
+function stopTour() {
+  isPlayingTour.value = false
+  if (tourTimer) {
+    clearTimeout(tourTimer)
+    tourTimer = null
+  }
+}
+
+function runTourStep() {
+  if (!isPlayingTour.value) return
+  const list = displayedHeritages.value
+  if (currentTourIndex >= list.length) {
+    stopTour()
+    const swal = useSwal()
+    swal.fire({
+      title: 'Hành trình kết thúc',
+      text: 'Bạn đã hoàn thành chuyến tham quan tự động tất cả các điểm di sản đang hiển thị.',
+      icon: 'success',
+      confirmButtonColor: '#C9922A',
+      background: '#1C1A18',
+      color: '#FDFAF3'
+    })
+    return
+  }
+
+  const heritage = list[currentTourIndex]
+  if (heritage) {
+    selectHeritage(heritage)
+    if (heritage.audio) {
+      audioStore.loadTrack(heritage.audio, heritage.id)
+      audioStore.play()
+    }
+    
+    currentTourIndex++
+    // Automatically advance after 9 seconds
+    tourTimer = setTimeout(() => {
+      runTourStep()
+    }, 9000)
+  }
+}
 
 function setCategory(id: string) {
   activeCategory.value = id

@@ -14,6 +14,9 @@
       <div
         class="relative w-full max-w-2xl bg-charcoal-900 border border-charcoal-800 rounded-3xl overflow-hidden shadow-2xl z-10 flex flex-col max-h-[90vh]"
       >
+        <!-- Confetti Canvas -->
+        <canvas ref="confettiCanvas" class="absolute inset-0 pointer-events-none z-50 w-full h-full"></canvas>
+
         <!-- Background accents -->
         <div class="absolute -top-40 -right-40 w-80 h-80 bg-gold-500/5 rounded-full blur-3xl pointer-events-none" />
         <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-earth-500/5 rounded-full blur-3xl pointer-events-none" />
@@ -145,7 +148,11 @@
           <!-- Earned Badge Notification -->
           <div
             v-if="earnedBadge"
-            class="max-w-md mx-auto p-5 rounded-2xl border-2 border-gold-500/40 bg-gradient-to-b from-gold-500/10 to-charcoal-950/80 shadow-gold space-y-4"
+            class="max-w-md mx-auto p-6 rounded-3xl border-2 border-gold-500/40 bg-gradient-to-b from-gold-500/15 to-charcoal-950/90 shadow-gold space-y-4 transition-all duration-300 hover:border-gold-400 cursor-pointer relative overflow-hidden"
+            ref="badgeCardRef"
+            @mousemove="handleMouseMove"
+            @mouseleave="handleMouseLeave"
+            style="transform-style: preserve-3d; transition: transform 0.1s ease, border-color 0.3s ease;"
           >
             <span class="text-gold-400 text-2xs uppercase tracking-widest font-bold block">Đạt Huy Hiệu Mới!</span>
             <div
@@ -248,6 +255,93 @@ function restartQuiz() {
 
 function closeQuiz() {
   quizStore.resetQuiz()
+}
+
+const confettiCanvas = ref<HTMLCanvasElement | null>(null)
+const badgeCardRef = ref<HTMLElement | null>(null)
+
+watch(() => quizStore.isQuizCompleted, (newVal) => {
+  if (newVal) {
+    nextTick(() => {
+      fireConfetti()
+    })
+  }
+})
+
+function fireConfetti() {
+  const canvas = confettiCanvas.value
+  if (!canvas) return
+  const ctx = canvas.getContext('2d')
+  if (!ctx) return
+
+  canvas.width = canvas.parentElement?.clientWidth || 600
+  canvas.height = canvas.parentElement?.clientHeight || 500
+
+  const colors = ['#C9922A', '#8B3A2A', '#2D5016', '#FDFAF3', '#B87333']
+  const particles = Array.from({ length: 80 }).map(() => ({
+    x: canvas.width / 2,
+    y: canvas.height / 2 + 50,
+    vx: (Math.random() - 0.5) * 8,
+    vy: (Math.random() - 0.7) * 12 - 4,
+    size: Math.random() * 6 + 4,
+    color: colors[Math.floor(Math.random() * colors.length)]!,
+    alpha: 1,
+    spin: Math.random() * 360,
+    spinSpeed: (Math.random() - 0.5) * 10
+  }))
+
+  function update() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    let active = false
+
+    particles.forEach(p => {
+      p.x += p.vx
+      p.y += p.vy
+      p.vy += 0.35 // gravity
+      p.alpha -= 0.015
+      p.spin += p.spinSpeed
+
+      if (p.alpha > 0) {
+        active = true
+        ctx.save()
+        ctx.translate(p.x, p.y)
+        ctx.rotate((p.spin * Math.PI) / 180)
+        ctx.globalAlpha = p.alpha
+        ctx.fillStyle = p.color
+        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size)
+        ctx.restore()
+      }
+    })
+
+    if (active) {
+      requestAnimationFrame(update)
+    }
+  }
+
+  update()
+}
+
+function handleMouseMove(e: MouseEvent) {
+  const card = badgeCardRef.value
+  if (!card) return
+  const rect = card.getBoundingClientRect()
+  const x = e.clientX - rect.left
+  const y = e.clientY - rect.top
+  
+  const xc = rect.width / 2
+  const yc = rect.height / 2
+  
+  const maxRot = 15
+  const tiltX = ((yc - y) / yc) * maxRot
+  const tiltY = ((x - xc) / xc) * maxRot
+  
+  card.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.02, 1.02, 1.02)`
+}
+
+function handleMouseLeave() {
+  const card = badgeCardRef.value
+  if (!card) return
+  card.style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)'
 }
 
 function getOptionClass(idx: number) {

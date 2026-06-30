@@ -26,5 +26,9 @@ Mô tả các quyết định kỹ thuật, stack công nghệ, quản lý trạ
 Nơi lưu trữ các kế hoạch triển khai đã chốt hoặc đang thực hiện.
 - [Standardize Docs Plan](./plan/PLAN-001-standardize-docs.md): Kế hoạch chuẩn hoá tài liệu đợt 1.
 
+### 4. Báo cáo (Reports)
+- [Báo Cáo Nghiên Cứu Dự Án](./BAO_CAO_DU_AN.md): Bản báo cáo nghiên cứu dự án chi tiết, chính thức và chuẩn xác về mặt công nghệ và tính năng.
+
 ---
 > **Lưu ý cho Developer/AI:** Mọi thay đổi về tính năng lớn hoặc kiến trúc mới đều phải được cập nhật tương ứng vào thư mục `docs/feat/` hoặc `docs/arch/`. Không tạo thêm các top-level directory trừ khi các thư mục hiện tại (`feat`, `arch`, `plan`, `ref`) không còn phù hợp.
+

@@ -13,6 +13,12 @@
           <p class="text-charcoal-300 text-lg leading-relaxed max-w-2xl mb-8 animate-fade-up" style="animation-delay: 0.2s">
             Năm 1965, giữa đại ngàn Bù Đăng hiểm trở, nhịp chày giã gạo của đồng bào S'tiêng đã nổi lên và ngân vang không dứt suốt những đêm trường kháng chiến. Từ cụ già bạc tóc đến em thơ nhỏ tuổi, hàng trăm con người cùng thắp sáng đuốc lồ ô, chạy đua với thời gian để giã gạo nuôi quân phục vụ tiền tuyến. Nhịp chày giã gạo giã cả lòng yêu nước ấy đã đi vào lịch sử oai hùng, hóa thành khúc nhạc cách mạng bất hủ <em class="text-gold-400 not-italic">"Tiếng chày trên Sóc Bom Bo"</em> làm lay động bao thế hệ. Bù Đăng không chỉ là tên gọi trên bản đồ hành chính — đây là cả một cõi di sản thiêng liêng với những dấu chân lịch sử và tiếng vọng ngàn năm đang chờ bạn lắng nghe và gìn giữ.
           </p>
+          <div class="animate-fade-up pt-2 pb-4" style="animation-delay: 0.3s">
+            <NuxtLink to="/study" class="btn-primary text-sm px-6 py-3.5 inline-flex items-center gap-2 group shadow-lg shadow-gold-500/10 hover:shadow-gold-500/20">
+              <Icon name="mdi:compass-outline" class="w-4.5 h-4.5 group-hover:rotate-45 transition-transform duration-300" />
+              Bắt đầu hành trình
+            </NuxtLink>
+          </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
             <div class="flex gap-4">
               <div class="w-10 h-10 rounded-xl bg-brick-500/20 flex items-center justify-center text-brick-400 shrink-0">

@@ -509,10 +509,26 @@
                     <span class="block text-sm font-bold text-ivory">Đọc & Nghiên Cứu</span>
                     <p class="text-charcoal-400 text-2xs leading-relaxed line-clamp-3">{{ res.motivation || res.description }}</p>
                   </div>
-                  <div class="flex gap-2 flex-wrap justify-center">
-                    <span class="text-3xs px-2.5 py-1 bg-charcoal-900 border border-charcoal-800 rounded-lg text-charcoal-400">Toàn văn</span>
-                    <span v-if="res.quizId" class="text-3xs px-2.5 py-1 bg-gold-500/10 border border-gold-500/30 rounded-lg text-gold-400">Quiz ôn tập</span>
-                    <span class="text-3xs px-2.5 py-1 bg-charcoal-900 border border-charcoal-800 rounded-lg text-charcoal-400">Tải PDF</span>
+                  <div class="flex gap-2 flex-wrap justify-center relative z-20">
+                    <button
+                      class="text-3xs px-2.5 py-1 bg-charcoal-900 border border-charcoal-800 rounded-lg text-charcoal-450 hover:text-ivory hover:border-charcoal-600 transition-colors cursor-pointer"
+                      @click.stop="openResource(res); activeModalTab = 'document'"
+                    >
+                      Toàn văn
+                    </button>
+                    <button
+                      v-if="res.quizId"
+                      class="text-3xs px-2.5 py-1 bg-gold-500/10 border border-gold-500/30 rounded-lg text-gold-400 hover:bg-gold-500/20 transition-colors cursor-pointer"
+                      @click.stop="startResourceQuiz(res)"
+                    >
+                      Quiz ôn tập
+                    </button>
+                    <button
+                      class="text-3xs px-2.5 py-1 bg-charcoal-900 border border-charcoal-800 rounded-lg text-charcoal-450 hover:text-ivory hover:border-charcoal-600 transition-colors cursor-pointer"
+                      @click.stop="downloadFile(res)"
+                    >
+                      Tải PDF
+                    </button>
                   </div>
                 </div>
               </div>
@@ -1204,6 +1220,39 @@
           </div>
         </div>
 
+        <!-- Active Lab: Before/After Slider -->
+        <div v-if="activeLabItem === 'compare'" class="bg-charcoal-950 border border-charcoal-850 rounded-3xl p-6 md:p-8 space-y-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <h4 class="font-heading font-bold text-ivory text-xl">So Sánh Hình Ảnh Xưa & Nay</h4>
+              <p class="text-charcoal-400 text-xs mt-1">Kéo thanh trượt để so sánh và cảm nhận sự thay đổi của di sản qua dòng thời gian (Mô phỏng)</p>
+            </div>
+            <button class="text-charcoal-500 hover:text-ivory transition-colors" @click="activeLabItem = null" aria-label="Đóng Trình So Sánh">
+              <Icon name="mdi:close" class="w-5 h-5" />
+            </button>
+          </div>
+          <BeforeAfterSlider
+            historical-image="/images/heritage/Bombo/TAN08217.jpg"
+            modern-image="/images/heritage/Bombo/TAN08220.jpg"
+          />
+        </div>
+
+        <!-- Active Lab: Artifact Hotspot Viewer -->
+        <div v-if="activeLabItem === 'artifact'" class="bg-charcoal-950 border border-charcoal-850 rounded-3xl p-6 md:p-8 space-y-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <h4 class="font-heading font-bold text-ivory text-xl">Trình Xem Hiện Vật Tương Tác</h4>
+              <p class="text-charcoal-400 text-xs mt-1">Click vào các điểm số để khám phá đặc tính cấu tạo và giá trị văn hóa của hiện vật</p>
+            </div>
+            <button class="text-charcoal-500 hover:text-ivory transition-colors" @click="activeLabItem = null" aria-label="Đóng Trình Xem Hiện Vật">
+              <Icon name="mdi:close" class="w-5 h-5" />
+            </button>
+          </div>
+          <ArtifactHotspotViewer
+            artifact-image="/images/heritage/dan-da-stieng.png"
+          />
+        </div>
+
         <!-- Community contribution section -->
         <div class="relative overflow-hidden rounded-3xl border border-charcoal-800 p-8 bg-charcoal-950">
           <div class="flex flex-col md:flex-row items-center gap-6">
@@ -1438,10 +1487,27 @@ function scrollToContent() {
   }
 }
 
+let keydownHandler: (e: KeyboardEvent) => void
+
 onMounted(() => {
   nextTick(() => observeAll())
   if (route.query.tab && navItems.some(i => i.id === route.query.tab)) {
     activeTab.value = route.query.tab as string
+  }
+  if (import.meta.client) {
+    keydownHandler = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault()
+        searchOverlayOpen.value = true
+      }
+    }
+    window.addEventListener('keydown', keydownHandler)
+  }
+})
+
+onUnmounted(() => {
+  if (import.meta.client && keydownHandler) {
+    window.removeEventListener('keydown', keydownHandler)
   }
 })
 
@@ -1576,9 +1642,9 @@ const labFeatures = [
 const heritageLabItems = [
   { id: 'timeline', title: 'Timeline Lịch Sử', desc: 'Hành trình thời gian từ thời kỳ tiền sử đến hiện đại qua các sự kiện quan trọng của Bù Đăng.', icon: 'mdi:timeline-clock', iconBg: 'bg-gold-500/10', iconColor: 'text-gold-400', gradientBg: 'bg-gold-400', active: true },
   { id: 'storymap', title: 'Story Map', desc: 'Bản đồ câu chuyện tích hợp ảnh, văn bản và audio theo từng địa điểm di sản.', icon: 'mdi:map-legend', iconBg: 'bg-blue-500/10', iconColor: 'text-blue-400', gradientBg: 'bg-blue-400', active: false },
-  { id: 'compare', title: 'Before / After', desc: 'So sánh hình ảnh di sản xưa và nay — thấy sự thay đổi qua thời gian.', icon: 'mdi:compare', iconBg: 'bg-purple-500/10', iconColor: 'text-purple-400', gradientBg: 'bg-purple-400', active: false },
+  { id: 'compare', title: 'Before / After', desc: 'So sánh hình ảnh di sản xưa và nay — thấy sự thay đổi qua thời gian.', icon: 'mdi:compare', iconBg: 'bg-purple-500/10', iconColor: 'text-purple-400', gradientBg: 'bg-purple-400', active: true },
   { id: 'audio', title: 'Oral History', desc: 'Lời kể của nhân chứng lịch sử — những câu chuyện sống động chưa được viết thành sách.', icon: 'mdi:microphone', iconBg: 'bg-orange-500/10', iconColor: 'text-orange-400', gradientBg: 'bg-orange-400', active: false },
-  { id: 'artifact', title: 'Artifact Viewer', desc: 'Xem hiện vật bảo tàng với chú thích học thuật và thông tin phân tích.', icon: 'mdi:museum', iconBg: 'bg-earth-500/10', iconColor: 'text-earth-400', gradientBg: 'bg-earth-400', active: false },
+  { id: 'artifact', title: 'Artifact Viewer', desc: 'Xem hiện vật bảo tàng với chú thích học thuật và thông tin phân tích.', icon: 'mdi:museum', iconBg: 'bg-earth-500/10', iconColor: 'text-earth-400', gradientBg: 'bg-earth-400', active: true },
   { id: 'tour', title: 'Virtual Tour', desc: 'Tour tham quan ảo 360° tại các địa điểm di tích lịch sử và danh thắng Bù Đăng.', icon: 'mdi:rotate-3d', iconBg: 'bg-green-500/10', iconColor: 'text-green-400', gradientBg: 'bg-green-400', active: false }
 ]
 

@@ -26,7 +26,7 @@
           Dự Án Bảo Tàng Số Cộng Đồng
         </span>
         <h1 class="font-heading font-bold text-ivory text-6xl md:text-8xl leading-tight mb-6 text-shadow-hero reveal">
-          Di Sản <span class="text-gradient-gold">Bù Đăng</span>
+          Giới Thiệu <span class="text-gradient-gold">Di Sản Bù Đăng</span>
         </h1>
         <p class="font-accent italic text-charcoal-300 text-2xl md:text-3xl max-w-3xl mx-auto mb-12 reveal">
           "Lưu giữ để không quên — Chia sẻ để cùng lớn"
@@ -210,7 +210,10 @@
 
 <script setup lang="ts">
 definePageMeta({ layout: 'default' })
-useSeoMeta({ title: 'Giới Thiệu Dự Án — Di Sản Bù Đăng', description: 'Di Sản Bù Đăng là dự án bảo tàng số cộng đồng, số hóa và bảo tồn di sản văn hóa, lịch sử, thiên nhiên của vùng đất Bù Đăng cho thế hệ hôm nay và mai sau.' })
+useMuseumSeo({
+  title: 'Giới Thiệu Dự Án',
+  description: 'Di Sản Bù Đăng là dự án bảo tàng số cộng đồng, số hóa và bảo tồn di sản văn hóa, lịch sử, thiên nhiên của vùng đất Bù Đăng cho thế hệ hôm nay và mai sau.',
+})
 
 const slides = [
   '/images/heritage/Bombo/TAN08217.jpg',

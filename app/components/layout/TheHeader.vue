@@ -196,6 +196,13 @@ if (import.meta.client) {
   useEventListener(window, 'scroll', () => {
     isScrolled.value = window.scrollY > 20
   })
+
+  useEventListener(window, 'keydown', (e: KeyboardEvent) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault()
+      isSearchOpen.value = true
+    }
+  })
 }
 
 // Close menu on route change

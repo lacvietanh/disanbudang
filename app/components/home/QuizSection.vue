@@ -55,10 +55,13 @@
               </div>
               <div v-else class="text-charcoal-600 text-xs">Chưa làm</div>
 
-              <div class="flex items-center gap-1 text-earth-500 text-sm font-medium opacity-0 group-hover:opacity-100 transition-all duration-300">
+              <button
+                class="flex items-center gap-1 text-gold-500 text-xs font-bold px-3 py-1.5 rounded-lg border border-gold-500/20 bg-gold-500/5 group-hover:bg-gold-500 group-hover:text-charcoal-900 group-hover:border-transparent transition-all duration-300"
+                aria-label="Bắt đầu trả lời câu hỏi"
+              >
                 Bắt đầu
                 <Icon name="mdi:arrow-right" class="w-4 h-4" />
-              </div>
+              </button>
             </div>
           </div>
         </div>
