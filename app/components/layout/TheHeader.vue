@@ -187,7 +187,7 @@ const navItems = [
   { to: '/about', label: 'Giới Thiệu', icon: 'mdi:information-outline' },
   { to: '/map', label: 'Bản Đồ', icon: 'mdi:map-outline' },
   { to: '/library', label: 'Thư Viện', icon: 'mdi:library-outline' },
-  { to: '/gallery', label: 'Triển Lãm', icon: 'mdi:image-multiple-outline' },
+  { to: '/study', label: 'Học Tập', icon: 'mdi:school-outline' },
   { to: '/news', label: 'Bài Viết', icon: 'mdi:newspaper-variant-outline' },
   { to: '/contribute', label: 'Đóng Góp', icon: 'mdi:hand-heart-outline' },
 ]

@@ -10,7 +10,7 @@
         v-for="img in featuredImages"
         :key="img.id"
         class="group relative overflow-hidden rounded-3xl h-[400px] border border-charcoal-800 cursor-pointer shadow-warm bg-charcoal-900"
-        @click="navigateTo('/gallery')"
+        @click="navigateTo('/study?tab=media')"
       >
         <!-- Background Image -->
         <img
@@ -51,7 +51,7 @@
 
     <!-- View gallery CTA -->
     <div class="text-center mt-12">
-      <NuxtLink to="/gallery" class="btn-primary">
+      <NuxtLink to="/study?tab=media" class="btn-primary">
         Ghé thăm Triển lãm ảnh
         <Icon name="mdi:arrow-right" class="w-4 h-4" />
       </NuxtLink>

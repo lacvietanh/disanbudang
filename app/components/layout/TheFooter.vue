@@ -90,7 +90,7 @@ const footerLinks = [
       { to: '/about', label: 'Về Di Sản Bù Đăng' },
       { to: '/news', label: 'Bài Viết & Sự Kiện' },
       { to: '/invest', label: 'Cơ Hội Đầu Tư' },
-      { to: '/gallery', label: 'Triển Lãm Ảnh' },
+      { to: '/study?tab=media', label: 'Triển Lãm Ảnh' },
       { to: '/contribute', label: 'Đóng Góp Di Sản' },
     ],
   },

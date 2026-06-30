@@ -83,9 +83,9 @@
               <Icon name="mdi:map-outline" class="w-5 h-5" />
               Bản Đồ Di Sản
             </NuxtLink>
-            <NuxtLink to="/gallery" class="btn-secondary text-sm px-6 py-3.5 border-gold-500 text-gold-400 hover:bg-gold-500 hover:text-charcoal-900 flex-1 sm:flex-initial justify-center">
-              <Icon name="mdi:image-multiple-outline" class="w-5 h-5" />
-              Triển Lãm Số
+            <NuxtLink to="/study" class="btn-secondary text-sm px-6 py-3.5 border-gold-500 text-gold-400 hover:bg-gold-500 hover:text-charcoal-900 flex-1 sm:flex-initial justify-center">
+              <Icon name="mdi:school-outline" class="w-5 h-5" />
+              Góc Học Tập
             </NuxtLink>
             <NuxtLink to="/library" class="btn-ghost text-sm px-6 py-3.5 flex-1 sm:flex-initial justify-center">
               <Icon name="mdi:book-open-outline" class="w-5 h-5" />

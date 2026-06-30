@@ -14,6 +14,16 @@ interface MuseumSeoInput {
   type?: 'website' | 'article'
 }
 
+export function ensureTrailingSlash(path: string): string {
+  if (!path || path === '/') return '/'
+  const parts = path.split('?')
+  const base = parts[0] || ''
+  const query = parts[1]
+  const hasExtension = /\.[a-z5-9]+$/i.test(base)
+  const cleanPath = base.endsWith('/') || hasExtension ? base : `${base}/`
+  return query ? `${cleanPath}?${query}` : cleanPath
+}
+
 export function buildBreadcrumbSchema(path: string, pageTitle?: string) {
   const parts = path.split('/').filter(Boolean)
   if (parts.length === 0) return null
@@ -47,7 +57,7 @@ export function buildBreadcrumbSchema(path: string, pageTitle?: string) {
       '@type': 'ListItem',
       position: index + 2,
       name,
-      item: `${SITE_URL}${currentPath}`,
+      item: `${SITE_URL}${ensureTrailingSlash(currentPath)}`,
     })
   })
 
@@ -63,7 +73,7 @@ export function useMuseumSeo(input: MuseumSeoInput = {}) {
   const title = input.title ? `${input.title} — ${SITE_NAME}` : `${SITE_NAME} — Bảo Tàng Số Địa Phương`
   const description = input.description ?? SITE_DESCRIPTION
   const image = input.image ?? DEFAULT_IMAGE
-  const canonical = `${SITE_URL}${input.path ?? route.path}`
+  const canonical = `${SITE_URL}${ensureTrailingSlash(input.path ?? route.path)}`
 
   useSeoMeta({
     title,
@@ -149,7 +159,7 @@ export function useHeritageSeo(heritage: Ref<Heritage | null>) {
             name: heritage.value.title,
             description: heritage.value.shortDescription,
             image: heritage.value.coverImage,
-            url: `${SITE_URL}/heritage/${heritage.value.slug}`,
+            url: `${SITE_URL}${ensureTrailingSlash(`/heritage/${heritage.value.slug}`)}`,
             geo: {
               '@type': 'GeoCoordinates',
               latitude: heritage.value.coordinates.lat,
@@ -162,7 +172,7 @@ export function useHeritageSeo(heritage: Ref<Heritage | null>) {
             isPartOf: {
               '@type': 'WebSite',
               name: SITE_NAME,
-              url: SITE_URL,
+              url: `${SITE_URL}/`,
             },
           }),
         },
@@ -180,6 +190,8 @@ export function buildArticleSchema(article: NewsArticle) {
     image: article.coverImage,
     datePublished: article.publishedAt,
     author: article.author ? { '@type': 'Person', name: article.author } : undefined,
+    mainEntityOfPage: `${SITE_URL}${ensureTrailingSlash(`/news/${article.slug}`)}`,
+    url: `${SITE_URL}${ensureTrailingSlash(`/news/${article.slug}`)}`,
     publisher: { 
       '@type': 'Organization', 
       name: SITE_NAME,
@@ -189,6 +201,55 @@ export function buildArticleSchema(article: NewsArticle) {
       }
     },
   }
+}
+
+export function useStudySeo() {
+  useMuseumSeo({
+    title: 'Cổng Học Tập Số Di Sản',
+    description: 'Nền tảng học tập di sản số hóa tương tác: flashcards, quiz, AI tra cứu, thư viện tài liệu và hành trình khám phá văn hóa Xã Bù Đăng dành cho học sinh, giáo viên địa phương.',
+    image: '/images/heritage/danh-thang/rung-nguyen-sinh-lg.webp',
+    path: '/study',
+  })
+
+  useHead({
+    script: [
+      {
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'EducationalOrganization',
+          name: 'Góc Học Tập Di Sản Bù Đăng',
+          url: `${SITE_URL}/study/`,
+          description: 'Không gian học tập số về di sản văn hóa, lịch sử và thiên nhiên Xã Bù Đăng',
+          provider: {
+            '@type': 'Organization',
+            name: 'Di Sản Bù Đăng',
+            url: SITE_URL,
+          },
+          teaches: ['Lịch sử địa phương', 'Văn hóa dân tộc thiểu số S\'tiêng', 'Di sản thiên nhiên Bù Đăng'],
+          educationalLevel: ['Trung học cơ sở', 'Trung học phổ thông'],
+          inLanguage: 'vi',
+          availableLanguage: 'Vietnamese',
+          hasCourse: [
+            {
+              '@type': 'Course',
+              name: 'Lịch Sử Chiến Khu Đ',
+              description: 'Khám phá lịch sử hào hùng của căn cứ địa cách mạng Chiến Khu Đ tại Bù Đăng',
+              courseCode: 'DSB-HIST-001',
+              provider: { '@type': 'Organization', name: 'Di Sản Bù Đăng' },
+            },
+            {
+              '@type': 'Course',
+              name: 'Văn Hóa S\'tiêng Bản Địa',
+              description: 'Tìm hiểu thổ cẩm, cồng chiêng và ngôn ngữ S\'tiêng của đồng bào dân tộc Bù Đăng',
+              courseCode: 'DSB-CULT-001',
+              provider: { '@type': 'Organization', name: 'Di Sản Bù Đăng' },
+            },
+          ],
+        }),
+      },
+    ],
+  })
 }
 
 export function useNewsSeo(article: Ref<NewsArticle | null>) {

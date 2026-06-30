@@ -679,6 +679,38 @@ watch(searchQuery, (q) => {
 watch(activeCategory, (c) => store.setCategory(c))
 watch(activePeriod, (p) => store.setPeriod(p))
 
+// Inject TouristAttraction schema.org dynamic JSON-LD when heritage selected
+watchEffect(() => {
+  if (!selectedHeritage.value) return
+  const h = selectedHeritage.value
+  useHead({
+    script: [
+      {
+        type: 'application/ld+json',
+        key: 'heritage-attraction-jsonld',
+        innerHTML: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'TouristAttraction',
+          name: h.title,
+          description: h.shortDescription,
+          image: h.coverImage,
+          geo: h.coordinates ? {
+            '@type': 'GeoCoordinates',
+            latitude: h.coordinates.lat,
+            longitude: h.coordinates.lng,
+          } : undefined,
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Xã Bù Đăng',
+            addressRegion: 'Thành Phố Đồng Nai (nguyên Tỉnh Bình Phước)',
+            addressCountry: 'VN'
+          }
+        })
+      }
+    ]
+  })
+})
+
 // Selection changes are watched inside the child component to reset snap state
 
 // Global listeners for keybind access
