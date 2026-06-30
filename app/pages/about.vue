@@ -243,22 +243,59 @@ const scrollTo = (id: string) => {
 
 // Data Arrays for Pitch Deck
 const problems = [
-  { icon: 'mdi:account-group-outline', title: 'Đứt Gãy Dòng Chảy Văn Hoá', desc: 'Thế hệ trẻ lớn lên trong kỷ nguyên số, dần xa rời những câu chuyện bên bếp lửa nhà dài, khiến di sản trở thành những khái niệm xa xăm.' },
-  { icon: 'mdi:book-remove-multiple-outline', title: 'Thất Truyền Ký Ức', desc: 'Những điệu cồng chiêng, những lời ca S\'tiêng chỉ còn lưu giữ trong trí nhớ của các già làng. Khi họ rời đi, một phần lịch sử vĩnh viễn tan biến.' },
-  { icon: 'mdi:map-marker-off-outline', title: 'Đánh Rơi Tiềm Năng', desc: 'Bù Đăng mang trong mình vẻ đẹp hoang sơ hùng vĩ, nhưng thiếu vắng một nhịp cầu công nghệ để kết nối du khách với những trải nghiệm nguyên bản nhất.' }
+  { 
+    icon: 'mdi:account-group-outline', 
+    title: 'Đứt Gãy Dòng Chảy Di Sản Giữa Các Thế Hệ', 
+    desc: 'Trong dòng chảy hối hả của kỷ nguyên số, thế hệ trẻ lớn lên mà thiếu vắng sợi dây liên kết với cội nguồn. Những câu chuyện truyền thuyết bên bếp lửa nhà dài S\'tiêng dần bị lãng quên, đẩy các giá trị văn hóa phi vật thể vào nguy cơ mai một.' 
+  },
+  { 
+    icon: 'mdi:book-remove-multiple-outline', 
+    title: 'Thất Truyền Ký Ức Lịch Sử & Nghệ Thuật Bản Địa', 
+    desc: 'Những điệu cồng chiêng cổ, nghệ thuật dệt thổ cẩm tỉ mỉ hay kỹ thuật dệt hoa văn chỉ đang tồn tại trong trí nhớ của các già làng. Khi thời gian trôi đi, nếu không có giải pháp lưu trữ bền vững, những trang sử sống này sẽ vĩnh viễn biến mất.' 
+  },
+  { 
+    icon: 'mdi:map-marker-off-outline', 
+    title: 'Sự Cách Biệt Giữa Tiềm Năng & Không Gian Số', 
+    desc: 'Bù Đăng sở hữu tài nguyên thiên nhiên hoang sơ với rừng nguyên sinh kỳ vĩ và bề dày lịch sử cách mạng hào hùng. Tuy nhiên, việc thiếu hụt một công cụ số hóa tương tác hiện đại làm giảm cơ hội tiếp cận và hạn chế khả năng quảng bá du lịch.' 
+  }
 ]
 
 const solutions = [
-  { icon: 'mdi:archive-check', title: 'Bảo Tàng Số Sống Động', desc: 'Biến dữ liệu thô thành những câu chuyện có hồn. Số hóa toàn diện từng hiện vật, địa danh với hình ảnh sắc nét và siêu dữ liệu chuẩn mực.' },
-  { icon: 'mdi:map-search', title: 'Bản Đồ Di Sản Tương Tác', desc: 'Vượt ra khỏi trang sách, chúng tôi nhúng toạ độ GIS vào từng cụm di tích, để du khách thực sự "chạm" và tự dẫn đường khám phá thực tế.' },
-  { icon: 'mdi:silverware-variant', title: 'Hệ Sinh Thái Du Lịch Bản Địa', desc: 'Xây dựng cầu nối trực tiếp đưa du khách đến với lưu trú sinh thái và ẩm thực địa phương, giữ chân người trải nghiệm và tạo sinh kế cho dân bản.' },
-  { icon: 'mdi:chart-box-outline', title: 'Cổng Thu Hút Đầu Tư', desc: 'Tận dụng sức hút của văn hoá để lan toả thông tin quy hoạch, mở ra không gian kinh tế mới và thu hút dòng vốn đầu tư bền vững.' }
+  { 
+    icon: 'mdi:archive-check', 
+    title: 'Hệ Thống Bảo Tàng Số Tương Tác Sinh Động', 
+    desc: 'Không chỉ lưu trữ dữ liệu thô, chúng tôi chuyển hóa hiện vật và địa danh lịch sử thành những câu chuyện giàu cảm xúc. Số hóa đa phương tiện kết hợp âm thanh, hình ảnh giúp di sản tự nói lên tiếng nói của chính mình.' 
+  },
+  { 
+    icon: 'mdi:map-search', 
+    title: 'Bản Đồ Di Sản Hệ Thống Thông Tin Địa Lý (GIS)', 
+    desc: 'Ứng dụng tọa độ số học trực quan hóa hệ thống di tích cách mạng, danh lam thắng cảnh. Du khách dễ dàng định vị, lập lộ trình cá nhân hóa và khám phá vẻ đẹp hoang sơ của Bù Đăng qua màn hình thiết bị.' 
+  },
+  { 
+    icon: 'mdi:silverware-variant', 
+    title: 'Số Hóa Chuỗi Giá Trị Du Lịch Bản Địa', 
+    desc: 'Thiết lập nhịp cầu kết nối trực tiếp du khách với các dịch vụ lưu trú sinh thái, ẩm thực truyền thống và làng nghề thổ cẩm, góp phần tạo sinh kế bền vững và nâng cao thu nhập cho đồng bào thiểu số.' 
+  },
+  { 
+    icon: 'mdi:chart-box-outline', 
+    title: 'Cổng Định Hướng Phát Triển Bền Vững', 
+    desc: 'Tận dụng các giá trị văn hóa nền tảng để truyền tải thông tin quy hoạch định hướng phát triển địa phương, kêu gọi đầu tư kinh tế sinh thái và giữ gìn cảnh quan thiên nhiên cho thế hệ mai sau.' 
+  }
 ]
 
 const innovations = [
-  { title: 'Trò Chơi Hoá Lịch Sử (Gamification)', desc: 'Xoá bỏ định kiến "lịch sử khô khan" bằng hệ thống thử thách nhận Huy hiệu số, biến quá trình học tập thành một hành trình chinh phục đầy cảm hứng.' },
-  { title: 'Thuyết Minh Bằng Thanh Âm (Audio Guide)', desc: 'Đưa kỹ thuật kể chuyện (Podcasting) vào từng điểm di tích. Người dùng chỉ cần nhắm mắt, lắng nghe và để dòng lịch sử tự do chảy qua tâm trí.' },
-  { title: 'Kiến Tạo Cùng Cộng Đồng (Crowdsourcing)', desc: 'Không gian mở để mỗi giáo viên, mỗi học sinh và từng người dân đều có thể tự tay viết tiếp câu chuyện bảo tồn di sản của chính quê hương mình.' }
+  { 
+    title: 'Phương Pháp Học Tập Qua Trải Nghiệm Số (Gamification)', 
+    desc: 'Thay thế những giáo trình khô khan bằng hệ thống nhiệm vụ học tập, thử thách tương tác và hệ thống Huy hiệu số, kích thích niềm tự hào và tinh thần chủ động tìm hiểu lịch sử quê hương của học sinh.' 
+  },
+  { 
+    title: 'Hệ Thống Thuyết Minh Âm Thanh Tự Động (Audio Guide)', 
+    desc: 'Đưa nghệ thuật kể chuyện âm thanh (Podcasting) vào từng điểm di tích. Người dùng lắng nghe tiếng chày giã gạo Bom Bo hay tiếng nước đổ Thác Đứng như đang trực tiếp đắm mình trong không gian văn hóa lịch sử.' 
+  },
+  { 
+    title: 'Nền Tảng Đồng Kiến Tạo Di Sản Cộng Đồng (Crowdsourcing)', 
+    desc: 'Xây dựng không gian mở cho phép giáo viên, học sinh và người dân đóng góp hình ảnh, câu chuyện và tư liệu sưu tầm được, biến website thành một bảo tàng mở liên tục phát triển sinh động.' 
+  }
 ]
 
 const projectStats = [
@@ -273,9 +310,21 @@ const teams = [
 ]
 
 const roadmap = [
-  { time: 'Tương lai gần', title: 'Mở Rộng Không Gian Văn Hoá', desc: 'Đưa mô hình chuyển đổi số này vượt ra khỏi ranh giới Bù Đăng, phủ sóng toàn vẹn bản đồ di sản của Thành Phố Đồng Nai.' },
-  { time: 'Trung hạn', title: 'Xóa Nhòa Rào Cản Ngôn Ngữ', desc: 'Ứng dụng Trí tuệ nhân tạo (AI) tự động dịch thuật và tạo thuyết minh giọng nói (Text-to-Speech) đa ngữ, sẵn sàng đón làn sóng du khách quốc tế.' },
-  { time: 'Tầm nhìn xa', title: 'Trải Nghiệm Thực Tế Ảo (VR/AR)', desc: 'Phục dựng 3D các không gian lễ hội thiêng liêng, cho phép người dùng từ bất cứ đâu trên thế giới đều có thể bước vào không gian văn hoá cồng chiêng.' },
+  { 
+    time: 'Tương lai gần', 
+    title: 'Mở Rộng Không Gian Văn Hoá', 
+    desc: 'Đưa mô hình chuyển đổi số này vượt ra khỏi ranh giới Bù Đăng, phủ sóng toàn vẹn bản đồ di sản của Thành Phố Đồng Nai.' 
+  },
+  { 
+    time: 'Trung hạn', 
+    title: 'Xóa Nhòa Rào Cản Ngôn Ngữ', 
+    desc: 'Ứng dụng Trí tuệ nhân tạo (AI) tự động dịch thuật và tạo thuyết minh giọng nói (Text-to-Speech) đa ngữ, sẵn sàng đón làn sóng du khách quốc tế.' 
+  },
+  { 
+    time: 'Tầm nhìn xa', 
+    title: 'Trải Nghiệm Thực Tế Ảo (VR/AR)', 
+    desc: 'Phục dựng 3D các không gian lễ hội thiêng liêng, cho phép người dùng từ bất cứ đâu trên thế giới đều có thể bước vào không gian văn hoá cồng chiêng.' 
+  },
 ]
 </script>
 

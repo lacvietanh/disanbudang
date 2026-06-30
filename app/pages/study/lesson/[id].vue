@@ -18,15 +18,6 @@
           </div>
         </div>
         <div class="container-heritage relative z-10 py-10">
-          <!-- Breadcrumb -->
-          <nav class="flex items-center gap-2 text-3xs text-charcoal-500 mb-6" aria-label="Breadcrumb">
-            <NuxtLink to="/" class="hover:text-gold-400 transition-colors">Trang chủ</NuxtLink>
-            <Icon name="mdi:chevron-right" class="w-3.5 h-3.5" />
-            <NuxtLink to="/study" class="hover:text-gold-400 transition-colors">Góc Học Tập</NuxtLink>
-            <Icon name="mdi:chevron-right" class="w-3.5 h-3.5" />
-            <span class="text-charcoal-350 truncate max-w-40">{{ lesson.title }}</span>
-          </nav>
-
           <div class="flex flex-col lg:flex-row lg:items-end gap-6">
             <div class="flex-1 space-y-3">
               <div class="flex flex-wrap gap-2">
@@ -285,6 +276,8 @@ const lessons: Record<string, LessonData> = {
 }
 
 const lesson = computed(() => lessons[id.value] ?? null)
+
+useBreadcrumb(() => lesson.value?.title || '')
 
 // SEO
 watchEffect(() => {

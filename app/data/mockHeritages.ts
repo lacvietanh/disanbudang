@@ -161,9 +161,13 @@ Hệ sinh thái quanh Thác Mơ vô cùng phong phú. Những cánh rừng già 
     coordinates: { lat: 11.8382, lng: 107.1955 },
     shortDescription:
       'Lễ hội Cồng Chiêng là linh hồn văn hóa của người S\'tiêng Bù Đăng — một di sản âm nhạc phi vật thể quý báu được UNESCO vinh danh, phản ánh mối quan hệ thiêng liêng giữa con người và vũ trụ.',
-    longStory: `Trong không gian huyền ảo của đêm rừng Bù Đăng, tiếng cồng chiêng vang lên trầm hùng, lan tỏa khắp núi đồi như tiếng gọi của tổ tiên. Đây không đơn thuần là âm nhạc — đây là ngôn ngữ linh thiêng kết nối người sống với thần linh, kết nối con người với thiên nhiên và vũ trụ.
+    longStory: `Trong không gian huyền ảo của đêm rừng Bù Đăng, dưới ánh lửa bập bùng và màn sương đêm che phủ đại ngàn, tiếng cồng chiêng vang lên trầm hùng, lách cách rồi ngân xa, lan tỏa khắp núi đồi như tiếng gọi vang vọng của tổ tiên. Đối với đồng bào dân tộc thiểu số S'tiêng tại Xã Bù Đăng, cồng chiêng không đơn thuần là một loại nhạc cụ gõ bằng đồng, mà là biểu tượng tinh thần thiêng liêng nhất, là ngôn ngữ duy nhất kết nối thế giới thực tại với thần linh (Yang), kết nối con người với thiên nhiên và vũ trụ bao la.
 
-Người S'tiêng quan niệm rằng mỗi bộ cồng chiêng đều có linh hồn — "Yang Ching" — được truyền từ đời này sang đời khác. Chúng không được bán hay đem ra ngoài làng khi chưa được thần cho phép. Mỗi dịp lễ hội — từ lễ mừng lúa mới, lễ đầy tháng, lễ bỏ mả, đến lễ cầu mưa — cồng chiêng đều xuất hiện như người dẫn đường tâm linh.`,
+Theo quan niệm tâm linh lâu đời của người S'tiêng, mỗi chiếc cồng, chiếc chiêng đều có một vị thần (gọi là Yang Ching) ngự trị. Tuổi đời của chiêng càng cao, tiếng chiêng càng trầm ấm thì sức mạnh của vị thần ngự trị càng lớn. Bộ cồng chiêng được xem là tài sản vô giá của gia đình và dòng tộc, truyền qua nhiều thế hệ và tuyệt đối không được mua bán hay mang ra khỏi buôn sóc khi chưa được sự cho phép của thần linh qua các nghi lễ xin keo.
+
+Mỗi dịp trọng đại trong vòng đời người S'tiêng — từ lễ thổi tai cho trẻ sơ sinh, lễ trưởng thành, lễ cưới hỏi, đến lễ bỏ mả tiễn biệt người đã khuất, và đặc biệt là nghi lễ nông nghiệp như Lễ mừng lúa mới — tiếng cồng chiêng đều vang lên như người dẫn đường tâm linh. Nhịp chiêng khi khoan thai lúc dồn dập, dẫn dắt các vòng xoang uyển chuyển của những chàng trai cô gái bản địa quanh đống lửa hồng.
+
+Vào năm 2005, Không gian văn hóa Cồng chiêng Tây Nguyên (bao gồm cả địa bàn sinh sống của người S'tiêng tại Bình Phước) đã được UNESCO vinh danh là Kiệt tác truyền khẩu và Di sản văn hóa phi vật thể của nhân loại. Việc số hóa và lưu giữ các bản thu âm cồng chiêng cổ tại Xã Bù Đăng chính là hành động thiết thực nhằm giữ gìn ngọn lửa di sản này mãi mãi ngân vang giữa dòng chảy của thời đại mới.`,
     quickFacts: [
       { label: 'Số chiêng trong một bộ', value: '6–12 chiếc', icon: 'mdi:circle-multiple' },
       { label: 'UNESCO công nhận', value: 'Năm 2005', icon: 'mdi:earth' },
@@ -211,9 +215,13 @@ Người S'tiêng quan niệm rằng mỗi bộ cồng chiêng đều có linh h
     coordinates: { lat: 11.8372, lng: 107.1940 },
     shortDescription:
       'Nhà dài của người S\'tiêng không chỉ là nơi cư trú mà còn là trung tâm sinh hoạt văn hóa cộng đồng, nơi diễn ra các nghi lễ quan trọng và lưu giữ truyền thống của cả một dòng tộc.',
-    longStory: `Nhà dài S'tiêng — "Nhar" trong tiếng bản địa — là một công trình kiến trúc cộng đồng độc đáo, có thể dài tới 100 mét, đủ chỗ cho cả một đại gia đình nhiều thế hệ cùng sinh sống.
+    longStory: `Nhà dài của người S'tiêng — được gọi là "Nhar" trong ngôn ngữ bản địa — là một công trình kiến trúc cổ truyền độc đáo và là biểu tượng của tinh thần gắn kết gia tộc thiêng liêng. Ngôi nhà dài được dựng lên từ những sản vật của đại ngàn như cột gỗ, vách nứa, sàn tre và mái lợp bằng lá mây hay lá tranh dày dặn, có khả năng che mưa chắn gió qua bao mùa giông bão. Một ngôi nhà dài truyền thống của người S'tiêng có thể kéo dài từ 50 mét đến hơn 100 mét tùy thuộc vào số lượng thành viên trong gia đình.
 
-Mỗi gian trong nhà dài thuộc về một gia đình nhỏ, nhưng không gian sinh hoạt chung — bếp lửa giữa nhà, sàn rộng nơi tổ chức lễ hội — là của cả cộng đồng. Đây là hiện thân của triết lý "cộng đồng trước, cá nhân sau" của người S'tiêng.`,
+Triết lý kiến trúc của nhà dài phản ánh sâu sắc cấu trúc xã hội mẫu hệ cổ xưa và sự cố kết cộng đồng keo sơn. Mỗi khi một người con gái trong nhà đi lấy chồng, ngôi nhà lại được nối dài thêm một gian về phía sau để đón chào gia đình mới. Dù được chia thành nhiều gian nhỏ cho từng hộ gia đình tự lập sinh hoạt, ngôi nhà dài vẫn luôn có một không gian sinh hoạt chung rộng lớn chạy suốt chiều dài ngôi nhà, nơi đặt bếp lửa chính luôn đỏ rực và là nơi tiếp khách, bàn bạc công việc của toàn gia tộc.
+
+Bếp lửa giữa nhà dài không chỉ là nơi nấu nướng mà còn là biểu tượng của sự ấm áp, sự sống và sự kế thừa. Hằng đêm, bên ngọn lửa bập bùng, các thế hệ người S'tiêng lại quây quần bên nhau để nghe người già kể khan, truyền dạy kinh nghiệm đi rừng, săn bắn và hát những bài dân ca cổ truyền. Đó chính là cái nôi nuôi dưỡng tâm hồn và bản sắc văn hóa S'tiêng truyền đời.
+
+Ngày nay, dưới tác động của lối sống hiện đại, những ngôi nhà dài trăm mét bằng tranh tre nứa lá dần vắng bóng. Do đó, việc bảo tồn, phục dựng kiến trúc nhà dài tại Khu bảo tồn văn hóa dân tộc S'tiêng sóc Bom Bo không chỉ lưu giữ một di sản vật thể độc đáo mà còn là nơi giáo dục thế hệ trẻ về cội nguồn và tinh thần đoàn kết keo sơn của dân tộc.`,
     quickFacts: [
       { label: 'Chiều dài tối đa', value: 'Lên đến 100 mét', icon: 'mdi:ruler' },
       { label: 'Vật liệu', value: 'Tre, nứa, lá cọ, gỗ rừng', icon: 'mdi:leaf' },
@@ -525,11 +533,13 @@ Vào mùa mưa, dòng suối Đăk Wuar cuồn cuộn đổ nước từ độ c
     coordinates: { lat: 11.8382, lng: 107.1955 },
     shortDescription:
       'Sóc Bom Bo là địa danh lịch sử nổi tiếng, biểu tượng cho lòng yêu nước và sự đoàn kết keo sơn của đồng bào S\'tiêng đối với bộ đội giải phóng quân thông qua nhịp chày giã gạo nuôi quân thâu đêm.',
-    longStory: `Nhắc đến Bù Đăng, không ai không biết đến Sóc Bom Bo — địa danh lịch sử gắn liền với câu hát nổi tiếng "Tiếng chày trên Sóc Bom Bo" của nhạc sĩ Xuân Hồng. Trong những năm tháng chiến tranh chống Mỹ cứu nước ác liệt nhất, người dân Sóc Bom Bo đã một lòng đi theo cách mạng, cống hiến hết sức người, sức của cho cuộc kháng chiến.
+    longStory: `Nhắc đến Xã Bù Đăng, không ai không biết đến Sóc Bom Bo — địa danh lịch sử anh hùng đã đi vào huyền thoại cách mạng và tâm thức của triệu triệu người Việt Nam qua ca khúc bất hủ "Tiếng chày trên Sóc Bom Bo" của nhạc sĩ Xuân Hồng. Trong những năm tháng kháng chiến chống Mỹ cứu nước gian lao và anh dũng nhất, đồng bào S'tiêng nơi đây đã biểu thị lòng yêu nước nồng nàn và tinh thần cách mạng quật khởi, một lòng sắt son theo Đảng, theo Bác Hồ.
 
-Năm 1965, để chuẩn bị lương thực cho chiến dịch Phước Long - Đồng Xoài, toàn bộ già trẻ, trai gái Sóc Bom Bo đã tình nguyện tập trung ngày đêm đốt đuốc, giã gạo nuôi quân. Dưới ánh đuốc lồ ô bập bùng, tiếng chày giã gạo nhịp nhàng vang vọng khắp núi rừng, trở thành bản nhạc cách mạng đi cùng năm tháng.
+Đỉnh cao của tinh thần ấy diễn ra vào những ngày cuối năm 1965, phục vụ chiến dịch Phước Long - Đồng Xoài. Để đảm bảo lương thực cho bộ đội chủ lực ăn no đánh thắng, toàn thể già trẻ, gái trai của Sóc Bom Bo đã không quản ngại gian khổ, hiểm nguy, ngày đêm nổi lửa giã gạo. Ban ngày giặc lùng sục oanh tạc, bà con chuyển sang giã gạo thâu đêm dưới ánh đuốc lồ ô bập bùng cháy sáng khắp núi rừng. Tiếng chày đôi, chày ba giã gạo nện xuống cối gỗ đều đặn, rộn ràng hòa cùng tiếng hát vang lên như một lời thề chiến thắng, biến nhịp lao động sản xuất thành nhịp hành khúc kháng chiến oai hùng.
 
-Ngày nay, Khu bảo tồn văn hóa dân tộc Sóc Bom Bo đã được xây dựng khang trang trên địa bàn xã Bình Minh. Nơi đây lưu giữ và trưng bày hàng trăm hiện vật lịch sử quý báu, bao gồm bộ chày cối giã gạo năm xưa, những chiếc gùi tải đạn, và các nhạc cụ truyền thống của người S'tiêng. Du khách đến đây sẽ được trải nghiệm giã gạo cối chày gỗ thực tế, nghe biểu diễn cồng chiêng bên bếp lửa và thưởng thức hương vị rượu cần nồng nàn.`,
+Ngày nay, Khu bảo tồn văn hóa dân tộc S'tiêng sóc Bom Bo được xây dựng khang trang trên địa bàn xã Bình Minh, trở thành địa chỉ đỏ giáo dục truyền thống cách mạng và là điểm du lịch văn hóa độc đáo. Khu bảo tồn lưu giữ sống động hàng trăm hiện vật vô giá: những bộ chày cối sứt sẹo vì giã gạo thâu đêm, những chiếc gùi tự chế tải đạn xuyên rừng, cùng các tư liệu lịch sử quý báu.
+
+Không chỉ là nơi trưng bày tĩnh, khu bảo tồn thường xuyên tổ chức các hoạt động trải nghiệm thực tế sinh động. Du khách đến đây có thể trực tiếp cầm chày giã gạo cùng các nghệ nhân S'tiêng, lắng nghe tiếng cồng chiêng trầm hùng ngân vang bên bếp lửa nhà dài, thưởng thức cơm lam dẻo thơm nấu ống lồ ô và nhấp chén rượu cần đượm vị men lá rừng nồng nàn, cảm nhận sâu sắc lòng hiếu khách và hào khí cách mạng của người dân Sóc Bom Bo huyền thoại.`,
     quickFacts: [
       { label: 'Thời kỳ hoạt động', value: 'Chiến dịch kháng chiến (1965)', icon: 'mdi:calendar-star' },
       { label: 'Dân tộc chủ thể', value: 'Đồng bào S\'tiêng Bù Đăng', icon: 'mdi:account-group' },

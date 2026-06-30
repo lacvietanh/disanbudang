@@ -19,14 +19,6 @@
       <div class="absolute inset-0 bg-gradient-to-r from-charcoal-950/80 to-transparent" />
 
       <div class="relative z-10 container-heritage pb-12">
-        <nav class="flex items-center gap-2 text-xs text-charcoal-400 mb-6">
-          <NuxtLink to="/" class="hover:text-gold-400 transition-colors">Trang Chủ</NuxtLink>
-          <Icon name="mdi:chevron-right" class="w-3.5 h-3.5" />
-          <NuxtLink to="/explore" class="hover:text-gold-400 transition-colors">Trải Nghiệm</NuxtLink>
-          <Icon name="mdi:chevron-right" class="w-3.5 h-3.5 text-charcoal-550" />
-          <span class="text-ivory/60 truncate max-w-[200px] sm:max-w-xs">{{ post.title }}</span>
-        </nav>
-
         <div class="max-w-3xl">
           <BaseBadge variant="gold" class="mb-4">{{ typeLabels[post.type] }}</BaseBadge>
           <h1 class="font-heading font-bold text-ivory text-3xl md:text-4xl lg:text-5xl leading-tight mb-5 text-shadow-hero">
@@ -213,6 +205,8 @@ const id = computed(() => route.params.id as string)
 const { getCategoryLabel } = useHeritage()
 
 const post = computed(() => MOCK_COMMUNITY_POSTS.find(p => p.id === id.value) || null)
+
+useBreadcrumb(() => post.value?.title || '')
 
 const isLiked = ref(false)
 const likesCount = ref(0)

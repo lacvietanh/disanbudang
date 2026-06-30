@@ -16,15 +16,6 @@
         <div class="absolute inset-0 bg-gradient-to-r from-charcoal-950/80 to-transparent" />
 
         <div class="relative z-10 container-heritage pb-16">
-          <!-- Breadcrumb -->
-          <nav class="flex items-center gap-2 text-xs text-charcoal-400 mb-6">
-            <NuxtLink to="/" class="hover:text-gold-400 transition-colors">Trang Chủ</NuxtLink>
-            <Icon name="mdi:chevron-right" class="w-3.5 h-3.5" />
-            <NuxtLink to="/library" class="hover:text-gold-400 transition-colors">Thư Viện</NuxtLink>
-            <Icon name="mdi:chevron-right" class="w-3.5 h-3.5" />
-            <span class="text-ivory/60">{{ heritage.title }}</span>
-          </nav>
-
           <div class="max-w-3xl">
             <BaseBadge :variant="categoryVariant" class="mb-4">
               {{ getCategoryLabel(heritage.category) }}
@@ -265,6 +256,8 @@ const lightboxIndex = ref<number | null>(null)
 const currentActiveTab = ref('story')
 
 const heritage = computed(() => store.getBySlug(slug.value) ?? null)
+
+useBreadcrumb(() => heritage.value?.title || '')
 const related = computed(() => heritage.value ? store.getRelated(heritage.value) : [])
 const relatedQuiz = computed(() => heritage.value ? quizStore.getQuizByHeritageId(heritage.value.id) : null)
 const storyParagraphs = computed(() => {

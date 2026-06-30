@@ -9,15 +9,6 @@
         </div>
 
         <div class="container-heritage relative z-10">
-          <!-- Breadcrumb -->
-          <nav class="flex items-center gap-2 text-xs text-charcoal-400 mb-6">
-            <NuxtLink to="/" class="hover:text-gold-400 transition-colors">Trang Chủ</NuxtLink>
-            <Icon name="mdi:chevron-right" class="w-3.5 h-3.5" />
-            <NuxtLink to="/news" class="hover:text-gold-400 transition-colors">Bài Viết</NuxtLink>
-            <Icon name="mdi:chevron-right" class="w-3.5 h-3.5" />
-            <span class="text-ivory/60 truncate max-w-[200px]">{{ article.title }}</span>
-          </nav>
-
           <div class="max-w-3xl">
             <BaseBadge :variant="(getCategoryVariant(article.category) as any)" class="mb-4">
               {{ getCategoryLabel(article.category) }}
@@ -143,6 +134,8 @@ const route = useRoute()
 const slug = computed(() => route.params.slug as string)
 
 const article = computed(() => MOCK_NEWS.find((n) => n.slug === slug.value) ?? null)
+
+useBreadcrumb(() => article.value?.title || '')
 
 const articleParagraphs = computed(() => {
   if (!article.value?.content) return []
