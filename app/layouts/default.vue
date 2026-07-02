@@ -12,6 +12,8 @@
     <NuxtLoadingIndicator color="#C9922A" :height="2" />
     <!-- Global Quiz Player -->
     <QuizPlayModal />
+    <!-- Scroll To Top button -->
+    <ScrollToTop />
   </div>
 </template>
 
@@ -19,6 +21,7 @@
 import TheHeader from '~/components/layout/TheHeader.vue'
 import TheFooter from '~/components/layout/TheFooter.vue'
 import Breadcrumb from '~/components/layout/Breadcrumb.vue'
+import ScrollToTop from '~/components/layout/ScrollToTop.vue'
 import AudioMiniPlayer from '~/components/audio/AudioMiniPlayer.vue'
 import QuizPlayModal from '~/components/base/QuizPlayModal.vue'
 

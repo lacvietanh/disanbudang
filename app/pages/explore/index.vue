@@ -143,9 +143,9 @@ import { MOCK_COMMUNITY_POSTS } from '~/data/mockPosts'
 import type { PostType } from '~/types'
 
 definePageMeta({ layout: 'default' })
-useSeoMeta({
-  title: 'Trải Nghiệm & Cộng Đồng — Di Sản Bù Đăng',
-  description: 'Không gian học hỏi, tương tác và lưu giữ các tác phẩm tranh vẽ, ghi chép ký ức chân thực về di sản do người dân Bù Đăng cùng đóng góp.',
+useMuseumSeo({
+  title: 'Trải Nghiệm và Cộng Đồng',
+  description: 'Không gian học hỏi, tương tác và lưu giữ các tác phẩm tranh vẽ, ký ức về di sản do chính người dân Bù Đăng đóng góp.'
 })
 
 const route = useRoute()

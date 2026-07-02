@@ -114,7 +114,7 @@ const lessons: Record<string, LessonData> = {
     estimatedMinutes: 12,
     tldr: 'Chiến Khu Đ là hệ thống căn cứ địa cách mạng nằm sâu trong rừng nguyên sinh Bù Đăng, đóng vai trò quan trọng trong cuộc kháng chiến chống Pháp và Mỹ (1945–1975). Đồng bào S\'tiêng cùng bộ đội chủ lực đã kiên cường giữ vững vùng đất này qua nhiều trận càn quét.',
     coreKnowledge: {
-      text: `<p>Chiến Khu Đ (hay còn gọi là <strong>Khu chiến Đ</strong>) là hệ thống căn cứ địa cách mạng nằm trải dài trên vùng rừng già Đông Nam Bộ, chủ yếu thuộc địa phận <em>Xã Bù Đăng, Thành Phố Đồng Nai</em> (nguyên Tỉnh Bình Phước).</p>
+      text: `<p>Chiến Khu Đ (hay còn gọi là <strong>Khu chiến Đ</strong>) là hệ thống căn cứ địa cách mạng nằm trải dài trên vùng rừng già Đông Nam Bộ, chủ yếu thuộc địa phận <em>vùng đất Bù Đăng</em>.</p>
       <p>Với địa hình đồi núi trùng điệp, tán rừng già che phủ và hệ thống sông suối tự nhiên, Chiến Khu Đ trở thành "tấm khiên vô hình" bảo vệ lực lượng cách mạng trong suốt 30 năm kháng chiến.</p>
       <blockquote>"Mất Chiến Khu Đ là mất miền Đông Nam Bộ." — Câu nói của các nhà quân sự trong giai đoạn kháng chiến.</blockquote>
       <h3>Ý nghĩa chiến lược</h3>
@@ -282,10 +282,11 @@ useBreadcrumb(() => lesson.value?.title || '')
 // SEO
 watchEffect(() => {
   if (lesson.value) {
-    useStudySeo()
-    useSeoMeta({
-      title: `${lesson.value.title} — Góc Học Tập Di Sản Bù Đăng`,
+    useMuseumSeo({
+      title: `${lesson.value.title} - Học Tập`,
       description: lesson.value.tldr,
+      path: `/study/lesson/${lesson.value.id}`,
+      type: 'article',
     })
   }
 })

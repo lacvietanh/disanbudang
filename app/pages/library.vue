@@ -292,9 +292,9 @@ import { MOCK_COMMUNITY_POSTS } from '~/data/mockPosts'
 import type { PostType } from '~/types'
 
 definePageMeta({ layout: 'default' })
-useSeoMeta({
-  title: 'Thư Viện Số Di Sản Bù Đăng — Tra Cứu & Ký Ức Cộng Đồng',
-  description: 'Toàn bộ kho tàng số hóa di sản Bù Đăng — hồ sơ di tích lịch sử, danh thắng sinh thái, và ký ức sống động do chính đồng bào Bù Đăng đóng góp.',
+useMuseumSeo({
+  title: 'Thư Viện Số Di Sản Bù Đăng - Tra Cứu và Ký Ức',
+  description: 'Toàn bộ kho tàng số hóa di sản Bù Đăng bao gồm hồ sơ di tích lịch sử, danh thắng sinh thái và ký ức sống động từ đồng bào.'
 })
 
 const store = useHeritageStore()

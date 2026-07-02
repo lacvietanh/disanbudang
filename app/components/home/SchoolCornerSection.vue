@@ -560,7 +560,7 @@ const resources = ref<SchoolResourceExtended[]>([
     quizId: 'quiz-001',
     pages: [
       `<h2>CHƯƠNG I: BỐI CẢNH LỊCH SỬ & LÝ DO CHỌN ĐỀ TÀI</h2>
-      <p>Chiến Khu Đ là một trong những hệ thống căn cứ địa quan trọng bậc nhất của lực lượng kháng chiến tại khu vực miền Đông Nam Bộ trong giai đoạn từ năm 1945 đến năm 1975. Nằm ẩn sâu giữa đại ngàn xanh của Xã Bù Đăng, Thành Phố Đồng Nai (Tỉnh Bình Phước cũ), vùng đất này không chỉ sở hữu địa hình đồi núi trùng điệp mà còn được che chở bởi những tán rừng già nguyên sinh dày đặc. Đó chính là những tấm khiên tự nhiên vững chãi nhất bảo vệ tính mạng cho hàng ngàn cán bộ cách mạng cốt cán.</p>
+      <p>Chiến Khu Đ là một trong những hệ thống căn cứ địa quan trọng bậc nhất của lực lượng kháng chiến tại khu vực miền Đông Nam Bộ trong giai đoạn từ năm 1945 đến năm 1975. Nằm ẩn sâu giữa đại ngàn xanh của vùng đất Bù Đăng, Thành Phố Đồng Nai, vùng đất này không chỉ sở hữu địa hình đồi núi trùng điệp mà còn được che chở bởi những tán rừng già nguyên sinh dày đặc. Đó chính là những tấm khiên tự nhiên vững chãi nhất bảo vệ tính mạng cho hàng ngàn cán bộ cách mạng cốt cán.</p>
       <p>Với lòng tự hào sâu sắc về quê hương Bù Đăng anh hùng, nhóm học sinh lớp 12A1 đã quyết định thực hiện đề tài điền dã lịch sử này nhằm thu thập, số hóa và lưu giữ những ký ức quý giá còn sót lại trước khi thời gian xóa nhòa tất cả.</p>
       <blockquote>"Nếu không ghi chép lại ngay hôm nay, những trang sử sống động từ lời kể của thế hệ đi trước sẽ vĩnh viễn nằm lại dưới lòng đất mẹ." <br/>— Lời mở đầu đề tài nghiên cứu khoa học.</blockquote>`,
       
@@ -626,7 +626,7 @@ const resources = ref<SchoolResourceExtended[]>([
     quizId: 'quiz-002',
     pages: [
       `<h2>CHƯƠNG I: HOA VĂN THỔ CẨM - BẢN SẮC CỦA ĐỒNG BÀO S'TIÊNG</h2>
-      <p>Nghề dệt thổ cẩm cổ truyền là biểu tượng văn hóa rực rỡ nhất thể hiện óc sáng tạo nghệ thuật và thế giới quan sâu sắc của đồng bào dân tộc thiểu số S'tiêng định cư lâu đời tại Xã Bù Đăng, Thành Phố Đồng Nai (Tỉnh Bình Phước cũ). Mỗi tấm thổ cẩm không chỉ dùng làm trang phục, chăn đắp mà còn là tiếng lòng thầm kín, là trang ký sự lưu trữ ký ức lịch sử buôn làng qua từng đường tơ kẽ chỉ.</p>
+      <p>Nghề dệt thổ cẩm cổ truyền là biểu tượng văn hóa rực rỡ nhất thể hiện óc sáng tạo nghệ thuật và thế giới quan sâu sắc của đồng bào dân tộc thiểu số S'tiêng định cư lâu đời tại vùng đất Bù Đăng, Thành Phố Đồng Nai. Mỗi tấm thổ cẩm không chỉ dùng làm trang phục, chăn đắp mà còn là tiếng lòng thầm kín, là trang ký sự lưu trữ ký ức lịch sử buôn làng qua từng đường tơ kẽ chỉ.</p>
       <p>Hiện nay, trước làn sóng đô thị hóa mạnh mẽ, thế hệ trẻ người S'tiêng dần không còn mặn mà với khung cửi. Đề tài này được thực hiện nhằm mục đích giải mã ngôn ngữ nghệ thuật ẩn sau các hoa văn để hiểu sâu hơn về văn hóa bản địa quê hương Bù Đăng.</p>
       <blockquote>"Học hoa văn dệt là học cách người xưa trò chuyện với núi rừng, trời đất." <br/>— Trích lời nghệ nhân Thị Rét (Sóc Đắk Nhau).</blockquote>`,
       
@@ -693,7 +693,7 @@ const resources = ref<SchoolResourceExtended[]>([
     quizId: 'quiz-002',
     pages: [
       `<h2>CHƯƠNG I: CỒNG CHIÊNG TRONG ĐỜI SỐNG TÂM LINH S'TIÊNG</h2>
-      <p>Cồng chiêng không đơn thuần là một loại nhạc cụ gõ bằng đồng, mà là tiếng nói tâm linh thiêng liêng nhất của đồng bào dân tộc thiểu số S'tiêng tại Xã Bù Đăng, Thành Phố Đồng Nai (Tỉnh Bình Phước cũ). Theo truyền thuyết cổ truyền, mỗi chiếc cồng, chiếc chiêng đều có một vị thần linh (gọi là Yang Ching) ngự trị. Tiếng cồng chiêng vang lên là phương tiện độc nhất vô nhị giúp con người đối thoại với thần linh, cầu mong trời đất phù hộ cho mùa màng bội thu, buôn sóc ấm no.</p>
+      <p>Cồng chiêng không đơn thuần là một loại nhạc cụ gõ bằng đồng, mà là tiếng nói tâm linh thiêng liêng nhất của đồng bào dân tộc thiểu số S'tiêng tại vùng đất Bù Đăng, Thành Phố Đồng Nai. Theo truyền thuyết cổ truyền, mỗi chiếc cồng, chiếc chiêng đều có một vị thần linh (gọi là Yang Ching) ngự trị. Tiếng cồng chiêng vang lên là phương tiện độc nhất vô nhị giúp con người đối thoại với thần linh, cầu mong trời đất phù hộ cho mùa màng bội thu, buôn sóc ấm no.</p>
       <p>Dự án đa phương tiện này được thực hiện nhằm ghi âm lại các bản nhạc chiêng cổ, số hóa quy trình trình diễn để lưu trữ làm giáo án số giáo dục truyền thống địa phương cho các thế hệ học sinh.</p>
       <blockquote>"Tiếng chiêng là hơi thở của đại ngàn, còn vang tiếng chiêng là buôn sóc còn trường tồn." <br/>— Trích lời cựu binh Điểu Lên (Sóc Bom Bo).</blockquote>`,
       

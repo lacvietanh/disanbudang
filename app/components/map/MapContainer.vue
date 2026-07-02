@@ -21,6 +21,7 @@ import 'leaflet/dist/leaflet.css'
 const props = defineProps<{
   heritages: Heritage[]
   selectedId?: string | null
+  selectedRoute?: any | null
 }>()
 
 const emit = defineEmits<{
@@ -31,6 +32,7 @@ const mapEl = ref<HTMLElement | null>(null)
 let map: any = null
 let LInstance: any = null
 const activeMarkers: any[] = []
+let routePolyline: any = null
 
 const categoryColors: Record<string, string> = {
   'lich-su': '#8B3A2A',
@@ -97,11 +99,17 @@ const locateMe = () => {
 onMounted(async () => {
   if (!mapEl.value) return
 
-  // Dynamically import Leaflet
-  const L = await import('leaflet')
-  LInstance = L
+  // Dynamically import Leaflet with error guard
+  let L: any
+  try {
+    L = await import('leaflet')
+    LInstance = L
+  } catch (err) {
+    console.error('[MapContainer] Failed to load Leaflet:', err)
+    return
+  }
 
-  // Init map centered on Bù Đăng district
+  // Init map centered on vùng đất Bù Đăng
   map = L.map(mapEl.value, {
     center: [11.82, 107.15],
     zoom: 11,
@@ -290,7 +298,6 @@ function addMarkers(L: any) {
     }
   })
 }
-
 // Watch selected heritage to pan map
 watch(() => props.selectedId, (id) => {
   if (!map || !id) return
@@ -308,6 +315,7 @@ watch(() => props.selectedId, (id) => {
 watch(() => props.heritages, () => {
   if (map && LInstance) {
     addMarkers(LInstance)
+    updateRouteLine()
   }
 }, { deep: true })
 
@@ -332,7 +340,46 @@ watch(() => store.mapGesturesEnabled, (enabled) => {
   }
 })
 
+function updateRouteLine() {
+  if (!map || !LInstance) return
+  if (routePolyline) {
+    routePolyline.remove()
+    routePolyline = null
+  }
+  const route = props.selectedRoute
+  if (!route || !route.stops) return
+
+  const latlngs = route.stops.map((stop: any) => {
+    const heritage = props.heritages.find((x) => x.id === stop.id)
+    if (heritage && heritage.coordinates) {
+      return [heritage.coordinates.lat, heritage.coordinates.lng]
+    }
+    return null
+  }).filter((c: any) => c !== null)
+
+  if (latlngs.length < 2) return
+
+  routePolyline = LInstance.polyline(latlngs, {
+    color: route.color || '#C9922A',
+    weight: 4,
+    opacity: 0.9,
+    dashArray: '10, 15',
+    className: 'route-line-animated'
+  }).addTo(map)
+
+  // Zoom map to fit route bounds
+  const bounds = LInstance.latLngBounds(latlngs)
+  map.fitBounds(bounds, { padding: [50, 50], maxZoom: 14, duration: 1.2 })
+}
+
+watch(() => props.selectedRoute, () => {
+  updateRouteLine()
+}, { deep: true })
+
 onUnmounted(() => {
+  if (routePolyline) {
+    routePolyline.remove()
+  }
   map?.remove()
 })
 </script>
@@ -348,5 +395,13 @@ onUnmounted(() => {
 :deep(.leaflet-div-icon) {
   background: transparent !important;
   border: none !important;
+}
+@keyframes dash {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+:deep(.route-line-animated) {
+  animation: dash 2.5s linear infinite;
 }
 </style>

@@ -7,7 +7,7 @@
           <span class="section-label">Giải Đáp</span>
           <h2 class="section-title">Câu Hỏi Thường Gặp</h2>
           <p class="text-charcoal-400 text-base max-w-xl mx-auto mt-4">
-            Tìm hiểu thêm về văn hóa S'tiêng, di tích lịch sử Bom Bo, cồng chiêng và các điểm đến trải nghiệm đặc sắc tại Bù Đăng.
+            Tìm hiểu thêm về văn hóa S'tiêng, di tích lịch sử Bom Bo, cồng chiêng và các điểm đến trải nghiệm đặc sắc tại vùng đất Bù Đăng — Thành Phố Đồng Nai.
           </p>
         </div>
 
@@ -52,19 +52,23 @@ const openIndex = ref<number | null>(null)
 const faqs = [
   {
     question: "Di sản nổi bật nhất của Xã Bù Đăng gồm những gì?",
-    answer: "Bù Đăng nổi tiếng với các di tích lịch sử và danh thắng thiên nhiên kỳ vĩ như Chiến khu Đ Bù Đăng, Thác Mơ, sóc Bom Bo lịch sử gắn liền với bài ca 'Tiếng chày trên sóc Bom Bo', cùng không gian văn hóa cồng chiêng và dệt thổ cẩm độc đáo của đồng bào S'tiêng."
+    answer: "Di sản nổi bật nhất của Xã Bù Đăng gồm Chiến khu Đ Bù Đăng, Trảng cỏ Bù Lạch, sóc Bom Bo lịch sử, không gian văn hóa cồng chiêng và nghề dệt thổ cẩm của đồng bào dân tộc S'tiêng."
   },
   {
     question: "Văn hóa S'tiêng có những nét đặc trưng đặc sắc nào?",
-    answer: "Người S'tiêng tại Bù Đăng sở hữu kho tàng di sản phong phú bao gồm tiếng nói, chữ viết truyền thống, nhà dài cổ truyền, nghề dệt thổ cẩm thủ công mỹ nghệ tinh xảo, và đặc biệt là nghệ thuật diễn xướng cồng chiêng đã được UNESCO vinh danh là Di sản văn hóa phi vật thể của nhân loại."
+    answer: "Văn hóa S'tiêng đặc trưng bởi nghệ thuật diễn xướng cồng chiêng, nghề dệt thổ cẩm thủ công, tiếng nói chữ viết riêng, cùng truyền thống sinh hoạt trong những ngôi nhà dài cổ truyền."
   },
   {
     question: "Sóc Bom Bo lịch sử nằm ở đâu và có thể tham quan như thế nào?",
-    answer: "Sóc Bom Bo thuộc Xã Bù Đăng, Thành Phố Đồng Nai. Đây là địa danh lịch sử anh hùng nơi đồng bào S'tiêng ngày đêm giã gạo nuôi quân kháng chiến. Ngày nay, du khách có thể đến tham quan Khu bảo tồn văn hóa dân tộc S'tiêng sóc Bom Bo để trực tiếp trải nghiệm giã gạo, nghe cồng chiêng và thưởng thức rượu cần."
+    answer: "Sóc Bom Bo nằm tại vùng đất Bù Đăng, Thành Phố Đồng Nai. Bạn có thể tham quan Khu bảo tồn văn hóa dân tộc S'tiêng sóc Bom Bo để trải nghiệm giã gạo, nghe tiếng cồng chiêng và giao lưu văn hóa."
+  },
+  {
+    question: "Bù Đăng có vai trò gì với Thành Phố Đồng Nai?",
+    answer: "Bù Đăng là viên ngọc di sản đặc sắc nhất của Thành Phố Đồng Nai — nơi hội tụ căn cứ cách mạng Chiến Khu Đ huyền thoại, văn hóa bản địa S'tiêng hàng ngàn năm và thiên nhiên nguyên sinh kỳ vĩ. Thành Phố Đồng Nai hôm nay là người kế thừa, bảo hộ và tôn vinh kho báu di sản này — dự án Di Sản Bù Đăng là nỗ lực số hóa để cả thành phố cùng tự hào."
   },
   {
     question: "Cổng thông tin Di sản Bù Đăng do ai thực hiện?",
-    answer: "Cổng thông tin Di sản Bù Đăng (disanbudang.com) là dự án bảo tồn di sản số do nhà thiết kế và phát triển Nguyễn Xuân Kiệt thực hiện nhằm số hóa, quảng bá các giá trị lịch sử, văn hóa và thiên nhiên của Xã Bù Đăng đến với độc giả toàn quốc."
+    answer: "Cổng thông tin Di sản Bù Đăng do Nguyễn Xuân Kiệt thực hiện nhằm mục tiêu số hóa, lưu trữ và quảng bá các giá trị lịch sử, văn hóa và thiên nhiên của Xã Bù Đăng đến với mọi thế hệ."
   }
 ]
 

@@ -8,15 +8,27 @@
       <div class="glass-dark rounded-2xl p-4 shadow-warm-xl border border-earth-700/30">
         <div class="flex items-center gap-4">
           <!-- Cover -->
-          <div class="w-12 h-12 rounded-xl overflow-hidden flex-shrink-0 shadow-warm">
+          <div class="w-12 h-12 rounded-xl overflow-hidden flex-shrink-0 shadow-warm relative">
             <img
               v-if="audio.currentTrack.coverImage"
               :src="audio.currentTrack.coverImage"
               :alt="audio.currentTrack.title"
-              class="w-full h-full object-cover"
+              class="w-full h-full object-cover transition-all duration-300"
+              :class="{ 'opacity-70 scale-95': audio.isPlaying }"
             />
             <div v-else class="w-full h-full bg-gradient-earth flex items-center justify-center">
               <Icon name="mdi:headphones" class="w-6 h-6 text-ivory" />
+            </div>
+
+            <!-- Waveform overlay when playing -->
+            <div
+              v-if="audio.isPlaying"
+              class="absolute inset-0 flex items-end justify-center gap-0.75 pb-2.5 bg-black/40 audio-wave-active"
+            >
+              <div class="w-0.75 h-4 rounded-full bg-gold-400 waveform-bar"></div>
+              <div class="w-0.75 h-4 rounded-full bg-gold-400 waveform-bar"></div>
+              <div class="w-0.75 h-4 rounded-full bg-gold-400 waveform-bar"></div>
+              <div class="w-0.75 h-4 rounded-full bg-gold-400 waveform-bar"></div>
             </div>
           </div>
 
@@ -44,6 +56,14 @@
 
           <!-- Controls -->
           <div class="flex items-center gap-2 flex-shrink-0">
+            <!-- Speed Selector -->
+            <button
+              class="px-2 py-1 text-2xs font-bold text-gold-400 border border-gold-500/20 hover:border-gold-500/50 hover:bg-gold-500/10 rounded-lg transition-colors min-w-[36px]"
+              aria-label="Tốc độ phát"
+              @click="cycleSpeed"
+            >
+              {{ audio.playbackRate }}x
+            </button>
             <button
               class="w-9 h-9 rounded-full bg-gold-500 flex items-center justify-center hover:bg-gold-400 transition-colors shadow-gold"
               :aria-label="audio.isPlaying ? 'Tạm dừng audio' : 'Phát audio'"
@@ -76,6 +96,13 @@ function onProgressClick(e: MouseEvent) {
   const rect = target.getBoundingClientRect()
   const ratio = (e.clientX - rect.left) / rect.width
   audio.setCurrentTime(ratio * (audio.duration ?? 0))
+}
+
+function cycleSpeed() {
+  const rates = [1.0, 1.25, 1.5, 0.75]
+  const currentIndex = rates.indexOf(audio.playbackRate)
+  const nextIndex = (currentIndex + 1) % rates.length
+  audio.setPlaybackRate(rates[nextIndex])
 }
 </script>
 

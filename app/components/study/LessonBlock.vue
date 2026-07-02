@@ -179,26 +179,41 @@
         <div class="p-5 space-y-6">
           <div v-for="(q, qi) in lesson.quiz" :key="qi" class="space-y-3">
             <p class="text-sm font-semibold text-ivory">{{ qi + 1 }}. {{ q.question }}</p>
-            <div class="grid grid-cols-1 gap-2">
+            <div class="grid grid-cols-1 gap-2.5">
               <button
                 v-for="(opt, oi) in q.options"
                 :key="oi"
-                class="text-left px-4 py-2.5 rounded-xl text-xs transition-all duration-200 border"
+                class="text-left px-4.5 py-3.5 rounded-xl text-xs transition-all duration-300 border flex items-center justify-between gap-3 font-medium select-none shadow-sm cursor-pointer disabled:cursor-default"
                 :class="getOptionClass(qi, oi)"
                 :disabled="quizSelections[qi] !== undefined"
                 @click="selectAnswer(qi, oi)"
               >
-                <span class="font-bold mr-2">{{ String.fromCharCode(65 + oi) }}.</span>{{ opt }}
+                <span class="flex items-center">
+                  <span class="font-bold mr-3 text-gold-400 bg-charcoal-950/40 px-2 py-0.5 rounded border border-charcoal-850">{{ String.fromCharCode(65 + oi) }}</span>
+                  <span>{{ opt }}</span>
+                </span>
+                
+                <!-- Feedback Icons -->
+                <Icon
+                  v-if="quizSelections[qi] !== undefined && oi === q.correct"
+                  name="mdi:check-circle"
+                  class="w-5 h-5 text-forest-400 shrink-0"
+                />
+                <Icon
+                  v-else-if="quizSelections[qi] !== undefined && oi === quizSelections[qi]"
+                  name="mdi:close-circle"
+                  class="w-5 h-5 text-brick-400 shrink-0"
+                />
               </button>
             </div>
             <!-- Explanation after answering -->
             <Transition name="explain-fade">
               <div
                 v-if="quizSelections[qi] !== undefined && q.explanation"
-                class="text-xs text-charcoal-300 leading-relaxed bg-charcoal-900/60 border border-charcoal-800 rounded-xl p-3 flex gap-2"
+                class="text-xs text-charcoal-350 leading-relaxed bg-charcoal-900/60 border border-charcoal-850 rounded-xl p-3.5 flex gap-2.5 shadow-inner"
               >
-                <Icon name="mdi:information-outline" class="w-4 h-4 text-gold-400 shrink-0 mt-0.5" />
-                {{ q.explanation }}
+                <Icon name="mdi:information-outline" class="w-4.5 h-4.5 text-gold-500 shrink-0 mt-0.5" />
+                <span>{{ q.explanation }}</span>
               </div>
             </Transition>
           </div>
@@ -383,7 +398,7 @@ function getOptionClass(qi: number, oi: number): string {
   const correct = quizItem?.correct ?? -1
   if (oi === correct) return 'bg-forest-500/10 border-forest-500/40 text-forest-300'
   if (oi === quizSelections.value[qi]) return 'bg-brick-500/10 border-brick-500/40 text-brick-300'
-  return 'bg-charcoal-900/40 border-charcoal-850 text-charcoal-600'
+  return 'bg-charcoal-900/40 border-charcoal-850 text-charcoal-600 opacity-60'
 }
 
 function selectAnswer(qi: number, oi: number) {
@@ -401,6 +416,94 @@ function selectAnswer(qi: number, oi: number) {
     background: '#1C1A18',
     color: '#FDFAF3',
   })
+
+  if (isCorrect && props.lesson.quiz) {
+    const totalQuiz = props.lesson.quiz.length
+    const answeredCorrectly = props.lesson.quiz.every((q, idx) => quizSelections.value[idx] === q.correct)
+    if (answeredCorrectly) {
+      setTimeout(() => {
+        triggerConfetti()
+        swal.fire({
+          title: 'Xuất Sắc! 🎉',
+          text: `Bạn đã trả lời đúng tất cả ${totalQuiz}/${totalQuiz} câu hỏi trắc nghiệm ôn tập. +${totalQuiz * 10} XP`,
+          icon: 'success',
+          confirmButtonColor: '#C9922A',
+          background: '#1C1A18',
+          color: '#FDFAF3',
+        })
+      }, 500)
+    }
+  }
+}
+
+function triggerConfetti() {
+  if (!import.meta.client) return
+  const canvas = document.createElement('canvas')
+  canvas.style.position = 'fixed'
+  canvas.style.inset = '0'
+  canvas.style.width = '100vw'
+  canvas.style.height = '100vh'
+  canvas.style.pointerEvents = 'none'
+  canvas.style.zIndex = '9999'
+  document.body.appendChild(canvas)
+
+  const ctx = canvas.getContext('2d')
+  if (!ctx) return
+
+  canvas.width = window.innerWidth
+  canvas.height = window.innerHeight
+
+  const colors = ['#C9922A', '#E6C587', '#8B3A2A', '#2D5016', '#4A90E2', '#50E3C2']
+  const particles: any[] = []
+
+  for (let i = 0; i < 120; i++) {
+    particles.push({
+      x: canvas.width / 2,
+      y: canvas.height + 20,
+      vx: (Math.random() - 0.5) * 15,
+      vy: -Math.random() * 15 - 10,
+      size: Math.random() * 6 + 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      rotation: Math.random() * 360,
+      rotationSpeed: (Math.random() - 0.5) * 10,
+      opacity: 1
+    })
+  }
+
+  function animate() {
+    if (!ctx) return
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    let active = false
+
+    particles.forEach(p => {
+      p.x += p.vx
+      p.y += p.vy
+      p.vy += 0.25
+      p.vx *= 0.98
+      p.rotation += p.rotationSpeed
+      
+      if (p.y < canvas.height && p.opacity > 0) {
+        active = true
+        p.opacity -= 0.008
+      }
+
+      ctx.save()
+      ctx.translate(p.x, p.y)
+      ctx.rotate((p.rotation * Math.PI) / 180)
+      ctx.globalAlpha = Math.max(0, p.opacity)
+      ctx.fillStyle = p.color
+      ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size)
+      ctx.restore()
+    })
+
+    if (active) {
+      requestAnimationFrame(animate)
+    } else {
+      canvas.remove()
+    }
+  }
+
+  animate()
 }
 
 // Essay state

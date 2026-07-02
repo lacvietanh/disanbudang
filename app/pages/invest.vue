@@ -25,7 +25,7 @@
             <span class="text-gradient-gold">Xã Bù Đăng</span>
           </h1>
           <p class="text-charcoal-300 text-lg max-w-xl leading-relaxed mb-8">
-            Khám phá tiềm năng kinh tế, hạ tầng và chính sách ưu đãi dành cho các nhà đầu tư tại vùng đất giàu bản sắc, giàu tài nguyên và đang trên đà phát triển.
+            Khám phá tiềm năng kinh tế, hạ tầng và chính sách ưu đãi dành cho các nhà đầu tư tại vùng đất Bù Đăng giàu bản sắc — viên ngọc thiên nhiên và văn hóa của Thành Phố Đồng Nai.
           </p>
           <div class="flex flex-wrap gap-4">
             <a href="mailto:invest@budang.gov.vn" class="btn-primary">
@@ -60,7 +60,7 @@
         <span class="eyebrow text-gold-400 mb-3 block">LĨNH VỰC ƯU TIÊN</span>
         <h2 class="font-heading font-bold text-ivory text-3xl lg:text-4xl mb-4">Cơ Hội Đầu Tư Nổi Bật</h2>
         <p class="text-charcoal-300 text-base leading-relaxed">
-          Xã Bù Đăng mang lợi thế độc đáo: quỹ đất sạch, hệ sinh thái phong phú, văn hóa bản địa đậm sắc và chính sách ưu đãi rõ ràng.
+          Vùng đất Bù Đăng thuộc Thành Phố Đồng Nai mang lợi thế độc đáo: quỹ đất sạch, hệ sinh thái phong phú, văn hóa bản địa đậm sắc và chính sách ưu đãi rõ ràng.
         </p>
       </div>
 
@@ -94,9 +94,9 @@
         <div class="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <span class="eyebrow text-forest-400 mb-3 block">LỢI THẾ ĐỊA PHƯƠNG</span>
-            <h2 class="font-heading font-bold text-ivory text-3xl lg:text-4xl mb-5">Tại Sao Chọn Bù Đăng?</h2>
+            <h2 class="font-heading font-bold text-ivory text-3xl lg:text-4xl mb-5">Tại Sao Chọn Vùng Đất Bù Đăng — Thành Phố Đồng Nai?</h2>
             <p class="text-charcoal-300 text-base leading-relaxed mb-8">
-              Vùng đất Bù Đăng hội tụ đầy đủ các yếu tố thuận lợi: vị trí chiến lược, tài nguyên thiên nhiên phong phú, cộng đồng bản địa giàu văn hóa và khung pháp lý minh bạch.
+              Vùng đất Bù Đăng thuộc Thành Phố Đồng Nai hội tụ đầy đủ các yếu tố thuận lợi: vị trí chiến lược, tài nguyên thiên nhiên phong phú, cộng đồng bản địa giàu văn hóa và khung pháp lý minh bạch.
             </p>
             <div class="space-y-4">
               <div v-for="adv in advantages" :key="adv.title" class="flex items-start gap-4">
@@ -160,9 +160,9 @@ import type { InvestmentOpportunity } from '~/types'
 
 definePageMeta({ layout: 'default' })
 
-useSeoMeta({
-  title: 'Đầu Tư Bù Đăng — Tiềm năng & Cơ hội',
-  description: 'Thông tin quy hoạch, hạ tầng và các cơ hội đầu tư phát triển kinh tế tại Xã Bù Đăng, Thành Phố Đồng Nai (Bình Phước cũ) — vùng đất giàu tiềm năng sinh thái và văn hóa.'
+useMuseumSeo({
+  title: 'Đầu Tư Bù Đăng - Tiềm năng và Cơ hội',
+  description: 'Thông tin quy hoạch, hạ tầng và các cơ hội đầu tư phát triển kinh tế tại vùng đất Bù Đăng, Thành Phố Đồng Nai.'
 })
 
 const keyStats = [

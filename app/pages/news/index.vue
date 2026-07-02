@@ -103,7 +103,7 @@ useHead({
         address: {
           '@type': 'PostalAddress',
           addressLocality: 'Xã Bù Đăng',
-          addressRegion: 'Thành Phố Đồng Nai (Bình Phước cũ)',
+          addressRegion: 'Thành Phố Đồng Nai',
           addressCountry: 'VN'
         }
       }

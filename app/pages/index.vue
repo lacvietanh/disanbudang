@@ -27,14 +27,17 @@
     <!-- 8. Kêu gọi đóng góp di sản -->
     <ContributionCTA />
 
-    <!-- 9. Câu hỏi thường gặp -->
+    <!-- 9. Tầm nhìn mở rộng: Bù Đăng → Thành Phố Đồng Nai -->
+    <VisionRoadmapSection />
+
+    <!-- 10. Câu hỏi thường gặp -->
     <FAQSection />
   </div>
 </template>
 
 <script setup lang="ts">
 useMuseumSeo({
-  description: 'Khám phá di sản văn hóa, lịch sử và thiên nhiên Xã Bù Đăng Thành Phố Đồng Nai (Tỉnh Bình Phước cũ) qua không gian số hiện đại — hành trình trải nghiệm sống động dành cho mọi thế hệ.',
+  description: 'Bảo tàng số di sản văn hóa, lịch sử và thiên nhiên vùng đất Bù Đăng — linh hồn đại ngàn trong lòng Thành Phố Đồng Nai. Khám phá qua không gian số hiện đại sống động.',
   image: '/images/heritage/danh-thang/rung-nguyen-sinh-lg.webp',
 })
 

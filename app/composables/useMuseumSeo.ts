@@ -2,7 +2,7 @@ import type { Ref } from 'vue'
 import type { Heritage, NewsArticle } from '~/types'
 
 const SITE_NAME = 'Di Sản Bù Đăng'
-const SITE_DESCRIPTION = 'Bảo tàng số địa phương về lịch sử, văn hóa, thiên nhiên và ký ức cộng đồng Xã Bù Đăng Thành Phố Đồng Nai (Tỉnh Bình Phước cũ).'
+const SITE_DESCRIPTION = 'Bảo tàng số di sản văn hóa, lịch sử và thiên nhiên vùng đất Bù Đăng — linh hồn đại ngàn trong lòng Thành Phố Đồng Nai.'
 const SITE_URL = 'https://disanbudang.com'
 const DEFAULT_IMAGE = '/images/heritage/danh-thang/rung-nguyen-sinh-lg.webp'
 
@@ -22,6 +22,11 @@ export function ensureTrailingSlash(path: string): string {
   const hasExtension = /\.[a-z5-9]+$/i.test(base)
   const cleanPath = base.endsWith('/') || hasExtension ? base : `${base}/`
   return query ? `${cleanPath}?${query}` : cleanPath
+}
+
+export function isArticleRoute(path: string): boolean {
+  const normalized = path.toLowerCase()
+  return normalized.includes('/heritage/') || normalized.includes('/news/') || normalized.includes('/study/lesson/')
 }
 
 export function buildBreadcrumbSchema(path: string, pageTitle?: string) {
@@ -70,8 +75,24 @@ export function buildBreadcrumbSchema(path: string, pageTitle?: string) {
 
 export function useMuseumSeo(input: MuseumSeoInput = {}) {
   const route = useRoute()
-  const title = input.title ? `${input.title} — ${SITE_NAME}` : `${SITE_NAME} — Bảo Tàng Số Địa Phương`
-  const description = input.description ?? SITE_DESCRIPTION
+  let title = input.title ? `${input.title} - ${SITE_NAME}` : `${SITE_NAME} - Bảo Tàng Số Địa Phương`
+  let description = input.description ?? SITE_DESCRIPTION
+
+  // Clean invalid characters (em-dash/en-dash)
+  title = title.replace(/—/g, '-').replace(/–/g, '-')
+  description = description.replace(/—/g, '-').replace(/–/g, '-')
+
+  // Enforce title limits
+  const titleLimit = isArticleRoute(route.path) ? 80 : 60
+  if (title.length > titleLimit) {
+    title = title.slice(0, titleLimit - 3).trim() + '...'
+  }
+
+  // Enforce description limit
+  if (description.length > 155) {
+    description = description.slice(0, 152).trim() + '...'
+  }
+
   const image = input.image ?? DEFAULT_IMAGE
   const canonical = `${SITE_URL}${ensureTrailingSlash(input.path ?? route.path)}`
 
@@ -91,7 +112,7 @@ export function useMuseumSeo(input: MuseumSeoInput = {}) {
     useHead({
       meta: [
         { name: 'geo.position', content: '11.8281;107.0937' },
-        { name: 'geo.placename', content: 'Xã Bù Đăng, Thành Phố Đồng Nai' },
+        { name: 'geo.placename', content: 'Vùng đất Bù Đăng, Thành Phố Đồng Nai' },
         { name: 'geo.region', content: 'VN-ĐN' },
       ],
     })
@@ -100,23 +121,66 @@ export function useMuseumSeo(input: MuseumSeoInput = {}) {
   // Build scripts array
   const scripts: any[] = []
 
-  // Global Organization Schema (only on homepage)
+  // Global Organization, WebSite, and WebPage Schema (only on homepage)
   if (route.path === '/') {
     scripts.push({
       type: 'application/ld+json',
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
-        '@type': 'Organization',
-        'name': SITE_NAME,
-        'url': SITE_URL,
-        'logo': `${SITE_URL}/favicon/icon-192.png`,
-        'description': SITE_DESCRIPTION,
-        'address': {
-          '@type': 'PostalAddress',
-          'addressLocality': 'Xã Bù Đăng',
-          'addressRegion': 'Thành Phố Đồng Nai (Tỉnh Bình Phước cũ)',
-          'addressCountry': 'VN'
-        }
+        '@graph': [
+          {
+            '@type': 'Organization',
+            '@id': `${SITE_URL}/#organization`,
+            'name': SITE_NAME,
+            'alternateName': [SITE_NAME, 'di san bu dang', 'disanbudang', 'disanbudang.com'],
+            'url': `${SITE_URL}/`,
+            'logo': `${SITE_URL}/favicon/icon-192.png`,
+            'description': SITE_DESCRIPTION,
+            'address': {
+              '@type': 'PostalAddress',
+              'addressLocality': 'Vùng đất Bù Đăng',
+              'addressRegion': 'Thành Phố Đồng Nai',
+              'addressCountry': 'VN'
+            },
+            'knowsAbout': [
+              'Lịch sử địa phương',
+              'Văn hóa dân tộc S\'tiêng',
+              'Di sản thiên nhiên Bù Đăng',
+              'Du lịch sinh thái Bù Đăng'
+            ]
+          },
+          {
+            '@type': 'WebSite',
+            '@id': `${SITE_URL}/#website`,
+            'url': `${SITE_URL}/`,
+            'name': SITE_NAME,
+            'alternateName': [SITE_NAME, 'di san bu dang', 'disanbudang'],
+            'publisher': {
+              '@id': `${SITE_URL}/#organization`
+            },
+            'potentialAction': {
+              '@type': 'SearchAction',
+              'target': {
+                '@type': 'EntryPoint',
+                'urlTemplate': `${SITE_URL}/library/?search={search_term_string}`
+              },
+              'query-input': 'required name=search_term_string'
+            }
+          },
+          {
+            '@type': 'WebPage',
+            '@id': `${SITE_URL}/#webpage`,
+            'url': `${SITE_URL}/`,
+            'name': `${SITE_NAME} — Bảo Tàng Số Địa Phương`,
+            'description': SITE_DESCRIPTION,
+            'isPartOf': {
+              '@id': `${SITE_URL}/#website`
+            },
+            'about': {
+              '@id': `${SITE_URL}/#organization`
+            }
+          }
+        ]
       })
     })
   }
@@ -167,7 +231,7 @@ export function useHeritageSeo(heritage: Ref<Heritage | null>) {
             },
             containedInPlace: {
               '@type': 'AdministrativeArea',
-              name: 'Xã Bù Đăng, Thành Phố Đồng Nai (nguyên Tỉnh Bình Phước)',
+              name: 'Vùng đất Bù Đăng, Thành Phố Đồng Nai',
             },
             isPartOf: {
               '@type': 'WebSite',

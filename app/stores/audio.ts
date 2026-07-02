@@ -16,6 +16,7 @@ export const useAudioStore = defineStore('audio', () => {
   const isMiniPlayerVisible = ref(false)
   const isExpanded = ref(false)
   const isSpeechMode = ref(false)
+  const playbackRate = ref(1.0)
 
   let speechUtterance: SpeechSynthesisUtterance | null = null
   let speechInterval: any = null
@@ -75,7 +76,7 @@ export const useAudioStore = defineStore('audio', () => {
       const text = getSpeechText()
       speechUtterance = new SpeechSynthesisUtterance(text)
       speechUtterance.lang = 'vi-VN'
-      speechUtterance.rate = 0.95
+      speechUtterance.rate = 0.95 * playbackRate.value
       speechUtterance.volume = isMuted.value ? 0 : volume.value
 
       const voices = window.speechSynthesis.getVoices()
@@ -131,6 +132,7 @@ export const useAudioStore = defineStore('audio', () => {
 
       player.addEventListener('loadedmetadata', () => {
         if (Number.isFinite(player.duration)) duration.value = player.duration
+        player.playbackRate = playbackRate.value
       })
       player.addEventListener('timeupdate', () => {
         currentTime.value = player.currentTime
@@ -201,7 +203,7 @@ export const useAudioStore = defineStore('audio', () => {
       if (isPlaying.value) {
         speechUtterance = new SpeechSynthesisUtterance(remainingText)
         speechUtterance.lang = 'vi-VN'
-        speechUtterance.rate = 0.95
+        speechUtterance.rate = 0.95 * playbackRate.value
         speechUtterance.volume = isMuted.value ? 0 : volume.value
 
         const voices = window.speechSynthesis.getVoices()
@@ -292,6 +294,15 @@ export const useAudioStore = defineStore('audio', () => {
     isExpanded.value = !isExpanded.value
   }
 
+  function setPlaybackRate(rate: number) {
+    playbackRate.value = rate
+    if (!isSpeechMode.value && audioEl.value) {
+      audioEl.value.playbackRate = rate
+    } else if (isSpeechMode.value && isPlaying.value) {
+      setCurrentTime(currentTime.value)
+    }
+  }
+
   function formatTime(seconds: number): string {
     const m = Math.floor(seconds / 60)
     const s = Math.floor(seconds % 60)
@@ -322,6 +333,7 @@ export const useAudioStore = defineStore('audio', () => {
     progressPercent,
     formattedCurrentTime,
     formattedDuration,
+    playbackRate,
     loadTrack,
     play,
     pause,
@@ -332,5 +344,6 @@ export const useAudioStore = defineStore('audio', () => {
     skip,
     closeMiniPlayer,
     toggleExpanded,
+    setPlaybackRate,
   }
 })

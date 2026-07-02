@@ -17,8 +17,8 @@
             <img src="/favicon/icon-192.png" alt="Logo Di Sản Bù Đăng" class="h-14 lg:h-16 w-auto object-contain" />
           </div>
           <p class="text-charcoal-300 text-sm leading-relaxed">
-            Dự án bảo tồn và phát huy di sản văn hóa – lịch sử Xã Bù Đăng Thành Phố Đồng Nai (Tỉnh Bình Phước cũ).
-            Nơi lưu giữ ký ức cộng đồng cho thế hệ hôm nay và mai sau.
+            Dự án bảo tồn và tôn vinh di sản văn hóa, lịch sử và thiên nhiên vùng đất Bù Đăng.
+            Linh hồn đại ngàn trong lòng Thành Phố Đồng Nai.
           </p>
 
         </div>
@@ -45,10 +45,11 @@
             <p class="flex items-start gap-2">
               <Icon name="mdi:map-marker-outline" class="w-4 h-4 text-gold-500 mt-0.5 shrink-0" />
               <span class="sr-only">Địa chỉ</span>
-              Xã Bù Đăng Thành Phố Đồng Nai (Tỉnh Bình Phước cũ)
+              Vùng đất Bù Đăng, Thành Phố Đồng Nai
             </p>
             <p class="flex items-center gap-2">
               <Icon name="mdi:email-outline" class="w-4 h-4 text-gold-500 shrink-0" />
+              <span class="sr-only">Email:</span>
               Nguyenxuankiet294@gmail.com
             </p>
           </div>
@@ -60,11 +61,11 @@
       <!-- Bottom Bar -->
       <div class="mt-14 pt-8 border-t border-charcoal-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-charcoal-500">
         <p>© {{ currentYear }} Nguyễn Xuân Kiệt. Bảo lưu mọi quyền.</p>
-        <div class="flex items-center gap-1">
-          <span>Người thực hiện:</span>
-          <span class="text-gold-400 font-medium mx-1">Nguyễn Xuân Kiệt</span>
-          <span>• Cổng thông tin Di sản Bù Đăng</span>
-        </div>
+          <div class="flex items-center gap-1">
+            <span>Người thực hiện:</span>
+            <span class="text-gold-400 font-medium mx-1">Nguyễn Xuân Kiệt</span>
+            <span>• Cổng di sản Bù Đăng, Thành Phố Đồng Nai</span>
+          </div>
       </div>
     </div>
   </footer>

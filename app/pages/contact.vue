@@ -44,7 +44,7 @@
             <div class="relative z-10 text-center p-6">
               <Icon name="mdi:map-marker-radius" class="w-10 h-10 text-gold-450 mx-auto mb-2 group-hover:scale-110 transition-transform duration-300" />
               <h3 class="text-white text-base font-bold font-heading">Bản Đồ Chỉ Đường</h3>
-              <p class="text-charcoal-350 text-xs mt-1">Xã Bù Đăng, Thành Phố Đồng Nai (nguyên Tỉnh Bình Phước)</p>
+              <p class="text-charcoal-350 text-xs mt-1">Vùng đất Bù Đăng, Thành Phố Đồng Nai</p>
               <span class="inline-flex items-center gap-1 text-gold-450 text-2xs uppercase tracking-widest font-semibold mt-3 group-hover:text-gold-400 transition-colors">
                 Xem trên Google Maps
                 <Icon name="mdi:open-in-new" class="w-3 h-3" />
@@ -116,7 +116,10 @@
 
 <script setup lang="ts">
 definePageMeta({ layout: 'default' })
-useSeoMeta({ title: 'Liên Hệ — Di Sản Bù Đăng', description: 'Liên hệ với dự án Di Sản Bù Đăng để hợp tác, đóng góp tư liệu, hoặc tìm hiểu thêm về di sản văn hóa Xã Bù Đăng, Thành Phố Đồng Nai (Bình Phước cũ).' })
+useMuseumSeo({
+  title: 'Liên Hệ',
+  description: 'Liên hệ với ban quản lý dự án Di Sản Bù Đăng để hợp tác, đóng góp tư liệu hoặc tìm hiểu thêm về di sản văn hóa.'
+})
 
 const { observeAll } = useScrollReveal()
 onMounted(() => nextTick(() => observeAll()))
@@ -127,7 +130,7 @@ const submitted = ref(false)
 const submitError = ref('')
 
 const contactInfo = [
-  { icon: 'mdi:map-marker-outline', label: 'Địa Chỉ', value: 'Xã Bù Đăng, Thành Phố Đồng Nai (nguyên Tỉnh Bình Phước)' },
+  { icon: 'mdi:map-marker-outline', label: 'Địa Chỉ', value: 'Vùng đất Bù Đăng, Thành Phố Đồng Nai' },
   { icon: 'mdi:email-outline', label: 'Email', value: 'Nguyenxuankiet294@gmail.com' },
 ]
 

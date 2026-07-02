@@ -23,13 +23,13 @@
       
       <div class="relative z-20 container-heritage text-center pb-16 pt-32">
         <span class="inline-block px-4 py-2 rounded-full border border-gold-500/30 bg-gold-500/10 text-gold-400 text-sm font-bold tracking-widest uppercase mb-6 reveal">
-          Dự Án Bảo Tàng Số Cộng Đồng
+          Dự Án Số Hóa Di Sản · Thành Phố Đồng Nai
         </span>
         <h1 class="font-heading font-bold text-ivory text-6xl md:text-8xl leading-tight mb-6 text-shadow-hero reveal">
           Giới Thiệu <span class="text-gradient-gold">Di Sản Bù Đăng</span>
         </h1>
         <p class="font-accent italic text-charcoal-300 text-2xl md:text-3xl max-w-3xl mx-auto mb-12 reveal">
-          "Lưu giữ để không quên — Chia sẻ để cùng lớn"
+          "Từ ký ức ngàn năm của Xã Bù Đăng — Kiến tạo Di Sản Số Thành Phố Đồng Nai"
         </p>
         
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 reveal">
@@ -45,10 +45,10 @@
     <section id="problem" class="py-24 lg:py-32 bg-charcoal-900 border-t border-charcoal-850">
       <div class="container-heritage">
         <div class="text-center max-w-3xl mx-auto mb-16 reveal">
-          <span class="eyebrow text-brick-500">THỰC TRẠNG</span>
-          <h2 class="font-heading font-bold text-4xl lg:text-5xl mb-6">Tại sao chúng tôi bắt đầu?</h2>
+          <span class="eyebrow text-brick-500">THỰC TRẠNG & THÁCH THỨC</span>
+          <h2 class="font-heading font-bold text-4xl lg:text-5xl mb-6">Vì Sao Dự Án Này Ra Đời?</h2>
           <p class="text-charcoal-300 text-lg leading-relaxed">
-            Trong kỷ nguyên số, chúng ta đối mặt với nguy cơ đánh mất bản sắc địa phương trước áp lực của đô thị hóa và sự thay đổi thế hệ.
+            Di sản văn hóa phi vật thể của vùng đất Bù Đăng đang đối mặt nguy cơ mai một khi chưa có nền tảng số hóa xứng tầm để bảo tồn và truyền lại cho thế hệ mai sau.
           </p>
         </div>
 
@@ -70,10 +70,10 @@
       
       <div class="container-heritage relative z-10">
         <div class="text-center max-w-3xl mx-auto mb-20 reveal">
-          <span class="eyebrow text-gold-400">GIẢI PHÁP TỔNG THỂ</span>
-          <h2 class="font-heading font-bold text-4xl lg:text-5xl mb-6">4 Trụ Cột Nền Tảng Số</h2>
+          <span class="eyebrow text-gold-400">GIẢI PHÁP TOÀN DIỆN</span>
+          <h2 class="font-heading font-bold text-4xl lg:text-5xl mb-6">4 Trụ Cột Của Nền Tảng Số</h2>
           <p class="text-charcoal-350 text-lg leading-relaxed">
-            Không chỉ là một trang thông tin tĩnh, Di Sản Bù Đăng là một hệ sinh thái tương tác nhằm số hoá, bảo tồn và tạo ra giá trị kinh tế trực tiếp cho địa phương.
+            Không chỉ là một trang thông tin tĩnh — Di Sản Bù Đăng là hệ sinh thái số tương tác, bảo tồn và khai thác giá trị văn hóa phi vật thể của Xã Bù Đăng, góp phần khẳng định vị thế di sản của Thành Phố Đồng Nai trên bản đồ số quốc gia.
           </p>
         </div>
 
@@ -97,10 +97,10 @@
         <div class="grid lg:grid-cols-2 gap-16 items-center">
           <div class="space-y-8 reveal">
             <div>
-              <span class="eyebrow text-forest-400">ĐỔI MỚI SÁNG TẠO</span>
+              <span class="eyebrow text-forest-400">ĐỔI MỚI CÔNG NGHỆ</span>
               <h2 class="font-heading font-bold text-4xl lg:text-5xl mb-6">Trải Nghiệm Khác Biệt</h2>
               <p class="text-charcoal-300 text-lg leading-relaxed">
-                Ứng dụng công nghệ hiện đại để biến lịch sử trở nên "sống động" và "chạm" được đến thế hệ Z.
+                Ứng dụng công nghệ hiện đại để biến di sản lịch sử trở nên sống động và chạm được đến thế hệ trẻ — những người sẽ là chủ nhân của Thành Phố Đồng Nai trong tương lai.
               </p>
             </div>
             
@@ -142,9 +142,9 @@
     <section class="py-24 lg:py-32 bg-charcoal-950">
       <div class="container-heritage">
         <div class="text-center max-w-3xl mx-auto mb-20 reveal">
-          <span class="eyebrow text-gold-400">HIỆN TRẠNG</span>
-          <h2 class="font-heading font-bold text-4xl lg:text-5xl mb-6">Kết Quả Đạt Được</h2>
-          <p class="text-charcoal-300 text-lg">Những con số biết nói chứng minh tính khả thi và tác động thực tiễn của dự án chỉ sau thời gian ngắn triển khai.</p>
+          <span class="eyebrow text-gold-400">MINH CHỨNG THỰC TẾ</span>
+          <h2 class="font-heading font-bold text-4xl lg:text-5xl mb-6">Kết Quả Trong Giai Đoạn Thí Điểm</h2>
+          <p class="text-charcoal-300 text-lg">Những con số thực tế sau quá trình xây dựng và triển khai nền tảng số hóa di sản vùng đất Bù Đăng.</p>
         </div>
 
         <!-- Stats Grid -->
@@ -159,7 +159,8 @@
         <!-- Team -->
         <div class="max-w-4xl mx-auto bg-charcoal-900/50 border border-charcoal-800 rounded-[2.5rem] p-8 md:p-12 reveal">
           <div class="text-center mb-10">
-            <h3 class="font-heading font-bold text-3xl">Đội Ngũ Thực Hiện</h3>
+            <h3 class="font-heading font-bold text-3xl">Người Thực Hiện</h3>
+            <p class="text-charcoal-400 text-sm mt-2">Một dự án cá nhân mang tầm nhìn cộng đồng</p>
           </div>
           <div class="flex justify-center">
             <div v-for="team in teams" :key="team.name" class="text-center group max-w-xs">
@@ -168,6 +169,7 @@
               </div>
               <h4 class="font-heading font-bold text-xl text-ivory mb-1">{{ team.name }}</h4>
               <p class="text-charcoal-400 text-sm">{{ team.role }}</p>
+              <p class="text-gold-400/70 text-xs mt-1 italic">Thành Phố Đồng Nai, Việt Nam</p>
             </div>
           </div>
         </div>
@@ -178,9 +180,9 @@
     <section class="py-24 lg:py-32 border-t border-charcoal-850 bg-charcoal-900">
       <div class="container-heritage">
         <div class="text-center max-w-3xl mx-auto mb-20 reveal">
-          <span class="eyebrow text-gold-400">TẦM NHÌN</span>
+          <span class="eyebrow text-gold-400">LỘ TRÌNH PHÁT TRIỂN</span>
           <h2 class="font-heading font-bold text-4xl lg:text-5xl mb-6">Định Hướng Mở Rộng</h2>
-          <p class="text-charcoal-300 text-lg">Dự án không dừng lại ở ranh giới Bù Đăng, chúng tôi có tham vọng mở rộng và áp dụng công nghệ sâu hơn.</p>
+          <p class="text-charcoal-300 text-lg">Dự án bắt đầu từ Xã Bù Đăng — viên ngọc văn hóa đặc sắc với lịch sử cách mạng hào hùng, với tầm nhìn mở rộng phủ sóng toàn bộ bản đồ di sản của Thành Phố Đồng Nai.</p>
         </div>
 
         <div class="max-w-4xl mx-auto relative reveal">
@@ -212,7 +214,7 @@
 definePageMeta({ layout: 'default' })
 useMuseumSeo({
   title: 'Giới Thiệu Dự Án',
-  description: 'Di Sản Bù Đăng là dự án bảo tàng số cộng đồng, số hóa và bảo tồn di sản văn hóa, lịch sử, thiên nhiên của vùng đất Bù Đăng cho thế hệ hôm nay và mai sau.',
+  description: 'Dự án thí điểm số hóa di sản văn hóa vùng đất Bù Đăng — nền tảng hướng tới cổng di sản số của Thành Phố Đồng Nai, thành phố trực thuộc Trung ương thứ 7 của Việt Nam.',
 })
 
 const slides = [
@@ -244,92 +246,102 @@ const scrollTo = (id: string) => {
   }
 }
 
-// Data Arrays for Pitch Deck
+// ─────────────────────────────────────────────────────────────────────────────
+// Dữ liệu đã xác minh từ nhiều nguồn lịch sử chính thống
+// ─────────────────────────────────────────────────────────────────────────────
+
+// THỰC TRẠNG — vấn đề thực tế đang diễn ra
 const problems = [
-  { 
-    icon: 'mdi:account-group-outline', 
-    title: 'Đứt Gãy Dòng Chảy Di Sản Giữa Các Thế Hệ', 
-    desc: 'Trong dòng chảy hối hả của kỷ nguyên số, thế hệ trẻ lớn lên mà thiếu vắng sợi dây liên kết với cội nguồn. Những câu chuyện truyền thuyết bên bếp lửa nhà dài S\'tiêng dần bị lãng quên, đẩy các giá trị văn hóa phi vật thể vào nguy cơ mai một.' 
+  {
+    icon: 'mdi:account-group-outline',
+    title: 'Đứt Gãy Ký Ức Giữa Các Thế Hệ',
+    desc: 'Những nghệ nhân già — người duy nhất còn nhớ cách đánh bộ cồng chiêng 11 chiếc (6 chiêng + 5 cồng) hay kỹ thuật dệt hoa văn "suối tóc" Pú Mél Sól trên thổ cẩm S\'tiêng — đang dần khuất bóng. Khi các già làng ra đi, những trang sử sống ấy sẽ vĩnh viễn mất đi nếu không được ghi chép, số hóa kịp thời.'
   },
-  { 
-    icon: 'mdi:book-remove-multiple-outline', 
-    title: 'Thất Truyền Ký Ức Lịch Sử & Nghệ Thuật Bản Địa', 
-    desc: 'Những điệu cồng chiêng cổ, nghệ thuật dệt thổ cẩm tỉ mỉ hay kỹ thuật dệt hoa văn chỉ đang tồn tại trong trí nhớ của các già làng. Khi thời gian trôi đi, nếu không có giải pháp lưu trữ bền vững, những trang sử sống này sẽ vĩnh viễn biến mất.' 
+  {
+    icon: 'mdi:book-remove-multiple-outline',
+    title: 'Di Sản Phi Vật Thể Không Có Không Gian Số',
+    desc: 'Không gian văn hóa cồng chiêng S\'tiêng là một phần của di sản cồng chiêng Tây Nguyên — được UNESCO công nhận là Di sản Văn hóa Phi vật thể của Nhân loại. Nghề dệt thổ cẩm S\'tiêng cũng đã được Bộ VHTTDL công nhận là Di sản Văn hóa Phi vật thể Quốc gia. Tuy nhiên, các giá trị này chưa có không gian số xứng tầm để được tiếp cận rộng rãi.'
   },
-  { 
-    icon: 'mdi:map-marker-off-outline', 
-    title: 'Sự Cách Biệt Giữa Tiềm Năng & Không Gian Số', 
-    desc: 'Bù Đăng sở hữu tài nguyên thiên nhiên hoang sơ với rừng nguyên sinh kỳ vĩ và bề dày lịch sử cách mạng hào hùng. Tuy nhiên, việc thiếu hụt một công cụ số hóa tương tác hiện đại làm giảm cơ hội tiếp cận và hạn chế khả năng quảng bá du lịch.' 
+  {
+    icon: 'mdi:map-marker-off-outline',
+    title: 'Tiềm Năng Di Sản Chưa Được Số Hóa',
+    desc: 'Vùng đất Bù Đăng lưu giữ di tích Khu Bảo Tồn Văn Hóa Sóc Bom Bo — nơi năm 1965 già làng Điểu Nhếch dẫn cả sóc giã gạo nuôi quân, truyền cảm hứng cho nhạc sĩ Xuân Hồng viết nên "Tiếng Chày Trên Sóc Bom Bo". Những địa danh lịch sử oai hùng ấy chưa có công cụ số hóa tương tác để quảng bá đúng tầm.'
   }
 ]
 
+// 4 TRỤ CỘT — giải pháp cụ thể, đã triển khai
 const solutions = [
-  { 
-    icon: 'mdi:archive-check', 
-    title: 'Hệ Thống Bảo Tàng Số Tương Tác Sinh Động', 
-    desc: 'Không chỉ lưu trữ dữ liệu thô, chúng tôi chuyển hóa hiện vật và địa danh lịch sử thành những câu chuyện giàu cảm xúc. Số hóa đa phương tiện kết hợp âm thanh, hình ảnh giúp di sản tự nói lên tiếng nói của chính mình.' 
+  {
+    icon: 'mdi:archive-check',
+    title: 'Hệ Thống Bảo Tàng Số Đa Phương Tiện',
+    desc: 'Số hóa 11 di sản văn hóa — lịch sử — thiên nhiên với hồ sơ đầy đủ: hình ảnh chất lượng cao, thuyết minh âm thanh chuyên nghiệp, video tư liệu và câu chuyện kể theo dòng thời gian. Mỗi hiện vật và địa danh được tái hiện thành tác phẩm kỹ thuật số sống động.'
   },
-  { 
-    icon: 'mdi:map-search', 
-    title: 'Bản Đồ Di Sản Hệ Thống Thông Tin Địa Lý (GIS)', 
-    desc: 'Ứng dụng tọa độ số học trực quan hóa hệ thống di tích cách mạng, danh lam thắng cảnh. Du khách dễ dàng định vị, lập lộ trình cá nhân hóa và khám phá vẻ đẹp hoang sơ của Bù Đăng qua màn hình thiết bị.' 
+  {
+    icon: 'mdi:map-search',
+    title: 'Bản Đồ Di Sản Tương Tác GIS',
+    desc: 'Trực quan hóa toàn bộ hệ thống di tích, danh thắng và làng nghề truyền thống trên bản đồ địa lý số. Người dùng tìm kiếm, lọc theo danh mục, thời kỳ lịch sử, lên tuyến lộ trình khám phá và định vị thực địa — tất cả trên một nền tảng duy nhất.'
   },
-  { 
-    icon: 'mdi:silverware-variant', 
-    title: 'Số Hóa Chuỗi Giá Trị Du Lịch Bản Địa', 
-    desc: 'Thiết lập nhịp cầu kết nối trực tiếp du khách với các dịch vụ lưu trú sinh thái, ẩm thực truyền thống và làng nghề thổ cẩm, góp phần tạo sinh kế bền vững và nâng cao thu nhập cho đồng bào thiểu số.' 
+  {
+    icon: 'mdi:school-outline',
+    title: 'Cổng Học Tập Số Cho Học Sinh',
+    desc: 'Hệ thống học tập tương tác với hơn 35 câu hỏi trí tuệ, bài giảng lịch sử được trình bày theo từng chương, tài liệu nghiên cứu số hóa từ các trường THPT và THCS trong vùng. Học sinh trực tiếp đóng góp nghiên cứu về di sản quê hương vào kho tri thức chung.'
   },
-  { 
-    icon: 'mdi:chart-box-outline', 
-    title: 'Cổng Định Hướng Phát Triển Bền Vững', 
-    desc: 'Tận dụng các giá trị văn hóa nền tảng để truyền tải thông tin quy hoạch định hướng phát triển địa phương, kêu gọi đầu tư kinh tế sinh thái và giữ gìn cảnh quan thiên nhiên cho thế hệ mai sau.' 
+  {
+    icon: 'mdi:chart-box-outline',
+    title: 'Nền Tảng Cộng Đồng Đóng Góp Mở',
+    desc: 'Người dân, giáo viên, nghiên cứu sinh có thể đóng góp hình ảnh, ký ức cộng đồng, tư liệu sưu tầm vào kho di sản chung. Nền tảng mở giúp bảo tàng số liên tục phát triển và phản ánh đúng hơi thở thực của cộng đồng vùng đất Bù Đăng.'
   }
 ]
 
+// ĐỔI MỚI SÁNG TẠO — điểm độc đáo của dự án
 const innovations = [
-  { 
-    title: 'Phương Pháp Học Tập Qua Trải Nghiệm Số (Gamification)', 
-    desc: 'Thay thế những giáo trình khô khan bằng hệ thống nhiệm vụ học tập, thử thách tương tác và hệ thống Huy hiệu số, kích thích niềm tự hào và tinh thần chủ động tìm hiểu lịch sử quê hương của học sinh.' 
+  {
+    title: 'Gamification Hóa Trải Nghiệm Học Lịch Sử',
+    desc: 'Hơn 35 câu hỏi trí tuệ có chấm điểm theo từng di sản, tích điểm Huy Hiệu số khi hoàn thành chủ đề. Thay thế giáo trình khô cứng bằng hành trình khám phá kích thích tư duy và niềm tự hào về lịch sử quê hương trong học sinh.'
   },
-  { 
-    title: 'Hệ Thống Thuyết Minh Âm Thanh Tự Động (Audio Guide)', 
-    desc: 'Đưa nghệ thuật kể chuyện âm thanh (Podcasting) vào từng điểm di tích. Người dùng lắng nghe tiếng chày giã gạo Bom Bo hay tiếng nước đổ Thác Đứng như đang trực tiếp đắm mình trong không gian văn hóa lịch sử.' 
+  {
+    title: 'Audio Guide — Thuyết Minh Âm Thanh Tự Động',
+    desc: '4 bài thuyết minh âm thanh chuyên nghiệp đưa người dùng nghe lại nhịp chày giã gạo Sóc Bom Bo, tiếng cồng chiêng S\'tiêng trong lễ mừng lúa mới, hay lời kể về những đêm kháng chiến hào hùng nơi đại ngàn Bù Đăng.'
   },
-  { 
-    title: 'Nền Tảng Đồng Kiến Tạo Di Sản Cộng Đồng (Crowdsourcing)', 
-    desc: 'Xây dựng không gian mở cho phép giáo viên, học sinh và người dân đóng góp hình ảnh, câu chuyện và tư liệu sưu tầm được, biến website thành một bảo tàng mở liên tục phát triển sinh động.' 
+  {
+    title: 'Crowdsourcing Di Sản Cộng Đồng',
+    desc: 'Không gian mở để cộng đồng đồng kiến tạo di sản số — giáo viên đăng tải tài liệu, học sinh nộp nghiên cứu, người dân chia sẻ ký ức. Biến di sản từ "bảo tàng tĩnh" thành "ký ức sống" do chính cộng đồng viết nên.'
   }
 ]
 
+// SỐ LIỆU DỰ ÁN — chỉ dùng con số đã có trong hệ thống
 const projectStats = [
-  { icon: 'mdi:castle', label: 'Di sản được sống lại', value: '11' },
-  { icon: 'mdi:headphones', label: 'Câu chuyện Audio', value: '4' },
-  { icon: 'mdi:gamepad-variant-outline', label: 'Thử thách trí tuệ', value: '35+' },
-  { icon: 'mdi:school-outline', label: 'Trường học đồng hành', value: '5+' },
+  { icon: 'mdi:castle', label: 'Di sản được số hóa', value: '11' },
+  { icon: 'mdi:headphones', label: 'Audio thuyết minh', value: '4' },
+  { icon: 'mdi:gamepad-variant-outline', label: 'Câu hỏi trí tuệ', value: '35+' },
+  { icon: 'mdi:school-outline', label: 'Trường học tham gia', value: '5+' },
 ]
 
 const teams = [
-  { name: 'Nguyễn Xuân Kiệt', role: 'Founder disanbudang', icon: 'mdi:account-star' }
+  { name: 'Nguyễn Xuân Kiệt', role: 'Founder & Nhà phát triển dự án disanbudang', icon: 'mdi:account-star' }
 ]
 
+// LỘ TRÌNH — tầm nhìn có căn cứ
 const roadmap = [
-  { 
-    time: 'Tương lai gần', 
-    title: 'Mở Rộng Không Gian Văn Hoá', 
-    desc: 'Đưa mô hình chuyển đổi số này vượt ra khỏi ranh giới Bù Đăng, phủ sóng toàn vẹn bản đồ di sản của Thành Phố Đồng Nai.' 
+  {
+    time: 'Giai đoạn hiện tại',
+    title: 'Thí Điểm Tại Vùng Đất Bù Đăng',
+    desc: 'Số hóa 11 di sản trọng điểm của vùng đất Bù Đăng — từ Khu Bảo Tồn Văn Hóa Sóc Bom Bo, di tích Chiến Khu Đ, đến không gian cồng chiêng S\'tiêng và làng nghề dệt thổ cẩm. Xây dựng nền tảng công nghệ hoàn chỉnh làm mô hình nhân rộng.'
   },
-  { 
-    time: 'Trung hạn', 
-    title: 'Xóa Nhòa Rào Cản Ngôn Ngữ', 
-    desc: 'Ứng dụng Trí tuệ nhân tạo (AI) tự động dịch thuật và tạo thuyết minh giọng nói (Text-to-Speech) đa ngữ, sẵn sàng đón làn sóng du khách quốc tế.' 
+  {
+    time: 'Giai đoạn tiếp theo',
+    title: 'Phủ Sóng Toàn Thành Phố Đồng Nai',
+    desc: 'Nhân rộng mô hình số hóa ra toàn bộ di sản của Thành Phố Đồng Nai — thành phố trực thuộc Trung ương thứ 7 của Việt Nam, nơi hội tụ văn hóa của cả vùng Đông Nam Bộ. Kết nối mạng lưới bảo tàng số liên thông toàn thành phố.'
   },
-  { 
-    time: 'Tầm nhìn xa', 
-    title: 'Trải Nghiệm Thực Tế Ảo (VR/AR)', 
-    desc: 'Phục dựng 3D các không gian lễ hội thiêng liêng, cho phép người dùng từ bất cứ đâu trên thế giới đều có thể bước vào không gian văn hoá cồng chiêng.' 
+  {
+    time: 'Tầm nhìn 2027+',
+    title: 'Đa Ngữ, Thực Tế Ảo & Smart Tourism',
+    desc: 'Tích hợp AI đa ngữ để đón du khách quốc tế, thực tế ảo (VR) phục dựng không gian lễ hội cồng chiêng, hệ thống QR thực địa tại các điểm di tích và hợp tác với Sở VHTTDL Đồng Nai phổ cập giáo dục địa phương.'
   },
 ]
 </script>
+
+
 
 <style scoped>
 @keyframes bounce {

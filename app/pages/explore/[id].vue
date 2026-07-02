@@ -309,9 +309,14 @@ function searchTag(tag: string) {
   router.push({ path: '/explore', query: { tag } })
 }
 
-useSeoMeta({
-  title: () => post.value ? `${post.value.title} — Ký Ức Bù Đăng` : 'Không tìm thấy câu chuyện',
-  description: () => post.value ? post.value.excerpt : '',
+watchEffect(() => {
+  if (!post.value) return
+  useMuseumSeo({
+    title: `${post.value.title} - Ký Ức`,
+    description: post.value.excerpt,
+    path: `/explore/${post.value.id}`,
+    type: 'article',
+  })
 })
 </script>
 

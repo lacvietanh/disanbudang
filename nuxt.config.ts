@@ -68,12 +68,12 @@ export default defineNuxtConfig({
     head: {
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
-      title: 'Di Sản Bù Đăng — Bảo Tàng Số Địa Phương',
+      title: 'Di Sản Bù Đăng - Linh Hồn Đại Ngàn Thành Phố Đồng Nai',
       meta: [
         {
           name: 'description',
           content:
-            'Khám phá di sản văn hóa, lịch sử và thiên nhiên Xã Bù Đăng qua không gian số hiện đại — hành trình trải nghiệm sống động dành cho mọi thế hệ.',
+            'Bảo tàng số di sản văn hóa, lịch sử và thiên nhiên vùng đất Bù Đăng — linh hồn đại ngàn trong lòng Thành Phố Đồng Nai.',
         },
         { name: 'theme-color', content: '#e18c1b' },
         { property: 'og:type', content: 'website' },

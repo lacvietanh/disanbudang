@@ -303,6 +303,7 @@
           <MapContainer
             :heritages="displayedHeritages"
             :selected-id="selectedId"
+            :selected-route="selectedRoute"
             class="w-full h-full"
             @select="selectHeritage"
           />
@@ -321,7 +322,7 @@
           <Transition name="panel-slide-right">
             <div
               v-if="selectedHeritage && isDesktop"
-              class="absolute top-4 right-4 max-h-[calc(100%-2rem)] z-[500] w-[400px] bg-charcoal-950/95 backdrop-blur-xl rounded-2xl overflow-hidden border border-gold-500/30 shadow-2xl shadow-black/60 flex flex-col h-fit"
+              class="absolute top-4 right-4 max-h-[calc(100%-2rem)] z-[500] w-[400px] bg-charcoal-950/90 backdrop-blur-xl rounded-2xl overflow-hidden border border-gold-500/20 shadow-2xl shadow-black/70 flex flex-col h-fit"
               role="dialog"
               :aria-label="'Thông tin chi tiết: ' + selectedHeritage.title"
             >
@@ -329,7 +330,7 @@
               <div class="h-1 w-full bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 flex-shrink-0"></div>
 
               <!-- Banner Photo - taller for visibility -->
-              <div class="relative h-56 flex-shrink-0 bg-charcoal-900 group">
+              <div class="relative h-48 flex-shrink-0 bg-charcoal-900 group">
                 <img :src="selectedHeritage.coverImage" :alt="selectedHeritage.title" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950/95 via-charcoal-950/30 to-transparent"></div>
                 
@@ -338,8 +339,8 @@
                   <BaseBadge :variant="getCategoryVariant(selectedHeritage.category)" size="sm" class="uppercase tracking-widest font-bold mb-2">
                     {{ getCategoryLabel(selectedHeritage.category) }}
                   </BaseBadge>
-                  <h3 class="font-heading font-bold text-white text-lg leading-tight tracking-tight drop-shadow-lg">{{ selectedHeritage.title }}</h3>
-                  <p v-if="selectedHeritage.subtitle" class="text-gold-300 text-xs font-accent italic mt-0.5 drop-shadow">{{ selectedHeritage.subtitle }}</p>
+                  <h3 class="font-heading font-bold text-white text-base leading-tight tracking-tight drop-shadow-lg">{{ selectedHeritage.title }}</h3>
+                  <p v-if="selectedHeritage.subtitle" class="text-gold-300 text-3xs font-accent italic mt-0.5 drop-shadow">{{ selectedHeritage.subtitle }}</p>
                 </div>
 
                 <!-- Close button -->
@@ -352,120 +353,151 @@
                 </button>
               </div>
 
+              <!-- Tab Selection row -->
+              <div class="flex border-b border-charcoal-850 bg-charcoal-950/45 shrink-0">
+                <button
+                  class="flex-1 py-3 text-[10px] uppercase font-bold tracking-wider text-center border-b-2 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                  :class="activePanelTab === 'info' ? 'border-gold-500 text-gold-400 bg-charcoal-900/40' : 'border-transparent text-charcoal-400 hover:text-ivory'"
+                  @click="activePanelTab = 'info'"
+                >
+                  <Icon name="mdi:information-outline" class="w-3.5 h-3.5" />
+                  Tổng quan
+                </button>
+                <button
+                  class="flex-1 py-3 text-[10px] uppercase font-bold tracking-wider text-center border-b-2 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                  :class="activePanelTab === 'history' ? 'border-gold-500 text-gold-400 bg-charcoal-900/40' : 'border-transparent text-charcoal-400 hover:text-ivory'"
+                  @click="activePanelTab = 'history'"
+                >
+                  <Icon name="mdi:book-open-variant" class="w-3.5 h-3.5" />
+                  Lịch sử
+                </button>
+                <button
+                  class="flex-1 py-3 text-[10px] uppercase font-bold tracking-wider text-center border-b-2 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                  :class="activePanelTab === 'media' ? 'border-gold-500 text-gold-400 bg-charcoal-900/40' : 'border-transparent text-charcoal-400 hover:text-ivory'"
+                  @click="activePanelTab = 'media'"
+                >
+                  <Icon name="mdi:image-multiple-outline" class="w-3.5 h-3.5" />
+                  Thư viện
+                </button>
+              </div>
+
               <!-- Scrollable Content -->
-              <div class="flex-1 overflow-y-auto scrollbar-none">
-                <!-- Short description -->
-                <div class="px-5 pt-4 pb-3">
-                  <p class="text-charcoal-200 text-sm leading-relaxed">
-                    {{ selectedHeritage.shortDescription }}
-                  </p>
-                </div>
-
-                <!-- Quick Facts Grid -->
-                <div v-if="selectedHeritage.quickFacts && selectedHeritage.quickFacts.length > 0" class="px-5 pb-4">
-                  <p class="text-[10px] text-gold-400 uppercase font-bold tracking-widest mb-2.5">Thông tin nhanh</p>
-                  <div class="grid grid-cols-2 gap-2">
-                    <div
-                      v-for="(fact, fIdx) in selectedHeritage.quickFacts"
-                      :key="fIdx"
-                      class="flex items-center gap-2.5 bg-charcoal-900 p-3 rounded-xl border border-charcoal-800"
-                    >
-                      <div class="w-8 h-8 rounded-lg bg-gold-500/15 flex items-center justify-center text-gold-400 shrink-0">
-                        <Icon :name="fact.icon ?? 'mdi:information-outline'" class="w-4 h-4" />
-                      </div>
-                      <div class="min-w-0">
-                        <p class="text-[10px] text-charcoal-400 uppercase font-bold tracking-wider truncate">{{ fact.label }}</p>
-                        <p class="text-sm text-white font-semibold truncate mt-0.5">{{ fact.value }}</p>
-                      </div>
-                    </div>
+              <div class="flex-1 overflow-y-auto scrollbar-none max-h-[360px] min-h-[220px]">
+                <!-- Tab: TỔNG QUAN -->
+                <div v-if="activePanelTab === 'info'" class="p-5 space-y-4 animate-section-in">
+                  <!-- Short description -->
+                  <div>
+                    <p class="text-charcoal-200 text-xs leading-relaxed font-medium">
+                      {{ selectedHeritage.shortDescription }}
+                    </p>
                   </div>
-                </div>
 
-                <!-- Divider -->
-                <div class="mx-5 border-t border-charcoal-800" />
-
-                <!-- Video Player -->
-                <div v-if="selectedHeritage.video" class="px-5 pt-4 pb-3 space-y-2">
-                  <h4 class="text-[10px] uppercase text-gold-400 tracking-widest font-bold flex items-center gap-2">
-                    <Icon name="mdi:video-outline" class="w-4 h-4" />
-                    Phim tư liệu di sản
-                  </h4>
-                  <div class="rounded-xl overflow-hidden border border-charcoal-800 aspect-video bg-charcoal-950 relative shadow-inner">
-                    <video :src="selectedHeritage.video.url" controls class="w-full h-full object-cover" preload="metadata" />
-                  </div>
-                </div>
-
-                <!-- Audio Player -->
-                <div v-if="selectedHeritage.audio" class="px-5 pt-3 pb-3 space-y-2">
-                  <h4 class="text-[10px] uppercase text-gold-400 tracking-widest font-bold flex items-center gap-2">
-                    <Icon name="mdi:headphones" class="w-4 h-4" />
-                    Audio Thuyết Minh
-                  </h4>
-                  <div class="bg-gold-500/8 p-3.5 rounded-xl border border-gold-500/25 flex items-center justify-between gap-3">
-                    <div class="min-w-0">
-                      <p class="text-sm font-semibold text-white truncate">{{ selectedHeritage.audio.title }}</p>
-                      <p class="text-xs text-charcoal-400 truncate mt-0.5">Giọng đọc: {{ selectedHeritage.audio.narrator }}</p>
-                    </div>
-                    <button
-                      class="w-10 h-10 rounded-full bg-gold-500 hover:bg-gold-400 text-charcoal-950 flex items-center justify-center transition-all duration-300 shadow-lg shadow-gold-500/30 shrink-0"
-                      @click="playAudio"
-                      :aria-label="'Phát thuyết minh âm thanh cho ' + selectedHeritage.title"
-                    >
-                      <Icon :name="isPlayingCurrentTrack ? 'mdi:pause' : 'mdi:play'" class="w-5 h-5" />
-                    </button>
-                  </div>
-                </div>
-
-                <!-- Photo Gallery -->
-                <div v-if="selectedHeritage.gallery && selectedHeritage.gallery.length > 0" class="px-5 pt-3 pb-3 space-y-2.5">
-                  <h4 class="text-[10px] uppercase text-gold-400 tracking-widest font-bold flex items-center gap-2">
-                    <Icon name="mdi:image-multiple-outline" class="w-4 h-4" />
-                    Bộ sưu tập hình ảnh ({{ selectedHeritage.gallery.length }})
-                  </h4>
-                  <div class="grid grid-cols-3 gap-1.5">
-                    <div
-                      v-for="(img, gIdx) in selectedHeritage.gallery"
-                      :key="gIdx"
-                      class="aspect-video rounded-lg overflow-hidden border border-charcoal-800 cursor-pointer hover:border-gold-400/60 transition-all relative group"
-                      @click="activeImageIndex = gIdx"
-                    >
-                      <img :src="img.src" :alt="img.alt" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-                      <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <Icon name="mdi:magnify-plus-outline" class="w-5 h-5 text-white" />
+                  <!-- Quick Facts Grid -->
+                  <div v-if="selectedHeritage.quickFacts && selectedHeritage.quickFacts.length > 0" class="space-y-2">
+                    <p class="text-[9px] text-gold-400 uppercase font-bold tracking-widest">Thông tin nhanh</p>
+                    <div class="grid grid-cols-2 gap-2">
+                      <div
+                        v-for="(fact, fIdx) in selectedHeritage.quickFacts"
+                        :key="fIdx"
+                        class="flex items-center gap-2.5 bg-charcoal-900/60 p-2.5 rounded-xl border border-charcoal-850"
+                      >
+                        <div class="w-8 h-8 rounded-lg bg-gold-500/10 flex items-center justify-center text-gold-400 shrink-0 border border-gold-500/15">
+                          <Icon :name="fact.icon ?? 'mdi:information-outline'" class="w-4 h-4" />
+                        </div>
+                        <div class="min-w-0">
+                          <p class="text-[9px] text-charcoal-400 uppercase font-bold tracking-wider truncate">{{ fact.label }}</p>
+                          <p class="text-xs text-white font-semibold truncate mt-0.5">{{ fact.value }}</p>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <!-- History / Lore story -->
-                <div class="px-5 pt-3 pb-6 space-y-2.5">
-                  <h4 class="text-[10px] uppercase text-gold-400 tracking-widest font-bold flex items-center gap-2">
+                <!-- Tab: LỊCH SỬ / CÂU CHUYỆN -->
+                <div v-if="activePanelTab === 'history'" class="p-5 space-y-3 animate-section-in">
+                  <p class="text-[9px] text-gold-400 uppercase font-bold tracking-widest flex items-center gap-1.5">
                     <Icon name="mdi:book-open-variant" class="w-4 h-4" />
-                    Câu chuyện di sản & Lịch sử
-                  </h4>
-                  <div class="text-sm text-charcoal-200 leading-relaxed font-sans space-y-3 whitespace-pre-line">
+                    Hành trình lịch sử & Huyền thoại
+                  </p>
+                  <div class="text-xs text-charcoal-200 leading-relaxed font-sans space-y-3 whitespace-pre-line">
                     {{ selectedHeritage.longStory }}
+                  </div>
+                </div>
+
+                <!-- Tab: PHƯƠNG TIỆN (Audio, Video, Gallery) -->
+                <div v-if="activePanelTab === 'media'" class="p-5 space-y-4 animate-section-in">
+                  <!-- Video Player -->
+                  <div v-if="selectedHeritage.video" class="space-y-2">
+                    <h4 class="text-[9px] uppercase text-gold-400 tracking-widest font-bold flex items-center gap-1.5">
+                      <Icon name="mdi:video-outline" class="w-4 h-4" />
+                      Phim tư liệu di sản
+                    </h4>
+                    <div class="rounded-xl overflow-hidden border border-charcoal-850 aspect-video bg-charcoal-950 relative shadow-inner">
+                      <video :src="selectedHeritage.video.url" controls class="w-full h-full object-cover" preload="metadata" />
+                    </div>
+                  </div>
+
+                  <!-- Audio Player -->
+                  <div v-if="selectedHeritage.audio" class="space-y-2">
+                    <h4 class="text-[9px] uppercase text-gold-400 tracking-widest font-bold flex items-center gap-1.5">
+                      <Icon name="mdi:headphones" class="w-4 h-4" />
+                      Audio Thuyết Minh
+                    </h4>
+                    <div class="bg-gold-500/5 p-3 rounded-xl border border-gold-500/20 flex items-center justify-between gap-3">
+                      <div class="min-w-0 flex-1">
+                        <p class="text-xs font-semibold text-white truncate">{{ selectedHeritage.audio.title }}</p>
+                        <p class="text-[10px] text-charcoal-400 truncate mt-0.5">Giọng đọc: {{ selectedHeritage.audio.narrator }}</p>
+                      </div>
+                      <button
+                        class="w-8 h-8 rounded-full bg-gold-500 hover:bg-gold-400 text-charcoal-950 flex items-center justify-center transition-all duration-300 shadow-lg shadow-gold-500/20 shrink-0 cursor-pointer"
+                        @click="playAudio"
+                        :aria-label="'Phát thuyết minh âm thanh cho ' + selectedHeritage.title"
+                      >
+                        <Icon :name="isPlayingCurrentTrack ? 'mdi:pause' : 'mdi:play'" class="w-4.5 h-4.5" />
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Photo Gallery -->
+                  <div v-if="selectedHeritage.gallery && selectedHeritage.gallery.length > 0" class="space-y-2">
+                    <h4 class="text-[9px] uppercase text-gold-400 tracking-widest font-bold flex items-center gap-1.5">
+                      <Icon name="mdi:image-multiple-outline" class="w-4 h-4" />
+                      Hình ảnh lưu trữ ({{ selectedHeritage.gallery.length }})
+                    </h4>
+                    <div class="grid grid-cols-3 gap-1.5">
+                      <div
+                        v-for="(img, gIdx) in selectedHeritage.gallery"
+                        :key="gIdx"
+                        class="aspect-video rounded-lg overflow-hidden border border-charcoal-850 cursor-pointer hover:border-gold-400/50 transition-all relative group"
+                        @click="activeImageIndex = gIdx"
+                      >
+                        <img :src="img.src" :alt="img.alt" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                          <Icon name="mdi:magnify-plus-outline" class="w-4 h-4 text-white" />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
               <!-- Footer Action buttons -->
-              <div class="p-4 border-t border-charcoal-800 bg-charcoal-900 grid grid-cols-2 gap-3 shrink-0">
+              <div class="p-4 border-t border-charcoal-850 bg-charcoal-900/90 grid grid-cols-2 gap-3 shrink-0">
                 <NuxtLink
                   :to="`/heritage/${selectedHeritage.slug}`"
-                  class="btn-primary text-sm justify-center py-3 font-bold tracking-wide rounded-xl shadow-lg shadow-gold-500/15"
+                  class="btn-primary text-xs justify-center py-3.5 font-bold tracking-wide rounded-xl shadow-lg shadow-gold-500/10 flex items-center gap-1.5"
                 >
-                  <Icon name="mdi:file-document-outline" class="w-4 h-4 mr-1.5" />
+                  <Icon name="mdi:file-document-outline" class="w-4 h-4" />
                   Xem Chi Tiết
                 </NuxtLink>
                 <a
                   :href="getGoogleMapsDirectionUrl(selectedHeritage)"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="flex items-center justify-center gap-1.5 text-sm font-semibold text-charcoal-200 hover:text-gold-400 bg-charcoal-800 hover:bg-charcoal-750 border border-charcoal-700 hover:border-gold-500/40 transition-all duration-300 rounded-xl py-3"
+                  class="flex items-center justify-center gap-1.5 text-xs font-semibold text-charcoal-200 hover:text-gold-400 bg-charcoal-800 hover:bg-charcoal-750 border border-charcoal-750 hover:border-gold-500/40 transition-all duration-300 rounded-xl py-3.5"
                   title="Mở chỉ đường trên Google Maps"
                 >
-                  <Icon name="mdi:directions" class="w-4.5 h-4.5 text-gold-400" />
+                  <Icon name="mdi:directions" class="w-4 h-4 text-gold-400" />
                   Chỉ đường
                 </a>
               </div>
@@ -586,6 +618,7 @@ let currentTourIndex = 0
 
 // Gallery Lightbox State
 const activeImageIndex = ref<number | null>(null)
+const activePanelTab = ref<'info' | 'history' | 'media'>('info')
 
 // Bottom sheet state is handled inside the component
 
@@ -705,6 +738,9 @@ watch(searchQuery, (q) => {
 
 watch(activeCategory, (c) => store.setCategory(c))
 watch(activePeriod, (p) => store.setPeriod(p))
+watch(selectedId, () => {
+  activePanelTab.value = 'info'
+})
 
 // Inject TouristAttraction schema.org dynamic JSON-LD when heritage selected
 watchEffect(() => {
@@ -729,7 +765,7 @@ watchEffect(() => {
           address: {
             '@type': 'PostalAddress',
             addressLocality: 'Xã Bù Đăng',
-            addressRegion: 'Thành Phố Đồng Nai (nguyên Tỉnh Bình Phước)',
+            addressRegion: 'Thành Phố Đồng Nai',
             addressCountry: 'VN'
           }
         })
@@ -753,7 +789,7 @@ useEventListener('keydown', (e: KeyboardEvent) => {
 
 onMounted(() => {
   const route = useRoute()
-  const checkDesktop = () => { isDesktop.value = window.innerWidth >= 768 }
+  const checkDesktop = () => { isDesktop.value = window.innerWidth >= 1024 }
   checkDesktop()
   window.addEventListener('resize', checkDesktop)
   onUnmounted(() => {
@@ -802,16 +838,37 @@ function runTourStep() {
   const heritage = list[currentTourIndex]
   if (heritage) {
     selectHeritage(heritage)
+    currentTourIndex++
+
+    if (tourTimer) {
+      clearTimeout(tourTimer)
+      tourTimer = null
+    }
+
     if (heritage.audio) {
       audioStore.loadTrack(heritage.audio, heritage.id)
       audioStore.play()
+
+      const checkFinished = () => {
+        if (!isPlayingTour.value) return
+        
+        const isEnded = !audioStore.isPlaying && audioStore.currentTime === 0
+        const isNotSameTrack = audioStore.currentTrack?.id !== heritage.audio?.id
+        
+        if (isEnded || isNotSameTrack) {
+          tourTimer = setTimeout(() => {
+            runTourStep()
+          }, 1500)
+        } else {
+          tourTimer = setTimeout(checkFinished, 1000)
+        }
+      }
+      tourTimer = setTimeout(checkFinished, 2000)
+    } else {
+      tourTimer = setTimeout(() => {
+        runTourStep()
+      }, 9000)
     }
-    
-    currentTourIndex++
-    // Automatically advance after 9 seconds
-    tourTimer = setTimeout(() => {
-      runTourStep()
-    }, 9000)
   }
 }
 
@@ -887,7 +944,7 @@ function getGoogleMapsDirectionUrl(heritage: Heritage): string {
   if (heritage.coordinates && heritage.coordinates.lat && heritage.coordinates.lng) {
     return `https://www.google.com/maps/dir/?api=1&destination=${heritage.coordinates.lat},${heritage.coordinates.lng}`
   }
-  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(heritage.title + ' Bù Đăng Bình Phước')}`
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(heritage.title + ' Bù Đăng Thành Phố Đồng Nai')}`
 }
 
 // toggleMobileHeight is handled by bottom sheet gestures

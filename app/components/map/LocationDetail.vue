@@ -161,6 +161,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import type { Heritage } from '~/types'
 import { useHeritageStore } from '~/stores/heritage'
 import { useHeritage } from '~/composables/useHeritage'
@@ -198,6 +199,6 @@ function getGoogleMapsDirectionUrl(heritage: Heritage): string {
   if (heritage.coordinates && heritage.coordinates.lat && heritage.coordinates.lng) {
     return `https://www.google.com/maps/dir/?api=1&destination=${heritage.coordinates.lat},${heritage.coordinates.lng}`
   }
-  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(heritage.title + ' Bù Đăng Bình Phước')}`
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(heritage.title + ' Bù Đăng Thành Phố Đồng Nai')}`
 }
 </script>

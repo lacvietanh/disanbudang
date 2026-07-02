@@ -114,6 +114,7 @@ const isDragging = ref(false)
 const startY = ref(0)
 const startTranslateY = ref(0)
 const startTime = ref(0)
+const hasMoved = ref(false)
 
 // Calculate snap pixel offsets relative to top (y = 0)
 const snapPoints = computed(() => {
@@ -147,20 +148,29 @@ const handleResize = () => {
 onMounted(() => {
   if (import.meta.client) {
     window.addEventListener('resize', handleResize)
-    
+
     // Bind touch gestures on the body to allow scroll dragging
-    const body = bodyRef.value
-    if (body) {
-      body.addEventListener('touchstart', onTouchStartBody, { passive: true })
-      body.addEventListener('touchmove', onTouchMoveBody, { passive: false })
-      body.addEventListener('touchend', onTouchEndBody, { passive: true })
-    }
+    nextTick(() => {
+      const body = bodyRef.value
+      if (body) {
+        body.addEventListener('touchstart', onTouchStartBody, { passive: true })
+        body.addEventListener('touchmove', onTouchMoveBody, { passive: false })
+        body.addEventListener('touchend', onTouchEndBody, { passive: true })
+      }
+    })
   }
 })
 
 onUnmounted(() => {
   if (import.meta.client) {
     window.removeEventListener('resize', handleResize)
+    // Cleanup touch listeners to prevent memory leak
+    const body = bodyRef.value
+    if (body) {
+      body.removeEventListener('touchstart', onTouchStartBody)
+      body.removeEventListener('touchmove', onTouchMoveBody)
+      body.removeEventListener('touchend', onTouchEndBody)
+    }
   }
   // Ensure we unlock the map zoom/drag when closed
   store.mapGesturesEnabled = true
@@ -180,6 +190,7 @@ const onPointerDown = (e: PointerEvent) => {
   target.setPointerCapture(e.pointerId)
   
   isDragging.value = true
+  hasMoved.value = false
   startY.value = e.clientY
   startTranslateY.value = translateY.value
   startTime.value = performance.now()
@@ -189,6 +200,10 @@ const onPointerMove = (e: PointerEvent) => {
   if (!isDragging.value) return
   
   const deltaY = e.clientY - startY.value
+  if (Math.abs(deltaY) > 5) {
+    hasMoved.value = true
+  }
+  
   let newTranslate = startTranslateY.value + deltaY
   
   // Rubber banding past fullscreen
@@ -215,6 +230,20 @@ const onPointerUp = (e: PointerEvent) => {
   } catch (err) {}
   
   const deltaY = e.clientY - startY.value
+  
+  if (!hasMoved.value) {
+    // Tap to toggle height state
+    if (currentState.value === 'peek') {
+      currentState.value = 'expanded'
+    } else if (currentState.value === 'expanded') {
+      currentState.value = 'fullscreen'
+    } else {
+      currentState.value = 'peek'
+    }
+    updateTranslateForState(currentState.value)
+    return
+  }
+  
   const elapsed = performance.now() - startTime.value
   const velocity = deltaY / elapsed
   
@@ -225,14 +254,17 @@ const onPointerUp = (e: PointerEvent) => {
 let touchStartClientY = 0
 
 const onTouchStartBody = (e: TouchEvent) => {
-  touchStartClientY = e.touches[0].clientY
+  const touch = e.touches?.[0]
+  if (!touch) return
+  touchStartClientY = touch.clientY
 }
 
 const onTouchMoveBody = (e: TouchEvent) => {
   const body = bodyRef.value
-  if (!body) return
+  const touch = e.touches?.[0]
+  if (!body || !touch) return
   
-  const currentTouchY = e.touches[0].clientY
+  const currentTouchY = touch.clientY
   const deltaY = currentTouchY - touchStartClientY
   
   // Intercept scroll: if body is scrolled to the top and user drags DOWN
@@ -264,7 +296,9 @@ const onTouchMoveBody = (e: TouchEvent) => {
 const onTouchEndBody = (e: TouchEvent) => {
   if (isDragging.value) {
     isDragging.value = false
-    const currentTouchY = e.changedTouches[0].clientY
+    const touch = e.changedTouches?.[0]
+    if (!touch) return
+    const currentTouchY = touch.clientY
     const deltaY = currentTouchY - startY.value
     const elapsed = performance.now() - startTime.value
     const velocity = deltaY / elapsed

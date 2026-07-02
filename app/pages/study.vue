@@ -48,7 +48,7 @@
           </span>
           <span class="text-gold-300 text-xs font-bold uppercase tracking-widest">Digital Heritage Learning Hub</span>
           <span class="text-charcoal-500 text-xs">•</span>
-          <span class="text-charcoal-300 text-xs">Bù Đăng, Đồng Nai</span>
+          <span class="text-charcoal-300 text-xs">Xã Bù Đăng, Thành Phố Đồng Nai</span>
         </div>
 
         <!-- Main headline -->
@@ -806,7 +806,7 @@
           <div v-else class="max-w-4xl mx-auto space-y-8 text-center">
             <p class="text-charcoal-400 text-sm">Nhấn vào thẻ để lật và xem định nghĩa thuật ngữ S'tiêng.</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
-              <div v-for="(card, idx) in glossary" :key="idx" class="flashcard-container cursor-pointer perspective h-52" @click="card.isFlipped = !card.isFlipped" :aria-label="`Thẻ từ: ${card.term}`">
+              <div v-for="(card, idx) in filteredGlossary" :key="idx" class="flashcard-container cursor-pointer perspective h-52 animate-section-in" @click="card.isFlipped = !card.isFlipped" :aria-label="`Thẻ từ: ${card.term}`">
                 <div class="w-full h-full relative transition-transform duration-500 transform-style-3d rounded-2xl shadow-lg" :class="{ 'rotate-y-180': card.isFlipped }">
                   <div class="absolute inset-0 backface-hidden bg-charcoal-950 border border-charcoal-800 rounded-2xl p-6 flex flex-col justify-between">
                     <div>
@@ -1158,7 +1158,7 @@
             :key="labIdx"
             class="group relative overflow-hidden rounded-3xl border cursor-pointer hover:-translate-y-1 transition-all duration-400"
             :class="labItem.active ? 'border-gold-500/20 bg-gradient-to-br from-charcoal-950 to-charcoal-900 hover:border-gold-500/40' : 'border-charcoal-850 bg-charcoal-950/50 hover:border-charcoal-700'"
-            @click="labItem.active ? (activeLabItem = labItem.id as 'timeline' | null) : null"
+            @click="labItem.active ? (activeLabItem = labItem.id) : null"
             :aria-label="labItem.active ? `Mở ${labItem.title}` : `${labItem.title} - Sắp ra mắt`"
           >
             <div class="absolute -top-12 -right-12 w-40 h-40 rounded-full opacity-5 group-hover:opacity-10 transition-opacity" :class="labItem.gradientBg" />
@@ -1184,39 +1184,18 @@
 
         <!-- Active Lab: Timeline -->
         <div v-if="activeLabItem === 'timeline'" class="bg-charcoal-950 border border-charcoal-850 rounded-3xl p-6 md:p-8 space-y-6">
-          <div class="flex items-center justify-between">
+          <div class="flex items-center justify-between border-b border-charcoal-850 pb-4">
             <div>
               <h4 class="font-heading font-bold text-ivory text-xl">Timeline Lịch Sử Bù Đăng</h4>
               <p class="text-charcoal-400 text-xs mt-1">Hành trình lịch sử từ thời kỳ tiền sử đến hiện đại</p>
             </div>
-            <button class="text-charcoal-500 hover:text-ivory transition-colors" @click="activeLabItem = null" aria-label="Đóng Timeline">
+            <button class="text-charcoal-500 hover:text-ivory bg-charcoal-900 rounded-full p-2 border border-charcoal-800 transition-colors shrink-0 flex items-center justify-center cursor-pointer" @click="activeLabItem = null" aria-label="Đóng Timeline">
               <Icon name="mdi:close" class="w-5 h-5" />
             </button>
           </div>
 
-          <div class="relative">
-            <!-- Timeline line -->
-            <div class="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-gold-500/60 via-gold-500/30 to-transparent" />
-            <div class="space-y-8 pl-16">
-              <div
-                v-for="(event, idx) in historyTimeline"
-                :key="idx"
-                class="relative group"
-              >
-                <!-- Dot -->
-                <div class="absolute -left-[41px] top-1 w-5 h-5 rounded-full border-2 border-gold-500/60 bg-charcoal-950 flex items-center justify-center group-hover:border-gold-400 group-hover:bg-gold-500/10 transition-all">
-                  <div class="w-2 h-2 rounded-full bg-gold-500" />
-                </div>
-                <div class="p-5 bg-charcoal-900 border border-charcoal-850 rounded-2xl hover:border-gold-500/25 transition-colors">
-                  <div class="flex items-center gap-2 mb-2">
-                    <span class="text-gold-400 text-xs font-bold font-heading">{{ event.year }}</span>
-                    <span class="text-3xs px-2 py-0.5 rounded-full" :class="event.tagBg">{{ event.tag }}</span>
-                  </div>
-                  <h5 class="font-heading font-bold text-ivory text-sm">{{ event.title }}</h5>
-                  <p class="text-charcoal-400 text-xs mt-1.5 leading-relaxed">{{ event.desc }}</p>
-                </div>
-              </div>
-            </div>
+          <div class="px-2 pt-2">
+            <InteractiveTimeline :items="mappedHistoryTimeline" />
           </div>
         </div>
 
@@ -1347,44 +1326,76 @@
               </div>
             </div>
             <!-- DOCUMENT TAB -->
-            <div v-else-if="activeModalTab === 'document'" class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+            <div v-else-if="activeModalTab === 'document'" class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start animate-section-in">
               <div class="lg:col-span-2 space-y-4 flex flex-col items-center">
-                <div class="w-full flex items-center justify-between bg-charcoal-900 border border-charcoal-800 px-4 py-2.5 rounded-xl text-xs text-charcoal-400 shadow-inner">
+                <div class="w-full flex items-center justify-between bg-charcoal-900 border border-charcoal-800 px-4 py-2.5 rounded-xl text-xs text-charcoal-400 shadow-inner select-none">
                   <span class="font-semibold flex items-center gap-1.5 text-2xs">
                     <Icon name="mdi:file-pdf-box" class="w-4 h-4 text-red-500" />
                     {{ selectedResource.id }}_heritage_report.pdf
                   </span>
                   <div class="flex items-center gap-3">
-                    <button class="hover:text-gold-400 transition-colors" title="Bút highlight" @click="activeHighlightPen = !activeHighlightPen" :class="activeHighlightPen ? 'text-gold-400' : 'text-charcoal-450'" aria-label="Bật/tắt bút highlight">
+                    <button class="hover:text-gold-400 transition-colors cursor-pointer" title="Bút highlight" @click="activeHighlightPen = !activeHighlightPen" :class="activeHighlightPen ? 'text-gold-400' : 'text-charcoal-455'" aria-label="Bật/tắt bút highlight">
                       <Icon name="mdi:pencil-outline" class="w-4 h-4" />
                     </button>
-                    <button class="hover:text-gold-400 transition-colors" @click="downloadFile(selectedResource)" aria-label="Tải tài liệu PDF">
+                    <button class="hover:text-gold-400 transition-colors cursor-pointer" @click="downloadFile(selectedResource)" aria-label="Tải tài liệu PDF">
                       <Icon name="mdi:download-outline" class="w-4 h-4" />
                     </button>
                   </div>
                 </div>
-                <div class="w-full min-h-[440px] bg-[#FAF8F5] text-charcoal-900 p-8 rounded-2xl shadow-2xl border border-beige-300 relative overflow-hidden select-text">
-                  <div class="absolute inset-0 opacity-[0.03] flex items-center justify-center pointer-events-none select-none">
-                    <img src="/favicon/icon-192.png" alt="" class="w-56 h-56 object-contain" aria-hidden="true" />
+                
+                <!-- Premium Academic Paper layout -->
+                <div class="w-full min-h-[460px] bg-[#FAF8F5] text-charcoal-900 p-8 md:p-10 rounded-2xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3),0_0_0_1px_rgba(255,255,255,0.05)] border border-beige-300 relative overflow-hidden select-text font-serif">
+                  <!-- Watermark text rotated background -->
+                  <div class="absolute inset-0 opacity-[0.02] flex items-center justify-center pointer-events-none select-none rotate-[-25deg] text-center whitespace-nowrap">
+                    <span class="text-charcoal-900 text-3xl font-bold uppercase tracking-[1.5em] block leading-relaxed">
+                      {{ selectedResource.school }}<br />
+                      NGHIÊN CỨU DI SẢN BÙ ĐĂNG
+                    </span>
                   </div>
-                  <div class="border-b border-beige-300 pb-2 mb-6 flex justify-between items-center text-[9px] text-charcoal-500 uppercase tracking-widest font-semibold">
-                    <span>{{ selectedResource.school }} — Tài liệu số hóa di sản</span>
-                    <span>Trang {{ currentDocPage + 1 }} / {{ selectedResource.pages ? selectedResource.pages.length : 1 }}</span>
+
+                  <!-- Authentic Stamp -->
+                  <div class="absolute top-8 right-8 w-20 h-20 rounded-full border-4 border-double border-red-600/15 flex flex-col items-center justify-center text-red-600/15 font-bold text-[7px] uppercase tracking-wider rotate-[15deg] pointer-events-none select-none">
+                    <span class="leading-none mb-0.5">Hội Đồng</span>
+                    <span class="leading-none mb-0.5 border-y border-red-600/10 py-0.5 px-1 font-extrabold text-[8px]">Đã Thẩm Định</span>
+                    <span class="leading-none">Khoa Học</span>
                   </div>
+
+                  <!-- Paper Header -->
+                  <div class="border-b border-beige-300/80 pb-3 mb-6 flex justify-between items-center text-[10px] text-charcoal-550 uppercase tracking-widest font-heading font-bold select-none">
+                    <span>{{ selectedResource.school }}</span>
+                    <span>Tài liệu số hóa di sản</span>
+                  </div>
+                  
+                  <!-- Main text content with serif font for academic feel -->
                   <div
-                    class="prose prose-sm max-w-none text-charcoal-800 leading-relaxed text-justify prose-headings:font-heading prose-headings:text-earth-900 prose-headings:mt-4 prose-headings:mb-2 prose-p:mb-3 prose-blockquote:border-l-earth-500 prose-blockquote:bg-earth-50/50 prose-blockquote:p-4 prose-blockquote:my-4 prose-blockquote:italic prose-strong:text-earth-900 prose-ol:list-decimal prose-ol:pl-4 prose-ul:list-disc prose-ul:pl-4"
+                    class="prose prose-sm max-w-none text-charcoal-800 leading-relaxed text-justify font-serif prose-headings:font-heading prose-headings:text-earth-900 prose-headings:mt-4 prose-headings:mb-2 prose-p:mb-3 prose-blockquote:border-l-4 prose-blockquote:border-l-earth-500 prose-blockquote:bg-earth-500/5 prose-blockquote:p-4 prose-blockquote:my-4 prose-blockquote:italic prose-strong:text-earth-900 prose-ol:list-decimal prose-ol:pl-4 prose-ul:list-disc prose-ul:pl-4"
                     v-html="selectedResource.pages ? selectedResource.pages[currentDocPage] : '<p>Không tìm thấy toàn văn tài liệu.</p>'"
                     @mouseup="handleTextSelection"
                   />
                 </div>
-                <div class="w-full flex items-center justify-between border-t border-charcoal-850 pt-4">
-                  <button class="btn-secondary text-xs py-2 px-4 flex items-center gap-1 disabled:opacity-30 disabled:pointer-events-none" :disabled="currentDocPage === 0" @click="currentDocPage--" aria-label="Trang trước">
-                    <Icon name="mdi:arrow-left" class="w-4 h-4" />Trang Trước
-                  </button>
-                  <span class="text-charcoal-400 text-xs font-semibold">{{ currentDocPage + 1 }} / {{ selectedResource.pages ? selectedResource.pages.length : 1 }}</span>
-                  <button class="btn-secondary text-xs py-2 px-4 flex items-center gap-1 disabled:opacity-30 disabled:pointer-events-none" :disabled="currentDocPage === (selectedResource.pages ? selectedResource.pages.length - 1 : 0)" @click="currentDocPage++" aria-label="Trang sau">
-                    Trang Sau<Icon name="mdi:arrow-right" class="w-4 h-4" />
-                  </button>
+                
+                <div class="w-full flex flex-col gap-3 border-t border-charcoal-850 pt-4 select-none">
+                  <!-- Page slider controller -->
+                  <div v-if="selectedResource.pages && selectedResource.pages.length > 1" class="flex items-center gap-4 px-2">
+                    <span class="text-3xs text-charcoal-500 font-bold uppercase tracking-wider">Lật nhanh</span>
+                    <input
+                      v-model.number="currentDocPage"
+                      type="range"
+                      min="0"
+                      :max="selectedResource.pages.length - 1"
+                      class="flex-1 accent-gold-500 h-1 bg-charcoal-850 rounded-lg appearance-none cursor-pointer"
+                    />
+                  </div>
+                  
+                  <div class="flex items-center justify-between">
+                    <button class="btn-secondary text-xs py-2 px-4 flex items-center gap-1 disabled:opacity-30 disabled:pointer-events-none" :disabled="currentDocPage === 0" @click="currentDocPage--" aria-label="Trang trước">
+                      <Icon name="mdi:arrow-left" class="w-4 h-4" />Trang Trước
+                    </button>
+                    <span class="text-charcoal-400 text-xs font-semibold">Trang {{ currentDocPage + 1 }} / {{ selectedResource.pages ? selectedResource.pages.length : 1 }}</span>
+                    <button class="btn-secondary text-xs py-2 px-4 flex items-center gap-1 disabled:opacity-30 disabled:pointer-events-none" :disabled="currentDocPage === (selectedResource.pages ? selectedResource.pages.length - 1 : 0)" @click="currentDocPage++" aria-label="Trang sau">
+                      Trang Sau<Icon name="mdi:arrow-right" class="w-4 h-4" />
+                    </button>
+                  </div>
                 </div>
               </div>
               <!-- Notes Sidebar -->
@@ -1711,6 +1722,14 @@ const bookHighlights = computed(() => {
   return userAnnotations.value.filter(hl => hl.bookId === selectedResource.value?.id)
 })
 
+const mappedHistoryTimeline = computed(() => {
+  return historyTimeline.map(item => ({
+    date: item.year,
+    event: item.title,
+    detail: item.desc
+  }))
+})
+
 function handleTextSelection() {
   if (!activeHighlightPen.value) return
   const selection = window.getSelection()
@@ -1741,7 +1760,7 @@ const resources = ref<SchoolResourceExtended[]>([
     keyFindings: ['Ghi âm và chép lại hơn 30 giờ phỏng vấn trực tiếp từ 12 nhân chứng lịch sử tại buôn sóc Bù Đăng.', 'Phác thảo và số hóa thành công sơ đồ hoạt động quân sự của 3 điểm đóng quân cũ sâu trong lòng rừng nguyên sinh.', 'Sưu tầm hình ảnh tư liệu của 15 loại hiện vật, vũ khí tự chế thời chiến được lưu trữ gia đình.'],
     quizId: 'quiz-001',
     pages: [
-      `<h2>CHƯƠNG I: BỐI CẢNH LỊCH SỬ &amp; LÝ DO CHỌN ĐỀ TÀI</h2><p>Chiến Khu Đ là một trong những hệ thống căn cứ địa quan trọng bậc nhất của lực lượng kháng chiến tại khu vực miền Đông Nam Bộ trong giai đoạn từ năm 1945 đến năm 1975. Nằm ẩn sâu giữa đại ngàn xanh của Xã Bù Đăng, Thành Phố Đồng Nai (Tỉnh Bình Phước cũ), vùng đất này không chỉ sở hữu địa hình đồi núi trùng điệp mà còn được che chở bởi những tán rừng già nguyên sinh dày đặc.</p><blockquote>"Nếu không ghi chép lại ngay hôm nay, những trang sử sống động từ lời kể của thế hệ đi trước sẽ vĩnh viễn nằm lại dưới lòng đất mẹ." — Lời mở đầu đề tài nghiên cứu khoa học.</blockquote>`,
+      `<h2>CHƯƠNG I: BỐI CẢNH LỊCH SỬ &amp; LÝ DO CHỌN ĐỀ TÀI</h2><p>Chiến Khu Đ là một trong những hệ thống căn cứ địa quan trọng bậc nhất của lực lượng kháng chiến tại khu vực miền Đông Nam Bộ trong giai đoạn từ năm 1945 đến năm 1975. Nằm ẩn sâu giữa đại ngàn xanh của vùng đất Bù Đăng, Thành Phố Đồng Nai, vùng đất này không chỉ sở hữu địa hình đồi núi trùng điệp mà còn được che chở bởi những tán rừng già nguyên sinh dày đặc.</p><blockquote>"Nếu không ghi chép lại ngay hôm nay, những trang sử sống động từ lời kể của thế hệ đi trước sẽ vĩnh viễn nằm lại dưới lòng đất mẹ." — Lời mở đầu đề tài nghiên cứu khoa học.</blockquote>`,
       `<h2>CHƯƠNG II: PHƯƠNG PHÁP KHẢO CỨU ĐIỀN DÃ &amp; PHÁT HIỆN THỰC TẾ</h2><p>Trong quá trình thực hiện từ tháng 9 năm 2023 đến tháng 3 năm 2024, nhóm chúng em đã tiến hành 12 đợt điền dã thực tế vào sâu các buôn sóc bản địa. Nhóm đã phỏng vấn và ghi âm được hơn 30 giờ chia sẻ từ các cựu chiến binh.</p><p>Kết quả nổi bật là chúng em đã định vị tọa độ GPS và số hóa sơ đồ phân bố của 3 căn cứ phụ đóng quân sâu trong lòng rừng nguyên sinh Bù Đăng mà trước đây chưa từng được đưa lên bản đồ số.</p>`,
       `<h2>CHƯƠNG III: ĐỀ XUẤT GIẢI PHÁP BẢO TỒN DI SẢN SỐ</h2><p>Để di sản Chiến Khu Đ mãi trường tồn và tiếp cận gần hơn với thế hệ học sinh Gen Z, nhóm nghiên cứu đề xuất ba giải pháp thực tế:</p><ol><li><strong>Xây dựng cổng thông tin số di sản:</strong> Đưa toàn bộ bản đồ di tích, audio thuyết minh tích hợp vào website.</li><li><strong>Thiết lập tour học tập ảo:</strong> Kết hợp công nghệ chụp ảnh 360 độ tại thực địa.</li><li><strong>Lồng ghép giáo dục địa phương:</strong> Đề xuất nhà trường bổ sung các tiết học trải nghiệm thực tế.</li></ol>`
     ]

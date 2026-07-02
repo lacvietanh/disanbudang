@@ -14,6 +14,7 @@
           <img src="/favicon/icon-192.png" alt="Logo Di Sản Bù Đăng" class="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
           <span class="hidden md:block font-heading font-bold text-ivory text-base lg:text-lg leading-tight tracking-tight group-hover:text-gold-300 transition-colors duration-300">
             Di Sản<br class="hidden lg:block" /><span class="lg:block text-gold-400">Bù Đăng</span>
+            <span class="hidden lg:block text-[9px] text-charcoal-400 tracking-[0.15em] uppercase font-normal mt-0.5 leading-none">Thành Phố Đồng Nai</span>
           </span>
         </NuxtLink>
 

@@ -13,7 +13,7 @@
             :src="slide.image"
             :alt="slide.alt"
             class="w-full h-full object-cover"
-            :class="{ 'ken-burns-active': currentSlide === i }"
+            :class="currentSlide === i ? 'ken-burns-active' : 'ken-burns-paused'"
           />
         </div>
       </TransitionGroup>
@@ -56,7 +56,7 @@
           <!-- Eyebrow -->
           <div class="flex items-center gap-3 mb-4 md:mb-6 animate-fade-up" style="animation-delay: 0.1s">
             <span class="w-8 h-px bg-gold-400" />
-            <span class="eyebrow text-gold-400 text-[10px] md:text-xs">Xã Bù Đăng Thành Phố Đồng Nai (Tỉnh Bình Phước cũ)</span>
+            <span class="eyebrow text-gold-400 text-[10px] md:text-xs">Thành Phố Đồng Nai — Vùng đất Bù Đăng</span>
           </div>
 
           <!-- Main Heading -->
@@ -70,11 +70,11 @@
             class="text-cinematic text-ivory/80 mb-5 md:mb-6 animate-fade-up max-w-2xl text-lg md:text-2xl"
             style="animation-delay: 0.4s"
           >
-            "Linh hồn đại ngàn, tiếng vang lịch sử và bản sắc ngàn đời"
+            "Bù Đăng — Linh hồn đại ngàn trong lòng Thành Phố Đồng Nai"
           </p>
 
           <p class="text-charcoal-300 text-sm md:text-lg leading-relaxed mb-8 md:mb-10 max-w-xl animate-fade-up" style="animation-delay: 0.5s">
-            Không gian lưu trữ di sản văn hóa, thiên nhiên kỳ vĩ và những câu chuyện lịch sử hào hùng của mảnh đất Bù Đăng.
+            Không gian lưu trữ di sản văn hóa, thiên nhiên kỳ vĩ và những câu chuyện lịch sử hào hùng của vùng đất Bù Đăng — hồn cốt văn hóa mà Thành Phố Đồng Nai hôm nay đang tự hào bảo tồn.
           </p>
 
           <!-- CTAs -->
@@ -215,7 +215,12 @@ const stats = [
 }
 
 .ken-burns-active {
-  animation: kenburns 12s ease-out forwards;
+  animation: kenburns 18s ease-out infinite alternate;
+}
+
+.ken-burns-paused {
+  animation: kenburns 18s ease-out infinite alternate;
+  animation-play-state: paused;
 }
 
 @keyframes kenburns {
