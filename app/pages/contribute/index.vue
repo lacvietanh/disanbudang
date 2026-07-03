@@ -120,7 +120,7 @@
                 </div>
               </div>
               <div class="pt-6 flex justify-between">
-                <button type="button" class="btn-secondary text-xs" @click="currentStep = 1">Quay lại</button>
+                <button type="button" class="btn-ghost text-xs" @click="currentStep = 1">Quay lại</button>
                 <button type="button" class="btn-primary" @click="handleNextStep">
                   Tiếp Tục
                   <Icon name="mdi:arrow-right" class="w-4 h-4" />
@@ -197,7 +197,7 @@
               </div>
 
               <div class="pt-6 flex justify-between">
-                <button type="button" class="btn-secondary text-xs" @click="currentStep = 2">Quay lại</button>
+                <button type="button" class="btn-ghost text-xs" @click="currentStep = 2">Quay lại</button>
                 <button
                   type="submit"
                   class="btn-primary"

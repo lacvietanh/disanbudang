@@ -50,8 +50,8 @@
             </div>
 
             <!-- Body -->
-            <div class="prose prose-invert max-w-none text-charcoal-200 leading-relaxed space-y-6">
-              <p v-for="(paragraph, index) in articleParagraphs" :key="index" class="whitespace-pre-line text-base">
+            <div class="prose-heritage max-w-none space-y-6">
+              <p v-for="(paragraph, index) in articleParagraphs" :key="index" class="whitespace-pre-line text-base leading-relaxed text-charcoal-200">
                 {{ paragraph }}
               </p>
             </div>

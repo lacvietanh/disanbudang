@@ -22,7 +22,15 @@ export default defineNuxtConfig({
   security: {
     headers: {
       contentSecurityPolicy: {
-        'img-src': ["'self'", 'data:', 'https://images.unsplash.com', 'https://*.tile.openstreetmap.org', 'https://*.basemaps.cartocdn.com'],
+        'img-src': [
+          "'self'",
+          'data:',
+          'https://images.unsplash.com',
+          'https://*.tile.openstreetmap.org',
+          'https://tile.openstreetmap.org',
+          'https://*.basemaps.cartocdn.com',
+          'https://basemaps.cartocdn.com'
+        ],
       },
     },
     rateLimiter: {

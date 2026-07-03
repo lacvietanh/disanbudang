@@ -11,6 +11,7 @@
     <!-- Interactive Category Filter -->
     <div class="relative scroll-fade-right-dark reveal">
       <div class="flex items-center gap-2 overflow-x-auto scrollbar-none pb-4 mb-10 justify-start lg:justify-center">
+        <!-- Tất Cả button with count badge -->
         <button
           class="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 border"
           :class="selectedCat === '' ? 'bg-gold-500 text-charcoal-900 border-transparent shadow-gold' : 'border-charcoal-850 text-charcoal-400 hover:border-gold-500/50 hover:text-ivory bg-charcoal-900'"
@@ -18,6 +19,10 @@
         >
           <Icon name="mdi:apps" class="w-3.5 h-3.5" />
           Tất Cả
+          <span
+            class="text-[10px] font-bold px-1.5 py-0.5 rounded-full ml-0.5"
+            :class="selectedCat === '' ? 'bg-charcoal-900/20 text-charcoal-900' : 'bg-charcoal-800 text-charcoal-400'"
+          >{{ filteredHeritages.length }}</span>
         </button>
         <button
           v-for="cat in categories"

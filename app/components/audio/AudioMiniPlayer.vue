@@ -119,7 +119,8 @@ function cycleSpeed() {
   const rates = [1.0, 1.25, 1.5, 0.75]
   const currentIndex = rates.indexOf(audio.playbackRate)
   const nextIndex = (currentIndex + 1) % rates.length
-  audio.setPlaybackRate(rates[nextIndex])
+  const nextRate = rates[nextIndex] ?? 1.0
+  audio.setPlaybackRate(nextRate)
 }
 </script>
 

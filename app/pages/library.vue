@@ -369,9 +369,20 @@ const sortedAndFilteredHeritages = computed(() => {
 })
 
 onMounted(() => {
+  // Store uses sync MOCK_HERITAGES, but SSR hydration may not have run onMounted.
+  // Use a short delay + immediate watch as safety net.
+  const stopWatch = watch(
+    () => store.filteredHeritages.length,
+    () => {
+      isLoading.value = false
+      stopWatch()
+    },
+    { immediate: true },
+  )
+  // Fallback: always hide skeleton after 600ms even if watch doesn't fire
   setTimeout(() => {
     isLoading.value = false
-  }, 300)
+  }, 600)
   nextTick(() => observeAll())
 
   if (route.query.category) {

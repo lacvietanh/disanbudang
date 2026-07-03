@@ -20,12 +20,13 @@
         <button
           v-for="cat in ['all', ...newsCategories]"
           :key="cat"
-          class="flex-shrink-0 px-5 py-2.5 rounded-full text-sm font-medium transition-all border"
+          class="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all border"
           :class="activeCategory === cat
-            ? 'bg-gold-500 text-charcoal-900 border-transparent'
+            ? 'bg-gold-500 text-charcoal-900 border-transparent shadow-gold'
             : 'border-charcoal-800 text-charcoal-400 hover:border-gold-500/50 hover:text-ivory bg-charcoal-950/50'"
           @click="activeCategory = cat"
         >
+          <Icon :name="categoryIcons[cat as string] ?? 'mdi:apps'" class="w-4 h-4" />
           {{ cat === 'all' ? 'Tất Cả' : categoryLabels[cat as NewsCategory] }}
         </button>
       </div>
@@ -44,7 +45,7 @@
 
           <div class="flex items-center gap-3 mb-4">
             <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center">
-              <Icon name="mdi:book-open-page-variant-outline" class="w-6 h-6 text-gold-400" />
+              <Icon :name="categoryIcons[article.category] ?? 'mdi:book-open-page-variant-outline'" class="w-6 h-6 text-gold-400" />
             </div>
             <div>
               <p class="text-gold-400 text-sm font-semibold">{{ formatDate(article.publishedAt) }}</p>
@@ -119,6 +120,13 @@ const newsCategories: NewsCategory[] = ['su-kien', 'tin-tuc', 'nghien-cuu', 'hoa
 
 const categoryLabels: Record<NewsCategory, string> = {
   'su-kien': 'Sự Kiện', 'tin-tuc': 'Bài Viết', 'nghien-cuu': 'Nghiên Cứu', 'hoat-dong': 'Hoạt Động',
+}
+const categoryIcons: Record<string, string> = {
+  'all': 'mdi:apps',
+  'su-kien': 'mdi:calendar-star',
+  'tin-tuc': 'mdi:newspaper-variant-outline',
+  'nghien-cuu': 'mdi:flask-outline',
+  'hoat-dong': 'mdi:run-fast',
 }
 const categoryVariant: Record<NewsCategory, any> = {
   'su-kien': 'brick', 'tin-tuc': 'gold', 'nghien-cuu': 'forest', 'hoat-dong': 'earth',

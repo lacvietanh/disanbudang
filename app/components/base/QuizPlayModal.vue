@@ -291,6 +291,7 @@ function fireConfetti() {
   }))
 
   function update() {
+    if (!canvas || !ctx) return
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     let active = false
 

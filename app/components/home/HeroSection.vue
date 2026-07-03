@@ -111,6 +111,14 @@
                 <p class="text-charcoal-400 text-[10px] md:text-xs mt-1 leading-snug break-words">{{ stat.label }}</p>
               </div>
             </div>
+            <!-- Location badge – separate from numeric stats -->
+            <div class="glass-dark rounded-xl px-4 py-3 md:px-5 md:py-3.5 flex items-center gap-2.5 border border-forest-500/30 hover:border-forest-500/60 hover:-translate-y-0.5 transition-all duration-300 cursor-default">
+              <Icon name="mdi:city" class="w-5 h-5 text-forest-400 flex-shrink-0" />
+              <div>
+                <p class="font-heading font-bold text-ivory text-xs md:text-sm leading-tight">Thành Phố Đồng Nai</p>
+                <p class="text-charcoal-400 text-[10px] mt-0.5">Thành phố trực thuộc TW thứ 7</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -188,7 +196,6 @@ const stats = [
   { icon: 'mdi:book-open-variant', value: '6', suffix: '', label: 'Ký ức cộng đồng' },
   { icon: 'mdi:headphones', value: '4', suffix: '', label: 'Audio guide' },
   { icon: 'mdi:school-outline', value: '5', suffix: '+', label: 'Trường học tham gia' },
-  { icon: 'mdi:city', value: 'TP', suffix: '', label: 'Thành Phố Đồng Nai' },
 ]
 </script>
 
@@ -220,8 +227,7 @@ const stats = [
 }
 
 .ken-burns-paused {
-  animation: kenburns 18s ease-out infinite alternate;
-  animation-play-state: paused;
+  animation: none;
 }
 
 @keyframes kenburns {

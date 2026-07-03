@@ -28,7 +28,19 @@
         <!-- Desktop Nav -->
         <ul class="hidden lg:flex items-center gap-1.5 xl:gap-2.5" aria-label="Menu điều hướng chính">
           <li v-for="item in navItems" :key="item.to">
+            <!-- Đóng Góp gets special pill style to drive conversions -->
             <NuxtLink
+              v-if="item.to === '/contribute'"
+              :to="item.to"
+              class="px-3 py-1.5 xl:px-4 xl:py-2 rounded-full text-xs xl:text-sm font-semibold whitespace-nowrap transition-all duration-300 border border-gold-500/40 text-gold-400 hover:bg-gold-500 hover:text-charcoal-900 hover:border-gold-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500 focus-visible:outline-offset-2"
+            >
+              <span class="flex items-center gap-1.5">
+                <Icon name="mdi:hand-heart-outline" class="w-3.5 h-3.5" />
+                {{ item.label }}
+              </span>
+            </NuxtLink>
+            <NuxtLink
+              v-else
               :to="item.to"
               class="px-2 py-1 xl:px-3 xl:py-2 rounded-full text-xs xl:text-sm font-medium whitespace-nowrap transition-all duration-300 text-ivory/80 hover:text-ivory hover:bg-ivory/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500 focus-visible:outline-offset-2"
               active-class="text-gold-400 bg-gold-500/10"
@@ -56,6 +68,15 @@
             <Icon name="mdi:map-outline" class="w-4 h-4" />
             Bản Đồ
           </NuxtLink>
+
+          <!-- Mobile Search Button -->
+          <button
+            class="lg:hidden p-2 rounded-lg text-ivory/70 hover:text-gold-400 hover:bg-ivory/10 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500"
+            aria-label="Tìm kiếm di sản"
+            @click="isSearchOpen = true"
+          >
+            <Icon name="mdi:magnify" class="w-5 h-5" />
+          </button>
 
           <!-- Hamburger -->
           <button

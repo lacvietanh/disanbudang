@@ -33,7 +33,7 @@
               >
                 <Icon :name="quizIcons[i] ?? 'mdi:help-circle'" class="w-6 h-6" :style="{ color: quizColors[i] }" />
               </div>
-              <BaseBadge :variant="['brick','forest','gold'][i] as any" size="sm">
+              <BaseBadge :variant="quizVariants[i]" size="sm">
                 {{ quiz.questions.length }} câu hỏi
               </BaseBadge>
             </div>
@@ -105,7 +105,7 @@
               về hành trình khám phá di sản Bù Đăng của bạn.
             </p>
             <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
-              <button class="btn-primary" @click="quizStore.startQuiz(quizzes[0])">
+              <button class="btn-primary" @click="quizzes[0] && quizStore.startQuiz(quizzes[0])">
                 <Icon name="mdi:play-circle" class="w-4 h-4" />
                 Bắt Đầu Quiz
               </button>
@@ -133,6 +133,7 @@ const badges = MOCK_BADGES
 
 const quizColors = ['#8B3A2A', '#2D5016', '#C9922A']
 const quizIcons = ['mdi:castle', 'mdi:music-circle', 'mdi:water']
+const quizVariants: ('brick' | 'forest' | 'gold')[] = ['brick', 'forest', 'gold']
 
 function earned(badgeId: string) {
   return quizStore.userProgress.earnedBadges.includes(badgeId)
