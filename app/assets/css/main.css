@@ -164,16 +164,16 @@
 
   /* ——— Cards ——— */
   .card-heritage {
-    @apply relative overflow-hidden rounded-2xl bg-white;
-    @apply shadow-card hover:shadow-card-hover transition-all duration-500 cursor-pointer;
+    @apply relative overflow-hidden rounded-2xl bg-charcoal-950;
+    @apply shadow-card hover:shadow-card-hover transition-all duration-1000 cursor-pointer;
   }
 
   .card-heritage:hover .card-image {
-    @apply scale-105;
+    transform: scale(1.08);
   }
 
   .card-image {
-    @apply w-full h-full object-cover transition-transform duration-700 ease-out-expo;
+    @apply w-full h-full object-cover transition-transform duration-1000 ease-out-expo;
   }
 
   .card-overlay {
@@ -578,26 +578,20 @@ input[type="password"],
 input[type="number"],
 select,
 textarea {
-  background-color: #0F0F0F !important;
-  color: #FDFAF3 !important;
-  border: 1px solid #222222 !important;
-  border-radius: 0.75rem !important; /* rounded-xl */
-  font-size: 0.875rem !important; /* text-sm */
-  font-family: inherit !important;
-  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1) !important;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+  background-color: #0F0F0F;
+  color: #FDFAF3;
+  border: 1px solid #222222;
+  border-radius: 0.75rem; /* rounded-xl */
+  font-size: 0.875rem; /* text-sm */
+  font-family: inherit;
+  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 /* Default padding — only applies when no Tailwind padding classes override it.
    Use @layer to ensure Tailwind utilities always win. */
 @layer base {
-  input[type="text"],
-  input[type="email"],
-  input[type="search"],
-  input[type="tel"],
-  input[type="url"],
-  input[type="password"],
-  input[type="number"],
+  input,
   select,
   textarea {
     padding: 0.75rem 1rem;
@@ -607,8 +601,8 @@ textarea {
 /* Placeholder color styling */
 input::placeholder,
 textarea::placeholder {
-  color: #666666 !important;
-  opacity: 1 !important;
+  color: #666666;
+  opacity: 1;
 }
 
 /* Hover style */
@@ -621,7 +615,7 @@ input[type="password"]:hover,
 input[type="number"]:hover,
 select:hover,
 textarea:hover {
-  border-color: rgba(201, 146, 42, 0.6) !important;
+  border-color: rgba(201, 146, 42, 0.6);
 }
 
 /* Focus style */
@@ -634,18 +628,18 @@ input[type="password"]:focus,
 input[type="number"]:focus,
 select:focus,
 textarea:focus {
-  outline: none !important;
-  border-color: #C9922A !important;
-  box-shadow: 0 0 0 2px rgba(201, 146, 42, 0.15), inset 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+  outline: none;
+  border-color: #C9922A;
+  box-shadow: 0 0 0 2px rgba(201, 146, 42, 0.15), inset 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 /* Disabled styling */
 input:disabled,
 select:disabled,
 textarea:disabled {
-  opacity: 0.5 !important;
-  cursor: not-allowed !important;
-  background-color: #0b0b0b !important;
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #0b0b0b;
 }
 
 /* =========================================================
@@ -898,4 +892,64 @@ kbd {
 /* Progress bar group hover thumb fade */
 .group\/progress:hover .progress-thumb {
   opacity: 1;
+}
+
+/* Premium editorial section divider for separation */
+.section-divider-warm {
+  position: relative;
+}
+.section-divider-warm::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(107, 76, 53, 0.12) 50%, transparent);
+}
+
+/* Premium scroll right-fade indicators for horizontal lists */
+.scroll-fade-right-dark {
+  position: relative;
+}
+.scroll-fade-right-dark::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -1px;
+  bottom: 0;
+  width: 2.5rem;
+  background: linear-gradient(to right, transparent, #0F0E0C);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.scroll-fade-right-light {
+  position: relative;
+}
+.scroll-fade-right-light::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -1px;
+  bottom: 0;
+  width: 2.5rem;
+  background: linear-gradient(to right, transparent, #FDFAF3);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.scroll-fade-right-beige {
+  position: relative;
+}
+.scroll-fade-right-beige::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -1px;
+  bottom: 0;
+  width: 2.5rem;
+  background: linear-gradient(to right, transparent, #F5EDD6);
+  pointer-events: none;
+  z-index: 10;
 }

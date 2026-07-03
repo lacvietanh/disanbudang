@@ -15,6 +15,14 @@
         <div class="lg:col-span-1 space-y-6">
           <div class="flex items-center gap-3">
             <img src="/favicon/icon-192.png" alt="Logo Di Sản Bù Đăng" class="h-14 lg:h-16 w-auto object-contain" />
+            <div class="flex flex-col justify-center text-left">
+              <span class="font-heading font-bold text-ivory text-sm lg:text-base leading-tight">
+                Di Sản
+              </span>
+              <span class="font-heading font-bold text-gold-400 text-sm lg:text-base leading-tight -mt-0.5">
+                Bù Đăng
+              </span>
+            </div>
           </div>
           <p class="text-charcoal-300 text-sm leading-relaxed">
             Dự án bảo tồn và tôn vinh di sản văn hóa, lịch sử và thiên nhiên vùng đất Bù Đăng.
@@ -50,7 +58,7 @@
             <p class="flex items-center gap-2">
               <Icon name="mdi:email-outline" class="w-4 h-4 text-gold-500 shrink-0" />
               <span class="sr-only">Email:</span>
-              Nguyenxuankiet294@gmail.com
+              <a href="mailto:Nguyenxuankiet294@gmail.com" class="hover:text-gold-400 transition-colors">Nguyenxuankiet294@gmail.com</a>
             </p>
           </div>
 

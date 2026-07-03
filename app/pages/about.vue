@@ -14,7 +14,8 @@
             <img
               :src="slide"
               alt="Giới thiệu Di sản Bù Đăng"
-              class="w-full h-full object-cover opacity-40 scale-105"
+              class="w-full h-full object-cover opacity-40"
+              :class="currentSlide === i ? 'ken-burns-active' : 'ken-burns-paused'"
             />
           </div>
         </TransitionGroup>

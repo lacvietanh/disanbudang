@@ -12,14 +12,21 @@
         <!-- Logo -->
         <NuxtLink to="/" class="flex items-center gap-3 group">
           <img src="/favicon/icon-192.png" alt="Logo Di Sản Bù Đăng" class="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
-          <span class="hidden md:block font-heading font-bold text-ivory text-base lg:text-lg leading-tight tracking-tight group-hover:text-gold-300 transition-colors duration-300">
-            Di Sản<br class="hidden lg:block" /><span class="lg:block text-gold-400">Bù Đăng</span>
-            <span class="hidden lg:block text-[9px] text-charcoal-400 tracking-[0.15em] uppercase font-normal mt-0.5 leading-none">Thành Phố Đồng Nai</span>
-          </span>
+          <div class="hidden md:flex flex-col justify-center text-left">
+            <span class="font-heading font-bold text-ivory text-sm lg:text-base leading-tight group-hover:text-gold-300 transition-colors duration-300">
+              Di Sản
+            </span>
+            <span class="font-heading font-bold text-gold-400 text-sm lg:text-base leading-tight group-hover:text-gold-300 transition-colors duration-300 -mt-0.5">
+              Bù Đăng
+            </span>
+            <span class="hidden lg:block text-[9px] text-charcoal-400 tracking-[0.12em] uppercase font-normal mt-1 leading-none animate-fade-in">
+              Thành Phố Đồng Nai
+            </span>
+          </div>
         </NuxtLink>
 
         <!-- Desktop Nav -->
-        <ul class="hidden lg:flex items-center gap-0.5 xl:gap-1" aria-label="Menu điều hướng chính">
+        <ul class="hidden lg:flex items-center gap-1.5 xl:gap-2.5" aria-label="Menu điều hướng chính">
           <li v-for="item in navItems" :key="item.to">
             <NuxtLink
               :to="item.to"
@@ -93,7 +100,7 @@
     </Transition>
 
     <!-- Search modal -->
-    <Transition name="mobile-menu">
+    <Transition name="search-modal">
       <div
         v-if="isSearchOpen"
         class="fixed inset-0 z-[80] bg-charcoal-950/90 backdrop-blur-xl"
@@ -130,7 +137,7 @@
                 v-for="heritage in searchResults"
                 :key="heritage.id"
                 :to="`/heritage/${heritage.slug}`"
-                class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-charcoal-900 transition-colors duration-200"
+                class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-charcoal-900 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500 focus-visible:outline-offset-2"
                 @click="closeSearch"
               >
                 <img :src="heritage.coverImage" :alt="heritage.title" class="w-14 h-12 rounded-lg object-cover" />
@@ -281,5 +288,16 @@ function goToLibrary() {
   opacity: 0;
   transform: translateY(-16px);
   filter: blur(4px);
+}
+
+.search-modal-enter-active,
+.search-modal-leave-active {
+  transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.search-modal-enter-from,
+.search-modal-leave-to {
+  opacity: 0;
+  transform: scale(0.97) translateY(8px);
+  filter: blur(8px);
 }
 </style>

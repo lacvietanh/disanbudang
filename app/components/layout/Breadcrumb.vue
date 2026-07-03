@@ -1,19 +1,19 @@
 <template>
   <nav
     v-if="crumbs.length > 1"
-    class="container-heritage py-3.5 mt-2 flex items-center gap-2 text-3xs sm:text-2xs font-medium text-charcoal-400"
+    class="container-heritage py-3 mt-1 flex items-center gap-2 text-xs sm:text-sm font-medium text-charcoal-300"
     aria-label="Breadcrumb"
   >
     <NuxtLink
       to="/"
-      class="hover:text-gold-400 transition-colors flex items-center gap-1"
+      class="hover:text-gold-400 transition-colors flex items-center gap-1.5"
     >
-      <Icon name="mdi:home-outline" class="w-3.5 h-3.5" />
+      <Icon name="mdi:home-outline" class="w-4 h-4" />
       <span>Trang Chủ</span>
     </NuxtLink>
 
     <template v-for="(crumb, index) in crumbs" :key="crumb.path">
-      <Icon name="mdi:chevron-right" class="w-3.5 h-3.5 text-charcoal-600 shrink-0" />
+      <Icon name="mdi:chevron-right" class="w-4 h-4 text-charcoal-600 shrink-0" />
       
       <span v-if="index === crumbs.length - 1" class="text-gold-400 font-semibold truncate max-w-[200px] sm:max-w-xs">
         <!-- Render dynamic last leaf via ClientOnly to prevent hydration mismatch -->

@@ -63,7 +63,8 @@
             v-for="post in posts.slice(1, 4)"
             :key="post.id"
             to="/explore"
-            class="group flex gap-4 p-4 rounded-2xl border border-transparent hover:bg-earth-50 hover:border-earth-200/80 hover:shadow-sm transition-all duration-200 reveal"
+            class="group flex gap-4 p-4 rounded-2xl border border-transparent hover:bg-earth-50 hover:border-earth-300/40 hover:shadow-sm transition-all duration-200 reveal"
+            aria-label="Xem chi tiết câu chuyện"
           >
             <div class="w-24 h-20 rounded-xl overflow-hidden flex-shrink-0">
               <img
@@ -99,7 +100,7 @@
       </div>
 
       <!-- Contribution prompt -->
-      <div class="mt-10 p-6 lg:p-8 rounded-3xl bg-gradient-to-r from-earth-800 to-charcoal-800 flex flex-col md:flex-row items-center justify-between gap-6 reveal relative overflow-hidden">
+      <div class="mt-16 p-6 lg:p-8 rounded-3xl bg-gradient-to-r from-earth-800 to-charcoal-800 flex flex-col md:flex-row items-center justify-between gap-6 reveal relative overflow-hidden">
         <!-- Glow decor -->
         <div class="absolute top-0 right-0 w-48 h-48 bg-gold-500/8 rounded-full blur-2xl pointer-events-none" />
         <div class="absolute bottom-0 left-0 w-32 h-32 bg-earth-600/10 rounded-full blur-xl pointer-events-none" />

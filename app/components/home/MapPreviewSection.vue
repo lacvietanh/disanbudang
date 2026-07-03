@@ -39,6 +39,7 @@
               class="w-full h-full object-cover scale-105"
               crossorigin="anonymous"
               loading="lazy"
+              @error="(e) => { (e.target as HTMLImageElement).src = '/images/heritage/danh-thang/rung-nguyen-sinh-lg.webp' }"
             />
             <!-- Tonal overlay to match site color palette -->
             <div class="absolute inset-0 bg-forest-900/50 mix-blend-multiply" />
@@ -48,7 +49,7 @@
             <div
               v-for="pin in mapPins"
               :key="pin.id"
-              class="absolute group/pin cursor-pointer"
+              class="absolute group/pin cursor-pointer map-pin"
               :style="{ left: `${pin.x}%`, top: `${pin.y}%` }"
               @click="navigateTo(`/heritage/${pin.slug}`)"
             >

@@ -9,26 +9,28 @@
     <div class="absolute inset-0 pointer-events-none opacity-[0.02] bg-[radial-gradient(#C9922A_1px,transparent_1px)] [background-size:24px_24px]" />
 
     <!-- Interactive Category Filter -->
-    <div class="flex items-center gap-2 overflow-x-auto scrollbar-none pb-4 mb-10 justify-start lg:justify-center reveal">
-      <button
-        class="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 border"
-        :class="selectedCat === '' ? 'bg-gold-500 text-charcoal-900 border-transparent shadow-gold' : 'border-charcoal-850 text-charcoal-400 hover:border-gold-500/50 hover:text-ivory bg-charcoal-900'"
-        @click="selectedCat = ''"
-      >
-        <Icon name="mdi:apps" class="w-3.5 h-3.5" />
-        Tất Cả
-      </button>
-      <button
-        v-for="cat in categories"
-        :key="cat.id"
-        class="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 border bg-charcoal-900"
-        :class="selectedCat === cat.id ? 'text-ivory border-transparent' : 'border-charcoal-800 text-charcoal-400 hover:border-gold-500/50 hover:text-ivory'"
-        :style="selectedCat === cat.id ? { backgroundColor: cat.color } : {}"
-        @click="selectedCat = cat.id"
-      >
-        <Icon :name="cat.icon" class="w-3.5 h-3.5" />
-        {{ cat.labelShort }}
-      </button>
+    <div class="relative scroll-fade-right-dark reveal">
+      <div class="flex items-center gap-2 overflow-x-auto scrollbar-none pb-4 mb-10 justify-start lg:justify-center">
+        <button
+          class="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 border"
+          :class="selectedCat === '' ? 'bg-gold-500 text-charcoal-900 border-transparent shadow-gold' : 'border-charcoal-850 text-charcoal-400 hover:border-gold-500/50 hover:text-ivory bg-charcoal-900'"
+          @click="selectedCat = ''"
+        >
+          <Icon name="mdi:apps" class="w-3.5 h-3.5" />
+          Tất Cả
+        </button>
+        <button
+          v-for="cat in categories"
+          :key="cat.id"
+          class="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 border bg-charcoal-900"
+          :class="selectedCat === cat.id ? 'text-ivory border-transparent' : 'border-charcoal-800 text-charcoal-400 hover:border-gold-500/50 hover:text-ivory'"
+          :style="selectedCat === cat.id ? { backgroundColor: cat.color } : {}"
+          @click="selectedCat = cat.id"
+        >
+          <Icon :name="cat.icon" class="w-3.5 h-3.5" />
+          {{ cat.labelShort }}
+        </button>
+      </div>
     </div>
 
     <!-- Empty state for specific category -->

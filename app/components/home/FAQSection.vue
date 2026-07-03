@@ -18,7 +18,7 @@
             class="border border-charcoal-800 rounded-2xl bg-charcoal-800/40 overflow-hidden transition-all duration-300 hover:border-gold-500/30"
           >
             <button
-              class="w-full flex items-center justify-between p-6 text-left focus:outline-none"
+              class="w-full flex items-center justify-between p-6 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal-850 rounded-2xl"
               @click="toggleFaq(index)"
             >
               <span class="font-heading font-semibold text-ivory text-base md:text-lg pr-4">
@@ -32,10 +32,10 @@
             </button>
 
             <div
-              class="transition-all duration-300 ease-in-out"
-              :style="{ maxHeight: openIndex === index ? '300px' : '0px' }"
+              class="transition-all duration-300 ease-in-out overflow-hidden"
+              :style="{ maxHeight: openIndex === index ? '600px' : '0px' }"
             >
-              <div class="p-6 pt-0 text-charcoal-200 text-sm leading-relaxed border-t border-charcoal-800/40">
+              <div class="px-6 py-5 pt-4 text-charcoal-200 text-sm leading-relaxed border-t border-charcoal-800/40 bg-charcoal-900/10">
                 {{ faq.answer }}
               </div>
             </div>

@@ -42,7 +42,7 @@
     <Transition name="caption-fade">
       <div
         :key="currentSlide"
-        class="absolute bottom-8 left-8 z-20 max-w-md pointer-events-none"
+        class="absolute bottom-24 lg:bottom-12 left-6 lg:left-8 z-20 max-w-md pointer-events-none"
       >
         <p class="text-gold-400 text-[10px] uppercase tracking-[0.25em] font-semibold mb-1.5">{{ slides[currentSlide]?.label }}</p>
         <p class="text-ivory/70 text-sm leading-relaxed">{{ slides[currentSlide]?.caption }}</p>
@@ -101,14 +101,14 @@
             <div
               v-for="stat in stats"
               :key="stat.label"
-              class="glass-dark rounded-xl px-4 py-2.5 md:px-5 md:py-3 flex items-center gap-3 border border-gold-500/20 hover:border-gold-500/50 hover:shadow-lg hover:shadow-gold-500/15 hover:-translate-y-0.5 transition-all duration-300 flex-1 min-w-[140px] cursor-default"
+              class="glass-dark rounded-xl px-4 py-3 md:px-5 md:py-3.5 flex items-start gap-3 border border-gold-500/20 hover:border-gold-500/50 hover:shadow-lg hover:shadow-gold-500/15 hover:-translate-y-0.5 transition-all duration-300 flex-1 min-w-[155px] cursor-default"
             >
-              <Icon :name="stat.icon" class="w-5 h-5 text-gold-400 flex-shrink-0" />
-              <div>
-                <p class="font-heading font-bold text-ivory text-base md:text-xl leading-none">
+              <Icon :name="stat.icon" class="w-5 h-5 text-gold-400 flex-shrink-0 mt-0.5" />
+              <div class="min-w-0 flex-1">
+                <p class="font-heading font-bold text-ivory text-base md:text-xl leading-tight">
                   {{ stat.value }}{{ stat.suffix }}
                 </p>
-                <p class="text-charcoal-400 text-[10px] md:text-xs mt-0.5 whitespace-nowrap">{{ stat.label }}</p>
+                <p class="text-charcoal-400 text-[10px] md:text-xs mt-1 leading-snug break-words">{{ stat.label }}</p>
               </div>
             </div>
           </div>
@@ -117,7 +117,7 @@
     </div>
 
     <!-- Slide indicators -->
-    <div class="absolute bottom-8 right-8 z-20 flex gap-2">
+    <div class="absolute bottom-24 lg:bottom-12 right-6 lg:right-8 z-20 flex gap-2">
       <button
         v-for="(_, i) in slides"
         :key="i"
@@ -129,10 +129,10 @@
     </div>
 
     <!-- Scroll indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2">
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2">
       <span class="eyebrow text-ivory/40 text-[9px]">Cuộn xuống</span>
       <div class="w-5 h-8 border border-ivory/30 rounded-full flex justify-center pt-1.5">
-        <div class="w-1 h-2 bg-gold-400 rounded-full animate-bounce" />
+        <div class="w-1.5 h-1.5 bg-gold-400 rounded-full animate-bounce" />
       </div>
     </div>
   </section>

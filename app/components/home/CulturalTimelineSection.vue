@@ -12,7 +12,7 @@
 
       <!-- Timeline Interactive Navigation with scroll hint -->
       <div class="relative mb-10 reveal">
-        <div class="flex flex-wrap lg:flex-nowrap border-b border-charcoal-800 overflow-x-auto scrollbar-none gap-2 pb-1">
+        <div class="flex flex-nowrap border-b border-charcoal-800 overflow-x-auto scrollbar-none gap-2 pb-1">
           <button
             v-for="(item, index) in timeline"
             :key="item.year"
@@ -30,7 +30,7 @@
             </h4>
             <p class="text-xs text-charcoal-500 line-clamp-1 mt-1">{{ item.title }}</p>
             <!-- Active indicator dot -->
-            <div v-if="activeIndex === index" class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 rounded-full bg-gold-500 border-2 border-charcoal-900" />
+            <div v-if="activeIndex === index" class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 rounded-full bg-gold-500 border-2 border-charcoal-900 z-10" />
           </button>
         </div>
         <!-- Scroll hint gradient for mobile -->

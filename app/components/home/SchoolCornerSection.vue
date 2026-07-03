@@ -1,5 +1,5 @@
 <template>
-  <section id="school-corner" class="section bg-beige-200 relative overflow-hidden scroll-mt-20">
+  <section id="school-corner" class="section bg-beige-200 relative overflow-hidden scroll-mt-20 section-divider-warm">
     <!-- Fine grid background illustration (extremely subtle 2% opacity to avoid overlapping readability issues with text) -->
     <div class="absolute inset-0 pointer-events-none opacity-[0.02] shadow-inset-warm bg-[radial-gradient(#6B4C35_1.5px,transparent_1.5px)] [background-size:32px_32px]" />
     <div class="absolute top-0 right-0 w-[450px] h-[450px] bg-copper-500/5 rounded-full blur-3xl pointer-events-none" />
@@ -55,18 +55,20 @@
       <!-- Interactive Controls (Search and Filter) for School Corner -->
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 max-w-5xl mx-auto reveal" style="animation-delay: 0.15s">
         <!-- Filter Tabs -->
-        <div class="flex flex-wrap items-center gap-2">
-          <button
-            v-for="sub in schoolSubjects"
-            :key="sub.id"
-            class="px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 border"
-            :class="activeSubject === sub.id
-              ? 'bg-earth-600 text-ivory border-transparent shadow-sm'
-              : 'border-beige-300 text-charcoal-600 bg-white/50 hover:bg-white hover:border-earth-600/30'"
-            @click="activeSubject = sub.id"
-          >
-            {{ sub.label }}
-          </button>
+        <div class="relative scroll-fade-right-beige max-w-full overflow-hidden shrink-0 flex-1 md:flex-initial">
+          <div class="flex flex-nowrap items-center gap-2 overflow-x-auto scrollbar-none pb-1">
+            <button
+              v-for="sub in schoolSubjects"
+              :key="sub.id"
+              class="px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 border whitespace-nowrap"
+              :class="activeSubject === sub.id
+                ? 'bg-earth-600 text-ivory border-transparent shadow-sm'
+                : 'border-beige-300 text-charcoal-600 bg-white/50 hover:bg-white hover:border-earth-600/30'"
+              @click="activeSubject = sub.id"
+            >
+              {{ sub.label }}
+            </button>
+          </div>
         </div>
         
         <!-- Search bar -->

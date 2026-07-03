@@ -44,8 +44,8 @@
     </div>
 
     <!-- Main tab switcher -->
-    <div class="border-b border-charcoal-850 bg-charcoal-950/60 backdrop-blur-sm sticky top-[72px] z-20">
-      <div class="container-heritage flex items-center gap-1">
+    <div class="border-b border-charcoal-850 bg-charcoal-950/60 backdrop-blur-sm sticky top-[72px] z-20 scroll-fade-right-dark">
+      <div class="container-heritage flex items-center gap-1 overflow-x-auto scrollbar-none">
         <button
           v-for="tab in mainTabs"
           :key="tab.id"
@@ -73,26 +73,28 @@
       <!-- Filters + Sort Grid -->
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 border-b border-charcoal-850 pb-6">
         <!-- Filters row -->
-        <div class="flex items-center gap-2.5 overflow-x-auto scrollbar-none pb-1 shrink-0">
-          <button
-            class="flex-shrink-0 flex items-center gap-2 px-4.5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 border bg-charcoal-900"
-            :class="!activeCategory ? 'bg-gold-500 text-charcoal-900 border-transparent shadow-gold' : 'border-charcoal-800 text-charcoal-400 hover:border-gold-500/50 hover:text-ivory'"
-            @click="activeCategory = ''"
-          >
-            <Icon name="mdi:apps" class="w-4 h-4" />
-            Tất cả ({{ store.totalCount }})
-          </button>
-          <button
-            v-for="cat in categories"
-            :key="cat.id"
-            class="flex-shrink-0 flex items-center gap-2 px-4.5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 border bg-charcoal-900"
-            :class="activeCategory === cat.id ? 'text-ivory border-transparent' : 'border-charcoal-800 text-charcoal-400 hover:border-gold-500/50 hover:text-ivory'"
-            :style="activeCategory === cat.id ? { backgroundColor: cat.color } : {}"
-            @click="activeCategory = cat.id"
-          >
-            <Icon :name="cat.icon" class="w-4 h-4" />
-            {{ cat.labelShort }}
-          </button>
+        <div class="relative scroll-fade-right-dark max-w-full overflow-hidden flex-1 md:flex-initial shrink-0">
+          <div class="flex items-center gap-2.5 overflow-x-auto scrollbar-none pb-1">
+            <button
+              class="flex-shrink-0 flex items-center gap-2 px-4.5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 border bg-charcoal-900"
+              :class="!activeCategory ? 'bg-gold-500 text-charcoal-900 border-transparent shadow-gold' : 'border-charcoal-800 text-charcoal-400 hover:border-gold-500/50 hover:text-ivory'"
+              @click="activeCategory = ''"
+            >
+              <Icon name="mdi:apps" class="w-4 h-4" />
+              Tất cả ({{ store.totalCount }})
+            </button>
+            <button
+              v-for="cat in categories"
+              :key="cat.id"
+              class="flex-shrink-0 flex items-center gap-2 px-4.5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 border bg-charcoal-900"
+              :class="activeCategory === cat.id ? 'text-ivory border-transparent' : 'border-charcoal-800 text-charcoal-400 hover:border-gold-500/50 hover:text-ivory'"
+              :style="activeCategory === cat.id ? { backgroundColor: cat.color } : {}"
+              @click="activeCategory = cat.id"
+            >
+              <Icon :name="cat.icon" class="w-4 h-4" />
+              {{ cat.labelShort }}
+            </button>
+          </div>
         </div>
 
         <!-- Sort Select box -->

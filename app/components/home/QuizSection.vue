@@ -17,7 +17,7 @@
         <div
           v-for="(quiz, i) in quizzes"
           :key="quiz.id"
-          class="relative overflow-hidden rounded-2xl bg-ivory border border-beige-200 shadow-card hover:shadow-card-hover transition-all duration-500 group cursor-pointer reveal"
+          class="relative overflow-hidden rounded-2xl bg-ivory border border-beige-200/80 shadow-warm-sm hover:shadow-warm-md transition-all duration-500 group cursor-pointer reveal"
           :style="{ animationDelay: `${i * 0.15}s` }"
           @click="quizStore.startQuiz(quiz)"
         >
@@ -89,7 +89,7 @@
                 <Icon :name="badge.icon" class="w-8 h-8" :style="{ color: badge.color }" />
               </div>
               <!-- Tooltip -->
-              <div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-charcoal-900 text-ivory text-xs px-2 py-1 rounded-lg whitespace-nowrap opacity-0 group-hover/badge:opacity-100 transition-opacity pointer-events-none z-10">
+              <div class="absolute -top-9 left-1/2 -translate-x-1/2 bg-charcoal-950 text-ivory text-[10px] sm:text-xs px-2.5 py-1 rounded-md whitespace-nowrap opacity-0 group-hover/badge:opacity-100 transition-all duration-300 scale-95 group-hover/badge:scale-100 pointer-events-none z-30 shadow-lg border border-charcoal-700/50">
                 {{ badge.name }}
               </div>
             </div>

@@ -16,19 +16,21 @@
 
     <div class="container-heritage py-14">
       <!-- Filter tabs -->
-      <div class="flex items-center gap-2.5 overflow-x-auto scrollbar-none mb-10 border-b border-charcoal-850 pb-4">
-        <button
-          v-for="tab in tabs"
-          :key="tab.id"
-          class="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 border bg-charcoal-900"
-          :class="activeTab === tab.id
-            ? 'bg-gold-500 text-charcoal-900 border-transparent shadow-gold'
-            : 'border-charcoal-800 text-charcoal-400 hover:border-gold-500/50 hover:text-ivory'"
-          @click="activeTab = tab.id"
-        >
-          <Icon :name="tab.icon" class="w-4 h-4" />
-          {{ tab.label }}
-        </button>
+      <div class="relative scroll-fade-right-dark mb-10 overflow-hidden">
+        <div class="flex items-center gap-2.5 overflow-x-auto scrollbar-none border-b border-charcoal-850 pb-4">
+          <button
+            v-for="tab in tabs"
+            :key="tab.id"
+            class="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 border bg-charcoal-900"
+            :class="activeTab === tab.id
+              ? 'bg-gold-500 text-charcoal-900 border-transparent shadow-gold'
+              : 'border-charcoal-800 text-charcoal-400 hover:border-gold-500/50 hover:text-ivory'"
+            @click="activeTab = tab.id"
+          >
+            <Icon :name="tab.icon" class="w-4 h-4" />
+            {{ tab.label }}
+          </button>
+        </div>
       </div>
 
       <!-- Featured post - large cinematic card -->

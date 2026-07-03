@@ -73,11 +73,12 @@
 
             <!-- Controls -->
             <div class="flex items-center justify-center gap-6">
-              <button class="text-charcoal-400 hover:text-ivory transition-colors" @click="skip(-15)">
+              <button class="text-charcoal-400 hover:text-ivory transition-colors" aria-label="Tua lại 15 giây" @click="skip(-15)">
                 <Icon name="mdi:rewind-15" class="w-6 h-6" />
               </button>
               <button
                 class="w-14 h-14 rounded-full bg-gold-500 flex items-center justify-center hover:bg-gold-400 transition-all duration-300 shadow-gold hover:scale-105"
+                aria-label="Phát hoặc Tạm dừng thuyết minh"
                 @click="togglePlay"
               >
                 <Icon
@@ -85,7 +86,7 @@
                   class="w-7 h-7 text-charcoal-900"
                 />
               </button>
-              <button class="text-charcoal-400 hover:text-ivory transition-colors" @click="skip(15)">
+              <button class="text-charcoal-400 hover:text-ivory transition-colors" aria-label="Tua tới 15 giây" @click="skip(15)">
                 <Icon name="mdi:fast-forward-15" class="w-6 h-6" />
               </button>
             </div>
