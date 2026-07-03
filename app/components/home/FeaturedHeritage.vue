@@ -44,7 +44,7 @@
         <!-- Main featured -->
         <div v-if="displayFeatured[0]" class="lg:col-span-2 reveal">
           <div
-            class="relative overflow-hidden rounded-3xl cursor-pointer group h-[480px] lg:h-[560px] border border-charcoal-800"
+            class="relative overflow-hidden rounded-3xl cursor-pointer group h-[480px] lg:h-[560px] border border-charcoal-800 hover:border-gold-500/30 hover:shadow-2xl hover:shadow-gold-500/10 transition-all duration-500"
             @click="navigateTo(`/heritage/${displayFeatured[0].slug}`)"
           >
             <img
@@ -108,7 +108,7 @@
             </div>
 
             <div class="absolute top-4 right-4 w-8 h-8 rounded-full bg-gold-500/0 group-hover:bg-gold-500 flex items-center justify-center transition-all duration-300">
-              <Icon name="mdi:arrow-right" class="w-4 h-4 text-transparent group-hover:text-charcoal-900" />
+              <Icon name="mdi:arrow-right" class="w-4 h-4 text-gold-400/40 group-hover:text-charcoal-900 transition-colors duration-300" />
             </div>
           </div>
         </div>

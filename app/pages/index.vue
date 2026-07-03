@@ -6,31 +6,40 @@
     <!-- 2. Câu chuyện về Bù Đăng -->
     <StorytellingIntro />
 
-    <!-- 3. Điểm di sản nổi bật -->
+    <!-- 3. Dòng thời gian văn hóa lịch sử -->
+    <CulturalTimelineSection />
+
+    <!-- 4. Điểm di sản nổi bật -->
     <FeaturedHeritage />
 
-    <!-- 4. Trải nghiệm Bản đồ -->
+    <!-- 5. Khám phá theo danh mục -->
+    <HeritageCategoriesSection />
+
+    <!-- 6. Trải nghiệm Bản đồ -->
     <MapPreviewSection />
 
-    <!-- 4. Ký ức cộng đồng -->
+    <!-- 7. Audio guide thuyết minh -->
+    <AudioGuideSection />
+
+    <!-- 8. Ký ức cộng đồng -->
     <CommunityStoriesSection />
 
-    <!-- 5. Tin tức mới -->
+    <!-- 9. Tin tức mới -->
     <NewsSection />
 
-    <!-- 6. Khám phá di sản -->
+    <!-- 10. Khám phá di sản -->
     <QuizSection />
 
-    <!-- 7. Góc học tập -->
+    <!-- 11. Góc học tập -->
     <SchoolCornerSection />
 
-    <!-- 8. Kêu gọi đóng góp di sản -->
+    <!-- 12. Kêu gọi đóng góp di sản -->
     <ContributionCTA />
 
-    <!-- 9. Tầm nhìn mở rộng: Bù Đăng → Thành Phố Đồng Nai -->
+    <!-- 13. Tầm nhìn mở rộng: Bù Đăng → Thành Phố Đồng Nai -->
     <VisionRoadmapSection />
 
-    <!-- 10. Câu hỏi thường gặp -->
+    <!-- 14. Câu hỏi thường gặp -->
     <FAQSection />
   </div>
 </template>

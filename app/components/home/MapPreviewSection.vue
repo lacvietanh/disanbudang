@@ -32,12 +32,13 @@
         <!-- Right: Map preview -->
         <div class="relative reveal">
           <div class="relative rounded-3xl overflow-hidden shadow-warm-xl aspect-[4/3]">
-            <!-- Real static map tile: Bình Phước / Bù Đăng area -->
+            <!-- Real static map tile: Vùng Bù Đăng — Thành Phố Đồng Nai -->
             <img
-              src="https://tile.openstreetmap.org/10/823/513.png"
-              alt="Bản đồ khu vực Bù Đăng"
+              src="https://tile.openstreetmap.org/10/825/511.png"
+              alt="Bản đồ khu vực Bù Đăng — Thành Phố Đồng Nai"
               class="w-full h-full object-cover scale-105"
               crossorigin="anonymous"
+              loading="lazy"
             />
             <!-- Tonal overlay to match site color palette -->
             <div class="absolute inset-0 bg-forest-900/50 mix-blend-multiply" />
@@ -51,16 +52,23 @@
               :style="{ left: `${pin.x}%`, top: `${pin.y}%` }"
               @click="navigateTo(`/heritage/${pin.slug}`)"
             >
-              <!-- Pin -->
-              <div
-                class="w-8 h-8 rounded-full border-2 border-white flex items-center justify-center shadow-warm-md transition-transform duration-300 group-hover/pin:scale-125"
-                :style="{ backgroundColor: pin.color }"
-              >
-                <Icon name="mdi:map-marker" class="w-4 h-4 text-white" />
+              <!-- Pin with pulse ring -->
+              <div class="relative">
+                <!-- Animated pulse ring -->
+                <div
+                  class="absolute inset-0 rounded-full animate-ping opacity-50"
+                  :style="{ backgroundColor: pin.color, animationDuration: '2s' }"
+                />
+                <div
+                  class="relative w-8 h-8 rounded-full border-2 border-white flex items-center justify-center shadow-warm-md transition-transform duration-300 group-hover/pin:scale-125"
+                  :style="{ backgroundColor: pin.color }"
+                >
+                  <Icon name="mdi:map-marker" class="w-4 h-4 text-white" />
+                </div>
               </div>
 
-              <!-- Popup -->
-              <div class="absolute bottom-10 left-1/2 -translate-x-1/2 bg-charcoal-900/95 backdrop-blur-md rounded-xl p-3 w-40 opacity-0 group-hover/pin:opacity-100 transition-all duration-300 pointer-events-none border border-earth-700/30 shadow-warm-lg -translate-y-1 group-hover/pin:translate-y-0 z-10">
+              <!-- Popup with scale+fade -->
+              <div class="absolute bottom-12 left-1/2 -translate-x-1/2 bg-charcoal-900/95 backdrop-blur-md rounded-xl p-3 w-40 opacity-0 scale-95 group-hover/pin:opacity-100 group-hover/pin:scale-100 transition-all duration-300 pointer-events-none border border-earth-700/30 shadow-warm-lg z-10">
                 <p class="text-ivory text-xs font-medium leading-tight">{{ pin.title }}</p>
                 <p class="text-charcoal-400 text-2xs mt-0.5">{{ pin.category }}</p>
               </div>

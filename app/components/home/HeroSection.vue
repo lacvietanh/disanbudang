@@ -56,7 +56,7 @@
           <!-- Eyebrow -->
           <div class="flex items-center gap-3 mb-4 md:mb-6 animate-fade-up" style="animation-delay: 0.1s">
             <span class="w-8 h-px bg-gold-400" />
-            <span class="eyebrow text-gold-400 text-[10px] md:text-xs">Thành Phố Đồng Nai — Vùng đất Bù Đăng</span>
+            <span class="eyebrow text-gold-400 text-[10px] md:text-xs">Bảo Tàng Số — Thành Phố Đồng Nai · Khởi Đầu Từ Vùng Đất Bù Đăng</span>
           </div>
 
           <!-- Main Heading -->
@@ -74,7 +74,7 @@
           </p>
 
           <p class="text-charcoal-300 text-sm md:text-lg leading-relaxed mb-8 md:mb-10 max-w-xl animate-fade-up" style="animation-delay: 0.5s">
-            Không gian lưu trữ di sản văn hóa, thiên nhiên kỳ vĩ và những câu chuyện lịch sử hào hùng của vùng đất Bù Đăng — hồn cốt văn hóa mà Thành Phố Đồng Nai hôm nay đang tự hào bảo tồn.
+            Không gian số bảo tồn di sản văn hóa, thiên nhiên kỳ vĩ và lịch sử hào hùng của vùng đất Bù Đăng. Mô hình thí điểm định hướng nhân rộng ra toàn bộ Thành Phố Đồng Nai — thành phố trực thuộc Trung ương thứ 7 của Việt Nam.
           </p>
 
           <!-- CTAs -->
@@ -101,7 +101,7 @@
             <div
               v-for="stat in stats"
               :key="stat.label"
-              class="glass-dark rounded-xl px-4 py-2.5 md:px-5 md:py-3 flex items-center gap-3 border border-gold-500/20 hover:border-gold-500/50 transition-colors duration-300 flex-1 min-w-[140px]"
+              class="glass-dark rounded-xl px-4 py-2.5 md:px-5 md:py-3 flex items-center gap-3 border border-gold-500/20 hover:border-gold-500/50 hover:shadow-lg hover:shadow-gold-500/15 hover:-translate-y-0.5 transition-all duration-300 flex-1 min-w-[140px] cursor-default"
             >
               <Icon :name="stat.icon" class="w-5 h-5 text-gold-400 flex-shrink-0" />
               <div>
@@ -188,6 +188,7 @@ const stats = [
   { icon: 'mdi:book-open-variant', value: '6', suffix: '', label: 'Ký ức cộng đồng' },
   { icon: 'mdi:headphones', value: '4', suffix: '', label: 'Audio guide' },
   { icon: 'mdi:school-outline', value: '5', suffix: '+', label: 'Trường học tham gia' },
+  { icon: 'mdi:city', value: 'TP', suffix: '', label: 'Thành Phố Đồng Nai' },
 ]
 </script>
 

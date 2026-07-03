@@ -2,7 +2,8 @@
   <section class="section bg-dark-earth relative overflow-hidden">
     <!-- Background glow -->
     <div class="absolute inset-0 pointer-events-none">
-      <div class="absolute top-1/3 left-1/2 -translate-x-1/2 w-96 h-96 bg-gold-500/8 rounded-full blur-3xl" />
+      <div class="absolute top-1/3 left-1/2 -translate-x-1/2 w-96 h-96 bg-gold-500/12 rounded-full blur-3xl" />
+      <div class="absolute bottom-0 left-1/4 w-72 h-72 bg-earth-600/10 rounded-full blur-3xl" />
     </div>
 
     <div class="container-heritage relative z-10">
@@ -46,11 +47,12 @@
               <div
                 v-for="(h, i) in waveformHeights"
                 :key="i"
-                class="waveform-bar flex-1"
+                class="waveform-bar flex-1 transition-all duration-500"
                 :style="{
-                  height: `${isPlaying ? h : Math.max(h * 0.3, 4)}px`,
+                  height: `${isPlaying ? h : 3}px`,
                   animationDelay: `${i * 0.05}s`,
                   animation: isPlaying ? `wave ${0.8 + i * 0.1}s ease-in-out ${i * 0.05}s infinite` : 'none',
+                  opacity: isPlaying ? 1 : 0.35,
                 }"
               />
             </div>

@@ -8,7 +8,13 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <!-- Text Content -->
         <div class="lg:col-span-7 space-y-6 reveal">
-          <span class="section-label">Âm Vang Đại Ngàn</span>
+          <div class="flex flex-wrap items-center gap-3 mb-2">
+            <span class="section-label">Linh Hồn Đại Ngàn</span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-400 text-xs font-bold">
+              <Icon name="mdi:map-marker" class="w-3 h-3" />
+              Thành Phố Đồng Nai
+            </span>
+          </div>
           <h2 class="section-title">Nơi Đất Trời Gặp Gỡ Lịch Sử</h2>
           <p class="text-charcoal-300 text-lg leading-relaxed max-w-2xl mb-8 animate-fade-up" style="animation-delay: 0.2s">
             Năm 1965, giữa đại ngàn Bù Đăng hiểm trở, nhịp chày giã gạo của đồng bào S'tiêng đã nổi lên và ngân vang không dứt suốt những đêm trường kháng chiến. Từ cụ già bạc tóc đến em thơ nhỏ tuổi, hàng trăm con người cùng thắp sáng đuốc lồ ô, chạy đua với thời gian để giã gạo nuôi quân phục vụ tiền tuyến. Nhịp chày giã gạo giã cả lòng yêu nước ấy đã đi vào lịch sử oai hùng, hóa thành khúc nhạc cách mạng bất hủ <em class="text-gold-400 not-italic">"Tiếng chày trên Sóc Bom Bo"</em> làm lay động bao thế hệ. Bù Đăng không chỉ là tên gọi địa danh — đây là cả một cõi di sản thiêng liêng, linh hồn văn hóa mà Thành Phố Đồng Nai hôm nay đang tự hào kế thừa và bảo tồn cho muôn đời sau.

@@ -71,9 +71,9 @@ Ngày nay, dấu tích của Chiến Khu Đ vẫn còn hiện diện qua những
       url: 'https://www.w3schools.com/html/mov_bbb.mp4'
     },
     relatedIds: ['hrt-005', 'hrt-006'],
-    tags: ['cách mạng', 'lịch sử', 'kháng chiến', 'rừng', 'căn cứ địa', 'bình phước'],
+    tags: ['cách mạng', 'lịch sử', 'kháng chiến', 'rừng', 'căn cứ địa', 'đồng nai'],
     references: [
-      'Ban Tuyên giáo Tỉnh ủy Bình Phước (2020). Lịch sử Đảng bộ tỉnh Bình Phước.',
+      'Ban Tuyên giáo Tỉnh ủy Đồng Nai (2020). Lịch sử Đảng bộ tỉnh Đồng Nai.',
       'Viện Lịch sử Quân sự Việt Nam (2015). Chiến Khu Đ trong hai cuộc kháng chiến.',
     ],
     featured: true,
@@ -135,7 +135,7 @@ Hệ sinh thái quanh Thác Mơ vô cùng phong phú. Những cánh rừng già 
     relatedIds: ['hrt-010', 'hrt-006'],
     tags: ['thiên nhiên', 'thác nước', 'rừng nguyên sinh', 'sinh thái', 'S\'tiêng'],
     references: [
-      'Sở Văn hóa Thể thao và Du lịch Bình Phước (2022). Danh thắng Bình Phước.',
+      'Sở Văn hóa Thể thao và Du lịch Đồng Nai (2022). Danh thắng Đồng Nai.',
     ],
     featured: true,
     status: 'published',
@@ -434,7 +434,7 @@ Người dân bản địa S'tiêng từ ngàn đời nay lưu truyền nhiều 
     relatedIds: ['hrt-006', 'hrt-002'],
     tags: ['trảng cỏ', 'bù lạch', 'danh thắng', 'cắm trại', 'sinh thái', 'hồ tự nhiên'],
     references: [
-      'Sở Văn hóa Thể thao và Du lịch Bình Phước. Cổng thông tin du lịch Bù Lạch.',
+      'Sở Văn hóa Thể thao và Du lịch Đồng Nai. Cổng thông tin du lịch Bù Lạch.',
     ],
     featured: true,
     status: 'published',
@@ -477,7 +477,7 @@ Vào mùa mưa, dòng suối Đăk Wuar cuồn cuộn đổ nước từ độ c
     relatedIds: ['hrt-002', 'hrt-006'],
     tags: ['thác đứng', 'thác nước', 'bazan cột', 'danh thắng', 'suối Đăk Wuar'],
     references: [
-      'Bảo tàng tỉnh Bình Phước. Hồ sơ di tích Thác Đứng.',
+      'Bảo tàng Đồng Nai. Hồ sơ di tích Thác Đứng.',
     ],
     featured: false,
     status: 'published',

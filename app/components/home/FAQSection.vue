@@ -51,12 +51,12 @@ const openIndex = ref<number | null>(null)
 
 const faqs = [
   {
-    question: "Di sản nổi bật nhất của Xã Bù Đăng gồm những gì?",
-    answer: "Di sản nổi bật nhất của Xã Bù Đăng gồm Chiến khu Đ Bù Đăng, Trảng cỏ Bù Lạch, sóc Bom Bo lịch sử, không gian văn hóa cồng chiêng và nghề dệt thổ cẩm của đồng bào dân tộc S'tiêng."
+    question: "Di sản nổi bật nhất của vùng đất Bù Đăng gồm những gì?",
+    answer: "Di sản nổi bật nhất của vùng đất Bù Đăng gồm Chiến khu Đ Bù Đăng, Trảng cỏ Bù Lạch, sóc Bom Bo lịch sử, không gian văn hóa cồng chiêng và nghề dệt thổ cẩm của đồng bào dân tộc S'tiêng — tất cả thuộc Thành Phố Đồng Nai."
   },
   {
     question: "Văn hóa S'tiêng có những nét đặc trưng đặc sắc nào?",
-    answer: "Văn hóa S'tiêng đặc trưng bởi nghệ thuật diễn xướng cồng chiêng, nghề dệt thổ cẩm thủ công, tiếng nói chữ viết riêng, cùng truyền thống sinh hoạt trong những ngôi nhà dài cổ truyền."
+    answer: "Văn hóa S'tiêng đặc trưng bởi nghệ thuật diễn xướng cồng chiêng (UNESCO công nhận 2005), nghề dệt thổ cẩm thủ công, tiếng nói chữ viết riêng, cùng truyền thống sinh hoạt trong những ngôi nhà dài cổ truyền."
   },
   {
     question: "Sóc Bom Bo lịch sử nằm ở đâu và có thể tham quan như thế nào?",
@@ -67,8 +67,12 @@ const faqs = [
     answer: "Bù Đăng là viên ngọc di sản đặc sắc nhất của Thành Phố Đồng Nai — nơi hội tụ căn cứ cách mạng Chiến Khu Đ huyền thoại, văn hóa bản địa S'tiêng hàng ngàn năm và thiên nhiên nguyên sinh kỳ vĩ. Thành Phố Đồng Nai hôm nay là người kế thừa, bảo hộ và tôn vinh kho báu di sản này — dự án Di Sản Bù Đăng là nỗ lực số hóa để cả thành phố cùng tự hào."
   },
   {
+    question: "Thành Phố Đồng Nai là gì và vì sao dự án này hướng đến toàn thành phố?",
+    answer: "Thành Phố Đồng Nai là thành phố trực thuộc Trung ương thứ 7 của Việt Nam — trung tâm kinh tế năng động của Đông Nam Bộ. Dự án bắt đầu thí điểm tại vùng đất Bù Đăng vì đây là nơi có kho tàng di sản phong phú nhất, với tầm nhìn nhân rộng mô hình số hóa ra toàn bộ bản đồ di sản của thành phố."
+  },
+  {
     question: "Cổng thông tin Di sản Bù Đăng do ai thực hiện?",
-    answer: "Cổng thông tin Di sản Bù Đăng do Nguyễn Xuân Kiệt thực hiện nhằm mục tiêu số hóa, lưu trữ và quảng bá các giá trị lịch sử, văn hóa và thiên nhiên của Xã Bù Đăng đến với mọi thế hệ."
+    answer: "Cổng thông tin Di sản Bù Đăng do Nguyễn Xuân Kiệt thực hiện nhằm mục tiêu số hóa, lưu trữ và quảng bá các giá trị lịch sử, văn hóa và thiên nhiên của vùng đất Bù Đăng đến với mọi thế hệ trong Thành Phố Đồng Nai và cả nước."
   }
 ]
 

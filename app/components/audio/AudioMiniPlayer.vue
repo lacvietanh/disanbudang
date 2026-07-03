@@ -8,7 +8,8 @@
       <div class="glass-dark rounded-2xl p-4 shadow-warm-xl border border-earth-700/30">
         <div class="flex items-center gap-4">
           <!-- Cover -->
-          <div class="w-12 h-12 rounded-xl overflow-hidden flex-shrink-0 shadow-warm relative">
+          <!-- Cover with playing ring -->  
+          <div class="w-12 h-12 rounded-xl overflow-hidden flex-shrink-0 shadow-warm relative" :class="audio.isPlaying ? 'ring-2 ring-gold-400/70 ring-offset-1 ring-offset-charcoal-900' : ''">
             <img
               v-if="audio.currentTrack.coverImage"
               :src="audio.currentTrack.coverImage"
@@ -39,11 +40,19 @@
               {{ audio.errorMessage || audio.currentTrack.narrator }}
             </p>
 
-            <!-- Progress bar -->
-            <div class="mt-2 relative h-1 bg-charcoal-700 rounded-full cursor-pointer" @click="onProgressClick">
+            <!-- Progress bar with hover thumb -->
+            <div
+              class="mt-2 relative h-1 hover:h-2 bg-charcoal-700 rounded-full cursor-pointer transition-all duration-200 group/progress"
+              @click="onProgressClick"
+            >
               <div
                 class="absolute left-0 top-0 h-full bg-gold-500 rounded-full transition-all duration-300"
                 :style="{ width: `${audio.progressPercent}%` }"
+              />
+              <!-- Thumb dot -->
+              <div
+                class="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-gold-400 rounded-full shadow-gold opacity-0 group-hover/progress:opacity-100 transition-opacity duration-200 -translate-x-1/2 pointer-events-none"
+                :style="{ left: `${audio.progressPercent}%` }"
               />
             </div>
 
@@ -64,16 +73,24 @@
             >
               {{ audio.playbackRate }}x
             </button>
-            <button
-              class="w-9 h-9 rounded-full bg-gold-500 flex items-center justify-center hover:bg-gold-400 transition-colors shadow-gold"
-              :aria-label="audio.isPlaying ? 'Tạm dừng audio' : 'Phát audio'"
-              @click="audio.togglePlay()"
-            >
-              <Icon
-                :name="audio.isPlaying ? 'mdi:pause' : 'mdi:play'"
-                class="w-5 h-5 text-charcoal-900"
+            <div class="relative">
+              <!-- Pulsing ring when playing -->
+              <div
+                v-if="audio.isPlaying"
+                class="absolute inset-0 rounded-full bg-gold-500/30 animate-ping"
+                style="animation-duration: 1.5s;"
               />
-            </button>
+              <button
+                class="relative w-9 h-9 rounded-full bg-gold-500 flex items-center justify-center hover:bg-gold-400 transition-all duration-300 shadow-gold hover:scale-105 active:scale-95"
+                :aria-label="audio.isPlaying ? 'Tạm dừng audio' : 'Phát audio'"
+                @click="audio.togglePlay()"
+              >
+                <Icon
+                  :name="audio.isPlaying ? 'mdi:pause' : 'mdi:play'"
+                  class="w-5 h-5 text-charcoal-900"
+                />
+              </button>
+            </div>
             <button
               class="w-8 h-8 rounded-full flex items-center justify-center text-charcoal-400 hover:text-ivory transition-colors"
               aria-label="Đóng trình phát audio"

@@ -35,7 +35,7 @@
         <div
           v-for="(fact, fIdx) in selectedHeritage.quickFacts"
           :key="fIdx"
-          class="flex items-center gap-2 bg-charcoal-900 p-2.5 rounded-xl border border-charcoal-800"
+          class="flex items-center gap-2 bg-charcoal-900 p-2.5 rounded-xl border border-charcoal-800 hover:border-gold-500/20 hover:bg-charcoal-800 transition-all duration-200"
         >
           <div class="w-8 h-8 rounded-lg bg-gold-500/15 flex items-center justify-center text-gold-400 shrink-0">
             <Icon :name="fact.icon ?? 'mdi:information-outline'" class="w-4 h-4" />
@@ -59,13 +59,21 @@
           <p class="text-sm font-semibold text-white truncate">{{ selectedHeritage.audio.title }}</p>
           <p class="text-xs text-charcoal-400 truncate mt-0.5">Giọng đọc: {{ selectedHeritage.audio.narrator }}</p>
         </div>
-        <button
-          class="w-10 h-10 rounded-full bg-gold-500 hover:bg-gold-400 text-charcoal-950 flex items-center justify-center transition-all duration-300 shadow-lg shadow-gold-500/30 shrink-0"
-          @click="$emit('play-audio')"
-          :aria-label="isPlayingCurrentTrack ? 'Tạm dừng thuyết minh' : 'Phát thuyết minh'"
-        >
-          <Icon :name="isPlayingCurrentTrack ? 'mdi:pause' : 'mdi:play'" class="w-5 h-5" />
-        </button>
+        <div class="relative shrink-0">
+          <!-- Pulse ring when playing -->
+          <div
+            v-if="isPlayingCurrentTrack"
+            class="absolute inset-0 rounded-full bg-gold-500/30 animate-ping"
+            style="animation-duration: 1.5s;"
+          />
+          <button
+            class="relative w-10 h-10 rounded-full bg-gold-500 hover:bg-gold-400 text-charcoal-950 flex items-center justify-center transition-all duration-300 shadow-lg shadow-gold-500/30 hover:scale-105 active:scale-95"
+            @click="$emit('play-audio')"
+            :aria-label="isPlayingCurrentTrack ? 'Tạm dừng thuyết minh' : 'Phát thuyết minh'"
+          >
+            <Icon :name="isPlayingCurrentTrack ? 'mdi:pause' : 'mdi:play'" class="w-5 h-5" />
+          </button>
+        </div>
       </div>
     </div>
 

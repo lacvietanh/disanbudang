@@ -41,6 +41,7 @@
           >
             <Icon name="mdi:magnify" class="w-4 h-4" />
             <span class="hidden lg:block">Tìm kiếm...</span>
+            <kbd class="hidden lg:inline-flex items-center gap-0.5 ml-1 px-1.5 py-0.5 text-[10px] font-mono bg-ivory/10 border border-ivory/20 rounded text-ivory/50">⌘K</kbd>
           </button>
 
           <!-- Explore CTA -->
@@ -129,7 +130,7 @@
                 v-for="heritage in searchResults"
                 :key="heritage.id"
                 :to="`/heritage/${heritage.slug}`"
-                class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-charcoal-900"
+                class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-charcoal-900 transition-colors duration-200"
                 @click="closeSearch"
               >
                 <img :src="heritage.coverImage" :alt="heritage.title" class="w-14 h-12 rounded-lg object-cover" />
@@ -278,6 +279,7 @@ function goToLibrary() {
 .mobile-menu-enter-from,
 .mobile-menu-leave-to {
   opacity: 0;
-  transform: translateY(-8px);
+  transform: translateY(-16px);
+  filter: blur(4px);
 }
 </style>

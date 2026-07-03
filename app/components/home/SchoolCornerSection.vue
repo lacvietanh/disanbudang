@@ -167,9 +167,9 @@
                 </div>
               </div>
 
-              <!-- Quick read hover prompt -->
-              <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-white via-white/95 to-transparent pt-12 pb-4 text-center opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-b-2xl">
-                <span class="inline-flex items-center gap-1.5 text-earth-600 text-xs font-bold uppercase tracking-wider bg-earth-50 border border-earth-100 px-4 py-2 rounded-full shadow-sm">
+              <!-- Quick read hover prompt - positioned as a slim bar at bottom to not cover content -->
+              <div class="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-white/98 via-white/90 to-transparent flex items-end justify-center pb-3 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-b-2xl">
+                <span class="inline-flex items-center gap-1.5 text-earth-600 text-xs font-bold uppercase tracking-wider bg-earth-50 border border-earth-200 px-4 py-1.5 rounded-full shadow-sm">
                   <Icon name="mdi:book-open-page-variant" class="w-3.5 h-3.5" />
                   Đọc Nhanh Tóm Tắt
                 </span>
@@ -297,21 +297,21 @@
           </div>
 
           <!-- Tab Switcher -->
-          <div class="flex border-b border-charcoal-800/80 bg-charcoal-900/40 relative z-10">
+          <div class="flex border-b border-charcoal-800/80 bg-charcoal-900/40 relative z-10 p-1.5 gap-1">
             <button
-              class="flex-1 py-3 text-2xs uppercase tracking-widest font-bold text-center border-b-2 transition-all duration-300 flex items-center justify-center gap-2"
-              :class="activeModalTab === 'overview' ? 'border-gold-500 text-gold-400 bg-charcoal-950/40' : 'border-transparent text-charcoal-400 hover:text-ivory'"
+              class="flex-1 py-2.5 text-2xs uppercase tracking-widest font-bold text-center rounded-lg transition-all duration-300 flex items-center justify-center gap-2"
+              :class="activeModalTab === 'overview' ? 'bg-gold-500/15 text-gold-400 shadow-inner' : 'text-charcoal-400 hover:text-ivory hover:bg-charcoal-800/50'"
               @click="activeModalTab = 'overview'"
             >
-              <Icon name="mdi:information-outline" class="w-4 h-4 text-gold-500" />
+              <Icon name="mdi:information-outline" class="w-4 h-4" :class="activeModalTab === 'overview' ? 'text-gold-400' : 'text-charcoal-500'" />
               Tổng Quan &amp; Kết Quả
             </button>
             <button
-              class="flex-1 py-3 text-2xs uppercase tracking-widest font-bold text-center border-b-2 transition-all duration-300 flex items-center justify-center gap-2"
-              :class="activeModalTab === 'document' ? 'border-gold-500 text-gold-400 bg-charcoal-950/40' : 'border-transparent text-charcoal-400 hover:text-ivory'"
+              class="flex-1 py-2.5 text-2xs uppercase tracking-widest font-bold text-center rounded-lg transition-all duration-300 flex items-center justify-center gap-2"
+              :class="activeModalTab === 'document' ? 'bg-gold-500/15 text-gold-400 shadow-inner' : 'text-charcoal-400 hover:text-ivory hover:bg-charcoal-800/50'"
               @click="activeModalTab = 'document'"
             >
-              <Icon name="mdi:book-open-page-variant" class="w-4 h-4 text-gold-500" />
+              <Icon name="mdi:book-open-page-variant" class="w-4 h-4" :class="activeModalTab === 'document' ? 'text-gold-400' : 'text-charcoal-500'" />
               Đọc Báo Cáo Toàn Văn
             </button>
           </div>

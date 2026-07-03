@@ -1,14 +1,29 @@
 <template>
   <div class="relative w-full h-full">
     <div ref="mapEl" class="w-full h-full" />
+    <!-- Locate button — premium -->
     <button
-      class="absolute bottom-6 right-6 z-[400] w-12 h-12 bg-charcoal-900 border border-charcoal-700 hover:border-gold-500 rounded-full flex items-center justify-center text-gold-400 hover:text-gold-300 shadow-lg shadow-charcoal-950/50 transition-all duration-300 group"
+      class="absolute bottom-6 right-6 z-[400] w-13 h-13 flex items-center justify-center rounded-2xl transition-all duration-300 group"
+      :class="isLocating
+        ? 'bg-gold-500 border-2 border-gold-300 shadow-gold/30 shadow-xl'
+        : 'bg-charcoal-900/90 backdrop-blur-md border border-charcoal-700 hover:border-gold-500/70 hover:bg-charcoal-800 shadow-xl shadow-charcoal-950/60'"
       @click="locateMe"
-      aria-label="Vị trí của tôi"
+      aria-label="Định vị vị trí của tôi"
       title="Định vị trí hiện tại"
     >
-      <Icon name="mdi:crosshairs-gps" class="w-6 h-6 group-hover:scale-110 transition-transform" />
+      <Icon
+        :name="isLocating ? 'mdi:loading' : 'mdi:crosshairs-gps'"
+        class="w-6 h-6 transition-all duration-300"
+        :class="isLocating ? 'text-charcoal-950 animate-spin' : 'text-gold-400 group-hover:text-gold-300 group-hover:scale-110'"
+      />
     </button>
+    <!-- Zoom controls override label -->
+    <div class="absolute bottom-6 left-6 z-[400] flex flex-col gap-1">
+      <div class="bg-charcoal-900/80 backdrop-blur-sm border border-charcoal-750 rounded-xl overflow-hidden shadow-lg text-xs text-charcoal-500 px-2.5 py-1.5 flex items-center gap-1.5">
+        <Icon name="mdi:gesture-pinch" class="w-3.5 h-3.5 text-charcoal-600" />
+        <span class="font-medium">Kéo để khám phá</span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -33,13 +48,15 @@ let map: any = null
 let LInstance: any = null
 const activeMarkers: any[] = []
 let routePolyline: any = null
+const isLocating = ref(false)
 
+// Brighter, more vivid colors that pop on dark map tile
 const categoryColors: Record<string, string> = {
-  'lich-su': '#8B3A2A',
-  'danh-thang': '#2D5016',
-  'van-hoa-phi-vat-the': '#C9922A',
-  'doi-song-cong-dong': '#6B4C35',
-  'giao-duc-truyen-thong': '#B87333',
+  'lich-su': '#D45F4A',
+  'danh-thang': '#4A8C2A',
+  'van-hoa-phi-vat-the': '#E4A226',
+  'doi-song-cong-dong': '#A8734A',
+  'giao-duc-truyen-thong': '#D48A45',
 }
 
 // Global user marker
@@ -57,13 +74,15 @@ const locateMe = () => {
     return
   }
 
+  isLocating.value = true
   navigator.geolocation.getCurrentPosition(
     (position) => {
+      isLocating.value = false
       const lat = position.coords.latitude
       const lng = position.coords.longitude
       
       if (map) {
-        map.flyTo([lat, lng], 13, { duration: 1.5 })
+        map.flyTo([lat, lng], 14, { duration: 1.8, easeLinearity: 0.25 })
         
         if (LInstance) {
           if (userMarker) {
@@ -71,21 +90,22 @@ const locateMe = () => {
           } else {
             const userIcon = LInstance.divIcon({
               html: `
-                <div class="relative flex items-center justify-center w-6 h-6">
-                  <div class="absolute inset-0 bg-blue-500 rounded-full animate-ping opacity-75"></div>
-                  <div class="relative w-4 h-4 bg-blue-600 border-2 border-white rounded-full shadow-md"></div>
+                <div style="position:relative;display:flex;align-items:center;justify-content:center;width:28px;height:28px;">
+                  <div style="position:absolute;inset:0;background:rgba(59,130,246,0.35);border-radius:50%;animation:ping 1.5s cubic-bezier(0,0,0.2,1) infinite;"></div>
+                  <div style="position:relative;width:16px;height:16px;background:#3B82F6;border:3px solid white;border-radius:50%;box-shadow:0 0 14px rgba(59,130,246,0.8);"></div>
                 </div>`,
               className: '',
-              iconSize: [24, 24],
-              iconAnchor: [12, 12],
+              iconSize: [28, 28],
+              iconAnchor: [14, 14],
             })
             userMarker = LInstance.marker([lat, lng], { icon: userIcon }).addTo(map)
-              .bindPopup('<span class="text-xs font-semibold text-charcoal-900">Vị trí của bạn</span>')
+              .bindPopup('<div style="font-size:12px;font-weight:600;color:#1C1A18;">📍 Vị trí của bạn</div>')
           }
         }
       }
     },
-    (error) => {
+    (_error) => {
+      isLocating.value = false
       swal.fire({
         title: 'Lỗi định vị',
         text: 'Không thể lấy vị trí của bạn. Vui lòng cấp quyền truy cập vị trí.',
@@ -117,9 +137,9 @@ onMounted(async () => {
     attributionControl: false,
   })
 
-  // Use CartoDB Positron — clean, light map with high contrast
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; OpenStreetMap contributors &copy; CartoDB',
+  // CartoDB Dark Matter — cinematic dark tile that matches the overall design
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" style="color:#C9922A">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" style="color:#C9922A">CARTO</a>',
     subdomains: 'abcd',
     maxZoom: 19,
   }).addTo(map)
@@ -192,42 +212,56 @@ function addMarkers(L: any) {
     if (isSingle) {
       const h = c.heritages[0]
       if (!h) return
-      const color = categoryColors[h.category] ?? '#C9922A'
+      const color = categoryColors[h.category] ?? '#E4A226'
       const isSelected = props.selectedId === h.id
       const iconSvgPath = categoryIcons[h.category] ?? `<path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>`
+      const pinSize = isSelected ? 46 : 40
+      const halfPin = pinSize / 2
 
       const icon = L.divIcon({
         html: `
-          <div style="position:relative;" class="heritage-pin-wrapper group flex items-center justify-center" tabindex="0" aria-label="Di sản: ${h.title}, danh mục: ${h.category}">
-            <!-- Pulse wave ring -->
-            <div class="absolute rounded-full pointer-events-none ${isSelected ? 'animate-ping opacity-60' : 'animate-pulse-slow opacity-25'}" 
-                 style="background: ${color}; border: 1px solid ${color}; width: 38px; height: 38px; animation-duration: ${isSelected ? '1.8s' : '3.0s'}"></div>
-            
-            <!-- Outer gold glow ring -->
-            <div class="absolute rounded-full border border-gold-500/50 pointer-events-none transition-all duration-300 ${isSelected ? 'scale-125 opacity-100' : 'scale-110 opacity-0 group-hover:opacity-100'}" 
-                 style="width: 38px; height: 38px; box-shadow: 0 0 15px ${color};"></div>
-            
+          <div style="position:relative;display:flex;align-items:center;justify-content:center;" class="heritage-pin-wrapper" tabindex="0" aria-label="Di sản: ${h.title}">
+            <!-- Outer ambient glow -->
+            <div style="position:absolute;border-radius:50%;pointer-events:none;
+              width:${pinSize + 20}px;height:${pinSize + 20}px;
+              background:radial-gradient(circle, ${color}30 0%, transparent 70%);
+              animation: ${isSelected ? 'none' : 'ambientGlow 3s ease-in-out infinite'};
+            "></div>
+            <!-- Pulse ring when selected -->
+            ${isSelected ? `<div style="position:absolute;border-radius:50%;pointer-events:none;width:${pinSize + 8}px;height:${pinSize + 8}px;border:2px solid ${color};opacity:0.7;animation:selectedPulse 1.8s ease-out infinite;"></div>` : ''}
             <!-- Main marker circle -->
             <div style="
-              width:38px;height:38px;border-radius:50%;background:${color};
-              border:${isSelected ? '3px solid #C9922A' : '2px solid rgba(255,255,255,0.9)'};
+              width:${pinSize}px;height:${pinSize}px;border-radius:50%;
+              background:linear-gradient(135deg, ${color}EE, ${color}99);
+              border:${isSelected ? `3px solid ${color}` : '2px solid rgba(255,255,255,0.25)'};
               display:flex;align-items:center;justify-content:center;
-              box-shadow:0 2px 10px rgba(0,0,0,0.15), 0 0 20px ${color}50;
-              cursor:pointer;transition:all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-            " class="heritage-circle relative z-10 ${isSelected ? 'scale-115' : 'group-hover:scale-110'}">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+              box-shadow:0 4px 20px ${color}60, 0 0 0 1px ${color}40, inset 0 1px 0 rgba(255,255,255,0.2);
+              cursor:pointer;transition:transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+              transform:${isSelected ? 'scale(1.15)' : 'scale(1)'};
+              position:relative;z-index:10;
+            " class="heritage-circle">
+              <svg width="${isSelected ? 22 : 18}" height="${isSelected ? 22 : 18}" viewBox="0 0 24 24" fill="white" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.5));">
                 ${iconSvgPath}
               </svg>
             </div>
-            
-            <!-- Custom Tooltip -->
-            <div style="z-index:9999;" class="absolute bottom-12 left-1/2 -translate-x-1/2 bg-charcoal-950/95 backdrop-blur-md text-ivory text-2xs font-heading font-medium tracking-wide py-2 px-3.5 rounded-lg border border-gold-500/30 shadow-2xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none transform translate-y-1 group-hover:translate-y-0">
-              <span style="color: ${color}; font-weight: bold; margin-right: 4px;">✦</span> ${h.title}
+            <!-- Tooltip -->
+            <div style="
+              position:absolute;bottom:${halfPin + 14}px;left:50%;transform:translateX(-50%) translateY(4px);
+              background:rgba(15,13,11,0.97);backdrop-filter:blur(12px);
+              color:#FDFAF3;font-size:11px;font-weight:600;letter-spacing:0.02em;
+              padding:5px 10px;border-radius:8px;
+              border:1px solid ${color}45;
+              box-shadow:0 8px 24px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
+              white-space:nowrap;pointer-events:none;
+              opacity:0;transition:opacity 0.2s, transform 0.2s;
+              z-index:9999;
+            " class="pin-tooltip">
+              <span style="color:${color};margin-right:4px;">●</span>${h.title}
             </div>
           </div>`,
-        className: '',
-        iconSize: [38, 38],
-        iconAnchor: [19, 38],
+        className: 'heritage-marker-host',
+        iconSize: [pinSize, pinSize],
+        iconAnchor: [halfPin, halfPin],
       })
 
       const marker = L.marker([h.coordinates.lat, h.coordinates.lng], { icon })
@@ -246,40 +280,47 @@ function addMarkers(L: any) {
       // Cluster marker
       const count = c.heritages.length
       const containsSelected = c.heritages.some((h) => props.selectedId === h.id)
-      const titlesList = c.heritages.map((h) => `• ${h.title}`).join('<br>')
+      const titlesList = c.heritages.slice(0, 4).map((h) => `<div style="display:flex;align-items:center;gap:5px;"><span style="color:#E4A226;font-size:8px;">●</span>${h.title}</div>`).join('') + (c.heritages.length > 4 ? `<div style="color:#7A7265;font-size:10px;margin-top:2px;">+${c.heritages.length - 4} địa điểm khác</div>` : '')
+      const clusterSize = containsSelected ? 52 : 46
+      const half = clusterSize / 2
 
       const icon = L.divIcon({
         html: `
-          <div style="position:relative;" class="heritage-cluster-wrapper group flex items-center justify-center" tabindex="0" aria-label="Nhóm di sản: ${count} địa điểm. Nhấp để phóng to.">
-            <!-- Pulsing outer ring -->
-            <div class="absolute rounded-full pointer-events-none animate-pulse-slow opacity-30" 
-                 style="background: #C9922A; border: 1px solid #C9922A; width: 44px; height: 44px;"></div>
-            
-            <!-- Outer gold glow ring -->
-            <div class="absolute rounded-full border border-gold-500/50 pointer-events-none transition-all duration-300 ${containsSelected ? 'scale-125 opacity-100' : 'scale-110 opacity-0 group-hover:opacity-100'}" 
-                 style="width: 44px; height: 44px; box-shadow: 0 0 15px #C9922A;"></div>
-            
-            <!-- Main cluster circle -->
+          <div style="position:relative;display:flex;align-items:center;justify-content:center;" tabindex="0" aria-label="Nhóm ${count} di sản. Nhấp để phóng to." class="heritage-cluster-host">
+            <!-- Ambient glow -->
+            <div style="position:absolute;width:${clusterSize + 24}px;height:${clusterSize + 24}px;border-radius:50%;background:radial-gradient(circle, #E4A22630 0%, transparent 70%);pointer-events:none;"></div>
+            <!-- Outer ring -->
+            <div style="position:absolute;width:${clusterSize + 6}px;height:${clusterSize + 6}px;border-radius:50%;border:1.5px solid #E4A22640;pointer-events:none;animation:clusterRing 2.5s ease-in-out infinite;"></div>
+            <!-- Main circle -->
             <div style="
-              width:40px;height:40px;border-radius:50%;background:#1C1A18;
-              border:${containsSelected ? '3px solid #C9922A' : '2px solid #E6C587'};
-              display:flex;align-items:center;justify-content:center;
-              box-shadow:0 4px 15px rgba(0,0,0,0.3);
-              cursor:pointer;transition:all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-            " class="heritage-cluster-circle relative z-10 font-bold text-xs text-gold-400 group-hover:scale-105">
-              ${count}
+              width:${clusterSize}px;height:${clusterSize}px;border-radius:50%;
+              background:linear-gradient(135deg, #2A2520, #1A1815);
+              border:2px solid ${containsSelected ? '#E4A226' : 'rgba(228,162,38,0.45)'};
+              display:flex;flex-direction:column;align-items:center;justify-content:center;
+              box-shadow:0 4px 20px rgba(0,0,0,0.7), 0 0 20px #E4A22625, inset 0 1px 0 rgba(255,255,255,0.08);
+              cursor:pointer;position:relative;z-index:10;
+            " class="heritage-cluster-circle">
+              <span style="font-weight:800;font-size:${count > 9 ? 13 : 15}px;color:#E4A226;line-height:1;">${count}</span>
+              <span style="font-size:8px;color:#7A7265;font-weight:600;letter-spacing:0.06em;margin-top:1px;">DI SẢN</span>
             </div>
-            
-            <!-- Custom Tooltip for Cluster -->
-            <div style="z-index:9999;" class="absolute bottom-13 left-1/2 -translate-x-1/2 bg-charcoal-950/95 backdrop-blur-md text-ivory text-3xs font-heading font-medium py-2.5 px-3.5 rounded-lg border border-gold-500/30 shadow-2xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none transform translate-y-1 group-hover:translate-y-0 text-left">
-              <span class="text-gold-400 font-bold block mb-1">✦ Nhóm di sản (${count})</span>
-              <div class="text-charcoal-300 leading-relaxed font-sans">${titlesList}</div>
-              <span class="text-gold-500/80 block mt-1.5 text-4xs uppercase tracking-wider">Nhấp để phóng to</span>
+            <!-- Tooltip -->
+            <div style="
+              position:absolute;bottom:${half + 12}px;left:50%;transform:translateX(-50%);
+              background:rgba(12,10,8,0.97);backdrop-filter:blur(12px);
+              color:#FDFAF3;font-size:11px;padding:8px 12px;border-radius:10px;
+              border:1px solid #E4A22635;
+              box-shadow:0 12px 30px rgba(0,0,0,0.7);
+              white-space:nowrap;pointer-events:none;
+              opacity:0;transition:opacity 0.2s;
+              z-index:9999;text-align:left;min-width:140px;
+            " class="cluster-tooltip">
+              <div style="color:#E4A226;font-weight:700;font-size:11px;margin-bottom:6px;border-bottom:1px solid #2A2520;padding-bottom:5px;">📍 ${count} Địa điểm</div>
+              ${titlesList}
             </div>
           </div>`,
-        className: '',
-        iconSize: [40, 40],
-        iconAnchor: [20, 20],
+        className: 'heritage-cluster-host',
+        iconSize: [clusterSize, clusterSize],
+        iconAnchor: [half, half],
       })
 
       const marker = L.marker([c.lat, c.lng], { icon })
@@ -359,12 +400,22 @@ function updateRouteLine() {
 
   if (latlngs.length < 2) return
 
+  // Main glowing route line
   routePolyline = LInstance.polyline(latlngs, {
-    color: route.color || '#C9922A',
-    weight: 4,
+    color: route.color || '#E4A226',
+    weight: 3,
     opacity: 0.9,
-    dashArray: '10, 15',
-    className: 'route-line-animated'
+    dashArray: '12, 14',
+    className: 'route-line-animated',
+    lineCap: 'round',
+    lineJoin: 'round',
+  }).addTo(map)
+  // Glow effect layer
+  LInstance.polyline(latlngs, {
+    color: route.color || '#E4A226',
+    weight: 10,
+    opacity: 0.12,
+    lineCap: 'round',
   }).addTo(map)
 
   // Zoom map to fit route bounds
@@ -385,23 +436,92 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-@keyframes pulse-slow {
-  0%, 100% { transform: scale(1); opacity: 0.25; }
-  50% { transform: scale(1.2); opacity: 0.55; }
-}
-:deep(.animate-pulse-slow) {
-  animation: pulse-slow 3s infinite ease-in-out;
-}
-:deep(.leaflet-div-icon) {
+/* Marker host — no Leaflet default border */
+:deep(.leaflet-div-icon),
+:deep(.heritage-marker-host),
+:deep(.heritage-cluster-host) {
   background: transparent !important;
   border: none !important;
+  box-shadow: none !important;
 }
+
+/* Hover reveal tooltip on marker hover */
+:deep(.heritage-marker-host:hover .pin-tooltip),
+:deep(.heritage-cluster-host:hover .cluster-tooltip) {
+  opacity: 1 !important;
+  transform: translateX(-50%) translateY(0) !important;
+}
+
+/* Ambient glow keyframe */
+@keyframes ambientGlow {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.3); opacity: 0.3; }
+}
+@keyframes selectedPulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+@keyframes clusterRing {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.15); opacity: 0.3; }
+}
+
+/* Animated dashed route line */
 @keyframes dash {
-  to {
-    stroke-dashoffset: -40;
-  }
+  to { stroke-dashoffset: -52; }
 }
 :deep(.route-line-animated) {
-  animation: dash 2.5s linear infinite;
+  animation: dash 1.8s linear infinite;
+}
+
+/* Leaflet custom popup style */
+:deep(.leaflet-popup-content-wrapper) {
+  background: rgba(15, 13, 11, 0.95) !important;
+  border: 1px solid rgba(228, 162, 38, 0.3) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.6) !important;
+  color: #FDFAF3 !important;
+  backdrop-filter: blur(12px);
+}
+:deep(.leaflet-popup-tip) {
+  background: rgba(15, 13, 11, 0.95) !important;
+}
+:deep(.leaflet-popup-close-button) {
+  color: #7A7265 !important;
+}
+
+/* Override leaflet attribution */
+:deep(.leaflet-control-attribution) {
+  background: rgba(12, 10, 8, 0.75) !important;
+  color: #4A4540 !important;
+  border-radius: 8px 0 0 0 !important;
+  font-size: 10px !important;
+  padding: 3px 8px !important;
+  backdrop-filter: blur(8px);
+}
+:deep(.leaflet-control-attribution a) {
+  color: #C9922A !important;
+}
+
+/* Zoom controls dark theme */
+:deep(.leaflet-control-zoom) {
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5) !important;
+}
+:deep(.leaflet-control-zoom a) {
+  background: rgba(20, 18, 16, 0.95) !important;
+  color: #C9922A !important;
+  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+  font-size: 16px !important;
+  font-weight: 300 !important;
+  width: 34px !important;
+  height: 34px !important;
+  line-height: 34px !important;
+}
+:deep(.leaflet-control-zoom a:hover) {
+  background: rgba(30, 28, 26, 0.95) !important;
+  color: #E4A226 !important;
 }
 </style>

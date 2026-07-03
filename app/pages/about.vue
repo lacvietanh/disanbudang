@@ -29,7 +29,7 @@
           Giới Thiệu <span class="text-gradient-gold">Di Sản Bù Đăng</span>
         </h1>
         <p class="font-accent italic text-charcoal-300 text-2xl md:text-3xl max-w-3xl mx-auto mb-12 reveal">
-          "Từ ký ức ngàn năm của Xã Bù Đăng — Kiến tạo Di Sản Số Thành Phố Đồng Nai"
+          "Từ ký ức ngàn năm của vùng đất Bù Đăng — Kiến tạo Di Sản Số Thành Phố Đồng Nai"
         </p>
         
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 reveal">
@@ -138,6 +138,51 @@
       </div>
     </section>
 
+    <!-- 4.5 BÙ ĐĂNG TRONG LÒNG THÀNH PHỐ ĐỒNG NAI: Context block -->
+    <section class="py-20 lg:py-28 bg-charcoal-950 border-y border-gold-500/10 relative overflow-hidden">
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,#C9922A08_0%,transparent_70%)] pointer-events-none" />
+      <div class="container-heritage relative z-10">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <!-- Left: Text -->
+          <div class="reveal space-y-6">
+            <span class="eyebrow text-gold-400">VỊ TRÍ & VĂN HÓA BÙ ĐĂNG — THÀNH PHỐ ĐỒNG NAI</span>
+            <h2 class="font-heading font-bold text-4xl lg:text-5xl text-ivory leading-tight">
+              Bù Đăng<br/>
+              <span class="text-gradient-gold">Trong Lòng Thành Phố Đồng Nai</span>
+            </h2>
+            <p class="text-charcoal-300 text-lg leading-relaxed">
+              Thành Phố Đồng Nai — thành phố trực thuộc Trung ương thứ 7 của Việt Nam — là một trong những trung tâm kinh tế động lực của Đông Nam Bộ. Nằm ở phía bắc thành phố, vùng đất Bù Đăng là "viên ngọc di sản" đặc sắc nhất — nơi hội tụ căn cứ cách mạng Chiến Khu Đ huyền thoại, văn hóa bản địa S'tiêng nghìn năm và thiên nhiên nguyên sinh kỳ vĩ.
+            </p>
+            <p class="text-charcoal-300 text-lg leading-relaxed">
+              Dự án <strong class="text-gold-400">Di Sản Bù Đăng</strong> là mô hình thí điểm được thiết kế để nhân rộng ra toàn bộ Thành Phố Đồng Nai. Bắt đầu từ Bù Đăng vì đây là nơi di sản đặc sắc nhất — nhưng tầm nhìn là kiến tạo cổng di sản số của cả thành phố.
+            </p>
+            <div class="grid grid-cols-2 gap-4 pt-2">
+              <div class="bg-charcoal-900 border border-charcoal-800 rounded-2xl p-5">
+                <p class="text-gold-400 font-heading font-bold text-3xl mb-1">7</p>
+                <p class="text-charcoal-400 text-xs uppercase tracking-wider">TP trực thuộc TW của VN</p>
+              </div>
+              <div class="bg-charcoal-900 border border-charcoal-800 rounded-2xl p-5">
+                <p class="text-gold-400 font-heading font-bold text-3xl mb-1">2024</p>
+                <p class="text-charcoal-400 text-xs uppercase tracking-wider">Năm khởi động dự án</p>
+              </div>
+            </div>
+          </div>
+          <!-- Right: Visual list -->
+          <div class="reveal space-y-4">
+            <div v-for="point in dongNaiContext" :key="point.title" class="flex gap-4 p-5 bg-charcoal-900 border border-charcoal-800 rounded-2xl hover:border-gold-500/30 transition-colors group">
+              <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center shrink-0">
+                <Icon :name="point.icon" class="w-6 h-6 text-gold-400" />
+              </div>
+              <div>
+                <h4 class="font-heading font-bold text-ivory mb-1">{{ point.title }}</h4>
+                <p class="text-charcoal-400 text-sm leading-relaxed">{{ point.desc }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- 5. TRACTION & IMPACT: Kết quả thực tế & Đội ngũ -->
     <section class="py-24 lg:py-32 bg-charcoal-950">
       <div class="container-heritage">
@@ -148,7 +193,7 @@
         </div>
 
         <!-- Stats Grid -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-24">
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mb-24">
           <div v-for="stat in projectStats" :key="stat.label" class="bg-charcoal-900 border border-charcoal-800 rounded-3xl p-8 text-center reveal">
             <Icon :name="stat.icon" class="w-10 h-10 text-gold-400 mx-auto mb-4" />
             <div class="font-heading font-bold text-4xl lg:text-5xl text-ivory mb-2">{{ stat.value }}</div>
@@ -182,7 +227,7 @@
         <div class="text-center max-w-3xl mx-auto mb-20 reveal">
           <span class="eyebrow text-gold-400">LỘ TRÌNH PHÁT TRIỂN</span>
           <h2 class="font-heading font-bold text-4xl lg:text-5xl mb-6">Định Hướng Mở Rộng</h2>
-          <p class="text-charcoal-300 text-lg">Dự án bắt đầu từ Xã Bù Đăng — viên ngọc văn hóa đặc sắc với lịch sử cách mạng hào hùng, với tầm nhìn mở rộng phủ sóng toàn bộ bản đồ di sản của Thành Phố Đồng Nai.</p>
+          <p class="text-charcoal-300 text-lg">Dự án bắt đầu từ vùng đất Bù Đăng — viên ngọc văn hóa đặc sắc với lịch sử cách mạng hào hùng, với tầm nhìn mở rộng phủ sóng toàn bộ bản đồ di sản của Thành Phố Đồng Nai.</p>
         </div>
 
         <div class="max-w-4xl mx-auto relative reveal">
@@ -315,10 +360,36 @@ const projectStats = [
   { icon: 'mdi:headphones', label: 'Audio thuyết minh', value: '4' },
   { icon: 'mdi:gamepad-variant-outline', label: 'Câu hỏi trí tuệ', value: '35+' },
   { icon: 'mdi:school-outline', label: 'Trường học tham gia', value: '5+' },
+  { icon: 'mdi:view-dashboard-outline', label: 'Phân hệ chức năng', value: '5' },
+  { icon: 'mdi:city-variant-outline', label: 'Tầm nhìn thành phố', value: 'TP ĐN' },
 ]
 
 const teams = [
   { name: 'Nguyễn Xuân Kiệt', role: 'Founder & Nhà phát triển dự án disanbudang', icon: 'mdi:account-star' }
+]
+
+// Context về quan hệ Bù Đăng — Thành Phố Đồng Nai
+const dongNaiContext = [
+  {
+    icon: 'mdi:map-marker-radius',
+    title: 'Vị Trí Chiến Lược',
+    desc: 'Vùng đất Bù Đăng nằm ở phía bắc Thành Phố Đồng Nai — cửa ngõ văn hóa kết nối vùng Cao Nguyên với Đông Nam Bộ.'
+  },
+  {
+    icon: 'mdi:shield-star',
+    title: 'Mô Hình Thí Điểm Đồng Nai',
+    desc: 'Những gì đã số hóa tại Bù Đăng là mẫu thử nghiệm cho mô hình cổng di sản số của toàn Thành Phố Đồng Nai.'
+  },
+  {
+    icon: 'mdi:handshake',
+    title: 'Hợp Tác Giáo Dục Địa Phương',
+    desc: 'Kết nối với trường học trong thành phố để đưa lịch sử di sản Bù Đăng vào giảng dạy và nghiên cứu cấp tỉnh.'
+  },
+  {
+    icon: 'mdi:trending-up',
+    title: 'Mô Hình Nhân Rộng',
+    desc: 'Công nghệ đã được kiểm chứng tại Bù Đăng sẵn sàng tích hợp dữ liệu di sản của tất cả các khu vực trong Thành Phố Đồng Nai.'
+  },
 ]
 
 // LỘ TRÌNH — tầm nhìn có căn cứ

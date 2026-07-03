@@ -89,7 +89,7 @@
           <div
             v-for="stat in heroStats"
             :key="stat.label"
-            class="bg-charcoal-950/50 backdrop-blur-xl border border-charcoal-800/60 rounded-2xl p-4 text-center hover:border-gold-500/30 transition-all duration-300 hover:-translate-y-0.5"
+            class="bg-charcoal-950/60 backdrop-blur-xl border border-charcoal-800/50 rounded-2xl p-4 text-center hover:border-gold-500/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-gold-500/5"
           >
             <span class="block text-2xl md:text-3xl font-bold text-gold-400 font-heading leading-none">{{ stat.value }}</span>
             <span class="block text-3xs text-charcoal-400 mt-1 uppercase tracking-wider font-semibold">{{ stat.label }}</span>
@@ -121,7 +121,7 @@
     <!-- ================================================== -->
     <!-- STICKY TAB NAVIGATION                              -->
     <!-- ================================================== -->
-    <div ref="stickyNavRef" class="sticky top-[72px] z-30 bg-charcoal-950/90 backdrop-blur-xl border-b border-charcoal-850 shadow-xl">
+    <div ref="stickyNavRef" class="sticky top-[72px] z-30 bg-charcoal-950/95 backdrop-blur-2xl border-b border-charcoal-800/50 shadow-2xl shadow-charcoal-950/50">
       <div class="max-w-screen-2xl mx-auto px-4 sm:px-6">
         <div class="flex items-center gap-1 overflow-x-auto scrollbar-none py-2">
           <!-- User XP mini-badge -->
@@ -140,9 +140,9 @@
           <button
             v-for="item in navItems"
             :key="item.id"
-            class="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-300 shrink-0 group relative"
+            class="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 shrink-0 group relative"
             :class="activeTab === item.id
-              ? 'bg-gold-500/15 text-gold-400 border border-gold-500/30'
+              ? 'bg-gold-500/12 text-gold-400 border border-gold-500/25 shadow-inner'
               : 'text-charcoal-350 hover:text-ivory hover:bg-charcoal-900'"
             @click="activeTab = item.id; scrollToContent()"
             :aria-label="`Chuyển sang ${item.label}`"
@@ -196,7 +196,7 @@
               v-for="(stat, i) in dashboardStats"
               :key="stat.label"
               class="group relative overflow-hidden rounded-2xl border p-4 hover:-translate-y-1 transition-all duration-300 cursor-default"
-              :class="i === 0 ? 'bg-gradient-to-br from-gold-500/10 to-charcoal-950 border-gold-500/25 col-span-2 sm:col-span-1 lg:col-span-2' : 'bg-charcoal-950 border-charcoal-850 hover:border-charcoal-700'"
+              :class="i === 0 ? 'bg-gradient-to-br from-gold-500/12 via-charcoal-950 to-charcoal-950 border-gold-500/30 col-span-2 sm:col-span-1 lg:col-span-2 shadow-lg shadow-gold-500/5' : 'bg-charcoal-950 border-charcoal-850 hover:border-charcoal-700'"
             >
               <div class="absolute -top-6 -right-6 w-20 h-20 rounded-full opacity-10 group-hover:opacity-20 transition-opacity" :class="stat.glowColor" />
               <div class="relative z-10">
@@ -331,7 +331,7 @@
           <!-- Featured Spotlight -->
           <template v-if="featuredResource && activeTypeFilter === 'all' && !paperSearchQuery">
             <div
-              class="relative overflow-hidden rounded-3xl border border-gold-500/20 bg-gradient-to-br from-charcoal-950 via-charcoal-900 to-charcoal-950 cursor-pointer hover:border-gold-500/40 transition-all duration-500 group shadow-xl mb-8"
+              class="relative overflow-hidden rounded-3xl border border-gold-500/20 bg-gradient-to-br from-charcoal-950 via-charcoal-900/95 to-charcoal-950 cursor-pointer hover:border-gold-500/35 transition-all duration-500 group shadow-2xl shadow-black/40 mb-8"
               @click="openResource(featuredResource)"
               role="button"
               :aria-label="`Mở tài liệu nổi bật: ${featuredResource.title}`"
@@ -665,11 +665,11 @@
             v-model="aiInput"
             type="text"
             placeholder="Hỏi về cồng chiêng Bom Bo, Chiến khu Đ, trảng cỏ Bù Lạch..."
-            class="flex-1 bg-charcoal-950 border border-charcoal-800 rounded-2xl px-5 py-4 text-sm focus:outline-none focus:border-gold-500/60 pr-14 text-ivory placeholder-charcoal-600 transition-colors"
+            class="flex-1 bg-charcoal-900/50 border border-charcoal-800 rounded-2xl px-5 py-4 text-sm focus:outline-none focus:border-gold-500/50 focus:ring-1 focus:ring-gold-500/10 pr-14 text-ivory placeholder-charcoal-600 transition-all duration-200"
             @keydown.enter="sendAiMessage(aiInput)"
           />
           <button
-            class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-gold-500 text-charcoal-950 hover:bg-gold-400 flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 shadow-gold/20 shadow"
+            class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-gold-500 text-charcoal-950 hover:bg-gold-400 flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-gold-500/20 disabled:opacity-40 disabled:cursor-not-allowed"
             @click="sendAiMessage(aiInput)"
             :disabled="!aiInput.trim() || isAiThinking"
             aria-label="Gửi câu hỏi"
@@ -691,7 +691,7 @@
 
         <EmptyState v-if="mapLandmarks.length === 0" tab="map" :userXP="userXP" :streakDays="streakDays" @action="handleEmptyStateAction" />
         <template v-else>
-          <div class="relative w-full h-[360px] bg-charcoal-950 border border-charcoal-850 rounded-3xl overflow-hidden flex items-center justify-center">
+          <div class="relative w-full h-[400px] bg-charcoal-950 border border-charcoal-800 rounded-3xl overflow-hidden flex items-center justify-center">
             <div class="absolute inset-0 bg-[radial-gradient(rgba(201,146,42,0.04)_1.5px,transparent_1.5px)] [background-size:24px_24px] pointer-events-none" />
             <svg class="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
               <path d="M 120 180 Q 250 80 450 180 T 780 120" fill="none" stroke="#C9922A" stroke-width="2" stroke-dasharray="6,6" opacity="0.3" />
@@ -704,20 +704,20 @@
               @click="activeLandmark = landmark"
             >
               <div
-                class="w-12 h-12 rounded-full flex items-center justify-center border-2 shadow-xl transition-all duration-300 relative"
-                :class="activeLandmark?.id === landmark.id ? 'bg-gold-500 border-gold-300 scale-115 shadow-gold-500/30' : 'bg-charcoal-900 border-gold-500/60 hover:scale-110 hover:border-gold-400'"
+                class="w-13 h-13 rounded-full flex items-center justify-center border-2 shadow-2xl transition-all duration-300 relative"
+                :class="activeLandmark?.id === landmark.id ? 'bg-gradient-to-br from-gold-400 to-gold-600 border-gold-200 scale-120 shadow-gold-500/50' : 'bg-charcoal-900/90 border-gold-500/50 hover:scale-110 hover:border-gold-400 hover:bg-charcoal-800'"
               >
                 <div v-if="activeLandmark?.id === landmark.id" class="absolute inset-0 bg-gold-400/30 rounded-full animate-ping" />
                 <Icon :name="landmark.icon" class="w-5 h-5" :class="activeLandmark?.id === landmark.id ? 'text-charcoal-950' : 'text-gold-400'" />
               </div>
-              <span class="mt-2 text-3xs font-heading font-bold uppercase tracking-wider bg-charcoal-950/90 border border-charcoal-800 px-2.5 py-0.5 rounded-full shadow whitespace-nowrap text-ivory">{{ landmark.name }}</span>
+              <span class="mt-1.5 text-3xs font-heading font-bold uppercase tracking-wider bg-charcoal-950/95 border border-charcoal-800/80 px-2.5 py-0.5 rounded-full shadow-lg shadow-black/30 whitespace-nowrap text-charcoal-200 backdrop-blur-sm">{{ landmark.name }}</span>
             </div>
           </div>
 
-          <div v-if="activeLandmark" class="bg-charcoal-950 border border-charcoal-800 rounded-3xl p-6 grid grid-cols-1 md:grid-cols-2 gap-6 animate-section-in">
+          <div v-if="activeLandmark" class="bg-charcoal-950 border border-charcoal-800/60 rounded-3xl p-6 grid grid-cols-1 md:grid-cols-2 gap-6 animate-section-in shadow-xl shadow-black/20">
             <div class="space-y-4">
               <div class="flex items-center gap-2">
-                <span class="text-gold-400 text-3xs font-bold uppercase tracking-widest bg-gold-500/10 px-2.5 py-1 rounded-lg">Điểm khảo cứu</span>
+                <span class="text-gold-300 text-3xs font-bold uppercase tracking-widest bg-gold-500/12 border border-gold-500/20 px-2.5 py-1 rounded-lg">Điểm Khảo Cứu</span>
                 <span class="text-charcoal-450 text-3xs flex items-center gap-1"><Icon name="mdi:map-marker" class="w-3.5 h-3.5 text-gold-500" />Bù Đăng</span>
               </div>
               <h4 class="font-heading font-bold text-ivory text-xl">{{ activeLandmark.name }}</h4>
@@ -788,7 +788,7 @@
               </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              <div v-for="(word, idx) in filteredGlossary" :key="idx" class="bg-charcoal-950 border border-charcoal-800 hover:border-gold-500/40 rounded-2xl p-5 transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 group">
+              <div v-for="(word, idx) in filteredGlossary" :key="idx" class="bg-charcoal-950 border border-charcoal-800 hover:border-gold-500/35 rounded-2xl p-5 transition-all duration-400 hover:shadow-xl hover:shadow-black/30 hover:-translate-y-1 group">
                 <div class="flex items-start justify-between mb-3">
                   <span class="text-gold-400 text-3xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-lg bg-gold-500/10 border border-gold-500/20">{{ word.category }}</span>
                   <button class="w-8 h-8 rounded-xl bg-charcoal-900 hover:bg-gold-500 hover:text-charcoal-950 flex items-center justify-center transition-all duration-300 text-gold-400 group-hover:scale-105" title="Nghe phát âm" @click="pronounceTerm(word.term, word.pronunciation)" aria-label="Nghe phát âm">
@@ -806,9 +806,9 @@
           <div v-else class="max-w-4xl mx-auto space-y-8 text-center">
             <p class="text-charcoal-400 text-sm">Nhấn vào thẻ để lật và xem định nghĩa thuật ngữ S'tiêng.</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
-              <div v-for="(card, idx) in filteredGlossary" :key="idx" class="flashcard-container cursor-pointer perspective h-52 animate-section-in" @click="card.isFlipped = !card.isFlipped" :aria-label="`Thẻ từ: ${card.term}`">
+              <div v-for="(card, idx) in filteredGlossary" :key="idx" class="flashcard-container cursor-pointer perspective h-56 animate-section-in" @click="card.isFlipped = !card.isFlipped" :aria-label="`Thẻ từ: ${card.term}`">
                 <div class="w-full h-full relative transition-transform duration-500 transform-style-3d rounded-2xl shadow-lg" :class="{ 'rotate-y-180': card.isFlipped }">
-                  <div class="absolute inset-0 backface-hidden bg-charcoal-950 border border-charcoal-800 rounded-2xl p-6 flex flex-col justify-between">
+                  <div class="absolute inset-0 backface-hidden bg-gradient-to-br from-charcoal-950 to-charcoal-900 border border-charcoal-800 rounded-2xl p-6 flex flex-col justify-between shadow-inner">
                     <div>
                       <span class="text-charcoal-500 text-3xs font-bold uppercase tracking-wider block">Thuật ngữ S'tiêng</span>
                       <h4 class="font-heading font-bold text-gold-400 text-xl mt-2">{{ card.term }}</h4>
@@ -819,7 +819,7 @@
                       <span class="text-gold-400 flex items-center gap-1">Lật thẻ <Icon name="mdi:rotate-3d-variant" class="w-3.5 h-3.5" /></span>
                     </div>
                   </div>
-                  <div class="absolute inset-0 backface-hidden bg-earth-900 border border-earth-800 rounded-2xl p-6 flex flex-col justify-between rotate-y-180">
+                  <div class="absolute inset-0 backface-hidden bg-gradient-to-br from-earth-900 to-earth-950 border border-earth-800/60 rounded-2xl p-6 flex flex-col justify-between rotate-y-180">
                     <div>
                       <span class="text-gold-300 text-3xs font-bold uppercase tracking-wider block">Ý nghĩa chi tiết</span>
                       <p class="text-xs text-charcoal-200 leading-relaxed mt-3 line-clamp-4 font-body">{{ card.definition }}</p>
@@ -858,7 +858,7 @@
         <template v-else>
           <!-- Photos -->
           <div v-if="activeMediaSubtab === 'photos'" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div v-for="(item, idx) in imageStories" :key="idx" class="group relative rounded-3xl overflow-hidden border border-charcoal-850 bg-charcoal-950 cursor-pointer shadow-lg h-72 hover:border-gold-500/30 transition-all duration-300" @click="openImageModal(item)" :aria-label="`Xem ảnh: ${item.title}`">
+            <div v-for="(item, idx) in imageStories" :key="idx" class="group relative rounded-3xl overflow-hidden border border-charcoal-800 bg-charcoal-950 cursor-pointer shadow-lg shadow-black/20 h-72 hover:border-gold-500/25 transition-all duration-400 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/40" @click="openImageModal(item)" :aria-label="`Xem ảnh: ${item.title}`">
               <img :src="item.image" :alt="item.title" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
               <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-950/30 to-transparent" />
               <div class="absolute bottom-0 inset-x-0 p-5 space-y-1.5">
@@ -1102,10 +1102,10 @@
               v-for="lesson in lessonCatalog"
               :key="lesson.id"
               :to="`/study/lesson/${lesson.id}`"
-              class="group block bg-charcoal-950 border border-charcoal-800 rounded-3xl overflow-hidden hover:border-gold-500/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-charcoal-950/50"
+              class="group block bg-charcoal-950 border border-charcoal-800 rounded-3xl overflow-hidden hover:border-gold-500/35 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-black/60 relative"
               :aria-label="`Bắt đầu bài học: ${lesson.title}`"
             >
-              <div class="h-44 relative overflow-hidden bg-charcoal-900">
+              <div class="h-48 relative overflow-hidden bg-charcoal-900">
                 <img v-if="lesson.coverImage" :src="lesson.coverImage" :alt="lesson.title" class="w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500" loading="lazy" />
                 <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-950/20 to-transparent" />
                 <div class="absolute top-3 right-3 flex items-center gap-1.5 bg-charcoal-950/80 border border-charcoal-800 px-2.5 py-1 rounded-full text-3xs backdrop-blur-sm">
@@ -1113,20 +1113,20 @@
                   <span class="text-charcoal-300 font-semibold">~{{ lesson.estimatedMinutes }} phút</span>
                 </div>
                 <div class="absolute bottom-3 left-4">
-                  <span class="text-3xs font-bold uppercase tracking-wider text-gold-400">{{ lesson.subject }}</span>
+                  <span class="text-3xs font-bold uppercase tracking-wider text-gold-300 bg-gold-500/15 border border-gold-500/25 px-2.5 py-1 rounded-full backdrop-blur-sm">{{ lesson.subject }}</span>
                 </div>
               </div>
-              <div class="p-6 space-y-3">
+              <div class="p-5 space-y-3">
                 <h4 class="font-heading font-bold text-sm text-ivory group-hover:text-gold-300 transition-colors leading-snug">{{ lesson.title }}</h4>
                 <p class="text-charcoal-400 text-xs leading-relaxed line-clamp-2">{{ lesson.tldr }}</p>
                 <div class="flex flex-wrap gap-1.5">
-                  <span v-for="block in lesson.availableBlocks" :key="block" class="text-3xs px-2 py-0.5 bg-charcoal-900 border border-charcoal-800 text-charcoal-400 rounded-full">{{ block }}</span>
+                  <span v-for="block in lesson.availableBlocks" :key="block" class="text-3xs px-2.5 py-0.5 bg-charcoal-900/80 border border-charcoal-800 text-charcoal-500 rounded-full hover:border-charcoal-700 hover:text-charcoal-300 transition-colors">{{ block }}</span>
                 </div>
-                <div class="flex items-center justify-between pt-2 border-t border-charcoal-850">
-                  <span class="text-gold-400 text-3xs font-bold flex items-center gap-1">
+                <div class="flex items-center justify-between pt-3 border-t border-charcoal-800/60">
+                  <span class="text-gold-400 text-3xs font-bold flex items-center gap-1.5 bg-gold-500/8 border border-gold-500/20 px-2 py-0.5 rounded-full">
                     <Icon name="mdi:star-outline" class="w-3.5 h-3.5" />+{{ lesson.xpReward }} XP
                   </span>
-                  <span class="text-charcoal-400 text-3xs flex items-center gap-1 group-hover:text-gold-400 transition-colors font-semibold">
+                  <span class="text-charcoal-500 text-3xs flex items-center gap-1 group-hover:text-gold-400 transition-all duration-300 font-bold group-hover:gap-2">
                     Bắt đầu học <Icon name="mdi:arrow-right" class="w-3.5 h-3.5" />
                   </span>
                 </div>

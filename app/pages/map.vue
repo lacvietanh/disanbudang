@@ -1,17 +1,29 @@
 <template>
   <div class="min-h-screen bg-charcoal-900 flex flex-col relative pt-[72px]">
-    <!-- Page header -->
-    <div class="border-b border-charcoal-800/80 py-5 bg-charcoal-950/90 backdrop-blur-xl relative z-30 shadow-lg shadow-charcoal-950/40">
-      <div class="container-heritage flex items-center justify-between">
-        <div>
-          <span class="eyebrow text-gold-400 text-3xs mb-1.5 block tracking-widest font-bold">Không Gian Bản Đồ Tương Tác</span>
-          <h1 class="font-heading font-bold text-ivory text-2xl leading-none tracking-tight">Bản Đồ Di Sản Bù Đăng</h1>
+    <!-- Page header — cinematic -->
+    <div class="border-b border-charcoal-800/50 py-4 bg-gradient-to-b from-charcoal-950 to-charcoal-950/97 backdrop-blur-xl relative z-30 shadow-2xl shadow-charcoal-950/80">
+      <!-- Gold accent line top -->
+      <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-500/40 to-transparent" />
+      <div class="container-heritage flex items-center justify-between gap-4">
+        <div class="flex items-center gap-3.5">
+          <div class="hidden sm:flex w-10 h-10 rounded-xl bg-gold-500/10 border border-gold-500/20 items-center justify-center shrink-0">
+            <Icon name="mdi:map-legend" class="w-5 h-5 text-gold-400" />
+          </div>
+          <div>
+            <span class="text-gold-400/70 text-3xs mb-0.5 block tracking-[0.18em] font-bold uppercase">Không Gian Tương Tác</span>
+            <h1 class="font-heading font-bold text-ivory text-xl leading-none tracking-tight">Bản Đồ Di Sản Bù Đăng</h1>
+          </div>
         </div>
-        <div class="flex items-center gap-3">
-          <span class="text-charcoal-355 text-xs hidden sm:inline-flex items-center gap-2 bg-charcoal-900 border border-charcoal-800 rounded-full px-3.5 py-1.5 font-medium">
-            <span class="w-2 h-2 rounded-full bg-gold-400 animate-pulse-gold"></span>
-            {{ displayedHeritages.length }} di sản hiển thị
-          </span>
+        <div class="flex items-center gap-2.5">
+          <!-- Count badge -->
+          <div class="hidden sm:flex items-center gap-2 bg-charcoal-900/80 border border-charcoal-800 rounded-full px-3.5 py-1.5">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-400 opacity-75" />
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-gold-500" />
+            </span>
+            <span class="text-charcoal-200 text-xs font-semibold">{{ displayedHeritages.length }}</span>
+            <span class="text-charcoal-500 text-xs">di sản</span>
+          </div>
           <!-- Autoplay Tour Button -->
           <button
             class="text-xs inline-flex items-center gap-2 rounded-full px-4 py-2 font-bold border transition-all duration-300 shadow-md cursor-pointer select-none"
@@ -48,11 +60,16 @@
 
       <!-- Sidebar -->
       <aside
-        class="map-sidebar absolute lg:relative z-20 w-80 lg:w-90 h-full bg-charcoal-950/95 backdrop-blur-xl border-r border-charcoal-850 flex flex-col transition-transform duration-300 lg:translate-x-0"
+        class="map-sidebar absolute lg:relative z-20 w-80 lg:w-88 h-full flex flex-col transition-transform duration-300 lg:translate-x-0 relative overflow-hidden"
         :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
         role="complementary"
         aria-label="Bảng tìm kiếm và bộ lọc"
       >
+        <!-- Glassmorphism BG -->
+        <div class="absolute inset-0 bg-charcoal-950/96 backdrop-blur-2xl border-r border-charcoal-800/60" />
+        <div class="absolute top-0 bottom-0 right-0 w-px bg-gradient-to-b from-transparent via-gold-500/15 to-transparent" />
+        <!-- Content -->
+        <div class="relative flex flex-col h-full">
         <!-- Tab Selectors -->
         <div class="grid grid-cols-2 border-b border-charcoal-850 bg-charcoal-900/40">
           <button
@@ -111,7 +128,7 @@
               <button
                 v-for="feat in featureFilters"
                 :key="feat.id"
-                class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-3xs font-bold uppercase tracking-wider transition-all border"
+                class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-3xs font-semibold uppercase tracking-wide transition-all duration-200 border"
                 :class="activeFilterFeature === feat.id ? 'bg-gold-500/10 text-gold-300 border-gold-500/30 shadow-md' : 'text-charcoal-400 bg-charcoal-900/20 border-charcoal-800 hover:border-charcoal-700 hover:text-ivory'"
                 @click="toggleFeatureFilter(feat.id)"
                 :aria-label="'Lọc theo ' + feat.label"
@@ -127,7 +144,7 @@
             <p class="eyebrow text-gold-400 text-3xs tracking-widest font-bold">DANH MỤC DI SẢN BÙ ĐĂNG</p>
             <div class="flex flex-col gap-1.5 max-h-48 overflow-y-auto scrollbar-none pr-1">
               <button
-                class="w-full flex items-center gap-3 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 border border-charcoal-800 hover:border-charcoal-700 hover:text-ivory"
+                class="w-full flex items-center gap-3 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 border hover:border-charcoal-700 hover:text-ivory"
                 :class="activeCategory === '' ? 'bg-gold-500/10 text-gold-300 border-gold-500/30 shadow-md' : 'text-charcoal-400 bg-charcoal-900/20'"
                 @click="setCategory('')"
                 aria-label="Hiện tất cả danh mục"
@@ -183,19 +200,19 @@
               <div
                 v-for="heritage in displayedHeritages"
                 :key="heritage.id"
-                class="group flex gap-3.5 p-3 rounded-xl cursor-pointer transition-all duration-300 border relative overflow-hidden"
+                class="group flex gap-3 p-2.5 rounded-xl cursor-pointer transition-all duration-300 border relative overflow-hidden"
                 :class="selectedId === heritage.id
-                  ? 'bg-gold-500/5 border-gold-500/40 shadow-lg shadow-gold-500/5'
-                  : 'bg-charcoal-900/30 border-charcoal-800/40 hover:border-charcoal-750 hover:bg-charcoal-900/70 hover:translate-x-0.5'"
+                  ? 'bg-gradient-to-r from-gold-500/8 to-transparent border-gold-500/35 shadow-lg'
+                  : 'border-transparent bg-transparent hover:bg-charcoal-900/50 hover:border-charcoal-800/60'"
                 @click="selectHeritage(heritage)"
                 tabindex="0"
                 @keypress.enter="selectHeritage(heritage)"
                 :aria-label="heritage.title + ', nhấn Enter để xem chi tiết trên bản đồ'"
               >
                 <!-- Indicator block left -->
-                <div v-if="selectedId === heritage.id" class="absolute left-0 top-0 bottom-0 w-1 bg-gold-400 rounded-r-md"></div>
+                <div v-if="selectedId === heritage.id" class="absolute left-0 top-2 bottom-2 w-0.5 bg-gradient-to-b from-gold-400 via-gold-500 to-gold-400 rounded-full"></div>
                 
-                <div class="w-18 h-13 rounded-lg overflow-hidden flex-shrink-0 relative border border-charcoal-700 shadow-md">
+                <div class="w-16 h-12 rounded-xl overflow-hidden flex-shrink-0 relative border border-charcoal-800/60 shadow-md">
                   <img :src="heritage.coverImage" :alt="heritage.title" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                   <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950/70 via-transparent to-transparent" />
                 </div>
@@ -229,7 +246,7 @@
         </div>
 
         <!-- JOURNEY / ROUTES TAB -->
-        <div v-if="activeTab === 'route'" class="flex-1 flex flex-col min-h-0 overflow-y-auto scrollbar-none p-4 space-y-5 bg-charcoal-950/20">
+        <div v-if="activeTab === 'route'" class="flex-1 flex flex-col min-h-0 overflow-y-auto scrollbar-none">
           <div class="space-y-1">
             <p class="eyebrow text-gold-400 text-3xs tracking-widest font-bold">TUYẾN ĐƯỜNG ĐỀ XUẤT</p>
             <p class="text-xs text-charcoal-450 leading-relaxed">Khám phá dòng chảy lịch sử và văn hóa bản địa Bù Đăng theo các tuyến đề xuất chuyên sâu.</p>
@@ -240,10 +257,10 @@
             <div
               v-for="route in suggestedRoutes"
               :key="route.id"
-              class="border rounded-2xl p-4.5 cursor-pointer transition-all duration-300 relative overflow-hidden"
+              class="border rounded-2xl cursor-pointer transition-all duration-400 relative overflow-hidden"
               :class="selectedRouteId === route.id
-                ? 'bg-charcoal-900 border-gold-500/50 shadow-lg shadow-gold-500/5'
-                : 'bg-charcoal-900/30 border-charcoal-850 hover:border-charcoal-800 hover:bg-charcoal-900/50'"
+                ? 'border-gold-500/40 shadow-xl shadow-black/30'
+                : 'border-charcoal-800/50 hover:border-charcoal-700'"
               @click="toggleRoute(route)"
               tabindex="0"
               @keypress.enter="toggleRoute(route)"
@@ -295,6 +312,7 @@
             Xóa mọi bộ lọc
           </button>
         </div>
+        </div> <!-- /relative content wrapper -->
       </aside>
 
       <!-- Map Area -->
@@ -322,7 +340,7 @@
           <Transition name="panel-slide-right">
             <div
               v-if="selectedHeritage && isDesktop"
-              class="absolute top-4 right-4 max-h-[calc(100%-2rem)] z-[500] w-[400px] bg-charcoal-950/90 backdrop-blur-xl rounded-2xl overflow-hidden border border-gold-500/20 shadow-2xl shadow-black/70 flex flex-col h-fit"
+              class="absolute top-4 right-4 max-h-[calc(100%-2rem)] z-[500] w-[400px] bg-charcoal-950/97 backdrop-blur-2xl rounded-2xl overflow-hidden border border-gold-500/25 shadow-2xl shadow-black/80 flex flex-col h-fit"
               role="dialog"
               :aria-label="'Thông tin chi tiết: ' + selectedHeritage.title"
             >
@@ -330,7 +348,7 @@
               <div class="h-1 w-full bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 flex-shrink-0"></div>
 
               <!-- Banner Photo - taller for visibility -->
-              <div class="relative h-48 flex-shrink-0 bg-charcoal-900 group">
+              <div class="relative h-52 flex-shrink-0 bg-charcoal-900 group">
                 <img :src="selectedHeritage.coverImage" :alt="selectedHeritage.title" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950/95 via-charcoal-950/30 to-transparent"></div>
                 
@@ -354,9 +372,9 @@
               </div>
 
               <!-- Tab Selection row -->
-              <div class="flex border-b border-charcoal-850 bg-charcoal-950/45 shrink-0">
+              <div class="flex border-b border-charcoal-800/60 bg-charcoal-950/80 shrink-0">
                 <button
-                  class="flex-1 py-3 text-[10px] uppercase font-bold tracking-wider text-center border-b-2 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                  class="flex-1 py-3 text-[10px] uppercase font-bold tracking-wider text-center border-b-2 transition-all flex items-center justify-center gap-1.5 cursor-pointer relative"
                   :class="activePanelTab === 'info' ? 'border-gold-500 text-gold-400 bg-charcoal-900/40' : 'border-transparent text-charcoal-400 hover:text-ivory'"
                   @click="activePanelTab = 'info'"
                 >
@@ -364,7 +382,7 @@
                   Tổng quan
                 </button>
                 <button
-                  class="flex-1 py-3 text-[10px] uppercase font-bold tracking-wider text-center border-b-2 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                  class="flex-1 py-3 text-[10px] uppercase font-bold tracking-wider text-center border-b-2 transition-all flex items-center justify-center gap-1.5 cursor-pointer relative"
                   :class="activePanelTab === 'history' ? 'border-gold-500 text-gold-400 bg-charcoal-900/40' : 'border-transparent text-charcoal-400 hover:text-ivory'"
                   @click="activePanelTab = 'history'"
                 >
@@ -372,7 +390,7 @@
                   Lịch sử
                 </button>
                 <button
-                  class="flex-1 py-3 text-[10px] uppercase font-bold tracking-wider text-center border-b-2 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                  class="flex-1 py-3 text-[10px] uppercase font-bold tracking-wider text-center border-b-2 transition-all flex items-center justify-center gap-1.5 cursor-pointer relative"
                   :class="activePanelTab === 'media' ? 'border-gold-500 text-gold-400 bg-charcoal-900/40' : 'border-transparent text-charcoal-400 hover:text-ivory'"
                   @click="activePanelTab = 'media'"
                 >
@@ -399,7 +417,7 @@
                       <div
                         v-for="(fact, fIdx) in selectedHeritage.quickFacts"
                         :key="fIdx"
-                        class="flex items-center gap-2.5 bg-charcoal-900/60 p-2.5 rounded-xl border border-charcoal-850"
+                        class="flex items-center gap-2.5 bg-charcoal-900/70 p-2.5 rounded-xl border border-charcoal-800 hover:border-charcoal-700 transition-colors"
                       >
                         <div class="w-8 h-8 rounded-lg bg-gold-500/10 flex items-center justify-center text-gold-400 shrink-0 border border-gold-500/15">
                           <Icon :name="fact.icon ?? 'mdi:information-outline'" class="w-4 h-4" />
@@ -482,7 +500,7 @@
               </div>
 
               <!-- Footer Action buttons -->
-              <div class="p-4 border-t border-charcoal-850 bg-charcoal-900/90 grid grid-cols-2 gap-3 shrink-0">
+              <div class="p-4 border-t border-charcoal-800/60 bg-charcoal-950/90 grid grid-cols-2 gap-3 shrink-0">
                 <NuxtLink
                   :to="`/heritage/${selectedHeritage.slug}`"
                   class="btn-primary text-xs justify-center py-3.5 font-bold tracking-wide rounded-xl shadow-lg shadow-gold-500/10 flex items-center gap-1.5"

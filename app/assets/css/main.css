@@ -851,3 +851,51 @@ textarea:disabled {
   backdrop-filter: blur(12px) saturate(150%);
   background: rgba(7, 6, 5, 0.88);
 }
+
+/* =========================================================
+   UI/UX MICRO-INTERACTION ENHANCEMENTS
+   ========================================================= */
+
+/* Shadow gold for progress thumb + play button */
+.shadow-gold {
+  box-shadow: 0 0 12px rgba(201, 146, 42, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Map pin pulse stagger — avoid synchronized ping effect */
+.map-pin:nth-child(2n) .animate-ping { animation-delay: 0.4s; }
+.map-pin:nth-child(3n) .animate-ping { animation-delay: 0.8s; }
+.map-pin:nth-child(4n) .animate-ping { animation-delay: 1.2s; }
+.map-pin:nth-child(5n) .animate-ping { animation-delay: 0.6s; }
+
+/* Keyboard shortcut badge */
+kbd {
+  font-family: ui-monospace, 'SFMono-Regular', 'Menlo', monospace;
+  line-height: 1;
+}
+
+/* Audio waveform flat state */
+.waveform-bar {
+  transform-origin: bottom center;
+}
+
+/* Book card enhanced hover state */
+.book-card:hover .book-spine {
+  background: linear-gradient(to right, rgba(201, 146, 42, 0.15) 0%, rgba(0, 0, 0, 0.05) 40%, rgba(255, 255, 255, 0.2) 100%);
+}
+
+/* Timeline active indicator pulse */
+@keyframes dot-appear {
+  0% { opacity: 0; transform: translateX(-50%) translateY(50%) scale(0); }
+  100% { opacity: 1; transform: translateX(-50%) translateY(50%) scale(1); }
+}
+
+/* Stats card float-up micro animation */
+@keyframes float-subtle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-3px); }
+}
+
+/* Progress bar group hover thumb fade */
+.group\/progress:hover .progress-thumb {
+  opacity: 1;
+}

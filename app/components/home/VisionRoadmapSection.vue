@@ -34,7 +34,7 @@
             <ul class="space-y-3 text-sm text-charcoal-300">
               <li class="flex items-start gap-2.5">
                 <Icon name="mdi:check-circle" class="w-4 h-4 text-forest-400 mt-0.5 shrink-0" />
-                <span>50+ di sản văn hóa, lịch sử, thiên nhiên đã số hóa</span>
+                <span>11 di sản văn hóa, lịch sử, thiên nhiên đã được số hóa đầy đủ</span>
               </li>
               <li class="flex items-start gap-2.5">
                 <Icon name="mdi:check-circle" class="w-4 h-4 text-forest-400 mt-0.5 shrink-0" />
@@ -42,11 +42,11 @@
               </li>
               <li class="flex items-start gap-2.5">
                 <Icon name="mdi:check-circle" class="w-4 h-4 text-forest-400 mt-0.5 shrink-0" />
-                <span>AI trợ lý hướng dẫn di sản & quiz tương tác gamification</span>
+                <span>AI trợ lý hướng dẫn di sản &amp; quiz tương tác gamification</span>
               </li>
               <li class="flex items-start gap-2.5">
                 <Icon name="mdi:check-circle" class="w-4 h-4 text-forest-400 mt-0.5 shrink-0" />
-                <span>Cộng đồng đóng góp ký ức & chuẩn hóa SEO đa ngôn ngữ</span>
+                <span>Cộng đồng đóng góp ký ức &amp; chuẩn hóa SEO đa ngôn ngữ</span>
               </li>
             </ul>
           </div>
@@ -65,11 +65,12 @@
             <h3 class="font-heading font-bold text-ivory text-2xl mb-4">
               🏙️ Giai Đoạn 2
               <span class="block text-charcoal-300 text-xl mt-1">Toàn Thành Phố Đồng Nai</span>
+              <span class="block text-charcoal-500 text-sm mt-0.5 font-normal">TP trực thuộc Trung ương thứ 7</span>
             </h3>
             <ul class="space-y-3 text-sm text-charcoal-400">
               <li class="flex items-start gap-2.5">
                 <Icon name="mdi:arrow-right-circle-outline" class="w-4 h-4 text-gold-600 mt-0.5 shrink-0" />
-                <span>Nhân rộng mô hình số hóa ra toàn bộ các điểm di sản TP. Đồng Nai</span>
+                <span>Nhân rộng mô hình số hóa ra toàn bộ các điểm di sản Thành Phố Đồng Nai</span>
               </li>
               <li class="flex items-start gap-2.5">
                 <Icon name="mdi:arrow-right-circle-outline" class="w-4 h-4 text-gold-600 mt-0.5 shrink-0" />
@@ -77,11 +78,11 @@
               </li>
               <li class="flex items-start gap-2.5">
                 <Icon name="mdi:arrow-right-circle-outline" class="w-4 h-4 text-gold-600 mt-0.5 shrink-0" />
-                <span>Tích hợp hệ thống smart tourism & QR code thực địa</span>
+                <span>Tích hợp hệ thống smart tourism &amp; QR code thực địa</span>
               </li>
               <li class="flex items-start gap-2.5">
                 <Icon name="mdi:arrow-right-circle-outline" class="w-4 h-4 text-gold-600 mt-0.5 shrink-0" />
-                <span>Hợp tác với Sở VHTT&DL Đồng Nai để phổ cập giáo dục địa phương</span>
+                <span>Hợp tác với Sở VHTT&amp;DL Đồng Nai để phổ cập giáo dục địa phương</span>
               </li>
             </ul>
           </div>

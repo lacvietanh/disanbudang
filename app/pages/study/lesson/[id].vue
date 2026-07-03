@@ -194,7 +194,7 @@ const lessons: Record<string, LessonData> = {
     ],
     references: [
       { title: 'Lịch sử kháng chiến miền Đông Nam Bộ', source: 'Nhà xuất bản Quân đội Nhân dân, 2002' },
-      { title: 'Di tích lịch sử Chiến Khu Đ', source: 'Bảo tàng tỉnh Bình Phước', url: 'https://baotangbinhphuoc.vn' },
+      { title: 'Di tích lịch sử Chiến Khu Đ', source: 'Bảo tàng Đồng Nai', url: 'https://baotangdongnai.vn' },
     ],
     nextSteps: [
       { title: 'Văn Hóa Cồng Chiêng S\'tiêng', lessonId: 'cong-chieng-stieng', type: 'lesson' },
@@ -265,7 +265,7 @@ const lessons: Record<string, LessonData> = {
     ],
     references: [
       { title: 'Không gian văn hóa cồng chiêng Tây Nguyên', source: 'UNESCO Intangible Cultural Heritage', url: 'https://ich.unesco.org' },
-      { title: 'Âm nhạc dân tộc S\'tiêng và M\'nông tại Bình Phước', source: 'Viện Âm nhạc Việt Nam, 2018' },
+      { title: 'Không gian văn hóa cồng chiêng Tây Nguyên tại Đồng Nai', source: 'Viện Âm nhạc Việt Nam, 2018' },
     ],
     nextSteps: [
       { title: 'Chiến Khu Đ — Căn Cứ Địa Cách Mạng', lessonId: 'chien-khu-d', type: 'lesson' },
