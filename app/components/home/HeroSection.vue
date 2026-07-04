@@ -147,6 +147,10 @@
 </template>
 
 <script setup lang="ts">
+import { useHeritageStore } from '~/stores/heritage'
+
+const heritageStore = useHeritageStore()
+
 const slides = [
   {
     image: '/images/heritage/Bombo/TAN08220.jpg',
@@ -191,12 +195,12 @@ onMounted(() => {
 
 onUnmounted(() => clearInterval(slideInterval))
 
-const stats = [
-  { icon: 'mdi:castle', value: '11', suffix: '', label: 'Di sản số hóa' },
+const stats = computed(() => [
+  { icon: 'mdi:castle', value: String(heritageStore.totalCount), suffix: '', label: 'Di sản số hóa' },
   { icon: 'mdi:book-open-variant', value: '6', suffix: '', label: 'Ký ức cộng đồng' },
   { icon: 'mdi:headphones', value: '4', suffix: '', label: 'Audio guide' },
   { icon: 'mdi:school-outline', value: '5', suffix: '+', label: 'Trường học tham gia' },
-]
+])
 </script>
 
 <style scoped>

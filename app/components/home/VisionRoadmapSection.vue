@@ -34,7 +34,7 @@
             <ul class="space-y-3 text-sm text-charcoal-300">
               <li class="flex items-start gap-2.5">
                 <Icon name="mdi:check-circle" class="w-4 h-4 text-forest-400 mt-0.5 shrink-0" />
-                <span>11 di sản văn hóa, lịch sử, thiên nhiên đã được số hóa đầy đủ</span>
+                <span>{{ heritageStore.totalCount }} di sản văn hóa, lịch sử, thiên nhiên đã được số hóa đầy đủ</span>
               </li>
               <li class="flex items-start gap-2.5">
                 <Icon name="mdi:check-circle" class="w-4 h-4 text-forest-400 mt-0.5 shrink-0" />
@@ -112,6 +112,9 @@
 </template>
 
 <script setup lang="ts">
+import { useHeritageStore } from '~/stores/heritage'
+
+const heritageStore = useHeritageStore()
 const { observeAll } = useScrollReveal()
 onMounted(() => nextTick(() => observeAll()))
 </script>

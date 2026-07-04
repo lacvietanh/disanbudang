@@ -28,7 +28,7 @@
             Khám phá tiềm năng kinh tế, hạ tầng và chính sách ưu đãi dành cho các nhà đầu tư tại vùng đất Bù Đăng giàu bản sắc — viên ngọc thiên nhiên và văn hóa của Thành Phố Đồng Nai.
           </p>
           <div class="flex flex-wrap gap-4">
-            <a href="mailto:invest@budang.gov.vn" class="btn-primary">
+            <a href="mailto:nguyenxuankiet294@gmail.com" class="btn-primary">
               <Icon name="mdi:email-outline" class="w-5 h-5" />
               Liên Hệ Đầu Tư
             </a>
@@ -144,9 +144,9 @@
               <Icon name="mdi:message-outline" class="w-5 h-5" />
               Gửi Yêu Cầu
             </NuxtLink>
-            <a href="mailto:Nguyenxuankiet294@gmail.com" class="btn-ghost">
+            <a href="mailto:nguyenxuankiet294@gmail.com" class="btn-ghost">
               <Icon name="mdi:email-outline" class="w-5 h-5" />
-              Nguyenxuankiet294@gmail.com
+              nguyenxuankiet294@gmail.com
             </a>
           </div>
         </div>
@@ -179,7 +179,7 @@ const opportunities: InvestmentOpportunity[] = [
     category: 'agriculture',
     description: 'Quỹ đất đỏ bazan màu mỡ, phù hợp phát triển vùng trồng cây công nghiệp (điều, tiêu, cao su) và trái cây theo chuẩn VietGAP.',
     potential: 'Sẵn sàng quỹ đất sạch 500ha, hạ tầng tưới tiêu đồng bộ.',
-    contactEmail: 'invest@budang.gov.vn'
+    contactEmail: 'nguyenxuankiet294@gmail.com'
   },
   {
     id: 'inv-2',
@@ -187,7 +187,7 @@ const opportunities: InvestmentOpportunity[] = [
     category: 'tourism',
     description: 'Kết hợp vẻ đẹp hùng vĩ của tự nhiên và không gian văn hoá cồng chiêng S\'tiêng để xây dựng resort, khu nghỉ dưỡng sinh thái.',
     potential: 'Chính sách ưu đãi thuế 5 năm đầu, hỗ trợ giải phóng mặt bằng.',
-    contactEmail: 'tourism@budang.gov.vn'
+    contactEmail: 'nguyenxuankiet294@gmail.com'
   }
 ]
 

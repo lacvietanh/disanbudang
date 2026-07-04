@@ -56,9 +56,14 @@
               Vùng đất Bù Đăng, Thành Phố Đồng Nai
             </p>
             <p class="flex items-center gap-2">
+              <Icon name="mdi:phone-outline" class="w-4 h-4 text-gold-500 shrink-0" />
+              <span class="sr-only">Số điện thoại:</span>
+              <a href="tel:0355356294" class="hover:text-gold-400 transition-colors">0355 356 294</a>
+            </p>
+            <p class="flex items-center gap-2">
               <Icon name="mdi:email-outline" class="w-4 h-4 text-gold-500 shrink-0" />
               <span class="sr-only">Email:</span>
-              <a href="mailto:Nguyenxuankiet294@gmail.com" class="hover:text-gold-400 transition-colors">Nguyenxuankiet294@gmail.com</a>
+              <a href="mailto:nguyenxuankiet294@gmail.com" class="hover:text-gold-400 transition-colors">nguyenxuankiet294@gmail.com</a>
             </p>
           </div>
 

@@ -54,7 +54,7 @@ export function useParallax(speed = 0.3) {
  * Composable for counting animation
  */
 export function useCountUp(target: number, duration = 2000) {
-  const count = ref(0)
+  const count = ref(target)
   const isComplete = ref(false)
 
   function start() {
@@ -65,7 +65,7 @@ export function useCountUp(target: number, duration = 2000) {
     }
 
     const startTime = performance.now()
-    const startVal = 0
+    const startVal = Math.max(0, Math.floor(target * 0.8))
 
     function update(currentTime: number) {
       const elapsed = currentTime - startTime

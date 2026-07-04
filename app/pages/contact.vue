@@ -131,7 +131,8 @@ const submitError = ref('')
 
 const contactInfo = [
   { icon: 'mdi:map-marker-outline', label: 'Địa Chỉ', value: 'Vùng đất Bù Đăng, Thành Phố Đồng Nai' },
-  { icon: 'mdi:email-outline', label: 'Email', value: 'Nguyenxuankiet294@gmail.com' },
+  { icon: 'mdi:phone-outline', label: 'Số Điện Thoại', value: '0355 356 294' },
+  { icon: 'mdi:email-outline', label: 'Email', value: 'nguyenxuankiet294@gmail.com' },
 ]
 
 async function handleSubmit() {

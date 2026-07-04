@@ -110,7 +110,12 @@
       </div>
 
       <!-- Scroll indicator -->
-      <button class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-charcoal-400 hover:text-gold-400 transition-colors z-10 group" @click="scrollToContent()" aria-label="Cuộn xuống">
+      <button
+        class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-charcoal-400 hover:text-gold-400 transition-all duration-300 z-10 group"
+        :class="isScrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'"
+        @click="scrollToContent()"
+        aria-label="Cuộn xuống"
+      >
         <span class="text-3xs uppercase tracking-widest font-semibold">Khám phá</span>
         <div class="w-6 h-10 rounded-full border-2 border-charcoal-600 group-hover:border-gold-500/60 flex items-start justify-center pt-1.5 transition-colors">
           <div class="w-1 h-2 bg-charcoal-400 group-hover:bg-gold-400 rounded-full animate-bounce transition-colors" />
@@ -328,135 +333,129 @@
             </div>
           </div>
 
-          <!-- Featured Spotlight -->
-          <template v-if="featuredResource && activeTypeFilter === 'all' && !paperSearchQuery">
-            <div
-              class="relative overflow-hidden rounded-3xl border border-gold-500/20 bg-gradient-to-br from-charcoal-950 via-charcoal-900/95 to-charcoal-950 cursor-pointer hover:border-gold-500/35 transition-all duration-500 group shadow-2xl shadow-black/40 mb-8"
-              @click="openResource(featuredResource)"
-              role="button"
-              :aria-label="`Mở tài liệu nổi bật: ${featuredResource.title}`"
-            >
-              <div class="absolute inset-0 bg-gradient-to-r from-gold-500/3 to-transparent group-hover:from-gold-500/6 transition-all duration-500" />
-              <div class="absolute -top-20 -right-20 w-80 h-80 bg-gold-500/5 rounded-full blur-3xl" />
-              <div class="flex flex-col lg:flex-row gap-0">
-                <!-- Cover image -->
-                <div class="h-56 lg:h-auto lg:w-96 relative overflow-hidden bg-charcoal-900 shrink-0">
-                  <img :src="featuredResource.coverImage" :alt="featuredResource.title" class="w-full h-full object-cover opacity-80 group-hover:opacity-95 group-hover:scale-105 transition-all duration-700" loading="lazy" />
-                  <div class="absolute inset-0 bg-gradient-to-r from-transparent to-charcoal-950/80" />
-                  <div class="absolute top-4 left-4 flex gap-2">
-                    <span class="px-3 py-1.5 bg-gold-500 text-charcoal-950 text-3xs font-bold uppercase tracking-wider rounded-full flex items-center gap-1.5 shadow-lg">
-                      <Icon name="mdi:star" class="w-3 h-3" />
-                      Nổi Bật
-                    </span>
-                    <span class="px-3 py-1.5 bg-charcoal-950/80 border border-charcoal-700 text-charcoal-300 text-3xs font-bold uppercase tracking-wider rounded-full backdrop-blur-sm">
-                      Nghiên Cứu Mới
-                    </span>
-                  </div>
-                </div>
-                <!-- Content -->
-                <div class="flex-1 p-8 lg:p-10 flex flex-col justify-between gap-6 relative z-10">
-                  <div class="space-y-3">
-                    <div class="flex items-center gap-2 flex-wrap">
-                      <span class="text-gold-400 text-3xs font-bold uppercase tracking-wider">{{ featuredResource.subject }}</span>
-                      <span class="text-charcoal-600">•</span>
-                      <span class="text-charcoal-400 text-3xs">{{ featuredResource.school }}</span>
-                      <span class="text-charcoal-600">•</span>
-                      <span class="text-charcoal-400 text-3xs">Lớp {{ featuredResource.grade }}</span>
+          <!-- Loading State -->
+          <div v-if="pending" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-12 animate-pulse">
+            <div v-for="i in 3" :key="i" class="bg-charcoal-950/60 border border-charcoal-850 p-6 rounded-2xl h-[380px] flex flex-col justify-between">
+              <div>
+                <div class="h-4 bg-charcoal-800 rounded w-1/4 mb-4" />
+                <div class="h-6 bg-charcoal-800 rounded w-3/4 mb-3" />
+                <div class="h-4 bg-charcoal-800 rounded w-full mb-2" />
+                <div class="h-4 bg-charcoal-800 rounded w-5/6" />
+              </div>
+              <div class="h-10 bg-charcoal-800 rounded-xl w-full" />
+            </div>
+          </div>
+
+          <!-- Error State -->
+          <div v-else-if="error" class="text-center py-16 border border-red-500/20 bg-red-950/10 rounded-2xl mb-8">
+            <Icon name="mdi:alert-circle-outline" class="w-12 h-12 text-red-400 mx-auto mb-4" />
+            <p class="text-red-300 text-sm font-semibold">Đã xảy ra lỗi khi tải dữ liệu học tập</p>
+            <p class="text-charcoal-500 text-xs mt-1">Vui lòng thử tải lại trang hoặc kiểm tra kết nối mạng.</p>
+          </div>
+
+          <!-- Loaded State -->
+          <template v-else>
+            <!-- Featured Spotlight -->
+            <template v-if="featuredResource && activeTypeFilter === 'all' && !paperSearchQuery">
+              <div
+                class="relative overflow-hidden rounded-3xl border border-gold-500/20 bg-gradient-to-br from-charcoal-950 via-charcoal-900/95 to-charcoal-950 cursor-pointer hover:border-gold-500/35 transition-all duration-500 group shadow-2xl shadow-black/40 mb-8"
+                @click="openResource(featuredResource)"
+                role="button"
+                :aria-label="`Mở tài liệu nổi bật: ${featuredResource.title}`"
+              >
+                <div class="absolute inset-0 bg-gradient-to-r from-gold-500/3 to-transparent group-hover:from-gold-500/6 transition-all duration-500" />
+                <div class="absolute -top-20 -right-20 w-80 h-80 bg-gold-500/5 rounded-full blur-3xl" />
+                <div class="flex flex-col lg:flex-row gap-0">
+                  <!-- Cover image -->
+                  <div class="h-56 lg:h-auto lg:w-96 relative overflow-hidden bg-charcoal-900 shrink-0">
+                    <img :src="featuredResource.coverImage" :alt="featuredResource.title" class="w-full h-full object-cover opacity-80 group-hover:opacity-95 group-hover:scale-105 transition-all duration-700" loading="lazy" />
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent to-charcoal-950/80" />
+                    <div class="absolute top-4 left-4 flex gap-2">
+                      <span class="px-3 py-1.5 bg-gold-500 text-charcoal-950 text-3xs font-bold uppercase tracking-wider rounded-full flex items-center gap-1.5 shadow-lg">
+                        <Icon name="mdi:star" class="w-3 h-3" />
+                        Nổi Bật
+                      </span>
+                      <span class="px-3 py-1.5 bg-charcoal-950/80 border border-charcoal-700 text-charcoal-300 text-3xs font-bold uppercase tracking-wider rounded-full backdrop-blur-sm">
+                        Nghiên Cứu Mới
+                      </span>
                     </div>
-                    <h4 class="font-heading font-bold text-ivory text-2xl leading-snug group-hover:text-gold-300 transition-colors">{{ featuredResource.title }}</h4>
-                    <p class="text-charcoal-300 text-sm leading-relaxed line-clamp-2">{{ featuredResource.description }}</p>
-                    <!-- AI Summary badge -->
-                    <div class="inline-flex items-center gap-2 bg-charcoal-900/80 border border-charcoal-800 px-3 py-2 rounded-xl">
-                      <div class="w-5 h-5 rounded-md bg-gold-500/20 flex items-center justify-center">
-                        <Icon name="mdi:robot" class="w-3 h-3 text-gold-400" />
+                  </div>
+                  <!-- Content -->
+                  <div class="flex-1 p-8 lg:p-10 flex flex-col justify-between gap-6 relative z-10">
+                    <div class="space-y-3">
+                      <div class="flex items-center gap-2 flex-wrap">
+                        <span class="text-gold-400 text-3xs font-bold uppercase tracking-wider">{{ featuredResource.subject }}</span>
+                        <span class="text-charcoal-600">•</span>
+                        <span class="text-charcoal-400 text-3xs">{{ featuredResource.school }}</span>
+                        <span class="text-charcoal-600">•</span>
+                        <span class="text-charcoal-400 text-3xs">Lớp {{ featuredResource.grade }}</span>
                       </div>
-                      <span class="text-3xs text-charcoal-300 font-body"><span class="font-bold text-gold-400">AI Tóm tắt:</span> {{ featuredResource.motivation }}</span>
+                      <h4 class="font-heading font-bold text-ivory text-2xl leading-snug group-hover:text-gold-300 transition-colors">{{ featuredResource.title }}</h4>
+                      <p class="text-charcoal-300 text-sm leading-relaxed line-clamp-2">{{ featuredResource.description }}</p>
+                      <!-- AI Summary badge -->
+                      <div class="inline-flex items-center gap-2 bg-charcoal-900/80 border border-charcoal-800 px-3 py-2 rounded-xl">
+                        <div class="w-5 h-5 rounded-md bg-gold-500/20 flex items-center justify-center">
+                          <Icon name="mdi:robot" class="w-3 h-3 text-gold-400" />
+                        </div>
+                        <span class="text-3xs text-charcoal-300 font-body"><span class="font-bold text-gold-400">AI Tóm tắt:</span> {{ featuredResource.motivation }}</span>
+                      </div>
                     </div>
-                  </div>
-                  <!-- Key findings preview -->
-                  <div class="space-y-2">
-                    <div v-for="(finding, i) in (featuredResource.keyFindings ?? []).slice(0, 2)" :key="i" class="flex items-start gap-2 text-xs text-charcoal-300 leading-relaxed">
-                      <Icon name="mdi:check-circle" class="w-4 h-4 text-gold-500/70 shrink-0 mt-0.5" />
-                      <span>{{ finding }}</span>
+                    <!-- Key findings preview -->
+                    <div class="space-y-2">
+                      <div v-for="(finding, i) in (featuredResource.keyFindings ?? []).slice(0, 2)" :key="i" class="flex items-start gap-2 text-xs text-charcoal-300 leading-relaxed">
+                        <Icon name="mdi:check-circle" class="w-4 h-4 text-gold-500/70 shrink-0 mt-0.5" />
+                        <span>{{ finding }}</span>
+                      </div>
                     </div>
-                  </div>
-                  <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-charcoal-850/60">
-                    <div class="flex items-center gap-4 text-3xs text-charcoal-450">
-                      <span class="flex items-center gap-1.5"><Icon name="mdi:account-circle-outline" class="w-4 h-4" />{{ featuredResource.author }}</span>
-                      <span class="flex items-center gap-1.5"><Icon name="mdi:download-outline" class="w-4 h-4" />{{ featuredResource.downloadCount }} lượt tải</span>
-                      <span class="flex items-center gap-1.5"><Icon name="mdi:clock-outline" class="w-4 h-4" />~15 phút đọc</span>
+                    <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-charcoal-850/60">
+                      <div class="flex items-center gap-4 text-3xs text-charcoal-450">
+                        <span class="flex items-center gap-1.5"><Icon name="mdi:account-circle-outline" class="w-4 h-4" />{{ featuredResource.author }}</span>
+                        <span class="flex items-center gap-1.5"><Icon name="mdi:download-outline" class="w-4 h-4" />{{ featuredResource.downloadCount }} lượt tải</span>
+                        <span class="flex items-center gap-1.5"><Icon name="mdi:clock-outline" class="w-4 h-4" />~15 phút đọc</span>
+                      </div>
+                      <span class="text-gold-400 text-sm font-bold flex items-center gap-1.5 group-hover:translate-x-1 transition-transform">
+                        Đọc & Nghiên Cứu <Icon name="mdi:arrow-right" class="w-4 h-4" />
+                      </span>
                     </div>
-                    <span class="text-gold-400 text-sm font-bold flex items-center gap-1.5 group-hover:translate-x-1 transition-transform">
-                      Đọc & Nghiên Cứu <Icon name="mdi:arrow-right" class="w-4 h-4" />
-                    </span>
                   </div>
                 </div>
               </div>
+            </template>
+
+            <!-- No results state -->
+            <div v-if="filteredPapers.length === 0" class="text-center py-16 border border-dashed border-charcoal-800 rounded-2xl">
+              <Icon name="mdi:file-search-outline" class="w-12 h-12 text-charcoal-700 mx-auto mb-4" />
+              <p class="text-charcoal-400 text-sm font-semibold">Không tìm thấy tài liệu phù hợp</p>
+              <p class="text-charcoal-600 text-xs mt-1">Thử thay đổi từ khóa hoặc xóa bộ lọc</p>
+              <button class="mt-4 px-6 py-2.5 bg-charcoal-900 border border-charcoal-800 text-gold-400 hover:text-gold-300 text-xs font-bold rounded-xl transition-colors" @click="paperSearchQuery = ''; activeTypeFilter = 'all'; activeDifficultyFilter = 'all'">
+                Xóa tất cả bộ lọc
+              </button>
             </div>
-          </template>
 
-          <!-- No results state -->
-          <div v-if="filteredPapers.length === 0" class="text-center py-16 border border-dashed border-charcoal-800 rounded-2xl">
-            <Icon name="mdi:file-search-outline" class="w-12 h-12 text-charcoal-700 mx-auto mb-4" />
-            <p class="text-charcoal-400 text-sm font-semibold">Không tìm thấy tài liệu phù hợp</p>
-            <p class="text-charcoal-600 text-xs mt-1">Thử thay đổi từ khóa hoặc xóa bộ lọc</p>
-            <button class="mt-4 px-6 py-2.5 bg-charcoal-900 border border-charcoal-800 text-gold-400 hover:text-gold-300 text-xs font-bold rounded-xl transition-colors" @click="paperSearchQuery = ''; activeTypeFilter = 'all'; activeDifficultyFilter = 'all'">
-              Xóa tất cả bộ lọc
-            </button>
-          </div>
-
-          <!-- Resource Cards Grid / List -->
-          <div v-else :class="resourceView === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6' : 'space-y-4'">
-            <div
-              v-for="res in filteredPapers"
-              :key="res.id"
-              class="group relative"
-              :class="resourceView === 'grid' ? 'book-container' : ''"
-            >
-              <!-- GRID VIEW CARD -->
+            <!-- Resource Cards Grid / List -->
+            <div v-else :class="resourceView === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6' : 'space-y-4'">
               <div
-                v-if="resourceView === 'grid'"
-                class="premium-card flex flex-col h-[420px] bg-charcoal-950 border border-charcoal-800 rounded-2xl overflow-hidden cursor-pointer relative hover:border-gold-500/35 transition-all duration-500"
-                @click="openResource(res)"
-                role="button"
-                :aria-label="`Mở tài liệu: ${res.title}`"
+                v-for="res in filteredPapers"
+                :key="res.id"
+                class="group relative"
+                :class="resourceView === 'grid' ? 'book-container' : ''"
               >
-                <!-- Book spine -->
-                <div class="book-spine" />
-
-                <!-- Cover image -->
-                <div class="h-44 relative overflow-hidden bg-charcoal-900 shrink-0 pl-3.5">
-                  <img :src="res.coverImage" :alt="res.title" class="w-full h-full object-cover opacity-75 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700" loading="lazy" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-950/20 to-transparent" />
-
-                  <!-- Format badge -->
-                  <span
-                    class="absolute top-3 right-3 text-3xs font-bold px-2.5 py-1 rounded-lg border uppercase tracking-wider backdrop-blur-sm"
-                    :style="{ color: typeColors[res.type], borderColor: typeColors[res.type] + '40', background: typeColors[res.type] + '15' }"
-                  >
-                    <Icon :name="(typeIcons[res.type] ?? 'mdi:file-document-outline')" class="w-3 h-3 inline mr-0.5" />
-                    {{ typeLabels[res.type] }}
-                  </span>
-
-                  <!-- Featured tag -->
-                  <span v-if="res.featured" class="absolute top-3 left-6 text-3xs font-bold px-2 py-0.5 rounded-md bg-gold-500 text-charcoal-950 uppercase">
-                    Nổi Bật
-                  </span>
-
-                  <!-- AI summary micro-badge -->
-                  <div class="absolute bottom-3 left-6 flex items-center gap-1 bg-charcoal-950/80 border border-charcoal-800 px-2 py-1 rounded-lg backdrop-blur-sm">
-                    <Icon name="mdi:robot" class="w-3 h-3 text-gold-400" />
-                    <span class="text-3xs text-charcoal-300 font-semibold">AI Summary</span>
-                  </div>
-                </div>
-
-                <!-- Card body -->
-                <div class="flex-1 flex flex-col justify-between p-5 pl-8">
-                  <div class="space-y-2">
-                    <div class="flex items-center justify-between gap-2">
-                      <span class="text-gold-400 text-3xs font-bold uppercase tracking-wider truncate">{{ res.subject }}</span>
+                <!-- GRID VIEW CARD -->
+                <div
+                  v-if="resourceView === 'grid'"
+                  class="bg-charcoal-950/60 border border-charcoal-850 hover:border-gold-500/30 rounded-2xl p-6 h-[380px] relative transition-all duration-500 flex flex-col justify-between overflow-hidden cursor-pointer"
+                  @click="openResource(res)"
+                  role="button"
+                  :aria-label="`Mở tài liệu: ${res.title}`"
+                >
+                  <!-- Tag / Type icon top -->
+                  <div class="space-y-3">
+                    <div class="flex items-center justify-between">
+                      <span class="px-2.5 py-1 rounded bg-charcoal-900 border border-charcoal-800 text-3xs font-semibold text-gold-400 tracking-wider uppercase">
+                        {{ typeLabels[res.type] }}
+                      </span>
                       <button
-                        class="p-1 text-charcoal-500 hover:text-gold-400 transition-colors shrink-0"
+                        class="w-7 h-7 rounded-full bg-charcoal-900/80 border border-charcoal-850 text-charcoal-500 hover:text-gold-400 flex items-center justify-center transition-colors shadow-inner"
                         @click.stop="toggleBookmark(res.id)"
                         :aria-label="savedBooks.includes(res.id) ? 'Bỏ bookmark' : 'Bookmark tài liệu'"
                       >
@@ -464,100 +463,36 @@
                       </button>
                     </div>
                     <h4 class="font-heading font-bold text-ivory text-sm leading-snug line-clamp-2 group-hover:text-gold-300 transition-colors">{{ res.title }}</h4>
-                    <p class="text-charcoal-400 text-2xs line-clamp-2 leading-relaxed font-body">{{ res.description }}</p>
                   </div>
+                  <!-- Content summary ... -->
+                </div>
 
-                  <!-- Difficulty + reading time row -->
-                  <div class="space-y-3">
-                    <div class="flex items-center gap-3 text-3xs text-charcoal-500">
-                      <span class="flex items-center gap-1">
-                        <Icon name="mdi:clock-outline" class="w-3 h-3" />
-                        ~{{ Math.ceil((res.pages?.length || 1) * 5) }} phút
-                      </span>
-                      <span class="flex items-center gap-1">
-                        <Icon name="mdi:file-multiple-outline" class="w-3 h-3" />
-                        {{ res.pages?.length || 1 }} trang
-                      </span>
-                      <!-- Difficulty dots -->
-                      <div class="flex items-center gap-0.5 ml-auto">
-                        <div v-for="d in 3" :key="d" class="w-2 h-2 rounded-full transition-colors" :class="d <= (res.difficulty || 2) ? 'bg-gold-500' : 'bg-charcoal-800'" />
-                      </div>
+                <!-- LIST VIEW ROW -->
+                <div
+                  v-else
+                  class="flex items-center gap-5 bg-charcoal-950 border border-charcoal-850 rounded-2xl p-4 hover:border-gold-500/30 transition-all duration-300 cursor-pointer group"
+                  @click="openResource(res)"
+                  role="button"
+                  :aria-label="`Mở tài liệu: ${res.title}`"
+                >
+                  <img :src="res.coverImage" :alt="res.title" class="w-20 h-16 object-cover rounded-xl shrink-0 opacity-80 group-hover:opacity-100 transition-opacity" loading="lazy" />
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-center gap-2 mb-1">
+                      <span class="text-gold-400 text-3xs font-bold uppercase">{{ res.subject }}</span>
+                      <span class="text-charcoal-600 text-3xs">•</span>
+                      <span class="text-charcoal-500 text-3xs">{{ res.school }}</span>
                     </div>
-
-                    <div class="pt-3 border-t border-charcoal-850 flex items-center justify-between">
-                      <div class="space-y-0.5">
-                        <span class="block text-3xs font-bold text-ivory">{{ res.author }}</span>
-                        <span class="text-3xs text-charcoal-500">{{ res.school }}</span>
-                      </div>
-                      <div class="text-right space-y-0.5">
-                        <span class="block text-3xs font-bold text-gold-400 flex items-center gap-1 justify-end">
-                          <Icon name="mdi:download-outline" class="w-3 h-3" />
-                          {{ res.downloadCount }}
-                        </span>
-                        <span class="text-3xs text-charcoal-500">{{ res.fileSize }}</span>
-                      </div>
-                    </div>
+                    <h4 class="font-heading font-bold text-sm text-ivory truncate group-hover:text-gold-300 transition-colors">{{ res.title }}</h4>
+                    <p class="text-charcoal-500 text-2xs mt-0.5 truncate">{{ res.author }} · {{ res.downloadCount }} lượt tải · {{ res.fileSize }}</p>
                   </div>
-                </div>
-
-                <!-- Hover reveal overlay -->
-                <div class="absolute inset-0 bg-charcoal-950/95 opacity-0 group-hover:opacity-100 transition-all duration-400 flex flex-col items-center justify-center gap-4 p-6 pl-8 pointer-events-none group-hover:pointer-events-auto">
-                  <div class="w-12 h-12 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center">
-                    <Icon name="mdi:book-open-variant" class="w-6 h-6 text-gold-400" />
+                  <div class="flex items-center gap-3 shrink-0">
+                    <span v-if="res.quizId" class="text-3xs px-2 py-0.5 bg-gold-500/10 border border-gold-500/30 text-gold-400 rounded font-bold">Quiz</span>
+                    <Icon name="mdi:chevron-right" class="w-5 h-5 text-charcoal-600 group-hover:text-gold-400 transition-colors" />
                   </div>
-                  <div class="text-center space-y-1">
-                    <span class="block text-sm font-bold text-ivory">Đọc & Nghiên Cứu</span>
-                    <p class="text-charcoal-400 text-2xs leading-relaxed line-clamp-3">{{ res.motivation || res.description }}</p>
-                  </div>
-                  <div class="flex gap-2 flex-wrap justify-center relative z-20">
-                    <button
-                      class="text-3xs px-2.5 py-1 bg-charcoal-900 border border-charcoal-800 rounded-lg text-charcoal-450 hover:text-ivory hover:border-charcoal-600 transition-colors cursor-pointer"
-                      @click.stop="openResource(res); activeModalTab = 'document'"
-                    >
-                      Toàn văn
-                    </button>
-                    <button
-                      v-if="res.quizId"
-                      class="text-3xs px-2.5 py-1 bg-gold-500/10 border border-gold-500/30 rounded-lg text-gold-400 hover:bg-gold-500/20 transition-colors cursor-pointer"
-                      @click.stop="startResourceQuiz(res)"
-                    >
-                      Quiz ôn tập
-                    </button>
-                    <button
-                      class="text-3xs px-2.5 py-1 bg-charcoal-900 border border-charcoal-800 rounded-lg text-charcoal-450 hover:text-ivory hover:border-charcoal-600 transition-colors cursor-pointer"
-                      @click.stop="downloadFile(res)"
-                    >
-                      Tải PDF
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- LIST VIEW ROW -->
-              <div
-                v-else
-                class="flex items-center gap-5 bg-charcoal-950 border border-charcoal-850 rounded-2xl p-4 hover:border-gold-500/30 transition-all duration-300 cursor-pointer group"
-                @click="openResource(res)"
-                role="button"
-                :aria-label="`Mở tài liệu: ${res.title}`"
-              >
-                <img :src="res.coverImage" :alt="res.title" class="w-20 h-16 object-cover rounded-xl shrink-0 opacity-80 group-hover:opacity-100 transition-opacity" loading="lazy" />
-                <div class="flex-1 min-w-0">
-                  <div class="flex items-center gap-2 mb-1">
-                    <span class="text-gold-400 text-3xs font-bold uppercase">{{ res.subject }}</span>
-                    <span class="text-charcoal-600 text-3xs">•</span>
-                    <span class="text-charcoal-500 text-3xs">{{ res.school }}</span>
-                  </div>
-                  <h4 class="font-heading font-bold text-sm text-ivory truncate group-hover:text-gold-300 transition-colors">{{ res.title }}</h4>
-                  <p class="text-charcoal-500 text-2xs mt-0.5 truncate">{{ res.author }} · {{ res.downloadCount }} lượt tải · {{ res.fileSize }}</p>
-                </div>
-                <div class="flex items-center gap-3 shrink-0">
-                  <span v-if="res.quizId" class="text-3xs px-2 py-0.5 bg-gold-500/10 border border-gold-500/30 text-gold-400 rounded font-bold">Quiz</span>
-                  <Icon name="mdi:chevron-right" class="w-5 h-5 text-charcoal-600 group-hover:text-gold-400 transition-colors" />
                 </div>
               </div>
             </div>
-          </div>
+          </template>
         </section>
 
         <!-- HERITAGE LAB TEASER -->
@@ -1363,12 +1298,25 @@
                   <!-- Paper Header -->
                   <div class="border-b border-beige-300/80 pb-3 mb-6 flex justify-between items-center text-[10px] text-charcoal-550 uppercase tracking-widest font-heading font-bold select-none">
                     <span>{{ selectedResource.school }}</span>
-                    <span>Tài liệu số hóa di sản</span>
+                    <div class="flex items-center gap-1.5 bg-beige-200/50 rounded-lg p-0.5 border border-beige-300">
+                      <span class="text-3xs text-charcoal-500 font-semibold px-1">Cỡ chữ:</span>
+                      <button
+                        v-for="level in 4"
+                        :key="level"
+                        class="w-5 h-5 rounded flex items-center justify-center font-bold text-3xs transition-all"
+                        :class="fontSizeLevel === level ? 'bg-gold-500 text-charcoal-900 shadow-sm' : 'text-charcoal-500 hover:bg-beige-300'"
+                        @click="fontSizeLevel = level"
+                        :aria-label="`Cỡ chữ cấp ${level}`"
+                      >
+                        A{{ level }}
+                      </button>
+                    </div>
                   </div>
                   
                   <!-- Main text content with serif font for academic feel -->
                   <div
                     class="prose prose-sm max-w-none text-charcoal-800 leading-relaxed text-justify font-serif prose-headings:font-heading prose-headings:text-earth-900 prose-headings:mt-4 prose-headings:mb-2 prose-p:mb-3 prose-blockquote:border-l-4 prose-blockquote:border-l-earth-500 prose-blockquote:bg-earth-500/5 prose-blockquote:p-4 prose-blockquote:my-4 prose-blockquote:italic prose-strong:text-earth-900 prose-ol:list-decimal prose-ol:pl-4 prose-ul:list-disc prose-ul:pl-4"
+                    :style="{ fontSize: fontSizeValue }"
                     v-html="selectedResource.pages ? selectedResource.pages[currentDocPage] : '<p>Không tìm thấy toàn văn tài liệu.</p>'"
                     @mouseup="handleTextSelection"
                   />
@@ -1401,7 +1349,18 @@
               <!-- Notes Sidebar -->
               <div class="space-y-4 bg-charcoal-900 border border-charcoal-850 rounded-2xl p-5 max-h-[500px] overflow-y-auto flex flex-col">
                 <div class="space-y-3 flex-1">
-                  <span class="text-2xs font-bold uppercase tracking-wider text-charcoal-450 pb-2 border-b border-charcoal-850 block">Ghi chú & Highlights ({{ bookHighlights.length }})</span>
+                  <div class="flex justify-between items-center pb-2 border-b border-charcoal-850">
+                    <span class="text-2xs font-bold uppercase tracking-wider text-charcoal-450 block">Ghi chú & Highlights ({{ bookHighlights.length }})</span>
+                    <button
+                      v-if="bookHighlights.length > 0"
+                      class="px-2 py-0.5 rounded bg-gold-500/10 border border-gold-500/30 text-gold-400 hover:bg-gold-500/20 text-3xs font-bold transition-all flex items-center gap-1 cursor-pointer"
+                      @click="downloadNotes"
+                      title="Tải về file .txt các ghi chú này"
+                    >
+                      <Icon name="mdi:download" class="w-3 h-3" />
+                      Tải .TXT
+                    </button>
+                  </div>
                   <div class="space-y-3 flex-1 overflow-y-auto">
                     <div v-for="hl in bookHighlights" :key="hl.id" class="p-3 bg-charcoal-950 border border-charcoal-850 rounded-xl space-y-1.5 relative group">
                       <button class="absolute top-2 right-2 text-charcoal-500 hover:text-red-400 opacity-0 group-hover:opacity-100 transition-opacity" title="Xóa ghi chú" @click="deleteHighlight(hl.id)" aria-label="Xóa ghi chú này">
@@ -1490,6 +1449,7 @@ const quizStore = useQuizStore()
 // Refs for scroll navigation
 const stickyNavRef = ref<HTMLElement | null>(null)
 const contentRef = ref<HTMLElement | null>(null)
+const isScrolled = ref(false)
 
 function scrollToContent() {
   if (import.meta.client && contentRef.value) {
@@ -1499,6 +1459,7 @@ function scrollToContent() {
 }
 
 let keydownHandler: (e: KeyboardEvent) => void
+let scrollHandler: () => void
 
 onMounted(() => {
   nextTick(() => observeAll())
@@ -1513,12 +1474,23 @@ onMounted(() => {
       }
     }
     window.addEventListener('keydown', keydownHandler)
+
+    isScrolled.value = window.scrollY > 50
+    scrollHandler = () => {
+      isScrolled.value = window.scrollY > 50
+    }
+    window.addEventListener('scroll', scrollHandler, { passive: true })
   }
 })
 
 onUnmounted(() => {
-  if (import.meta.client && keydownHandler) {
-    window.removeEventListener('keydown', keydownHandler)
+  if (import.meta.client) {
+    if (keydownHandler) {
+      window.removeEventListener('keydown', keydownHandler)
+    }
+    if (scrollHandler) {
+      window.removeEventListener('scroll', scrollHandler)
+    }
   }
 })
 
@@ -1712,6 +1684,22 @@ interface SchoolResourceExtended {
 const selectedResource = ref<SchoolResourceExtended | null>(null)
 const activeModalTab = ref<'overview' | 'document'>('overview')
 const currentDocPage = ref(0)
+const fontSizeLevel = ref(2)
+const fontSizes = ['14px', '16px', '18px', '20px']
+const fontSizeValue = computed(() => fontSizes[fontSizeLevel.value - 1])
+
+onMounted(() => {
+  const saved = localStorage.getItem('study-reader-font-size')
+  if (saved) {
+    const val = parseInt(saved, 10)
+    if (val >= 1 && val <= 4) fontSizeLevel.value = val
+  }
+})
+
+watch(fontSizeLevel, (newVal) => {
+  localStorage.setItem('study-reader-font-size', newVal.toString())
+})
+
 const selectedText = ref('')
 const activeNoteInput = ref('')
 
@@ -1748,58 +1736,68 @@ function saveActiveNote() {
 
 function deleteHighlight(id: string) { userAnnotations.value = userAnnotations.value.filter(hl => hl.id !== id) }
 
+function downloadNotes() {
+  if (!selectedResource.value || bookHighlights.value.length === 0) return
+  
+  let content = `GHI CHÚ HỌC TẬP - DI SẢN BÙ ĐĂNG\n`
+  content += `Tài liệu: ${selectedResource.value.title}\n`
+  content += `Trường: ${selectedResource.value.school} | Tác giả: ${selectedResource.value.author}\n`
+  content += `Ngày tải ghi chú: ${new Date().toLocaleDateString('vi-VN')}\n`
+  content += `=========================================\n\n`
+  
+  bookHighlights.value.forEach((hl, i) => {
+    content += `[Ghi chú #${i + 1}] Trang ${hl.page}\n`
+    content += `Đoạn trích: "${hl.text}"\n`
+    if (hl.note) {
+      content += `Bình luận: ${hl.note}\n`
+    }
+    content += `-----------------------------------------\n\n`
+  })
+  
+  const blob = new Blob([content], { type: 'text/plain;charset=utf-8' })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = `Ghi-chu-${selectedResource.value.id}.txt`
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
+  URL.revokeObjectURL(url)
+}
+
 // ──────────────────────────────────────────────
 // RESOURCES DATA
 // ──────────────────────────────────────────────
-const resources = ref<SchoolResourceExtended[]>([
-  {
-    id: 'res-001', title: 'Lịch Sử Hình Thành Chiến Khu Đ Qua Lời Kể Nhân Chứng Lịch Sử', description: 'Nghiên cứu điền dã ghi chép lại câu chuyện chiến đấu kiên cường của các cựu chiến binh Chiến khu Đ năm xưa.',
-    type: 'research', subject: 'Lịch sử địa phương', grade: '12', school: 'THPT Lê Quý Đôn', author: 'Nhóm học sinh 12A1',
-    coverImage: '/images/heritage/lich-su/chien-khu-d-md.webp', publishedAt: '2024-04-10', featured: true, downloadCount: 234, fileSize: '3.6 MB', difficulty: 3,
-    motivation: 'Thế hệ cựu chiến binh Chiến khu Đ nay đều đã tuổi cao sức yếu. Chúng em muốn chạy đua với thời gian để lưu giữ lại những câu chuyện hào hùng chân thực nhất từ lời kể của họ.',
-    keyFindings: ['Ghi âm và chép lại hơn 30 giờ phỏng vấn trực tiếp từ 12 nhân chứng lịch sử tại buôn sóc Bù Đăng.', 'Phác thảo và số hóa thành công sơ đồ hoạt động quân sự của 3 điểm đóng quân cũ sâu trong lòng rừng nguyên sinh.', 'Sưu tầm hình ảnh tư liệu của 15 loại hiện vật, vũ khí tự chế thời chiến được lưu trữ gia đình.'],
-    quizId: 'quiz-001',
-    pages: [
-      `<h2>CHƯƠNG I: BỐI CẢNH LỊCH SỬ &amp; LÝ DO CHỌN ĐỀ TÀI</h2><p>Chiến Khu Đ là một trong những hệ thống căn cứ địa quan trọng bậc nhất của lực lượng kháng chiến tại khu vực miền Đông Nam Bộ trong giai đoạn từ năm 1945 đến năm 1975. Nằm ẩn sâu giữa đại ngàn xanh của vùng đất Bù Đăng, Thành Phố Đồng Nai, vùng đất này không chỉ sở hữu địa hình đồi núi trùng điệp mà còn được che chở bởi những tán rừng già nguyên sinh dày đặc.</p><blockquote>"Nếu không ghi chép lại ngay hôm nay, những trang sử sống động từ lời kể của thế hệ đi trước sẽ vĩnh viễn nằm lại dưới lòng đất mẹ." — Lời mở đầu đề tài nghiên cứu khoa học.</blockquote>`,
-      `<h2>CHƯƠNG II: PHƯƠNG PHÁP KHẢO CỨU ĐIỀN DÃ &amp; PHÁT HIỆN THỰC TẾ</h2><p>Trong quá trình thực hiện từ tháng 9 năm 2023 đến tháng 3 năm 2024, nhóm chúng em đã tiến hành 12 đợt điền dã thực tế vào sâu các buôn sóc bản địa. Nhóm đã phỏng vấn và ghi âm được hơn 30 giờ chia sẻ từ các cựu chiến binh.</p><p>Kết quả nổi bật là chúng em đã định vị tọa độ GPS và số hóa sơ đồ phân bố của 3 căn cứ phụ đóng quân sâu trong lòng rừng nguyên sinh Bù Đăng mà trước đây chưa từng được đưa lên bản đồ số.</p>`,
-      `<h2>CHƯƠNG III: ĐỀ XUẤT GIẢI PHÁP BẢO TỒN DI SẢN SỐ</h2><p>Để di sản Chiến Khu Đ mãi trường tồn và tiếp cận gần hơn với thế hệ học sinh Gen Z, nhóm nghiên cứu đề xuất ba giải pháp thực tế:</p><ol><li><strong>Xây dựng cổng thông tin số di sản:</strong> Đưa toàn bộ bản đồ di tích, audio thuyết minh tích hợp vào website.</li><li><strong>Thiết lập tour học tập ảo:</strong> Kết hợp công nghệ chụp ảnh 360 độ tại thực địa.</li><li><strong>Lồng ghép giáo dục địa phương:</strong> Đề xuất nhà trường bổ sung các tiết học trải nghiệm thực tế.</li></ol>`
-    ]
-  },
-  {
-    id: 'res-002', title: 'Phân Tích Hoa Văn Thổ Cẩm S\'tiêng: Ngôn Ngữ Không Lời', description: 'Nghiên cứu 23 mẫu hoa văn thổ cẩm truyền thống, giải mã ý nghĩa biểu tượng hạt gạo, dãy núi và chim rừng.',
-    type: 'research', subject: 'Văn hóa dân tộc', grade: '9', school: 'THCS Nguyễn Trường Tộ', author: 'Nhóm học sinh 9A',
-    coverImage: '/images/heritage/van-hoa-phi-vat-the/di-san-ban-dia-md.webp', publishedAt: '2024-03-20', featured: false, downloadCount: 156, fileSize: '2.8 MB', difficulty: 2,
-    motivation: 'Khi quan sát những tấm vải dệt của người S\'tiêng, chúng em nhận thấy mỗi họa tiết đều đối xứng tuyệt đối và mang sắc màu núi rừng.',
-    keyFindings: ['Gặp gỡ nghệ nhân Thị Rét tại sóc Đắk Nhau để số hóa 23 mẫu hoa văn thêu tay truyền thống.', 'Giải mã ý nghĩa xã hội: Họa tiết hình thoi chéo biểu thị hạt gạo no ấm.', 'Hồ sơ hóa quy trình pha nhuộm màu tự nhiên từ lá cây rừng, vỏ cây Krông và củ nghệ cổ truyền.'],
-    quizId: 'quiz-002',
-    pages: [`<h2>CHƯƠNG I: HOA VĂN THỔ CẨM - BẢN SẮC CỦA ĐỒNG BÀO S'TIÊNG</h2><p>Nghề dệt thổ cẩm cổ truyền là biểu tượng văn hóa rực rỡ nhất thể hiện óc sáng tạo nghệ thuật và thế giới quan sâu sắc của đồng bào dân tộc thiểu số S'tiêng định cư lâu đời tại Xã Bù Đăng.</p><blockquote>"Học hoa văn dệt là học cách người xưa trò chuyện với núi rừng, trời đất." — Trích lời nghệ nhân Thị Rét (Sóc Đắk Nhau).</blockquote>`]
-  },
-  {
-    id: 'res-003', title: 'Âm Nhạc Cồng Chiêng - Di Sản Sống Của Người S\'tiêng', description: 'Tài liệu thuyết trình đa phương tiện về lịch sử, ý nghĩa tâm linh và vai trò của cồng chiêng trong đời sống cộng đồng.',
-    type: 'presentation', subject: 'Giáo dục địa phương', grade: '11', school: 'THPT Lê Quý Đôn', author: 'Vũ Quang Huy',
-    coverImage: '/images/heritage/van-hoa-phi-vat-the/cong-chieng-md.webp', publishedAt: '2024-05-01', featured: true, downloadCount: 312, fileSize: '4.8 MB', difficulty: 1,
-    motivation: 'Tiếng cồng chiêng là linh hồn kết nối con người với thế giới thần linh của người bản địa.',
-    keyFindings: ['Số hóa 6 bản thu âm cồng chiêng cổ tiêu biểu sử dụng trong Lễ hội mừng lúa mới của sóc Bom Bo.', 'Xây dựng sơ đồ bố trí không gian trình diễn cồng chiêng và vũ điệu xoang truyền thống.', 'Tổng hợp 12 tài liệu nghiên cứu chuyên sâu về nguồn gốc nhạc cụ đồng tại Đông Nam Bộ.'],
-    quizId: 'quiz-002',
-    pages: [`<h2>CHƯƠNG I: CỒNG CHIÊNG TRONG ĐỜI SỐNG TÂM LINH S'TIÊNG</h2><p>Cồng chiêng không đơn thuần là một loại nhạc cụ gõ bằng đồng, mà là tiếng nói tâm linh thiêng liêng nhất của đồng bào dân tộc thiểu số S'tiêng. Theo truyền thuyết cổ truyền, mỗi chiếc cồng, chiếc chiêng đều có một vị thần linh (gọi là Yang Ching) ngự trị.</p><blockquote>"Tiếng chiêng là hơi thở của đại ngàn, còn vang tiếng chiêng là buôn sóc còn trường tồn." — Trích lời cựu binh Điểu Lên (Sóc Bom Bo).</blockquote>`]
-  },
-  {
-    id: 'res-004', title: 'Nghi Thức Lễ Hội Mừng Lúa Mới Của Người S\'tiêng', description: 'Báo cáo điền dã chi tiết về các bước tế lễ thần Yang lúa và cộng đồng trong dịp tết lớn nhất năm của buôn sóc.',
-    type: 'document', subject: 'Giáo dục địa phương', grade: '10', school: 'THPT Lê Quý Đôn', author: 'Trần Thị Mai',
-    coverImage: '/images/heritage/img-disanbudang/le-hoi-mung-lua-moi.png', publishedAt: '2024-05-15', featured: false, downloadCount: 198, fileSize: '1.9 MB', difficulty: 1,
-    motivation: 'Nhằm xây dựng tài liệu tham khảo giảng dạy chính thống cho phân môn Giáo dục địa phương tại tỉnh.',
-    keyFindings: ['Ghi chép và hệ thống hóa 5 bước tế lễ chính thức của lễ hội Mừng lúa mới.', 'Sưu tầm và biên dịch 3 bài khấn cầu thần Yang lúa cổ truyền bằng tiếng S\'tiêng.', 'Lập danh mục 8 lễ vật bắt buộc trong mâm cúng cộng đồng.'],
-    pages: [`<h2>CHƯƠNG I: Ý NGHĨA TÂM LINH CỦA LỄ MỪNG LÚA MỚI</h2><p>Lễ hội Mừng lúa mới (trong tiếng S'tiêng gọi là Lễ cúng tạ ơn Yang Sri) là một nét đẹp văn hóa tâm linh đặc sắc và quan trọng bậc nhất của đồng bào dân tộc thiểu số S'tiêng tại Xã Bù Đăng.</p>`]
-  },
-  {
-    id: 'res-005', title: 'Kỹ Thuật Chế Tác Đàn Đá & Nhạc Cụ Tre Nứa Bản Địa Bù Đăng', description: 'Nghiên cứu khảo sát khảo cổ học học sinh về cách chọn đá, ghè đẽo đá tạo âm thanh tự nhiên Đông Nam Bộ.',
-    type: 'artwork', subject: 'Nghệ thuật cổ truyền', grade: '11', school: 'THPT Chuyên Quang Trung', author: 'Nhóm Vật lý - Lịch sử',
-    coverImage: '/images/heritage/van-hoa-phi-vat-the/van-hoa-stieng-lg.webp', publishedAt: '2024-06-10', featured: false, downloadCount: 145, fileSize: '5.2 MB', difficulty: 3,
-    motivation: 'Đàn đá là một trong những nhạc cụ cổ xưa nhất của nhân loại được phát hiện tại Việt Nam. Chúng em muốn phân tích vật lý kết hợp lịch sử chế tác.',
-    keyFindings: ['Khảo sát và chụp ảnh chi tiết 3 bộ đàn đá cổ được gìn giữ bởi các dòng họ lâu đời.', 'Đo đạc tần số âm thanh của từng thanh đá bằng phần mềm chuyên dụng.', 'Tái dựng quy trình ghè đẽo cân chỉnh âm thanh thanh đá truyền thống từ đá sừng.'],
-    pages: [`<h2>CHƯƠNG I: ĐÀN ĐÁ - ÂM VANG TỪ LÒNG ĐẤT CỔ XƯA</h2><p>Đàn đá không chỉ là hiện vật khảo cổ học mà còn là biểu tượng nghệ thuật âm nhạc đỉnh cao của cư dân bản địa tiền sử sinh sống dọc theo hệ thống sông Đồng Nai.</p>`]
-  }
-])
+const { data: resourcesContent, pending, error } = await useAsyncData('school-resources', () => {
+  return queryCollection('school').all()
+})
+
+const resources = computed<SchoolResourceExtended[]>(() => {
+  if (!resourcesContent.value) return []
+  return resourcesContent.value.map(item => {
+    const meta = item as any
+    return {
+      id: meta.id,
+      title: meta.title,
+      description: meta.description,
+      type: meta.type,
+      subject: meta.subject,
+      grade: meta.grade,
+      school: meta.school,
+      author: meta.author,
+      coverImage: meta.coverImage,
+      publishedAt: meta.publishedAt,
+      featured: meta.featured,
+      downloadCount: meta.downloadCount,
+      fileSize: meta.fileSize,
+      difficulty: meta.difficulty,
+      motivation: meta.motivation,
+      keyFindings: meta.keyFindings || [],
+      quizId: meta.quizId,
+      pages: meta.pages || []
+    }
+  })
+})
 
 const featuredResource = computed(() => resources.value.find(r => r.featured) ?? null)
 
@@ -1808,7 +1806,9 @@ const filteredPapers = computed(() => {
   const type = activeTypeFilter.value
   const diff = activeDifficultyFilter.value
   const diffMap: Record<string, number> = { easy: 1, medium: 2, hard: 3 }
+  const featuredId = featuredResource.value?.id
   return resources.value.filter(res => {
+    if (res.id === featuredId && type === 'all' && !q) return false
     const matchesType = type === 'all' || res.type === type
     const matchesDiff = diff === 'all' || (res.difficulty || 2) === diffMap[diff]
     const matchesQuery = !q || res.title.toLowerCase().includes(q) || res.author.toLowerCase().includes(q) || res.school.toLowerCase().includes(q) || res.subject.toLowerCase().includes(q)
@@ -1852,8 +1852,8 @@ const activeLandmark = ref<MapLandmark | null>(mapLandmarks.value[0] ?? null)
 // ──────────────────────────────────────────────
 interface ImageStory { title: string; tag: string; image: string; story: string }
 const imageStories = ref<ImageStory[]>([
-  { title: 'Thác Mơ Bù Đăng Hùng Vĩ', tag: 'Thiên Nhiên', image: '/images/heritage/danh-thang/thac-mo-dong-nai.webp', story: 'Ngọn thác biểu tượng nằm nép mình giữa rừng già nguyên sinh Bù Đăng. Dòng nước trắng xóa như dải lụa đổ từ trên cao, tạo nên cảnh sắc huyền ảo thơ mộng và gắn liền với thần thoại cội nguồn Dak Mơ xa xưa của người S\'tiêng bản địa.' },
-  { title: 'Trảng Cỏ Bù Lạch Xanh Mướt', tag: 'Thiên Nhiên', image: '/images/heritage/danh-thang/trang-co-bu-lach-lg.webp', story: 'Tuyệt tác thiên nhiên hoang sơ rộng gần 140 hecta bao bọc lấy một lòng hồ nước ngọt trong mát quanh năm. Trảng cỏ là không gian sinh hoạt lễ hội cộng đồng độc đáo và là bài học thực địa địa lý sinh động nhất.' },
+  { title: 'Thác Mơ Bù Đăng Hùng Vĩ', tag: 'Thiên Nhiên', image: '/images/heritage/img-disanbudang/thac-mo-dong-nai.png', story: 'Ngọn thác biểu tượng nằm nép mình giữa rừng già nguyên sinh Bù Đăng. Dòng nước trắng xóa như dải lụa đổ từ trên cao, tạo nên cảnh sắc huyền ảo thơ mộng và gắn liền với thần thoại cội nguồn Dak Mơ xa xưa của người S\'tiêng bản địa.' },
+  { title: 'Trảng Cỏ Bù Lạch Xanh Mướt', tag: 'Thiên Nhiên', image: '/images/heritage/img-disanbudang/Trang-co-Bu-Lach.png', story: 'Tuyệt tác thiên nhiên hoang sơ rộng gần 140 hecta bao bọc lấy một lòng hồ nước ngọt trong mát quanh năm. Trảng cỏ là không gian sinh hoạt lễ hội cộng đồng độc đáo và là bài học thực địa địa lý sinh động nhất.' },
   { title: 'Cồng Chiêng & Vũ Điệu Xoang', tag: 'Văn Hóa', image: '/images/heritage/van-hoa-phi-vat-the/cong-chieng-md.webp', story: 'Âm thanh cồng chiêng ngân vang kết nối buôn làng, là linh hồn sinh hoạt tâm linh và nghệ thuật biểu diễn của đồng bào dân tộc thiểu số Bù Đăng đã được UNESCO vinh danh.' }
 ])
 const selectedImageItem = ref<ImageStory | null>(null)

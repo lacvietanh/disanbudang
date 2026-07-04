@@ -29,6 +29,9 @@ Nơi lưu trữ các kế hoạch triển khai đã chốt hoặc đang thực h
 ### 4. Báo cáo (Reports)
 - [Báo Cáo Nghiên Cứu Dự Án](./BAO_CAO_DU_AN.md): Bản báo cáo nghiên cứu dự án chi tiết, chính thức và chuẩn xác về mặt công nghệ và tính năng.
 
+### 5. Hướng dẫn & Tài liệu phụ trợ (References)
+- [Kịch Bản Thu Âm Audio Guide](../README_AUDIO.md): Hướng dẫn thuyết minh & kịch bản thu âm giọng đọc thực tế cho các điểm di sản (thay thế giọng AI hiện tại).
+
 ---
 > **Lưu ý cho Developer/AI:** Mọi thay đổi về tính năng lớn hoặc kiến trúc mới đều phải được cập nhật tương ứng vào thư mục `docs/feat/` hoặc `docs/arch/`. Không tạo thêm các top-level directory trừ khi các thư mục hiện tại (`feat`, `arch`, `plan`, `ref`) không còn phù hợp.
 

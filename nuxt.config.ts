@@ -2,6 +2,11 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+  routeRules: {
+    '/community': { redirect: { to: '/explore/', statusCode: 301 } },
+    '/quiz': { redirect: { to: '/#quiz', statusCode: 301 } },
+    '/school': { redirect: { to: '/study/', statusCode: 301 } },
+  },
   router: {
     options: {
       trailingSlash: true,

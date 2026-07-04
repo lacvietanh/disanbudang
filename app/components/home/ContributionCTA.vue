@@ -66,6 +66,9 @@
 </template>
 
 <script setup lang="ts">
+import { useHeritageStore } from '~/stores/heritage'
+
+const heritageStore = useHeritageStore()
 const { observeAll } = useScrollReveal()
 onMounted(() => nextTick(() => observeAll()))
 
@@ -76,9 +79,9 @@ const options = [
   { icon: 'mdi:map-marker-plus', label: 'Địa Điểm Mới' },
 ]
 
-const contributionStats = [
-  { value: '11', label: 'Di sản số hóa' },
+const contributionStats = computed(() => [
+  { value: String(heritageStore.totalCount), label: 'Di sản số hóa' },
   { value: '6', label: 'Bài chia sẻ' },
   { value: '4', label: 'Audio guide' },
-]
+])
 </script>

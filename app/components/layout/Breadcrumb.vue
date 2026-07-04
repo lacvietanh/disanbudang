@@ -16,13 +16,7 @@
       <Icon name="mdi:chevron-right" class="w-4 h-4 text-charcoal-600 shrink-0" />
       
       <span v-if="index === crumbs.length - 1" class="text-gold-400 font-semibold truncate max-w-[200px] sm:max-w-xs">
-        <!-- Render dynamic last leaf via ClientOnly to prevent hydration mismatch -->
-        <ClientOnly>
-          <span>{{ leafLabel || crumb.label }}</span>
-          <template #fallback>
-            <span>{{ crumb.label }}</span>
-          </template>
-        </ClientOnly>
+        {{ (isMounted && leafLabel) ? leafLabel : crumb.label }}
       </span>
       
       <NuxtLink
@@ -42,6 +36,10 @@
 
 <script setup lang="ts">
 const route = useRoute()
+const isMounted = ref(false)
+onMounted(() => {
+  isMounted.value = true
+})
 
 // Lookup table for static segments
 const lookupTable: Record<string, string> = {
