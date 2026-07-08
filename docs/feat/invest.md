@@ -1,6 +1,6 @@
 # Thu Hút Đầu Tư (Investment Opportunities)
 
-Không gian số dành riêng cho các doanh nghiệp và nhà hoạch định chính sách, nhằm giới thiệu các tiềm năng kinh tế và hạ tầng của huyện Bù Đăng.
+Không gian số dành riêng cho các doanh nghiệp và nhà hoạch định chính sách, nhằm giới thiệu các tiềm năng kinh tế và hạ tầng của Thành Phố Đồng Nai.
 
 ## 1. Mục tiêu
 - Biến lượng truy cập (traffic) của trang thông tin văn hoá thành cơ hội kinh tế địa phương.
@@ -10,5 +10,5 @@ Không gian số dành riêng cho các doanh nghiệp và nhà hoạch định c
 Quản lý qua model `InvestmentOpportunity`:
 - **Nông nghiệp Công nghệ cao (`agriculture`):** Quỹ đất, thổ nhưỡng bazan.
 - **Du lịch Sinh thái (`tourism`):** Các dự án resort, sinh thái nghỉ dưỡng quanh Thác Mơ.
-- **Hạ tầng (`infrastructure`):** Giao thông, logistics kết nối Bình Phước.
+- **Hạ tầng (`infrastructure`):** Giao thông, logistics kết nối Thành Phố Đồng Nai.
 - **Công nghiệp (`industry`):** Khu công nghiệp và chế xuất.

@@ -1,180 +1,145 @@
 <template>
-  <BaseSection
-    label="Bảo Tàng Thu Nhỏ"
-    title="Tuyển Chọn Di Sản Độc Bản"
-    description="Khám phá các di sản văn hóa phi vật thể, danh lam thắng cảnh và di tích cách mạng nổi tiếng của Bù Đăng qua góc nhìn nghệ thuật."
-    class="relative bg-charcoal-900 border-b border-charcoal-800"
-  >
-    <!-- Background overlay elements -->
-    <div class="absolute inset-0 pointer-events-none opacity-[0.02] bg-[radial-gradient(#C9922A_1px,transparent_1px)] [background-size:24px_24px]" />
+  <section class="section bg-charcoal-950 relative overflow-hidden" aria-label="Di sản nổi bật">
 
-    <!-- Interactive Category Filter -->
-    <div class="relative scroll-fade-right-dark reveal">
-      <div class="flex items-center gap-2 overflow-x-auto scrollbar-none pb-4 mb-10 justify-start lg:justify-center">
-        <!-- Tất Cả button with count badge -->
-        <button
-          class="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 border"
-          :class="selectedCat === '' ? 'bg-gold-500 text-charcoal-900 border-transparent shadow-gold' : 'border-charcoal-850 text-charcoal-400 hover:border-gold-500/50 hover:text-ivory bg-charcoal-900'"
-          @click="selectedCat = ''"
+    <!-- Dot pattern background -->
+    <div class="absolute inset-0 pointer-events-none opacity-[0.025]
+      bg-[radial-gradient(#C9922A_1px,transparent_1px)]
+      [background-size:28px_28px]" />
+
+    <div class="container-heritage relative z-10">
+
+      <!-- ── HEADER ── -->
+      <div class="flex items-end justify-between mb-12 lg:mb-16">
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="w-8 h-px bg-gold-400" />
+            <span class="text-gold-400 text-[10px] uppercase tracking-[0.3em] font-bold">Bảo Tàng Thu Nhỏ</span>
+          </div>
+          <h2 class="font-heading font-bold text-ivory text-3xl lg:text-5xl leading-tight">
+            Di Sản Nổi Bật
+          </h2>
+          <p class="text-charcoal-400 text-sm mt-2 max-w-md">
+            Khám phá những điểm di sản văn hóa, lịch sử và thiên nhiên đặc sắc nhất của vùng đất Bù Đăng.
+          </p>
+        </div>
+        <NuxtLink
+          to="/explore"
+          class="hidden lg:flex items-center gap-2 text-gold-400 text-sm font-semibold hover:text-gold-300 transition-colors group flex-shrink-0"
         >
-          <Icon name="mdi:apps" class="w-3.5 h-3.5" />
-          Tất Cả
-          <span
-            class="text-[10px] font-bold px-1.5 py-0.5 rounded-full ml-0.5"
-            :class="selectedCat === '' ? 'bg-charcoal-900/20 text-charcoal-900' : 'bg-charcoal-800 text-charcoal-400'"
-          >{{ filteredHeritages.length }}</span>
-        </button>
-        <button
-          v-for="cat in categories"
-          :key="cat.id"
-          class="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 border bg-charcoal-900"
-          :class="selectedCat === cat.id ? 'text-ivory border-transparent' : 'border-charcoal-800 text-charcoal-400 hover:border-gold-500/50 hover:text-ivory'"
-          :style="selectedCat === cat.id ? { backgroundColor: cat.color } : {}"
-          @click="selectedCat = cat.id"
-        >
-          <Icon :name="cat.icon" class="w-3.5 h-3.5" />
-          {{ cat.labelShort }}
-        </button>
+          Xem tất cả {{ totalCount }} di sản
+          <Icon name="mdi:arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        </NuxtLink>
       </div>
-    </div>
 
-    <!-- Empty state for specific category -->
-    <div v-if="filteredHeritages.length === 0" class="py-16 text-center reveal">
-      <Icon name="mdi:archive-eye-outline" class="w-16 h-16 text-charcoal-700 mx-auto mb-4" />
-      <p class="text-charcoal-400">Không tìm thấy di sản thuộc danh mục này</p>
-    </div>
+      <!-- ── GRID — 1 large + 2 stacked ── -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5">
 
-    <!-- Asymmetrical dynamic grid -->
-    <div v-else class="space-y-8">
-      <!-- Highlighting top features if they match filter -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <!-- Main featured -->
-        <div v-if="displayFeatured[0]" class="lg:col-span-2 reveal">
-          <div
-            class="relative overflow-hidden rounded-3xl cursor-pointer group h-[480px] lg:h-[560px] border border-charcoal-800 hover:border-gold-500/30 hover:shadow-2xl hover:shadow-gold-500/10 transition-all duration-500"
-            @click="navigateTo(`/heritage/${displayFeatured[0].slug}`)"
+        <!-- LARGE HERO CARD -->
+        <div v-if="topFeatured[0]" class="lg:col-span-7 xl:col-span-8 reveal">
+          <article
+            class="relative overflow-hidden rounded-2xl lg:rounded-3xl cursor-pointer group h-[420px] lg:h-[580px] border border-charcoal-800/60 hover:border-gold-500/30 hover:shadow-2xl hover:shadow-gold-500/10 transition-all duration-700"
+            @click="navigateTo(`/heritage/${topFeatured[0].slug}`)"
           >
             <img
-              :src="displayFeatured[0].coverImage"
-              :alt="displayFeatured[0].title"
-              class="w-full h-full object-cover transition-transform duration-1000 ease-out-expo group-hover:scale-105"
+              :src="topFeatured[0].coverImage"
+              :alt="topFeatured[0].title"
+              class="w-full h-full object-cover transition-transform duration-[1400ms] ease-out-expo group-hover:scale-[1.04]"
             />
-            <div class="absolute inset-0 bg-gradient-cinematic" />
-            <div class="absolute inset-0 bg-gradient-to-r from-charcoal-950/70 via-transparent to-transparent" />
+            <!-- Gradient burn -->
+            <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-950/40 to-transparent" />
+            <div class="absolute inset-0 bg-gradient-to-r from-charcoal-950/60 via-transparent to-transparent" />
 
-            <div class="absolute bottom-0 left-0 right-0 p-8 lg:p-10">
-              <BaseBadge variant="brick" class="mb-4">
-                {{ getCategoryLabel(displayFeatured[0].category) }}
-              </BaseBadge>
-              <h2 class="font-heading font-bold text-ivory text-3xl lg:text-5xl leading-tight mb-3 text-shadow-hero">
-                {{ displayFeatured[0].title }}
-              </h2>
-              <p class="text-charcoal-300 text-base leading-relaxed mb-6 max-w-xl line-clamp-3">
-                {{ displayFeatured[0].shortDescription }}
-              </p>
-              <div class="flex items-center gap-6">
-                <span class="text-gold-400 font-body text-sm font-medium flex items-center gap-2 group-hover:text-gold-300 transition-colors">
-                  Đọc câu chuyện di sản
-                  <Icon name="mdi:arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </span>
-                <span class="eyebrow text-charcoal-500 text-2xs">{{ displayFeatured[0].year }}</span>
+            <!-- Editorial number -->
+            <div class="absolute top-6 left-6 font-heading font-bold text-ivory/10 text-[80px] lg:text-[110px] leading-none select-none pointer-events-none">
+              01
+            </div>
+
+            <!-- Content -->
+            <div class="absolute bottom-0 left-0 right-0 p-7 lg:p-10">
+              <div class="flex items-center gap-2 mb-4">
+                <BaseBadge variant="brick" size="sm">{{ getCategoryLabel(topFeatured[0].category) }}</BaseBadge>
+                <span class="text-charcoal-500 text-xs">·</span>
+                <div class="flex items-center gap-1 text-charcoal-400 text-xs">
+                  <Icon name="mdi:eye-outline" class="w-3.5 h-3.5" />
+                  <span>{{ topFeatured[0].viewCount?.toLocaleString() }}</span>
+                </div>
               </div>
+              <h3 class="font-heading font-bold text-ivory text-3xl lg:text-4xl xl:text-5xl leading-tight mb-3 text-shadow-hero">
+                {{ topFeatured[0].title }}
+              </h3>
+              <p class="text-ivory/60 text-sm leading-relaxed mb-5 max-w-lg line-clamp-2">
+                {{ topFeatured[0].shortDescription }}
+              </p>
+              <span class="inline-flex items-center gap-2 text-gold-400 text-sm font-semibold group-hover:text-gold-300 transition-colors">
+                Đọc câu chuyện di sản
+                <Icon name="mdi:arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1.5" />
+              </span>
             </div>
-
-            <!-- View count -->
-            <div class="absolute top-6 right-6 glass-dark rounded-full px-3 py-1.5 flex items-center gap-1.5 border border-charcoal-700">
-              <Icon name="mdi:eye-outline" class="w-3.5 h-3.5 text-gold-400" />
-              <span class="text-ivory/80 text-2xs font-medium">{{ displayFeatured[0].viewCount?.toLocaleString() }}</span>
-            </div>
-          </div>
+          </article>
         </div>
 
-        <!-- Secondary stack -->
-        <div class="space-y-6">
-          <div
-            v-for="item in displayFeatured.slice(1, 3)"
+        <!-- SECONDARY STACK — 2 cards -->
+        <div class="lg:col-span-5 xl:col-span-4 flex flex-col gap-4 lg:gap-5">
+          <article
+            v-for="(item, idx) in topFeatured.slice(1, 3)"
             :key="item.id"
-            class="relative overflow-hidden rounded-2xl cursor-pointer group h-[225px] lg:h-[268px] border border-charcoal-800 reveal"
+            class="relative overflow-hidden rounded-2xl cursor-pointer group flex-1 min-h-[200px] lg:min-h-0 border border-charcoal-800/60 hover:border-gold-500/25 transition-all duration-500 hover:shadow-xl hover:shadow-gold-500/8 reveal"
             @click="navigateTo(`/heritage/${item.slug}`)"
           >
             <img
               :src="item.coverImage"
               :alt="item.title"
-              class="w-full h-full object-cover transition-transform duration-1000 ease-out-expo group-hover:scale-105"
+              class="w-full h-full object-cover transition-transform duration-[1200ms] ease-out-expo group-hover:scale-[1.06]"
             />
-            <div class="absolute inset-0 bg-gradient-cinematic" />
+            <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-950/50 to-transparent" />
 
-            <div class="absolute bottom-0 left-0 right-0 p-6">
-              <BaseBadge :variant="getCategoryVariant(item.category)" class="mb-3">
+            <!-- Editorial number -->
+            <div class="absolute top-4 left-4 font-heading font-bold text-ivory/10 text-[50px] leading-none select-none pointer-events-none">
+              {{ String(idx + 2).padStart(2, '0') }}
+            </div>
+
+            <div class="absolute bottom-0 left-0 right-0 p-5 lg:p-6">
+              <BaseBadge :variant="getCategoryVariant(item.category)" size="sm" class="mb-3">
                 {{ getCategoryLabel(item.category) }}
               </BaseBadge>
-              <h3 class="font-heading font-bold text-ivory text-xl leading-tight mb-1 text-shadow-sm group-hover:text-gold-200 transition-colors">
+              <h3 class="font-heading font-bold text-ivory text-xl lg:text-2xl leading-tight mb-1 group-hover:text-gold-200 transition-colors text-shadow-sm">
                 {{ item.title }}
               </h3>
               <p class="text-charcoal-400 text-xs line-clamp-1">{{ item.subtitle }}</p>
-            </div>
 
-            <div class="absolute top-4 right-4 w-8 h-8 rounded-full bg-gold-500/0 group-hover:bg-gold-500 flex items-center justify-center transition-all duration-300">
-              <Icon name="mdi:arrow-right" class="w-4 h-4 text-gold-400/40 group-hover:text-charcoal-900 transition-colors duration-300" />
+              <!-- Arrow indicator -->
+              <div class="absolute top-5 right-5 w-8 h-8 rounded-full bg-gold-500/0 group-hover:bg-gold-500 flex items-center justify-center transition-all duration-400 border border-ivory/10 group-hover:border-gold-500">
+                <Icon name="mdi:arrow-right" class="w-4 h-4 text-ivory/30 group-hover:text-charcoal-900 transition-colors duration-300" />
+              </div>
             </div>
-          </div>
+          </article>
         </div>
+
       </div>
 
-      <!-- Grid of remaining list -->
-      <div v-if="displayOthers.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pt-4">
-        <HeritageCard
-          v-for="heritage in displayOthers"
-          :key="heritage.id"
-          :heritage="heritage"
-          class="reveal border border-charcoal-800"
-          @click="navigateTo(`/heritage/${heritage.slug}`)"
-        />
+      <!-- ── MOBILE CTA ── -->
+      <div class="flex lg:hidden justify-center mt-8">
+        <NuxtLink to="/explore" class="btn-secondary hover:shadow-lg hover:shadow-gold-500/15">
+          Xem tất cả {{ totalCount }} di sản
+          <Icon name="mdi:arrow-right" class="w-4 h-4" />
+        </NuxtLink>
       </div>
-    </div>
 
-    <!-- View all CTA -->
-    <div class="text-center mt-14">
-      <NuxtLink to="/library" class="btn-secondary hover:shadow-gold/20 hover:shadow-lg">
-        Xem Toàn Bộ Thư Viện
-        <Icon name="mdi:arrow-right" class="w-4 h-4" />
-      </NuxtLink>
     </div>
-  </BaseSection>
+  </section>
 </template>
 
 <script setup lang="ts">
 import { MOCK_HERITAGES } from '~/data/mockHeritages'
-import { CATEGORIES } from '~/data/categories'
 
 const { getCategoryLabel } = useHeritage()
 const { observeAll } = useScrollReveal()
+const heritageStore = useHeritageStore()
 
-const categories = CATEGORIES
-const selectedCat = ref('')
+const totalCount = computed(() => heritageStore.totalCount)
+const topFeatured = computed(() => MOCK_HERITAGES.filter((h) => h.featured).slice(0, 3))
 
-const filteredHeritages = computed(() => {
-  if (selectedCat.value === '') {
-    return MOCK_HERITAGES
-  }
-  return MOCK_HERITAGES.filter((h) => h.category === selectedCat.value)
-})
-
-const displayFeatured = computed(() => {
-  return filteredHeritages.value.filter((h) => h.featured)
-})
-
-const displayOthers = computed(() => {
-  return filteredHeritages.value.filter((h) => !h.featured).slice(0, 4)
-})
-
-watch(selectedCat, () => {
-  nextTick(() => observeAll())
-})
-
-onMounted(() => {
-  nextTick(() => observeAll())
-})
+onMounted(() => nextTick(() => observeAll()))
 
 function getCategoryVariant(cat: string) {
   const map: Record<string, string> = {

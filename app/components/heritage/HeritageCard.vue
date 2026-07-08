@@ -10,7 +10,7 @@
   >
     <!-- Image -->
     <div class="aspect-[4/3] overflow-hidden">
-      <img
+      <NuxtImg
         :src="heritage.coverImage"
         :alt="heritage.title"
         class="card-image w-full h-full object-cover"

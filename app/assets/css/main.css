@@ -42,7 +42,7 @@
     letter-spacing: -0.02em;
   }
 
-  h1 { @apply text-5xl md:text-6xl lg:text-7xl font-bold leading-none; }
+  h1 { @apply text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.15]; }
   h2 { @apply text-3xl md:text-4xl lg:text-5xl font-bold; }
   h3 { @apply text-2xl md:text-3xl font-semibold; }
   h4 { @apply text-xl md:text-2xl font-semibold; }
@@ -107,13 +107,13 @@
 
   /* ——— Typography ——— */
   .text-display {
-    @apply font-heading font-bold leading-none tracking-tight;
+    @apply font-heading font-bold leading-[1.12] tracking-tight;
     font-size: clamp(2.5rem, 6vw, 5rem);
     letter-spacing: -0.03em;
   }
 
   .text-display-sm {
-    @apply font-heading font-bold leading-none tracking-tight;
+    @apply font-heading font-bold leading-[1.12] tracking-tight;
     font-size: clamp(1.8rem, 4vw, 3.5rem);
   }
 

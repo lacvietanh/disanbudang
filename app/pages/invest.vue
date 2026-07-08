@@ -20,9 +20,9 @@
       <div class="container-heritage relative z-10 py-24 lg:py-32">
         <div class="max-w-3xl">
           <span class="eyebrow text-gold-400 mb-4 block">CƠ HỘI PHÁT TRIỂN</span>
-          <h1 class="font-heading font-bold text-ivory text-5xl lg:text-6xl leading-tight mb-6 text-shadow-hero">
+          <h1 class="font-heading font-bold text-ivory text-5xl lg:text-6xl leading-[1.28] mb-6 text-shadow-hero">
             Đầu Tư<br/>
-            <span class="text-gradient-gold">Xã Bù Đăng</span>
+            <span class="text-gradient-gold">Bù Đăng</span>
           </h1>
           <p class="text-charcoal-300 text-lg max-w-xl leading-relaxed mb-8">
             Khám phá tiềm năng kinh tế, hạ tầng và chính sách ưu đãi dành cho các nhà đầu tư tại vùng đất Bù Đăng giàu bản sắc — viên ngọc thiên nhiên và văn hóa của Thành Phố Đồng Nai.

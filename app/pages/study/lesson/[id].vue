@@ -145,7 +145,7 @@ const lessons: Record<string, LessonData> = {
       ],
     },
     didYouKnow: [
-      'Chiến Khu Đ có diện tích lên đến hàng trăm km², lớn hơn cả một huyện thông thường.',
+      'Chiến Khu Đ có diện tích lên đến hàng trăm km², rộng lớn bậc nhất trong các khu căn cứ địa cách mạng.',
       'Đồng bào S\'tiêng đã giã gạo thâu đêm suốt sáng để nuôi bộ đội — hành động được bất hủ trong bài hát "Tiếng Chày Trên Sóc Bom Bo" của nhạc sĩ Xuân Hồng.',
       'Địch đã thực hiện hơn 200 trận càn quét vào Chiến Khu Đ nhưng không lần nào thực sự tiêu diệt được căn cứ này.',
     ],

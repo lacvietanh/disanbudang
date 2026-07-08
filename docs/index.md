@@ -1,8 +1,14 @@
 # Tài Liệu Dự Án: Di Sản Bù Đăng
 
-Chào mừng đến với hệ thống tài liệu của dự án Di Sản Bù Đăng. Hệ thống tài liệu này được cấu trúc theo chuẩn **Aki-RULE**, chia thành các phân hệ chính để dễ dàng tra cứu và bảo trì.
+> **[PROJECT_MASTER.md](./PROJECT_MASTER.md) — Đọc file này TRƯỚC TIÊN.**
+> Đây là nguồn sự thật tối thượng (Single Source of Truth) của toàn bộ dự án: mục tiêu, tech stack, kiến trúc, quy tắc phát triển và roadmap.
+
+Hệ thống tài liệu này được cấu trúc theo chuẩn **Aki-RULE**, chia thành các phân hệ chính để dễ dàng tra cứu và bảo trì.
 
 ## 🎯 Mục lục
+
+### 0. Master Document (Đọc Trước)
+- [**PROJECT MASTER**](./PROJECT_MASTER.md): Nguồn sự thật tối thượng — tổng quan, tech stack, kiến trúc, quy tắc phát triển và roadmap đầy đủ.
 
 ### 1. Tính năng (Features)
 Mô tả về các tính năng nghiệp vụ, logic và các hệ thống cốt lõi tương tác với người dùng.

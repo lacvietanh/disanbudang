@@ -1,6 +1,6 @@
-# Di Sản Bù Đăng — Bảo Tàng Số Địa Phương
+# Di Sản Thành Phố Đồng Nai — Bảo Tàng Số Địa Phương
 
-Một không gian số hiện đại nhằm lưu trữ, tôn vinh và lan tỏa các giá trị di sản văn hóa, lịch sử và thiên nhiên của huyện Bù Đăng.
+Một không gian số hiện đại nhằm lưu trữ, tôn vinh và lan tỏa các giá trị di sản văn hóa, lịch sử và thiên nhiên của Thành Phố Đồng Nai (Bù Đăng, Phước Long, Lộc Ninh, Bom Bo...).
 
 📖 **Tài liệu dự án đầy đủ:** Vui lòng xem tại [docs/index.md](./docs/index.md) (bao gồm Tính năng, Kiến trúc hệ thống, Kế hoạch triển khai).
 

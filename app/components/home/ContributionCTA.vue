@@ -82,6 +82,6 @@ const options = [
 const contributionStats = computed(() => [
   { value: String(heritageStore.totalCount), label: 'Di sản số hóa' },
   { value: '6', label: 'Bài chia sẻ' },
-  { value: '4', label: 'Audio guide' },
+  { value: '2', label: 'Audio guide' },
 ])
 </script>

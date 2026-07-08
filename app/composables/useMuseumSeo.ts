@@ -132,10 +132,28 @@ export function useMuseumSeo(input: MuseumSeoInput = {}) {
             '@type': 'Organization',
             '@id': `${SITE_URL}/#organization`,
             'name': SITE_NAME,
-            'alternateName': [SITE_NAME, 'di san bu dang', 'disanbudang', 'disanbudang.com'],
+            'alternateName': [
+              'Bảo Tàng Số Di Sản Bù Đăng',
+              'Di Sản Bù Đăng',
+              'di san bu dang',
+              'disanbudang',
+              'disanbudang.com',
+              'bao tang so di san bu dang',
+            ],
             'url': `${SITE_URL}/`,
             'logo': `${SITE_URL}/favicon/icon-192.png`,
             'description': SITE_DESCRIPTION,
+            'foundingDate': '2026',
+            'founder': {
+              '@type': 'Person',
+              '@id': `${SITE_URL}/#author`,
+              'name': 'Nguyễn Xuân Kiệt',
+              'jobTitle': 'Học sinh — Tác giả dự án',
+              'affiliation': {
+                '@type': 'EducationalOrganization',
+                'name': 'THPT Lê Quý Đôn, Thành Phố Đồng Nai',
+              },
+            },
             'address': {
               '@type': 'PostalAddress',
               'addressLocality': 'Vùng đất Bù Đăng',
@@ -143,10 +161,13 @@ export function useMuseumSeo(input: MuseumSeoInput = {}) {
               'addressCountry': 'VN'
             },
             'knowsAbout': [
-              'Lịch sử địa phương',
+              'Lịch sử địa phương Bù Đăng',
               'Văn hóa dân tộc S\'tiêng',
               'Di sản thiên nhiên Bù Đăng',
-              'Du lịch sinh thái Bù Đăng'
+              'Du lịch sinh thái Thành Phố Đồng Nai',
+              'Chiến Khu Đ',
+              'Cồng chiêng Tây Nguyên',
+              'Sóc Bom Bo',
             ]
           },
           {
@@ -154,7 +175,7 @@ export function useMuseumSeo(input: MuseumSeoInput = {}) {
             '@id': `${SITE_URL}/#website`,
             'url': `${SITE_URL}/`,
             'name': SITE_NAME,
-            'alternateName': [SITE_NAME, 'di san bu dang', 'disanbudang'],
+            'alternateName': ['Di Sản Bù Đăng', 'di san bu dang', 'disanbudang'],
             'publisher': {
               '@id': `${SITE_URL}/#organization`
             },
@@ -162,7 +183,7 @@ export function useMuseumSeo(input: MuseumSeoInput = {}) {
               '@type': 'SearchAction',
               'target': {
                 '@type': 'EntryPoint',
-                'urlTemplate': `${SITE_URL}/library/?search={search_term_string}`
+                'urlTemplate': `${SITE_URL}/explore/?search={search_term_string}`
               },
               'query-input': 'required name=search_term_string'
             }
@@ -171,7 +192,7 @@ export function useMuseumSeo(input: MuseumSeoInput = {}) {
             '@type': 'WebPage',
             '@id': `${SITE_URL}/#webpage`,
             'url': `${SITE_URL}/`,
-            'name': `${SITE_NAME} — Bảo Tàng Số Địa Phương`,
+            'name': `${SITE_NAME} - Bao Tang So Dia Phuong`,
             'description': SITE_DESCRIPTION,
             'isPartOf': {
               '@id': `${SITE_URL}/#website`
@@ -179,7 +200,36 @@ export function useMuseumSeo(input: MuseumSeoInput = {}) {
             'about': {
               '@id': `${SITE_URL}/#organization`
             }
-          }
+          },
+          {
+            '@type': 'FAQPage',
+            'mainEntity': [
+              {
+                '@type': 'Question',
+                'name': 'Di sản nổi bật nhất ở Bù Đăng là gì?',
+                'acceptedAnswer': {
+                  '@type': 'Answer',
+                  'text': 'Chiến Khu Đ Bù Đăng, Trảng Cỏ Bù Lạch, Sóc Bom Bo lịch sử, không gian cồng chiêng S\'tiêng và nghề dệt thổ cẩm truyền thống.',
+                },
+              },
+              {
+                '@type': 'Question',
+                'name': 'Bảo tàng số Di Sản Bù Đăng là gì?',
+                'acceptedAnswer': {
+                  '@type': 'Answer',
+                  'text': 'Bảo tàng số Di Sản Bù Đăng là nền tảng web tương tác bảo tồn di sản văn hóa, lịch sử và thiên nhiên vùng đất Bù Đăng, Thành Phố Đồng Nai. Bao gồm bản đồ di sản, thư viện ảnh, audio guide, và góc học tập.',
+                },
+              },
+              {
+                '@type': 'Question',
+                'name': 'Bù Đăng thuộc đơn vị hành chính nào?',
+                'acceptedAnswer': {
+                  '@type': 'Answer',
+                  'text': 'Bù Đăng là xã thuộc Thành Phố Đồng Nai — thành phố trực thuộc Trung ương thứ 7 của Việt Nam.',
+                },
+              },
+            ],
+          },
         ]
       })
     })

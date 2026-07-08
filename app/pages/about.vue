@@ -1,8 +1,11 @@
 <template>
   <div class="bg-charcoal-950 text-ivory">
-    <!-- 1. THE HOOK: Hero cinematic -->
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <!-- Background Images Slideshow -->
+
+    <!-- ══════════════════════════════════════════════════════════
+         1. HERO — left-aligned, bottom-positioned, editorial
+         ══════════════════════════════════════════════════════════ -->
+    <section class="relative min-h-screen flex flex-col overflow-hidden">
+      <!-- Background slideshow -->
       <div class="absolute inset-0 z-0">
         <TransitionGroup name="fade">
           <div
@@ -12,247 +15,464 @@
             class="absolute inset-0"
           >
             <img
-              :src="slide"
-              alt="Giới thiệu Di sản Bù Đăng"
-              class="w-full h-full object-cover opacity-40"
-              :class="currentSlide === i ? 'ken-burns-active' : 'ken-burns-paused'"
+              :src="slide.image"
+              :alt="slide.alt"
+              class="w-full h-full object-cover"
+              :class="currentSlide === i ? 'ken-burns-active' : ''"
+              :style="slide.position ? `object-position: ${slide.position}` : ''"
             />
           </div>
         </TransitionGroup>
       </div>
-      <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-950/80 to-transparent z-10" />
-      
-      <div class="relative z-20 container-heritage text-center pb-16 pt-32">
-        <span class="inline-block px-4 py-2 rounded-full border border-gold-500/30 bg-gold-500/10 text-gold-400 text-sm font-bold tracking-widest uppercase mb-6 reveal">
-          Dự Án Số Hóa Di Sản · Thành Phố Đồng Nai
-        </span>
-        <h1 class="font-heading font-bold text-ivory text-6xl md:text-8xl leading-tight mb-6 text-shadow-hero reveal">
-          Giới Thiệu <span class="text-gradient-gold">Di Sản Bù Đăng</span>
-        </h1>
-        <p class="font-accent italic text-charcoal-300 text-2xl md:text-3xl max-w-3xl mx-auto mb-12 reveal">
-          "Gìn giữ ký ức vùng đất Bù Đăng — Dự án số hóa hỗ trợ giáo dục di sản địa phương tại Thành Phố Đồng Nai"
-        </p>
-        
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 reveal">
-          <button @click="scrollTo('problem')" class="btn-primary px-8 py-4 text-lg rounded-full">
-            Bắt đầu Hành Trình
-            <Icon name="mdi:arrow-down" class="w-5 h-5 ml-2 animate-bounce" />
-          </button>
-        </div>
+
+      <!-- Layered overlays — left-burn to support left-aligned text -->
+      <div class="absolute inset-0 z-10 bg-gradient-to-t from-charcoal-950 via-charcoal-950/60 to-charcoal-900/30" />
+      <div class="absolute inset-0 z-10 bg-gradient-to-r from-charcoal-950/92 via-charcoal-950/40 to-transparent" />
+      <div class="absolute top-0 inset-x-0 h-28 z-10 bg-gradient-to-b from-charcoal-950/70 to-transparent" />
+
+      <!-- Slide indicators -->
+      <div class="absolute bottom-14 right-8 z-20 flex flex-col gap-2">
+        <button
+          v-for="(_, i) in slides"
+          :key="i"
+          class="rounded-full transition-all duration-500 cursor-pointer"
+          :class="currentSlide === i ? 'w-1 h-7 bg-gold-400' : 'w-1 h-3 bg-ivory/25 hover:bg-ivory/50'"
+          :aria-label="`Slide ${i + 1}`"
+          @click="goToSlide(i)"
+        />
       </div>
-    </section>
 
-    <!-- 2. THE PROBLEM: Nỗi Đau Thực Trạng -->
-    <section id="problem" class="py-24 lg:py-32 bg-charcoal-900 border-t border-charcoal-850">
-      <div class="container-heritage">
-        <div class="text-center max-w-3xl mx-auto mb-16 reveal">
-          <span class="eyebrow text-brick-500">THỰC TRẠNG & THÁCH THỨC</span>
-          <h2 class="font-heading font-bold text-4xl lg:text-5xl mb-6">Vì Sao Dự Án Này Ra Đời?</h2>
-          <p class="text-charcoal-300 text-lg leading-relaxed">
-            Di sản văn hóa phi vật thể của vùng đất Bù Đăng đang đối mặt nguy cơ mai một khi chưa có nền tảng số hóa xứng tầm để bảo tồn và truyền lại cho thế hệ mai sau.
-          </p>
-        </div>
+      <!-- Slide counter top-right -->
+      <div class="absolute top-24 right-8 z-20 hidden lg:flex items-center gap-1.5 pointer-events-none">
+        <span class="font-heading font-bold text-ivory/80 text-sm tabular-nums">{{ String(currentSlide + 1).padStart(2, '0') }}</span>
+        <span class="text-charcoal-600 text-xs">/</span>
+        <span class="text-charcoal-500 text-xs tabular-nums">{{ String(slides.length).padStart(2, '0') }}</span>
+      </div>
 
-        <div class="grid md:grid-cols-3 gap-8">
-          <div v-for="(prob, i) in problems" :key="i" class="bg-charcoal-950 border border-charcoal-800 p-8 rounded-3xl relative overflow-hidden group hover:border-brick-500/50 transition-all duration-500 reveal">
-            <div class="absolute top-0 left-0 w-full h-1 bg-brick-500/20 group-hover:bg-brick-500 transition-colors" />
-            <Icon :name="prob.icon" class="w-12 h-12 text-brick-500 mb-6" />
-            <h3 class="font-heading font-bold text-xl mb-3">{{ prob.title }}</h3>
-            <p class="text-charcoal-400 leading-relaxed">{{ prob.desc }}</p>
+      <!-- MAIN CONTENT — bottom-left positioned -->
+      <div class="relative z-20 flex-1 flex flex-col justify-end pb-20 md:pb-24 pt-36">
+        <div class="container-heritage">
+          <div class="max-w-3xl xl:max-w-4xl">
+
+            <!-- Eyebrow -->
+            <div class="flex items-center gap-3 mb-5 about-reveal" style="--delay: 0s">
+              <span class="h-px w-10 bg-gold-400" />
+              <span class="text-gold-400 text-[10px] uppercase tracking-[0.28em] font-bold">
+                Dự Án Số Hóa Di Sản · Thành Phố Đồng Nai
+              </span>
+            </div>
+
+            <!-- H1 — left-aligned editorial -->
+            <h1
+              class="font-heading font-bold text-ivory leading-[1.28] mb-6 about-reveal text-shadow-hero"
+              style="--delay: 0.12s; font-size: clamp(2.6rem, 7vw, 6rem)"
+            >
+              Giới Thiệu<br/>
+              <span class="text-gradient-gold">Di Sản Đồng Nai</span>
+            </h1>
+
+            <!-- Tagline -->
+            <p
+              class="font-accent italic text-ivory/65 text-lg lg:text-xl xl:text-2xl max-w-2xl mb-10 leading-relaxed about-reveal"
+              style="--delay: 0.24s"
+            >
+              "Gìn giữ ký ức di sản địa phương — Dự án số hóa hỗ trợ giáo dục lịch sử và văn hóa Thành Phố Đồng Nai"
+            </p>
+
+            <div class="flex flex-wrap items-center gap-4 about-reveal" style="--delay: 0.36s">
+              <button @click="scrollToSection('mission')" class="btn-primary px-8 py-3.5 text-sm">
+                Bắt đầu Hành Trình
+                <Icon name="mdi:arrow-down" class="w-4.5 h-4.5 animate-bounce" />
+              </button>
+              <NuxtLink to="/map" class="btn-ghost px-8 py-3.5 text-sm border border-ivory/20 text-ivory/70 hover:border-gold-400/50 hover:text-gold-300">
+                <Icon name="mdi:map-outline" class="w-4.5 h-4.5" />
+                Bản Đồ Di Sản
+              </NuxtLink>
+            </div>
+
           </div>
         </div>
       </div>
+
+      <!-- Scroll cue -->
+      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2">
+        <div class="w-5 h-8 border border-ivory/20 rounded-full flex justify-center pt-1.5">
+          <div class="w-1 h-1.5 bg-gold-400/70 rounded-full scroll-dot" />
+        </div>
+        <span class="text-ivory/30 text-[9px] uppercase tracking-widest">Cuộn xuống</span>
+      </div>
     </section>
 
-    <!-- 3. THE SOLUTION: Giải Pháp Công Nghệ -->
-    <section class="py-24 lg:py-32 relative overflow-hidden border-t border-charcoal-850">
-      <!-- Decor -->
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold-500/5 rounded-full blur-[120px] pointer-events-none" />
-      
+
+    <!-- ══════════════════════════════════════════════════════════
+         2. MISSION — Quote lớn + hình ảnh thực + 3 core problems
+         ══════════════════════════════════════════════════════════ -->
+    <section id="mission" class="py-24 lg:py-36 bg-charcoal-900 border-t border-charcoal-800/60 relative overflow-hidden">
+      <!-- Background pattern -->
+      <div class="absolute inset-0 pointer-events-none opacity-[0.02] bg-[radial-gradient(#C9922A_1px,transparent_1px)] [background-size:32px_32px]" />
+
       <div class="container-heritage relative z-10">
-        <div class="text-center max-w-3xl mx-auto mb-20 reveal">
-          <span class="eyebrow text-gold-400">GIẢI PHÁP TOÀN DIỆN</span>
-          <h2 class="font-heading font-bold text-4xl lg:text-5xl mb-6">4 Trụ Cột Của Nền Tảng Số</h2>
-          <p class="text-charcoal-350 text-lg leading-relaxed">
-            Không chỉ là một trang thông tin tĩnh — Di Sản Bù Đăng là hệ sinh thái số tương tác, bảo tồn và khai thác giá trị văn hóa phi vật thể của Xã Bù Đăng, góp phần khẳng định vị thế di sản của Thành Phố Đồng Nai trên bản đồ số quốc gia.
-          </p>
-        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-start">
 
-        <div class="grid md:grid-cols-2 gap-x-12 gap-y-16">
-          <div v-for="(goal, i) in solutions" :key="i" class="flex gap-6 reveal group">
-            <div class="w-16 h-16 rounded-2xl bg-charcoal-900 border border-charcoal-800 flex items-center justify-center shrink-0 shadow-gold group-hover:scale-110 transition-transform">
-              <Icon :name="goal.icon" class="w-8 h-8 text-gold-400" />
+          <!-- Left: Quote + problems -->
+          <div class="reveal">
+            <div class="flex items-center gap-3 mb-8">
+              <span class="w-8 h-px bg-brick-400" />
+              <span class="text-brick-400 text-[10px] uppercase tracking-[0.3em] font-bold">Sứ Mệnh</span>
             </div>
-            <div>
-              <h3 class="font-heading font-bold text-2xl mb-3">{{ goal.title }}</h3>
-              <p class="text-charcoal-400 leading-relaxed">{{ goal.desc }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- 4. CORE INNOVATION: Tính Đổi Mới Sáng Tạo -->
-    <section class="py-24 lg:py-32 bg-dark-earth border-y border-charcoal-850 relative">
-      <div class="container-heritage">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <div class="space-y-8 reveal">
-            <div>
-              <span class="eyebrow text-forest-400">ĐỔI MỚI CÔNG NGHỆ</span>
-              <h2 class="font-heading font-bold text-4xl lg:text-5xl mb-6">Trải Nghiệm Khác Biệt</h2>
-              <p class="text-charcoal-300 text-lg leading-relaxed">
-                Ứng dụng công nghệ hiện đại để biến di sản lịch sử trở nên sống động và chạm được đến thế hệ trẻ — những người sẽ là chủ nhân của Thành Phố Đồng Nai trong tương lai.
-              </p>
+            <!-- Big pull-quote -->
+            <blockquote class="font-heading font-bold text-ivory text-3xl lg:text-4xl leading-[1.1] mb-6 relative">
+              <span class="absolute -top-4 -left-2 text-gold-400/15 font-serif text-[80px] leading-none select-none pointer-events-none">"</span>
+              Di sản không phải để nhốt trong bảo tàng —
+              <span class="text-gradient-gold"> mà để sống trong lòng người."</span>
+            </blockquote>
+
+            <p class="text-charcoal-300 text-base leading-relaxed mb-8">
+              Di sản văn hóa phi vật thể của vùng đất Bù Đăng đang đối mặt nguy cơ mai một khi
+              chưa có nền tảng số hóa xứng tầm. Dự án ra đời để thay đổi điều đó — biến ký ức
+              thành dữ liệu sống, biến lịch sử thành trải nghiệm.
+            </p>
+
+            <!-- Mini stats inline -->
+            <div class="flex gap-8 mb-10 pb-10 border-b border-charcoal-800/60">
+              <div v-for="ms in missionStats" :key="ms.label">
+                <p class="font-heading font-bold text-gold-400 text-3xl mb-0.5">{{ ms.value }}</p>
+                <p class="text-charcoal-500 text-xs uppercase tracking-wider">{{ ms.label }}</p>
+              </div>
             </div>
-            
-            <div class="space-y-6">
-              <div v-for="(inv, i) in innovations" :key="i" class="flex items-start gap-4">
-                <Icon name="mdi:check-circle" class="w-6 h-6 text-forest-400 shrink-0 mt-0.5" />
+
+            <!-- 3 core problems -->
+            <div class="space-y-4">
+              <div
+                v-for="(prob, i) in problems"
+                :key="i"
+                class="flex gap-4 p-5 rounded-2xl border border-charcoal-800/60 hover:border-charcoal-700 transition-colors group"
+              >
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors duration-300"
+                  :class="prob.iconBg">
+                  <Icon :name="prob.icon" class="w-5 h-5 transition-colors duration-300" :class="prob.iconColor" />
+                </div>
                 <div>
-                  <h4 class="font-heading font-bold text-xl text-ivory mb-1">{{ inv.title }}</h4>
-                  <p class="text-charcoal-400">{{ inv.desc }}</p>
+                  <h3 class="font-heading font-semibold text-ivory text-base mb-1 group-hover:text-gold-200 transition-colors">
+                    {{ prob.title }}
+                  </h3>
+                  <p class="text-charcoal-400 text-sm leading-relaxed">{{ prob.desc }}</p>
                 </div>
               </div>
             </div>
           </div>
-          
-          <div class="relative reveal hidden lg:block">
-            <div class="aspect-square rounded-[3rem] overflow-hidden border-2 border-charcoal-800 shadow-2xl relative">
-              <img src="/images/heritage/van-hoa-phi-vat-the/cong-chieng-lg.webp" alt="Innovation" class="w-full h-full object-cover opacity-50" />
-              <div class="absolute inset-0 bg-gradient-to-tr from-charcoal-950 via-transparent to-forest-500/20 mix-blend-overlay" />
-              
-              <!-- Floating UI element -->
-              <div class="absolute bottom-10 left-10 right-10 bg-charcoal-900/90 backdrop-blur-md border border-charcoal-800 p-6 rounded-2xl shadow-xl transform translate-y-4 hover:translate-y-0 transition-transform">
-                <div class="flex items-center gap-4">
-                  <div class="w-12 h-12 bg-forest-500/20 rounded-full flex items-center justify-center">
-                    <Icon name="mdi:medal" class="w-6 h-6 text-forest-400" />
-                  </div>
-                  <div>
-                    <p class="text-sm text-charcoal-400 font-medium uppercase tracking-wider">Huy Hiệu Mới Đạt Được</p>
-                    <p class="font-heading font-bold text-lg text-ivory">Chuyên Gia Văn Hóa S'tiêng</p>
-                  </div>
+
+          <!-- Right: Heritage photo stack -->
+          <div class="reveal relative">
+            <!-- Main photo -->
+            <div class="relative rounded-3xl overflow-hidden h-[420px] lg:h-[520px] border border-charcoal-800/60 shadow-2xl shadow-charcoal-950/50">
+              <img
+                src="/images/heritage/van-hoa-phi-vat-the/cong-chieng-lg.webp"
+                alt="Cồng chiêng S'tiêng"
+                class="w-full h-full object-cover"
+                style="object-position: center 30%"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950/70 via-transparent to-transparent" />
+              <!-- Photo caption -->
+              <div class="absolute bottom-0 left-0 right-0 p-6">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="w-4 h-px bg-gold-400/70" />
+                  <span class="text-gold-400 text-[9px] uppercase tracking-[0.3em] font-bold">Văn Hóa Phi Vật Thể</span>
                 </div>
+                <p class="text-ivory/80 text-sm font-medium">Cồng chiêng S'tiêng — Di sản UNESCO</p>
               </div>
             </div>
+
+            <!-- Floating small card -->
+            <div class="absolute -bottom-6 -left-4 lg:-left-8 bg-charcoal-900 border border-charcoal-800 rounded-2xl p-4 shadow-xl w-[200px]">
+              <div class="flex items-center gap-3 mb-2">
+                <div class="w-8 h-8 rounded-lg bg-gold-500/15 border border-gold-500/25 flex items-center justify-center flex-shrink-0">
+                  <Icon name="mdi:calendar-check" class="w-4 h-4 text-gold-400" />
+                </div>
+                <div>
+                  <p class="font-heading font-bold text-ivory text-base leading-none">2025</p>
+                  <p class="text-charcoal-500 text-[10px] mt-0.5">Năm khởi động</p>
+                </div>
+              </div>
+              <div class="w-full h-px bg-charcoal-800 my-2" />
+              <p class="text-charcoal-400 text-[10px] leading-relaxed">7 tháng khảo sát thực địa tại Bù Đăng</p>
+            </div>
+
+            <!-- Gold accent line -->
+            <div class="absolute -top-4 -right-4 w-24 h-24 border border-gold-500/15 rounded-3xl pointer-events-none" />
           </div>
+
         </div>
       </div>
     </section>
 
-    <!-- 4.5 BÙ ĐĂNG TRONG LÒNG THÀNH PHỐ ĐỒNG NAI: Context block -->
-    <section class="py-20 lg:py-28 bg-charcoal-950 border-y border-gold-500/10 relative overflow-hidden">
-      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,#C9922A08_0%,transparent_70%)] pointer-events-none" />
+
+    <!-- ══════════════════════════════════════════════════════════
+         3. NUMBERS — Stats với count-up animation
+         ══════════════════════════════════════════════════════════ -->
+    <section ref="statsSection" class="py-20 lg:py-28 bg-charcoal-950 border-t border-charcoal-800/60 relative overflow-hidden">
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,#C9922A08_0%,transparent_65%)] pointer-events-none" />
+
       <div class="container-heritage relative z-10">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <!-- Left: Text -->
-          <div class="reveal space-y-6">
-            <span class="eyebrow text-gold-400">VỊ TRÍ & VĂN HÓA BÙ ĐĂNG — THÀNH PHỐ ĐỒNG NAI</span>
-            <h2 class="font-heading font-bold text-4xl lg:text-5xl text-ivory leading-tight">
-              Bù Đăng<br/>
-              <span class="text-gradient-gold">Trong Lòng Thành Phố Đồng Nai</span>
-            </h2>
-            <p class="text-charcoal-300 text-lg leading-relaxed">
-              Thành Phố Đồng Nai là một trong những trung tâm phát triển năng động tại khu vực Đông Nam Bộ. Trong đó, vùng đất Bù Đăng nằm ở phía bắc thành phố đóng vai trò là một địa bàn di sản đặc sắc — nơi lưu giữ di tích Chiến Khu Đ huyền thoại, văn hóa bản địa người S'tiêng nghìn năm cùng hệ sinh thái tự nhiên phong phú.
+        <div class="text-center mb-14 reveal">
+          <div class="flex items-center justify-center gap-3 mb-4">
+            <span class="w-8 h-px bg-gold-400" />
+            <span class="text-gold-400 text-[10px] uppercase tracking-[0.3em] font-bold">Minh Chứng Thực Tế</span>
+            <span class="w-8 h-px bg-gold-400" />
+          </div>
+          <h2 class="font-heading font-bold text-ivory text-3xl lg:text-5xl">
+            Những Con Số Biết Nói
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-px bg-charcoal-800/40 rounded-3xl overflow-hidden border border-charcoal-800/60 reveal">
+          <div
+            v-for="stat in projectStats"
+            :key="stat.label"
+            class="px-6 py-8 lg:px-8 lg:py-10 text-center group hover:bg-charcoal-900/60 transition-colors cursor-default bg-charcoal-950/80"
+          >
+            <div class="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-5 transition-all duration-300" :class="stat.iconBg">
+              <Icon :name="stat.icon" class="w-6 h-6 transition-colors duration-300" :class="stat.iconColor" />
+            </div>
+            <p class="font-heading font-bold text-ivory text-4xl lg:text-5xl mb-2 tabular-nums group-hover:text-gold-300 transition-colors">
+              {{ statsAnimated ? stat.displayValue : '0' }}{{ stat.suffix }}
             </p>
-            <p class="text-charcoal-300 text-lg leading-relaxed">
-              Dự án <strong class="text-gold-400">Di Sản Bù Đăng</strong> được phát triển như một mô hình nghiên cứu học đường nhằm số hóa tư liệu học tập tại địa phương. Từ kết quả thực tế tại Bù Đăng, đề tài hướng tới xây dựng giải pháp có khả năng ứng dụng rộng rãi cho công tác bảo tồn di sản của toàn Thành Phố Đồng Nai.
-            </p>
-            <div class="grid grid-cols-2 gap-4 pt-2">
-              <div class="bg-charcoal-900 border border-charcoal-800 rounded-2xl p-5">
-                <p class="text-gold-400 font-heading font-bold text-3xl mb-1">7</p>
-                <p class="text-charcoal-400 text-xs uppercase tracking-wider">Tháng nghiên cứu khảo sát</p>
+            <p class="text-charcoal-500 text-[10px] uppercase tracking-wider font-semibold">{{ stat.label }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════════
+         4. PILLARS — 4 trụ cột với thumbnail images
+         ══════════════════════════════════════════════════════════ -->
+    <section class="py-24 lg:py-36 bg-charcoal-900 border-t border-charcoal-800/60 relative overflow-hidden">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gold-500/3 rounded-full blur-[150px] pointer-events-none" />
+
+      <div class="container-heritage relative z-10">
+        <div class="text-center mb-16 lg:mb-20 reveal">
+          <div class="flex items-center justify-center gap-3 mb-4">
+            <span class="w-8 h-px bg-gold-400" />
+            <span class="text-gold-400 text-[10px] uppercase tracking-[0.3em] font-bold">Giải Pháp Toàn Diện</span>
+            <span class="w-8 h-px bg-gold-400" />
+          </div>
+          <h2 class="font-heading font-bold text-ivory text-3xl lg:text-5xl mb-4">
+            4 Trụ Cột Của Nền Tảng Số
+          </h2>
+          <p class="text-charcoal-400 text-base max-w-xl mx-auto">
+            Không chỉ là trang thông tin tĩnh — đây là hệ sinh thái số tương tác, bảo tồn và
+            khai thác giá trị văn hóa phi vật thể địa phương.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
+          <div
+            v-for="(pillar, i) in pillars"
+            :key="i"
+            class="group relative overflow-hidden rounded-2xl border border-charcoal-800/60 hover:border-gold-500/25 bg-charcoal-950/50 hover:bg-charcoal-950 transition-all duration-500 hover:shadow-xl hover:shadow-gold-500/5 reveal"
+          >
+            <!-- Thumbnail image background -->
+            <div class="relative h-44 overflow-hidden">
+              <img
+                :src="pillar.image"
+                :alt="pillar.title"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                :style="pillar.imagePos ? `object-position: ${pillar.imagePos}` : ''"
+              />
+              <div class="absolute inset-0 bg-gradient-to-b from-transparent via-charcoal-950/30 to-charcoal-950" />
+              <!-- Number watermark -->
+              <div class="absolute top-3 right-4 font-heading font-bold text-ivory/10 text-[48px] leading-none select-none pointer-events-none">
+                {{ String(i + 1).padStart(2, '0') }}
               </div>
-              <div class="bg-charcoal-900 border border-charcoal-800 rounded-2xl p-5">
-                <p class="text-gold-400 font-heading font-bold text-3xl mb-1">2025</p>
-                <p class="text-charcoal-400 text-xs uppercase tracking-wider">Năm bắt đầu thực hiện</p>
+              <!-- Icon badge -->
+              <div class="absolute bottom-4 left-5 w-12 h-12 rounded-xl flex items-center justify-center border transition-all duration-300" :class="pillar.iconBg">
+                <Icon :name="pillar.icon" class="w-6 h-6 transition-colors duration-300" :class="pillar.iconColor" />
               </div>
             </div>
-          </div>
-          <!-- Right: Visual list -->
-          <div class="reveal space-y-4">
-            <div v-for="point in dongNaiContext" :key="point.title" class="flex gap-4 p-5 bg-charcoal-900 border border-charcoal-800 rounded-2xl hover:border-gold-500/30 transition-colors group">
-              <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center shrink-0">
-                <Icon :name="point.icon" class="w-6 h-6 text-gold-400" />
-              </div>
-              <div>
-                <h4 class="font-heading font-bold text-ivory mb-1">{{ point.title }}</h4>
-                <p class="text-charcoal-400 text-sm leading-relaxed">{{ point.desc }}</p>
-              </div>
+
+            <!-- Content -->
+            <div class="p-6 lg:p-7">
+              <NuxtLink :to="pillar.link">
+                <h3 class="font-heading font-bold text-ivory text-xl lg:text-2xl mb-2 group-hover:text-gold-200 transition-colors">
+                  {{ pillar.title }}
+                </h3>
+              </NuxtLink>
+              <p class="text-charcoal-400 text-sm leading-relaxed mb-4">{{ pillar.desc }}</p>
+              <NuxtLink
+                :to="pillar.link"
+                class="inline-flex items-center gap-1.5 text-charcoal-500 text-xs font-semibold hover:text-gold-400 transition-colors group/link"
+              >
+                Khám phá
+                <Icon name="mdi:arrow-right" class="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
+              </NuxtLink>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 5. TRACTION & IMPACT: Kết quả thực tế & Đội ngũ -->
-    <section class="py-24 lg:py-32 bg-charcoal-950">
-      <div class="container-heritage">
-        <div class="text-center max-w-3xl mx-auto mb-20 reveal">
-          <span class="eyebrow text-gold-400">MINH CHỨNG THỰC TẾ</span>
-          <h2 class="font-heading font-bold text-4xl lg:text-5xl mb-6">Kết Quả Trong Giai Đoạn Thí Điểm</h2>
-          <p class="text-charcoal-300 text-lg">Những con số thực tế sau quá trình xây dựng và triển khai nền tảng số hóa di sản vùng đất Bù Đăng.</p>
-        </div>
 
-        <!-- Stats Grid -->
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mb-24">
-          <div v-for="stat in projectStats" :key="stat.label" class="bg-charcoal-900 border border-charcoal-800 rounded-3xl p-8 text-center reveal">
-            <Icon :name="stat.icon" class="w-10 h-10 text-gold-400 mx-auto mb-4" />
-            <div class="font-heading font-bold text-4xl lg:text-5xl text-ivory mb-2">{{ stat.value }}</div>
-            <p class="text-charcoal-400 text-sm uppercase tracking-wider font-semibold">{{ stat.label }}</p>
-          </div>
-        </div>
+    <!-- ══════════════════════════════════════════════════════════
+         5. AUTHOR — Styled author card thay vì icon placeholder
+         ══════════════════════════════════════════════════════════ -->
+    <section class="py-24 lg:py-36 bg-charcoal-950 border-t border-charcoal-800/60 relative overflow-hidden">
 
-        <!-- Team -->
-        <div class="max-w-4xl mx-auto bg-charcoal-900/50 border border-charcoal-800 rounded-[2.5rem] p-8 md:p-12 reveal">
-          <div class="text-center mb-10">
-            <h3 class="font-heading font-bold text-3xl">Người Thực Hiện</h3>
-            <p class="text-charcoal-400 text-sm mt-2">Đề tài nghiên cứu khoa học của học sinh</p>
-          </div>
-          <div class="flex justify-center">
-            <div v-for="team in teams" :key="team.name" class="text-center group max-w-xs">
-              <div class="w-20 h-20 mx-auto bg-gradient-earth rounded-2xl flex items-center justify-center mb-4 transform group-hover:-translate-y-2 transition-transform shadow-lg">
-                <Icon :name="team.icon" class="w-10 h-10 text-ivory" />
-              </div>
-              <h4 class="font-heading font-bold text-xl text-ivory mb-1">{{ team.name }}</h4>
-              <p class="text-charcoal-400 text-sm">{{ team.role }}</p>
-              <p class="text-gold-400/70 text-xs mt-1 italic">Thành Phố Đồng Nai, Việt Nam</p>
-            </div>
-          </div>
-        </div>
+      <!-- Background subtle image -->
+      <div class="absolute inset-0 z-0 opacity-5">
+        <img src="/images/heritage/img-disanbudang/chien-khu-D.png" alt="" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-charcoal-950/90" />
       </div>
-    </section>
 
-    <!-- 6. ROADMAP: Tầm Nhìn Tương Lai -->
-    <section class="py-24 lg:py-32 border-t border-charcoal-850 bg-charcoal-900">
-      <div class="container-heritage">
-        <div class="text-center max-w-3xl mx-auto mb-20 reveal">
-          <span class="eyebrow text-gold-400">LỘ TRÌNH PHÁT TRIỂN</span>
-          <h2 class="font-heading font-bold text-4xl lg:text-5xl mb-6">Định Hướng Mở Rộng</h2>
-          <p class="text-charcoal-300 text-lg">Dự án bắt đầu từ vùng đất Bù Đăng — viên ngọc văn hóa đặc sắc với lịch sử cách mạng hào hùng, với tầm nhìn mở rộng phủ sóng toàn bộ bản đồ di sản của Thành Phố Đồng Nai.</p>
+      <div class="container-heritage relative z-10">
+
+        <!-- Author block -->
+        <div class="max-w-4xl mx-auto mb-24 reveal">
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-8 lg:gap-12 items-center">
+
+            <!-- Author visual card — left 2 cols -->
+            <div class="md:col-span-2 flex justify-center md:justify-start">
+              <div class="relative">
+                <!-- Outer glow ring -->
+                <div class="absolute -inset-3 rounded-3xl bg-gradient-to-br from-gold-500/20 to-earth-700/10 blur-xl" />
+                <!-- Card -->
+                <div class="relative w-52 h-64 rounded-3xl bg-gradient-to-br from-charcoal-800 to-charcoal-900 border border-gold-500/25 shadow-2xl shadow-gold-500/10 overflow-hidden flex flex-col items-center justify-center gap-3 p-6">
+                  <!-- Abstract heritage motif background -->
+                  <div class="absolute inset-0 opacity-10">
+                    <div class="absolute top-0 right-0 w-32 h-32 border border-gold-400 rounded-full -translate-y-1/2 translate-x-1/2" />
+                    <div class="absolute bottom-0 left-0 w-24 h-24 border border-earth-400 rounded-full translate-y-1/2 -translate-x-1/2" />
+                  </div>
+                  <!-- Icon -->
+                  <div class="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-gold-500/25 to-earth-700/20 border border-gold-500/30 flex items-center justify-center">
+                    <Icon name="mdi:account-star" class="w-8 h-8 text-gold-400" />
+                  </div>
+                  <!-- Name -->
+                  <div class="relative text-center">
+                    <p class="font-heading font-bold text-ivory text-lg leading-tight">Nguyễn Xuân Kiệt</p>
+                    <p class="text-gold-400/70 text-xs mt-1">Tác giả · Nhà phát triển</p>
+                  </div>
+                  <!-- Gold line -->
+                  <div class="relative w-12 h-px bg-gradient-to-r from-transparent via-gold-400/60 to-transparent" />
+                  <p class="relative text-charcoal-500 text-[10px] text-center">TP. Đồng Nai · 2025</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Author text — right 3 cols -->
+            <div class="md:col-span-3">
+              <div class="flex items-center gap-3 mb-5">
+                <span class="w-8 h-px bg-gold-400" />
+                <span class="text-gold-400 text-[10px] uppercase tracking-[0.3em] font-bold">Người Thực Hiện</span>
+              </div>
+
+              <h2 class="font-heading font-bold text-ivory text-3xl lg:text-4xl mb-2">
+                Nguyễn Xuân Kiệt
+              </h2>
+              <p class="text-charcoal-400 text-base mb-1">Tác giả đề tài & Phát triển trang web</p>
+              <p class="text-gold-400/60 text-sm italic mb-6">Thành Phố Đồng Nai, Việt Nam · 2025</p>
+
+              <p class="text-charcoal-300 text-base leading-relaxed mb-6">
+                Đề tài nghiên cứu khoa học học sinh — được thực hiện qua <strong class="text-ivory">7 tháng khảo sát thực địa</strong>,
+                gặp gỡ già làng, nghệ nhân S'tiêng tại Bù Đăng, Phước Long, Lộc Ninh để thu thập tư liệu
+                lịch sử, âm thanh và hình ảnh nguyên bản nhất.
+              </p>
+
+              <!-- Tag chips -->
+              <div class="flex flex-wrap gap-2">
+                <span
+                  v-for="tag in authorTags"
+                  :key="tag.label"
+                  class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-medium"
+                  :class="tag.cls"
+                >
+                  <Icon :name="tag.icon" class="w-3 h-3" />
+                  {{ tag.label }}
+                </span>
+              </div>
+            </div>
+
+          </div>
         </div>
 
-        <div class="max-w-4xl mx-auto relative reveal">
-          <!-- Vertical Line -->
-          <div class="absolute left-1/2 top-0 bottom-0 w-px bg-charcoal-800 -translate-x-1/2 hidden md:block" />
-          
-          <div class="space-y-12">
-            <div v-for="(phase, index) in roadmap" :key="index" class="relative flex flex-col md:flex-row items-center gap-8" :class="index % 2 !== 0 ? 'md:flex-row-reverse' : ''">
-              <!-- Timeline node -->
-              <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-gold-500 rounded-full border-4 border-charcoal-900 hidden md:block z-10" />
-              
-              <!-- Content -->
-              <div class="w-full md:w-1/2" :class="index % 2 !== 0 ? 'md:pl-12' : 'md:pr-12 text-left md:text-right'">
-                <div class="bg-charcoal-950 border border-charcoal-800 p-6 rounded-2xl hover:border-gold-500/30 transition-colors">
-                  <span class="text-gold-400 font-bold text-sm tracking-widest uppercase mb-2 block">{{ phase.time }}</span>
-                  <h4 class="font-heading font-bold text-2xl text-ivory mb-3">{{ phase.title }}</h4>
-                  <p class="text-charcoal-400">{{ phase.desc }}</p>
+        <!-- Roadmap timeline -->
+        <div class="reveal">
+          <div class="text-center mb-14">
+            <div class="flex items-center justify-center gap-3 mb-3">
+              <span class="w-8 h-px bg-gold-400" />
+              <span class="text-gold-400 text-[10px] uppercase tracking-[0.3em] font-bold">Lộ Trình Phát Triển</span>
+              <span class="w-8 h-px bg-gold-400" />
+            </div>
+            <h3 class="font-heading font-bold text-ivory text-2xl lg:text-3xl">
+              Định Hướng Mở Rộng
+            </h3>
+          </div>
+
+          <!-- Timeline with animated connector -->
+          <div class="relative">
+            <!-- Connector line (desktop) -->
+            <div class="hidden md:block absolute top-6 left-[16.67%] right-[16.67%] h-px bg-charcoal-800 z-0">
+              <div class="h-full bg-gradient-to-r from-gold-500/60 via-gold-500/30 to-transparent roadmap-line" />
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 relative">
+              <div
+                v-for="(phase, i) in roadmap"
+                :key="i"
+                class="relative group"
+              >
+                <!-- Phase dot (desktop) -->
+                <div
+                  class="hidden md:flex absolute top-4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-2 z-10 items-center justify-center transition-all duration-300"
+                  :class="phase.active
+                    ? 'bg-gold-500 border-gold-400 shadow-lg shadow-gold-500/40'
+                    : 'bg-charcoal-900 border-charcoal-700 group-hover:border-gold-500/50'"
+                />
+
+                <div
+                  class="mt-0 md:mt-10 p-6 lg:p-7 rounded-2xl border transition-all duration-400"
+                  :class="phase.active
+                    ? 'border-gold-500/30 bg-charcoal-900/70 shadow-lg shadow-gold-500/5'
+                    : 'border-charcoal-800/60 hover:border-gold-500/20 bg-charcoal-900/40 hover:bg-charcoal-900/60'"
+                >
+                  <span
+                    class="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest mb-3 px-2.5 py-1 rounded-full border"
+                    :class="phase.active
+                      ? 'text-gold-400 border-gold-500/30 bg-gold-500/10'
+                      : 'text-charcoal-500 border-charcoal-800 bg-charcoal-800/40'"
+                  >
+                    <Icon v-if="phase.active" name="mdi:circle-slice-8" class="w-2.5 h-2.5 text-gold-400" />
+                    <Icon v-else name="mdi:circle-outline" class="w-2.5 h-2.5" />
+                    {{ phase.time }}
+                  </span>
+                  <h4 class="font-heading font-bold text-ivory text-xl mb-2 group-hover:text-gold-200 transition-colors">
+                    {{ phase.title }}
+                  </h4>
+                  <p class="text-charcoal-400 text-sm leading-relaxed">{{ phase.desc }}</p>
                 </div>
               </div>
             </div>
           </div>
+
+          <!-- Final CTA -->
+          <div class="text-center mt-16">
+            <p class="text-charcoal-400 text-sm mb-6">Khám phá toàn bộ những gì nền tảng số đã xây dựng</p>
+            <div class="flex flex-wrap items-center justify-center gap-4">
+              <NuxtLink to="/map" class="btn-primary px-8 py-4">
+                <Icon name="mdi:map-outline" class="w-5 h-5" />
+                Khám Phá Bản Đồ
+              </NuxtLink>
+              <NuxtLink to="/explore" class="btn-ghost px-8 py-4 border border-ivory/20 text-ivory/70 hover:border-gold-400/50 hover:text-gold-300">
+                <Icon name="mdi:compass-outline" class="w-5 h-5" />
+                Xem Toàn Bộ Di Sản
+              </NuxtLink>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
+
   </div>
 </template>
 
@@ -262,184 +482,260 @@ import { useHeritageStore } from '~/stores/heritage'
 definePageMeta({ layout: 'default' })
 useMuseumSeo({
   title: 'Giới Thiệu Dự Án',
-  description: 'Dự án thí điểm số hóa di sản văn hóa vùng đất Bù Đăng — nền tảng hướng tới cổng di sản số của Thành Phố Đồng Nai, thành phố trực thuộc Trung ương thứ 7 của Việt Nam.',
+  description: 'Dự án số hóa di sản văn hóa Thành Phố Đồng Nai — nền tảng bảo tồn và giáo dục lịch sử địa phương tại thành phố trực thuộc Trung ương thứ 7 của Việt Nam.',
 })
 
 const heritageStore = useHeritageStore()
-const totalHeritageCount = computed(() => heritageStore.totalCount)
+const totalCount = computed(() => heritageStore.totalCount)
 
+// ── HERO ──
 const slides = [
-  '/images/heritage/Bombo/TAN08217.jpg',
-  '/images/heritage/lich-su/nha-giao-truyen-thong-md.webp',
-  '/images/heritage/img-disanbudang/chien-khu-D.png'
+  {
+    image: '/images/heritage/van-hoa-phi-vat-the/cong-chieng-lg.webp',
+    alt: 'Cồng chiêng S\'tiêng',
+    position: 'center 30%',
+  },
+  {
+    image: '/images/heritage/Bombo/TAN08217.jpg',
+    alt: 'Sóc Bom Bo lịch sử',
+    position: 'center top',
+  },
+  {
+    image: '/images/heritage/img-disanbudang/chien-khu-D.png',
+    alt: 'Chiến khu Đ Bù Đăng',
+    position: 'center center',
+  },
 ]
 const currentSlide = ref(0)
 let slideInterval: ReturnType<typeof setInterval>
 
+function goToSlide(i: number) {
+  currentSlide.value = i
+  clearInterval(slideInterval)
+  startAutoPlay()
+}
+function startAutoPlay() {
+  slideInterval = setInterval(() => {
+    currentSlide.value = (currentSlide.value + 1) % slides.length
+  }, 6500)
+}
+
 const { observeAll } = useScrollReveal()
 onMounted(() => {
   nextTick(() => observeAll())
-  slideInterval = setInterval(() => {
-    currentSlide.value = (currentSlide.value + 1) % slides.length
-  }, 6000)
+  startAutoPlay()
+  initStatsObserver()
 })
+onUnmounted(() => { if (slideInterval) clearInterval(slideInterval) })
 
-onUnmounted(() => {
-  if (slideInterval) clearInterval(slideInterval)
-})
-
-const scrollTo = (id: string) => {
+function scrollToSection(id: string) {
   if (import.meta.client) {
     const el = document.getElementById(id)
-    if (el) {
-      window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' })
-    }
+    if (el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' })
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Dữ liệu đã xác minh từ nhiều nguồn lịch sử chính thống
-// ─────────────────────────────────────────────────────────────────────────────
+// ── MISSION ──
+const missionStats = [
+  { value: '7', label: 'Tháng khảo sát' },
+  { value: String(totalCount.value || 16), label: 'Di sản số hóa' },
+  { value: '2025', label: 'Năm bắt đầu' },
+]
 
-// THỰC TRẠNG — vấn đề thực tế đang diễn ra
 const problems = [
   {
     icon: 'mdi:account-group-outline',
-    title: 'Sự mai một nguồn tư liệu sống từ các nghệ nhân',
-    desc: 'Các già làng và nghệ nhân lớn tuổi — những người nắm giữ kỹ thuật đánh cồng chiêng cổ và kỹ nghệ dệt thổ cẩm S\'tiêng truyền thống — đang dần khuất bóng. Việc thiếu công cụ ghi nhận kịp thời khiến tri thức bản địa đối mặt nguy cơ thất truyền.'
+    iconBg: 'bg-brick-500/10 border border-brick-500/20 group-hover:bg-brick-500/20',
+    iconColor: 'text-brick-400',
+    title: 'Mai một tư liệu sống từ các nghệ nhân',
+    desc: 'Già làng và nghệ nhân S\'tiêng nắm giữ kỹ thuật cồng chiêng, dệt thổ cẩm đang dần khuất bóng — tri thức bản địa đối mặt nguy cơ thất truyền.',
   },
   {
     icon: 'mdi:book-remove-multiple-outline',
-    title: 'Khoảng trống tư liệu số trong giáo dục địa phương',
-    desc: 'Các di sản quý giá chưa được xây dựng thành nguồn học liệu số phong phú. Học sinh chủ yếu tiếp cận lịch sử qua tài liệu chữ in khô khan, thiếu các học liệu đa phương tiện (âm thanh, hình ảnh thực tế) trực quan.'
+    iconBg: 'bg-gold-500/10 border border-gold-500/20 group-hover:bg-gold-500/20',
+    iconColor: 'text-gold-400',
+    title: 'Khoảng trống học liệu số địa phương',
+    desc: 'Di sản quý giá chưa thành học liệu số. Học sinh tiếp cận lịch sử qua tài liệu chữ in khô khan, thiếu âm thanh, hình ảnh trực quan.',
   },
   {
     icon: 'mdi:map-marker-off-outline',
-    title: 'Thiếu tính kết nối thực địa',
-    desc: 'Các địa danh lịch sử như Sóc Bom Bo (gắn liền với phong trào giã gạo nuôi quân 1965) hay danh thắng Trảng cỏ Bù Lạch chưa được hệ thống hóa trên bản đồ số, làm giảm khả năng tự tìm hiểu và tương tác thực địa của học sinh.'
-  }
+    iconBg: 'bg-forest-500/10 border border-forest-500/20 group-hover:bg-forest-500/20',
+    iconColor: 'text-forest-400',
+    title: 'Thiếu kết nối thực địa',
+    desc: 'Sóc Bom Bo, Trảng cỏ Bù Lạch chưa được hệ thống hóa trên bản đồ số — giảm khả năng tự tìm hiểu và khám phá của học sinh.',
+  },
 ]
 
-// 4 TRỤ CỘT — giải pháp cụ thể, đã triển khai
-const solutions = computed(() => [
+// ── STATS with count-up ──
+const statsSection = ref<HTMLElement | null>(null)
+const statsAnimated = ref(false)
+
+const rawStats = computed(() => [
+  { icon: 'mdi:castle', label: 'Di sản số hóa', raw: totalCount.value || 16, suffix: '', iconBg: 'bg-gold-500/10 group-hover:bg-gold-500/20', iconColor: 'text-gold-400' },
+  { icon: 'mdi:headphones', label: 'Audio thuyết minh', raw: 4, suffix: '', iconBg: 'bg-brick-500/10 group-hover:bg-brick-500/20', iconColor: 'text-brick-400' },
+  { icon: 'mdi:gamepad-variant-outline', label: 'Câu hỏi lịch sử', raw: 35, suffix: '+', iconBg: 'bg-forest-500/10 group-hover:bg-forest-500/20', iconColor: 'text-forest-400' },
+  { icon: 'mdi:school-outline', label: 'Trường tham gia', raw: 5, suffix: '+', iconBg: 'bg-earth-500/10 group-hover:bg-earth-500/20', iconColor: 'text-earth-400' },
+  { icon: 'mdi:view-dashboard-outline', label: 'Phân hệ', raw: 5, suffix: '', iconBg: 'bg-copper-500/10 group-hover:bg-copper-500/20', iconColor: 'text-copper-400' },
+  { icon: 'mdi:account-group', label: 'Ký ức cộng đồng', raw: 6, suffix: '', iconBg: 'bg-gold-500/10 group-hover:bg-gold-500/20', iconColor: 'text-gold-400' },
+])
+
+// Animated display values
+const animatedValues = ref<number[]>([0, 0, 0, 0, 0, 0])
+
+const projectStats = computed(() =>
+  rawStats.value.map((s, i) => ({
+    ...s,
+    displayValue: statsAnimated.value ? String(animatedValues.value[i] || s.raw) : '0',
+  }))
+)
+
+function initStatsObserver() {
+  if (!import.meta.client) return
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (entries[0]?.isIntersecting && !statsAnimated.value) {
+        statsAnimated.value = true
+        animateCounters()
+      }
+    },
+    { threshold: 0.3 }
+  )
+  if (statsSection.value) observer.observe(statsSection.value)
+}
+
+function animateCounters() {
+  const targets = rawStats.value.map(s => s.raw)
+  const duration = 1800
+  const start = performance.now()
+
+  function tick(now: number) {
+    const elapsed = now - start
+    const progress = Math.min(elapsed / duration, 1)
+    // easeOutExpo
+    const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress)
+
+    animatedValues.value = targets.map(t => Math.round(eased * t))
+
+    if (progress < 1) requestAnimationFrame(tick)
+  }
+  requestAnimationFrame(tick)
+}
+
+// ── PILLARS ──
+const pillars = computed(() => [
   {
     icon: 'mdi:archive-check',
-    title: 'Bảo tàng số đa phương tiện',
-    desc: `Số hóa ${totalHeritageCount.value} di sản văn hóa, lịch sử và danh thắng với hồ sơ chi tiết, hình ảnh thực tế, tệp âm thanh thuyết minh và video tư liệu, giúp người học dễ dàng tiếp cận nguồn dữ liệu chính thống.`
+    iconBg: 'bg-gold-500/10 border-gold-500/25 group-hover:bg-gold-500/20',
+    iconColor: 'text-gold-400',
+    title: 'Bảo Tàng Số Đa Phương Tiện',
+    desc: `Số hóa ${totalCount.value || 16} di sản với hồ sơ chi tiết, ảnh thực tế, âm thanh thuyết minh và video tư liệu — nguồn dữ liệu chính thống cho học sinh và du khách.`,
+    link: '/explore',
+    image: '/images/heritage/img-disanbudang/Khu-Bao-Ton-2.jpg',
+    imagePos: 'center 30%',
   },
   {
     icon: 'mdi:map-search',
-    title: 'Bản đồ di sản tương tác GIS',
-    desc: 'Sử dụng công nghệ bản đồ số để trực quan hóa tọa độ địa lý của các điểm di tích và danh thắng, giúp học sinh chủ động định vị và xây dựng lộ trình học tập ngoại khóa.'
+    iconBg: 'bg-forest-500/10 border-forest-500/25 group-hover:bg-forest-500/20',
+    iconColor: 'text-forest-400',
+    title: 'Bản Đồ Di Sản Tương Tác GIS',
+    desc: 'Bản đồ số trực quan hóa tọa độ địa lý các di tích, giúp học sinh chủ động định vị và xây dựng lộ trình học tập ngoại khóa.',
+    link: '/map',
+    image: '/images/heritage/img-disanbudang/le-hoi-mung-lua-moi.png',
+    imagePos: 'center top',
   },
   {
     icon: 'mdi:school-outline',
-    title: 'Cổng học tập số tương tác',
-    desc: 'Tích hợp hệ thống câu hỏi tìm hiểu lịch sử địa phương và lưu trữ các bài nghiên cứu học đường, góp phần nâng cao tinh thần tự học và nghiên cứu chủ động của học sinh.'
+    iconBg: 'bg-brick-500/10 border-brick-500/25 group-hover:bg-brick-500/20',
+    iconColor: 'text-brick-400',
+    title: 'Cổng Học Tập Số Tương Tác',
+    desc: '35+ câu hỏi tìm hiểu lịch sử, flashcard thuật ngữ S\'tiêng và huy hiệu điện tử — nâng cao tinh thần tự học chủ động.',
+    link: '/study',
+    image: '/images/heritage/img-disanbudang/Nha-Dai-Truyen-Thong.png',
+    imagePos: 'center 35%',
   },
   {
-    icon: 'mdi:chart-box-outline',
-    title: 'Nền tảng đóng góp mở',
-    desc: 'Thiết lập kênh tương tác cho phép giáo viên, học sinh và cộng đồng đóng góp thêm tư liệu tự sưu tầm hoặc hình ảnh thực địa, làm phong phú kho lưu trữ di sản chung.'
-  }
+    icon: 'mdi:account-group-outline',
+    iconBg: 'bg-earth-500/10 border-earth-500/25 group-hover:bg-earth-500/20',
+    iconColor: 'text-earth-400',
+    title: 'Nền Tảng Đóng Góp Mở',
+    desc: 'Kênh tương tác cho phép giáo viên, học sinh và cộng đồng đóng góp tư liệu — làm phong phú kho lưu trữ di sản chung.',
+    link: '/contribute',
+    image: '/images/heritage/Bombo/TAN08220.jpg',
+    imagePos: 'center center',
+  },
 ])
 
-// ĐỔI MỚI SÁNG TẠO — điểm độc đáo của dự án
-const innovations = [
-  {
-    title: 'Ứng dụng Trò chơi hóa (Gamification)',
-    desc: 'Thiết kế hơn 35 thử thách trắc nghiệm tương tác tích hợp cơ chế tính điểm và tặng huy hiệu số, giúp học sinh tiếp thu kiến thức lịch sử địa phương một cách sinh động.'
-  },
-  {
-    title: 'Tích hợp Thuyết minh tự động (Audio Guide)',
-    desc: 'Biên soạn và thu âm 4 tệp thuyết minh âm thanh chuyên nghiệp, giúp người học lắng nghe câu chuyện về tiếng chày Bom Bo lịch sử hay tiếng cồng chiêng S\'tiêng.'
-  },
-  {
-    title: 'Mô hình kiến tạo cộng đồng (Crowdsourcing)',
-    desc: 'Tạo không gian để giáo viên, học sinh và cộng đồng trực tiếp tham gia bồi đắp tư liệu, đưa trang web trở thành một kho tri thức mở có tính cập nhật cao.'
-  }
-]
-
-// SỐ LIỆU DỰ ÁN — chỉ dùng con số đã có trong hệ thống
-const projectStats = computed(() => [
-  { icon: 'mdi:castle', label: 'Di sản được số hóa', value: String(totalHeritageCount.value) },
-  { icon: 'mdi:headphones', label: 'Audio thuyết minh', value: '4' },
-  { icon: 'mdi:gamepad-variant-outline', label: 'Câu hỏi trí tuệ', value: '35+' },
-  { icon: 'mdi:school-outline', label: 'Trường học tham gia', value: '5+' },
-  { icon: 'mdi:view-dashboard-outline', label: 'Phân hệ chức năng', value: '5' },
-  { icon: 'mdi:city-variant-outline', label: 'Tầm nhìn thành phố', value: 'TP ĐN' },
-])
-
-const teams = [
-  { name: 'Nguyễn Xuân Kiệt', role: 'Tác giả đề tài & Phát triển trang web', icon: 'mdi:account-star' }
-]
-
-// Context về quan hệ Bù Đăng — Thành Phố Đồng Nai
-const dongNaiContext = [
-  {
-    icon: 'mdi:map-marker-radius',
-    title: 'Vị trí địa bàn di sản',
-    desc: 'Vùng đất Bù Đăng nằm ở phía bắc Thành Phố Đồng Nai, là địa bàn lưu giữ các giá trị văn hóa lâu đời và thiên nhiên phong phú.'
-  },
-  {
-    icon: 'mdi:shield-star',
-    title: 'Đề tài học đường tiên phong',
-    desc: 'Dự án số hóa di sản Bù Đăng được thực hiện nhằm xây dựng nguồn học liệu số trực quan cho giáo dục địa phương.'
-  },
-  {
-    icon: 'mdi:handshake',
-    title: 'Kết nối tư liệu thực tế',
-    desc: 'Thu thập dữ liệu trực tiếp thông qua khảo sát thực địa, gặp gỡ các già làng và nghệ nhân để ghi nhận tri thức bản địa.'
-  },
-  {
-    icon: 'mdi:trending-up',
-    title: 'Khả năng ứng dụng thực tế',
-    desc: 'Mô hình số hóa này có thể áp dụng để xây dựng cơ sở dữ liệu học tập cho các địa bàn di sản khác của Thành Phố Đồng Nai.'
-  },
-]
-
-// LỘ TRÌNH — tầm nhìn có căn cứ
+// ── ROADMAP ──
 const roadmap = computed(() => [
   {
     time: 'Giai đoạn hiện tại',
-    title: 'Khảo sát và Thử nghiệm tại Bù Đăng',
-    desc: `Tập trung số hóa ${totalHeritageCount.value} di sản tiêu biểu tại vùng đất Bù Đăng (Khu bảo tồn Sóc Bom Bo, trảng cỏ Bù Lạch, nghề dệt thổ cẩm S'tiêng) và đưa trang web vào thử nghiệm hỗ trợ một số lớp học lịch sử địa phương.`
+    active: true,
+    title: 'Số hóa thí điểm',
+    desc: `${totalCount.value} di sản tiêu biểu tại Bù Đăng, Phước Long, Lộc Ninh đã được số hóa và triển khai thí điểm trong các tiết học giáo dục địa phương.`,
   },
   {
     time: 'Giai đoạn tiếp theo',
-    title: 'Liên kết mở rộng tại các trường THPT',
-    desc: 'Nhân rộng mô hình lưu trữ và số hóa di sản sang các trường THPT và THCS khác thuộc Thành Phố Đồng Nai, khuyến khích các nhóm học sinh cùng tham gia bồi đắp nguồn tư liệu lịch sử của địa phương mình.'
+    active: false,
+    title: 'Nhân rộng toàn thành phố',
+    desc: 'Mở rộng mô hình số hóa di sản sang các trường THPT và THCS khác thuộc Thành Phố Đồng Nai, xây dựng cộng đồng đóng góp tư liệu.',
   },
   {
     time: 'Tầm nhìn tương lai',
-    title: 'Tích hợp công nghệ thực tế ảo VR/AR',
-    desc: 'Ứng dụng công nghệ thực tế ảo tái hiện không gian lễ hội truyền thống, tích hợp thuyết minh đa ngữ hỗ trợ tra cứu và đề xuất phối hợp cùng Sở VHTTDL Đồng Nai nhằm chuẩn hóa nguồn tư liệu học đường.'
+    active: false,
+    title: 'Công nghệ VR/AR',
+    desc: 'Tái hiện không gian lễ hội truyền thống qua thực tế ảo, tích hợp thuyết minh đa ngữ và phối hợp Sở VHTTDL Đồng Nai chuẩn hóa tư liệu.',
   },
 ])
+
+// ── AUTHOR ──
+const authorTags = [
+  { label: 'Nghiên cứu khoa học HS', icon: 'mdi:school-outline', cls: 'text-gold-400 border-gold-500/25 bg-gold-500/8' },
+  { label: 'Khảo sát thực địa', icon: 'mdi:map-marker-outline', cls: 'text-forest-400 border-forest-500/25 bg-forest-500/8' },
+  { label: 'Web Development', icon: 'mdi:code-tags', cls: 'text-brick-400 border-brick-500/25 bg-brick-500/8' },
+]
 </script>
 
-
-
 <style scoped>
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(-25%);
-    animation-timing-function: cubic-bezier(0.8,0,1,1);
-  }
-  50% {
-    transform: none;
-    animation-timing-function: cubic-bezier(0,0,0.2,1);
-  }
+/* ── Ken Burns ── */
+.ken-burns-active {
+  animation: kenburns 22s ease-out infinite alternate;
 }
-.animate-bounce {
-  animation: bounce 1s infinite;
+@keyframes kenburns {
+  0% { transform: scale(1.1); }
+  100% { transform: scale(1) translateX(-10px); }
 }
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 1.5s ease;
+
+/* ── Slide transition ── */
+.fade-enter-active { transition: opacity 1.8s ease; }
+.fade-leave-active { transition: opacity 1.8s ease; }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
+
+/* ── Section reveal ── */
+.about-reveal {
+  animation: aboutReveal 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--delay, 0s);
 }
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
+@keyframes aboutReveal {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Scroll dot ── */
+.scroll-dot {
+  animation: scrollBounce 1.6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50%       { transform: translateY(10px); opacity: 1; }
+}
+
+/* ── Roadmap line animation ── */
+.roadmap-line {
+  animation: drawLine 1.5s ease-out 0.5s both;
+  transform-origin: left;
+}
+@keyframes drawLine {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
 }
 </style>

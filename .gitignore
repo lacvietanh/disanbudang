@@ -55,3 +55,6 @@ Thumbs.db
 
 # Nuxt Content v3 / SQLite
 .data/content/
+
+# Temporary / Rule templates
+AkiClaudeDoc-master/

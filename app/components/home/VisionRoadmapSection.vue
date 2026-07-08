@@ -11,7 +11,7 @@
         <h2 class="section-title">Từ Bù Đăng — Vươn Ra Thành Phố Đồng Nai</h2>
         <p class="text-charcoal-400 text-base max-w-2xl mx-auto mt-4">
           Bù Đăng là thí điểm — Thành Phố Đồng Nai là đích đến.
-          Dự án số hóa di sản theo mô hình nhân rộng ra toàn thành phố.
+          Dự án số hóa di sản theo mô hình nhân rộng ra toàn Thành phố Đồng Nai — TPTT thứ 7 của Việt Nam (từ 30/04/2026).
         </p>
       </div>
 
@@ -65,7 +65,7 @@
             <h3 class="font-heading font-bold text-ivory text-2xl mb-4">
               🏙️ Giai Đoạn 2
               <span class="block text-charcoal-300 text-xl mt-1">Toàn Thành Phố Đồng Nai</span>
-              <span class="block text-charcoal-500 text-sm mt-0.5 font-normal">TP trực thuộc Trung ương thứ 7</span>
+              <span class="block text-charcoal-500 text-sm mt-0.5 font-normal">TPTT thứ 7 · Từ 30/04/2026</span>
             </h3>
             <ul class="space-y-3 text-sm text-charcoal-400">
               <li class="flex items-start gap-2.5">

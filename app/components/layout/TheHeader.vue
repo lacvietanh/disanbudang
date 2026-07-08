@@ -3,15 +3,15 @@
     class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-[env(safe-area-inset-top,0px)]"
     :class="[
       isScrolled
-        ? 'bg-charcoal-950/80 backdrop-blur-xl border-b border-gold-500/10 shadow-lg shadow-charcoal-950/40 py-1'
-        : 'bg-charcoal-950/20 backdrop-blur-sm lg:bg-transparent lg:backdrop-blur-none py-2',
+        ? 'bg-charcoal-950/95 backdrop-blur-xl border-b border-gold-500/10 shadow-lg shadow-charcoal-950/40 py-1'
+        : 'bg-charcoal-950/90 backdrop-blur-xl border-b border-charcoal-800/25 py-2',
     ]"
   >
     <div class="container-heritage">
       <nav class="flex items-center justify-between h-[72px]">
         <!-- Logo -->
         <NuxtLink to="/" class="flex items-center gap-3 group">
-          <img src="/favicon/icon-192.png" alt="Logo Di Sản Bù Đăng" class="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
+          <NuxtImg src="/favicon/icon-192.png" alt="Logo Di Sản Bù Đăng" class="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
           <div class="hidden md:flex flex-col justify-center text-left">
             <span class="font-heading font-bold text-ivory text-sm lg:text-base leading-tight group-hover:text-gold-300 transition-colors duration-300">
               Di Sản
@@ -19,26 +19,29 @@
             <span class="font-heading font-bold text-gold-400 text-sm lg:text-base leading-tight group-hover:text-gold-300 transition-colors duration-300 -mt-0.5">
               Bù Đăng
             </span>
-            <span class="hidden lg:block text-[9px] text-charcoal-400 tracking-[0.12em] uppercase font-normal mt-1 leading-none animate-fade-in">
+            <span class="hidden xl:block text-[9px] text-charcoal-400 tracking-[0.12em] uppercase font-normal mt-1 leading-none animate-fade-in">
               Thành Phố Đồng Nai
             </span>
           </div>
         </NuxtLink>
 
         <!-- Desktop Nav -->
-        <ul class="hidden lg:flex items-center gap-1.5 xl:gap-2.5" aria-label="Menu điều hướng chính">
+        <ul class="hidden xl:flex items-center gap-1.5 xl:gap-2.5" aria-label="Menu điều hướng chính">
           <li v-for="item in navItems" :key="item.to">
             <!-- Đóng Góp gets special pill style to drive conversions -->
             <NuxtLink
               v-if="item.to === '/contribute'"
               :to="item.to"
-              class="px-3 py-1.5 xl:px-4 xl:py-2 rounded-full text-xs xl:text-sm font-semibold whitespace-nowrap transition-all duration-300 border border-gold-500/40 text-gold-400 hover:bg-gold-500 hover:text-charcoal-900 hover:border-gold-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500 focus-visible:outline-offset-2"
+              active-class=""
+              exact-active-class=""
+              class="px-3 py-1.5 xl:px-4 xl:py-2 rounded-full text-xs xl:text-sm font-semibold whitespace-nowrap transition-all duration-300 border border-gold-500/40 text-gold-450 hover:bg-gold-500 hover:text-charcoal-900 hover:border-gold-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500 focus-visible:outline-offset-2"
             >
               <span class="flex items-center gap-1.5">
                 <Icon name="mdi:hand-heart-outline" class="w-3.5 h-3.5" />
                 {{ item.label }}
               </span>
             </NuxtLink>
+
             <NuxtLink
               v-else
               :to="item.to"
@@ -59,8 +62,8 @@
             @click="isSearchOpen = true"
           >
             <Icon name="mdi:magnify" class="w-4 h-4" />
-            <span class="hidden lg:block">Tìm kiếm...</span>
-            <kbd class="hidden lg:inline-flex items-center gap-0.5 ml-1 px-1.5 py-0.5 text-[10px] font-mono bg-ivory/10 border border-ivory/20 rounded text-ivory/50">⌘K</kbd>
+            <span class="hidden xl:block">Tìm kiếm...</span>
+            <kbd class="hidden xl:inline-flex items-center gap-0.5 ml-1 px-1.5 py-0.5 text-[10px] font-mono bg-ivory/10 border border-ivory/20 rounded text-ivory/50">⌘K</kbd>
           </button>
 
           <!-- Explore CTA -->
@@ -71,7 +74,7 @@
 
           <!-- Mobile Search Button -->
           <button
-            class="lg:hidden p-2 rounded-lg text-ivory/70 hover:text-gold-400 hover:bg-ivory/10 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500"
+            class="xl:hidden p-2 rounded-lg text-ivory/70 hover:text-gold-400 hover:bg-ivory/10 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500"
             aria-label="Tìm kiếm di sản"
             @click="isSearchOpen = true"
           >
@@ -80,7 +83,7 @@
 
           <!-- Hamburger -->
           <button
-            class="lg:hidden p-2 rounded-lg text-ivory hover:bg-ivory/10 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500"
+            class="xl:hidden p-2 rounded-lg text-ivory hover:bg-ivory/10 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500"
             aria-label="Menu di động"
             :aria-expanded="isMobileOpen"
             @click="isMobileOpen = !isMobileOpen"
@@ -95,7 +98,7 @@
     <Transition name="mobile-menu">
       <div
         v-if="isMobileOpen"
-        class="lg:hidden bg-charcoal-900/98 backdrop-blur-xl border-t border-earth-800/30"
+        class="xl:hidden bg-charcoal-900/98 backdrop-blur-xl border-t border-earth-800/30"
       >
         <div class="container-heritage py-6 space-y-1" aria-label="Menu di động">
           <NuxtLink
@@ -142,7 +145,7 @@
                 placeholder="Tìm di sản, danh thắng, văn hóa..."
                 class="w-full bg-transparent text-ivory placeholder-charcoal-500 focus:outline-none"
                 @keydown.esc="closeSearch"
-                @keydown.enter="goToLibrary"
+                @keydown.enter="goToExplore"
               />
               <button
                 class="p-2 rounded-lg text-charcoal-400 hover:text-ivory hover:bg-charcoal-900"
@@ -161,7 +164,7 @@
                 class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-charcoal-900 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500 focus-visible:outline-offset-2"
                 @click="closeSearch"
               >
-                <img :src="heritage.coverImage" :alt="heritage.title" class="w-14 h-12 rounded-lg object-cover" />
+                <NuxtImg :src="heritage.coverImage" :alt="heritage.title" class="w-14 h-12 rounded-lg object-cover" />
                 <span class="min-w-0">
                   <span class="block text-ivory text-sm font-semibold truncate">{{ heritage.title }}</span>
                   <span class="block text-charcoal-400 text-xs truncate">{{ heritage.subtitle }}</span>
@@ -171,7 +174,7 @@
               <button
                 v-if="searchQuery"
                 class="w-full mt-2 btn-primary justify-center"
-                @click="goToLibrary"
+                @click="goToExplore"
               >
                 Xem tất cả kết quả
                 <Icon name="mdi:arrow-right" class="w-4 h-4" />
@@ -215,8 +218,7 @@ const searchResults = computed(() => {
 const navItems = [
   { to: '/', label: 'Trang Chủ', icon: 'mdi:home-outline' },
   { to: '/about', label: 'Giới Thiệu', icon: 'mdi:information-outline' },
-  { to: '/map', label: 'Bản Đồ', icon: 'mdi:map-outline' },
-  { to: '/library', label: 'Thư Viện', icon: 'mdi:library-outline' },
+  { to: '/explore', label: 'Khám Phá', icon: 'mdi:compass-outline' },
   { to: '/study', label: 'Học Tập', icon: 'mdi:school-outline' },
   { to: '/news', label: 'Bài Viết', icon: 'mdi:newspaper-variant-outline' },
   { to: '/contribute', label: 'Đóng Góp', icon: 'mdi:hand-heart-outline' },
@@ -292,10 +294,10 @@ function closeSearch() {
   isSearchOpen.value = false
 }
 
-function goToLibrary() {
+function goToExplore() {
   const query = searchQuery.value.trim()
   closeSearch()
-  navigateTo(query ? `/library?search=${encodeURIComponent(query)}` : '/library')
+  navigateTo(query ? `/explore?search=${encodeURIComponent(query)}` : '/explore')
 }
 </script>
 

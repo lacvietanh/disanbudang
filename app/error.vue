@@ -26,9 +26,9 @@
             <Icon name="mdi:home-outline" class="w-5 h-5" />
             Về Trang Chủ
           </NuxtLink>
-          <NuxtLink to="/library" class="btn-secondary text-sm px-6 py-3.5 border-gold-500 text-gold-400 hover:bg-gold-500 hover:text-charcoal-900">
-            <Icon name="mdi:bookshelf" class="w-5 h-5" />
-            Thư Viện Di Sản
+          <NuxtLink to="/explore" class="btn-secondary text-sm px-6 py-3.5 border-gold-500 text-gold-400 hover:bg-gold-500 hover:text-charcoal-900">
+            <Icon name="mdi:compass-outline" class="w-5 h-5" />
+            Khám Phá Di Sản
           </NuxtLink>
           <NuxtLink to="/map" class="btn-ghost text-sm px-6 py-3.5">
             <Icon name="mdi:map-outline" class="w-5 h-5" />
@@ -51,7 +51,7 @@
 
 <script setup lang="ts">
 useSeoMeta({
-  title: '404 — Trang Không Tồn Tại | Di Sản Bù Đăng',
-  description: 'Trang bạn tìm kiếm không tồn tại hoặc đã được di chuyển. Hãy quay lại trang chủ để khám phá di sản Bù Đăng.',
+  title: '404 — Trang Không Tồn Tại | Di Sản Thành Phố Đồng Nai',
+  description: 'Trang bạn tìm kiếm không tồn tại hoặc đã được di chuyển. Hãy quay lại trang chủ để khám phá di sản địa phương.',
 })
 </script>

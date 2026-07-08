@@ -11,7 +11,7 @@
           </div>
           <div>
             <span class="text-gold-400/70 text-3xs mb-0.5 block tracking-[0.18em] font-bold uppercase">Không Gian Tương Tác</span>
-            <h1 class="font-heading font-bold text-ivory text-xl leading-none tracking-tight">Bản Đồ Di Sản Bù Đăng</h1>
+            <h1 class="font-heading font-bold text-ivory text-xl leading-none tracking-tight">Bản Đồ Di Sản Thành Phố Đồng Nai</h1>
           </div>
         </div>
         <div class="flex items-center gap-2.5">
@@ -610,8 +610,8 @@ import MapBottomSheet from '~/components/map/BottomSheet.vue'
 
 definePageMeta({ layout: 'default' })
 useMuseumSeo({
-  title: 'Bản Đồ Di Sản Bù Đăng',
-  description: 'Trực quan hóa vị trí địa lý cùng câu chuyện, audio guide, hình ảnh của toàn bộ di sản văn hóa, lịch sử và thiên nhiên tại Bù Đăng.',
+  title: 'Bản Đồ Di Sản Thành Phố Đồng Nai',
+  description: 'Trực quan hóa vị trí địa lý cùng câu chuyện, audio guide, hình ảnh của toàn bộ di sản văn hóa, lịch sử và thiên nhiên tại Thành Phố Đồng Nai.',
 })
 
 const store = useHeritageStore()
@@ -712,7 +712,8 @@ const suggestedRoutes = [
     color: '#8B3A2A',
     description: 'Về nguồn khám phá các căn cứ quân sự huyết mạch và lớp học kháng chiến oai hùng giữa lòng đại ngàn Bù Đăng.',
     stops: [
-      { id: 'hrt-001', title: 'Chiến Khu Đ Bù Đăng' },
+      { id: 'hrt-001', title: 'Căn cứ Nửa Lon Bù Đăng' },
+      { id: 'hrt-011', title: 'Khu Bảo Tồn Sóc Bom Bo' },
       { id: 'hrt-005', title: 'Di Tích Nhà Giáo Truyền Thống' }
     ]
   },
@@ -721,10 +722,11 @@ const suggestedRoutes = [
     name: 'Danh Lam & Sinh Thái Xanh',
     icon: 'mdi:pine-tree',
     color: '#2D5016',
-    description: 'Hành trình hòa mình cùng rừng già nguyên sinh kỳ vĩ và lắng nghe tiếng réo rắt thiên nhiên của danh thắng Thác Mơ.',
+    description: 'Hành trình hòa mình cùng rừng già nguyên sinh kỳ vĩ và lắng nghe tiếng réo rắt thiên nhiên của danh thắng Thác Đứng, Bù Lạch.',
     stops: [
-      { id: 'hrt-002', title: 'Thác Mơ Bù Đăng' },
-      { id: 'hrt-006', title: 'Rừng Nguyên Sinh Bù Đăng' }
+      { id: 'hrt-010', title: 'Thác Đứng Bù Đăng' },
+      { id: 'hrt-006', title: 'Rừng Nguyên Sinh Bù Đăng' },
+      { id: 'hrt-009', title: 'Trảng Cỏ Bù Lạch' }
     ]
   },
   {
@@ -738,6 +740,21 @@ const suggestedRoutes = [
       { id: 'hrt-004', title: 'Nhà Dài Truyền Thống S\'tiêng' },
       { id: 'hrt-007', title: 'Làng Nghề Dệt Thổ Cẩm S\'tiêng' },
       { id: 'hrt-008', title: 'Lễ Hội Mừng Lúa Mới M\'nông' }
+    ]
+  },
+  {
+    id: 'route-phuoclong',
+    name: 'Hành Trình Phước Long – Lộc Ninh',
+    icon: 'mdi:map-legend',
+    color: '#7B5EA7',
+    description: 'Khám phá chiến trường lịch sử Phước Long, đỉnh thiêng Bà Rá và căn cứ Tà Thiết — di tích quốc gia đặc biệt của vùng đất anh hùng.',
+    stops: [
+      { id: 'hrt-012', title: 'Núi Bà Rá — Phước Long' },
+      { id: 'hrt-002', title: 'Hồ Thác Mơ — Phước Long' },
+      { id: 'hrt-013', title: 'Chiến Thắng Phước Long 1975' },
+      { id: 'hrt-016', title: 'Bảo Tàng Chiến Dịch Đường 14' },
+      { id: 'hrt-014', title: 'Căn Cứ Tà Thiết — Lộc Ninh' },
+      { id: 'hrt-015', title: 'Nhà Giao Tế Lộc Ninh' }
     ]
   }
 ]
@@ -782,8 +799,8 @@ watchEffect(() => {
           } : undefined,
           address: {
             '@type': 'PostalAddress',
-            addressLocality: 'Xã Bù Đăng',
-            addressRegion: 'Thành Phố Đồng Nai',
+            addressLocality: h.id === 'hrt-012' || h.id === 'hrt-013' || h.id === 'hrt-016' ? 'Xã Thác Mơ' : h.id === 'hrt-014' || h.id === 'hrt-015' ? 'Xã Lộc Thành' : 'Xã Bù Đăng',
+            addressRegion: 'Thành phố Đồng Nai',
             addressCountry: 'VN'
           }
         })

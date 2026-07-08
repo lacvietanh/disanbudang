@@ -63,6 +63,21 @@ Read this file NOW if the task involves:
 ## Full Load Override
 If the user includes `[load full]` or `[nạp full]` in their prompt, you MUST read EVERY file matching `RULE-*.md` and `METHOD-*.md` in `/Users/xk/.aki/claudedoc/` (excluding the `ref-ECC/` directory).
 
+## Project Master Document (MANDATORY — This Project)
+After loading Tier 1 rules, you MUST also read:
+- `/Volumes/DATA/DEV/disanbudang/docs/PROJECT_MASTER.md`
+
+This file is the Single Source of Truth for the Di Sản Bù Đăng project. It defines:
+- Project goals, tech stack (with exact versions), and architecture
+- Route map, Pinia store responsibilities, content layer rules
+- Heritage data schema, feature specs (Map/GPS, Audio Guide, Quiz, Library)
+- Design system (colors, typography, animations)
+- Security config (CSP whitelist, rate limiting)
+- Development rules that are BINDING on all code changes
+- Roadmap and docs cross-reference table
+
+Do NOT make any code or content changes without first verifying your plan against this document.
+
 ---
 **FINAL REMINDER:**
-Do not assume you remember the contents of these files from prior sessions. You are required to perform actual file reads to fetch the source of truth whenever the conditions above are met. Your first tool call in any new conversation in this project should usually be to read the Tier 1 files.
+Do not assume you remember the contents of these files from prior sessions. You are required to perform actual file reads to fetch the source of truth whenever the conditions above are met. Your first tool call in any new conversation in this project should usually be to read the Tier 1 files, then `docs/PROJECT_MASTER.md`.

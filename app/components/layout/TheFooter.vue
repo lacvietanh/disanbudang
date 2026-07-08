@@ -14,7 +14,7 @@
         <!-- Brand Column -->
         <div class="lg:col-span-1 space-y-6">
           <div class="flex items-center gap-3">
-            <img src="/favicon/icon-192.png" alt="Logo Di Sản Bù Đăng" class="h-14 lg:h-16 w-auto object-contain" />
+            <NuxtImg src="/favicon/icon-192.png" alt="Logo Di Sản Bù Đăng" class="h-14 lg:h-16 w-auto object-contain" />
             <div class="flex flex-col justify-center text-left">
               <span class="font-heading font-bold text-ivory text-sm lg:text-base leading-tight">
                 Di Sản
@@ -92,8 +92,8 @@ const footerLinks = [
     title: 'Khám Phá',
     links: [
       { to: '/map', label: 'Bản Đồ Tương Tác' },
-      { to: '/library', label: 'Thư Viện Di Sản' },
-      { to: '/explore', label: 'Trải Nghiệm & Cộng Đồng' },
+      { to: '/explore', label: 'Thư Viện Di Sản' },
+      { to: '/explore?tab=community', label: 'Trải Nghiệm & Cộng Đồng' },
       { to: '/#quiz', label: 'Trắc Nghiệm Di Sản' },
       { to: '/#school-corner', label: 'Góc Học Tập Học Sinh' },
     ],
@@ -104,7 +104,6 @@ const footerLinks = [
       { to: '/about', label: 'Về Di Sản Bù Đăng' },
       { to: '/news', label: 'Bài Viết & Sự Kiện' },
       { to: '/invest', label: 'Cơ Hội Đầu Tư' },
-      { to: '/study?tab=media', label: 'Triển Lãm Ảnh' },
       { to: '/contribute', label: 'Đóng Góp Di Sản' },
     ],
   },

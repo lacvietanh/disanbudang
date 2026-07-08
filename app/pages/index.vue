@@ -1,46 +1,22 @@
 <template>
   <div>
-    <!-- 1. Hero cinematic -->
+    <!-- 1. Hero cinematic slideshow -->
     <HeroSection />
 
-    <!-- 2. Câu chuyện về Bù Đăng -->
-    <StorytellingIntro />
-
-    <!-- 3. Dòng thời gian văn hóa lịch sử -->
-    <CulturalTimelineSection />
-
-    <!-- 4. Điểm di sản nổi bật -->
+    <!-- 2. Di sản nổi bật — editorial magazine -->
     <FeaturedHeritage />
 
-    <!-- 5. Khám phá theo danh mục -->
-    <HeritageCategoriesSection />
+    <!-- 3. Khám phá qua công nghệ — bento grid -->
+    <ExperiencesSection />
 
-    <!-- 6. Trải nghiệm Bản đồ -->
-    <MapPreviewSection />
-
-    <!-- 7. Audio guide thuyết minh -->
-    <AudioGuideSection />
-
-    <!-- 8. Ký ức cộng đồng -->
+    <!-- 4. Ký ức cộng đồng — dark editorial -->
     <CommunityStoriesSection />
 
-    <!-- 9. Tin tức mới -->
-    <NewsSection />
-
-    <!-- 10. Khám phá di sản -->
-    <QuizSection />
-
-    <!-- 11. Góc học tập -->
-    <SchoolCornerSection />
-
-    <!-- 12. Kêu gọi đóng góp di sản -->
-    <ContributionCTA />
-
-    <!-- 13. Tầm nhìn mở rộng: Bù Đăng → Thành Phố Đồng Nai -->
-    <VisionRoadmapSection />
-
-    <!-- 14. Câu hỏi thường gặp -->
+    <!-- 5. FAQ — SEO -->
     <FAQSection />
+
+    <!-- 6. Closing CTA — cinematic -->
+    <ClosingCTASection />
   </div>
 </template>
 
@@ -52,4 +28,3 @@ useMuseumSeo({
 
 definePageMeta({ layout: 'default' })
 </script>
-

@@ -21,7 +21,7 @@
         <NuxtLink
           v-for="(cat, i) in categories"
           :key="cat.id"
-          :to="`/library?category=${cat.id}`"
+          :to="`/explore?category=${cat.id}`"
           class="group relative overflow-hidden rounded-2xl p-6 cursor-pointer reveal transition-all duration-500 hover:-translate-y-1"
           :style="{
             background: `linear-gradient(135deg, ${cat.color}18, ${cat.color}08)`,

@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import type { HeritageAudio } from '~/types'
-import { MOCK_HERITAGES } from '~/data/mockHeritages'
 
 export const useAudioStore = defineStore('audio', () => {
   const isPlaying = ref(false)
@@ -15,11 +14,7 @@ export const useAudioStore = defineStore('audio', () => {
 
   const isMiniPlayerVisible = ref(false)
   const isExpanded = ref(false)
-  const isSpeechMode = ref(false)
   const playbackRate = ref(1.0)
-
-  let speechUtterance: SpeechSynthesisUtterance | null = null
-  let speechInterval: any = null
 
   // Computed
   const progressPercent = computed(() =>
@@ -28,91 +23,6 @@ export const useAudioStore = defineStore('audio', () => {
 
   const formattedCurrentTime = computed(() => formatTime(currentTime.value))
   const formattedDuration = computed(() => formatTime(duration.value))
-
-  function getSpeechText(): string {
-    const heritage = MOCK_HERITAGES.find(h => h.id === heritageId.value)
-    const rawText = heritage
-      ? `${heritage.title}. ${heritage.shortDescription}. ${heritage.longStory}`
-      : currentTrack.value?.title || ''
-
-    return rawText
-      .replace(/\*\*/g, '')
-      .replace(/#/g, '')
-      .replace(/-/g, ' ')
-      .replace(/\s+/g, ' ')
-      .trim()
-  }
-
-  function activateSpeechSynthesis(audio: HeritageAudio, hId: string) {
-    if (audioEl.value) {
-      audioEl.value.pause()
-      audioEl.value = null
-    }
-
-    isSpeechMode.value = true
-    currentTrack.value = audio
-    heritageId.value = hId
-    errorMessage.value = 'Giọng đọc AI (Text-to-Speech)'
-    isMiniPlayerVisible.value = true
-
-    // Estimate duration based on word count
-    const text = getSpeechText()
-    const wordCount = text.split(/\s+/).length
-    duration.value = Math.ceil(wordCount / 2.2) // ~130 words per minute
-
-    if (isPlaying.value) {
-      playSpeech()
-    }
-  }
-
-  function playSpeech() {
-    if (!import.meta.client) return
-
-    if (window.speechSynthesis.paused && speechUtterance) {
-      window.speechSynthesis.resume()
-    } else {
-      window.speechSynthesis.cancel()
-
-      const text = getSpeechText()
-      speechUtterance = new SpeechSynthesisUtterance(text)
-      speechUtterance.lang = 'vi-VN'
-      speechUtterance.rate = 0.95 * playbackRate.value
-      speechUtterance.volume = isMuted.value ? 0 : volume.value
-
-      const voices = window.speechSynthesis.getVoices()
-      const viVoice = voices.find(v => v.lang.includes('vi') || v.lang.includes('VI'))
-      if (viVoice) speechUtterance.voice = viVoice
-
-      speechUtterance.onend = () => {
-        isPlaying.value = false
-        currentTime.value = 0
-        clearInterval(speechInterval)
-      }
-
-      speechUtterance.onerror = (e) => {
-        if (e.error !== 'interrupted') {
-          isPlaying.value = false
-          errorMessage.value = 'Không thể chạy giọng đọc AI.'
-          clearInterval(speechInterval)
-        }
-      }
-
-      window.speechSynthesis.speak(speechUtterance)
-    }
-
-    clearInterval(speechInterval)
-    speechInterval = setInterval(() => {
-      if (window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
-        if (currentTime.value < duration.value) {
-          currentTime.value += 1
-        } else {
-          isPlaying.value = false
-          currentTime.value = 0
-          clearInterval(speechInterval)
-        }
-      }
-    }, 1000)
-  }
 
   // Actions
   function loadTrack(audio: HeritageAudio, hId: string) {
@@ -123,16 +33,15 @@ export const useAudioStore = defineStore('audio', () => {
     duration.value = audio.duration
     errorMessage.value = ''
     isMiniPlayerVisible.value = true
-    isSpeechMode.value = false
 
     if (import.meta.client) {
       const player = new Audio(audio.url)
       player.preload = 'metadata'
       player.volume = isMuted.value ? 0 : volume.value
+      player.playbackRate = playbackRate.value
 
       player.addEventListener('loadedmetadata', () => {
         if (Number.isFinite(player.duration)) duration.value = player.duration
-        player.playbackRate = playbackRate.value
       })
       player.addEventListener('timeupdate', () => {
         currentTime.value = player.currentTime
@@ -142,8 +51,8 @@ export const useAudioStore = defineStore('audio', () => {
         currentTime.value = 0
       })
       player.addEventListener('error', () => {
-        // Fallback to SpeechSynthesis
-        activateSpeechSynthesis(audio, hId)
+        isPlaying.value = false
+        errorMessage.value = 'Audio đang được chuẩn bị — sắp có mặt.'
       })
 
       audioEl.value = player
@@ -151,34 +60,18 @@ export const useAudioStore = defineStore('audio', () => {
   }
 
   function play() {
+    if (!audioEl.value) return
     isPlaying.value = true
-    if (isSpeechMode.value) {
-      playSpeech()
-    } else {
-      errorMessage.value = ''
-      audioEl.value?.play().catch(() => {
-        // If playing audio fails, fall back to SpeechSynthesis
-        if (currentTrack.value && heritageId.value) {
-          activateSpeechSynthesis(currentTrack.value, heritageId.value)
-          playSpeech()
-        } else {
-          isPlaying.value = false
-          errorMessage.value = 'Trình duyệt chưa thể phát audio. Vui lòng thử lại.'
-        }
-      })
-    }
+    errorMessage.value = ''
+    audioEl.value.play().catch(() => {
+      isPlaying.value = false
+      errorMessage.value = 'Trình duyệt chưa thể phát audio. Vui lòng thử lại.'
+    })
   }
 
   function pause() {
     isPlaying.value = false
-    if (isSpeechMode.value) {
-      if (import.meta.client) {
-        window.speechSynthesis.pause()
-      }
-      clearInterval(speechInterval)
-    } else {
-      audioEl.value?.pause()
-    }
+    audioEl.value?.pause()
   }
 
   function togglePlay() {
@@ -189,95 +82,22 @@ export const useAudioStore = defineStore('audio', () => {
   function setCurrentTime(time: number) {
     const nextTime = Math.max(0, Math.min(time, duration.value))
     currentTime.value = nextTime
-    if (isSpeechMode.value) {
-      if (!import.meta.client) return
-      
-      const ratio = nextTime / duration.value
-      const text = getSpeechText()
-      const words = text.split(' ')
-      const targetWordIndex = Math.floor(words.length * ratio)
-      const remainingText = words.slice(targetWordIndex).join(' ')
-
-      window.speechSynthesis.cancel()
-
-      if (isPlaying.value) {
-        speechUtterance = new SpeechSynthesisUtterance(remainingText)
-        speechUtterance.lang = 'vi-VN'
-        speechUtterance.rate = 0.95 * playbackRate.value
-        speechUtterance.volume = isMuted.value ? 0 : volume.value
-
-        const voices = window.speechSynthesis.getVoices()
-        const viVoice = voices.find(v => v.lang.includes('vi') || v.lang.includes('VI'))
-        if (viVoice) speechUtterance.voice = viVoice
-
-        speechUtterance.onend = () => {
-          isPlaying.value = false
-          currentTime.value = 0
-          clearInterval(speechInterval)
-        }
-
-        speechUtterance.onerror = (e) => {
-          if (e.error !== 'interrupted') {
-            isPlaying.value = false
-            clearInterval(speechInterval)
-          }
-        }
-
-        window.speechSynthesis.speak(speechUtterance)
-
-        clearInterval(speechInterval)
-        speechInterval = setInterval(() => {
-          if (window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
-            if (currentTime.value < duration.value) {
-              currentTime.value += 1
-            } else {
-              isPlaying.value = false
-              currentTime.value = 0
-              clearInterval(speechInterval)
-            }
-          }
-        }, 1000)
-      }
-    } else {
-      if (audioEl.value) audioEl.value.currentTime = nextTime
-    }
+    if (audioEl.value) audioEl.value.currentTime = nextTime
   }
 
   function setVolume(v: number) {
     volume.value = Math.max(0, Math.min(1, v))
     if (v > 0) isMuted.value = false
-    
-    if (isSpeechMode.value) {
-      if (speechUtterance) {
-        speechUtterance.volume = isMuted.value ? 0 : volume.value
-      }
-    } else {
-      if (audioEl.value) audioEl.value.volume = isMuted.value ? 0 : volume.value
-    }
+    if (audioEl.value) audioEl.value.volume = isMuted.value ? 0 : volume.value
   }
 
   function toggleMute() {
     isMuted.value = !isMuted.value
-    if (isSpeechMode.value) {
-      if (speechUtterance) {
-        speechUtterance.volume = isMuted.value ? 0 : volume.value
-      }
-    } else {
-      if (audioEl.value) audioEl.value.volume = isMuted.value ? 0 : volume.value
-    }
+    if (audioEl.value) audioEl.value.volume = isMuted.value ? 0 : volume.value
   }
 
   function skip(seconds: number) {
     setCurrentTime(currentTime.value + seconds)
-  }
-
-  function cleanupSpeech() {
-    if (import.meta.client) {
-      window.speechSynthesis.cancel()
-    }
-    clearInterval(speechInterval)
-    isSpeechMode.value = false
-    speechUtterance = null
   }
 
   function closeMiniPlayer() {
@@ -296,11 +116,7 @@ export const useAudioStore = defineStore('audio', () => {
 
   function setPlaybackRate(rate: number) {
     playbackRate.value = rate
-    if (!isSpeechMode.value && audioEl.value) {
-      audioEl.value.playbackRate = rate
-    } else if (isSpeechMode.value && isPlaying.value) {
-      setCurrentTime(currentTime.value)
-    }
+    if (audioEl.value) audioEl.value.playbackRate = rate
   }
 
   function formatTime(seconds: number): string {
@@ -310,7 +126,6 @@ export const useAudioStore = defineStore('audio', () => {
   }
 
   function cleanupAudio() {
-    cleanupSpeech()
     if (!audioEl.value) return
     audioEl.value.pause()
     audioEl.value.src = ''
@@ -329,7 +144,6 @@ export const useAudioStore = defineStore('audio', () => {
     errorMessage,
     isMiniPlayerVisible,
     isExpanded,
-    isSpeechMode,
     progressPercent,
     formattedCurrentTime,
     formattedDuration,

@@ -235,7 +235,7 @@
       <div class="text-center">
         <Icon name="mdi:map-marker-off" class="w-20 h-20 text-charcoal-700 mx-auto mb-6" />
         <h1 class="font-heading font-bold text-ivory text-3xl mb-3">Di sản không tồn tại</h1>
-        <NuxtLink to="/library" class="btn-primary">Về Thư Viện</NuxtLink>
+        <NuxtLink to="/explore" class="btn-primary">Khám Phá Di Sản</NuxtLink>
       </div>
     </div>
   </div>

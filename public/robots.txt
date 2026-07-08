@@ -1,2 +1,4 @@
 User-Agent: *
 Disallow:
+
+Sitemap: https://disanbudang.com/sitemap.xml

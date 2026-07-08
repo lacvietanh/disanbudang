@@ -2,16 +2,19 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+
+  site: {
+    url: 'https://disanbudang.com',
+    name: 'Di Sản Bù Đăng',
+    trailingSlash: true,
+  },
+
   routeRules: {
     '/community': { redirect: { to: '/explore/', statusCode: 301 } },
     '/quiz': { redirect: { to: '/#quiz', statusCode: 301 } },
     '/school': { redirect: { to: '/study/', statusCode: 301 } },
   },
-  router: {
-    options: {
-      trailingSlash: true,
-    },
-  },
+
   modules: [
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
@@ -22,7 +25,15 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@vueuse/motion/nuxt',
     'nuxt-security',
+    '@nuxtjs/sitemap',
   ],
+
+  sitemap: {
+    strictNuxtContentPaths: false,
+    exclude: ['/404'],
+    sources: [],
+    zeroRuntime: true,
+  },
 
   security: {
     headers: {
@@ -57,7 +68,6 @@ export default defineNuxtConfig({
     },
   ],
 
-
   tailwindcss: {
     configPath: 'tailwind.config.ts',
     exposeConfig: true,
@@ -81,12 +91,12 @@ export default defineNuxtConfig({
     head: {
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
-      title: 'Di Sản Bù Đăng - Linh Hồn Đại Ngàn Thành Phố Đồng Nai',
+      title: 'Di Sản Bù Đăng | Bảo Tàng Số Thành Phố Đồng Nai',
       meta: [
         {
           name: 'description',
           content:
-            'Bảo tàng số di sản văn hóa, lịch sử và thiên nhiên vùng đất Bù Đăng — linh hồn đại ngàn trong lòng Thành Phố Đồng Nai.',
+            'Bảo tàng số di sản văn hóa, lịch sử và thiên nhiên của Thành phố Đồng Nai — từ vùng đất Bù Đăng, Phước Long đến Lộc Ninh. Khám phá, học tập và bảo tồn di sản qua không gian số tương tác.',
         },
         { name: 'theme-color', content: '#e18c1b' },
         { property: 'og:type', content: 'website' },

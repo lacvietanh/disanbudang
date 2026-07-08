@@ -1,6 +1,6 @@
 # Hệ thống Di Sản (Heritage Models)
 
-Hệ thống lưu trữ và phân loại cốt lõi các di sản của huyện Bù Đăng. Đây là "Single source of truth" cho mọi nội dung văn hoá, lịch sử được trình bày trên dự án.
+Hệ thống lưu trữ và phân loại cốt lõi các di sản của Thành Phố Đồng Nai. Đây là "Single source of truth" cho mọi nội dung văn hoá, lịch sử được trình bày trên dự án.
 
 ## 1. Cấu trúc Mô hình (`Heritage`)
 - **`HeritageCategory`:** Phân loại theo loại hình:

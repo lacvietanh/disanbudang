@@ -45,7 +45,6 @@ onMounted(() => {
 const lookupTable: Record<string, string> = {
   about: 'Giới Thiệu',
   map: 'Bản Đồ',
-  library: 'Thư Viện',
   study: 'Học Tập',
   news: 'Bài Viết',
   contribute: 'Đóng Góp',
@@ -61,7 +60,6 @@ const activeRoutes = new Set([
   '/',
   '/about/',
   '/map/',
-  '/library/',
   '/study/',
   '/news/',
   '/contribute/',

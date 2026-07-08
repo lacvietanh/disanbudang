@@ -5,7 +5,7 @@
       <div class="absolute top-0 right-0 w-96 h-96 bg-gold-500/6 rounded-full blur-3xl" />
       <div class="container-heritage relative z-10">
         <span class="section-label text-gold-400">Liên Hệ</span>
-        <h1 class="font-heading font-bold text-ivory text-5xl lg:text-6xl leading-none mb-4">
+        <h1 class="font-heading font-bold text-ivory text-5xl lg:text-6xl leading-[1.28] mb-4">
           Kết Nối<br/> <span class="text-gradient-gold">Với Chúng Tôi</span>
         </h1>
         <p class="text-charcoal-300 text-lg max-w-xl">

@@ -33,6 +33,7 @@
     "vue-leaflet": "^0.1.0"
   },
   "devDependencies": {
+    "@nuxtjs/sitemap": "^8.2.2",
     "@tailwindcss/typography": "^0.5.19",
     "@types/howler": "^2.2.12",
     "@types/leaflet": "^1.9.14",

@@ -1,4 +1,4 @@
-# BÁO CÁO CÔNG NGHỆ VÀ XÂY DỰNG SẢN PHẨM: DI SẢN BÙ ĐĂNG
+# BÁO CÁO CÔNG NGHỆ VÀ XÂY DỰNG SẢN PHẨM: DI SẢN THÀNH PHỐ ĐỒNG NAI
 
 ### Các nguyên vật liệu và công nghệ xây dựng sản phẩm:
 
@@ -9,7 +9,7 @@
 | **3** | **Thư viện Bản đồ & Trình phát âm thanh:**<br>Leaflet.js, Vue-Leaflet, Howler.js | Xử lý lớp bản đồ tương tác tọa độ địa lý (hiển thị marker, clustering điểm di sản), GPS Geolocation API định vị thực tế và quản lý phát âm thanh thuyết minh (Audio Guide) toàn cục không bị gián đoạn. |
 | **4** | **Cơ sở dữ liệu & Quản lý trạng thái:**<br>SQLite (better-sqlite3), Pinia, Pinia Persistedstate | Lưu trữ cơ sở dữ liệu di sản cục bộ; quản lý và đồng bộ tiến trình làm bài Quiz trắc nghiệm cũng như huy hiệu đạt được của người dùng. |
 | **5** | **Quản lý nội dung số:**<br>Nuxt Content v3 (Markdown) | Quản lý, biên soạn và kết xuất trực tiếp các bài viết thuyết minh chi tiết dưới dạng tài liệu số hóa. |
-| **6** | **Tài liệu số hóa (Dữ liệu nội dung):**<br>Tư liệu lịch sử địa phương | Thu thập từ Sách giáo khoa Lịch sử địa phương, tư liệu lưu trữ của Bảo tàng tỉnh Bình Phước và phỏng vấn các nghệ nhân, già làng tại Bù Đăng. |
+| **6** | **Tài liệu số hóa (Dữ liệu nội dung):**<br>Tư liệu lịch sử địa phương | Thu thập từ Sách giáo khoa Lịch sử địa phương, tư liệu lưu trữ của Bảo tàng Thành phố Đồng Nai và phỏng vấn các nghệ nhân, già làng tại Bù Đăng, Phước Long, Lộc Ninh. |
 
 ---
 

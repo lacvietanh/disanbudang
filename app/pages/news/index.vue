@@ -1,11 +1,11 @@
 <template>
   <div class="bg-charcoal-900 min-h-screen pt-[72px]">
     <!-- Hero -->
-    <div class="bg-dark-earth py-20 relative overflow-hidden">
+    <div class="bg-dark-earth py-12 md:py-16 relative overflow-hidden">
       <div class="absolute top-0 left-0 w-64 h-64 bg-forest-500/10 rounded-full blur-3xl" />
       <div class="container-heritage relative z-10">
         <span class="section-label text-gold-400">Góc Chia Sẻ & Nghiên Cứu</span>
-        <h1 class="font-heading font-bold text-ivory text-5xl lg:text-6xl leading-none mb-5">
+        <h1 class="font-heading font-bold text-ivory text-5xl lg:text-6xl leading-[1.28] mb-5">
           Bài Viết &<br/><span class="text-gradient-gold">Di Sản Bù Đăng</span>
         </h1>
         <p class="text-charcoal-300 text-lg max-w-xl">

@@ -48,12 +48,12 @@
           </span>
           <span class="text-gold-300 text-xs font-bold uppercase tracking-widest">Digital Heritage Learning Hub</span>
           <span class="text-charcoal-500 text-xs">•</span>
-          <span class="text-charcoal-300 text-xs">Xã Bù Đăng, Thành Phố Đồng Nai</span>
+          <span class="text-charcoal-300 text-xs">Bù Đăng, Thành Phố Đồng Nai</span>
         </div>
 
         <!-- Main headline -->
         <div style="animation: fadeSlideUp 0.9s 0.15s cubic-bezier(0.16,1,0.3,1) both">
-          <h2 class="font-heading font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-ivory leading-[1.05] tracking-tight">
+          <h2 class="font-heading font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-ivory leading-[1.28] tracking-tight">
             Học. Khám phá.<br />
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 via-gold-300 to-earth-400">Gìn giữ di sản.</span>
           </h2>
@@ -603,6 +603,9 @@
             class="flex-1 bg-charcoal-900/50 border border-charcoal-800 rounded-2xl px-5 py-4 text-sm focus:outline-none focus:border-gold-500/50 focus:ring-1 focus:ring-gold-500/10 pr-14 text-ivory placeholder-charcoal-600 transition-all duration-200"
             @keydown.enter="sendAiMessage(aiInput)"
           />
+          <!-- ================================================ -->
+          <!-- MODULE: BẢN ĐỒ — đã chuyển hẳn sang /map        -->
+          <!-- ================================================ -->
           <button
             class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-gold-500 text-charcoal-950 hover:bg-gold-400 flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-gold-500/20 disabled:opacity-40 disabled:cursor-not-allowed"
             @click="sendAiMessage(aiInput)"
@@ -614,82 +617,6 @@
         </div>
       </div>
 
-      <!-- ================================================ -->
-      <!-- MODULE: BẢN ĐỒ HỌC TẬP                         -->
-      <!-- ================================================ -->
-      <div v-if="activeTab === 'map'" class="max-w-5xl mx-auto space-y-8 animate-section-in">
-        <div>
-          <span class="section-label">Địa lý di sản</span>
-          <h3 class="font-heading text-2xl font-bold text-ivory mt-1">Bản Đồ Học Tập Di Tích</h3>
-          <p class="text-charcoal-400 text-xs mt-1.5 max-w-lg">Chọn điểm dừng để xem tư liệu thực địa, nghe thuyết minh và trả lời câu hỏi ôn tập tại chỗ.</p>
-        </div>
-
-        <EmptyState v-if="mapLandmarks.length === 0" tab="map" :userXP="userXP" :streakDays="streakDays" @action="handleEmptyStateAction" />
-        <template v-else>
-          <div class="relative w-full h-[400px] bg-charcoal-950 border border-charcoal-800 rounded-3xl overflow-hidden flex items-center justify-center">
-            <div class="absolute inset-0 bg-[radial-gradient(rgba(201,146,42,0.04)_1.5px,transparent_1.5px)] [background-size:24px_24px] pointer-events-none" />
-            <svg class="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M 120 180 Q 250 80 450 180 T 780 120" fill="none" stroke="#C9922A" stroke-width="2" stroke-dasharray="6,6" opacity="0.3" />
-            </svg>
-            <div
-              v-for="landmark in mapLandmarks"
-              :key="landmark.id"
-              class="absolute flex flex-col items-center group cursor-pointer"
-              :style="{ left: landmark.x + '%', top: landmark.y + '%' }"
-              @click="activeLandmark = landmark"
-            >
-              <div
-                class="w-13 h-13 rounded-full flex items-center justify-center border-2 shadow-2xl transition-all duration-300 relative"
-                :class="activeLandmark?.id === landmark.id ? 'bg-gradient-to-br from-gold-400 to-gold-600 border-gold-200 scale-120 shadow-gold-500/50' : 'bg-charcoal-900/90 border-gold-500/50 hover:scale-110 hover:border-gold-400 hover:bg-charcoal-800'"
-              >
-                <div v-if="activeLandmark?.id === landmark.id" class="absolute inset-0 bg-gold-400/30 rounded-full animate-ping" />
-                <Icon :name="landmark.icon" class="w-5 h-5" :class="activeLandmark?.id === landmark.id ? 'text-charcoal-950' : 'text-gold-400'" />
-              </div>
-              <span class="mt-1.5 text-3xs font-heading font-bold uppercase tracking-wider bg-charcoal-950/95 border border-charcoal-800/80 px-2.5 py-0.5 rounded-full shadow-lg shadow-black/30 whitespace-nowrap text-charcoal-200 backdrop-blur-sm">{{ landmark.name }}</span>
-            </div>
-          </div>
-
-          <div v-if="activeLandmark" class="bg-charcoal-950 border border-charcoal-800/60 rounded-3xl p-6 grid grid-cols-1 md:grid-cols-2 gap-6 animate-section-in shadow-xl shadow-black/20">
-            <div class="space-y-4">
-              <div class="flex items-center gap-2">
-                <span class="text-gold-300 text-3xs font-bold uppercase tracking-widest bg-gold-500/12 border border-gold-500/20 px-2.5 py-1 rounded-lg">Điểm Khảo Cứu</span>
-                <span class="text-charcoal-450 text-3xs flex items-center gap-1"><Icon name="mdi:map-marker" class="w-3.5 h-3.5 text-gold-500" />Bù Đăng</span>
-              </div>
-              <h4 class="font-heading font-bold text-ivory text-xl">{{ activeLandmark.name }}</h4>
-              <p class="text-charcoal-300 text-sm leading-relaxed">{{ activeLandmark.desc }}</p>
-              <div class="p-4 rounded-2xl bg-charcoal-900 border border-charcoal-800 flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-xl bg-gold-500/10 flex items-center justify-center text-gold-400">
-                    <Icon :name="activeLandmark.audioGuide ? 'mdi:volume-high' : 'mdi:video'" class="w-5 h-5" />
-                  </div>
-                  <div>
-                    <span class="block text-xs font-semibold text-ivory">{{ activeLandmark.audioGuide ? 'Audio Guide Thuyết Minh' : 'Flycam Thực Địa' }}</span>
-                    <span class="text-charcoal-450 text-3xs">Thời lượng: 2:15 • Tiếng Việt</span>
-                  </div>
-                </div>
-                <button class="btn-primary text-3xs py-2 px-4 uppercase tracking-wider font-bold" @click="playLandmarkAudio(activeLandmark.name, activeLandmark.desc)">
-                  Nghe Thuyết Minh
-                </button>
-              </div>
-            </div>
-            <div class="space-y-4 border-t md:border-t-0 md:border-l border-charcoal-850 pt-4 md:pt-0 md:pl-6">
-              <h5 class="text-xs font-bold uppercase tracking-wider text-charcoal-450">Tài liệu & Bài tập ôn tập</h5>
-              <div v-if="activeLandmark.paper" class="p-4 rounded-2xl bg-charcoal-900 border border-charcoal-800 hover:border-gold-500/30 transition-colors cursor-pointer" @click="openResource(activeLandmark.paper)">
-                <span class="text-gold-400 text-3xs font-bold uppercase tracking-wider block mb-1">Nghiên cứu học sinh</span>
-                <span class="block text-xs font-bold text-ivory line-clamp-1 mb-1">{{ activeLandmark.paper.title }}</span>
-                <span class="text-charcoal-450 text-3xs">{{ activeLandmark.paper.school }} • Lớp {{ activeLandmark.paper.grade }}</span>
-              </div>
-              <div class="p-4 rounded-2xl bg-gold-500/5 border border-gold-500/10 flex justify-between items-center">
-                <div>
-                  <span class="block text-xs font-bold text-gold-400">Câu Hỏi Ôn Tập</span>
-                  <span class="text-charcoal-450 text-3xs">Nhận huy hiệu di tích khi hoàn thành.</span>
-                </div>
-                <button class="btn-ghost border border-gold-500/30 text-gold-400 hover:bg-gold-500 hover:text-charcoal-950 text-3xs py-1.5 px-4 font-bold transition-all" @click="startLandmarkQuiz">Làm Quiz</button>
-              </div>
-            </div>
-          </div>
-        </template>
-      </div>
 
       <!-- ================================================ -->
       <!-- MODULE: TỪ ĐIỂN S'TIÊNG                         -->
@@ -971,54 +898,7 @@
       <!-- ================================================ -->
       <!-- MODULE: GÓC GIÁO VIÊN                           -->
       <!-- ================================================ -->
-      <div v-if="activeTab === 'teacher'" class="max-w-4xl mx-auto space-y-8 animate-section-in">
-        <div>
-          <span class="section-label">Không gian giáo viên</span>
-          <h3 class="font-heading text-2xl font-bold text-ivory mt-1">Góc Giáo Viên Địa Phương</h3>
-          <p class="text-charcoal-400 text-xs mt-1">Chia sẻ giáo án, thiết kế slide, đề ôn tập và tài liệu học thuật địa phương.</p>
-        </div>
-
-        <div class="p-8 rounded-3xl bg-charcoal-950 border-2 border-dashed border-charcoal-800 hover:border-gold-500/40 flex flex-col items-center justify-center gap-4 text-center transition-all duration-300 cursor-pointer group" @click="mockUploadDocument" role="button" aria-label="Tải tài liệu giáo án lên">
-          <div class="w-16 h-16 rounded-2xl bg-gold-500/10 text-gold-400 flex items-center justify-center shadow-inner group-hover:scale-105 transition-transform">
-            <Icon name="mdi:cloud-upload-outline" class="w-9 h-9" />
-          </div>
-          <div>
-            <span class="block text-base font-bold text-ivory">Tải tài liệu giáo án lên</span>
-            <span class="text-charcoal-450 text-xs mt-1">Chấp nhận .pdf, .pptx, .docx (Tối đa 15MB)</span>
-          </div>
-          <button class="btn-primary text-sm py-2.5 px-8">Chọn tệp tin</button>
-        </div>
-
-        <!-- Resource type grid -->
-        <div>
-          <h4 class="text-xs font-bold uppercase tracking-widest text-charcoal-400 mb-4">Định dạng hỗ trợ</h4>
-          <div class="grid grid-cols-3 sm:grid-cols-5 gap-3">
-            <div v-for="fmt in resourceFormats" :key="fmt.label" class="flex flex-col items-center gap-2 p-4 bg-charcoal-950 border border-charcoal-850 rounded-2xl hover:border-charcoal-700 transition-colors">
-              <Icon :name="fmt.icon" class="w-7 h-7" :class="fmt.color" />
-              <span class="text-3xs font-bold text-charcoal-400 uppercase tracking-wider">{{ fmt.label }}</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="space-y-4">
-          <h4 class="text-xs font-bold uppercase tracking-wider text-charcoal-400">Giáo án đóng góp gần đây</h4>
-          <div v-if="teacherUploadedFiles.length === 0">
-            <EmptyState tab="teacher" :userXP="userXP" :streakDays="streakDays" @action="handleEmptyStateAction" />
-          </div>
-          <div v-else class="space-y-3">
-            <div v-for="file in teacherUploadedFiles" :key="file" class="p-4 rounded-2xl bg-charcoal-950 border border-charcoal-850 flex justify-between items-center text-xs hover:border-charcoal-700 transition-colors">
-              <div class="flex items-center gap-3">
-                <Icon name="mdi:file-document-outline" class="w-5 h-5 text-gold-400 shrink-0" />
-                <span class="font-semibold text-ivory truncate max-w-sm">{{ file }}</span>
-              </div>
-              <div class="flex items-center gap-4 text-3xs text-charcoal-450 shrink-0">
-                <span>Trạng thái: <span class="text-green-400 font-bold">Đã duyệt</span></span>
-                <button class="hover:text-gold-400 transition-colors" title="Tải tài liệu" aria-label="Tải tài liệu về máy"><Icon name="mdi:download-outline" class="w-4 h-4" /></button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!-- Teacher tab đã được gộp vào /contribute — xem link trong research tab -->
 
       <!-- ================================================ -->
       <!-- MODULE: HÀNH TRÌNH BÀI HỌC                      -->
@@ -1531,7 +1411,7 @@ const typeIcons: Record<string, string> = {
 // ──────────────────────────────────────────────
 // STATE
 // ──────────────────────────────────────────────
-const activeTab = ref('research')
+const activeTab = ref('lessons')
 const streakDays = ref(5)
 const userXP = ref(380)
 const searchOverlayOpen = ref(false)
@@ -1573,16 +1453,15 @@ const collections = ref([
   { name: 'Văn hóa cổ truyền S\'tiêng', count: 5 }
 ])
 
+// 7 tabs cốt lõi — đã loại 'map' (trùng /map) và 'teacher' (trùng /contribute)
 const navItems = [
-  { id: 'research', label: 'Thư Viện', icon: 'mdi:library-outline', badge: '5' },
   { id: 'lessons', label: 'Bài Học', icon: 'mdi:book-open-variant', badge: 'Mới' },
+  { id: 'research', label: 'Thư Viện', icon: 'mdi:library-outline', badge: '5' },
   { id: 'lab', label: 'Heritage Lab', icon: 'mdi:flask-outline', badge: '✨' },
-  { id: 'ai', label: 'AI Trợ Lý', icon: 'mdi:robot' },
-  { id: 'map', label: 'Bản Đồ', icon: 'mdi:map-outline' },
   { id: 'glossary', label: 'Từ Điển', icon: 'mdi:translate' },
   { id: 'media', label: 'Đa Phương Tiện', icon: 'mdi:image-multiple-outline' },
   { id: 'achievements', label: 'Thành Tích', icon: 'mdi:trophy-outline' },
-  { id: 'teacher', label: 'Giáo Viên', icon: 'mdi:school-outline' }
+  { id: 'ai', label: 'AI Trợ Lý', icon: 'mdi:robot' },
 ]
 
 // ──────────────────────────────────────────────
