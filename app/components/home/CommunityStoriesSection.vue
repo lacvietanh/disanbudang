@@ -36,7 +36,7 @@
         <!-- MAIN STORY -->
         <div v-if="posts[0]" class="lg:col-span-7 reveal">
           <NuxtLink to="/explore" class="group block h-full">
-            <article class="relative overflow-hidden rounded-2xl lg:rounded-3xl h-[360px] lg:h-[460px] border border-charcoal-800/60 hover:border-gold-500/25 transition-all duration-500 hover:shadow-2xl hover:shadow-gold-500/8">
+            <article class="relative overflow-hidden rounded-2xl lg:rounded-3xl h-[360px] lg:h-[460px] border border-charcoal-800/60 hover:border-gold-500/25 transition-all duration-500 hover:shadow-2xl hover:shadow-gold-500/10">
               <img
                 :src="posts[0].coverImage"
                 :alt="posts[0].title"

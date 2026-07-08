@@ -271,7 +271,7 @@
             :key="step.date"
             class="relative rounded-3xl border border-charcoal-800/60 bg-charcoal-950/60 backdrop-blur-sm p-7 hover:border-gold-500/30 transition-all duration-500"
           >
-            <span class="font-heading font-bold text-ivory/8 text-7xl leading-none absolute top-4 right-5 select-none pointer-events-none">{{ String(i + 1).padStart(2, '0') }}</span>
+            <span class="font-heading font-bold text-ivory/10 text-[50px] leading-none absolute top-4 right-5 select-none pointer-events-none">{{ String(i + 1).padStart(2, '0') }}</span>
             <div class="relative z-10">
               <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/25 text-gold-400 text-[10px] font-bold uppercase tracking-widest mb-4">
                 <Icon name="mdi:calendar-check-outline" class="w-3 h-3" />

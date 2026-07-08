@@ -25,25 +25,10 @@
           </div>
         </NuxtLink>
 
-        <!-- Desktop Nav -->
+        <!-- Desktop Nav — Đóng Góp lives with the CTAs in Actions, not here -->
         <ul class="hidden xl:flex items-center gap-1.5 xl:gap-2.5" aria-label="Menu điều hướng chính">
-          <li v-for="item in navItems" :key="item.to">
-            <!-- Đóng Góp: solid gold fill drives conversions, no pill-shaped border
-                 (a bordered rounded-full pill around short text reads visually as
-                 "( Đóng Góp )" — solid fill removes that bracket illusion) -->
+          <li v-for="item in navItems.filter((i) => i.to !== '/contribute')" :key="item.to">
             <NuxtLink
-              v-if="item.to === '/contribute'"
-              :to="item.to"
-              class="px-4 py-2 rounded-lg text-xs xl:text-sm font-bold whitespace-nowrap transition-all duration-300 bg-gold-500 text-charcoal-950 hover:bg-gold-400 shadow-md shadow-gold-500/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500 focus-visible:outline-offset-2"
-            >
-              <span class="flex items-center gap-1.5">
-                <Icon name="mdi:hand-heart-outline" class="w-3.5 h-3.5" />
-                {{ item.label }}
-              </span>
-            </NuxtLink>
-
-            <NuxtLink
-              v-else
               :to="item.to"
               class="px-2 py-1 xl:px-3 xl:py-2 rounded-lg text-xs xl:text-sm font-medium whitespace-nowrap transition-all duration-300 text-ivory/80 hover:text-ivory hover:bg-ivory/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500 focus-visible:outline-offset-2"
               active-class="text-gold-400 bg-gold-500/10"
@@ -65,6 +50,15 @@
             <span class="hidden xl:block">Tìm kiếm...</span>
             <kbd class="hidden xl:inline-flex items-center gap-0.5 ml-1 px-1.5 py-0.5 text-[10px] font-mono bg-ivory/10 border border-ivory/20 rounded text-ivory/50">⌘K</kbd>
           </button>
+
+          <!-- Đóng Góp — sits next to the map CTA so the two primary actions are grouped -->
+          <NuxtLink
+            to="/contribute"
+            class="btn-outline-gold text-sm hidden md:inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-500"
+          >
+            <Icon name="mdi:hand-heart-outline" class="w-4 h-4" />
+            Đóng Góp
+          </NuxtLink>
 
           <!-- Explore CTA -->
           <NuxtLink to="/map" class="btn-primary text-sm hidden md:inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-500">

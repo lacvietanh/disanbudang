@@ -140,7 +140,7 @@
   }
 
   .btn-primary {
-    @apply btn bg-gold-500 text-charcoal-900 hover:bg-gold-400;
+    @apply btn bg-gold-500 text-charcoal-900 hover:bg-gold-400 hover:text-charcoal-900;
     @apply shadow-warm hover:shadow-warm-md hover:-translate-y-0.5;
   }
 
@@ -149,12 +149,12 @@
   }
 
   .btn-ghost {
-    @apply btn text-ivory border border-ivory/30 hover:bg-ivory/10 hover:border-ivory/60;
+    @apply btn text-ivory border border-ivory/30 hover:bg-ivory/10 hover:border-ivory/60 hover:text-ivory;
     backdrop-filter: blur(8px);
   }
 
   .btn-dark {
-    @apply btn bg-charcoal-800 text-ivory hover:bg-charcoal-700;
+    @apply btn bg-charcoal-800 text-ivory hover:bg-charcoal-700 hover:text-ivory;
     @apply shadow-warm hover:shadow-warm-md;
   }
 
