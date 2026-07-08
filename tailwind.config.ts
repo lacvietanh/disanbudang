@@ -284,6 +284,27 @@ export default {
         '90': '90',
         '100': '100',
       },
+      // Tailwind's color opacity slash modifier (bg-x/N, text-x/N, ...) only
+      // generates CSS for values present in this scale — any value outside
+      // the default steps (0,5,10,...,100) is silently dropped, rendering
+      // fully transparent. Extended with every non-default value actually
+      // used across the codebase so none of them silently no-op.
+      opacity: {
+        '3': '0.03',
+        '4': '0.04',
+        '6': '0.06',
+        '8': '0.08',
+        '12': '0.12',
+        '35': '0.35',
+        '45': '0.45',
+        '55': '0.55',
+        '65': '0.65',
+        '85': '0.85',
+        '92': '0.92',
+        '96': '0.96',
+        '97': '0.97',
+        '98': '0.98',
+      },
     },
   },
   plugins: [require('@tailwindcss/typography')],

@@ -23,7 +23,7 @@
       <div class="absolute inset-0 z-0">
         <img
           src="/images/heritage/danh-thang/bu-lach-lg.webp"
-          alt="Trảng cỏ Bù Lạch — Di sản thiên nhiên Bù Đăng"
+          alt="Trảng cỏ Bù Lạch, di sản thiên nhiên Thành Phố Đồng Nai"
           class="w-full h-full object-cover object-center scale-105"
           style="animation: slowZoom 20s ease-in-out infinite alternate"
         />
@@ -60,7 +60,7 @@
         </div>
 
         <p class="text-charcoal-200 text-base md:text-lg leading-relaxed max-w-2xl mx-auto font-body" style="animation: fadeSlideUp 0.9s 0.25s cubic-bezier(0.16,1,0.3,1) both">
-          Không gian học tập số dành cho học sinh, giáo viên, du khách và nhà nghiên cứu — khám phá lịch sử, văn hóa và di sản Bù Đăng theo cách tương tác, trực quan.
+          Không gian học tập số dành cho học sinh, giáo viên, du khách và nhà nghiên cứu, khám phá lịch sử, văn hóa và di sản Thành Phố Đồng Nai theo cách tương tác, trực quan.
         </p>
 
         <!-- Hero CTAs -->
@@ -530,7 +530,7 @@
           <div>
             <span class="section-label">Trợ lý thông minh</span>
             <h3 class="font-heading text-2xl font-bold text-ivory mt-1">AI Khảo Cứu Di Sản</h3>
-            <p class="text-charcoal-400 text-xs mt-0.5 max-w-lg">Đặt câu hỏi bằng tiếng Việt để tìm hiểu lịch sử, văn hóa và con người Bù Đăng từ kho dữ liệu số.</p>
+            <p class="text-charcoal-400 text-xs mt-0.5 max-w-lg">Đặt câu hỏi bằng tiếng Việt để tìm hiểu lịch sử, văn hóa và con người Thành Phố Đồng Nai từ kho dữ liệu số.</p>
           </div>
           <button class="text-3xs uppercase tracking-wider font-semibold text-charcoal-400 hover:text-gold-400 transition-colors flex items-center gap-1" @click="clearChat" aria-label="Xóa lịch sử trò chuyện">
             <Icon name="mdi:delete-sweep-outline" class="w-4 h-4" />
@@ -1001,7 +1001,7 @@
         <div v-if="activeLabItem === 'timeline'" class="bg-charcoal-950 border border-charcoal-850 rounded-3xl p-6 md:p-8 space-y-6">
           <div class="flex items-center justify-between border-b border-charcoal-850 pb-4">
             <div>
-              <h4 class="font-heading font-bold text-ivory text-xl">Timeline Lịch Sử Bù Đăng</h4>
+              <h4 class="font-heading font-bold text-ivory text-xl">Timeline Lịch Sử Đồng Nai</h4>
               <p class="text-charcoal-400 text-xs mt-1">Hành trình lịch sử từ thời kỳ tiền sử đến hiện đại</p>
             </div>
             <button class="text-charcoal-500 hover:text-ivory bg-charcoal-900 rounded-full p-2 border border-charcoal-800 transition-colors shrink-0 flex items-center justify-center cursor-pointer" @click="activeLabItem = null" aria-label="Đóng Timeline">
@@ -1053,7 +1053,7 @@
             <div class="flex-1 space-y-3">
               <span class="section-label">Cộng đồng đóng góp</span>
               <h4 class="font-heading font-bold text-xl text-ivory">Chia sẻ tư liệu di sản của bạn</h4>
-              <p class="text-charcoal-400 text-sm leading-relaxed">Học sinh, giáo viên và nhà nghiên cứu có thể đóng góp tư liệu, phản biện học thuật và chia sẻ bài học để cùng xây dựng kho di sản số Bù Đăng.</p>
+              <p class="text-charcoal-400 text-sm leading-relaxed">Học sinh, giáo viên và nhà nghiên cứu có thể đóng góp tư liệu, phản biện học thuật và chia sẻ bài học để cùng xây dựng kho di sản số Thành Phố Đồng Nai.</p>
               <div class="flex flex-wrap gap-3">
                 <NuxtLink to="/contribute" class="px-5 py-2.5 bg-gold-500/10 border border-gold-500/25 hover:bg-gold-500/20 text-gold-400 font-bold rounded-xl text-sm transition-all inline-block">Đóng góp tài liệu</NuxtLink>
                 <button class="px-5 py-2.5 bg-charcoal-900 border border-charcoal-800 hover:border-charcoal-700 text-charcoal-300 font-bold rounded-xl text-sm transition-all" @click="searchOverlayOpen = true">Khám phá kho tài liệu</button>
@@ -1297,7 +1297,7 @@
             <div class="space-y-3">
               <div class="flex items-center justify-between text-3xs">
                 <span class="text-gold-400 font-bold uppercase tracking-wider">{{ selectedImageItem.tag }}</span>
-                <span class="text-charcoal-450 flex items-center gap-1"><Icon name="mdi:map-marker" class="w-3.5 h-3.5 text-gold-500" />Bù Đăng</span>
+                <span class="text-charcoal-450 flex items-center gap-1"><Icon name="mdi:map-marker" class="w-3.5 h-3.5 text-gold-500" />Thành Phố Đồng Nai</span>
               </div>
               <h3 class="font-heading font-bold text-ivory text-xl leading-tight">{{ selectedImageItem.title }}</h3>
               <p class="text-charcoal-300 text-sm leading-relaxed text-justify border-t border-charcoal-850 pt-3 select-text">{{ selectedImageItem.story }}</p>
@@ -1448,10 +1448,10 @@ const difficultyFilters = [
 
 // Lesson catalog
 const lessonCatalog = ref([
-  { id: 'chien-khu-d', title: 'Chiến Khu Đ — Căn Cứ Địa Cách Mạng Huyền Thoại', subject: 'Lịch sử địa phương', tldr: 'Hệ thống căn cứ địa cách mạng nằm sâu trong rừng nguyên sinh Bù Đăng, đóng vai trò quyết định trong kháng chiến chống Pháp và Mỹ.', coverImage: '/images/heritage/lich-su/chien-khu-d-md.webp', xpReward: 80, estimatedMinutes: 12, availableBlocks: ['Timeline', 'Flashcards', 'Quiz', 'Tự luận', 'Hotspot'] },
-  { id: 'cong-chieng-stieng', title: 'Cồng Chiêng S\'tiêng — Tiếng Nói Của Đại Ngàn', subject: 'Văn hóa dân tộc', tldr: 'Di sản văn hóa phi vật thể UNESCO — cồng chiêng là tiếng nói tâm linh của đồng bào S\'tiêng Bù Đăng.', coverImage: '/images/heritage/van-hoa-phi-vat-the/cong-chieng-md.webp', xpReward: 75, estimatedMinutes: 10, availableBlocks: ['Flashcards', 'Quiz', 'Thuật ngữ', 'Gợi mở'] },
-  { id: 'soc-bom-bo', title: 'Sóc Bom Bo — Tiếng Chày Giã Gạo Kháng Chiến', subject: 'Lịch sử cách mạng', tldr: 'Nơi khởi nguồn bài ca bất hủ, ghi dấu sự đồng lòng kiên trung giã gạo thâu đêm nuôi quân của đồng bào S\'tiêng.', coverImage: '/images/heritage/lich-su/soc-bom-bo-md.webp', xpReward: 90, estimatedMinutes: 15, availableBlocks: ['Timeline', 'Quiz', 'Audio', 'Văn bản'] },
-  { id: 'trang-co-bu-lach', title: 'Danh Thắng Trảng Cỏ Bù Lạch — Kỳ Quan Thiên Nhiên', subject: 'Địa lý địa phương', tldr: 'Khám phá thung lũng trảng cỏ xanh mướt tự nhiên bao quanh hồ nước trong veo giữa lòng rừng già Bù Đăng.', coverImage: '/images/heritage/img-disanbudang/Trang-co-Bu-Lach.png', xpReward: 70, estimatedMinutes: 8, availableBlocks: ['Hotspot', 'Quiz', 'Gallery'] }
+  { id: 'chien-khu-d', title: 'Chiến Khu Đ - Căn Cứ Địa Cách Mạng Huyền Thoại', subject: 'Lịch sử địa phương', tldr: 'Hệ thống căn cứ địa cách mạng nằm sâu trong rừng nguyên sinh Thành Phố Đồng Nai, đóng vai trò quyết định trong kháng chiến chống Pháp và Mỹ.', coverImage: '/images/heritage/lich-su/chien-khu-d-md.webp', xpReward: 80, estimatedMinutes: 12, availableBlocks: ['Timeline', 'Flashcards', 'Quiz', 'Tự luận', 'Hotspot'] },
+  { id: 'cong-chieng-stieng', title: 'Cồng Chiêng S\'tiêng - Tiếng Nói Của Đại Ngàn', subject: 'Văn hóa dân tộc', tldr: 'Di sản văn hóa phi vật thể UNESCO, cồng chiêng là tiếng nói tâm linh của đồng bào S\'tiêng Thành Phố Đồng Nai.', coverImage: '/images/heritage/van-hoa-phi-vat-the/cong-chieng-md.webp', xpReward: 75, estimatedMinutes: 10, availableBlocks: ['Flashcards', 'Quiz', 'Thuật ngữ', 'Gợi mở'] },
+  { id: 'soc-bom-bo', title: 'Sóc Bom Bo - Tiếng Chày Giã Gạo Kháng Chiến', subject: 'Lịch sử cách mạng', tldr: 'Nơi khởi nguồn bài ca bất hủ, ghi dấu sự đồng lòng kiên trung giã gạo thâu đêm nuôi quân của đồng bào S\'tiêng.', coverImage: '/images/heritage/lich-su/soc-bom-bo-md.webp', xpReward: 90, estimatedMinutes: 15, availableBlocks: ['Timeline', 'Quiz', 'Audio', 'Văn bản'] },
+  { id: 'trang-co-bu-lach', title: 'Danh Thắng Trảng Cỏ Bù Lạch - Kỳ Quan Thiên Nhiên', subject: 'Địa lý địa phương', tldr: 'Khám phá thung lũng trảng cỏ xanh mướt tự nhiên bao quanh hồ nước trong veo giữa lòng rừng già Thành Phố Đồng Nai.', coverImage: '/images/heritage/img-disanbudang/Trang-co-Bu-Lach.png', xpReward: 70, estimatedMinutes: 8, availableBlocks: ['Hotspot', 'Quiz', 'Gallery'] }
 ])
 
 // Real badges earned through quizzes (persisted by quizStore)
@@ -1518,20 +1518,20 @@ const labFeatures = [
 ]
 
 const heritageLabItems = [
-  { id: 'timeline', title: 'Timeline Lịch Sử', desc: 'Hành trình thời gian từ thời kỳ tiền sử đến hiện đại qua các sự kiện quan trọng của Bù Đăng.', icon: 'mdi:timeline-clock', iconBg: 'bg-gold-500/10', iconColor: 'text-gold-400', gradientBg: 'bg-gold-400', active: true },
+  { id: 'timeline', title: 'Timeline Lịch Sử', desc: 'Hành trình thời gian từ thời kỳ tiền sử đến hiện đại qua các sự kiện quan trọng của Thành Phố Đồng Nai.', icon: 'mdi:timeline-clock', iconBg: 'bg-gold-500/10', iconColor: 'text-gold-400', gradientBg: 'bg-gold-400', active: true },
   { id: 'storymap', title: 'Story Map', desc: 'Bản đồ câu chuyện tích hợp ảnh, văn bản và audio theo từng địa điểm di sản.', icon: 'mdi:map-legend', iconBg: 'bg-blue-500/10', iconColor: 'text-blue-400', gradientBg: 'bg-blue-400', active: false },
   { id: 'compare', title: 'Before / After', desc: 'So sánh hình ảnh di sản xưa và nay — thấy sự thay đổi qua thời gian.', icon: 'mdi:compare', iconBg: 'bg-purple-500/10', iconColor: 'text-purple-400', gradientBg: 'bg-purple-400', active: true },
   { id: 'audio', title: 'Oral History', desc: 'Lời kể của nhân chứng lịch sử — những câu chuyện sống động chưa được viết thành sách.', icon: 'mdi:microphone', iconBg: 'bg-orange-500/10', iconColor: 'text-orange-400', gradientBg: 'bg-orange-400', active: false },
   { id: 'artifact', title: 'Artifact Viewer', desc: 'Xem hiện vật bảo tàng với chú thích học thuật và thông tin phân tích.', icon: 'mdi:museum', iconBg: 'bg-earth-500/10', iconColor: 'text-earth-400', gradientBg: 'bg-earth-400', active: true },
-  { id: 'tour', title: 'Virtual Tour', desc: 'Tour tham quan ảo 360° tại các địa điểm di tích lịch sử và danh thắng Bù Đăng.', icon: 'mdi:rotate-3d', iconBg: 'bg-green-500/10', iconColor: 'text-green-400', gradientBg: 'bg-green-400', active: false }
+  { id: 'tour', title: 'Virtual Tour', desc: 'Tour tham quan ảo 360° tại các địa điểm di tích lịch sử và danh thắng Thành Phố Đồng Nai.', icon: 'mdi:rotate-3d', iconBg: 'bg-green-500/10', iconColor: 'text-green-400', gradientBg: 'bg-green-400', active: false }
 ]
 
 const historyTimeline = [
-  { year: 'Thế kỷ 3-4', tag: 'Khảo cổ', tagBg: 'bg-earth-500/10 text-earth-400', title: 'Đàn đá tiền sử Bù Đăng', desc: 'Những bộ đàn đá cổ đại nhất được phát hiện trong lòng đất đỏ bazan — âm thanh từ thời tiền sử.' },
+  { year: 'Thế kỷ 3-4', tag: 'Khảo cổ', tagBg: 'bg-earth-500/10 text-earth-400', title: 'Đàn đá tiền sử', desc: 'Những bộ đàn đá cổ đại nhất được phát hiện trong lòng đất đỏ bazan Thành Phố Đồng Nai, âm thanh từ thời tiền sử.' },
   { year: '1945 - 1954', tag: 'Kháng chiến', tagBg: 'bg-red-500/10 text-red-400', title: 'Chiến Khu Đ thành lập', desc: 'Hệ thống căn cứ địa cách mạng kiên cố, điểm tựa cho cuộc kháng chiến chống Pháp tại miền Đông Nam Bộ.' },
   { year: '1960s', tag: 'Văn hóa', tagBg: 'bg-gold-500/10 text-gold-400', title: 'Tiếng chày Sóc Bom Bo', desc: 'Đồng bào S\'tiêng đốt đuốc giã gạo thâu đêm nuôi quân giải phóng — bài ca huyền thoại ra đời.' },
   { year: '2005', tag: 'UNESCO', tagBg: 'bg-blue-500/10 text-blue-400', title: 'Cồng chiêng Tây Nguyên được vinh danh', desc: 'UNESCO công nhận không gian văn hóa cồng chiêng Tây Nguyên là Di sản phi vật thể của nhân loại.' },
-  { year: '2026', tag: 'Số hóa', tagBg: 'bg-green-500/10 text-green-400', title: 'Digital Heritage Learning Hub', desc: 'Trang web di sản số hóa Bù Đăng ra mắt — mang lịch sử địa phương đến với học sinh khắp nơi.' }
+  { year: '2026', tag: 'Số hóa', tagBg: 'bg-green-500/10 text-green-400', title: 'Digital Heritage Learning Hub', desc: 'Trang web di sản số hóa Thành Phố Đồng Nai ra mắt, mang lịch sử địa phương đến với học sinh khắp nơi.' }
 ]
 
 const gamificationStats = computed(() => [
@@ -1670,11 +1670,18 @@ const { data: resourcesContent, pending, error } = await useAsyncData('school-re
 const resources = computed<SchoolResourceExtended[]>(() => {
   if (!resourcesContent.value) return []
   return resourcesContent.value.map(item => {
-    const meta = item as any
+    // Nuxt Content v3 nests all non-standard frontmatter fields under `.meta`;
+    // only `title`/`description` live on the item root for `type: 'page'` collections.
+    // `id` is a reserved built-in field (Nuxt's own doc id, e.g. "school/school/res-001.md"),
+    // so the frontmatter's own `id: res-001` never survives into `.meta.id` — recover it
+    // from `.stem` (file path without extension) instead.
+    const raw = item as any
+    const meta = raw.meta ?? {}
+    const id = raw.stem?.split('/').pop() ?? raw.id
     return {
-      id: meta.id,
-      title: meta.title,
-      description: meta.description,
+      id,
+      title: item.title,
+      description: item.description,
       type: meta.type,
       subject: meta.subject,
       grade: meta.grade,
@@ -1775,7 +1782,7 @@ const mockAudios = [
 // AI CHATBOT
 // ──────────────────────────────────────────────
 interface AIMessage { role: 'user' | 'assistant'; text: string }
-const aiMessages = ref<AIMessage[]>([{ role: 'assistant', text: 'Xin chào! Tôi là trợ lý AI di sản Bù Đăng. Bạn muốn tìm hiểu lịch sử, văn hóa hoặc địa danh nào hôm nay?' }])
+const aiMessages = ref<AIMessage[]>([{ role: 'assistant', text: 'Xin chào! Tôi là trợ lý AI di sản Thành Phố Đồng Nai. Bạn muốn tìm hiểu lịch sử, văn hóa hoặc địa danh nào hôm nay?' }])
 const aiChips = ['Chiến khu Đ là gì?', 'Lễ hội Mừng Lúa Mới diễn ra khi nào?', 'So sánh người S\'tiêng với M\'nông', 'Từ Dak Mơ nghĩa là gì?']
 const aiInput = ref('')
 const isAiThinking = ref(false)

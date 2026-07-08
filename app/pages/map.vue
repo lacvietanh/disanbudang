@@ -141,7 +141,7 @@
 
           <!-- Category filter list -->
           <div class="p-4 border-b border-charcoal-850 space-y-3 shrink-0 bg-charcoal-950/20">
-            <p class="eyebrow text-gold-400 text-3xs tracking-widest font-bold">DANH MỤC DI SẢN BÙ ĐĂNG</p>
+            <p class="eyebrow text-gold-400 text-3xs tracking-widest font-bold">DANH MỤC DI SẢN ĐỒNG NAI</p>
             <div class="flex flex-col gap-1.5 max-h-48 overflow-y-auto scrollbar-none pr-1">
               <button
                 class="w-full flex items-center gap-3 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 border hover:border-charcoal-700 hover:text-ivory"

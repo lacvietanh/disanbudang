@@ -381,28 +381,40 @@
 
             <!-- Author visual card — left 2 cols -->
             <div class="md:col-span-2 flex justify-center md:justify-start">
-              <div class="relative">
-                <!-- Outer glow ring -->
-                <div class="absolute -inset-3 rounded-3xl bg-gradient-to-br from-gold-500/20 to-earth-700/10 blur-xl" />
-                <!-- Card -->
-                <div class="relative w-52 h-64 rounded-3xl bg-gradient-to-br from-charcoal-800 to-charcoal-900 border border-gold-500/25 shadow-2xl shadow-gold-500/10 overflow-hidden flex flex-col items-center justify-center gap-3 p-6">
-                  <!-- Abstract heritage motif background -->
-                  <div class="absolute inset-0 opacity-10">
-                    <div class="absolute top-0 right-0 w-32 h-32 border border-gold-400 rounded-full -translate-y-1/2 translate-x-1/2" />
-                    <div class="absolute bottom-0 left-0 w-24 h-24 border border-earth-400 rounded-full translate-y-1/2 -translate-x-1/2" />
+              <div class="relative group">
+                <!-- Animated glow ring -->
+                <div class="absolute -inset-1 rounded-3xl bg-gradient-to-br from-gold-500/40 via-earth-600/20 to-gold-700/30 blur-2xl opacity-70 group-hover:opacity-100 transition-opacity duration-700" />
+                <div class="absolute -inset-px rounded-3xl bg-gradient-to-br from-gold-400/30 to-transparent" />
+
+                <!-- Photo Card -->
+                <div class="relative w-56 h-72 rounded-3xl overflow-hidden border border-gold-500/30 shadow-2xl shadow-black/50">
+
+                  <!-- Real photo -->
+                  <img
+                    src="/images/Fouderdisanbudang.jpg"
+                    alt="Nguyễn Xuân Kiệt — Tác giả & Nhà phát triển"
+                    class="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  />
+
+                  <!-- Gradient overlay (bottom) -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950/95 via-charcoal-950/30 to-transparent" />
+
+                  <!-- Name overlay -->
+                  <div class="absolute bottom-0 left-0 right-0 p-4 text-center">
+                    <p class="font-heading font-bold text-ivory text-base leading-tight drop-shadow-lg">Nguyễn Xuân Kiệt</p>
+                    <div class="flex items-center justify-center gap-1.5 mt-1">
+                      <span class="w-4 h-px bg-gold-400/70" />
+                      <p class="text-gold-400 text-[10px] font-semibold tracking-wider">Tác giả · Nhà phát triển</p>
+                      <span class="w-4 h-px bg-gold-400/70" />
+                    </div>
+                    <p class="text-charcoal-400 text-[9px] mt-1">TP. Đồng Nai · 2025</p>
                   </div>
-                  <!-- Icon -->
-                  <div class="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-gold-500/25 to-earth-700/20 border border-gold-500/30 flex items-center justify-center">
-                    <Icon name="mdi:account-star" class="w-8 h-8 text-gold-400" />
+
+                  <!-- Top badge -->
+                  <div class="absolute top-3 right-3 flex items-center gap-1 bg-charcoal-900/80 backdrop-blur-sm border border-gold-500/30 rounded-full px-2 py-1">
+                    <Icon name="mdi:star" class="w-3 h-3 text-gold-400" />
+                    <span class="text-gold-300 text-[9px] font-bold tracking-wider">FOUNDER</span>
                   </div>
-                  <!-- Name -->
-                  <div class="relative text-center">
-                    <p class="font-heading font-bold text-ivory text-lg leading-tight">Nguyễn Xuân Kiệt</p>
-                    <p class="text-gold-400/70 text-xs mt-1">Tác giả · Nhà phát triển</p>
-                  </div>
-                  <!-- Gold line -->
-                  <div class="relative w-12 h-px bg-gradient-to-r from-transparent via-gold-400/60 to-transparent" />
-                  <p class="relative text-charcoal-500 text-[10px] text-center">TP. Đồng Nai · 2025</p>
                 </div>
               </div>
             </div>

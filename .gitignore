@@ -58,3 +58,6 @@ Thumbs.db
 
 # Temporary / Rule templates
 AkiClaudeDoc-master/
+
+# Disposable visual export from /akihtmlreport — regenerated each run, not a doc source of truth
+REPORT.html
