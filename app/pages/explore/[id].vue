@@ -193,8 +193,8 @@
 </template>
 
 <script setup lang="ts">
-import { MOCK_COMMUNITY_POSTS } from '~/data/mockPosts'
-import { MOCK_HERITAGES } from '~/data/mockHeritages'
+import { COMMUNITY_POSTS } from '~/data/posts'
+import { HERITAGES } from '~/data/heritages'
 import type { PostType, Heritage } from '~/types'
 
 definePageMeta({ layout: 'default' })
@@ -204,7 +204,7 @@ const router = useRouter()
 const id = computed(() => route.params.id as string)
 const { getCategoryLabel } = useHeritage()
 
-const post = computed(() => MOCK_COMMUNITY_POSTS.find(p => p.id === id.value) || null)
+const post = computed(() => COMMUNITY_POSTS.find(p => p.id === id.value) || null)
 
 useBreadcrumb(() => post.value?.title || '')
 
@@ -233,7 +233,7 @@ const readingTime = computed(() => {
 // Related heritages (by matching tags)
 const relatedHeritages = computed(() => {
   if (!post.value) return []
-  const allHeritages = MOCK_HERITAGES
+  const allHeritages = HERITAGES
   return allHeritages
     .filter((h: Heritage) => {
       // Match tags between post and heritage
@@ -245,7 +245,7 @@ const relatedHeritages = computed(() => {
 
 // Prev/next posts
 const sortedPosts = computed(() => {
-  return [...MOCK_COMMUNITY_POSTS].sort((a, b) =>
+  return [...COMMUNITY_POSTS].sort((a, b) =>
     new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
   )
 })

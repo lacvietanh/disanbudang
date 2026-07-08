@@ -22,8 +22,10 @@
 
 Website có **hai vai trò song hành**, không thể tách rời:
 
-1. **Công cụ giáo dục lịch sử địa phương** — Hỗ trợ học sinh tiếp cận tài liệu lịch sử, di sản văn hóa Bù Đăng theo cách tương tác và trực quan, thay thế sách giáo khoa truyền thống.
-2. **Cổng thông tin du lịch thông minh** — Giúp du khách tự túc khám phá, định hướng và tìm hiểu các điểm di sản tại vùng đất Bù Đăng, thành phố Đồng Nai.
+1. **Công cụ giáo dục lịch sử địa phương** — Hỗ trợ học sinh tiếp cận tài liệu lịch sử, di sản văn hóa Thành Phố Đồng Nai theo cách tương tác và trực quan, thay thế sách giáo khoa truyền thống.
+2. **Cổng thông tin du lịch thông minh** — Giúp du khách tự túc khám phá, định hướng và tìm hiểu các điểm di sản khắp Thành Phố Đồng Nai.
+
+> **Ghi chú phạm vi (2026-07):** Từ 1/7/2025, tỉnh Bình Phước hợp nhất vào tỉnh Đồng Nai; từ 30/4/2026, Đồng Nai trở thành thành phố trực thuộc Trung ương thứ 7 của Việt Nam. Huyện Bù Đăng cũ (tỉnh Bình Phước) nay là **Xã Bù Đăng** — một trong 95 xã, phường của Thành Phố Đồng Nai. Dự án không còn lấy "Bù Đăng" làm tên thương hiệu/phạm vi; Bù Đăng, Sóc Bom Bo, Phước Long, Lộc Ninh... chỉ còn xuất hiện như tên địa danh cụ thể của từng di sản, không phải danh xưng của toàn dự án.
 
 ---
 
@@ -221,7 +223,7 @@ Mỗi điểm di sản bắt buộc có đầy đủ các trường:
   | Common | Hoàn thành bài cơ bản |
   | Rare | Điểm số cao |
   | Epic | Hoàn thành liên tiếp nhiều bài khó |
-  | Legendary | Am hiểu toàn diện về Di sản Bù Đăng |
+  | Legendary | Am hiểu toàn diện về Di sản Thành Phố Đồng Nai |
 
 - **Persistence:** Điểm số + Huy hiệu lưu vào LocalStorage qua `pinia-plugin-persistedstate`
 - **Flashcard:** Widget lật thẻ 3D — từ vựng bản địa S'tiêng (Yang Ching, Đ'rắp S'lung, Dak Mơ...)
@@ -313,9 +315,10 @@ Mỗi điểm di sản bắt buộc có đầy đủ các trường:
 
 ### 9.5 Quy tắc Nội dung (Content)
 
-- Tên thuật ngữ dân tộc phải nhất quán: **S'Tiêng**, **M'Nông**, 
-- Tên địa danh: **Bù Đăng**, **Sóc Bom Bo**, **Thành phố Đồng Nai**
-- Tên sản phẩm: **Bảo Tàng Số Di Sản Thành Phố Đồng Nai** (viết hoa đầy đủ)
+- Tên thuật ngữ dân tộc phải nhất quán: **S'Tiêng**, **M'Nông**
+- Địa danh cấp thành phố (khung phạm vi dự án): **Thành Phố Đồng Nai** — dùng cho brand, tiêu đề, mô tả tổng quát. Không dùng "Bù Đăng" làm tên thương hiệu/phạm vi.
+- Địa danh cụ thể (chỉ dùng khi mô tả một di sản/sự kiện cụ thể, không dùng để đại diện toàn dự án): **Xã Bù Đăng**, **Sóc Bom Bo**, núi Bà Rá, Căn cứ Tà Thiết, Lộc Ninh...
+- Tên sản phẩm: **Bảo Tàng Số Di Sản Thành Phố Đồng Nai** (viết hoa đầy đủ); tên brand ngắn trên UI: **Di Sản Đồng Nai**
 
 ---
 
@@ -373,7 +376,7 @@ Dự án được xây dựng trong **6 tháng**:
 | Đóng góp CĐ | `docs/feat/contribute.md` | Form đóng góp tư liệu |
 | Du lịch | `docs/feat/tourism.md` | Tourism MVP |
 | Đầu tư | `docs/feat/invest.md` | Invest MVP |
-| Audio Script | `README_AUDIO.md` | Kịch bản thu âm thuyết minh |
+| Audio Script | `docs/ref/audio-recording-guide.md` | Kịch bản thu âm thuyết minh |
 | Báo cáo Công nghệ | `docs/BAO_CAO_DU_AN.md` | Bảng công nghệ dành cho báo cáo cuộc thi |
 
 ---

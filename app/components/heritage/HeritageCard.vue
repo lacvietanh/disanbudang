@@ -41,7 +41,7 @@
       <p v-if="heritage.year" class="eyebrow text-gold-400 text-2xs mb-1.5">{{ heritage.year }}</p>
 
       <!-- Title -->
-      <h3 class="font-heading font-bold text-ivory text-xl leading-tight mb-2 text-shadow-sm group-hover:text-gold-200 transition-colors duration-300">
+      <h3 class="font-heading font-bold text-ivory text-xl leading-tight mb-2 text-shadow-sm line-clamp-2 group-hover:text-gold-200 transition-colors duration-300">
         {{ heritage.title }}
       </h3>
 

@@ -5,7 +5,7 @@ export default defineNuxtConfig({
 
   site: {
     url: 'https://disanbudang.com',
-    name: 'Di Sản Bù Đăng',
+    name: 'Di Sản Đồng Nai',
     trailingSlash: true,
   },
 
@@ -91,19 +91,19 @@ export default defineNuxtConfig({
     head: {
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
-      title: 'Di Sản Bù Đăng | Bảo Tàng Số Thành Phố Đồng Nai',
+      title: 'Di Sản Đồng Nai | Bảo Tàng Số Thành Phố Đồng Nai',
       meta: [
         {
           name: 'description',
           content:
-            'Bảo tàng số di sản văn hóa, lịch sử và thiên nhiên của Thành phố Đồng Nai — từ vùng đất Bù Đăng, Phước Long đến Lộc Ninh. Khám phá, học tập và bảo tồn di sản qua không gian số tương tác.',
+            'Bảo tàng số di sản văn hóa, lịch sử và thiên nhiên Thành Phố Đồng Nai - từ Biên Hòa, Sóc Bom Bo đến Chiến Khu Đ, núi Bà Rá. Khám phá và bảo tồn di sản qua không gian số tương tác.',
         },
         { name: 'theme-color', content: '#e18c1b' },
         { property: 'og:type', content: 'website' },
         { property: 'og:locale', content: 'vi_VN' },
         {
           property: 'og:site_name',
-          content: 'Di Sản Bù Đăng',
+          content: 'Di Sản Đồng Nai',
         },
       ],
       link: [
@@ -139,7 +139,7 @@ export default defineNuxtConfig({
 
   vite: {
     optimizeDeps: {
-      include: ['leaflet', 'howler'],
+      include: ['leaflet'],
     },
   },
 })

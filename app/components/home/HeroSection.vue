@@ -108,8 +108,8 @@
             class="hero-item text-charcoal-300 text-sm md:text-base leading-relaxed mb-9 md:mb-11 max-w-lg"
             style="--delay: 0.34s"
           >
-            Không gian số bảo tồn di sản văn hóa vùng đất Bù Đăng — nơi thiên nhiên kỳ vĩ,
-            lịch sử hào hùng và văn hóa S'tiêng hội tụ trong lòng Thành Phố Đồng Nai.
+            Không gian số bảo tồn di sản văn hóa Thành Phố Đồng Nai — nơi thiên nhiên kỳ vĩ,
+            lịch sử hào hùng và văn hóa S'tiêng hội tụ cùng nhịp sống đô thị năng động.
           </p>
 
           <!-- CTAs -->
@@ -141,8 +141,8 @@
                 />
               </div>
               <div class="flex flex-col">
-                <span class="text-gold-300 text-xs font-bold uppercase tracking-wider leading-none mb-0.5">🎙 Audio Thuyết Minh</span>
-                <span class="text-ivory/60 text-[10px]">4 track · Giọng đọc địa phương · Tự động phát</span>
+                <span class="text-gold-300 text-xs font-bold uppercase tracking-wider leading-none mb-0.5">Audio Thuyết Minh</span>
+                <span class="text-ivory/60 text-[10px]">{{ audioCount }} track · Giọng đọc địa phương · Nghe ngay trên trình duyệt</span>
               </div>
               <Icon name="mdi:arrow-right" class="w-3.5 h-3.5 text-gold-400/60 group-hover:text-gold-400 group-hover:translate-x-0.5 transition-all ml-1" />
             </NuxtLink>
@@ -210,8 +210,13 @@
 
 <script setup lang="ts">
 import { useHeritageStore } from '~/stores/heritage'
+import { HERITAGES } from '~/data/heritages'
+import { COMMUNITY_POSTS } from '~/data/posts'
+import { QUIZZES } from '~/data/quizzes'
 
 const heritageStore = useHeritageStore()
+const audioCount = HERITAGES.filter((h) => h.audio).length
+const questionCount = QUIZZES.reduce((sum, q) => sum + q.questions.length, 0)
 
 const slides = [
   {
@@ -223,8 +228,8 @@ const slides = [
   },
   {
     image: '/images/heritage/img-disanbudang/Khu-Bao-Ton-2.jpg',
-    alt: 'Rừng nguyên sinh Bù Đăng',
-    label: 'RỪNG NGUYÊN SINH BÙ ĐĂNG',
+    alt: 'Rừng nguyên sinh Thành Phố Đồng Nai',
+    label: 'RỪNG NGUYÊN SINH ĐỒNG NAI',
     caption: 'Kho báu đa dạng sinh học của Đông Nam Bộ còn nguyên vẹn qua hàng thế kỷ',
     position: 'center center',
   },
@@ -271,9 +276,9 @@ onUnmounted(() => clearInterval(slideInterval))
 
 const stats = computed(() => [
   { icon: 'mdi:castle', value: String(heritageStore.totalCount), suffix: '', label: 'Di sản số hóa' },
-  { icon: 'mdi:book-open-variant', value: '6', suffix: '', label: 'Ký ức cộng đồng' },
-  { icon: 'mdi:headphones', value: '4', suffix: '', label: 'Audio guide' },
-  { icon: 'mdi:help-circle-outline', value: '35', suffix: '+', label: 'Câu hỏi lịch sử' },
+  { icon: 'mdi:book-open-variant', value: String(COMMUNITY_POSTS.length), suffix: '', label: 'Ký ức cộng đồng' },
+  { icon: 'mdi:headphones', value: String(audioCount), suffix: '', label: 'Audio guide' },
+  { icon: 'mdi:help-circle-outline', value: String(questionCount), suffix: '', label: 'Câu hỏi lịch sử' },
 ])
 </script>
 

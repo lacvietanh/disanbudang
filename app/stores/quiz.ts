@@ -1,12 +1,12 @@
 import { defineStore } from 'pinia'
 import type { HeritageQuiz, QuizResult, Badge, UserProgress } from '~/types'
-import { MOCK_QUIZZES, MOCK_BADGES } from '~/data/mockQuiz'
+import { QUIZZES, BADGES } from '~/data/quizzes'
 
 export const useQuizStore = defineStore(
   'quiz',
   () => {
-    const quizzes = ref<HeritageQuiz[]>(MOCK_QUIZZES)
-    const badges = ref<Badge[]>(MOCK_BADGES)
+    const quizzes = ref<HeritageQuiz[]>(QUIZZES)
+    const badges = ref<Badge[]>(BADGES)
     const currentQuiz = ref<HeritageQuiz | null>(null)
     const currentQuestionIndex = ref(0)
     const selectedAnswers = ref<Record<string, number>>({})

@@ -207,11 +207,11 @@
               <div class="bg-charcoal-900 rounded-xl aspect-[4/3] flex flex-col items-center justify-center mb-4 border border-charcoal-800 text-center p-4">
                 <Icon name="mdi:map" class="w-8 h-8 text-charcoal-600 mb-2" />
                 <p class="text-ivory font-medium text-xs">{{ heritage.coordinates.lat.toFixed(5) }}, {{ heritage.coordinates.lng.toFixed(5) }}</p>
-                <p class="text-charcoal-500 text-[10px] mt-1">Hệ tọa độ VN2000 chuẩn quốc gia</p>
+                <p class="text-charcoal-500 text-[10px] mt-1">Tọa độ GPS (WGS84), dùng được với Google Maps</p>
               </div>
               <NuxtLink :to="`/map?select=${heritage.id}`" class="btn-primary w-full justify-center text-sm py-3">
                 <Icon name="mdi:compass-outline" class="w-4 h-4" />
-                Xem Bản Đồ Vệ Tinh
+                Xem Trên Bản Đồ Tương Tác
               </NuxtLink>
             </div>
 
@@ -225,6 +225,32 @@
                 Làm Thử Thách
               </button>
             </div>
+          </div>
+        </div>
+
+        <!-- Related heritages -->
+        <div v-if="related.length" class="mt-20 pt-12 border-t border-charcoal-850 reveal">
+          <div class="flex items-end justify-between mb-8">
+            <div>
+              <span class="eyebrow text-gold-400 text-3xs">Tiếp tục hành trình</span>
+              <h2 class="font-heading font-bold text-ivory text-2xl lg:text-3xl mt-1">Di Sản Liên Quan</h2>
+            </div>
+            <NuxtLink
+              to="/explore"
+              class="hidden sm:flex items-center gap-2 text-gold-400 text-sm font-semibold hover:text-gold-300 transition-colors"
+            >
+              Xem tất cả
+              <Icon name="mdi:arrow-right" class="w-4 h-4" />
+            </NuxtLink>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <HeritageCard
+              v-for="item in related.slice(0, 3)"
+              :key="item.id"
+              :heritage="item"
+              class="border border-charcoal-850"
+              @click="navigateTo(`/heritage/${item.slug}`)"
+            />
           </div>
         </div>
       </div>
@@ -257,6 +283,7 @@ const currentActiveTab = ref('story')
 
 const heritage = computed(() => store.getBySlug(slug.value) ?? null)
 
+useHeritageSeo(heritage)
 useBreadcrumb(() => heritage.value?.title || '')
 const related = computed(() => heritage.value ? store.getRelated(heritage.value) : [])
 const relatedQuiz = computed(() => heritage.value ? quizStore.getQuizByHeritageId(heritage.value.id) : null)
@@ -320,8 +347,6 @@ onMounted(async () => {
   }
 })
 
-useHeritageSeo(heritage)
-
 function playAudio() {
   if (heritage.value?.audio) {
     audioStore.loadTrack(heritage.value.audio, heritage.value.id)
@@ -330,9 +355,10 @@ function playAudio() {
 }
 
 function startQuiz() {
+  // QuizPlayModal is mounted globally in the default layout — starting the quiz
+  // opens it right here, no navigation needed
   if (relatedQuiz.value) {
     quizStore.startQuiz(relatedQuiz.value)
-    navigateTo('/explore')
   }
 }
 

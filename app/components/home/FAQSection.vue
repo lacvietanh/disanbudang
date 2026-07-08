@@ -7,7 +7,7 @@
           <span class="section-label">Giải Đáp</span>
           <h2 class="section-title">Câu Hỏi Thường Gặp</h2>
           <p class="text-charcoal-400 text-base max-w-xl mx-auto mt-4">
-            Tìm hiểu thêm về văn hóa S'tiêng, di tích lịch sử Bom Bo, cồng chiêng và các điểm đến trải nghiệm đặc sắc tại vùng đất Bù Đăng — Thành Phố Đồng Nai.
+            Tìm hiểu thêm về văn hóa S'tiêng, di tích lịch sử Sóc Bom Bo, cồng chiêng và các điểm đến trải nghiệm đặc sắc khắp Thành Phố Đồng Nai.
           </p>
         </div>
 
@@ -51,28 +51,28 @@ const openIndex = ref<number | null>(null)
 
 const faqs = [
   {
-    question: "Di sản nổi bật nhất của vùng đất Bù Đăng gồm những gì?",
-    answer: "Di sản nổi bật nhất của vùng đất Bù Đăng gồm Chiến khu Đ Bù Đăng, Trảng cỏ Bù Lạch, sóc Bom Bo lịch sử, không gian văn hóa cồng chiêng và nghề dệt thổ cẩm của đồng bào dân tộc S'tiêng — tất cả thuộc Thành Phố Đồng Nai."
+    question: "Thành Phố Đồng Nai là gì và có từ khi nào?",
+    answer: "Thành Phố Đồng Nai là thành phố trực thuộc Trung ương thứ 7 của Việt Nam, chính thức hoạt động từ 30/4/2026 trên cơ sở toàn bộ diện tích và dân số của tỉnh Đồng Nai (sau khi hợp nhất với tỉnh Bình Phước cũ ngày 1/7/2025). Thành phố có 95 xã, phường, diện tích hơn 12.700 km² và gần 4,5 triệu dân, đứng thứ 4 cả nước về quy mô kinh tế."
+  },
+  {
+    question: "Di sản nổi bật nhất của Thành Phố Đồng Nai gồm những gì?",
+    answer: "Di sản nổi bật nhất của Thành Phố Đồng Nai gồm Chiến Khu Đ huyền thoại, Sóc Bom Bo lịch sử, núi Bà Rá và hồ Thác Mơ, Căn cứ Tà Thiết, không gian văn hóa cồng chiêng và nghề dệt thổ cẩm của đồng bào dân tộc S'tiêng, M'nông, trải dài từ Biên Hòa đến vùng đất Bình Phước cũ."
   },
   {
     question: "Văn hóa S'tiêng có những nét đặc trưng đặc sắc nào?",
-    answer: "Văn hóa S'tiêng đặc trưng bởi nghệ thuật diễn xướng cồng chiêng (UNESCO công nhận 2005), nghề dệt thổ cẩm thủ công, tiếng nói chữ viết riêng, cùng truyền thống sinh hoạt trong những ngôi nhà dài cổ truyền."
+    answer: "Văn hóa S'tiêng đặc trưng bởi nghệ thuật diễn xướng cồng chiêng Tây Nguyên (UNESCO công nhận Di sản văn hóa phi vật thể năm 2005), nghề dệt thổ cẩm thủ công, tiếng nói chữ viết riêng, cùng truyền thống sinh hoạt trong những ngôi nhà dài cổ truyền."
   },
   {
     question: "Sóc Bom Bo lịch sử nằm ở đâu và có thể tham quan như thế nào?",
-    answer: "Sóc Bom Bo nằm tại vùng đất Bù Đăng, Thành Phố Đồng Nai. Bạn có thể tham quan Khu bảo tồn văn hóa dân tộc S'tiêng sóc Bom Bo để trải nghiệm giã gạo, nghe tiếng cồng chiêng và giao lưu văn hóa."
+    answer: "Sóc Bom Bo nằm ở khu vực Bình Phước cũ thuộc Thành Phố Đồng Nai hiện nay. Bạn có thể tham quan Khu bảo tồn văn hóa dân tộc S'tiêng Sóc Bom Bo để trải nghiệm giã gạo, nghe tiếng cồng chiêng và giao lưu văn hóa."
   },
   {
-    question: "Bù Đăng có vai trò gì với Thành Phố Đồng Nai?",
-    answer: "Bù Đăng là viên ngọc di sản đặc sắc nhất của Thành Phố Đồng Nai — nơi hội tụ căn cứ cách mạng Chiến Khu Đ huyền thoại, văn hóa bản địa S'tiêng hàng ngàn năm và thiên nhiên nguyên sinh kỳ vĩ. Thành Phố Đồng Nai hôm nay là người kế thừa, bảo hộ và tôn vinh kho báu di sản này — dự án Di Sản Bù Đăng là nỗ lực số hóa để cả thành phố cùng tự hào."
+    question: "Vì sao dự án số hóa di sản này hướng đến toàn Thành Phố Đồng Nai?",
+    answer: "Sau khi Bình Phước hợp nhất vào Đồng Nai và Đồng Nai lên thành phố trực thuộc Trung ương, bản đồ di sản của thành phố đã mở rộng đáng kể, không còn giới hạn ở một khu vực. Dự án số hóa toàn bộ di sản văn hóa, lịch sử và thiên nhiên trên địa bàn để cả thành phố cùng tiếp cận và tự hào."
   },
   {
-    question: "Thành Phố Đồng Nai là gì và vì sao dự án này hướng đến toàn thành phố?",
-    answer: "Thành Phố Đồng Nai là thành phố trực thuộc Trung ương thứ 7 của Việt Nam — trung tâm kinh tế năng động của Đông Nam Bộ. Dự án bắt đầu thí điểm tại vùng đất Bù Đăng vì đây là nơi có kho tàng di sản phong phú nhất, với tầm nhìn nhân rộng mô hình số hóa ra toàn bộ bản đồ di sản của thành phố."
-  },
-  {
-    question: "Cổng thông tin Di sản Bù Đăng do ai thực hiện?",
-    answer: "Cổng thông tin Di sản Bù Đăng do Nguyễn Xuân Kiệt thực hiện nhằm mục tiêu số hóa, lưu trữ và quảng bá các giá trị lịch sử, văn hóa và thiên nhiên của vùng đất Bù Đăng đến với mọi thế hệ trong Thành Phố Đồng Nai và cả nước."
+    question: "Cổng thông tin Di Sản Đồng Nai do ai thực hiện?",
+    answer: "Cổng thông tin Di Sản Đồng Nai do Nguyễn Xuân Kiệt thực hiện nhằm mục tiêu số hóa, lưu trữ và quảng bá các giá trị lịch sử, văn hóa và thiên nhiên của Thành Phố Đồng Nai đến với mọi thế hệ."
   }
 ]
 

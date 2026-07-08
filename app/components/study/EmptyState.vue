@@ -16,10 +16,10 @@
             Học viện số Di sản
           </span>
           <h2 class="font-heading text-2xl md:text-4xl font-bold text-ivory tracking-tight leading-tight">
-            Chào mừng đến với Học Tập Di Sản Bù Đăng
+            Chào mừng đến với Học Tập Di Sản Đồng Nai
           </h2>
           <p class="text-charcoal-300 text-sm md:text-base leading-relaxed font-body">
-            Khám phá lịch sử, văn hóa, con người và những giá trị di sản của Bù Đăng thông qua các tài liệu số, bài học tương tác và công cụ học tập thông minh.
+            Khám phá lịch sử, văn hóa, con người và những giá trị di sản của Thành Phố Đồng Nai thông qua các tài liệu số, bài học tương tác và công cụ học tập thông minh.
           </p>
         </div>
         
@@ -98,7 +98,7 @@
       <div class="p-4 bg-gold-500/5 border border-gold-500/20 rounded-2xl flex items-center gap-3.5 max-w-2xl mx-auto shadow-inner">
         <Icon name="mdi:information" class="w-5 h-5 text-gold-400 shrink-0" />
         <p class="text-gold-400/90 text-xs text-left">
-          Tài liệu đang được số hóa và sẽ liên tục được cập nhật từ kho lưu trữ bảo tàng của Xã Bù Đăng, Thành Phố Đồng Nai.
+          Tài liệu đang được số hóa và sẽ liên tục được cập nhật từ kho lưu trữ bảo tàng số Thành Phố Đồng Nai.
         </p>
       </div>
     </div>
@@ -158,7 +158,7 @@
           </div>
           <div>
             <h2 class="font-heading text-lg font-bold text-ivory">Đặt câu hỏi đầu tiên của bạn</h2>
-            <p class="text-charcoal-400 text-xs">Trợ lý AI được huấn luyện về dữ liệu di sản địa phương Bù Đăng luôn sẵn sàng.</p>
+            <p class="text-charcoal-400 text-xs">Trợ lý AI được huấn luyện về dữ liệu di sản Thành Phố Đồng Nai luôn sẵn sàng.</p>
           </div>
         </div>
 
@@ -280,7 +280,7 @@
       <!-- Info Footer -->
       <div class="p-4 bg-gold-500/5 border border-gold-500/20 rounded-2xl text-center max-w-xl mx-auto shadow-inner">
         <p class="text-gold-400/90 text-xs">
-          Từ điển đang được mở rộng và cập nhật liên tục nhằm bảo tồn ngôn ngữ S'tiêng bản địa Bù Đăng.
+          Từ điển đang được mở rộng và cập nhật liên tục nhằm bảo tồn ngôn ngữ S'tiêng bản địa Thành Phố Đồng Nai.
         </p>
       </div>
     </div>
@@ -426,13 +426,13 @@ const starterTopics = [
   { name: 'Văn hóa S\'tiêng', icon: 'mdi:account-group', query: 'Người S\'tiêng có những lễ hội nào?' },
   { name: 'Cồng chiêng', icon: 'mdi:music-note', query: 'Cồng chiêng có ý nghĩa gì?' },
   { name: 'Thổ cẩm', icon: 'mdi:palette', query: 'Hãy giải thích hoa văn thổ cẩm S\'tiêng' },
-  { name: 'Lịch sử Bù Đăng', icon: 'mdi:history', query: 'Lịch sử hình thành Bù Đăng' },
-  { name: 'Địa danh tiêu biểu', icon: 'mdi:map-marker', query: 'Những di tích nổi bật ở Bù Đăng?' }
+  { name: 'Lịch sử Đồng Nai', icon: 'mdi:history', query: 'Lịch sử hình thành Thành Phố Đồng Nai' },
+  { name: 'Địa danh tiêu biểu', icon: 'mdi:map-marker', query: 'Những di tích nổi bật ở Thành Phố Đồng Nai?' }
 ]
 
 // Lesson Timeline flow preview Steps
 const lessonSteps = [
-  { title: 'Bù Đăng', desc: 'Lịch sử vùng đất cách mạng' },
+  { title: 'Đồng Nai', desc: 'Lịch sử vùng đất cách mạng' },
   { title: 'Người S\'tiêng', desc: 'Đồng bào bản địa lâu đời' },
   { title: 'Di sản văn hóa', desc: 'Học thuyết minh di sản số' },
   { title: 'Nghệ thuật truyền thống', desc: 'Thổ cẩm và cồng chiêng' },
@@ -444,12 +444,12 @@ const aiPrompts = [
   'Hãy kể về Sóc Bom Bo',
   'Người S\'tiêng có những lễ hội nào?',
   'Cồng chiêng có ý nghĩa gì?',
-  'Những di tích nổi bật ở Bù Đăng?'
+  'Những di tích nổi bật ở Thành Phố Đồng Nai?'
 ]
 
 // Map Roadmap Preview Markers
 const mapRoadmap = [
-  { name: 'Địa lý Bù Đăng', icon: 'mdi:nature' },
+  { name: 'Địa lý Đồng Nai', icon: 'mdi:nature' },
   { name: 'Lịch sử Cách mạng', icon: 'mdi:shield-outline' },
   { name: 'Văn hóa S\'tiêng', icon: 'mdi:account-multiple' },
   { name: 'Nghệ thuật Cồng chiêng', icon: 'mdi:music' },
@@ -468,7 +468,7 @@ const glossaryWords = [
 // Media Placeholder Categories
 const mediaPlaceholders = [
   { name: '📷 Hình ảnh di sản', icon: 'mdi:image-multiple-outline', desc: 'Ảnh tư liệu cổ truyền buôn sóc' },
-  { name: '🎥 Video thực địa', icon: 'mdi:video-outline', desc: 'Flycam di tích cảnh quan Bù Đăng' },
+  { name: '🎥 Video thực địa', icon: 'mdi:video-outline', desc: 'Flycam di tích cảnh quan Thành Phố Đồng Nai' },
   { name: '🎵 Âm thanh nhạc cụ', icon: 'mdi:volume-high', desc: 'Bản thu âm thanh cồng chiêng' },
   { name: '📄 Tư liệu số hóa', icon: 'mdi:file-document-outline', desc: 'Bản quét văn bản lưu trữ học đường' }
 ]

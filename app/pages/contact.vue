@@ -44,7 +44,7 @@
             <div class="relative z-10 text-center p-6">
               <Icon name="mdi:map-marker-radius" class="w-10 h-10 text-gold-450 mx-auto mb-2 group-hover:scale-110 transition-transform duration-300" />
               <h3 class="text-white text-base font-bold font-heading">Bản Đồ Chỉ Đường</h3>
-              <p class="text-charcoal-350 text-xs mt-1">Vùng đất Bù Đăng, Thành Phố Đồng Nai</p>
+              <p class="text-charcoal-350 text-xs mt-1">Thành Phố Đồng Nai, Việt Nam</p>
               <span class="inline-flex items-center gap-1 text-gold-450 text-2xs uppercase tracking-widest font-semibold mt-3 group-hover:text-gold-400 transition-colors">
                 Xem trên Google Maps
                 <Icon name="mdi:open-in-new" class="w-3 h-3" />
@@ -89,22 +89,16 @@
                 class="w-full px-4 py-3 bg-[#111111] border border-charcoal-800 rounded-xl text-ivory placeholder-charcoal-600 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/20 transition-all duration-300 resize-none" />
             </div>
 
-            <button type="submit" class="btn-primary w-full justify-center py-4 text-base" :disabled="isSubmitting">
-              <Icon :name="isSubmitting ? 'mdi:loading' : 'mdi:send'" class="w-5 h-5 animate-pulse-gold" :class="{ 'animate-spin': isSubmitting }" />
-              {{ isSubmitting ? 'Đang Gửi...' : 'Gửi Tin Nhắn' }}
+            <button type="submit" class="btn-primary w-full justify-center py-4 text-base">
+              <Icon name="mdi:email-edit-outline" class="w-5 h-5 animate-pulse-gold" />
+              Soạn Email Gửi Chúng Tôi
             </button>
+            <p class="text-charcoal-400 text-xs text-center">Nhấn nút trên để mở trình soạn email với nội dung đã điền sẵn, gửi tới {{ CONTACT_EMAIL }}.</p>
 
             <Transition name="fade">
               <div v-if="submitted" class="p-4 rounded-xl bg-green-950/40 border border-green-800/40 flex items-center gap-3">
                 <Icon name="mdi:check-circle" class="w-6 h-6 text-green-500 flex-shrink-0 animate-bounce" />
-                <p class="text-green-400 text-sm font-medium">Cảm ơn! Chúng tôi sẽ phản hồi trong 1–3 ngày làm việc.</p>
-              </div>
-            </Transition>
-
-            <Transition name="fade">
-              <div v-if="submitError" class="p-4 rounded-xl bg-red-950/40 border border-red-800/40 flex items-center gap-3">
-                <Icon name="mdi:alert-circle" class="w-6 h-6 text-red-500 flex-shrink-0" />
-                <p class="text-red-400 text-sm font-medium">{{ submitError }}</p>
+                <p class="text-green-400 text-sm font-medium">Trình soạn email đã mở với nội dung của bạn. Nhấn Gửi trong email để hoàn tất. Chúng tôi phản hồi trong 1-3 ngày làm việc.</p>
               </div>
             </Transition>
           </form>
@@ -118,40 +112,51 @@
 definePageMeta({ layout: 'default' })
 useMuseumSeo({
   title: 'Liên Hệ',
-  description: 'Liên hệ với ban quản lý dự án Di Sản Bù Đăng để hợp tác, đóng góp tư liệu hoặc tìm hiểu thêm về di sản văn hóa.'
+  description: 'Liên hệ với ban quản lý dự án Di Sản Đồng Nai để hợp tác, đóng góp tư liệu hoặc tìm hiểu thêm về di sản văn hóa.'
+})
+
+// ContactPage schema per RULE-seo page-type matrix
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'ContactPage',
+        name: 'Liên Hệ Di Sản Đồng Nai',
+        url: 'https://disanbudang.com/contact/',
+        about: { '@id': 'https://disanbudang.com/#organization' },
+      }),
+    },
+  ],
 })
 
 const { observeAll } = useScrollReveal()
 onMounted(() => nextTick(() => observeAll()))
 
 const form = reactive({ name: '', email: '', subject: 'general', message: '' })
-const isSubmitting = ref(false)
 const submitted = ref(false)
-const submitError = ref('')
+
+const CONTACT_EMAIL = 'nguyenxuankiet294@gmail.com'
+const subjectLabels: Record<string, string> = {
+  general: 'Thắc mắc chung',
+  contribute: 'Đóng góp tư liệu',
+  partnership: 'Hợp tác',
+  media: 'Truyền thông',
+  bug: 'Báo lỗi kỹ thuật',
+}
 
 const contactInfo = [
-  { icon: 'mdi:map-marker-outline', label: 'Địa Chỉ', value: 'Vùng đất Bù Đăng, Thành Phố Đồng Nai' },
+  { icon: 'mdi:map-marker-outline', label: 'Địa Chỉ', value: 'Thành Phố Đồng Nai, Việt Nam' },
   { icon: 'mdi:phone-outline', label: 'Số Điện Thoại', value: '0355 356 294' },
   { icon: 'mdi:email-outline', label: 'Email', value: 'nguyenxuankiet294@gmail.com' },
 ]
 
-async function handleSubmit() {
-  isSubmitting.value = true
-  submitted.value = false
-  submitError.value = ''
-
-  try {
-    await $fetch('/api/contact', {
-      method: 'POST',
-      body: { ...form },
-    })
-    submitted.value = true
-    Object.assign(form, { name: '', email: '', subject: 'general', message: '' })
-  } catch (error: any) {
-    submitError.value = error?.statusMessage || 'Chưa gửi được tin nhắn. Vui lòng thử lại sau.'
-  } finally {
-    isSubmitting.value = false
-  }
+function handleSubmit() {
+  const subject = `[Di Sản Đồng Nai] ${subjectLabels[form.subject] ?? form.subject}`
+  const body = `Họ tên: ${form.name}\nEmail: ${form.email}\n\n${form.message}`
+  window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+  submitted.value = true
 }
 </script>
 

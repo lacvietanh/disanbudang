@@ -4,7 +4,7 @@
     <div class="relative max-w-lg w-full h-full flex items-center justify-center">
       <img
         :src="artifactImage"
-        alt="Đàn đá Bù Đăng"
+        alt="Đàn đá Thành Phố Đồng Nai"
         class="max-h-[85%] w-auto object-contain rounded-xl shadow-lg border border-charcoal-800"
       />
 
@@ -45,10 +45,10 @@
     <div class="absolute top-4 left-4 bg-charcoal-900/85 border border-charcoal-800 rounded-xl p-4 max-w-xs backdrop-blur-sm hidden md:block">
       <h4 class="text-gold-400 text-xs font-bold uppercase tracking-widest mb-2 flex items-center gap-1.5">
         <Icon name="mdi:museum-outline" class="w-4.5 h-4.5" />
-        Đàn đá tiền sử Bù Đăng
+        Đàn đá tiền sử
       </h4>
       <p class="text-charcoal-400 text-3xs leading-relaxed">
-        Phát hiện trong lòng đất đỏ bazan Bù Đăng. Nhấp vào các điểm số màu vàng để tìm hiểu chi tiết về cấu trúc và âm học của nhạc cụ cổ sơ nhất Việt Nam.
+        Phát hiện trong lòng đất đỏ bazan Thành Phố Đồng Nai. Nhấp vào các điểm số màu vàng để tìm hiểu chi tiết về cấu trúc và âm học của nhạc cụ cổ sơ nhất Việt Nam.
       </p>
     </div>
   </div>

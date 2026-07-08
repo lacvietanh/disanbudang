@@ -1,14 +1,14 @@
 <template>
-  <section id="quiz" class="section bg-warm-paper relative overflow-hidden scroll-mt-20">
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-500/4 rounded-full blur-3xl pointer-events-none" />
+  <section id="quiz" class="section bg-charcoal-950 relative overflow-hidden scroll-mt-20 border-t border-charcoal-800/60">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-500/5 rounded-full blur-3xl pointer-events-none" />
 
     <div class="container-heritage relative z-10">
       <!-- Header -->
-      <div class="text-center mb-14">
+      <div class="text-center mb-14 reveal">
         <span class="section-label">Quiz Khám Phá</span>
         <h2 class="section-title">Thử Thách Hiểu Biết Di Sản</h2>
-        <p class="section-desc mx-auto">
-          Kiểm tra kiến thức, giành huy hiệu và trở thành Nhà Khám Phá Di Sản Bù Đăng
+        <p class="section-desc mx-auto text-charcoal-400">
+          Kiểm tra kiến thức, giành huy hiệu và trở thành Nhà Khám Phá Di Sản Thành Phố Đồng Nai
         </p>
       </div>
 
@@ -17,7 +17,7 @@
         <div
           v-for="(quiz, i) in quizzes"
           :key="quiz.id"
-          class="relative overflow-hidden rounded-2xl bg-ivory border border-beige-200/80 shadow-warm-sm hover:shadow-warm-md transition-all duration-500 group cursor-pointer reveal"
+          class="relative overflow-hidden rounded-2xl bg-charcoal-950/60 border border-charcoal-850 hover:border-gold-500/30 transition-all duration-500 group cursor-pointer reveal"
           :style="{ animationDelay: `${i * 0.15}s` }"
           @click="quizStore.startQuiz(quiz)"
         >
@@ -38,10 +38,10 @@
               </BaseBadge>
             </div>
 
-            <h3 class="font-heading font-bold text-charcoal-800 text-lg leading-tight mb-2 group-hover:text-earth-600 transition-colors">
+            <h3 class="font-heading font-bold text-ivory text-lg leading-tight mb-2 group-hover:text-gold-300 transition-colors">
               {{ quiz.title }}
             </h3>
-            <p class="text-charcoal-600 text-sm leading-relaxed mb-5 line-clamp-2">
+            <p class="text-charcoal-400 text-sm leading-relaxed mb-5 line-clamp-2">
               {{ quiz.description }}
             </p>
 
@@ -51,9 +51,9 @@
                 <div class="w-6 h-6 rounded-full bg-gold-500 flex items-center justify-center">
                   <Icon name="mdi:check" class="w-3.5 h-3.5 text-charcoal-900" />
                 </div>
-                <span class="text-gold-600 text-xs font-medium">Đã hoàn thành</span>
+                <span class="text-gold-400 text-xs font-medium">Đã hoàn thành</span>
               </div>
-              <div v-else class="text-charcoal-600 text-xs">Chưa làm</div>
+              <div v-else class="text-charcoal-500 text-xs">Chưa làm</div>
 
               <button
                 class="flex items-center gap-1 text-gold-500 text-xs font-bold px-3 py-1.5 rounded-lg border border-gold-500/20 bg-gold-500/5 group-hover:bg-gold-500 group-hover:text-charcoal-900 group-hover:border-transparent transition-all duration-300"
@@ -68,7 +68,7 @@
       </div>
 
       <!-- Achievement showcase -->
-      <div class="bg-charcoal-800 rounded-3xl p-7 lg:p-10 reveal">
+      <div class="bg-charcoal-900 border border-charcoal-850 rounded-3xl p-7 lg:p-10 reveal">
         <div class="flex flex-col lg:flex-row items-center gap-8">
           <!-- Badges display -->
           <div class="flex gap-3 flex-wrap justify-center">
@@ -102,7 +102,7 @@
             </h3>
             <p class="text-charcoal-300 text-sm leading-relaxed mb-6 max-w-md">
               Hoàn thành các quiz để giành huy hiệu độc đáo. Mỗi huy hiệu là bằng chứng
-              về hành trình khám phá di sản Bù Đăng của bạn.
+              về hành trình khám phá di sản Thành Phố Đồng Nai của bạn.
             </p>
             <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
               <button class="btn-primary" @click="quizzes[0] && quizStore.startQuiz(quizzes[0])">
@@ -122,14 +122,14 @@
 </template>
 
 <script setup lang="ts">
-import { MOCK_QUIZZES, MOCK_BADGES } from '~/data/mockQuiz'
+import { QUIZZES, BADGES } from '~/data/quizzes'
 
 const quizStore = useQuizStore()
 const { observeAll } = useScrollReveal()
 onMounted(() => nextTick(() => observeAll()))
 
-const quizzes = MOCK_QUIZZES.slice(0, 3)
-const badges = MOCK_BADGES
+const quizzes = QUIZZES.slice(0, 3)
+const badges = BADGES
 
 const quizColors = ['#8B3A2A', '#2D5016', '#C9922A']
 const quizIcons = ['mdi:castle', 'mdi:music-circle', 'mdi:water']

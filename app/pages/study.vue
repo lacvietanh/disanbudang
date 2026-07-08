@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen bg-charcoal-900 text-ivory">
     <!-- Hidden h1 for SEO (heading hierarchy) -->
-    <h1 class="sr-only">Cổng Học Tập Số — Digital Heritage Learning Hub Di Sản Bù Đăng</h1>
+    <h1 class="sr-only">Cổng Học Tập Số Di Sản Thành Phố Đồng Nai</h1>
 
     <!-- Cmd+K Search Overlay -->
     <SearchOverlay
@@ -48,7 +48,7 @@
           </span>
           <span class="text-gold-300 text-xs font-bold uppercase tracking-widest">Digital Heritage Learning Hub</span>
           <span class="text-charcoal-500 text-xs">•</span>
-          <span class="text-charcoal-300 text-xs">Bù Đăng, Thành Phố Đồng Nai</span>
+          <span class="text-charcoal-300 text-xs">Thành Phố Đồng Nai</span>
         </div>
 
         <!-- Main headline -->
@@ -60,7 +60,7 @@
         </div>
 
         <p class="text-charcoal-200 text-base md:text-lg leading-relaxed max-w-2xl mx-auto font-body" style="animation: fadeSlideUp 0.9s 0.25s cubic-bezier(0.16,1,0.3,1) both">
-          Trung tâm học tập số quốc gia dành cho học sinh, giáo viên, du khách và nhà nghiên cứu — khám phá lịch sử, văn hóa và di sản Bù Đăng theo cách chưa từng có.
+          Không gian học tập số dành cho học sinh, giáo viên, du khách và nhà nghiên cứu — khám phá lịch sử, văn hóa và di sản Bù Đăng theo cách tương tác, trực quan.
         </p>
 
         <!-- Hero CTAs -->
@@ -137,7 +137,7 @@
             <div>
               <div class="text-3xs font-bold text-ivory leading-none">{{ userXP }} XP</div>
               <div class="w-16 h-0.5 bg-charcoal-800 rounded-full mt-0.5 overflow-hidden">
-                <div class="h-full bg-gradient-to-r from-earth-600 to-gold-500 rounded-full transition-all duration-500" :style="{ width: (userXP / 500 * 100) + '%' }" />
+                <div class="h-full bg-gradient-to-r from-earth-600 to-gold-500 rounded-full transition-all duration-500" :style="{ width: (userXP % 100) + '%' }" />
               </div>
             </div>
           </div>
@@ -194,7 +194,7 @@
               <span id="dashboard-title" class="section-label">Tổng quan học tập</span>
               <h3 class="font-heading text-2xl font-bold text-ivory mt-1">Dashboard Di Sản Số</h3>
             </div>
-            <span class="text-charcoal-500 text-3xs font-semibold uppercase tracking-wider hidden sm:block">Cập nhật realtime</span>
+            <span class="text-charcoal-500 text-3xs font-semibold uppercase tracking-wider hidden sm:block">Kho dữ liệu học tập số</span>
           </div>
           <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
             <div
@@ -546,8 +546,8 @@
                 <Icon name="mdi:robot" class="w-4 h-4" />
               </div>
               <div class="space-y-1.5 text-left">
-                <span class="block text-3xs font-bold uppercase tracking-wider text-charcoal-450">Trợ lý AI Di sản Bù Đăng</span>
-                <p class="leading-relaxed text-charcoal-200 select-text whitespace-pre-wrap">{{ aiMessages[0]?.text || 'Xin chào! Tôi là trợ lý AI di sản Bù Đăng. Bạn muốn tìm hiểu lịch sử nào hôm nay?' }}</p>
+                <span class="block text-3xs font-bold uppercase tracking-wider text-charcoal-450">Trợ lý AI Di sản Đồng Nai</span>
+                <p class="leading-relaxed text-charcoal-200 select-text whitespace-pre-wrap">{{ aiMessages[0]?.text || 'Xin chào! Tôi là trợ lý AI di sản Thành Phố Đồng Nai. Bạn muốn tìm hiểu lịch sử nào hôm nay?' }}</p>
               </div>
             </div>
 
@@ -803,29 +803,29 @@
             </div>
             <!-- Info -->
             <div class="flex-1">
-              <h3 class="font-heading font-bold text-xl text-ivory">Điểu Học Học</h3>
+              <h3 class="font-heading font-bold text-xl text-ivory">Nhà Khám Phá Di Sản</h3>
               <div class="flex items-center gap-2 mt-1 flex-wrap">
-                <span class="text-2xs bg-gold-500/10 border border-gold-500/30 text-gold-400 font-bold px-2.5 py-1 rounded-lg uppercase">Cấp độ 3 — Đại sứ Sơ cấp</span>
-                <span class="text-charcoal-400 text-2xs">{{ streakDays }} ngày học liên tục</span>
+                <span class="text-2xs bg-gold-500/10 border border-gold-500/30 text-gold-400 font-bold px-2.5 py-1 rounded-lg uppercase">Cấp độ {{ userLevel }}</span>
+                <span class="text-charcoal-400 text-2xs">{{ streakDays }} ngày có hoạt động học tập</span>
               </div>
               <!-- XP bar -->
               <div class="mt-4 space-y-1.5">
                 <div class="flex justify-between text-3xs text-charcoal-400">
-                  <span>Tiến trình lên Cấp 4</span>
-                  <span class="font-bold text-ivory">{{ userXP }} / 500 XP</span>
+                  <span>Tiến trình lên Cấp {{ userLevel + 1 }}</span>
+                  <span class="font-bold text-ivory">{{ userXP % 100 }} / 100 XP</span>
                 </div>
                 <div class="w-full h-2.5 bg-charcoal-850 rounded-full overflow-hidden">
-                  <div class="h-full bg-gradient-to-r from-earth-600 to-gold-500 rounded-full transition-all duration-700 relative" :style="{ width: (userXP / 500 * 100) + '%' }">
+                  <div class="h-full bg-gradient-to-r from-earth-600 to-gold-500 rounded-full transition-all duration-700 relative" :style="{ width: (userXP % 100) + '%' }">
                     <div class="absolute inset-0 bg-white/10 rounded-full animate-pulse" />
                   </div>
                 </div>
               </div>
             </div>
-            <!-- Rank badge -->
+            <!-- Quiz progress badge -->
             <div class="shrink-0 text-center p-5 bg-charcoal-900 border border-charcoal-850 rounded-2xl">
               <Icon name="mdi:shield-star" class="w-10 h-10 text-gold-400 mx-auto" />
               <span class="block text-xs font-bold text-ivory mt-2">Heritage Explorer</span>
-              <span class="text-3xs text-charcoal-500">Hạng #247</span>
+              <span class="text-3xs text-charcoal-500">{{ quizStore.userProgress.completedQuizzes.length }}/{{ quizStore.quizzes.length }} quiz hoàn thành</span>
             </div>
           </div>
         </div>
@@ -881,16 +881,16 @@
               <Icon name="mdi:sword-cross" class="w-7 h-7 text-orange-400" />
             </div>
             <div class="flex-1">
-              <span class="text-orange-400 text-3xs font-bold uppercase tracking-widest">Thử thách tuần này</span>
-              <h5 class="font-heading font-bold text-ivory text-lg mt-0.5">Hoàn thành 3 Quiz di sản để nhận 150 XP</h5>
+              <span class="text-orange-400 text-3xs font-bold uppercase tracking-widest">Thử thách khám phá</span>
+              <h5 class="font-heading font-bold text-ivory text-lg mt-0.5">Hoàn thành {{ quizStore.quizzes.length }} quiz di sản để nhận huy hiệu Nhà Khám Phá</h5>
               <div class="flex items-center gap-3 mt-2">
                 <div class="flex-1 h-2 bg-charcoal-850 rounded-full overflow-hidden max-w-xs">
-                  <div class="h-full bg-gradient-to-r from-orange-600 to-orange-400 rounded-full" style="width: 33%" />
+                  <div class="h-full bg-gradient-to-r from-orange-600 to-orange-400 rounded-full transition-all duration-500" :style="{ width: (quizStore.userProgress.completedQuizzes.length / Math.max(quizStore.quizzes.length, 1) * 100) + '%' }" />
                 </div>
-                <span class="text-3xs text-charcoal-400">1 / 3 hoàn thành</span>
+                <span class="text-3xs text-charcoal-400">{{ quizStore.userProgress.completedQuizzes.length }} / {{ quizStore.quizzes.length }} hoàn thành</span>
               </div>
             </div>
-            <button class="btn-primary text-xs py-2.5 px-5 bg-orange-500 border-orange-400 shrink-0 hover:bg-orange-400" @click="activeTab = 'research'; scrollToContent()">Tiếp tục</button>
+            <button class="btn-primary text-xs py-2.5 px-5 bg-orange-500 border-orange-400 shrink-0 hover:bg-orange-400" @click="activeTab = 'lessons'; scrollToContent()">Tiếp tục</button>
           </div>
         </div>
       </div>
@@ -971,8 +971,8 @@
           <div
             v-for="(labItem, labIdx) in heritageLabItems"
             :key="labIdx"
-            class="group relative overflow-hidden rounded-3xl border cursor-pointer hover:-translate-y-1 transition-all duration-400"
-            :class="labItem.active ? 'border-gold-500/20 bg-gradient-to-br from-charcoal-950 to-charcoal-900 hover:border-gold-500/40' : 'border-charcoal-850 bg-charcoal-950/50 hover:border-charcoal-700'"
+            class="group relative overflow-hidden rounded-3xl border transition-all duration-400"
+            :class="labItem.active ? 'border-gold-500/20 bg-gradient-to-br from-charcoal-950 to-charcoal-900 hover:border-gold-500/40 cursor-pointer hover:-translate-y-1' : 'border-charcoal-850 bg-charcoal-950/40 opacity-70 cursor-default'"
             @click="labItem.active ? (activeLabItem = labItem.id) : null"
             :aria-label="labItem.active ? `Mở ${labItem.title}` : `${labItem.title} - Sắp ra mắt`"
           >
@@ -991,7 +991,7 @@
               </div>
               <div class="flex items-center gap-1 text-3xs font-bold" :class="labItem.active ? 'text-gold-400' : 'text-charcoal-600'">
                 {{ labItem.active ? 'Mở trải nghiệm' : 'Đang phát triển' }}
-                <Icon name="mdi:arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                <Icon v-if="labItem.active" name="mdi:arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
               </div>
             </div>
           </div>
@@ -1055,7 +1055,7 @@
               <h4 class="font-heading font-bold text-xl text-ivory">Chia sẻ tư liệu di sản của bạn</h4>
               <p class="text-charcoal-400 text-sm leading-relaxed">Học sinh, giáo viên và nhà nghiên cứu có thể đóng góp tư liệu, phản biện học thuật và chia sẻ bài học để cùng xây dựng kho di sản số Bù Đăng.</p>
               <div class="flex flex-wrap gap-3">
-                <button class="px-5 py-2.5 bg-gold-500/10 border border-gold-500/25 hover:bg-gold-500/20 text-gold-400 font-bold rounded-xl text-sm transition-all" @click="activeTab = 'teacher'; scrollToContent()">Đóng góp tài liệu</button>
+                <NuxtLink to="/contribute" class="px-5 py-2.5 bg-gold-500/10 border border-gold-500/25 hover:bg-gold-500/20 text-gold-400 font-bold rounded-xl text-sm transition-all inline-block">Đóng góp tài liệu</NuxtLink>
                 <button class="px-5 py-2.5 bg-charcoal-900 border border-charcoal-800 hover:border-charcoal-700 text-charcoal-300 font-bold rounded-xl text-sm transition-all" @click="searchOverlayOpen = true">Khám phá kho tài liệu</button>
               </div>
             </div>
@@ -1170,9 +1170,9 @@
 
                   <!-- Authentic Stamp -->
                   <div class="absolute top-8 right-8 w-20 h-20 rounded-full border-4 border-double border-red-600/15 flex flex-col items-center justify-center text-red-600/15 font-bold text-[7px] uppercase tracking-wider rotate-[15deg] pointer-events-none select-none">
-                    <span class="leading-none mb-0.5">Hội Đồng</span>
-                    <span class="leading-none mb-0.5 border-y border-red-600/10 py-0.5 px-1 font-extrabold text-[8px]">Đã Thẩm Định</span>
-                    <span class="leading-none">Khoa Học</span>
+                    <span class="leading-none mb-0.5">Hồ Sơ</span>
+                    <span class="leading-none mb-0.5 border-y border-red-600/10 py-0.5 px-1 font-extrabold text-[8px]">Di Sản Đồng Nai</span>
+                    <span class="leading-none">Số Hóa</span>
                   </div>
 
                   <!-- Paper Header -->
@@ -1412,8 +1412,19 @@ const typeIcons: Record<string, string> = {
 // STATE
 // ──────────────────────────────────────────────
 const activeTab = ref('lessons')
-const streakDays = ref(5)
-const userXP = ref(380)
+
+// Gamification derived from REAL persisted quiz progress (quizStore, LocalStorage) —
+// no fabricated numbers. XP formula: 10/point + 5/heritage visited + 50/badge.
+const userXP = computed(() =>
+  quizStore.userProgress.totalScore * 10
+  + quizStore.userProgress.visitedHeritages.length * 5
+  + quizStore.userProgress.earnedBadges.length * 50,
+)
+const userLevel = computed(() => Math.floor(userXP.value / 100) + 1)
+// Number of distinct days with at least one quiz completed
+const streakDays = computed(() =>
+  new Set(quizStore.quizResults.map(r => r.completedAt.slice(0, 10))).size,
+)
 const searchOverlayOpen = ref(false)
 const resourceView = ref<'grid' | 'list'>('grid')
 const activeLabItem = ref<string | null>(null)
@@ -1443,10 +1454,14 @@ const lessonCatalog = ref([
   { id: 'trang-co-bu-lach', title: 'Danh Thắng Trảng Cỏ Bù Lạch — Kỳ Quan Thiên Nhiên', subject: 'Địa lý địa phương', tldr: 'Khám phá thung lũng trảng cỏ xanh mướt tự nhiên bao quanh hồ nước trong veo giữa lòng rừng già Bù Đăng.', coverImage: '/images/heritage/img-disanbudang/Trang-co-Bu-Lach.png', xpReward: 70, estimatedMinutes: 8, availableBlocks: ['Hotspot', 'Quiz', 'Gallery'] }
 ])
 
-const userBadges = ref([
-  { name: 'Đại sứ Bù Đăng', desc: 'Bắt đầu hành trình nghiên cứu di sản địa phương', date: '2026-06-15' },
-  { name: 'Chiến sĩ Điền dã', desc: 'Đọc hết 3 báo cáo khoa học học sinh', date: '2026-06-25' }
-])
+// Real badges earned through quizzes (persisted by quizStore)
+const userBadges = computed(() =>
+  quizStore.earnedBadges.map((b) => ({
+    name: b.name,
+    desc: b.description,
+    date: b.rarity === 'legendary' ? 'Huyền thoại' : b.rarity === 'epic' ? 'Sử thi' : b.rarity === 'rare' ? 'Hiếm' : 'Phổ thông',
+  })),
+)
 
 const collections = ref([
   { name: 'Tài liệu Ôn thi Địa phương', count: 3 },
@@ -1467,30 +1482,31 @@ const navItems = [
 // ──────────────────────────────────────────────
 // STATIC DATA: Dashboard, Hero, Gamification
 // ──────────────────────────────────────────────
-const heroStats = [
-  { value: '5', label: 'Tài liệu' },
-  { value: '3', label: 'Bài học' },
-  { value: '834', label: 'Lượt tải' },
-  { value: '4', label: 'Địa danh' }
-]
+const heroStats = computed(() => [
+  { value: String(resources.value.length), label: 'Tài liệu' },
+  { value: String(lessonCatalog.value.length), label: 'Bài học' },
+  { value: String(resources.value.reduce((sum, r) => sum + (r.downloadCount ?? 0), 0)), label: 'Lượt tải' },
+  { value: String(mapLandmarks.value.length), label: 'Địa danh' },
+])
 
-const dashboardStats = [
-  { value: '5', label: 'Nghiên cứu', icon: 'mdi:file-document-outline', iconBg: 'bg-gold-500/10', iconColor: 'text-gold-400', glowColor: 'bg-gold-400', trendBg: 'bg-gold-500/10 text-gold-400', trend: '+2 tháng này' },
-  { value: '3', label: 'Trường tham gia', icon: 'mdi:school-outline', iconBg: 'bg-blue-500/10', iconColor: 'text-blue-400', glowColor: 'bg-blue-400', trendBg: 'bg-blue-500/10 text-blue-400', trend: 'THPT, THCS' },
-  { value: '834', label: 'Lượt tải', icon: 'mdi:download-outline', iconBg: 'bg-green-500/10', iconColor: 'text-green-400', glowColor: 'bg-green-400', trendBg: 'bg-green-500/10 text-green-400', trend: '↑ 12%' },
-  { value: '3', label: 'Audio Guide', icon: 'mdi:headphones', iconBg: 'bg-purple-500/10', iconColor: 'text-purple-400', glowColor: 'bg-purple-400', trendBg: 'bg-purple-500/10 text-purple-400', trend: 'TTS' },
-  { value: '23', label: 'Flashcard', icon: 'mdi:cards-outline', iconBg: 'bg-earth-500/10', iconColor: 'text-earth-400', glowColor: 'bg-earth-400', trendBg: 'bg-earth-500/10 text-earth-400', trend: 'S\'tiêng' },
-  { value: '12', label: 'Huy hiệu', icon: 'mdi:trophy-outline', iconBg: 'bg-orange-500/10', iconColor: 'text-orange-400', glowColor: 'bg-orange-400', trendBg: 'bg-orange-500/10 text-orange-400', trend: 'Gamification' }
-]
+const dashboardStats = computed(() => [
+  { value: String(resources.value.length), label: 'Nghiên cứu', icon: 'mdi:file-document-outline', iconBg: 'bg-gold-500/10', iconColor: 'text-gold-400', glowColor: 'bg-gold-400', trendBg: 'bg-gold-500/10 text-gold-400', trend: 'Số hóa' },
+  { value: String(lessonCatalog.value.length), label: 'Bài học', icon: 'mdi:school-outline', iconBg: 'bg-blue-500/10', iconColor: 'text-blue-400', glowColor: 'bg-blue-400', trendBg: 'bg-blue-500/10 text-blue-400', trend: 'Tương tác' },
+  { value: String(resources.value.reduce((sum, r) => sum + (r.downloadCount ?? 0), 0)), label: 'Lượt tải', icon: 'mdi:download-outline', iconBg: 'bg-green-500/10', iconColor: 'text-green-400', glowColor: 'bg-green-400', trendBg: 'bg-green-500/10 text-green-400', trend: 'Miễn phí' },
+  { value: String(mapLandmarks.value.length), label: 'Địa danh', icon: 'mdi:map-marker-outline', iconBg: 'bg-purple-500/10', iconColor: 'text-purple-400', glowColor: 'bg-purple-400', trendBg: 'bg-purple-500/10 text-purple-400', trend: 'Bản đồ' },
+  { value: String(glossary.value.length), label: 'Flashcard', icon: 'mdi:cards-outline', iconBg: 'bg-earth-500/10', iconColor: 'text-earth-400', glowColor: 'bg-earth-400', trendBg: 'bg-earth-500/10 text-earth-400', trend: 'S\'tiêng' },
+  { value: String(quizStore.badges.length), label: 'Huy hiệu', icon: 'mdi:trophy-outline', iconBg: 'bg-orange-500/10', iconColor: 'text-orange-400', glowColor: 'bg-orange-400', trendBg: 'bg-orange-500/10 text-orange-400', trend: 'Gamification' },
+])
 
-const learningPath = [
-  { title: 'Khám phá', desc: 'Tìm hiểu tổng quan', icon: 'mdi:compass-outline', tab: 'research', xp: 20, done: true },
-  { title: 'Hiểu sâu', desc: 'Đọc toàn văn tài liệu', icon: 'mdi:book-open-variant', tab: 'research', xp: 40, done: true },
+// "done" states derive from real persisted progress in quizStore
+const learningPath = computed(() => [
+  { title: 'Khám phá', desc: 'Tìm hiểu tổng quan', icon: 'mdi:compass-outline', tab: 'research', xp: 20, done: quizStore.userProgress.visitedHeritages.length > 0 },
+  { title: 'Hiểu sâu', desc: 'Đọc toàn văn tài liệu', icon: 'mdi:book-open-variant', tab: 'research', xp: 40, done: quizStore.userProgress.visitedHeritages.length >= 3 },
   { title: 'Nghiên cứu', desc: 'Phân tích học thuật', icon: 'mdi:magnify', tab: 'ai', xp: 60, done: false },
-  { title: 'Thuyết trình', desc: 'Chia sẻ kiến thức', icon: 'mdi:presentation', tab: 'teacher', xp: 80, done: false },
-  { title: 'Làm Quiz', desc: 'Kiểm tra hiểu biết', icon: 'mdi:help-circle-outline', tab: 'lessons', xp: 100, done: false },
-  { title: 'Nhận huy hiệu', desc: 'Chứng chỉ di sản', icon: 'mdi:trophy', tab: 'achievements', xp: 150, done: false }
-]
+  { title: 'Từ điển S\'tiêng', desc: 'Học thuật ngữ bản địa', icon: 'mdi:translate', tab: 'glossary', xp: 80, done: false },
+  { title: 'Làm Quiz', desc: 'Kiểm tra hiểu biết', icon: 'mdi:help-circle-outline', tab: 'lessons', xp: 100, done: quizStore.userProgress.completedQuizzes.length > 0 },
+  { title: 'Nhận huy hiệu', desc: 'Chứng chỉ di sản', icon: 'mdi:trophy', tab: 'achievements', xp: 150, done: quizStore.userProgress.earnedBadges.length > 0 },
+])
 
 const labFeatures = [
   { label: 'Timeline tương tác', icon: 'mdi:timeline-clock' },
@@ -1518,21 +1534,21 @@ const historyTimeline = [
   { year: '2026', tag: 'Số hóa', tagBg: 'bg-green-500/10 text-green-400', title: 'Digital Heritage Learning Hub', desc: 'Trang web di sản số hóa Bù Đăng ra mắt — mang lịch sử địa phương đến với học sinh khắp nơi.' }
 ]
 
-const gamificationStats = [
-  { label: 'Tổng XP', value: '380', icon: 'mdi:star', color: 'text-gold-400' },
-  { label: 'Huy hiệu', value: '2', icon: 'mdi:trophy', color: 'text-orange-400' },
-  { label: 'Bài đọc', value: '7', icon: 'mdi:book-open', color: 'text-blue-400' },
-  { label: 'Quiz đã làm', value: '3', icon: 'mdi:help-circle', color: 'text-purple-400' },
-  { label: 'Streak', value: '5', icon: 'mdi:fire', color: 'text-orange-500' },
-  { label: 'Cấp độ', value: '3', icon: 'mdi:shield-star', color: 'text-green-400' }
-]
+const gamificationStats = computed(() => [
+  { label: 'Tổng XP', value: String(userXP.value), icon: 'mdi:star', color: 'text-gold-400' },
+  { label: 'Huy hiệu', value: String(quizStore.userProgress.earnedBadges.length), icon: 'mdi:trophy', color: 'text-orange-400' },
+  { label: 'Di sản đã xem', value: String(quizStore.userProgress.visitedHeritages.length), icon: 'mdi:book-open', color: 'text-blue-400' },
+  { label: 'Quiz đã làm', value: String(quizStore.userProgress.completedQuizzes.length), icon: 'mdi:help-circle', color: 'text-purple-400' },
+  { label: 'Ngày hoạt động', value: String(streakDays.value), icon: 'mdi:fire', color: 'text-orange-500' },
+  { label: 'Cấp độ', value: String(userLevel.value), icon: 'mdi:shield-star', color: 'text-green-400' },
+])
 
-const communityStats = [
-  { label: 'Tài liệu đóng góp', value: '34', icon: 'mdi:file-document-outline' },
-  { label: 'Bình luận học thuật', value: '128', icon: 'mdi:comment-outline' },
-  { label: 'Người dùng', value: '512', icon: 'mdi:account-group' },
-  { label: 'Trường tham gia', value: '8', icon: 'mdi:school-outline' }
-]
+const communityStats = computed(() => [
+  { label: 'Tài liệu số hóa', value: String(resources.value.length), icon: 'mdi:file-document-outline' },
+  { label: 'Bài học tương tác', value: String(lessonCatalog.value.length), icon: 'mdi:book-open-variant' },
+  { label: 'Từ vựng S\'tiêng', value: String(glossary.value.length), icon: 'mdi:translate' },
+  { label: 'Quiz di sản', value: String(quizStore.quizzes.length), icon: 'mdi:help-circle-outline' },
+])
 
 const resourceFormats = [
   { label: 'PDF', icon: 'mdi:file-pdf-box', color: 'text-red-400' },
@@ -1769,9 +1785,9 @@ function generateAiResponse(inputVal: string): string {
   if (query.includes('chiến khu') || query.includes('chien khu')) return 'Chiến Khu Đ là hệ thống căn cứ địa cách mạng vô cùng hiểm yếu nằm sâu trong lòng rừng nguyên sinh Xã Bù Đăng, Thành Phố Đồng Nai. Nơi đây được bảo vệ bởi địa thế hiểm trở và tinh thần đoàn kết kiên cường của đồng bào du kích S\'tiêng.'
   if (query.includes('lúa mới') || query.includes('lua moi')) return 'Lễ hội Mừng Lúa Mới của đồng bào S\'tiêng thường diễn ra vào cuối vụ mùa thu hoạch (tháng 10-12 âm lịch). Đây là dịp người dân tạ ơn thần linh (Yang) và thắt chặt tình đoàn kết buôn làng bằng cồng chiêng và rượu cần Đ\'rắp S\'lung.'
   if (query.includes('cồng chiêng') || query.includes('cong chieng')) return 'Dàn nhạc cồng chiêng S\'tiêng thường bao gồm từ 6 đến 12 chiếc chiêng bằng đồng không có núm. Nghệ thuật diễn xướng cồng chiêng Tây Nguyên đã được UNESCO vinh danh là Di sản văn hóa phi vật thể năm 2005.'
-  if (query.includes('s\'tiêng') || query.includes('m\'nông')) return 'Đồng bào S\'tiêng nổi tiếng với nghề dệt thổ cẩm Rơ-let tinh xảo và cồng chiêng, trong khi người M\'nông có kiến trúc nhà sàn gỗ đặc thù. Cả hai đều là dân tộc thiểu số lâu đời tại Bù Đăng, Đông Nam Bộ.'
-  if (query.includes('dak mơ') || query.includes('thác mơ')) return 'Trong ngôn ngữ S\'tiêng, "Dak" có nghĩa là nước, "Dak Mơ" tức là "nguồn nước của ước mơ". Đây chính là cội nguồn của danh thắng Thác Mơ hùng vĩ, biểu trưng cho sinh khí dạt dào nuôi dưỡng đất rừng Bù Đăng.'
-  return 'Tôi đã ghi nhận câu hỏi của bạn. Xã Bù Đăng, Thành Phố Đồng Nai là vùng đất giàu lịch sử cách mạng, có danh thắng trảng cỏ Bù Lạch tuyệt đẹp và nét dệt thổ cẩm, cồng chiêng S\'tiêng lâu đời. Bạn muốn hỏi chi tiết hơn về chủ đề nào?'
+  if (query.includes('s\'tiêng') || query.includes('m\'nông')) return 'Đồng bào S\'tiêng nổi tiếng với nghề dệt thổ cẩm Rơ-let tinh xảo và cồng chiêng, trong khi người M\'nông có kiến trúc nhà sàn gỗ đặc thù. Cả hai đều là dân tộc thiểu số lâu đời tại Thành Phố Đồng Nai.'
+  if (query.includes('dak mơ') || query.includes('thác mơ')) return 'Trong ngôn ngữ S\'tiêng, "Dak" có nghĩa là nước, "Dak Mơ" tức là "nguồn nước của ước mơ". Đây chính là cội nguồn của danh thắng Thác Mơ hùng vĩ, biểu trưng cho sinh khí dạt dào nuôi dưỡng đại ngàn Thành Phố Đồng Nai.'
+  return 'Tôi đã ghi nhận câu hỏi của bạn. Thành Phố Đồng Nai là vùng đất giàu lịch sử cách mạng, có danh thắng trảng cỏ Bù Lạch tuyệt đẹp và nét dệt thổ cẩm, cồng chiêng S\'tiêng lâu đời. Bạn muốn hỏi chi tiết hơn về chủ đề nào?'
 }
 
 function sendAiMessage(msgText: string) {

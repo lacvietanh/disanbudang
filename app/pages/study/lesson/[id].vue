@@ -112,7 +112,7 @@ const lessons: Record<string, LessonData> = {
     subject: 'Lịch sử địa phương',
     xpReward: 80,
     estimatedMinutes: 12,
-    tldr: 'Chiến Khu Đ là hệ thống căn cứ địa cách mạng nằm sâu trong rừng nguyên sinh Bù Đăng, đóng vai trò quan trọng trong cuộc kháng chiến chống Pháp và Mỹ (1945–1975). Đồng bào S\'tiêng cùng bộ đội chủ lực đã kiên cường giữ vững vùng đất này qua nhiều trận càn quét.',
+    tldr: 'Chiến Khu Đ là hệ thống căn cứ địa cách mạng nằm sâu trong rừng nguyên sinh Thành Phố Đồng Nai, đóng vai trò quan trọng trong cuộc kháng chiến chống Pháp và Mỹ (1945-1975). Đồng bào S\'tiêng cùng bộ đội chủ lực đã kiên cường giữ vững vùng đất này qua nhiều trận càn quét.',
     coreKnowledge: {
       text: `<p>Chiến Khu Đ (hay còn gọi là <strong>Khu chiến Đ</strong>) là hệ thống căn cứ địa cách mạng nằm trải dài trên vùng rừng già Đông Nam Bộ, chủ yếu thuộc địa phận <em>vùng đất Bù Đăng</em>.</p>
       <p>Với địa hình đồi núi trùng điệp, tán rừng già che phủ và hệ thống sông suối tự nhiên, Chiến Khu Đ trở thành "tấm khiên vô hình" bảo vệ lực lượng cách mạng trong suốt 30 năm kháng chiến.</p>
@@ -133,7 +133,7 @@ const lessons: Record<string, LessonData> = {
       { date: '1950–1954', event: 'Đỉnh cao kháng chiến chống Pháp', detail: 'Chiến Khu Đ trở thành trung tâm chỉ huy của toàn bộ lực lượng kháng chiến miền Đông Nam Bộ.' },
       { date: '1960–1968', event: 'Mở rộng và củng cố trong kháng chiến chống Mỹ', detail: 'Đồng bào S\'tiêng và M\'nông tích cực tham gia giã gạo nuôi quân, trinh sát dẫn đường.' },
       { date: '1975', event: 'Giải phóng hoàn toàn, Chiến Khu Đ hoàn thành sứ mệnh lịch sử', detail: 'Sau 30 năm kiên trì, Chiến Khu Đ đã góp phần quyết định vào thắng lợi của cuộc kháng chiến chống Mỹ.' },
-      { date: 'Nay', event: 'Di tích lịch sử cấp quốc gia, trở thành điểm giáo dục truyền thống', detail: 'Chiến Khu Đ hiện là điểm tham quan lịch sử, giáo dục truyền thống cách mạng cho thế hệ trẻ Bù Đăng.' },
+      { date: 'Nay', event: 'Di tích lịch sử cấp quốc gia, trở thành điểm giáo dục truyền thống', detail: 'Chiến Khu Đ hiện là điểm tham quan lịch sử, giáo dục truyền thống cách mạng cho thế hệ trẻ Thành Phố Đồng Nai.' },
     ],
     hotspotImage: {
       url: '/images/heritage/lich-su/chien-khu-d-md.webp',
@@ -198,7 +198,7 @@ const lessons: Record<string, LessonData> = {
     ],
     nextSteps: [
       { title: 'Văn Hóa Cồng Chiêng S\'tiêng', lessonId: 'cong-chieng-stieng', type: 'lesson' },
-      { title: 'Khám phá bản đồ di sản Bù Đăng', type: 'map' },
+      { title: 'Khám phá bản đồ di sản Đồng Nai', type: 'map' },
       { title: 'Làm bài kiểm tra lịch sử', type: 'quiz' },
     ],
   },

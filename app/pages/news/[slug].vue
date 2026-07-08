@@ -23,7 +23,7 @@
             <div class="flex items-center gap-4 text-xs text-charcoal-350">
               <span class="flex items-center gap-1">
                 <Icon name="mdi:account-outline" class="w-4 h-4 text-gold-450" />
-                {{ article.author || 'Di Sản Bù Đăng' }}
+                {{ article.author || 'Di Sản Đồng Nai' }}
               </span>
               <span>•</span>
               <span class="flex items-center gap-1">
@@ -128,12 +128,12 @@
 
 <script setup lang="ts">
 import type { NewsCategory } from '~/types'
-import { MOCK_NEWS } from '~/data/mockPosts'
+import { NEWS_ARTICLES } from '~/data/posts'
 
 const route = useRoute()
 const slug = computed(() => route.params.slug as string)
 
-const article = computed(() => MOCK_NEWS.find((n) => n.slug === slug.value) ?? null)
+const article = computed(() => NEWS_ARTICLES.find((n) => n.slug === slug.value) ?? null)
 
 useBreadcrumb(() => article.value?.title || '')
 
@@ -143,8 +143,8 @@ const articleParagraphs = computed(() => {
 })
 
 const otherNews = computed(() => {
-  if (!article.value) return MOCK_NEWS.slice(0, 3)
-  return MOCK_NEWS.filter((n) => n.id !== article.value!.id).slice(0, 4)
+  if (!article.value) return NEWS_ARTICLES.slice(0, 3)
+  return NEWS_ARTICLES.filter((n) => n.id !== article.value!.id).slice(0, 4)
 })
 
 const categoryLabels: Record<NewsCategory, string> = {

@@ -62,7 +62,7 @@ const categoryColors: Record<string, string> = {
 // Global user marker
 let userMarker: any = null
 
-const locateMe = () => {
+const locateMe = async () => {
   const swal = useSwal()
   if (!navigator.geolocation) {
     swal.fire({
@@ -73,6 +73,20 @@ const locateMe = () => {
     })
     return
   }
+
+  // Ask before requesting the browser permission — required UX per PROJECT_MASTER 6.1
+  const consent = await swal.fire({
+    title: 'Định vị vị trí của bạn?',
+    text: 'Bản đồ sẽ dùng GPS của thiết bị để hiển thị vị trí hiện tại của bạn so với các điểm di sản. Vị trí không được lưu lại hay gửi đi đâu.',
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonText: 'Đồng ý định vị',
+    cancelButtonText: 'Để sau',
+    confirmButtonColor: '#C9922A',
+    background: '#1C1A18',
+    color: '#FDFAF3',
+  })
+  if (!consent.isConfirmed) return
 
   isLocating.value = true
   navigator.geolocation.getCurrentPosition(
@@ -129,7 +143,7 @@ onMounted(async () => {
     return
   }
 
-  // Init map centered on vùng đất Bù Đăng
+  // Init map centered on Thành Phố Đồng Nai
   map = L.map(mapEl.value, {
     center: [11.82, 107.15],
     zoom: 11,

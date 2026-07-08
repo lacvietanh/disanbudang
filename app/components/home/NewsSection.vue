@@ -29,7 +29,7 @@
               </div>
               <div class="absolute bottom-0 left-0 right-0 p-7">
                 <p class="text-charcoal-300 text-xs mb-2">{{ formatDate(news[0].publishedAt) }} • {{ news[0].readTime }} phút đọc</p>
-                <h3 class="font-heading font-bold text-ivory text-2xl leading-tight mb-2 text-shadow-hero group-hover:text-gold-200 transition-colors">
+                <h3 class="font-heading font-bold text-ivory text-2xl leading-tight mb-2 text-shadow-hero line-clamp-2 group-hover:text-gold-200 transition-colors">
                   {{ news[0].title }}
                 </h3>
                 <p class="text-ivory/70 text-sm line-clamp-2">{{ news[0].excerpt }}</p>
@@ -74,14 +74,14 @@
 </template>
 
 <script setup lang="ts">
-import { MOCK_NEWS, MOCK_EVENTS } from '~/data/mockPosts'
+import { NEWS_ARTICLES, EVENTS } from '~/data/posts'
 import type { NewsCategory } from '~/types'
 
 const { observeAll } = useScrollReveal()
 onMounted(() => nextTick(() => observeAll()))
 
-const news = MOCK_NEWS.slice(0, 4)
-const nextEvent = MOCK_EVENTS[0]
+const news = NEWS_ARTICLES.slice(0, 4)
+const nextEvent = EVENTS[0]
 
 const categoryLabels: Record<NewsCategory, string> = {
   'su-kien': 'Sự Kiện',

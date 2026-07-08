@@ -14,7 +14,7 @@
           <span class="text-gradient-gold">Thành Phố Đồng Nai</span>
         </h1>
         <p class="text-charcoal-300 text-base max-w-2xl leading-relaxed">
-          {{ store.totalCount }} di sản số hóa và hàng chục ký ức do người dân tự tay đóng góp — đây là kho lưu trữ sống của vùng đất Bù Đăng. Từ những di tích oai hùng đến những câu chuyện được kể lại bên bếp lửa.
+          {{ store.totalCount }} di sản số hóa và hàng chục ký ức do người dân tự tay đóng góp, kho lưu trữ sống của Thành Phố Đồng Nai. Từ những di tích oai hùng đến những câu chuyện được kể lại bên bếp lửa.
         </p>
 
         <!-- Search bar — chỉ hiện ở tab Di Sản -->
@@ -254,13 +254,40 @@
 
 <script setup lang="ts">
 import { CATEGORIES } from '~/data/categories'
-import { MOCK_COMMUNITY_POSTS } from '~/data/mockPosts'
+import { COMMUNITY_POSTS } from '~/data/posts'
+import { HERITAGES } from '~/data/heritages'
 import type { PostType } from '~/types'
 
 definePageMeta({ layout: 'default' })
 useMuseumSeo({
-  title: 'Thư Viện Di Sản Thành Phố Đồng Nai — Khám Phá & Ký Ức Cộng Đồng',
-  description: 'Toàn bộ di sản số hóa và ký ức cộng đồng của Thành Phố Đồng Nai. Tra cứu di tích lịch sử, danh thắng thiên nhiên, văn hoá phi vật thể và những câu chuyện từ chính người dân địa phương.'
+  title: 'Thư Viện Di Sản & Ký Ức Cộng Đồng',
+  description: 'Tra cứu di tích lịch sử, danh thắng, văn hóa phi vật thể và ký ức do chính người dân Thành Phố Đồng Nai đóng góp.',
+})
+
+// CollectionPage + ItemList schema — chuẩn cho trang danh sách (rich results)
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: 'Thư Viện Di Sản Đồng Nai',
+        url: 'https://disanbudang.com/explore/',
+        description: 'Danh sách toàn bộ di sản văn hóa, lịch sử và thiên nhiên Thành Phố Đồng Nai đã được số hóa.',
+        mainEntity: {
+          '@type': 'ItemList',
+          numberOfItems: HERITAGES.length,
+          itemListElement: HERITAGES.map((h, i) => ({
+            '@type': 'ListItem',
+            position: i + 1,
+            name: h.title,
+            url: `https://disanbudang.com/heritage/${h.slug}/`,
+          })),
+        },
+      }),
+    },
+  ],
 })
 
 const store = useHeritageStore()
@@ -271,13 +298,14 @@ const categories = CATEGORIES
 const searchQuery = ref('')
 const activeCategory = ref('')
 const sortOrder = ref('views')
-const isLoading = ref(true)
+// Data is a static local import — no artificial loading state needed
+const isLoading = ref(false)
 const activeMainTab = ref('heritage')
 const activeCommunityTab = ref('all')
 
 const mainTabs = computed(() => [
   { id: 'heritage', label: 'Di Sản', icon: 'mdi:archive-outline', count: store.totalCount },
-  { id: 'community', label: 'Ký Ức Cộng Đồng', icon: 'mdi:account-group-outline', count: MOCK_COMMUNITY_POSTS.length },
+  { id: 'community', label: 'Ký Ức Cộng Đồng', icon: 'mdi:account-group-outline', count: COMMUNITY_POSTS.length },
 ])
 
 const communityTabs = [
@@ -298,8 +326,8 @@ const typeIcons: Record<PostType, string> = {
 
 // Community posts — đơn giản: 'all' hiện tất cả, các tab khác filter theo type
 const filteredCommunityPosts = computed(() => {
-  if (activeCommunityTab.value === 'all') return MOCK_COMMUNITY_POSTS
-  return MOCK_COMMUNITY_POSTS.filter((p) => p.type === activeCommunityTab.value)
+  if (activeCommunityTab.value === 'all') return COMMUNITY_POSTS
+  return COMMUNITY_POSTS.filter((p) => p.type === activeCommunityTab.value)
 })
 
 let debounceTimer: ReturnType<typeof setTimeout> | null = null
@@ -329,7 +357,6 @@ const sortedAndFilteredHeritages = computed(() => {
 })
 
 onMounted(() => {
-  setTimeout(() => { isLoading.value = false }, 500)
   nextTick(() => observeAll())
 
   if (route.query.category) activeCategory.value = route.query.category as string

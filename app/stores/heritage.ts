@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia'
 import type { Heritage, MapFilter } from '~/types'
-import { MOCK_HERITAGES } from '~/data/mockHeritages'
+import { HERITAGES } from '~/data/heritages'
 
 export const useHeritageStore = defineStore('heritage', () => {
   // State
-  const heritages = ref<Heritage[]>(MOCK_HERITAGES)
+  const heritages = ref<Heritage[]>(HERITAGES)
   const selectedHeritage = ref<Heritage | null>(null)
   const isLoading = ref(false)
   const searchQuery = ref('')

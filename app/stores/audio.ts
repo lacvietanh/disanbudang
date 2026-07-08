@@ -52,11 +52,28 @@ export const useAudioStore = defineStore('audio', () => {
       })
       player.addEventListener('error', () => {
         isPlaying.value = false
-        errorMessage.value = 'Audio đang được chuẩn bị — sắp có mặt.'
+        errorMessage.value = 'Không tải được tệp âm thanh. Vui lòng thử lại sau.'
       })
 
       audioEl.value = player
+      setupMediaSession(audio)
     }
+  }
+
+  // Lock-screen / headset controls so the guide keeps playing when the phone
+  // screen turns off (core requirement of the global audio guide)
+  function setupMediaSession(audio: HeritageAudio) {
+    if (!('mediaSession' in navigator)) return
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: audio.title,
+      artist: audio.narrator ?? 'Di Sản Đồng Nai',
+      album: 'Audio Guide Di Sản Đồng Nai',
+      artwork: audio.coverImage ? [{ src: audio.coverImage }] : [],
+    })
+    navigator.mediaSession.setActionHandler('play', () => play())
+    navigator.mediaSession.setActionHandler('pause', () => pause())
+    navigator.mediaSession.setActionHandler('seekbackward', () => skip(-15))
+    navigator.mediaSession.setActionHandler('seekforward', () => skip(15))
   }
 
   function play() {

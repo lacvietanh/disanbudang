@@ -17,7 +17,7 @@
           Khám Phá Qua Công Nghệ
         </h2>
         <p class="text-charcoal-400 text-base max-w-xl mx-auto">
-          Bốn cổng trải nghiệm số — mỗi cổng mở ra một chiều sâu khác nhau của di sản Bù Đăng.
+          Bốn cổng trải nghiệm số — mỗi cổng mở ra một chiều sâu khác nhau của di sản Thành Phố Đồng Nai.
         </p>
       </div>
 
@@ -149,7 +149,7 @@
                     Nghe Kể Chuyện Di Sản
                   </h3>
                   <p class="text-charcoal-400 text-sm leading-relaxed mb-4">
-                    4 audio thuyết minh giọng đọc thật, chạy xuyên suốt khi lướt trang.
+                    {{ audioHeritages.length }} audio thuyết minh giọng đọc thật, chạy xuyên suốt khi lướt trang.
                   </p>
 
                   <!-- Audio tracks mini-list -->
@@ -204,13 +204,13 @@
                     Quiz & Huy Hiệu
                   </h3>
                   <p class="text-charcoal-400 text-sm leading-relaxed mb-4">
-                    35+ câu hỏi lịch sử, flashcard S'tiêng và huy hiệu điện tử cho học sinh.
+                    {{ questionCount }} câu hỏi lịch sử, flashcard S'tiêng và huy hiệu điện tử cho học sinh.
                   </p>
 
                   <!-- Quick stats -->
                   <div class="flex items-center gap-4 mb-4">
                     <div class="text-center">
-                      <span class="font-heading font-bold text-ivory text-xl block leading-none">35+</span>
+                      <span class="font-heading font-bold text-ivory text-xl block leading-none">{{ questionCount }}</span>
                       <span class="text-charcoal-500 text-[10px] mt-0.5 block">Câu hỏi</span>
                     </div>
                     <div class="w-px h-8 bg-charcoal-800" />
@@ -242,12 +242,15 @@
 </template>
 
 <script setup lang="ts">
-import { MOCK_HERITAGES } from '~/data/mockHeritages'
+import { HERITAGES } from '~/data/heritages'
+import { QUIZZES } from '~/data/quizzes'
 
 const { observeAll } = useScrollReveal()
 onMounted(() => nextTick(() => observeAll()))
 
-const totalPins = computed(() => MOCK_HERITAGES.length)
+const totalPins = computed(() => HERITAGES.length)
+const audioHeritages = HERITAGES.filter((h) => h.audio)
+const questionCount = QUIZZES.reduce((sum, q) => sum + q.questions.length, 0)
 
 const previewPins = [
   { id: 1, x: 22, y: 32, color: '#8B3A2A' },
@@ -262,7 +265,8 @@ const waveformBars = Array.from({ length: 18 }, (_, i) => {
   return base[i] ?? Math.random() * 32 + 12
 })
 
-const audioTracks = ['Sóc Bom Bo', 'Chiến Khu Đ', 'Nhà Dài', 'Cồng Chiêng']
+// Real track names from heritage data — never list tracks that don't exist
+const audioTracks = audioHeritages.map((h) => h.audio!.title)
 </script>
 
 <style scoped>

@@ -14,7 +14,7 @@
           Chung Tay Kiến Tạo<br/> <span class="text-gradient-gold">Bản Đồ Di Sản</span>
         </h1>
         <p class="text-charcoal-300 text-base lg:text-lg max-w-3xl leading-relaxed">
-          Mỗi hiện vật cũ kỹ, tấm hình ố màu thời gian hay câu chuyện truyền khẩu chưa từng ghi chép đều mang linh hồn di sản của cha ông để lại. Dù bạn đến từ vùng đất Bù Đăng hay bất kỳ nơi nào trong Thành Phố Đồng Nai — sự đóng góp của bạn trực tiếp giúp thế hệ học sinh, nhà nghiên cứu và cộng đồng thấu hiểu hơn về cội nguồn lịch sử oai hùng và bản sắc tinh hoa đậm nét của mảnh đất này. Hãy để ký ức cá nhân của bạn hòa vào dòng chảy di sản sống mãi của Thành Phố Đồng Nai.
+          Mỗi hiện vật cũ kỹ, tấm hình ố màu thời gian hay câu chuyện truyền khẩu chưa từng ghi chép đều mang linh hồn di sản của cha ông để lại. Dù bạn đến từ bất kỳ xã, phường nào trong Thành Phố Đồng Nai, sự đóng góp của bạn trực tiếp giúp thế hệ học sinh, nhà nghiên cứu và cộng đồng thấu hiểu hơn về cội nguồn lịch sử oai hùng và bản sắc tinh hoa đậm nét của mảnh đất này. Hãy để ký ức cá nhân của bạn hòa vào dòng chảy di sản sống mãi của Thành Phố Đồng Nai.
         </p>
       </div>
     </div>
@@ -191,21 +191,16 @@
                   </label>
                   <label class="flex items-start gap-2.5 cursor-pointer text-xs text-charcoal-400 hover:text-ivory transition-colors">
                     <input v-model="acceptDisplay" type="checkbox" required class="mt-0.5 rounded border-charcoal-800 bg-charcoal-950 text-gold-500 focus:ring-gold-500/20" />
-                    <span>Tôi đồng ý ủy quyền số hóa và trưng bày phi thương mại trên Bản đồ Di sản Bù Đăng.</span>
+                    <span>Tôi đồng ý ủy quyền số hóa và trưng bày phi thương mại trên Bản đồ Di sản Đồng Nai.</span>
                   </label>
                 </div>
               </div>
 
               <div class="pt-6 flex justify-between">
                 <button type="button" class="btn-ghost text-xs" @click="currentStep = 2">Quay lại</button>
-                <button
-                  type="submit"
-                  class="btn-primary"
-                  :class="{ 'opacity-70 pointer-events-none': isSubmitting }"
-                >
-                  <Icon v-if="isSubmitting" name="mdi:loading" class="w-4 h-4 animate-spin" />
-                  <Icon v-else name="mdi:send-outline" class="w-4 h-4" />
-                  {{ isSubmitting ? 'Đang gửi lên bảo tàng...' : 'Gửi Hiến Tặng' }}
+                <button type="submit" class="btn-primary">
+                  <Icon name="mdi:email-edit-outline" class="w-4 h-4" />
+                  Soạn Email Hiến Tặng
                 </button>
               </div>
 
@@ -214,8 +209,8 @@
                 <div v-if="isSubmitted" class="p-4 rounded-xl bg-green-950/30 border border-green-800/40 flex items-center gap-3.5 mt-4">
                   <Icon name="mdi:check-circle" class="w-6 h-6 text-green-500 shrink-0 animate-bounce" />
                   <div>
-                    <p class="text-green-400 font-semibold text-sm">Gửi hiến tặng thành công!</p>
-                    <p class="text-green-500/80 text-xs mt-0.5">Hồ sơ của bạn đã được chuyển tới Ban Quản lý Di tích Xã Bù Đăng kiểm duyệt.</p>
+                    <p class="text-green-400 font-semibold text-sm">Trình soạn email đã mở với hồ sơ của bạn!</p>
+                    <p class="text-green-500/80 text-xs mt-0.5">Đính kèm tệp tư liệu (nếu có) rồi nhấn Gửi trong email để hoàn tất việc hiến tặng.</p>
                   </div>
                 </div>
               </Transition>
@@ -274,7 +269,7 @@
 </template>
 
 <script setup lang="ts">
-import { MOCK_HERITAGES } from '~/data/mockHeritages'
+import { HERITAGES } from '~/data/heritages'
 
 definePageMeta({ layout: 'default' })
 useMuseumSeo({
@@ -282,10 +277,10 @@ useMuseumSeo({
   description: 'Đóng góp công sức của bạn vào cổng bảo tồn di sản số. Gửi tranh vẽ, hình ảnh, văn bản tư liệu đã qua kiểm chứng.'
 })
 
-const heritages = MOCK_HERITAGES
+const heritages = HERITAGES
+const CONTRIBUTE_EMAIL = 'nguyenxuankiet294@gmail.com'
 const selectedType = ref('story')
 const currentStep = ref(1)
-const isSubmitting = ref(false)
 const isSubmitted = ref(false)
 const submitError = ref('')
 const fileInput = ref<HTMLInputElement | null>(null)
@@ -341,7 +336,7 @@ function handleNextStep() {
   }
 }
 
-async function handleSubmit() {
+function handleSubmit() {
   if (!form.name.trim()) {
     currentStep.value = 2
     stepErrors.name = 'Vui lòng nhập họ và tên của bạn'
@@ -360,45 +355,25 @@ async function handleSubmit() {
     return
   }
 
-  isSubmitting.value = true
   isSubmitted.value = false
   submitError.value = ''
 
-  try {
-    const body = new FormData()
-    body.set('type', selectedType.value)
-    body.set('name', form.name)
-    body.set('role', form.role)
-    body.set('title', form.title)
-    body.set('content', form.content)
-    body.set('heritageId', form.heritageId)
+  const typeLabel = contributionTypes.find((t) => t.id === selectedType.value)?.label ?? selectedType.value
+  const hasFiles = (fileInput.value?.files?.length ?? 0) > 0
+  const subject = `[Hiến tặng tư liệu] ${form.title}`
+  const bodyLines = [
+    `Loại tư liệu: ${typeLabel}`,
+    `Họ tên: ${form.name}`,
+    `Vai trò: ${form.role}`,
+    form.heritageId ? `Di sản liên quan: ${form.heritageId}` : '',
+    '',
+    form.content,
+    '',
+    hasFiles ? '(Vui lòng đính kèm các tệp tư liệu của bạn vào email này trước khi gửi.)' : '',
+  ].filter(Boolean)
+  window.location.href = `mailto:${CONTRIBUTE_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`
 
-    for (const file of Array.from(fileInput.value?.files ?? [])) {
-      body.append('files', file)
-    }
-
-    await $fetch('/api/contribute', {
-      method: 'POST',
-      body,
-    })
-
-    isSubmitted.value = true
-    if (import.meta.client) {
-      sessionStorage.removeItem('disanbudang_contribute_draft')
-    }
-    Object.assign(form, { name: '', role: 'resident', title: '', content: '', heritageId: '' })
-    acceptQuality.value = false
-    acceptDisplay.value = false
-    if (fileInput.value) fileInput.value.value = ''
-    setTimeout(() => {
-      isSubmitted.value = false
-      currentStep.value = 1
-    }, 4000)
-  } catch (error: any) {
-    submitError.value = error?.statusMessage || 'Chưa gửi được tư liệu. Vui lòng thử lại sau.'
-  } finally {
-    isSubmitting.value = false
-  }
+  isSubmitted.value = true
 }
 
 // Caching form inputs in sessionStorage

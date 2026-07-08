@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen bg-charcoal-900 text-ivory flex flex-col">
     <!-- Same header as main site -->
-    <TheHeader />
+    <AppTopNav />
 
     <main class="flex-1 flex items-center justify-center px-4">
       <div class="text-center max-w-lg">
@@ -45,7 +45,7 @@
       </div>
     </main>
 
-    <TheFooter />
+    <AppFooter />
   </div>
 </template>
 

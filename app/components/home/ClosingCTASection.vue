@@ -37,7 +37,7 @@
             </h2>
             <p class="text-charcoal-300 text-base lg:text-lg leading-relaxed mb-10 max-w-md">
               Từ bản đồ tương tác đến audio thuyết minh — nền tảng số hóa đầy đủ nhất về di sản
-              văn hóa Bù Đăng, Phước Long và Lộc Ninh trong lòng Thành Phố Đồng Nai.
+              văn hóa khắp Thành Phố Đồng Nai — từ Sóc Bom Bo, Chiến Khu Đ đến núi Bà Rá.
             </p>
 
             <div class="flex flex-wrap gap-3">
@@ -81,8 +81,14 @@
 </template>
 
 <script setup lang="ts">
+import { HERITAGES } from '~/data/heritages'
+import { QUIZZES } from '~/data/quizzes'
+
 const { observeAll } = useScrollReveal()
 onMounted(() => nextTick(() => observeAll()))
+
+const audioCount = HERITAGES.filter((h) => h.audio).length
+const questionCount = QUIZZES.reduce((sum, q) => sum + q.questions.length, 0)
 
 const quickLinks = [
   {
@@ -91,7 +97,7 @@ const quickLinks = [
     iconBg: 'bg-gold-500/10 border border-gold-500/20 group-hover:bg-gold-500/20',
     iconColor: 'text-gold-400',
     title: 'Bản Đồ Di Sản GPS',
-    desc: 'Định vị tất cả 11 di sản trên bản đồ số tương tác',
+    desc: `Định vị tất cả ${HERITAGES.length} di sản trên bản đồ số tương tác`,
   },
   {
     to: '/study',
@@ -99,7 +105,7 @@ const quickLinks = [
     iconBg: 'bg-forest-500/10 border border-forest-500/20 group-hover:bg-forest-500/20',
     iconColor: 'text-forest-400',
     title: 'Góc Học Tập & Quiz',
-    desc: '35+ câu hỏi lịch sử, flashcard thuật ngữ S\'tiêng',
+    desc: `${questionCount} câu hỏi lịch sử, flashcard thuật ngữ S'tiêng`,
   },
   {
     to: '/explore',
@@ -107,7 +113,7 @@ const quickLinks = [
     iconBg: 'bg-earth-500/10 border border-earth-500/20 group-hover:bg-earth-500/20',
     iconColor: 'text-earth-400',
     title: 'Audio Thuyết Minh',
-    desc: '4 track audio guide giọng đọc truyền cảm địa phương',
+    desc: `${audioCount} track audio guide giọng đọc truyền cảm địa phương`,
   },
   {
     to: '/contribute',

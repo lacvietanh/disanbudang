@@ -116,7 +116,7 @@
             </h2>
             <p class="text-charcoal-300 text-lg leading-relaxed">
               Hệ thống audio guide — được thuyết minh bởi giọng đọc truyền cảm của các thuyết minh viên địa phương,
-              ghi lại những câu chuyện di sản xúc động từ vùng đất Bù Đăng, Phước Long đến Lộc Ninh.
+              ghi lại những câu chuyện di sản xúc động khắp Thành Phố Đồng Nai.
             </p>
           </div>
 
@@ -150,7 +150,7 @@
 </template>
 
 <script setup lang="ts">
-import { MOCK_HERITAGES } from '~/data/mockHeritages'
+import { HERITAGES } from '~/data/heritages'
 import type { Heritage } from '~/types'
 
 const audioStore = useAudioStore()
@@ -158,7 +158,7 @@ const { observeAll } = useScrollReveal()
 onMounted(() => nextTick(() => observeAll()))
 
 // Only show heritages that have real audio files
-const heritagesWithAudio = MOCK_HERITAGES.filter((h) => h.audio)
+const heritagesWithAudio = HERITAGES.filter((h) => h.audio)
 const featuredHeritage = computed(() => heritagesWithAudio[0] ?? null)
 const otherAudios = heritagesWithAudio.slice(1)
 

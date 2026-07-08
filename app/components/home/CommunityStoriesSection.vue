@@ -57,7 +57,7 @@
                 <p class="font-accent italic text-gold-400/80 text-sm mb-2">
                   {{ posts[0].author.name }} · {{ posts[0].author.role }}
                 </p>
-                <h3 class="font-heading font-bold text-ivory text-2xl lg:text-3xl leading-tight mb-3 text-shadow-hero">
+                <h3 class="font-heading font-bold text-ivory text-2xl lg:text-3xl leading-tight mb-3 text-shadow-hero line-clamp-2">
                   {{ posts[0].title }}
                 </h3>
                 <p class="text-ivory/55 text-sm leading-relaxed line-clamp-2 mb-5">{{ posts[0].excerpt }}</p>
@@ -141,13 +141,13 @@
 </template>
 
 <script setup lang="ts">
-import { MOCK_COMMUNITY_POSTS } from '~/data/mockPosts'
+import { COMMUNITY_POSTS } from '~/data/posts'
 import type { PostType } from '~/types'
 
 const { observeAll } = useScrollReveal()
 onMounted(() => nextTick(() => observeAll()))
 
-const posts = MOCK_COMMUNITY_POSTS.slice(0, 4)
+const posts = COMMUNITY_POSTS.slice(0, 4)
 
 const typeLabels: Record<PostType, string> = {
   story: 'Câu Chuyện',

@@ -246,10 +246,10 @@
         </div>
 
         <!-- JOURNEY / ROUTES TAB -->
-        <div v-if="activeTab === 'route'" class="flex-1 flex flex-col min-h-0 overflow-y-auto scrollbar-none">
+        <div v-if="activeTab === 'route'" class="flex-1 flex flex-col min-h-0 overflow-y-auto scrollbar-none p-4 gap-5">
           <div class="space-y-1">
             <p class="eyebrow text-gold-400 text-3xs tracking-widest font-bold">TUYẾN ĐƯỜNG ĐỀ XUẤT</p>
-            <p class="text-xs text-charcoal-450 leading-relaxed">Khám phá dòng chảy lịch sử và văn hóa bản địa Bù Đăng theo các tuyến đề xuất chuyên sâu.</p>
+            <p class="text-xs text-charcoal-450 leading-relaxed">Khám phá dòng chảy lịch sử và văn hóa bản địa Thành Phố Đồng Nai theo các tuyến đề xuất chuyên sâu.</p>
           </div>
 
           <div class="space-y-4">
@@ -257,7 +257,7 @@
             <div
               v-for="route in suggestedRoutes"
               :key="route.id"
-              class="border rounded-2xl cursor-pointer transition-all duration-400 relative overflow-hidden"
+              class="border rounded-2xl cursor-pointer transition-all duration-400 relative overflow-hidden p-4 bg-charcoal-900/30"
               :class="selectedRouteId === route.id
                 ? 'border-gold-500/40 shadow-xl shadow-black/30'
                 : 'border-charcoal-800/50 hover:border-charcoal-700'"
@@ -329,7 +329,7 @@
             <div class="w-full h-full bg-charcoal-950 flex items-center justify-center">
               <div class="text-center space-y-4">
                 <div class="w-16 h-16 border-2 border-gold-500 border-t-transparent rounded-full animate-spin mx-auto" />
-                <p class="text-charcoal-455 text-sm">Đang kết nối vệ tinh di sản Bù Đăng...</p>
+                <p class="text-charcoal-455 text-sm">Đang tải bản đồ di sản Đồng Nai...</p>
               </div>
             </div>
           </template>
@@ -357,8 +357,8 @@
                   <BaseBadge :variant="getCategoryVariant(selectedHeritage.category)" size="sm" class="uppercase tracking-widest font-bold mb-2">
                     {{ getCategoryLabel(selectedHeritage.category) }}
                   </BaseBadge>
-                  <h3 class="font-heading font-bold text-white text-base leading-tight tracking-tight drop-shadow-lg">{{ selectedHeritage.title }}</h3>
-                  <p v-if="selectedHeritage.subtitle" class="text-gold-300 text-3xs font-accent italic mt-0.5 drop-shadow">{{ selectedHeritage.subtitle }}</p>
+                  <h3 class="font-heading font-bold text-white text-base leading-tight tracking-tight drop-shadow-lg line-clamp-2">{{ selectedHeritage.title }}</h3>
+                  <p v-if="selectedHeritage.subtitle" class="text-gold-300 text-3xs font-accent italic mt-0.5 drop-shadow line-clamp-1">{{ selectedHeritage.subtitle }}</p>
                 </div>
 
                 <!-- Close button -->
@@ -603,7 +603,7 @@
 
 <script setup lang="ts">
 import { CATEGORIES, PERIODS } from '~/data/categories'
-import { MOCK_HERITAGES } from '~/data/mockHeritages'
+import { HERITAGES } from '~/data/heritages'
 import type { Heritage } from '~/types'
 import { useEventListener } from '@vueuse/core'
 import MapBottomSheet from '~/components/map/BottomSheet.vue'
@@ -710,7 +710,7 @@ const suggestedRoutes = [
     name: 'Tuyến Cách Mạng Oai Hùng',
     icon: 'mdi:shield-outline',
     color: '#8B3A2A',
-    description: 'Về nguồn khám phá các căn cứ quân sự huyết mạch và lớp học kháng chiến oai hùng giữa lòng đại ngàn Bù Đăng.',
+    description: 'Về nguồn khám phá các căn cứ quân sự huyết mạch và lớp học kháng chiến oai hùng giữa lòng đại ngàn Thành Phố Đồng Nai.',
     stops: [
       { id: 'hrt-001', title: 'Căn cứ Nửa Lon Bù Đăng' },
       { id: 'hrt-011', title: 'Khu Bảo Tồn Sóc Bom Bo' },
@@ -762,12 +762,10 @@ const suggestedRoutes = [
 // Watches
 watch(searchQuery, (q) => {
   store.setSearch(q)
-  if (q) {
-    // Search match auto-focus & select
-    const match = displayedHeritages.value.find(h => h.title.toLowerCase().includes(q.toLowerCase()))
-    if (match) {
-      selectedId.value = match.id
-    }
+  // Only auto-select when the search narrows down to exactly one heritage —
+  // flying the map on every keystroke is disorienting
+  if (q && displayedHeritages.value.length === 1 && displayedHeritages.value[0]) {
+    selectedId.value = displayedHeritages.value[0].id
   }
 })
 
@@ -949,7 +947,7 @@ function toggleRoute(route: any) {
 }
 
 function selectStop(stop: any) {
-  const matching = MOCK_HERITAGES.find(h => h.id === stop.id)
+  const matching = HERITAGES.find(h => h.id === stop.id)
   if (matching) {
     selectedId.value = matching.id
   }
@@ -979,7 +977,7 @@ function getGoogleMapsDirectionUrl(heritage: Heritage): string {
   if (heritage.coordinates && heritage.coordinates.lat && heritage.coordinates.lng) {
     return `https://www.google.com/maps/dir/?api=1&destination=${heritage.coordinates.lat},${heritage.coordinates.lng}`
   }
-  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(heritage.title + ' Bù Đăng Thành Phố Đồng Nai')}`
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(heritage.title + ' Thành Phố Đồng Nai')}`
 }
 
 // toggleMobileHeight is handled by bottom sheet gestures

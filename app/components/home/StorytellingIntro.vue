@@ -17,7 +17,7 @@
           </div>
           <h2 class="section-title">Nơi Đất Trời Gặp Gỡ Lịch Sử</h2>
           <p class="text-charcoal-300 text-lg leading-relaxed max-w-2xl mb-8 animate-fade-up" style="animation-delay: 0.2s">
-            Thành Phố Đồng Nai sở hữu cõi di sản thiêng liêng, nơi đại ngàn ôm trọn những trang sử oai hùng. Từ địa bàn căn cứ Chiến Khu Đ anh dũng, nhịp chày giã gạo nuôi quân thâu đêm dưới ánh đuốc lồ ô của đồng bào S'tiêng tại xã Bom Bo đã đi vào lịch sử cách mạng như một biểu tượng bất khuất. Cùng với danh thắng núi Bà Rá, hồ Thác Mơ của vùng đất Phước Long thơ mộng và các di tích lịch sử cách mạng hào hùng của xã Lộc Ninh như Căn cứ Tà Thiết hay Nhà Giao tế Lộc Ninh, tất cả đã tạo nên bức tranh văn hóa đa dạng, đặc sắc mà Thành Phố Đồng Nai hôm nay đang tự hào kế thừa, bảo tồn và nâng tầm phát triển cho muôn đời sau.
+            Thành Phố Đồng Nai hôm nay ôm trọn một cõi di sản thiêng liêng trải dài từ đô thị công nghiệp Biên Hòa đến đại ngàn miền Đông Nam Bộ. Từ căn cứ Chiến Khu Đ anh dũng, nhịp chày giã gạo nuôi quân thâu đêm dưới ánh đuốc lồ ô của đồng bào S'tiêng tại Sóc Bom Bo đã đi vào lịch sử cách mạng như một biểu tượng bất khuất. Cùng với danh thắng núi Bà Rá, hồ Thác Mơ, và các di tích cách mạng hào hùng như Căn cứ Tà Thiết hay Nhà Giao tế Lộc Ninh, tất cả đã tạo nên bức tranh văn hóa đa dạng, đặc sắc mà Thành Phố Đồng Nai hôm nay đang tự hào kế thừa, bảo tồn và nâng tầm phát triển cho muôn đời sau.
           </p>
           <div class="animate-fade-up pt-2 pb-4" style="animation-delay: 0.3s">
             <NuxtLink to="/study" class="btn-primary text-sm px-6 py-3.5 inline-flex items-center gap-2 group shadow-lg shadow-gold-500/10 hover:shadow-gold-500/20">
@@ -71,7 +71,7 @@
             <div class="rounded-2xl overflow-hidden aspect-[3/4] shadow-warm-lg border border-charcoal-700/50 group">
               <img
                 src="/images/heritage/danh-thang/rung-nguyen-sinh-lg.webp"
-                alt="Rừng nguyên sinh Bù Đăng"
+                alt="Rừng nguyên sinh Thành Phố Đồng Nai"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
             </div>
@@ -87,7 +87,7 @@
             <div class="rounded-2xl overflow-hidden aspect-square shadow-warm-lg border border-charcoal-700/50 group">
               <img
                 src="/images/heritage/danh-thang/thac-dung-lg.webp"
-                alt="Thác Mơ Bù Đăng"
+                alt="Thác Mơ, Thành Phố Đồng Nai"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
             </div>

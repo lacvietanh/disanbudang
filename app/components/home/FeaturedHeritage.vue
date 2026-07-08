@@ -19,7 +19,7 @@
             Di Sản Nổi Bật
           </h2>
           <p class="text-charcoal-400 text-sm mt-2 max-w-md">
-            Khám phá những điểm di sản văn hóa, lịch sử và thiên nhiên đặc sắc nhất của vùng đất Bù Đăng.
+            Khám phá những điểm di sản văn hóa, lịch sử và thiên nhiên đặc sắc nhất của Thành Phố Đồng Nai.
           </p>
         </div>
         <NuxtLink
@@ -64,7 +64,7 @@
                   <span>{{ topFeatured[0].viewCount?.toLocaleString() }}</span>
                 </div>
               </div>
-              <h3 class="font-heading font-bold text-ivory text-3xl lg:text-4xl xl:text-5xl leading-tight mb-3 text-shadow-hero">
+              <h3 class="font-heading font-bold text-ivory text-3xl lg:text-4xl xl:text-5xl leading-tight mb-3 text-shadow-hero line-clamp-2">
                 {{ topFeatured[0].title }}
               </h3>
               <p class="text-ivory/60 text-sm leading-relaxed mb-5 max-w-lg line-clamp-2">
@@ -102,7 +102,7 @@
               <BaseBadge :variant="getCategoryVariant(item.category)" size="sm" class="mb-3">
                 {{ getCategoryLabel(item.category) }}
               </BaseBadge>
-              <h3 class="font-heading font-bold text-ivory text-xl lg:text-2xl leading-tight mb-1 group-hover:text-gold-200 transition-colors text-shadow-sm">
+              <h3 class="font-heading font-bold text-ivory text-xl lg:text-2xl leading-tight mb-1 group-hover:text-gold-200 transition-colors text-shadow-sm line-clamp-2">
                 {{ item.title }}
               </h3>
               <p class="text-charcoal-400 text-xs line-clamp-1">{{ item.subtitle }}</p>
@@ -130,14 +130,14 @@
 </template>
 
 <script setup lang="ts">
-import { MOCK_HERITAGES } from '~/data/mockHeritages'
+import { HERITAGES } from '~/data/heritages'
 
 const { getCategoryLabel } = useHeritage()
 const { observeAll } = useScrollReveal()
 const heritageStore = useHeritageStore()
 
 const totalCount = computed(() => heritageStore.totalCount)
-const topFeatured = computed(() => MOCK_HERITAGES.filter((h) => h.featured).slice(0, 3))
+const topFeatured = computed(() => HERITAGES.filter((h) => h.featured).slice(0, 3))
 
 onMounted(() => nextTick(() => observeAll()))
 

@@ -6,10 +6,10 @@
       <div class="container-heritage relative z-10">
         <span class="section-label text-gold-400">Góc Chia Sẻ & Nghiên Cứu</span>
         <h1 class="font-heading font-bold text-ivory text-5xl lg:text-6xl leading-[1.28] mb-5">
-          Bài Viết &<br/><span class="text-gradient-gold">Di Sản Bù Đăng</span>
+          Bài Viết &<br/><span class="text-gradient-gold">Di Sản Đồng Nai</span>
         </h1>
         <p class="text-charcoal-300 text-lg max-w-xl">
-          Các bài viết chuyên sâu về đời sống văn hóa, phong tục độc đáo và tư liệu quý giá của đồng bào Bù Đăng.
+          Các bài viết chuyên sâu về đời sống văn hóa, phong tục độc đáo và tư liệu quý giá của Thành Phố Đồng Nai.
         </p>
       </div>
     </div>
@@ -77,17 +77,17 @@
 </template>
 
 <script setup lang="ts">
-import { MOCK_NEWS, MOCK_EVENTS } from '~/data/mockPosts'
+import { NEWS_ARTICLES, EVENTS } from '~/data/posts'
 import type { NewsCategory } from '~/types'
 
 definePageMeta({ layout: 'default' })
 useMuseumSeo({
   title: 'Bài Viết & Blog Di Sản',
-  description: 'Các bài viết, nghiên cứu và hoạt động nổi bật về di sản văn hóa Bù Đăng.'
+  description: 'Các bài viết, nghiên cứu và hoạt động nổi bật về di sản văn hóa Thành Phố Đồng Nai.'
 })
 
 useHead({
-  script: MOCK_EVENTS.map(event => ({
+  script: EVENTS.map(event => ({
     type: 'application/ld+json',
     innerHTML: JSON.stringify({
       '@context': 'https://schema.org',
@@ -103,8 +103,7 @@ useHead({
         name: event.location,
         address: {
           '@type': 'PostalAddress',
-          addressLocality: 'Xã Bù Đăng',
-          addressRegion: 'Thành Phố Đồng Nai',
+          addressLocality: 'Thành Phố Đồng Nai',
           addressCountry: 'VN'
         }
       }
@@ -133,9 +132,9 @@ const categoryVariant: Record<NewsCategory, any> = {
 }
 
 const filteredNews = computed(() =>
-  activeCategory.value === 'all' ? MOCK_NEWS : MOCK_NEWS.filter((n) => n.category === activeCategory.value),
+  activeCategory.value === 'all' ? NEWS_ARTICLES : NEWS_ARTICLES.filter((n) => n.category === activeCategory.value),
 )
-const events = MOCK_EVENTS
+const events = EVENTS
 
 function formatDate(str: string) {
   return new Intl.DateTimeFormat('vi-VN', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(str))

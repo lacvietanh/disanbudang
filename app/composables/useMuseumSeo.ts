@@ -1,10 +1,10 @@
 import type { Ref } from 'vue'
 import type { Heritage, NewsArticle } from '~/types'
 
-const SITE_NAME = 'Di Sản Bù Đăng'
-const SITE_DESCRIPTION = 'Bảo tàng số di sản văn hóa, lịch sử và thiên nhiên vùng đất Bù Đăng — linh hồn đại ngàn trong lòng Thành Phố Đồng Nai.'
+const SITE_NAME = 'Di Sản Đồng Nai'
+const SITE_DESCRIPTION = 'Bảo tàng số di sản văn hóa, lịch sử và thiên nhiên Thành Phố Đồng Nai - từ Biên Hòa, Sóc Bom Bo đến Chiến Khu Đ và núi Bà Rá.'
 const SITE_URL = 'https://disanbudang.com'
-const DEFAULT_IMAGE = '/images/heritage/danh-thang/rung-nguyen-sinh-lg.webp'
+const DEFAULT_IMAGE = '/images/og-default.jpg'
 
 interface MuseumSeoInput {
   title?: string
@@ -12,6 +12,12 @@ interface MuseumSeoInput {
   image?: string
   path?: string
   type?: 'website' | 'article'
+}
+
+export function toAbsoluteUrl(path: string): string {
+  if (!path) return `${SITE_URL}${DEFAULT_IMAGE}`
+  if (/^https?:\/\//i.test(path)) return path
+  return `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`
 }
 
 export function ensureTrailingSlash(path: string): string {
@@ -45,14 +51,23 @@ export function buildBreadcrumbSchema(path: string, pageTitle?: string) {
   let currentPath = ''
   parts.forEach((part, index) => {
     currentPath += `/${part}`
-    let name = part.charAt(0).toUpperCase() + part.slice(1)
-    if (part === 'library') name = 'Thư viện di sản'
-    if (part === 'map') name = 'Bản đồ di sản'
-    if (part === 'community') name = 'Cộng đồng'
-    if (part === 'quiz') name = 'Trò chơi khám phá'
-    if (part === 'school') name = 'Góc học tập'
-    if (part === 'news') name = 'Tin tức & Sự kiện'
-    if (part === 'about') name = 'Giới thiệu'
+    const segmentLabels: Record<string, string> = {
+      library: 'Thư viện di sản',
+      map: 'Bản đồ di sản',
+      community: 'Cộng đồng',
+      quiz: 'Trò chơi khám phá',
+      school: 'Góc học tập',
+      news: 'Bài viết & Sự kiện',
+      about: 'Giới thiệu',
+      explore: 'Khám phá',
+      study: 'Góc học tập',
+      lesson: 'Bài học',
+      heritage: 'Di sản',
+      contribute: 'Đóng góp',
+      contact: 'Liên hệ',
+      invest: 'Đầu tư',
+    }
+    let name = segmentLabels[part] ?? part.charAt(0).toUpperCase() + part.slice(1)
     
     if (index === parts.length - 1 && pageTitle) {
       name = pageTitle.split(' — ')[0] || pageTitle
@@ -93,7 +108,7 @@ export function useMuseumSeo(input: MuseumSeoInput = {}) {
     description = description.slice(0, 152).trim() + '...'
   }
 
-  const image = input.image ?? DEFAULT_IMAGE
+  const image = toAbsoluteUrl(input.image ?? DEFAULT_IMAGE)
   const canonical = `${SITE_URL}${ensureTrailingSlash(input.path ?? route.path)}`
 
   useSeoMeta({
@@ -111,9 +126,9 @@ export function useMuseumSeo(input: MuseumSeoInput = {}) {
   if (route.path === '/') {
     useHead({
       meta: [
-        { name: 'geo.position', content: '11.8281;107.0937' },
-        { name: 'geo.placename', content: 'Vùng đất Bù Đăng, Thành Phố Đồng Nai' },
-        { name: 'geo.region', content: 'VN-ĐN' },
+        { name: 'geo.position', content: '10.9447;106.8243' },
+        { name: 'geo.placename', content: 'Thành Phố Đồng Nai' },
+        { name: 'geo.region', content: 'VN-39' },
       ],
     })
   }
@@ -133,12 +148,12 @@ export function useMuseumSeo(input: MuseumSeoInput = {}) {
             '@id': `${SITE_URL}/#organization`,
             'name': SITE_NAME,
             'alternateName': [
-              'Bảo Tàng Số Di Sản Bù Đăng',
-              'Di Sản Bù Đăng',
-              'di san bu dang',
+              'Bảo Tàng Số Di Sản Thành Phố Đồng Nai',
+              'Di Sản Đồng Nai',
+              'di san dong nai',
               'disanbudang',
               'disanbudang.com',
-              'bao tang so di san bu dang',
+              'bao tang so di san thanh pho dong nai',
             ],
             'url': `${SITE_URL}/`,
             'logo': `${SITE_URL}/favicon/icon-192.png`,
@@ -148,7 +163,7 @@ export function useMuseumSeo(input: MuseumSeoInput = {}) {
               '@type': 'Person',
               '@id': `${SITE_URL}/#author`,
               'name': 'Nguyễn Xuân Kiệt',
-              'jobTitle': 'Học sinh — Tác giả dự án',
+              'jobTitle': 'Học sinh, tác giả dự án',
               'affiliation': {
                 '@type': 'EducationalOrganization',
                 'name': 'THPT Lê Quý Đôn, Thành Phố Đồng Nai',
@@ -156,18 +171,19 @@ export function useMuseumSeo(input: MuseumSeoInput = {}) {
             },
             'address': {
               '@type': 'PostalAddress',
-              'addressLocality': 'Vùng đất Bù Đăng',
-              'addressRegion': 'Thành Phố Đồng Nai',
+              'addressLocality': 'Thành Phố Đồng Nai',
               'addressCountry': 'VN'
             },
             'knowsAbout': [
-              'Lịch sử địa phương Bù Đăng',
+              'Lịch sử Thành Phố Đồng Nai',
               'Văn hóa dân tộc S\'tiêng',
-              'Di sản thiên nhiên Bù Đăng',
+              'Di sản thiên nhiên Đồng Nai - Bình Phước cũ',
               'Du lịch sinh thái Thành Phố Đồng Nai',
               'Chiến Khu Đ',
               'Cồng chiêng Tây Nguyên',
               'Sóc Bom Bo',
+              'Núi Bà Rá',
+              'Căn cứ Tà Thiết',
             ]
           },
           {
@@ -175,7 +191,7 @@ export function useMuseumSeo(input: MuseumSeoInput = {}) {
             '@id': `${SITE_URL}/#website`,
             'url': `${SITE_URL}/`,
             'name': SITE_NAME,
-            'alternateName': ['Di Sản Bù Đăng', 'di san bu dang', 'disanbudang'],
+            'alternateName': ['Di Sản Đồng Nai', 'di san dong nai', 'disanbudang'],
             'publisher': {
               '@id': `${SITE_URL}/#organization`
             },
@@ -192,7 +208,7 @@ export function useMuseumSeo(input: MuseumSeoInput = {}) {
             '@type': 'WebPage',
             '@id': `${SITE_URL}/#webpage`,
             'url': `${SITE_URL}/`,
-            'name': `${SITE_NAME} - Bao Tang So Dia Phuong`,
+            'name': `${SITE_NAME} - Bảo Tàng Số Địa Phương`,
             'description': SITE_DESCRIPTION,
             'isPartOf': {
               '@id': `${SITE_URL}/#website`
@@ -201,35 +217,8 @@ export function useMuseumSeo(input: MuseumSeoInput = {}) {
               '@id': `${SITE_URL}/#organization`
             }
           },
-          {
-            '@type': 'FAQPage',
-            'mainEntity': [
-              {
-                '@type': 'Question',
-                'name': 'Di sản nổi bật nhất ở Bù Đăng là gì?',
-                'acceptedAnswer': {
-                  '@type': 'Answer',
-                  'text': 'Chiến Khu Đ Bù Đăng, Trảng Cỏ Bù Lạch, Sóc Bom Bo lịch sử, không gian cồng chiêng S\'tiêng và nghề dệt thổ cẩm truyền thống.',
-                },
-              },
-              {
-                '@type': 'Question',
-                'name': 'Bảo tàng số Di Sản Bù Đăng là gì?',
-                'acceptedAnswer': {
-                  '@type': 'Answer',
-                  'text': 'Bảo tàng số Di Sản Bù Đăng là nền tảng web tương tác bảo tồn di sản văn hóa, lịch sử và thiên nhiên vùng đất Bù Đăng, Thành Phố Đồng Nai. Bao gồm bản đồ di sản, thư viện ảnh, audio guide, và góc học tập.',
-                },
-              },
-              {
-                '@type': 'Question',
-                'name': 'Bù Đăng thuộc đơn vị hành chính nào?',
-                'acceptedAnswer': {
-                  '@type': 'Answer',
-                  'text': 'Bù Đăng là xã thuộc Thành Phố Đồng Nai — thành phố trực thuộc Trung ương thứ 7 của Việt Nam.',
-                },
-              },
-            ],
-          },
+          // NOTE: FAQPage schema is owned by FAQSection.vue (matches visible FAQ content).
+          // Do not add a second FAQPage here — Google penalizes duplicate FAQPage per page.
         ]
       })
     })
@@ -262,18 +251,24 @@ export function useHeritageSeo(heritage: Ref<Heritage | null>) {
       type: 'article',
     })
 
-    // Inject enhanced LandmarkFeature schema
+    // TouristAttraction + LandmarksOrHistoricalBuildings: strongest signals for
+    // heritage/tourism entities in Google rich results and AI answers
     useHead({
       script: [
         {
           type: 'application/ld+json',
+          key: 'heritage-detail-jsonld',
           innerHTML: JSON.stringify({
             '@context': 'https://schema.org',
-            '@type': 'LandmarkFeature',
+            '@type': ['TouristAttraction', 'LandmarksOrHistoricalBuildings'],
             name: heritage.value.title,
+            alternateName: heritage.value.subtitle,
             description: heritage.value.shortDescription,
-            image: heritage.value.coverImage,
+            image: toAbsoluteUrl(heritage.value.coverImage),
             url: `${SITE_URL}${ensureTrailingSlash(`/heritage/${heritage.value.slug}`)}`,
+            isAccessibleForFree: true,
+            touristType: ['Học sinh', 'Du khách tự túc', 'Nhà nghiên cứu'],
+            hasMap: `${SITE_URL}/map/?select=${heritage.value.id}`,
             geo: {
               '@type': 'GeoCoordinates',
               latitude: heritage.value.coordinates.lat,
@@ -281,7 +276,7 @@ export function useHeritageSeo(heritage: Ref<Heritage | null>) {
             },
             containedInPlace: {
               '@type': 'AdministrativeArea',
-              name: 'Vùng đất Bù Đăng, Thành Phố Đồng Nai',
+              name: 'Thành Phố Đồng Nai',
             },
             isPartOf: {
               '@type': 'WebSite',
@@ -301,7 +296,7 @@ export function buildArticleSchema(article: NewsArticle) {
     '@type': 'NewsArticle',
     headline: article.title,
     description: article.excerpt,
-    image: article.coverImage,
+    image: toAbsoluteUrl(article.coverImage),
     datePublished: article.publishedAt,
     author: article.author ? { '@type': 'Person', name: article.author } : undefined,
     mainEntityOfPage: `${SITE_URL}${ensureTrailingSlash(`/news/${article.slug}`)}`,
@@ -320,8 +315,8 @@ export function buildArticleSchema(article: NewsArticle) {
 export function useStudySeo() {
   useMuseumSeo({
     title: 'Cổng Học Tập Số Di Sản',
-    description: 'Nền tảng học tập di sản số hóa tương tác: flashcards, quiz, AI tra cứu, thư viện tài liệu và hành trình khám phá văn hóa Xã Bù Đăng dành cho học sinh, giáo viên địa phương.',
-    image: '/images/heritage/danh-thang/rung-nguyen-sinh-lg.webp',
+    description: 'Nền tảng học tập di sản số hóa tương tác: flashcards, quiz, AI tra cứu, thư viện tài liệu và hành trình khám phá văn hóa Thành Phố Đồng Nai dành cho học sinh, giáo viên.',
+    image: '/images/heritage/op-og-preview.png',
     path: '/study',
   })
 
@@ -332,15 +327,15 @@ export function useStudySeo() {
         innerHTML: JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'EducationalOrganization',
-          name: 'Góc Học Tập Di Sản Bù Đăng',
+          name: 'Góc Học Tập Di Sản Thành Phố Đồng Nai',
           url: `${SITE_URL}/study/`,
-          description: 'Không gian học tập số về di sản văn hóa, lịch sử và thiên nhiên Xã Bù Đăng',
+          description: 'Không gian học tập số về di sản văn hóa, lịch sử và thiên nhiên Thành Phố Đồng Nai',
           provider: {
             '@type': 'Organization',
-            name: 'Di Sản Bù Đăng',
+            name: SITE_NAME,
             url: SITE_URL,
           },
-          teaches: ['Lịch sử địa phương', 'Văn hóa dân tộc thiểu số S\'tiêng', 'Di sản thiên nhiên Bù Đăng'],
+          teaches: ['Lịch sử địa phương', 'Văn hóa dân tộc thiểu số S\'tiêng', 'Di sản thiên nhiên Đồng Nai'],
           educationalLevel: ['Trung học cơ sở', 'Trung học phổ thông'],
           inLanguage: 'vi',
           availableLanguage: 'Vietnamese',
@@ -348,16 +343,16 @@ export function useStudySeo() {
             {
               '@type': 'Course',
               name: 'Lịch Sử Chiến Khu Đ',
-              description: 'Khám phá lịch sử hào hùng của căn cứ địa cách mạng Chiến Khu Đ tại Bù Đăng',
+              description: 'Khám phá lịch sử hào hùng của căn cứ địa cách mạng Chiến Khu Đ giữa đại ngàn Thành Phố Đồng Nai',
               courseCode: 'DSB-HIST-001',
-              provider: { '@type': 'Organization', name: 'Di Sản Bù Đăng' },
+              provider: { '@type': 'Organization', name: SITE_NAME },
             },
             {
               '@type': 'Course',
               name: 'Văn Hóa S\'tiêng Bản Địa',
-              description: 'Tìm hiểu thổ cẩm, cồng chiêng và ngôn ngữ S\'tiêng của đồng bào dân tộc Bù Đăng',
+              description: 'Tìm hiểu thổ cẩm, cồng chiêng và ngôn ngữ S\'tiêng của đồng bào dân tộc bản địa Thành Phố Đồng Nai',
               courseCode: 'DSB-CULT-001',
-              provider: { '@type': 'Organization', name: 'Di Sản Bù Đăng' },
+              provider: { '@type': 'Organization', name: SITE_NAME },
             },
           ],
         }),

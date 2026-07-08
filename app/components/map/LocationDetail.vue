@@ -207,6 +207,6 @@ function getGoogleMapsDirectionUrl(heritage: Heritage): string {
   if (heritage.coordinates && heritage.coordinates.lat && heritage.coordinates.lng) {
     return `https://www.google.com/maps/dir/?api=1&destination=${heritage.coordinates.lat},${heritage.coordinates.lng}`
   }
-  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(heritage.title + ' Bù Đăng Thành Phố Đồng Nai')}`
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(heritage.title + ' Thành Phố Đồng Nai')}`
 }
 </script>

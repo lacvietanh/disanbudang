@@ -1,6 +1,6 @@
 import type { HeritageQuiz, Badge } from '~/types'
 
-export const MOCK_QUIZZES: HeritageQuiz[] = [
+export const QUIZZES: HeritageQuiz[] = [
   {
     id: 'quiz-001',
     heritageId: 'hrt-001',
@@ -284,7 +284,7 @@ export const MOCK_QUIZZES: HeritageQuiz[] = [
   },
 ]
 
-export const MOCK_BADGES: Badge[] = [
+export const BADGES: Badge[] = [
   {
     id: 'badge-chien-khu',
     name: 'Chiến Binh Chiến Khu Đ',
@@ -315,7 +315,7 @@ export const MOCK_BADGES: Badge[] = [
   {
     id: 'badge-explorer',
     name: 'Nhà Khám Phá Di Sản',
-    description: 'Hoàn thành tất cả các quiz về di sản Bù Đăng',
+    description: 'Hoàn thành tất cả các quiz về di sản Thành Phố Đồng Nai',
     icon: 'mdi:compass',
     color: '#B87333',
     condition: 'completedQuizzes.length >= 11',

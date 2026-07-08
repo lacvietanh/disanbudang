@@ -14,19 +14,19 @@
         <!-- Brand Column -->
         <div class="lg:col-span-1 space-y-6">
           <div class="flex items-center gap-3">
-            <NuxtImg src="/favicon/icon-192.png" alt="Logo Di Sản Bù Đăng" class="h-14 lg:h-16 w-auto object-contain" />
-            <div class="flex flex-col justify-center text-left">
-              <span class="font-heading font-bold text-ivory text-sm lg:text-base leading-tight">
+            <NuxtImg src="/favicon/icon-192.png" alt="Logo Di Sản Thành Phố Đồng Nai" class="h-14 lg:h-16 w-auto object-contain shrink-0" />
+            <div class="flex flex-col justify-center text-left min-w-0">
+              <span class="font-heading font-bold text-ivory text-sm lg:text-base leading-tight whitespace-nowrap">
                 Di Sản
               </span>
-              <span class="font-heading font-bold text-gold-400 text-sm lg:text-base leading-tight -mt-0.5">
-                Bù Đăng
+              <span class="font-heading font-bold text-gold-400 text-sm lg:text-base leading-tight -mt-0.5 whitespace-nowrap">
+                Đồng Nai
               </span>
             </div>
           </div>
           <p class="text-charcoal-300 text-sm leading-relaxed">
-            Dự án bảo tồn và tôn vinh di sản văn hóa, lịch sử và thiên nhiên vùng đất Bù Đăng.
-            Linh hồn đại ngàn trong lòng Thành Phố Đồng Nai.
+            Dự án bảo tồn và tôn vinh di sản văn hóa, lịch sử và thiên nhiên khắp Thành Phố Đồng Nai —
+            từ Biên Hòa, Sóc Bom Bo đến Chiến Khu Đ, núi Bà Rá và Chốt Chỉ Huy Tà Thiết.
           </p>
 
         </div>
@@ -53,7 +53,7 @@
             <p class="flex items-start gap-2">
               <Icon name="mdi:map-marker-outline" class="w-4 h-4 text-gold-500 mt-0.5 shrink-0" />
               <span class="sr-only">Địa chỉ</span>
-              Vùng đất Bù Đăng, Thành Phố Đồng Nai
+              Thành Phố Đồng Nai, Việt Nam
             </p>
             <p class="flex items-center gap-2">
               <Icon name="mdi:phone-outline" class="w-4 h-4 text-gold-500 shrink-0" />
@@ -77,7 +77,7 @@
           <div class="flex items-center gap-1">
             <span>Người thực hiện:</span>
             <span class="text-gold-400 font-medium mx-1">Nguyễn Xuân Kiệt</span>
-            <span>• Cổng di sản Bù Đăng, Thành Phố Đồng Nai</span>
+            <span>• Cổng di sản số Thành Phố Đồng Nai</span>
           </div>
       </div>
     </div>
@@ -101,7 +101,7 @@ const footerLinks = [
   {
     title: 'Thông Tin & Đối Tác',
     links: [
-      { to: '/about', label: 'Về Di Sản Bù Đăng' },
+      { to: '/about', label: 'Về Dự Án' },
       { to: '/news', label: 'Bài Viết & Sự Kiện' },
       { to: '/invest', label: 'Cơ Hội Đầu Tư' },
       { to: '/contribute', label: 'Đóng Góp Di Sản' },

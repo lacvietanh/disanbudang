@@ -35,7 +35,13 @@
 
           <!-- Info + Progress -->
           <div class="flex-1 min-w-0">
-            <p class="text-ivory text-sm font-medium truncate">{{ audio.currentTrack.title }}</p>
+            <NuxtLink
+              v-if="heritageSlug"
+              :to="`/heritage/${heritageSlug}`"
+              class="block text-ivory text-sm font-medium truncate hover:text-gold-300 transition-colors"
+              title="Mở trang chi tiết di sản"
+            >{{ audio.currentTrack.title }}</NuxtLink>
+            <p v-else class="text-ivory text-sm font-medium truncate">{{ audio.currentTrack.title }}</p>
             <p class="text-charcoal-400 text-xs truncate">
               {{ audio.errorMessage || audio.currentTrack.narrator }}
             </p>
@@ -73,6 +79,13 @@
             >
               {{ audio.playbackRate }}x
             </button>
+            <button
+              class="hidden sm:flex w-8 h-8 rounded-full items-center justify-center text-charcoal-400 hover:text-ivory transition-colors"
+              aria-label="Tua lại 15 giây"
+              @click="audio.skip(-15)"
+            >
+              <Icon name="mdi:rewind-15" class="w-5 h-5" />
+            </button>
             <div class="relative">
               <!-- Pulsing ring when playing -->
               <div
@@ -92,6 +105,13 @@
               </button>
             </div>
             <button
+              class="hidden sm:flex w-8 h-8 rounded-full items-center justify-center text-charcoal-400 hover:text-ivory transition-colors"
+              aria-label="Tua tới 15 giây"
+              @click="audio.skip(15)"
+            >
+              <Icon name="mdi:fast-forward-15" class="w-5 h-5" />
+            </button>
+            <button
               class="w-8 h-8 rounded-full flex items-center justify-center text-charcoal-400 hover:text-ivory transition-colors"
               aria-label="Đóng trình phát audio"
               @click="audio.closeMiniPlayer()"
@@ -107,6 +127,12 @@
 
 <script setup lang="ts">
 const audio = useAudioStore()
+const heritageStore = useHeritageStore()
+
+const heritageSlug = computed(() => {
+  if (!audio.heritageId) return null
+  return heritageStore.getById(audio.heritageId)?.slug ?? null
+})
 
 function onProgressClick(e: MouseEvent) {
   const target = e.currentTarget as HTMLElement

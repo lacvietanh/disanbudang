@@ -6,7 +6,7 @@
     <div class="container-heritage relative z-10">
       <div class="mb-12 max-w-3xl reveal">
         <span class="section-label text-gold-400">Dòng Thời Gian Văn Hóa</span>
-        <h2 class="section-title text-ivory">Dòng Chảy Lịch Sử & Bản Sắc Bù Đăng</h2>
+        <h2 class="section-title text-ivory">Dòng Chảy Lịch Sử & Bản Sắc Đồng Nai</h2>
         <p class="section-desc text-charcoal-300">Nhấp chọn từng thời kỳ để khám phá chiều sâu lịch sử, từ thuở sơ khai kiến tạo buôn làng đến kỷ nguyên số hóa di sản.</p>
       </div>
 
@@ -82,7 +82,7 @@
           />
           <div class="absolute inset-0 bg-gradient-to-t from-charcoal-900 via-charcoal-900/40 to-transparent" />
           <div class="absolute bottom-6 left-6 right-6 z-10">
-            <p class="eyebrow text-gold-400 text-3xs">Chụp tại Bù Đăng</p>
+            <p class="eyebrow text-gold-400 text-3xs">Chụp tại Thành Phố Đồng Nai</p>
             <h4 class="font-heading font-bold text-ivory text-lg mt-1">{{ activeEra.imageTitle }}</h4>
           </div>
         </div>
@@ -108,7 +108,7 @@ const timeline = [
   {
     year: '1945–1975',
     title: 'Rừng thành căn cứ oai hùng',
-    description: 'Đại ngàn Bù Đăng trở thành chiếc nôi che chở lực lượng cách mạng miền Đông. Ký ức Chiến Khu Đ khắc sâu lòng yêu nước nồng nàn của đồng bào thiểu số, cùng những lớp học kháng chiến dưới tán cây rừng bất khuất.',
+    description: 'Đại ngàn miền Đông Nam Bộ trở thành chiếc nôi che chở lực lượng cách mạng. Ký ức Chiến Khu Đ khắc sâu lòng yêu nước nồng nàn của đồng bào thiểu số, cùng những lớp học kháng chiến dưới tán cây rừng bất khuất.',
     quote: 'Mỗi gốc cây là một người lính, mỗi buôn làng là một pháo đài nuôi giấu bộ đội.',
     artifact: 'Bia di tích Chiến Khu Đ',
     related: 'Chiến Khu Đ, Nhà Giáo Kháng Chiến',
@@ -128,10 +128,10 @@ const timeline = [
   {
     year: 'Kỷ nguyên số',
     title: 'Số hóa & Kết nối thế giới',
-    description: 'Bản đồ tương tác đa năng, audio guide tự nhiên, mã QR tra cứu di tích và kho lưu trữ số hóa do cộng đồng đóng góp giúp di sản Bù Đăng vươn xa, kết nối thế hệ trẻ trong và ngoài nước.',
-    quote: 'Bảo tàng số đưa lịch sử Bù Đăng vượt không gian đến gần hơn với những người con xa xứ và du khách toàn cầu.',
+    description: 'Bản đồ tương tác đa năng, audio guide tự nhiên, mã QR tra cứu di tích và kho lưu trữ số hóa do cộng đồng đóng góp giúp di sản Thành Phố Đồng Nai vươn xa, kết nối thế hệ trẻ trong và ngoài nước.',
+    quote: 'Bảo tàng số đưa lịch sử Đồng Nai vượt không gian đến gần hơn với những người con xa xứ và du khách toàn cầu.',
     artifact: 'Bản đồ di sản thông minh',
-    related: 'Cổng thông tin Di Sản Bù Đăng',
+    related: 'Cổng thông tin Di Sản Đồng Nai',
     image: '/images/heritage/danh-thang/thac-dung-md.webp',
     imageTitle: 'Không gian số hóa danh thắng Thác Mơ',
   },

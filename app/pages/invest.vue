@@ -21,11 +21,11 @@
         <div class="max-w-3xl">
           <span class="eyebrow text-gold-400 mb-4 block">CƠ HỘI PHÁT TRIỂN</span>
           <h1 class="font-heading font-bold text-ivory text-5xl lg:text-6xl leading-[1.28] mb-6 text-shadow-hero">
-            Đầu Tư<br/>
-            <span class="text-gradient-gold">Bù Đăng</span>
+            Đầu Tư Vùng<br/>
+            <span class="text-gradient-gold">Cao Nguyên Đồng Nai</span>
           </h1>
           <p class="text-charcoal-300 text-lg max-w-xl leading-relaxed mb-8">
-            Khám phá tiềm năng kinh tế, hạ tầng và chính sách ưu đãi dành cho các nhà đầu tư tại vùng đất Bù Đăng giàu bản sắc — viên ngọc thiên nhiên và văn hóa của Thành Phố Đồng Nai.
+            Khám phá tiềm năng kinh tế, hạ tầng và chính sách ưu đãi dành cho các nhà đầu tư tại vùng cao nguyên đất đỏ bazan giàu bản sắc, viên ngọc thiên nhiên và văn hóa của Thành Phố Đồng Nai.
           </p>
           <div class="flex flex-wrap gap-4">
             <a href="mailto:nguyenxuankiet294@gmail.com" class="btn-primary">
@@ -60,7 +60,7 @@
         <span class="eyebrow text-gold-400 mb-3 block">LĨNH VỰC ƯU TIÊN</span>
         <h2 class="font-heading font-bold text-ivory text-3xl lg:text-4xl mb-4">Cơ Hội Đầu Tư Nổi Bật</h2>
         <p class="text-charcoal-300 text-base leading-relaxed">
-          Vùng đất Bù Đăng thuộc Thành Phố Đồng Nai mang lợi thế độc đáo: quỹ đất sạch, hệ sinh thái phong phú, văn hóa bản địa đậm sắc và chính sách ưu đãi rõ ràng.
+          Vùng cao nguyên thuộc Thành Phố Đồng Nai mang lợi thế độc đáo: quỹ đất sạch, hệ sinh thái phong phú, văn hóa bản địa đậm sắc và chính sách ưu đãi rõ ràng.
         </p>
       </div>
 
@@ -94,9 +94,9 @@
         <div class="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <span class="eyebrow text-forest-400 mb-3 block">LỢI THẾ ĐỊA PHƯƠNG</span>
-            <h2 class="font-heading font-bold text-ivory text-3xl lg:text-4xl mb-5">Tại Sao Chọn Vùng Đất Bù Đăng — Thành Phố Đồng Nai?</h2>
+            <h2 class="font-heading font-bold text-ivory text-3xl lg:text-4xl mb-5">Tại Sao Chọn Vùng Cao Nguyên Thành Phố Đồng Nai?</h2>
             <p class="text-charcoal-300 text-base leading-relaxed mb-8">
-              Vùng đất Bù Đăng thuộc Thành Phố Đồng Nai hội tụ đầy đủ các yếu tố thuận lợi: vị trí chiến lược, tài nguyên thiên nhiên phong phú, cộng đồng bản địa giàu văn hóa và khung pháp lý minh bạch.
+              Khu vực cao nguyên đất đỏ bazan thuộc Thành Phố Đồng Nai hội tụ đầy đủ các yếu tố thuận lợi: vị trí chiến lược, tài nguyên thiên nhiên phong phú, cộng đồng bản địa giàu văn hóa và khung pháp lý minh bạch.
             </p>
             <div class="space-y-4">
               <div v-for="adv in advantages" :key="adv.title" class="flex items-start gap-4">
@@ -115,12 +115,12 @@
             <div class="rounded-3xl overflow-hidden aspect-[4/3] border border-charcoal-800 shadow-2xl">
               <img
                 src="/images/heritage/danh-thang/rung-nguyen-sinh-lg.webp"
-                alt="Tài nguyên thiên nhiên Bù Đăng"
+                alt="Tài nguyên thiên nhiên Thành Phố Đồng Nai"
                 class="w-full h-full object-cover"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950/70 via-transparent to-transparent" />
               <div class="absolute bottom-6 left-6 right-6">
-                <p class="text-ivory font-heading font-bold text-lg">Rừng Nguyên Sinh Bù Đăng</p>
+                <p class="text-ivory font-heading font-bold text-lg">Rừng Nguyên Sinh Đồng Nai</p>
                 <p class="text-charcoal-300 text-sm">Tài nguyên sinh thái bảo tồn nguyên vẹn</p>
               </div>
             </div>
@@ -137,7 +137,7 @@
           <Icon name="mdi:handshake-outline" class="w-12 h-12 text-gold-400 mx-auto mb-4" />
           <h3 class="font-heading font-bold text-ivory text-2xl lg:text-3xl mb-3">Sẵn Sàng Hợp Tác?</h3>
           <p class="text-charcoal-300 text-base max-w-lg mx-auto mb-7 leading-relaxed">
-            Đội ngũ dự án Di Sản Bù Đăng sẵn sàng kết nối bạn với các cơ quan hữu quan và tư vấn cơ hội đầu tư phù hợp.
+            Đội ngũ dự án Di Sản Đồng Nai sẵn sàng kết nối bạn với các cơ quan hữu quan và tư vấn cơ hội đầu tư phù hợp.
           </p>
           <div class="flex flex-wrap gap-4 justify-center">
             <NuxtLink to="/contact" class="btn-primary">
@@ -161,8 +161,8 @@ import type { InvestmentOpportunity } from '~/types'
 definePageMeta({ layout: 'default' })
 
 useMuseumSeo({
-  title: 'Đầu Tư Bù Đăng - Tiềm năng và Cơ hội',
-  description: 'Thông tin quy hoạch, hạ tầng và các cơ hội đầu tư phát triển kinh tế tại vùng đất Bù Đăng, Thành Phố Đồng Nai.'
+  title: 'Đầu Tư Vùng Cao Nguyên Đồng Nai',
+  description: 'Thông tin quy hoạch, hạ tầng và các cơ hội đầu tư phát triển kinh tế tại vùng cao nguyên Thành Phố Đồng Nai.'
 })
 
 const keyStats = [

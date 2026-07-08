@@ -1,6 +1,6 @@
 import type { Heritage } from '~/types'
 
-export const MOCK_HERITAGES: Heritage[] = [
+export const HERITAGES: Heritage[] = [
   {
     id: 'hrt-001',
     slug: 'can-cu-nua-lon-bu-dang',
@@ -20,7 +20,7 @@ export const MOCK_HERITAGES: Heritage[] = [
     ],
     coordinates: { lat: 11.8462, lng: 107.1680 }, // Vùng rừng Bù Đăng — khu vực di tích căn cứ
     shortDescription:
-      'Căn cứ Nửa Lon là di tích lịch sử cách mạng nổi bật tại huyện Bù Đăng, Thành phố Đồng Nai. Ra đời trong những năm kháng chiến chống Mỹ gian khổ (1960–1965), nơi đây gắn liền với tên gọi đầy xúc động khi mỗi cán bộ, chiến sĩ chỉ được chia khẩu phần ăn nửa lon gạo mỗi ngày để nhường cơm cho đồng bào và tiền tuyến, trở thành biểu tượng kiên cường của tinh thần vượt khó và tình quân dân thắm thiết.',
+      'Căn cứ Nửa Lon là di tích lịch sử cách mạng nổi bật tại Xã Bù Đăng, Thành Phố Đồng Nai. Ra đời trong những năm kháng chiến chống Mỹ gian khổ (1960-1965), nơi đây gắn liền với tên gọi đầy xúc động khi mỗi cán bộ, chiến sĩ chỉ được chia khẩu phần ăn nửa lon gạo mỗi ngày để nhường cơm cho đồng bào và tiền tuyến, trở thành biểu tượng kiên cường của tinh thần vượt khó và tình quân dân thắm thiết.',
     longStory: `Nằm sâu trong những cánh rừng già của vùng đất Bù Đăng, di tích Căn cứ Nửa Lon là minh chứng sống động cho ý chí thép và tình đoàn kết keo sơn giữa quân và dân trong cuộc kháng chiến chống Mỹ cứu nước.
 
 Tên gọi "Nửa Lon" thân thương mà oai hùng bắt đầu từ giai đoạn khó khăn nhất của cách mạng miền Nam vào những năm 1960 - 1965. Khi đó, nguồn tiếp tế lương thực bị cắt đứt, toàn bộ chiến sĩ và đồng bào dân tộc S'tiêng tại căn cứ phải đối mặt với nạn đói trầm trọng. Để duy trì sự sống và tiếp tục chiến đấu, mỗi người chỉ được phân chia khẩu phần ăn đúng nửa lon gạo mỗi ngày. Thế nhưng, trong gian khổ ấy, người dân Bù Đăng vẫn sẵn lòng nhường cơm sẻ áo, giã gạo nuôi quân thâu đêm như tại sóc Bom Bo để dành những hạt gạo quý giá nhất cho bộ đội chủ lực.
@@ -809,8 +809,8 @@ Bảo tàng là điểm giáo dục truyền thống cách mạng quan trọng, 
   },
 ]
 
-export const getFeaturedHeritages = () => MOCK_HERITAGES.filter((h) => h.featured)
-export const getHeritageBySlug = (slug: string) => MOCK_HERITAGES.find((h) => h.slug === slug)
-export const getHeritageById = (id: string) => MOCK_HERITAGES.find((h) => h.id === id)
+export const getFeaturedHeritages = () => HERITAGES.filter((h) => h.featured)
+export const getHeritageBySlug = (slug: string) => HERITAGES.find((h) => h.slug === slug)
+export const getHeritageById = (id: string) => HERITAGES.find((h) => h.id === id)
 export const getHeritagesByCategory = (category: string) =>
-  MOCK_HERITAGES.filter((h) => h.category === category)
+  HERITAGES.filter((h) => h.category === category)

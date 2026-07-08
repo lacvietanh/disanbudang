@@ -3,27 +3,42 @@
     <!-- 1. Hero cinematic slideshow -->
     <HeroSection />
 
-    <!-- 2. Di sản nổi bật — editorial magazine -->
+    <!-- 2. Lời dẫn — linh hồn đại ngàn, thiết lập bối cảnh cảm xúc -->
+    <StorytellingIntro />
+
+    <!-- 3. Di sản nổi bật — editorial magazine -->
     <FeaturedHeritage />
 
-    <!-- 3. Khám phá qua công nghệ — bento grid -->
+    <!-- 4. Khám phá qua công nghệ — bento grid: bản đồ, thư viện, audio, học tập -->
     <ExperiencesSection />
 
-    <!-- 4. Ký ức cộng đồng — dark editorial -->
+    <!-- 5. Dòng chảy lịch sử — timeline tương tác theo thời kỳ -->
+    <CulturalTimelineSection />
+
+    <!-- 6. Audio Guide — trình phát thật, nghe ngay tại trang chủ -->
+    <AudioGuideSection />
+
+    <!-- 7. Quiz thật + sưu tập huy hiệu -->
+    <QuizSection />
+
+    <!-- 8. Ký ức cộng đồng — dark editorial -->
     <CommunityStoriesSection />
 
-    <!-- 5. FAQ — SEO -->
+    <!-- 9. Bài viết & sự kiện mới nhất -->
+    <NewsSection />
+
+    <!-- 10. FAQ — SEO -->
     <FAQSection />
 
-    <!-- 6. Closing CTA — cinematic -->
+    <!-- 11. Closing CTA — cinematic -->
     <ClosingCTASection />
   </div>
 </template>
 
 <script setup lang="ts">
 useMuseumSeo({
-  description: 'Bảo tàng số di sản văn hóa, lịch sử và thiên nhiên vùng đất Bù Đăng — linh hồn đại ngàn trong lòng Thành Phố Đồng Nai. Khám phá qua không gian số hiện đại sống động.',
-  image: '/images/heritage/danh-thang/rung-nguyen-sinh-lg.webp',
+  description: 'Bảo tàng số di sản văn hóa, lịch sử và thiên nhiên Thành Phố Đồng Nai. Bản đồ tương tác, audio guide và góc học tập.',
+  image: '/images/og-default.jpg',
 })
 
 definePageMeta({ layout: 'default' })

@@ -129,7 +129,7 @@
             </blockquote>
 
             <p class="text-charcoal-300 text-base leading-relaxed mb-8">
-              Di sản văn hóa phi vật thể của vùng đất Bù Đăng đang đối mặt nguy cơ mai một khi
+              Di sản văn hóa phi vật thể của Thành Phố Đồng Nai đang đối mặt nguy cơ mai một khi
               chưa có nền tảng số hóa xứng tầm. Dự án ra đời để thay đổi điều đó — biến ký ức
               thành dữ liệu sống, biến lịch sử thành trải nghiệm.
             </p>
@@ -196,7 +196,7 @@
                 </div>
               </div>
               <div class="w-full h-px bg-charcoal-800 my-2" />
-              <p class="text-charcoal-400 text-[10px] leading-relaxed">7 tháng khảo sát thực địa tại Bù Đăng</p>
+              <p class="text-charcoal-400 text-[10px] leading-relaxed">7 tháng khảo sát thực địa khắp Thành Phố Đồng Nai</p>
             </div>
 
             <!-- Gold accent line -->
@@ -244,6 +244,54 @@
       </div>
     </section>
 
+    <!-- ══════════════════════════════════════════════════════════
+         3B. MỘT THÀNH PHỐ ĐƯỢC SINH RA — bối cảnh hành chính thật
+         ══════════════════════════════════════════════════════════ -->
+    <section class="py-24 lg:py-32 bg-forest-deep border-t border-charcoal-800/60 relative overflow-hidden">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[1px] bg-gradient-to-r from-transparent via-gold-500/40 to-transparent" />
+      <div class="container-heritage relative z-10">
+        <div class="text-center mb-16 reveal max-w-2xl mx-auto">
+          <div class="flex items-center justify-center gap-3 mb-4">
+            <span class="w-8 h-px bg-gold-400" />
+            <span class="text-gold-400 text-[10px] uppercase tracking-[0.3em] font-bold">Bối Cảnh Hành Chính</span>
+            <span class="w-8 h-px bg-gold-400" />
+          </div>
+          <h2 class="font-heading font-bold text-ivory text-3xl lg:text-5xl mb-5">
+            Một Thành Phố Được Sinh Ra
+          </h2>
+          <p class="text-charcoal-300 text-base leading-relaxed">
+            Chưa đầy hai năm, bản đồ hành chính nơi dự án này bắt đầu đã thay đổi hoàn toàn.
+            Đây là lý do "Di Sản Đồng Nai" không còn dừng lại ở một vùng đất.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-5 lg:gap-6 max-w-5xl mx-auto reveal">
+          <div
+            v-for="(step, i) in cityFormationSteps"
+            :key="step.date"
+            class="relative rounded-3xl border border-charcoal-800/60 bg-charcoal-950/60 backdrop-blur-sm p-7 hover:border-gold-500/30 transition-all duration-500"
+          >
+            <span class="font-heading font-bold text-ivory/8 text-7xl leading-none absolute top-4 right-5 select-none pointer-events-none">{{ String(i + 1).padStart(2, '0') }}</span>
+            <div class="relative z-10">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/25 text-gold-400 text-[10px] font-bold uppercase tracking-widest mb-4">
+                <Icon name="mdi:calendar-check-outline" class="w-3 h-3" />
+                {{ step.date }}
+              </span>
+              <h3 class="font-heading font-bold text-ivory text-lg mb-2 leading-snug">{{ step.title }}</h3>
+              <p class="text-charcoal-300 text-sm leading-relaxed">{{ step.desc }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick facts strip -->
+        <div class="mt-10 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 max-w-4xl mx-auto reveal">
+          <div v-for="fact in cityQuickFacts" :key="fact.label" class="text-center">
+            <p class="font-heading font-bold text-gold-400 text-2xl">{{ fact.value }}</p>
+            <p class="text-charcoal-500 text-[10px] uppercase tracking-wider font-semibold mt-0.5">{{ fact.label }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- ══════════════════════════════════════════════════════════
          4. PILLARS — 4 trụ cột với thumbnail images
@@ -374,7 +422,7 @@
 
               <p class="text-charcoal-300 text-base leading-relaxed mb-6">
                 Đề tài nghiên cứu khoa học học sinh — được thực hiện qua <strong class="text-ivory">7 tháng khảo sát thực địa</strong>,
-                gặp gỡ già làng, nghệ nhân S'tiêng tại Bù Đăng, Phước Long, Lộc Ninh để thu thập tư liệu
+                gặp gỡ già làng, nghệ nhân S'tiêng khắp Thành Phố Đồng Nai để thu thập tư liệu
                 lịch sử, âm thanh và hình ảnh nguyên bản nhất.
               </p>
 
@@ -485,6 +533,28 @@ useMuseumSeo({
   description: 'Dự án số hóa di sản văn hóa Thành Phố Đồng Nai — nền tảng bảo tồn và giáo dục lịch sử địa phương tại thành phố trực thuộc Trung ương thứ 7 của Việt Nam.',
 })
 
+// AboutPage schema per RULE-seo page-type matrix
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'AboutPage',
+        name: 'Giới Thiệu Dự Án Di Sản Đồng Nai',
+        url: 'https://disanbudang.com/about/',
+        about: { '@id': 'https://disanbudang.com/#organization' },
+        mainEntity: {
+          '@type': 'Person',
+          '@id': 'https://disanbudang.com/#author',
+          name: 'Nguyễn Xuân Kiệt',
+          jobTitle: 'Học sinh - Tác giả dự án',
+        },
+      }),
+    },
+  ],
+})
+
 const heritageStore = useHeritageStore()
 const totalCount = computed(() => heritageStore.totalCount)
 
@@ -502,7 +572,7 @@ const slides = [
   },
   {
     image: '/images/heritage/img-disanbudang/chien-khu-D.png',
-    alt: 'Chiến khu Đ Bù Đăng',
+    alt: 'Chiến Khu Đ, Thành Phố Đồng Nai',
     position: 'center center',
   },
 ]
@@ -569,6 +639,33 @@ const problems = [
 // ── STATS with count-up ──
 const statsSection = ref<HTMLElement | null>(null)
 const statsAnimated = ref(false)
+
+// Real administrative timeline — verified against Nghị quyết 202/2025/QH15 (sáp nhập tỉnh)
+// và Nghị quyết thành lập thành phố Đồng Nai, hiệu lực 30/4/2026 (Quốc hội khóa XVI)
+const cityFormationSteps = [
+  {
+    date: '01/07/2025',
+    title: 'Bình Phước hợp nhất vào Đồng Nai',
+    desc: 'Tỉnh Bình Phước sáp nhập vào tỉnh Đồng Nai theo Nghị quyết 202/2025/QH15. Huyện Bù Đăng cũ giải thể, tái cơ cấu thành 6 xã mới, trong đó có Xã Bù Đăng.',
+  },
+  {
+    date: '30/04/2026',
+    title: 'Đồng Nai lên thành phố trực thuộc Trung ương',
+    desc: 'Quốc hội thông qua Nghị quyết thành lập thành phố Đồng Nai, đưa Đồng Nai trở thành thành phố trực thuộc Trung ương thứ 7 của Việt Nam, sau Hà Nội, TP.HCM, Hải Phòng, Đà Nẵng, Cần Thơ và Huế.',
+  },
+  {
+    date: 'Hôm nay',
+    title: 'Bản đồ di sản mở rộng theo địa giới mới',
+    desc: 'Dự án số hóa mở rộng phạm vi khỏi vùng đất Bù Đăng ban đầu, hướng tới ghi lại di sản văn hóa, lịch sử và thiên nhiên trên toàn bộ 95 xã, phường của Thành Phố Đồng Nai.',
+  },
+]
+
+const cityQuickFacts = [
+  { value: '95', label: 'Xã, phường' },
+  { value: '12.700+', label: 'km² diện tích' },
+  { value: '4,5tr', label: 'Dân số' },
+  { value: 'Hạng 4', label: 'Kinh tế cả nước' },
+]
 
 const rawStats = computed(() => [
   { icon: 'mdi:castle', label: 'Di sản số hóa', raw: totalCount.value || 16, suffix: '', iconBg: 'bg-gold-500/10 group-hover:bg-gold-500/20', iconColor: 'text-gold-400' },
@@ -671,7 +768,7 @@ const roadmap = computed(() => [
     time: 'Giai đoạn hiện tại',
     active: true,
     title: 'Số hóa thí điểm',
-    desc: `${totalCount.value} di sản tiêu biểu tại Bù Đăng, Phước Long, Lộc Ninh đã được số hóa và triển khai thí điểm trong các tiết học giáo dục địa phương.`,
+    desc: `${totalCount.value} di sản tiêu biểu khắp Thành Phố Đồng Nai đã được số hóa và triển khai thí điểm trong các tiết học giáo dục địa phương.`,
   },
   {
     time: 'Giai đoạn tiếp theo',

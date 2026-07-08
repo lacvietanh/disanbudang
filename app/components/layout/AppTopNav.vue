@@ -1,26 +1,26 @@
 <template>
   <header
-    class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-[env(safe-area-inset-top,0px)]"
+    class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-[env(safe-area-inset-top,0px)] bg-dark-earth"
     :class="[
       isScrolled
-        ? 'bg-charcoal-950/95 backdrop-blur-xl border-b border-gold-500/10 shadow-lg shadow-charcoal-950/40 py-1'
-        : 'bg-charcoal-950/90 backdrop-blur-xl border-b border-charcoal-800/25 py-2',
+        ? 'backdrop-blur-xl border-b border-gold-500/15 shadow-lg shadow-charcoal-950/50 py-1'
+        : 'backdrop-blur-xl border-b border-gold-500/5 py-2',
     ]"
   >
     <div class="container-heritage">
       <nav class="flex items-center justify-between h-[72px]">
         <!-- Logo -->
         <NuxtLink to="/" class="flex items-center gap-3 group">
-          <NuxtImg src="/favicon/icon-192.png" alt="Logo Di Sản Bù Đăng" class="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
-          <div class="hidden md:flex flex-col justify-center text-left">
-            <span class="font-heading font-bold text-ivory text-sm lg:text-base leading-tight group-hover:text-gold-300 transition-colors duration-300">
+          <NuxtImg src="/favicon/icon-192.png" alt="Logo Di Sản Thành Phố Đồng Nai" class="h-10 sm:h-12 w-auto object-contain shrink-0 transition-transform duration-300 group-hover:scale-105" />
+          <div class="hidden md:flex flex-col justify-center text-left min-w-0">
+            <span class="font-heading font-bold text-ivory text-sm lg:text-base leading-tight whitespace-nowrap group-hover:text-gold-300 transition-colors duration-300">
               Di Sản
             </span>
-            <span class="font-heading font-bold text-gold-400 text-sm lg:text-base leading-tight group-hover:text-gold-300 transition-colors duration-300 -mt-0.5">
-              Bù Đăng
+            <span class="font-heading font-bold text-gold-400 text-sm lg:text-base leading-tight whitespace-nowrap -mt-0.5 group-hover:text-gold-300 transition-colors duration-300">
+              Đồng Nai
             </span>
-            <span class="hidden xl:block text-[9px] text-charcoal-400 tracking-[0.12em] uppercase font-normal mt-1 leading-none animate-fade-in">
-              Thành Phố Đồng Nai
+            <span class="hidden xl:block text-[9px] text-charcoal-400 tracking-[0.12em] uppercase font-normal mt-1 leading-none whitespace-nowrap">
+              Bảo Tàng Số Di Sản
             </span>
           </div>
         </NuxtLink>
@@ -28,13 +28,13 @@
         <!-- Desktop Nav -->
         <ul class="hidden xl:flex items-center gap-1.5 xl:gap-2.5" aria-label="Menu điều hướng chính">
           <li v-for="item in navItems" :key="item.to">
-            <!-- Đóng Góp gets special pill style to drive conversions -->
+            <!-- Đóng Góp: solid gold fill drives conversions, no pill-shaped border
+                 (a bordered rounded-full pill around short text reads visually as
+                 "( Đóng Góp )" — solid fill removes that bracket illusion) -->
             <NuxtLink
               v-if="item.to === '/contribute'"
               :to="item.to"
-              active-class=""
-              exact-active-class=""
-              class="px-3 py-1.5 xl:px-4 xl:py-2 rounded-full text-xs xl:text-sm font-semibold whitespace-nowrap transition-all duration-300 border border-gold-500/40 text-gold-450 hover:bg-gold-500 hover:text-charcoal-900 hover:border-gold-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500 focus-visible:outline-offset-2"
+              class="px-4 py-2 rounded-lg text-xs xl:text-sm font-bold whitespace-nowrap transition-all duration-300 bg-gold-500 text-charcoal-950 hover:bg-gold-400 shadow-md shadow-gold-500/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500 focus-visible:outline-offset-2"
             >
               <span class="flex items-center gap-1.5">
                 <Icon name="mdi:hand-heart-outline" class="w-3.5 h-3.5" />
@@ -45,7 +45,7 @@
             <NuxtLink
               v-else
               :to="item.to"
-              class="px-2 py-1 xl:px-3 xl:py-2 rounded-full text-xs xl:text-sm font-medium whitespace-nowrap transition-all duration-300 text-ivory/80 hover:text-ivory hover:bg-ivory/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500 focus-visible:outline-offset-2"
+              class="px-2 py-1 xl:px-3 xl:py-2 rounded-lg text-xs xl:text-sm font-medium whitespace-nowrap transition-all duration-300 text-ivory/80 hover:text-ivory hover:bg-ivory/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500 focus-visible:outline-offset-2"
               active-class="text-gold-400 bg-gold-500/10"
             >
               {{ item.label }}
@@ -98,7 +98,7 @@
     <Transition name="mobile-menu">
       <div
         v-if="isMobileOpen"
-        class="xl:hidden bg-charcoal-900/98 backdrop-blur-xl border-t border-earth-800/30"
+        class="xl:hidden bg-dark-earth backdrop-blur-xl border-t border-gold-500/15"
       >
         <div class="container-heritage py-6 space-y-1" aria-label="Menu di động">
           <NuxtLink

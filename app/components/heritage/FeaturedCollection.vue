@@ -2,7 +2,7 @@
   <BaseSection
     label="Tuyển Chọn Đặc Biệt"
     title="Ký Ức Di Sản Nổi Bật"
-    description="Khám phá những khoảnh khắc đắt giá ghi lại giá trị văn hóa và vẻ đẹp thiên nhiên trường tồn của Bù Đăng."
+    description="Khám phá những khoảnh khắc đắt giá ghi lại giá trị văn hóa và vẻ đẹp thiên nhiên trường tồn của Thành Phố Đồng Nai."
     class="bg-charcoal-950 border-y border-charcoal-850"
   >
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
