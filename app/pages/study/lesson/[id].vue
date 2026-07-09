@@ -2,7 +2,7 @@
   <div class="min-h-screen bg-charcoal-900 text-ivory pt-[72px]">
     <!-- 404 state -->
     <div v-if="!lesson" class="container-heritage py-24 text-center space-y-4">
-      <Icon name="mdi:book-off-outline" class="w-14 h-14 text-charcoal-700 mx-auto" />
+      <Icon name="mdi:book-off-outline" class="w-14 h-14 text-charcoal-400 mx-auto" />
       <h1 class="text-2xl font-heading font-bold text-ivory">Không tìm thấy bài học</h1>
       <p class="text-charcoal-400 text-sm">Bài học này chưa tồn tại hoặc đã được di chuyển.</p>
       <NuxtLink to="/study" class="btn-primary text-sm mt-4">Quay về Góc Học Tập</NuxtLink>
@@ -58,7 +58,7 @@
           <!-- LEFT: TOC sticky sidebar -->
           <aside class="lg:w-56 shrink-0">
             <div class="lg:sticky lg:top-24 space-y-2">
-              <p class="text-3xs font-bold uppercase tracking-widest text-charcoal-600 mb-3">Nội dung bài học</p>
+              <p class="text-3xs font-bold uppercase tracking-widest text-charcoal-400 mb-3">Nội dung bài học</p>
               <nav class="space-y-1" aria-label="Mục lục bài học">
                 <a
                   v-for="section in toc"
@@ -67,11 +67,11 @@
                   class="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs transition-all duration-200 group"
                   :class="section.available
                     ? 'text-charcoal-400 hover:text-ivory hover:bg-charcoal-900'
-                    : 'text-charcoal-700 cursor-default'"
+                    : 'text-charcoal-400 cursor-default'"
                 >
                   <span class="w-1.5 h-1.5 rounded-full shrink-0" :class="section.available ? 'bg-gold-500/50' : 'bg-charcoal-800'" />
                   {{ section.label }}
-                  <Icon v-if="!section.available" name="mdi:lock-outline" class="w-3 h-3 ml-auto text-charcoal-700" />
+                  <Icon v-if="!section.available" name="mdi:lock-outline" class="w-3 h-3 ml-auto text-charcoal-400" />
                 </a>
               </nav>
 

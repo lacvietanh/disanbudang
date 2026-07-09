@@ -137,7 +137,7 @@
       <div class="pt-4">
         <button 
           @click="$emit('action', 'start-learning')"
-          class="px-8 py-3 bg-gradient-to-r from-earth-600 to-gold-500 hover:from-earth-500 hover:to-gold-400 text-charcoal-950 font-bold rounded-full text-xs uppercase tracking-wider shadow-gold/25 hover:shadow-gold/45 hover:scale-105 transition-all duration-300"
+          class="px-8 py-3 bg-gradient-to-r from-earth-600 to-gold-500 hover:from-earth-500 hover:to-gold-400 text-charcoal-950 font-bold rounded-full text-xs uppercase tracking-wider shadow-lg shadow-gold/25 hover:shadow-gold/45 hover:scale-105 transition-all duration-300"
         >
           Bắt đầu học ngay
         </button>
@@ -200,7 +200,7 @@
             class="p-4 bg-charcoal-950 border border-charcoal-850 hover:border-gold-500/30 rounded-xl text-left hover:bg-gold-500/5 transition-all duration-300 text-xs text-charcoal-350 hover:text-ivory font-medium flex items-center justify-between group"
           >
             <span>"{{ prompt }}"</span>
-            <Icon name="mdi:arrow-right" class="w-3.5 h-3.5 text-charcoal-600 group-hover:text-gold-400 group-hover:translate-x-0.5 transition-all" />
+            <Icon name="mdi:arrow-right" class="w-3.5 h-3.5 text-charcoal-400 group-hover:text-gold-400 group-hover:translate-x-0.5 transition-all" />
           </button>
         </div>
       </div>
@@ -219,7 +219,7 @@
       <div class="relative bg-charcoal-950 border border-charcoal-850 rounded-2xl p-8 overflow-hidden h-44 flex items-center justify-center">
         <!-- SVG Connecting line -->
         <svg class="absolute inset-x-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M 60 80 Q 240 130 480 80 T 900 100" fill="none" stroke="#C9922A" stroke-width="2" stroke-dasharray="6,6" class="opacity-20" />
+          <path d="M 60 80 Q 240 130 480 80 T 900 100" fill="none" stroke="#C7A664" stroke-width="2" stroke-dasharray="6,6" class="opacity-20" />
         </svg>
 
         <div class="flex justify-between w-full max-w-3xl px-4 relative z-10">
@@ -242,7 +242,7 @@
       <div class="pt-2">
         <button 
           @click="$emit('action', 'explore-roadmap')"
-          class="px-8 py-3 bg-gradient-to-r from-earth-600 to-gold-500 hover:from-earth-500 hover:to-gold-400 text-charcoal-950 font-bold rounded-full text-xs uppercase tracking-wider shadow-gold/25 hover:shadow-gold/45 hover:scale-105 transition-all duration-300"
+          class="px-8 py-3 bg-gradient-to-r from-earth-600 to-gold-500 hover:from-earth-500 hover:to-gold-400 text-charcoal-950 font-bold rounded-full text-xs uppercase tracking-wider shadow-lg shadow-gold/25 hover:shadow-gold/45 hover:scale-105 transition-all duration-300"
         >
           Khám phá lộ trình
         </button>
@@ -364,7 +364,7 @@
             class="p-4 bg-charcoal-950 border border-charcoal-850 rounded-xl flex items-center justify-between text-xs hover:border-gold-500/20 transition-all duration-300"
           >
             <div class="flex items-center gap-3.5">
-              <Icon :name="mile.icon" class="w-5 h-5 text-charcoal-600" />
+              <Icon :name="mile.icon" class="w-5 h-5 text-charcoal-400" />
               <div>
                 <span class="block font-bold text-ivory">{{ mile.name }}</span>
                 <span class="text-charcoal-450 text-2xs">{{ mile.desc }}</span>

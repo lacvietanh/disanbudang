@@ -237,7 +237,7 @@
               </div>
 
               <div v-if="displayedHeritages.length === 0" class="py-16 text-center">
-                <Icon name="mdi:map-marker-off" class="w-12 h-12 text-charcoal-700 mx-auto mb-3" />
+                <Icon name="mdi:map-marker-off" class="w-12 h-12 text-charcoal-400 mx-auto mb-3" />
                 <p class="text-charcoal-400 text-sm font-medium">Không tìm thấy di sản nào</p>
                 <p class="text-charcoal-500 text-xs mt-1">Vui lòng chọn bộ lọc khác hoặc nhập từ khóa mới</p>
               </div>
@@ -278,7 +278,7 @@
                   <p class="text-3xs text-charcoal-400 font-bold uppercase mt-0.5 tracking-wider">{{ route.stops.length }} điểm khám phá</p>
                 </div>
               </div>
-              <p class="text-xs text-charcoal-405 leading-relaxed">{{ route.description }}</p>
+              <p class="text-xs text-charcoal-450 leading-relaxed">{{ route.description }}</p>
 
               <!-- Route Stops Sequence -->
               <div v-if="selectedRouteId === route.id" class="mt-4 pt-4 border-t border-charcoal-800/80 space-y-4">
@@ -296,7 +296,7 @@
                       :class="selectedId === stop.id ? 'bg-gold-400 scale-125 ring-4 ring-gold-500/20' : 'bg-charcoal-600 group-hover/stop:bg-ivory'"
                       :style="selectedId === stop.id ? {} : { backgroundColor: route.color }"
                     />
-                    <p class="text-3xs text-charcoal-455 font-bold uppercase tracking-wider">Điểm dừng {{ sIdx + 1 }}</p>
+                    <p class="text-3xs text-charcoal-450 font-bold uppercase tracking-wider">Điểm dừng {{ sIdx + 1 }}</p>
                     <p class="text-xs text-ivory font-semibold group-hover/stop:text-gold-300 transition-colors mt-0.5">{{ stop.title }}</p>
                   </div>
                 </div>
@@ -329,7 +329,7 @@
             <div class="w-full h-full bg-charcoal-950 flex items-center justify-center">
               <div class="text-center space-y-4">
                 <div class="w-16 h-16 border-2 border-gold-500 border-t-transparent rounded-full animate-spin mx-auto" />
-                <p class="text-charcoal-455 text-sm">Đang tải bản đồ di sản Đồng Nai...</p>
+                <p class="text-charcoal-450 text-sm">Đang tải bản đồ di sản Đồng Nai...</p>
               </div>
             </div>
           </template>
@@ -709,7 +709,7 @@ const suggestedRoutes = [
     id: 'route-history',
     name: 'Tuyến Cách Mạng Oai Hùng',
     icon: 'mdi:shield-outline',
-    color: '#8B3A2A',
+    color: '#F59E0B',
     description: 'Về nguồn khám phá các căn cứ quân sự huyết mạch và lớp học kháng chiến oai hùng giữa lòng đại ngàn Thành Phố Đồng Nai.',
     stops: [
       { id: 'hrt-001', title: 'Căn cứ Nửa Lon Bù Đăng' },
@@ -721,7 +721,7 @@ const suggestedRoutes = [
     id: 'route-nature',
     name: 'Danh Lam & Sinh Thái Xanh',
     icon: 'mdi:pine-tree',
-    color: '#2D5016',
+    color: '#12B981',
     description: 'Hành trình hòa mình cùng rừng già nguyên sinh kỳ vĩ và lắng nghe tiếng réo rắt thiên nhiên của danh thắng Thác Đứng, Bù Lạch.',
     stops: [
       { id: 'hrt-010', title: 'Thác Đứng Bù Đăng' },
@@ -733,7 +733,7 @@ const suggestedRoutes = [
     id: 'route-culture',
     name: 'Bản Sắc Bản Địa S\'tiêng - M\'nông',
     icon: 'mdi:account-group-outline',
-    color: '#C9922A',
+    color: '#C7A664',
     description: 'Dòng chảy văn hóa cồng chiêng phi vật thể UNESCO, nghề dệt hoa văn thổ cẩm tỉ mẩn cùng nghi lễ nông nghiệp thiêng liêng.',
     stops: [
       { id: 'hrt-003', title: 'Lễ Hội Cồng Chiêng S\'tiêng' },
@@ -746,7 +746,7 @@ const suggestedRoutes = [
     id: 'route-phuoclong',
     name: 'Hành Trình Phước Long – Lộc Ninh',
     icon: 'mdi:map-legend',
-    color: '#7B5EA7',
+    color: '#C7A664',
     description: 'Khám phá chiến trường lịch sử Phước Long, đỉnh thiêng Bà Rá và căn cứ Tà Thiết — di tích quốc gia đặc biệt của vùng đất anh hùng.',
     stops: [
       { id: 'hrt-012', title: 'Núi Bà Rá — Phước Long' },
@@ -861,9 +861,9 @@ function runTourStep() {
       title: 'Hành trình kết thúc',
       text: 'Bạn đã hoàn thành chuyến tham quan tự động tất cả các điểm di sản đang hiển thị.',
       icon: 'success',
-      confirmButtonColor: '#C9922A',
-      background: '#1C1A18',
-      color: '#FDFAF3'
+      confirmButtonColor: '#C7A664',
+      background: '#221D17',
+      color: '#F5F1EA'
     })
     return
   }

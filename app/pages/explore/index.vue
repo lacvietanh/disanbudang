@@ -42,6 +42,58 @@
       </div>
     </div>
 
+    <!-- ===== VIRTUAL TOUR ENTRY BANNER ===== -->
+    <div class="border-b border-charcoal-850 bg-charcoal-950">
+      <div class="container-heritage py-5">
+        <NuxtLink
+          to="/explore/virtual-tour"
+          id="virtual-tour-entry"
+          class="group flex items-center gap-5 rounded-2xl overflow-hidden border border-charcoal-800 hover:border-gold-500/50 transition-all duration-400 relative"
+          style="background: linear-gradient(135deg, #1A140F 0%, #221D17 100%);"
+        >
+          <!-- Thumbnail strip -->
+          <div class="hidden sm:flex flex-shrink-0 h-[88px] w-[220px] overflow-hidden relative">
+            <img
+              src="/video/virtual-tour/trang-co/poster.jpg"
+              alt="Trảng Cỏ Bù Lạch"
+              class="w-1/2 h-full object-cover"
+            />
+            <img
+              src="/video/virtual-tour/bom-bo/poster.jpg"
+              alt="Khu Bảo Tồn Bom Bo"
+              class="w-1/2 h-full object-cover"
+            />
+            <!-- overlay -->
+            <div class="absolute inset-0" style="background: linear-gradient(to right, transparent 60%, #1A140F 100%);" />
+          </div>
+
+          <!-- Text content -->
+          <div class="flex-1 py-4 pl-4 sm:pl-0 pr-2">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-gold-400 bg-gold-500/10 border border-gold-500/20 rounded-full px-2.5 py-0.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse inline-block" />
+                MỚI
+              </span>
+              <span class="text-[10px] font-semibold uppercase tracking-widest text-charcoal-500">Tính năng</span>
+            </div>
+            <h3 class="font-heading text-ivory text-base font-bold leading-snug mb-0.5 group-hover:text-gold-300 transition-colors">
+              🎬 Chuyến Tham Quan Ảo
+            </h3>
+            <p class="text-charcoal-400 text-xs leading-relaxed">
+              Trảng Cỏ Bù Lạch · Khu Bảo Tồn Sóc Bom Bo — Trải nghiệm cinematic trong 30 giây
+            </p>
+          </div>
+
+          <!-- Arrow CTA -->
+          <div class="flex-shrink-0 pr-5 flex items-center">
+            <div class="w-9 h-9 rounded-full bg-gold-500/15 border border-gold-500/30 flex items-center justify-center group-hover:bg-gold-500/30 transition-all duration-300 group-hover:scale-110">
+              <Icon name="mdi:play" class="w-4 h-4 text-gold-400 ml-0.5" />
+            </div>
+          </div>
+        </NuxtLink>
+      </div>
+    </div>
+
     <!-- Sticky tab bar -->
     <div class="border-b border-charcoal-850 bg-charcoal-950/90 backdrop-blur-md sticky top-[68px] z-30">
       <div class="container-heritage flex items-center overflow-x-auto scrollbar-none">
@@ -132,19 +184,91 @@
       </div>
 
       <!-- Heritage Grid -->
-      <div v-else-if="sortedAndFilteredHeritages.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        <HeritageCard
-          v-for="heritage in sortedAndFilteredHeritages"
-          :key="heritage.id"
-          :heritage="heritage"
-          class="border border-charcoal-850"
-          @click="navigateTo(`/heritage/${heritage.slug}`)"
-        />
+      <div v-else-if="sortedAndFilteredHeritages.length > 0">
+        <!-- Spotlight: cinematic featured picks (only on unfiltered default view) -->
+        <div v-if="showSpotlight" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+          <NuxtLink
+            v-for="(h, i) in spotlightItems"
+            :key="h.id"
+            :ref="(el) => setSpotlightRef(el, i)"
+            :to="`/heritage/${h.slug}`"
+            class="group relative rounded-3xl overflow-hidden aspect-[16/10] shadow-[0_20px_60px_-12px_rgba(0,0,0,0.65)] hover:shadow-[0_28px_80px_-14px_rgba(201,166,100,0.25)] transition-shadow duration-700"
+          >
+            <!-- Ghost serial number — editorial premium marker -->
+            <span
+              class="absolute -top-4 -left-2 font-heading font-bold text-[7rem] leading-none text-ivory/[0.06] select-none pointer-events-none z-0"
+              aria-hidden="true"
+            >{{ String(i + 1).padStart(2, '0') }}</span>
+
+            <!-- Parallax image layer -->
+            <div class="absolute -inset-y-[8%] inset-x-0" :style="{ transform: `translateY(${parallaxOffsets[i] || 0}px)` }">
+              <NuxtImg
+                :src="h.coverImage"
+                :alt="h.title"
+                class="w-full h-[116%] object-cover img-cinematic transition-transform duration-[1200ms] ease-out-expo group-hover:scale-110"
+                loading="lazy"
+              />
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-950/45 to-transparent" />
+            <div v-if="h.featured" class="absolute top-4 left-4 flex items-center gap-1.5 bg-gold-500 text-charcoal-900 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full z-10">
+              <Icon name="mdi:star" class="w-3 h-3" />
+              Nổi Bật
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-7 z-10">
+              <p class="eyebrow text-gold-400 mb-2">
+                {{ getCategoryLabel(h.category) }}<span v-if="h.year"> · {{ h.year }}</span>
+              </p>
+              <h3 class="font-heading font-bold text-ivory text-2xl sm:text-3xl leading-tight mb-1.5 group-hover:text-gold-200 transition-colors">
+                {{ h.title }}
+              </h3>
+              <p v-if="h.subtitle" class="text-ivory/60 text-sm italic">{{ h.subtitle }}</p>
+            </div>
+            <div class="absolute bottom-6 right-6 sm:bottom-7 sm:right-7 w-10 h-10 rounded-full bg-gold-500/90 flex items-center justify-center opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 ease-out-expo z-10">
+              <Icon name="mdi:arrow-right" class="w-5 h-5 text-charcoal-900" />
+            </div>
+          </NuxtLink>
+        </div>
+
+        <!-- Grid with periodic storytelling banners -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <template v-for="entry in gridEntries" :key="entry.kind === 'card' ? entry.heritage.id : entry.id">
+            <HeritageCard
+              v-if="entry.kind === 'card'"
+              :heritage="entry.heritage"
+              @click="navigateTo(`/heritage/${entry.heritage.slug}`)"
+            />
+            <div
+              v-else
+              class="col-span-full rounded-2xl overflow-hidden relative px-6 py-6 sm:px-8 sm:py-7 border-t border-gold-500/15 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)]"
+              :style="{ background: `linear-gradient(135deg, ${entry.cat.color}1A 0%, transparent 75%)` }"
+            >
+              <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                <div
+                  class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
+                  :style="{ backgroundColor: `${entry.cat.color}22`, border: `1px solid ${entry.cat.color}55` }"
+                >
+                  <Icon :name="entry.cat.icon" class="w-6 h-6" :style="{ color: entry.cat.color }" />
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="eyebrow text-gold-400 mb-1">{{ entry.cat.label }}</p>
+                  <p class="text-charcoal-300 text-sm leading-relaxed max-w-2xl">{{ entry.cat.description }}</p>
+                </div>
+                <button
+                  class="btn-secondary shrink-0 self-start sm:self-center"
+                  @click="activeCategory = entry.cat.id"
+                >
+                  Xem Tất Cả
+                  <Icon name="mdi:arrow-right" class="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          </template>
+        </div>
       </div>
 
       <!-- Empty state -->
       <div v-else class="py-24 text-center border border-dashed border-charcoal-800 rounded-3xl bg-charcoal-950/20 max-w-xl mx-auto">
-        <Icon name="mdi:archive-search-outline" class="w-16 h-16 text-charcoal-600 mx-auto mb-4" />
+        <Icon name="mdi:archive-search-outline" class="w-16 h-16 text-charcoal-400 mx-auto mb-4" />
         <h2 class="font-heading font-bold text-ivory text-xl mb-2">Không Tìm Thấy Kết Quả</h2>
         <p class="text-charcoal-400 text-sm mb-6 max-w-sm mx-auto">Thử từ khóa khác hoặc xóa bộ lọc đang chọn.</p>
         <button class="btn-primary" @click="clearFilters">Xóa Bộ Lọc</button>
@@ -169,21 +293,32 @@
         </button>
       </div>
 
+      <!-- Active tag filter -->
+      <div v-if="activeTag" class="flex items-center gap-2 mb-6">
+        <span class="text-charcoal-400 text-xs">Đang lọc theo thẻ:</span>
+        <span class="inline-flex items-center gap-1.5 bg-gold-500/15 border border-gold-500/25 text-gold-300 text-xs font-semibold px-3 py-1 rounded-full">
+          #{{ activeTag }}
+          <button type="button" aria-label="Bỏ lọc thẻ" @click="activeTag = ''">
+            <Icon name="mdi:close" class="w-3.5 h-3.5" />
+          </button>
+        </span>
+      </div>
+
       <!-- Posts grid -->
       <div v-if="filteredCommunityPosts.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <NuxtLink
           v-for="(post, i) in filteredCommunityPosts"
           :key="post.id"
           :to="`/explore/${post.id}`"
-          class="bg-charcoal-950/40 rounded-2xl overflow-hidden border border-charcoal-850 hover:border-gold-500/30 transition-all duration-500 group flex flex-col reveal"
+          class="bg-charcoal-950/40 rounded-2xl overflow-hidden shadow-[0_10px_30px_-8px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.75)] transition-shadow duration-500 group flex flex-col reveal"
           :style="{ animationDelay: `${i * 0.05}s` }"
         >
           <!-- Cover image -->
-          <div class="aspect-[16/10] overflow-hidden relative border-b border-charcoal-850 shrink-0">
+          <div class="aspect-[16/10] overflow-hidden relative shrink-0">
             <img
               :src="post.coverImage"
               :alt="post.title"
-              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              class="w-full h-full object-cover img-cinematic transition-transform duration-700 group-hover:scale-105"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950/60 to-transparent" />
             <!-- Featured badge -->
@@ -227,7 +362,7 @@
 
       <!-- Empty state -->
       <div v-else class="py-24 text-center border border-dashed border-charcoal-800 rounded-3xl max-w-xl mx-auto">
-        <Icon name="mdi:book-open-page-variant-outline" class="w-14 h-14 text-charcoal-700 mx-auto mb-4" />
+        <Icon name="mdi:book-open-page-variant-outline" class="w-14 h-14 text-charcoal-400 mx-auto mb-4" />
         <p class="text-charcoal-400 font-heading font-semibold text-lg mb-2">Chưa có nội dung trong danh mục này</p>
         <p class="text-charcoal-500 text-sm mb-6">Hãy là người đầu tiên chia sẻ câu chuyện của mình.</p>
         <NuxtLink to="/contribute" class="btn-primary inline-flex">
@@ -253,10 +388,10 @@
 </template>
 
 <script setup lang="ts">
-import { CATEGORIES } from '~/data/categories'
+import { CATEGORIES, CATEGORY_MAP } from '~/data/categories'
 import { COMMUNITY_POSTS } from '~/data/posts'
 import { HERITAGES } from '~/data/heritages'
-import type { PostType } from '~/types'
+import type { Heritage, HeritageCategory_Meta, PostType } from '~/types'
 
 definePageMeta({ layout: 'default' })
 useMuseumSeo({
@@ -292,6 +427,7 @@ useHead({
 
 const store = useHeritageStore()
 const { observeAll } = useScrollReveal()
+const { getCategoryLabel } = useHeritage()
 const route = useRoute()
 
 const categories = CATEGORIES
@@ -324,10 +460,15 @@ const typeIcons: Record<PostType, string> = {
   story: 'mdi:book-open-variant', artwork: 'mdi:palette', photo: 'mdi:camera', memory: 'mdi:heart', research: 'mdi:magnify',
 }
 
-// Community posts — đơn giản: 'all' hiện tất cả, các tab khác filter theo type
+// Community posts — 'all' hiện tất cả, các tab khác filter theo type, kèm filter theo tag (nếu có)
+const activeTag = ref('')
 const filteredCommunityPosts = computed(() => {
-  if (activeCommunityTab.value === 'all') return COMMUNITY_POSTS
-  return COMMUNITY_POSTS.filter((p) => p.type === activeCommunityTab.value)
+  let result = activeCommunityTab.value === 'all' ? COMMUNITY_POSTS : COMMUNITY_POSTS.filter((p) => p.type === activeCommunityTab.value)
+  if (activeTag.value) {
+    const tag = activeTag.value.toLowerCase()
+    result = result.filter((p) => p.tags?.some((t) => t.toLowerCase() === tag))
+  }
+  return result
 })
 
 let debounceTimer: ReturnType<typeof setTimeout> | null = null
@@ -356,12 +497,81 @@ const sortedAndFilteredHeritages = computed(() => {
   return result.sort((a, b) => (b.viewCount || 0) - (a.viewCount || 0))
 })
 
+// Spotlight chỉ hiện ở view mặc định (chưa search/lọc) để tránh gây rối kết quả lọc
+const showSpotlight = computed(() => !searchQuery.value && !activeCategory.value && sortedAndFilteredHeritages.value.length >= 4)
+
+const spotlightItems = computed(() => {
+  if (!showSpotlight.value) return []
+  const all = sortedAndFilteredHeritages.value
+  const featured = all.filter((h) => h.featured)
+  return (featured.length >= 2 ? featured : all).slice(0, 2)
+})
+
+const restItems = computed(() => {
+  if (!showSpotlight.value) return sortedAndFilteredHeritages.value
+  const spotlightIds = new Set(spotlightItems.value.map((h) => h.id))
+  return sortedAndFilteredHeritages.value.filter((h) => !spotlightIds.has(h.id))
+})
+
+type GridEntry =
+  | { kind: 'card'; heritage: Heritage }
+  | { kind: 'banner'; id: string; cat: HeritageCategory_Meta }
+
+// Chèn 1 banner storytelling theo danh mục sau mỗi 8 card để phá nhịp đều của grid
+const gridEntries = computed<GridEntry[]>(() => {
+  const entries: GridEntry[] = []
+  const items = restItems.value
+  items.forEach((h, i) => {
+    entries.push({ kind: 'card', heritage: h })
+    if ((i + 1) % 8 === 0 && i !== items.length - 1) {
+      entries.push({ kind: 'banner', id: `banner-${i}`, cat: CATEGORY_MAP[h.category] })
+    }
+  })
+  return entries
+})
+
+// Scroll parallax cho ảnh spotlight — tạo chiều sâu điện ảnh khi cuộn
+const spotlightEls: (HTMLElement | null)[] = []
+const parallaxOffsets = ref<number[]>([])
+
+function setSpotlightRef(el: unknown, i: number) {
+  spotlightEls[i] = (el && typeof el === 'object' && '$el' in el ? (el as { $el: HTMLElement }).$el : el) as HTMLElement | null
+}
+
+let parallaxRaf = 0
+function updateParallax() {
+  const vh = window.innerHeight
+  spotlightEls.forEach((el, i) => {
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    const center = rect.top + rect.height / 2
+    const dist = (center - vh / 2) / vh
+    parallaxOffsets.value[i] = Math.max(-18, Math.min(18, dist * 36))
+  })
+}
+function onParallaxScroll() {
+  if (parallaxRaf) return
+  parallaxRaf = requestAnimationFrame(() => {
+    updateParallax()
+    parallaxRaf = 0
+  })
+}
+
 onMounted(() => {
   nextTick(() => observeAll())
 
   if (route.query.category) activeCategory.value = route.query.category as string
   if (route.query.search) searchQuery.value = route.query.search as string
   if (route.query.tab === 'community') activeMainTab.value = 'community'
+  if (route.query.tag) { activeTag.value = route.query.tag as string; activeMainTab.value = 'community' }
+
+  window.addEventListener('scroll', onParallaxScroll, { passive: true })
+  nextTick(updateParallax)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', onParallaxScroll)
+  if (parallaxRaf) cancelAnimationFrame(parallaxRaf)
 })
 
 watch(() => route.query.search, (value) => {

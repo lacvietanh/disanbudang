@@ -12,7 +12,7 @@
     <button
       v-for="(spot, idx) in hotspots"
       :key="idx"
-      class="hotspot-pin focus:outline-gold-500"
+      class="hotspot-pin focus-visible:outline-gold-500"
       :style="{ left: spot.x + '%', top: spot.y + '%' }"
       @click="activeSpot = activeSpot === idx ? -1 : idx"
       :aria-label="`Xem thông tin: ${spot.label}`"

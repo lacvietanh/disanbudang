@@ -11,7 +11,7 @@
       :landmarks="mapLandmarks"
       :lessons="lessonCatalog"
       @select-tab="(tab: string) => { activeTab = tab; scrollToContent() }"
-      @select-landmark="(id: string) => { activeTab = 'map'; activeLandmark = mapLandmarks.find((l: { id: string }) => l.id === id) ?? null; scrollToContent() }"
+      @select-landmark="(id: string) => { navigateTo(`/map?landmark=${id}`) }"
       @filter-research="(q: string) => { paperSearchQuery = q; activeTab = 'research'; scrollToContent() }"
     />
 
@@ -46,7 +46,7 @@
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-400 opacity-75" />
             <span class="relative inline-flex rounded-full h-2 w-2 bg-gold-500" />
           </span>
-          <span class="text-gold-300 text-xs font-bold uppercase tracking-widest">Digital Heritage Learning Hub</span>
+          <span class="text-gold-300 text-xs font-bold uppercase tracking-widest">Cổng Học Tập Di Sản Số</span>
           <span class="text-charcoal-500 text-xs">•</span>
           <span class="text-charcoal-300 text-xs">Thành Phố Đồng Nai</span>
         </div>
@@ -266,7 +266,7 @@
             <div>
               <span class="section-label">Thư viện nghiên cứu</span>
               <h3 id="resource-library-title" class="font-heading text-2xl font-bold text-ivory mt-1">Kho Nghiên Cứu Di Sản</h3>
-              <p class="text-charcoal-400 text-xs mt-1 max-w-md">{{ filteredPapers.length }} tài liệu · Được số hóa từ các đề tài học sinh cấp tỉnh</p>
+              <p v-if="!pending && !error" class="text-charcoal-400 text-xs mt-1 max-w-md">{{ filteredPapers.length }} tài liệu · Được số hóa từ các đề tài học sinh cấp tỉnh</p>
             </div>
             <!-- View switcher -->
             <div class="flex items-center gap-2 bg-charcoal-950 border border-charcoal-800 p-1 rounded-xl">
@@ -285,7 +285,7 @@
                 v-model="paperSearchQuery"
                 type="text"
                 placeholder="Tìm đề tài, tác giả, trường, lĩnh vực nghiên cứu..."
-                class="w-full pl-12 pr-4 py-3 bg-charcoal-900 border border-charcoal-800 rounded-xl text-sm text-ivory focus:outline-none focus:border-gold-500/60 transition-colors placeholder-charcoal-600"
+                class="w-full pl-12 pr-4 py-3 bg-charcoal-900 border border-charcoal-800 rounded-xl text-sm text-ivory focus:outline-none focus:border-gold-500/60 transition-colors placeholder-charcoal-400"
               />
               <button v-if="paperSearchQuery" class="absolute right-4 top-1/2 -translate-y-1/2 text-charcoal-500 hover:text-ivory" @click="paperSearchQuery = ''" aria-label="Xóa tìm kiếm">
                 <Icon name="mdi:close" class="w-4 h-4" />
@@ -346,11 +346,23 @@
             </div>
           </div>
 
-          <!-- Error State -->
-          <div v-else-if="error" class="text-center py-16 border border-red-500/20 bg-red-950/10 rounded-2xl mb-8">
-            <Icon name="mdi:alert-circle-outline" class="w-12 h-12 text-red-400 mx-auto mb-4" />
-            <p class="text-red-300 text-sm font-semibold">Đã xảy ra lỗi khi tải dữ liệu học tập</p>
-            <p class="text-charcoal-500 text-xs mt-1">Vui lòng thử tải lại trang hoặc kiểm tra kết nối mạng.</p>
+          <!-- Graceful fallback state (kept low-key on purpose: no red/alarm styling) -->
+          <div v-else-if="error" class="relative overflow-hidden text-center py-16 px-6 border border-gold-500/15 bg-gradient-to-br from-charcoal-950 via-charcoal-900/60 to-charcoal-950 rounded-3xl mb-8">
+            <div class="absolute -top-16 -right-16 w-56 h-56 bg-gold-500/5 rounded-full blur-3xl" />
+            <div class="absolute -bottom-16 -left-16 w-56 h-56 bg-earth-600/5 rounded-full blur-3xl" />
+            <div class="relative z-10">
+              <div class="w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center mx-auto mb-5">
+                <Icon name="mdi:book-clock-outline" class="w-7 h-7 text-gold-400" />
+              </div>
+              <p class="text-ivory text-sm font-semibold">Kho tài liệu đang được cập nhật</p>
+              <p class="text-charcoal-400 text-xs mt-1.5 max-w-sm mx-auto">Chúng tôi đang số hóa thêm các đề tài nghiên cứu mới. Vui lòng quay lại sau nhé.</p>
+              <button
+                class="mt-5 px-6 py-2.5 bg-charcoal-900 border border-charcoal-800 hover:border-gold-500/40 text-gold-400 hover:text-gold-300 text-xs font-bold rounded-xl transition-colors"
+                @click="refresh()"
+              >
+                Tải lại
+              </button>
+            </div>
           </div>
 
           <!-- Loaded State -->
@@ -385,9 +397,9 @@
                     <div class="space-y-3">
                       <div class="flex items-center gap-2 flex-wrap">
                         <span class="text-gold-400 text-3xs font-bold uppercase tracking-wider">{{ featuredResource.subject }}</span>
-                        <span class="text-charcoal-600">•</span>
+                        <span class="text-charcoal-400">•</span>
                         <span class="text-charcoal-400 text-3xs">{{ featuredResource.school }}</span>
-                        <span class="text-charcoal-600">•</span>
+                        <span class="text-charcoal-400">•</span>
                         <span class="text-charcoal-400 text-3xs">Lớp {{ featuredResource.grade }}</span>
                       </div>
                       <h4 class="font-heading font-bold text-ivory text-2xl leading-snug group-hover:text-gold-300 transition-colors">{{ featuredResource.title }}</h4>
@@ -424,9 +436,9 @@
 
             <!-- No results state -->
             <div v-if="filteredPapers.length === 0" class="text-center py-16 border border-dashed border-charcoal-800 rounded-2xl">
-              <Icon name="mdi:file-search-outline" class="w-12 h-12 text-charcoal-700 mx-auto mb-4" />
+              <Icon name="mdi:file-search-outline" class="w-12 h-12 text-charcoal-400 mx-auto mb-4" />
               <p class="text-charcoal-400 text-sm font-semibold">Không tìm thấy tài liệu phù hợp</p>
-              <p class="text-charcoal-600 text-xs mt-1">Thử thay đổi từ khóa hoặc xóa bộ lọc</p>
+              <p class="text-charcoal-400 text-xs mt-1">Thử thay đổi từ khóa hoặc xóa bộ lọc</p>
               <button class="mt-4 px-6 py-2.5 bg-charcoal-900 border border-charcoal-800 text-gold-400 hover:text-gold-300 text-xs font-bold rounded-xl transition-colors" @click="paperSearchQuery = ''; activeTypeFilter = 'all'; activeDifficultyFilter = 'all'">
                 Xóa tất cả bộ lọc
               </button>
@@ -479,7 +491,7 @@
                   <div class="flex-1 min-w-0">
                     <div class="flex items-center gap-2 mb-1">
                       <span class="text-gold-400 text-3xs font-bold uppercase">{{ res.subject }}</span>
-                      <span class="text-charcoal-600 text-3xs">•</span>
+                      <span class="text-charcoal-400 text-3xs">•</span>
                       <span class="text-charcoal-500 text-3xs">{{ res.school }}</span>
                     </div>
                     <h4 class="font-heading font-bold text-sm text-ivory truncate group-hover:text-gold-300 transition-colors">{{ res.title }}</h4>
@@ -487,7 +499,7 @@
                   </div>
                   <div class="flex items-center gap-3 shrink-0">
                     <span v-if="res.quizId" class="text-3xs px-2 py-0.5 bg-gold-500/10 border border-gold-500/30 text-gold-400 rounded font-bold">Quiz</span>
-                    <Icon name="mdi:chevron-right" class="w-5 h-5 text-charcoal-600 group-hover:text-gold-400 transition-colors" />
+                    <Icon name="mdi:chevron-right" class="w-5 h-5 text-charcoal-400 group-hover:text-gold-400 transition-colors" />
                   </div>
                 </div>
               </div>
@@ -600,7 +612,7 @@
             v-model="aiInput"
             type="text"
             placeholder="Hỏi về cồng chiêng Bom Bo, Chiến khu Đ, trảng cỏ Bù Lạch..."
-            class="flex-1 bg-charcoal-900/50 border border-charcoal-800 rounded-2xl px-5 py-4 text-sm focus:outline-none focus:border-gold-500/50 focus:ring-1 focus:ring-gold-500/10 pr-14 text-ivory placeholder-charcoal-600 transition-all duration-200"
+            class="flex-1 bg-charcoal-900/50 border border-charcoal-800 rounded-2xl px-5 py-4 text-sm focus:outline-none focus:border-gold-500/50 focus:ring-1 focus:ring-gold-500/10 pr-14 text-ivory placeholder-charcoal-400 transition-all duration-200"
             @keydown.enter="sendAiMessage(aiInput)"
           />
           <!-- ================================================ -->
@@ -913,15 +925,17 @@
         <EmptyState v-if="lessonCatalog.length === 0" tab="lessons" :userXP="userXP" :streakDays="streakDays" @action="handleEmptyStateAction" />
         <template v-else>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <NuxtLink
+            <component
+              :is="lesson.hasContent ? 'NuxtLink' : 'div'"
               v-for="lesson in lessonCatalog"
               :key="lesson.id"
-              :to="`/study/lesson/${lesson.id}`"
-              class="group block bg-charcoal-950 border border-charcoal-800 rounded-3xl overflow-hidden hover:border-gold-500/35 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-black/60 relative"
-              :aria-label="`Bắt đầu bài học: ${lesson.title}`"
+              :to="lesson.hasContent ? `/study/lesson/${lesson.id}` : undefined"
+              class="group block bg-charcoal-950 border border-charcoal-800 rounded-3xl overflow-hidden transition-all duration-500 relative"
+              :class="lesson.hasContent ? 'hover:border-gold-500/35 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-black/60' : 'opacity-60 cursor-not-allowed'"
+              :aria-label="lesson.hasContent ? `Bắt đầu bài học: ${lesson.title}` : `${lesson.title} - sắp ra mắt`"
             >
               <div class="h-48 relative overflow-hidden bg-charcoal-900">
-                <img v-if="lesson.coverImage" :src="lesson.coverImage" :alt="lesson.title" class="w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500" loading="lazy" />
+                <img v-if="lesson.coverImage" :src="lesson.coverImage" :alt="lesson.title" class="w-full h-full object-cover opacity-70 transition-all duration-500" :class="lesson.hasContent ? 'group-hover:opacity-90 group-hover:scale-105' : ''" loading="lazy" />
                 <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-950/20 to-transparent" />
                 <div class="absolute top-3 right-3 flex items-center gap-1.5 bg-charcoal-950/80 border border-charcoal-800 px-2.5 py-1 rounded-full text-3xs backdrop-blur-sm">
                   <Icon name="mdi:clock-outline" class="w-3 h-3 text-charcoal-400" />
@@ -932,7 +946,7 @@
                 </div>
               </div>
               <div class="p-5 space-y-3">
-                <h4 class="font-heading font-bold text-sm text-ivory group-hover:text-gold-300 transition-colors leading-snug">{{ lesson.title }}</h4>
+                <h4 class="font-heading font-bold text-sm text-ivory transition-colors leading-snug" :class="lesson.hasContent ? 'group-hover:text-gold-300' : ''">{{ lesson.title }}</h4>
                 <p class="text-charcoal-400 text-xs leading-relaxed line-clamp-2">{{ lesson.tldr }}</p>
                 <div class="flex flex-wrap gap-1.5">
                   <span v-for="block in lesson.availableBlocks" :key="block" class="text-3xs px-2.5 py-0.5 bg-charcoal-900/80 border border-charcoal-800 text-charcoal-500 rounded-full hover:border-charcoal-700 hover:text-charcoal-300 transition-colors">{{ block }}</span>
@@ -941,17 +955,20 @@
                   <span class="text-gold-400 text-3xs font-bold flex items-center gap-1.5 bg-gold-500/8 border border-gold-500/20 px-2 py-0.5 rounded-full">
                     <Icon name="mdi:star-outline" class="w-3.5 h-3.5" />+{{ lesson.xpReward }} XP
                   </span>
-                  <span class="text-charcoal-500 text-3xs flex items-center gap-1 group-hover:text-gold-400 transition-all duration-300 font-bold group-hover:gap-2">
+                  <span v-if="lesson.hasContent" class="text-charcoal-500 text-3xs flex items-center gap-1 group-hover:text-gold-400 transition-all duration-300 font-bold group-hover:gap-2">
                     Bắt đầu học <Icon name="mdi:arrow-right" class="w-3.5 h-3.5" />
+                  </span>
+                  <span v-else class="text-charcoal-500 text-3xs flex items-center gap-1 font-bold">
+                    Sắp ra mắt <Icon name="mdi:clock-outline" class="w-3.5 h-3.5" />
                   </span>
                 </div>
               </div>
-            </NuxtLink>
+            </component>
           </div>
           <div class="text-center py-8 border border-dashed border-charcoal-800 rounded-2xl">
-            <Icon name="mdi:book-plus-outline" class="w-10 h-10 text-charcoal-700 mx-auto mb-3" />
+            <Icon name="mdi:book-plus-outline" class="w-10 h-10 text-charcoal-400 mx-auto mb-3" />
             <p class="text-charcoal-500 text-sm font-semibold">Thêm bài học đang được biên soạn</p>
-            <p class="text-charcoal-600 text-xs mt-1">Dữ liệu di sản sẽ được số hóa vào từng module bài học theo từng giai đoạn</p>
+            <p class="text-charcoal-400 text-xs mt-1">Dữ liệu di sản sẽ được số hóa vào từng module bài học theo từng giai đoạn</p>
           </div>
         </template>
       </div>
@@ -989,7 +1006,7 @@
                 <h4 class="font-heading font-bold text-ivory text-base group-hover:text-gold-300 transition-colors">{{ labItem.title }}</h4>
                 <p class="text-charcoal-400 text-xs mt-1 leading-relaxed">{{ labItem.desc }}</p>
               </div>
-              <div class="flex items-center gap-1 text-3xs font-bold" :class="labItem.active ? 'text-gold-400' : 'text-charcoal-600'">
+              <div class="flex items-center gap-1 text-3xs font-bold" :class="labItem.active ? 'text-gold-400' : 'text-charcoal-400'">
                 {{ labItem.active ? 'Mở trải nghiệm' : 'Đang phát triển' }}
                 <Icon v-if="labItem.active" name="mdi:arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
               </div>
@@ -1149,7 +1166,7 @@
                     {{ selectedResource.id }}_heritage_report.pdf
                   </span>
                   <div class="flex items-center gap-3">
-                    <button class="hover:text-gold-400 transition-colors cursor-pointer" title="Bút highlight" @click="activeHighlightPen = !activeHighlightPen" :class="activeHighlightPen ? 'text-gold-400' : 'text-charcoal-455'" aria-label="Bật/tắt bút highlight">
+                    <button class="hover:text-gold-400 transition-colors cursor-pointer" title="Bút highlight" @click="activeHighlightPen = !activeHighlightPen" :class="activeHighlightPen ? 'text-gold-400' : 'text-charcoal-450'" aria-label="Bật/tắt bút highlight">
                       <Icon name="mdi:pencil-outline" class="w-4 h-4" />
                     </button>
                     <button class="hover:text-gold-400 transition-colors cursor-pointer" @click="downloadFile(selectedResource)" aria-label="Tải tài liệu PDF">
@@ -1159,7 +1176,7 @@
                 </div>
                 
                 <!-- Premium Academic Paper layout -->
-                <div class="w-full min-h-[460px] bg-[#FAF8F5] text-charcoal-900 p-8 md:p-10 rounded-2xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3),0_0_0_1px_rgba(255,255,255,0.05)] border border-beige-300 relative overflow-hidden select-text font-serif">
+                <div class="w-full min-h-[460px] bg-[#F2EDE6] text-charcoal-900 p-8 md:p-10 rounded-2xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3),0_0_0_1px_rgba(255,255,255,0.05)] border border-beige-300 relative overflow-hidden select-text font-serif">
                   <!-- Watermark text rotated background -->
                   <div class="absolute inset-0 opacity-[0.02] flex items-center justify-center pointer-events-none select-none rotate-[-25deg] text-center whitespace-nowrap">
                     <span class="text-charcoal-900 text-3xl font-bold uppercase tracking-[1.5em] block leading-relaxed">
@@ -1176,7 +1193,7 @@
                   </div>
 
                   <!-- Paper Header -->
-                  <div class="border-b border-beige-300/80 pb-3 mb-6 flex justify-between items-center text-[10px] text-charcoal-550 uppercase tracking-widest font-heading font-bold select-none">
+                  <div class="border-b border-beige-300/80 pb-3 mb-6 flex justify-between items-center text-[10px] text-charcoal-500 uppercase tracking-widest font-heading font-bold select-none">
                     <span>{{ selectedResource.school }}</span>
                     <div class="flex items-center gap-1.5 bg-beige-200/50 rounded-lg p-0.5 border border-beige-300">
                       <span class="text-3xs text-charcoal-500 font-semibold px-1">Cỡ chữ:</span>
@@ -1251,7 +1268,7 @@
                       <p v-if="hl.note" class="text-xs font-medium text-ivory">👉 {{ hl.note }}</p>
                     </div>
                     <div v-if="bookHighlights.length === 0" class="py-10 text-center text-charcoal-500 text-xs">
-                      <Icon name="mdi:pencil-outline" class="w-8 h-8 mx-auto mb-2 text-charcoal-600" />
+                      <Icon name="mdi:pencil-outline" class="w-8 h-8 mx-auto mb-2 text-charcoal-400" />
                       Bôi đen chữ và ghi chú cá nhân!
                     </div>
                   </div>
@@ -1259,7 +1276,7 @@
                 <div v-if="selectedText" class="p-3 rounded-xl bg-charcoal-950 border border-charcoal-850 space-y-3">
                   <span class="text-[9px] font-bold uppercase tracking-wider text-gold-400 block">Đang highlight</span>
                   <p class="text-3xs italic line-clamp-2 text-charcoal-400">"{{ selectedText }}"</p>
-                  <input v-model="activeNoteInput" type="text" placeholder="Viết ghi chú ngắn..." class="w-full px-3 py-2 bg-charcoal-900 border border-charcoal-800 rounded-lg text-xs placeholder-charcoal-600 text-ivory focus:outline-none" @keydown.enter="saveActiveNote" />
+                  <input v-model="activeNoteInput" type="text" placeholder="Viết ghi chú ngắn..." class="w-full px-3 py-2 bg-charcoal-900 border border-charcoal-800 rounded-lg text-xs placeholder-charcoal-400 text-ivory focus:outline-none" @keydown.enter="saveActiveNote" />
                   <div class="flex justify-end gap-2 text-3xs">
                     <button class="px-2 py-1 text-charcoal-400 hover:text-ivory transition-colors" @click="selectedText = ''">Hủy</button>
                     <button class="px-3 py-1 bg-gold-500 text-charcoal-950 rounded-lg font-bold hover:bg-gold-400 transition-colors" @click="saveActiveNote">Lưu Note</button>
@@ -1384,14 +1401,6 @@ watch(() => route.query.tab, (newTab) => {
 // ──────────────────────────────────────────────
 // TYPE MAPS
 // ──────────────────────────────────────────────
-const typeColors: Record<string, string> = {
-  research: '#B87333',
-  presentation: '#2D5016',
-  artwork: '#C9922A',
-  document: '#6B4C35',
-  video: '#8B3A2A'
-}
-
 const typeLabels: Record<string, string> = {
   research: 'Nghiên cứu',
   presentation: 'Slide bài giảng',
@@ -1448,10 +1457,10 @@ const difficultyFilters = [
 
 // Lesson catalog
 const lessonCatalog = ref([
-  { id: 'chien-khu-d', title: 'Chiến Khu Đ - Căn Cứ Địa Cách Mạng Huyền Thoại', subject: 'Lịch sử địa phương', tldr: 'Hệ thống căn cứ địa cách mạng nằm sâu trong rừng nguyên sinh Thành Phố Đồng Nai, đóng vai trò quyết định trong kháng chiến chống Pháp và Mỹ.', coverImage: '/images/heritage/lich-su/chien-khu-d-md.webp', xpReward: 80, estimatedMinutes: 12, availableBlocks: ['Timeline', 'Flashcards', 'Quiz', 'Tự luận', 'Hotspot'] },
-  { id: 'cong-chieng-stieng', title: 'Cồng Chiêng S\'tiêng - Tiếng Nói Của Đại Ngàn', subject: 'Văn hóa dân tộc', tldr: 'Di sản văn hóa phi vật thể UNESCO, cồng chiêng là tiếng nói tâm linh của đồng bào S\'tiêng Thành Phố Đồng Nai.', coverImage: '/images/heritage/van-hoa-phi-vat-the/cong-chieng-md.webp', xpReward: 75, estimatedMinutes: 10, availableBlocks: ['Flashcards', 'Quiz', 'Thuật ngữ', 'Gợi mở'] },
-  { id: 'soc-bom-bo', title: 'Sóc Bom Bo - Tiếng Chày Giã Gạo Kháng Chiến', subject: 'Lịch sử cách mạng', tldr: 'Nơi khởi nguồn bài ca bất hủ, ghi dấu sự đồng lòng kiên trung giã gạo thâu đêm nuôi quân của đồng bào S\'tiêng.', coverImage: '/images/heritage/lich-su/soc-bom-bo-md.webp', xpReward: 90, estimatedMinutes: 15, availableBlocks: ['Timeline', 'Quiz', 'Audio', 'Văn bản'] },
-  { id: 'trang-co-bu-lach', title: 'Danh Thắng Trảng Cỏ Bù Lạch - Kỳ Quan Thiên Nhiên', subject: 'Địa lý địa phương', tldr: 'Khám phá thung lũng trảng cỏ xanh mướt tự nhiên bao quanh hồ nước trong veo giữa lòng rừng già Thành Phố Đồng Nai.', coverImage: '/images/heritage/img-disanbudang/Trang-co-Bu-Lach.png', xpReward: 70, estimatedMinutes: 8, availableBlocks: ['Hotspot', 'Quiz', 'Gallery'] }
+  { id: 'chien-khu-d', title: 'Chiến Khu Đ - Căn Cứ Địa Cách Mạng Huyền Thoại', subject: 'Lịch sử địa phương', tldr: 'Hệ thống căn cứ địa cách mạng nằm sâu trong rừng nguyên sinh Thành Phố Đồng Nai, đóng vai trò quyết định trong kháng chiến chống Pháp và Mỹ.', coverImage: '/images/heritage/lich-su/chien-khu-d-md.webp', xpReward: 80, estimatedMinutes: 12, availableBlocks: ['Timeline', 'Flashcards', 'Quiz', 'Tự luận', 'Hotspot'], hasContent: true },
+  { id: 'cong-chieng-stieng', title: 'Cồng Chiêng S\'tiêng - Tiếng Nói Của Đại Ngàn', subject: 'Văn hóa dân tộc', tldr: 'Di sản văn hóa phi vật thể UNESCO, cồng chiêng là tiếng nói tâm linh của đồng bào S\'tiêng Thành Phố Đồng Nai.', coverImage: '/images/heritage/van-hoa-phi-vat-the/cong-chieng-md.webp', xpReward: 75, estimatedMinutes: 10, availableBlocks: ['Flashcards', 'Quiz', 'Thuật ngữ', 'Gợi mở'], hasContent: true },
+  { id: 'soc-bom-bo', title: 'Sóc Bom Bo - Tiếng Chày Giã Gạo Kháng Chiến', subject: 'Lịch sử cách mạng', tldr: 'Nơi khởi nguồn bài ca bất hủ, ghi dấu sự đồng lòng kiên trung giã gạo thâu đêm nuôi quân của đồng bào S\'tiêng.', coverImage: '/images/heritage/lich-su/soc-bom-bo-md.webp', xpReward: 90, estimatedMinutes: 15, availableBlocks: ['Timeline', 'Quiz', 'Audio', 'Văn bản'], hasContent: false },
+  { id: 'trang-co-bu-lach', title: 'Danh Thắng Trảng Cỏ Bù Lạch - Kỳ Quan Thiên Nhiên', subject: 'Địa lý địa phương', tldr: 'Khám phá thung lũng trảng cỏ xanh mướt tự nhiên bao quanh hồ nước trong veo giữa lòng rừng già Thành Phố Đồng Nai.', coverImage: '/images/heritage/img-disanbudang/Trang-co-Bu-Lach.png', xpReward: 70, estimatedMinutes: 8, availableBlocks: ['Hotspot', 'Quiz', 'Gallery'], hasContent: false }
 ])
 
 // Real badges earned through quizzes (persisted by quizStore)
@@ -1531,7 +1540,7 @@ const historyTimeline = [
   { year: '1945 - 1954', tag: 'Kháng chiến', tagBg: 'bg-red-500/10 text-red-400', title: 'Chiến Khu Đ thành lập', desc: 'Hệ thống căn cứ địa cách mạng kiên cố, điểm tựa cho cuộc kháng chiến chống Pháp tại miền Đông Nam Bộ.' },
   { year: '1960s', tag: 'Văn hóa', tagBg: 'bg-gold-500/10 text-gold-400', title: 'Tiếng chày Sóc Bom Bo', desc: 'Đồng bào S\'tiêng đốt đuốc giã gạo thâu đêm nuôi quân giải phóng — bài ca huyền thoại ra đời.' },
   { year: '2005', tag: 'UNESCO', tagBg: 'bg-blue-500/10 text-blue-400', title: 'Cồng chiêng Tây Nguyên được vinh danh', desc: 'UNESCO công nhận không gian văn hóa cồng chiêng Tây Nguyên là Di sản phi vật thể của nhân loại.' },
-  { year: '2026', tag: 'Số hóa', tagBg: 'bg-green-500/10 text-green-400', title: 'Digital Heritage Learning Hub', desc: 'Trang web di sản số hóa Thành Phố Đồng Nai ra mắt, mang lịch sử địa phương đến với học sinh khắp nơi.' }
+  { year: '2026', tag: 'Số hóa', tagBg: 'bg-green-500/10 text-green-400', title: 'Cổng Học Tập Di Sản Số ra mắt', desc: 'Trang web di sản số hóa Thành Phố Đồng Nai ra mắt, mang lịch sử địa phương đến với học sinh khắp nơi.' }
 ]
 
 const gamificationStats = computed(() => [
@@ -1549,19 +1558,6 @@ const communityStats = computed(() => [
   { label: 'Từ vựng S\'tiêng', value: String(glossary.value.length), icon: 'mdi:translate' },
   { label: 'Quiz di sản', value: String(quizStore.quizzes.length), icon: 'mdi:help-circle-outline' },
 ])
-
-const resourceFormats = [
-  { label: 'PDF', icon: 'mdi:file-pdf-box', color: 'text-red-400' },
-  { label: 'PPT', icon: 'mdi:presentation-play', color: 'text-orange-400' },
-  { label: 'DOCX', icon: 'mdi:file-word', color: 'text-blue-400' },
-  { label: 'Audio', icon: 'mdi:headphones', color: 'text-purple-400' },
-  { label: 'Video', icon: 'mdi:video', color: 'text-green-400' },
-  { label: 'Timeline', icon: 'mdi:timeline', color: 'text-gold-400' },
-  { label: 'Infographic', icon: 'mdi:chart-bar', color: 'text-cyan-400' },
-  { label: 'Flashcard', icon: 'mdi:cards-outline', color: 'text-earth-400' },
-  { label: 'Mindmap', icon: 'mdi:graph', color: 'text-pink-400' },
-  { label: 'Worksheet', icon: 'mdi:clipboard-text', color: 'text-emerald-400' }
-]
 
 // ──────────────────────────────────────────────
 // MODAL STATE
@@ -1624,9 +1620,8 @@ function handleTextSelection() {
 function saveActiveNote() {
   if (!selectedResource.value || !selectedText.value) return
   userAnnotations.value.push({ id: 'note-' + Date.now(), bookId: selectedResource.value.id, page: currentDocPage.value + 1, text: selectedText.value, note: activeNoteInput.value.trim() || undefined })
-  userXP.value = Math.min(500, userXP.value + 15)
   selectedText.value = ''; activeNoteInput.value = ''
-  swal.fire({ title: 'Đã lưu ghi chú!', text: '+15 XP cho tinh thần tự học.', icon: 'success', toast: true, position: 'top-end', showConfirmButton: false, timer: 2000, background: '#1C1A18', color: '#FDFAF3' })
+  swal.fire({ title: 'Đã lưu ghi chú!', text: '+15 XP cho tinh thần tự học.', icon: 'success', toast: true, position: 'top-end', showConfirmButton: false, timer: 2000, background: '#221D17', color: '#F5F1EA' })
 }
 
 function deleteHighlight(id: string) { userAnnotations.value = userAnnotations.value.filter(hl => hl.id !== id) }
@@ -1663,7 +1658,7 @@ function downloadNotes() {
 // ──────────────────────────────────────────────
 // RESOURCES DATA
 // ──────────────────────────────────────────────
-const { data: resourcesContent, pending, error } = await useAsyncData('school-resources', () => {
+const { data: resourcesContent, pending, error, refresh } = await useAsyncData('school-resources', () => {
   return queryCollection('school').all()
 })
 
@@ -1747,7 +1742,6 @@ const mapLandmarks = ref<MapLandmark[]>([
   { id: 'site-3', name: 'Thác Mơ Bù Đăng', desc: 'Ngọn thác hùng vĩ, biểu tượng của sự sống và ước mơ, cội nguồn dòng nước Dak Mơ trong huyền thoại S\'tiêng bản địa.', icon: 'mdi:water', x: 70, y: 55, audioGuide: true },
   { id: 'site-4', name: 'Căn Cứ Chiến Khu Đ', desc: 'Căn cứ quân sự kháng chiến bảo đảm an toàn cho lực lượng cách mạng nằm ẩn sâu trong lòng rừng nguyên sinh Xã Bù Đăng.', icon: 'mdi:shield-outline', x: 15, y: 70, paper: resources.value[0] }
 ])
-const activeLandmark = ref<MapLandmark | null>(mapLandmarks.value[0] ?? null)
 
 // ──────────────────────────────────────────────
 // MEDIA
@@ -1804,22 +1798,11 @@ function sendAiMessage(msgText: string) {
   setTimeout(() => {
     isAiThinking.value = false
     aiMessages.value.push({ role: 'assistant', text: generateAiResponse(msgText) })
-    userXP.value = Math.min(500, userXP.value + 10)
   }, 1200)
 }
 
 function clearChat() {
   aiMessages.value = [{ role: 'assistant', text: 'Tôi đã làm sạch lịch sử hội thoại. Bạn có câu hỏi nghiên cứu mới nào không?' }]
-}
-
-// ──────────────────────────────────────────────
-// TEACHER
-// ──────────────────────────────────────────────
-const teacherUploadedFiles = ref(['giao_an_mon_lich_su_dia_phuong_lop_12.pdf', 'slide_bai_giang_cong_chieng_tay_nguyen.pptx'])
-
-function mockUploadDocument() {
-  swal.fire({ title: 'Chọn tệp tải lên', text: 'Trình giả lập upload: Đã nhận giáo án thành công!', icon: 'success', confirmButtonColor: '#C9922A' })
-  teacherUploadedFiles.value.push('giao_an_' + Date.now() + '.docx')
 }
 
 // ──────────────────────────────────────────────
@@ -1831,7 +1814,7 @@ function toggleBookmark(id: string) {
 }
 
 function createNewCollection() {
-  swal.fire({ title: 'Tạo bộ sưu tập học tập', input: 'text', inputPlaceholder: 'Nhập tên bộ sưu tập...', showCancelButton: true, confirmButtonText: 'Tạo thư mục', cancelButtonText: 'Hủy', confirmButtonColor: '#C9922A' }).then((result) => {
+  swal.fire({ title: 'Tạo bộ sưu tập học tập', input: 'text', inputPlaceholder: 'Nhập tên bộ sưu tập...', showCancelButton: true, confirmButtonText: 'Tạo thư mục', cancelButtonText: 'Hủy', confirmButtonColor: '#C7A664' }).then((result) => {
     if (result.isConfirmed && result.value) { collections.value.push({ name: result.value, count: 0 }) }
   })
 }
@@ -1839,7 +1822,7 @@ function createNewCollection() {
 // ──────────────────────────────────────────────
 // MEDIA PLAYER
 // ──────────────────────────────────────────────
-function startVideoPlayback() { swal.fire({ title: 'Phát phim tư liệu', text: 'Đang khởi chạy trình phát video tư liệu di tích...', icon: 'info', confirmButtonColor: '#C9922A' }) }
+function startVideoPlayback() { swal.fire({ title: 'Phát phim tư liệu', text: 'Đang khởi chạy trình phát video tư liệu di tích...', icon: 'info', confirmButtonColor: '#C7A664' }) }
 
 function playLandmarkAudio(title: string, desc: string) {
   if (import.meta.client && 'speechSynthesis' in window) {
@@ -1848,7 +1831,7 @@ function playLandmarkAudio(title: string, desc: string) {
     utterance.lang = 'vi-VN'; utterance.rate = 0.9
     window.speechSynthesis.speak(utterance)
   }
-  swal.fire({ title: `Đang phát: "${title}"`, text: 'Giọng đọc TTS đang phát thuyết minh.', icon: 'success', background: '#1C1A18', color: '#FDFAF3', confirmButtonColor: '#C9922A', confirmButtonText: 'Đóng' }).then(() => {
+  swal.fire({ title: `Đang phát: "${title}"`, text: 'Giọng đọc TTS đang phát thuyết minh.', icon: 'success', background: '#221D17', color: '#F5F1EA', confirmButtonColor: '#C7A664', confirmButtonText: 'Đóng' }).then(() => {
     if (import.meta.client && 'speechSynthesis' in window) window.speechSynthesis.cancel()
   })
 }
@@ -1860,12 +1843,7 @@ function pronounceTerm(term: string, _pronunciation: string) {
     utterance.lang = 'vi-VN'; utterance.rate = 0.8
     window.speechSynthesis.speak(utterance)
   }
-  swal.fire({ title: `Phát âm: "${term}"`, icon: 'info', toast: true, position: 'top-end', showConfirmButton: false, timer: 2000, background: '#1C1A18', color: '#FDFAF3' })
-}
-
-function startLandmarkQuiz() {
-  const targetQuiz = quizStore.quizzes[0]
-  if (targetQuiz) quizStore.startQuiz(targetQuiz)
+  swal.fire({ title: `Phát âm: "${term}"`, icon: 'info', toast: true, position: 'top-end', showConfirmButton: false, timer: 2000, background: '#221D17', color: '#F5F1EA' })
 }
 
 function openResource(res: SchoolResourceExtended) {
@@ -1876,7 +1854,7 @@ function openResource(res: SchoolResourceExtended) {
 
 function downloadFile(resource: SchoolResourceExtended) {
   resource.downloadCount++
-  swal.fire({ title: 'Tải tài liệu thành công!', html: `Hệ thống đang chuẩn bị tải PDF <strong>"${resource.title}"</strong> (${resource.fileSize ?? '2.4 MB'}).`, icon: 'success', background: '#1C1A18', color: '#FDFAF3', confirmButtonColor: '#C9922A', confirmButtonText: 'Đóng lại' })
+  swal.fire({ title: 'Tải tài liệu thành công!', html: `Hệ thống đang chuẩn bị tải PDF <strong>"${resource.title}"</strong> (${resource.fileSize ?? '2.4 MB'}).`, icon: 'success', background: '#221D17', color: '#F5F1EA', confirmButtonColor: '#C7A664', confirmButtonText: 'Đóng lại' })
 }
 
 function startResourceQuiz(resource: SchoolResourceExtended) {
@@ -1886,7 +1864,7 @@ function startResourceQuiz(resource: SchoolResourceExtended) {
     selectedResource.value = null
     nextTick(() => quizStore.startQuiz(targetQuiz))
   } else {
-    swal.fire({ title: 'Thông báo', text: 'Hiện tại chưa có bộ câu hỏi cho đề tài này.', icon: 'info', background: '#1C1A18', color: '#FDFAF3', confirmButtonColor: '#C9922A' })
+    swal.fire({ title: 'Thông báo', text: 'Hiện tại chưa có bộ câu hỏi cho đề tài này.', icon: 'info', background: '#221D17', color: '#F5F1EA', confirmButtonColor: '#C7A664' })
   }
 }
 
@@ -1895,12 +1873,12 @@ function openImageModal(item: ImageStory) { selectedImageItem.value = item }
 function handleEmptyStateAction(actionType: string, payload?: string) {
   if (actionType === 'explore-heritage') searchOverlayOpen.value = true
   else if (actionType === 'ask-ai') { activeTab.value = 'ai'; scrollToContent() }
-  else if (['open-map', 'explore-map', 'explore-roadmap'].includes(actionType)) { activeTab.value = 'map'; scrollToContent() }
+  else if (['open-map', 'explore-map', 'explore-roadmap'].includes(actionType)) { navigateTo('/map') }
   else if (actionType === 'ask-ai-topic') { activeTab.value = 'ai'; if (payload) sendAiMessage(payload); scrollToContent() }
   else if (actionType === 'send-prompt') { if (payload) sendAiMessage(payload) }
   else if (actionType === 'start-learning') { activeTab.value = 'lessons'; scrollToContent() }
   else if (actionType === 'pronounce-word') { if (payload) pronounceTerm(payload, '') }
-  else if (actionType === 'teacher-activity') { swal.fire({ title: payload || 'Hoạt động giáo viên', text: `Tính năng "${payload}" đang phát triển.`, icon: 'info', background: '#1C1A18', color: '#FDFAF3', confirmButtonColor: '#C9922A' }) }
+  else if (actionType === 'teacher-activity') { swal.fire({ title: payload || 'Hoạt động giáo viên', text: `Tính năng "${payload}" đang phát triển.`, icon: 'info', background: '#221D17', color: '#F5F1EA', confirmButtonColor: '#C7A664' }) }
 }
 </script>
 
@@ -2001,7 +1979,7 @@ function handleEmptyStateAction(actionType: string, payload?: string) {
 
 .premium-card:hover {
   transform: rotateY(-12deg) rotateX(3deg) translateY(-6px);
-  box-shadow: -14px 18px 28px rgba(10, 8, 5, 0.4), 0 8px 20px rgba(201, 146, 42, 0.08);
+  box-shadow: -14px 18px 28px rgba(10, 8, 5, 0.4), 0 8px 20px rgba(201, 169, 106, 0.08);
 }
 
 .book-spine {
@@ -2028,7 +2006,7 @@ function handleEmptyStateAction(actionType: string, payload?: string) {
 .rotate-y-180 { transform: rotateY(180deg); }
 
 .flashcard-container:hover .transform-style-3d {
-  box-shadow: 0 0 24px rgba(201, 146, 42, 0.35);
+  box-shadow: 0 0 24px rgba(201, 169, 106, 0.35);
 }
 
 /* ────────────────────────────────── */

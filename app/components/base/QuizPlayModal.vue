@@ -89,7 +89,7 @@
                 v-if="hasAnswered && (idx === quizStore.currentQuestion.correctIndex || idx === selectedAnswerIndex)"
                 :name="idx === quizStore.currentQuestion.correctIndex ? 'mdi:check-circle' : 'mdi:close-circle'"
                 class="w-5 h-5 shrink-0 mt-0.5"
-                :class="idx === quizStore.currentQuestion.correctIndex ? 'text-forest-450' : 'text-brick-450'"
+                :class="idx === quizStore.currentQuestion.correctIndex ? 'text-forest-450' : 'text-brick-500'"
               />
             </button>
           </div>
@@ -277,7 +277,7 @@ function fireConfetti() {
   canvas.width = canvas.parentElement?.clientWidth || 600
   canvas.height = canvas.parentElement?.clientHeight || 500
 
-  const colors = ['#C9922A', '#8B3A2A', '#2D5016', '#FDFAF3', '#B87333']
+  const colors = ['#C7A664', '#F59E0B', '#12B981', '#F5F1EA', '#8C806E']
   const particles = Array.from({ length: 80 }).map(() => ({
     x: canvas.width / 2,
     y: canvas.height / 2 + 50,
@@ -361,7 +361,7 @@ function getOptionClass(idx: number) {
     return 'bg-brick-900/20 border-brick-500/40 text-brick-200'
   }
 
-  return 'bg-charcoal-950/20 border-charcoal-850 text-charcoal-550 opacity-60'
+  return 'bg-charcoal-950/20 border-charcoal-850 text-charcoal-500 opacity-60'
 }
 
 function getOptionBadgeClass(idx: number) {
@@ -373,14 +373,14 @@ function getOptionBadgeClass(idx: number) {
   }
 
   if (isCorrect) {
-    return 'bg-forest-550/20 border-forest-500/40 text-forest-400'
+    return 'bg-forest-500/20 border-forest-500/40 text-forest-400'
   }
 
   if (isSelected) {
-    return 'bg-brick-550/20 border-brick-500/40 text-brick-400'
+    return 'bg-brick-500/20 border-brick-500/40 text-brick-400'
   }
 
-  return 'border-charcoal-800 text-charcoal-600'
+  return 'border-charcoal-800 text-charcoal-400'
 }
 
 function formatSeconds(s: number) {

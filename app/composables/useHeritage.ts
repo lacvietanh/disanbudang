@@ -26,13 +26,13 @@ export function useHeritage() {
 
   function getCategoryColor(category: string): string {
     const colors: Record<string, string> = {
-      'lich-su': '#8B3A2A',
+      'lich-su': '#C4552A',
       'danh-thang': '#2D5016',
-      'van-hoa-phi-vat-the': '#C9922A',
-      'doi-song-cong-dong': '#6B4C35',
-      'giao-duc-truyen-thong': '#B87333',
+      'van-hoa-phi-vat-the': '#D4952B',
+      'doi-song-cong-dong': '#7A5235',
+      'giao-duc-truyen-thong': '#B87845',
     }
-    return colors[category] ?? '#6B4C35'
+    return colors[category] ?? '#7A5235'
   }
 
   function getCategoryLabel(category: string): string {

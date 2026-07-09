@@ -126,7 +126,7 @@
           <div class="w-full h-full relative transition-transform duration-500 transform-style-3d rounded-xl shadow-md"
             :class="{ 'rotate-y-180': flippedCards[i] }">
             <div class="absolute inset-0 backface-hidden bg-charcoal-950 border border-charcoal-800 rounded-xl p-4 flex flex-col justify-between">
-              <span class="text-3xs text-charcoal-600 uppercase font-bold">Câu hỏi</span>
+              <span class="text-3xs text-charcoal-400 uppercase font-bold">Câu hỏi</span>
               <p class="text-sm text-ivory font-semibold text-center">{{ card.front }}</p>
               <span class="text-3xs text-gold-400 text-right flex items-center justify-end gap-1">
                 Lật thẻ <Icon name="mdi:rotate-3d-variant" class="w-3.5 h-3.5" />
@@ -236,10 +236,10 @@
           v-model="essayText"
           rows="4"
           placeholder="Viết câu trả lời của bạn tại đây..."
-          class="w-full bg-charcoal-950 border border-charcoal-800 rounded-xl px-4 py-3 text-sm text-ivory placeholder-charcoal-600 focus:outline-none focus:border-gold-500/60 resize-none leading-relaxed"
+          class="w-full bg-charcoal-950 border border-charcoal-800 rounded-xl px-4 py-3 text-sm text-ivory placeholder-charcoal-400 focus:outline-none focus:border-gold-500/60 resize-none leading-relaxed"
         />
         <div class="flex justify-between items-center">
-          <span class="text-3xs text-charcoal-600">{{ essayText.length }} ký tự</span>
+          <span class="text-3xs text-charcoal-400">{{ essayText.length }} ký tự</span>
           <button
             v-if="essayText.length > 20"
             class="text-3xs px-4 py-1.5 bg-gold-500 text-charcoal-950 font-bold rounded-full hover:bg-gold-400 transition-colors"
@@ -398,7 +398,7 @@ function getOptionClass(qi: number, oi: number): string {
   const correct = quizItem?.correct ?? -1
   if (oi === correct) return 'bg-forest-500/10 border-forest-500/40 text-forest-300'
   if (oi === quizSelections.value[qi]) return 'bg-brick-500/10 border-brick-500/40 text-brick-300'
-  return 'bg-charcoal-900/40 border-charcoal-850 text-charcoal-600 opacity-60'
+  return 'bg-charcoal-900/40 border-charcoal-850 text-charcoal-400 opacity-60'
 }
 
 function selectAnswer(qi: number, oi: number) {
@@ -413,8 +413,8 @@ function selectAnswer(qi: number, oi: number) {
     title: isCorrect ? '✓ Đúng rồi! +10 XP' : '✗ Chưa đúng — xem giải thích bên dưới',
     showConfirmButton: false,
     timer: 2000,
-    background: '#1C1A18',
-    color: '#FDFAF3',
+    background: '#221D17',
+    color: '#F5F1EA',
   })
 
   if (isCorrect && props.lesson.quiz) {
@@ -427,9 +427,9 @@ function selectAnswer(qi: number, oi: number) {
           title: 'Xuất Sắc! 🎉',
           text: `Bạn đã trả lời đúng tất cả ${totalQuiz}/${totalQuiz} câu hỏi trắc nghiệm ôn tập. +${totalQuiz * 10} XP`,
           icon: 'success',
-          confirmButtonColor: '#C9922A',
-          background: '#1C1A18',
-          color: '#FDFAF3',
+          confirmButtonColor: '#C7A664',
+          background: '#221D17',
+          color: '#F5F1EA',
         })
       }, 500)
     }
@@ -453,7 +453,7 @@ function triggerConfetti() {
   canvas.width = window.innerWidth
   canvas.height = window.innerHeight
 
-  const colors = ['#C9922A', '#E6C587', '#8B3A2A', '#2D5016', '#4A90E2', '#50E3C2']
+  const colors = ['#C7A664', '#D1B27D', '#F59E0B', '#12B981', '#C7A664', '#12B981']
   const particles: any[] = []
 
   for (let i = 0; i < 120; i++) {
@@ -520,8 +520,8 @@ function saveEssay() {
     title: 'Đã lưu bài tự luận',
     showConfirmButton: false,
     timer: 1800,
-    background: '#1C1A18',
-    color: '#FDFAF3',
+    background: '#221D17',
+    color: '#F5F1EA',
   })
 }
 
@@ -538,7 +538,7 @@ function startChallenge() {
     title: 'Thử thách đang được xây dựng',
     text: 'Tính năng thử thách tương tác sẽ sớm có mặt trong phiên bản tiếp theo!',
     icon: 'info',
-    confirmButtonColor: '#C9922A',
+    confirmButtonColor: '#C7A664',
   })
 }
 

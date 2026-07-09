@@ -8,7 +8,7 @@
       <div class="container-heritage relative z-10">
         <div class="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
-            <p class="eyebrow mb-4 text-gold-300">QR Experience · {{ getCategoryLabel(heritage.category) }}</p>
+            <p class="eyebrow mb-4 text-gold-300">Trải Nghiệm QR · {{ getCategoryLabel(heritage.category) }}</p>
             <h1 class="text-display text-shadow-hero">{{ heritage.title }}</h1>
             <p class="mt-5 font-accent text-2xl italic text-gold-200">{{ heritage.subtitle }}</p>
             <p class="mt-6 max-w-2xl text-lg leading-relaxed text-ivory/75">{{ heritage.shortDescription }}</p>
@@ -30,7 +30,7 @@
               <div class="mx-auto mb-5 grid h-56 w-56 place-items-center rounded-2xl bg-white shadow-inset-warm">
                 <Icon name="mdi:qrcode" class="h-36 w-36 text-charcoal-800" />
               </div>
-              <p class="eyebrow text-earth-600">Scan & continue</p>
+              <p class="eyebrow text-earth-600">Quét mã & tiếp tục</p>
               <h2 class="mt-2 font-heading text-2xl font-bold">Mang di sản theo bạn</h2>
               <p class="mt-3 text-sm leading-relaxed text-charcoal-500">Route QR sạch, SEO-friendly, sẵn sàng in trên bảng chỉ dẫn, bảo tàng trường học hoặc điểm di tích.</p>
             </div>

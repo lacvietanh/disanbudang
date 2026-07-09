@@ -13,7 +13,7 @@
       <img
         :src="post.coverImage"
         :alt="post.title"
-        class="absolute inset-0 w-full h-full object-cover scale-100 transition-transform duration-[15000ms] ease-out-expo scale-105"
+        class="absolute inset-0 w-full h-full object-cover ken-burns-hero"
       />
       <div class="absolute inset-0 bg-gradient-to-t from-charcoal-900 via-charcoal-900/60 to-transparent" />
       <div class="absolute inset-0 bg-gradient-to-r from-charcoal-950/80 to-transparent" />
@@ -300,7 +300,7 @@ async function sharePost() {
       icon: 'success',
       title: 'Thành công',
       text: 'Đã sao chép đường dẫn vào bộ nhớ tạm!',
-      confirmButtonColor: '#e18c1b'
+      confirmButtonColor: '#C7A664'
     })
   }
 }
@@ -324,5 +324,13 @@ watchEffect(() => {
 .prose-heritage {
   font-size: 1.1rem;
   line-height: 1.85;
+}
+
+.ken-burns-hero {
+  animation: ken-burns-hero 20s ease-out infinite alternate;
+}
+@keyframes ken-burns-hero {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
 }
 </style>

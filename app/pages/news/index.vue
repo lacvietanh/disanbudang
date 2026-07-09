@@ -127,14 +127,9 @@ const categoryIcons: Record<string, string> = {
   'nghien-cuu': 'mdi:flask-outline',
   'hoat-dong': 'mdi:run-fast',
 }
-const categoryVariant: Record<NewsCategory, any> = {
-  'su-kien': 'brick', 'tin-tuc': 'gold', 'nghien-cuu': 'forest', 'hoat-dong': 'earth',
-}
-
 const filteredNews = computed(() =>
   activeCategory.value === 'all' ? NEWS_ARTICLES : NEWS_ARTICLES.filter((n) => n.category === activeCategory.value),
 )
-const events = EVENTS
 
 function formatDate(str: string) {
   return new Intl.DateTimeFormat('vi-VN', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(str))

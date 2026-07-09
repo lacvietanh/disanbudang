@@ -3,7 +3,7 @@
     <div ref="mapEl" class="w-full h-full" />
     <!-- Locate button — premium -->
     <button
-      class="absolute bottom-6 right-6 z-[400] w-13 h-13 flex items-center justify-center rounded-2xl transition-all duration-300 group"
+      class="absolute bottom-6 right-6 z-[400] w-14 h-14 flex items-center justify-center rounded-2xl transition-all duration-300 group"
       :class="isLocating
         ? 'bg-gold-500 border-2 border-gold-300 shadow-gold/30 shadow-xl'
         : 'bg-charcoal-900/90 backdrop-blur-md border border-charcoal-700 hover:border-gold-500/70 hover:bg-charcoal-800 shadow-xl shadow-charcoal-950/60'"
@@ -20,7 +20,7 @@
     <!-- Zoom controls override label -->
     <div class="absolute bottom-6 left-6 z-[400] flex flex-col gap-1">
       <div class="bg-charcoal-900/80 backdrop-blur-sm border border-charcoal-750 rounded-xl overflow-hidden shadow-lg text-xs text-charcoal-500 px-2.5 py-1.5 flex items-center gap-1.5">
-        <Icon name="mdi:gesture-pinch" class="w-3.5 h-3.5 text-charcoal-600" />
+        <Icon name="mdi:gesture-pinch" class="w-3.5 h-3.5 text-charcoal-400" />
         <span class="font-medium">Kéo để khám phá</span>
       </div>
     </div>
@@ -52,11 +52,11 @@ const isLocating = ref(false)
 
 // Brighter, more vivid colors that pop on dark map tile
 const categoryColors: Record<string, string> = {
-  'lich-su': '#D45F4A',
-  'danh-thang': '#4A8C2A',
-  'van-hoa-phi-vat-the': '#E4A226',
-  'doi-song-cong-dong': '#A8734A',
-  'giao-duc-truyen-thong': '#D48A45',
+  'lich-su': '#EF4444',
+  'danh-thang': '#12B981',
+  'van-hoa-phi-vat-the': '#C7A664',
+  'doi-song-cong-dong': '#8C806E',
+  'giao-duc-truyen-thong': '#C7A664',
 }
 
 // Global user marker
@@ -69,7 +69,7 @@ const locateMe = async () => {
       title: 'Không hỗ trợ',
       text: 'Trình duyệt của bạn không hỗ trợ định vị GPS.',
       icon: 'error',
-      confirmButtonColor: '#C9922A'
+      confirmButtonColor: '#C7A664'
     })
     return
   }
@@ -82,9 +82,9 @@ const locateMe = async () => {
     showCancelButton: true,
     confirmButtonText: 'Đồng ý định vị',
     cancelButtonText: 'Để sau',
-    confirmButtonColor: '#C9922A',
-    background: '#1C1A18',
-    color: '#FDFAF3',
+    confirmButtonColor: '#C7A664',
+    background: '#221D17',
+    color: '#F5F1EA',
   })
   if (!consent.isConfirmed) return
 
@@ -106,14 +106,14 @@ const locateMe = async () => {
               html: `
                 <div style="position:relative;display:flex;align-items:center;justify-content:center;width:28px;height:28px;">
                   <div style="position:absolute;inset:0;background:rgba(59,130,246,0.35);border-radius:50%;animation:ping 1.5s cubic-bezier(0,0,0.2,1) infinite;"></div>
-                  <div style="position:relative;width:16px;height:16px;background:#3B82F6;border:3px solid white;border-radius:50%;box-shadow:0 0 14px rgba(59,130,246,0.8);"></div>
+                  <div style="position:relative;width:16px;height:16px;background:#C7A664;border:3px solid white;border-radius:50%;box-shadow:0 0 14px rgba(59,130,246,0.8);"></div>
                 </div>`,
               className: '',
               iconSize: [28, 28],
               iconAnchor: [14, 14],
             })
             userMarker = LInstance.marker([lat, lng], { icon: userIcon }).addTo(map)
-              .bindPopup('<div style="font-size:12px;font-weight:600;color:#1C1A18;">📍 Vị trí của bạn</div>')
+              .bindPopup('<div style="font-size:12px;font-weight:600;color:#221D17;">📍 Vị trí của bạn</div>')
           }
         }
       }
@@ -124,7 +124,7 @@ const locateMe = async () => {
         title: 'Lỗi định vị',
         text: 'Không thể lấy vị trí của bạn. Vui lòng cấp quyền truy cập vị trí.',
         icon: 'warning',
-        confirmButtonColor: '#C9922A'
+        confirmButtonColor: '#C7A664'
       })
     }
   )
@@ -153,7 +153,7 @@ onMounted(async () => {
 
   // CartoDB Dark Matter — cinematic dark tile that matches the overall design
   L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" style="color:#C9922A">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" style="color:#C9922A">CARTO</a>',
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" style="color:#C7A664">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" style="color:#C7A664">CARTO</a>',
     subdomains: 'abcd',
     maxZoom: 19,
   }).addTo(map)
@@ -226,7 +226,7 @@ function addMarkers(L: any) {
     if (isSingle) {
       const h = c.heritages[0]
       if (!h) return
-      const color = categoryColors[h.category] ?? '#E4A226'
+      const color = categoryColors[h.category] ?? '#C7A664'
       const isSelected = props.selectedId === h.id
       const iconSvgPath = categoryIcons[h.category] ?? `<path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>`
       const pinSize = isSelected ? 46 : 40
@@ -262,7 +262,7 @@ function addMarkers(L: any) {
             <div style="
               position:absolute;bottom:${halfPin + 14}px;left:50%;transform:translateX(-50%) translateY(4px);
               background:rgba(15,13,11,0.97);backdrop-filter:blur(12px);
-              color:#FDFAF3;font-size:11px;font-weight:600;letter-spacing:0.02em;
+              color:#F5F1EA;font-size:11px;font-weight:600;letter-spacing:0.02em;
               padding:5px 10px;border-radius:8px;
               border:1px solid ${color}45;
               box-shadow:0 8px 24px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
@@ -282,9 +282,10 @@ function addMarkers(L: any) {
         .addTo(map)
         .on('click', () => emit('select', h))
 
-      // Accessibility key press
-      marker.on('keypress', (e: any) => {
-        if (e.originalEvent.key === 'Enter' || e.originalEvent.key === ' ') {
+      // Accessibility key press — Leaflet only forwards mouse events, so bind natively on the DOM element
+      marker.getElement()?.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
           emit('select', h)
         }
       })
@@ -294,7 +295,7 @@ function addMarkers(L: any) {
       // Cluster marker
       const count = c.heritages.length
       const containsSelected = c.heritages.some((h) => props.selectedId === h.id)
-      const titlesList = c.heritages.slice(0, 4).map((h) => `<div style="display:flex;align-items:center;gap:5px;"><span style="color:#E4A226;font-size:8px;">●</span>${h.title}</div>`).join('') + (c.heritages.length > 4 ? `<div style="color:#7A7265;font-size:10px;margin-top:2px;">+${c.heritages.length - 4} địa điểm khác</div>` : '')
+      const titlesList = c.heritages.slice(0, 4).map((h) => `<div style="display:flex;align-items:center;gap:5px;"><span style="color:#C7A664;font-size:8px;">●</span>${h.title}</div>`).join('') + (c.heritages.length > 4 ? `<div style="color:#8C806E;font-size:10px;margin-top:2px;">+${c.heritages.length - 4} địa điểm khác</div>` : '')
       const clusterSize = containsSelected ? 52 : 46
       const half = clusterSize / 2
 
@@ -302,33 +303,33 @@ function addMarkers(L: any) {
         html: `
           <div style="position:relative;display:flex;align-items:center;justify-content:center;" tabindex="0" aria-label="Nhóm ${count} di sản. Nhấp để phóng to." class="heritage-cluster-host">
             <!-- Ambient glow -->
-            <div style="position:absolute;width:${clusterSize + 24}px;height:${clusterSize + 24}px;border-radius:50%;background:radial-gradient(circle, #E4A22630 0%, transparent 70%);pointer-events:none;"></div>
+            <div style="position:absolute;width:${clusterSize + 24}px;height:${clusterSize + 24}px;border-radius:50%;background:radial-gradient(circle, #C7A66430 0%, transparent 70%);pointer-events:none;"></div>
             <!-- Outer ring -->
-            <div style="position:absolute;width:${clusterSize + 6}px;height:${clusterSize + 6}px;border-radius:50%;border:1.5px solid #E4A22640;pointer-events:none;animation:clusterRing 2.5s ease-in-out infinite;"></div>
+            <div style="position:absolute;width:${clusterSize + 6}px;height:${clusterSize + 6}px;border-radius:50%;border:1.5px solid #C7A66440;pointer-events:none;animation:clusterRing 2.5s ease-in-out infinite;"></div>
             <!-- Main circle -->
             <div style="
               width:${clusterSize}px;height:${clusterSize}px;border-radius:50%;
-              background:linear-gradient(135deg, #2A2520, #1A1815);
-              border:2px solid ${containsSelected ? '#E4A226' : 'rgba(228,162,38,0.45)'};
+              background:linear-gradient(135deg, #241C15, #221D17);
+              border:2px solid ${containsSelected ? '#C7A664' : 'rgba(228,162,38,0.45)'};
               display:flex;flex-direction:column;align-items:center;justify-content:center;
-              box-shadow:0 4px 20px rgba(0,0,0,0.7), 0 0 20px #E4A22625, inset 0 1px 0 rgba(255,255,255,0.08);
+              box-shadow:0 4px 20px rgba(0,0,0,0.7), 0 0 20px #C7A66425, inset 0 1px 0 rgba(255,255,255,0.08);
               cursor:pointer;position:relative;z-index:10;
             " class="heritage-cluster-circle">
-              <span style="font-weight:800;font-size:${count > 9 ? 13 : 15}px;color:#E4A226;line-height:1;">${count}</span>
-              <span style="font-size:8px;color:#7A7265;font-weight:600;letter-spacing:0.06em;margin-top:1px;">DI SẢN</span>
+              <span style="font-weight:800;font-size:${count > 9 ? 13 : 15}px;color:#C7A664;line-height:1;">${count}</span>
+              <span style="font-size:8px;color:#8C806E;font-weight:600;letter-spacing:0.06em;margin-top:1px;">DI SẢN</span>
             </div>
             <!-- Tooltip -->
             <div style="
               position:absolute;bottom:${half + 12}px;left:50%;transform:translateX(-50%);
               background:rgba(12,10,8,0.97);backdrop-filter:blur(12px);
-              color:#FDFAF3;font-size:11px;padding:8px 12px;border-radius:10px;
-              border:1px solid #E4A22635;
+              color:#F5F1EA;font-size:11px;padding:8px 12px;border-radius:10px;
+              border:1px solid #C7A66435;
               box-shadow:0 12px 30px rgba(0,0,0,0.7);
               white-space:nowrap;pointer-events:none;
               opacity:0;transition:opacity 0.2s;
               z-index:9999;text-align:left;min-width:140px;
             " class="cluster-tooltip">
-              <div style="color:#E4A226;font-weight:700;font-size:11px;margin-bottom:6px;border-bottom:1px solid #2A2520;padding-bottom:5px;">📍 ${count} Địa điểm</div>
+              <div style="color:#C7A664;font-weight:700;font-size:11px;margin-bottom:6px;border-bottom:1px solid #241C15;padding-bottom:5px;">📍 ${count} Địa điểm</div>
               ${titlesList}
             </div>
           </div>`,
@@ -343,8 +344,9 @@ function addMarkers(L: any) {
           map.flyTo([c.lat, c.lng], zoom + 2, { duration: 0.8 })
         })
 
-      marker.on('keypress', (e: any) => {
-        if (e.originalEvent.key === 'Enter' || e.originalEvent.key === ' ') {
+      marker.getElement()?.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
           map.flyTo([c.lat, c.lng], zoom + 2, { duration: 0.8 })
         }
       })
@@ -416,7 +418,7 @@ function updateRouteLine() {
 
   // Main glowing route line
   routePolyline = LInstance.polyline(latlngs, {
-    color: route.color || '#E4A226',
+    color: route.color || '#C7A664',
     weight: 3,
     opacity: 0.9,
     dashArray: '12, 14',
@@ -426,7 +428,7 @@ function updateRouteLine() {
   }).addTo(map)
   // Glow effect layer
   LInstance.polyline(latlngs, {
-    color: route.color || '#E4A226',
+    color: route.color || '#C7A664',
     weight: 10,
     opacity: 0.12,
     lineCap: 'round',
@@ -494,27 +496,27 @@ onUnmounted(() => {
   border: 1px solid rgba(228, 162, 38, 0.3) !important;
   border-radius: 12px !important;
   box-shadow: 0 12px 30px rgba(0,0,0,0.6) !important;
-  color: #FDFAF3 !important;
+  color: #F5F1EA !important;
   backdrop-filter: blur(12px);
 }
 :deep(.leaflet-popup-tip) {
   background: rgba(15, 13, 11, 0.95) !important;
 }
 :deep(.leaflet-popup-close-button) {
-  color: #7A7265 !important;
+  color: #8C806E !important;
 }
 
 /* Override leaflet attribution */
 :deep(.leaflet-control-attribution) {
   background: rgba(12, 10, 8, 0.75) !important;
-  color: #4A4540 !important;
+  color: #4F473C !important;
   border-radius: 8px 0 0 0 !important;
   font-size: 10px !important;
   padding: 3px 8px !important;
   backdrop-filter: blur(8px);
 }
 :deep(.leaflet-control-attribution a) {
-  color: #C9922A !important;
+  color: #C7A664 !important;
 }
 
 /* Zoom controls dark theme */
@@ -526,7 +528,7 @@ onUnmounted(() => {
 }
 :deep(.leaflet-control-zoom a) {
   background: rgba(20, 18, 16, 0.95) !important;
-  color: #C9922A !important;
+  color: #C7A664 !important;
   border-bottom: 1px solid rgba(255,255,255,0.08) !important;
   font-size: 16px !important;
   font-weight: 300 !important;
@@ -536,6 +538,6 @@ onUnmounted(() => {
 }
 :deep(.leaflet-control-zoom a:hover) {
   background: rgba(30, 28, 26, 0.95) !important;
-  color: #E4A226 !important;
+  color: #C7A664 !important;
 }
 </style>

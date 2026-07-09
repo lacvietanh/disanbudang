@@ -10,7 +10,7 @@
         <img
           :src="heritage.coverImage"
           :alt="heritage.title"
-          class="absolute inset-0 w-full h-full object-cover scale-100 transition-transform duration-[15000ms] ease-out-expo scale-105"
+          class="absolute inset-0 w-full h-full object-cover ken-burns-hero"
         />
         <div class="absolute inset-0 bg-gradient-to-t from-charcoal-900 via-charcoal-900/50 to-transparent" />
         <div class="absolute inset-0 bg-gradient-to-r from-charcoal-950/80 to-transparent" />
@@ -205,7 +205,7 @@
                 Tọa Độ Định Vị
               </h3>
               <div class="bg-charcoal-900 rounded-xl aspect-[4/3] flex flex-col items-center justify-center mb-4 border border-charcoal-800 text-center p-4">
-                <Icon name="mdi:map" class="w-8 h-8 text-charcoal-600 mb-2" />
+                <Icon name="mdi:map" class="w-8 h-8 text-charcoal-400 mb-2" />
                 <p class="text-ivory font-medium text-xs">{{ heritage.coordinates.lat.toFixed(5) }}, {{ heritage.coordinates.lng.toFixed(5) }}</p>
                 <p class="text-charcoal-500 text-[10px] mt-1">Tọa độ GPS (WGS84), dùng được với Google Maps</p>
               </div>
@@ -254,12 +254,69 @@
           </div>
         </div>
       </div>
+
+      <!-- Gallery Lightbox -->
+      <Transition name="fade">
+        <div
+          v-if="lightboxIndex !== null && heritage.gallery[lightboxIndex] != null"
+          class="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Xem ảnh lớn"
+          @click.self="lightboxIndex = null"
+        >
+          <div class="absolute top-4 right-4 flex items-center gap-2">
+            <button
+              class="text-ivory/80 hover:text-ivory bg-charcoal-900/60 hover:bg-charcoal-800 p-2.5 rounded-full border border-charcoal-800 transition-colors"
+              @click="lightboxIndex = null"
+              aria-label="Đóng chế độ xem ảnh lớn"
+            >
+              <Icon name="mdi:close" class="w-6 h-6" />
+            </button>
+          </div>
+
+          <button
+            v-if="heritage.gallery.length > 1"
+            class="absolute left-4 top-1/2 -translate-y-1/2 text-ivory/80 hover:text-ivory bg-charcoal-900/60 p-3 rounded-full hover:bg-charcoal-800 border border-charcoal-800 z-10 transition-colors"
+            @click="prevGalleryImage"
+            aria-label="Ảnh trước"
+          >
+            <Icon name="mdi:chevron-left" class="w-6 h-6" />
+          </button>
+          <button
+            v-if="heritage.gallery.length > 1"
+            class="absolute right-4 top-1/2 -translate-y-1/2 text-ivory/80 hover:text-ivory bg-charcoal-900/60 p-3 rounded-full hover:bg-charcoal-800 border border-charcoal-800 z-10 transition-colors"
+            @click="nextGalleryImage"
+            aria-label="Ảnh tiếp theo"
+          >
+            <Icon name="mdi:chevron-right" class="w-6 h-6" />
+          </button>
+
+          <div class="max-w-4xl max-h-[75vh] flex items-center justify-center">
+            <img
+              :src="heritage.gallery[lightboxIndex]!.src"
+              :alt="heritage.gallery[lightboxIndex]!.alt"
+              class="max-w-full max-h-[75vh] object-contain rounded-lg border border-charcoal-850 shadow-2xl"
+            />
+          </div>
+
+          <div class="mt-4 text-center max-w-2xl px-4 space-y-1">
+            <p class="text-ivory text-sm font-semibold">{{ heritage.gallery[lightboxIndex]!.alt }}</p>
+            <p v-if="heritage.gallery[lightboxIndex]!.caption" class="text-charcoal-400 text-xs leading-relaxed">
+              {{ heritage.gallery[lightboxIndex]!.caption }}
+            </p>
+            <p v-if="heritage.gallery[lightboxIndex]!.photographer" class="text-gold-400/90 text-3xs font-accent italic">
+              Nhiếp ảnh gia: {{ heritage.gallery[lightboxIndex]!.photographer }}
+            </p>
+          </div>
+        </div>
+      </Transition>
     </div>
 
     <!-- 404 -->
     <div v-else class="min-h-screen flex items-center justify-center bg-charcoal-900 pt-[72px]">
       <div class="text-center">
-        <Icon name="mdi:map-marker-off" class="w-20 h-20 text-charcoal-700 mx-auto mb-6" />
+        <Icon name="mdi:map-marker-off" class="w-20 h-20 text-charcoal-400 mx-auto mb-6" />
         <h1 class="font-heading font-bold text-ivory text-3xl mb-3">Di sản không tồn tại</h1>
         <NuxtLink to="/explore" class="btn-primary">Khám Phá Di Sản</NuxtLink>
       </div>
@@ -282,6 +339,18 @@ const lightboxIndex = ref<number | null>(null)
 const currentActiveTab = ref('story')
 
 const heritage = computed(() => store.getBySlug(slug.value) ?? null)
+
+function prevGalleryImage() {
+  if (!heritage.value?.gallery || lightboxIndex.value === null) return
+  const total = heritage.value.gallery.length
+  lightboxIndex.value = (lightboxIndex.value - 1 + total) % total
+}
+
+function nextGalleryImage() {
+  if (!heritage.value?.gallery || lightboxIndex.value === null) return
+  const total = heritage.value.gallery.length
+  lightboxIndex.value = (lightboxIndex.value + 1) % total
+}
 
 useHeritageSeo(heritage)
 useBreadcrumb(() => heritage.value?.title || '')
@@ -370,3 +439,20 @@ function formatTime(s: number) {
 
 definePageMeta({ layout: 'default' })
 </script>
+
+<style scoped>
+.ken-burns-hero {
+  animation: kenburns-hero 20s ease-out infinite alternate;
+}
+@keyframes kenburns-hero {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+</style>

@@ -51,7 +51,7 @@
               <Icon
                 v-if="sIdx < steps.length - 1"
                 name="mdi:chevron-right"
-                class="w-4 h-4 text-charcoal-700 hidden sm:block ml-2"
+                class="w-4 h-4 text-charcoal-400 hidden sm:block ml-2"
               />
             </div>
           </div>
@@ -95,7 +95,7 @@
                     type="text"
                     required
                     placeholder="Nhập họ và tên đầy đủ"
-                    class="w-full px-4 py-3.5 bg-charcoal-900 border border-charcoal-800 rounded-xl text-ivory text-sm placeholder-charcoal-600 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/20 transition-all"
+                    class="w-full px-4 py-3.5 bg-charcoal-900 border border-charcoal-800 rounded-xl text-ivory text-sm placeholder-charcoal-400 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/20 transition-all"
                     :class="{ 'border-red-500/60 focus:border-red-500 focus:ring-red-500/20': stepErrors.name }"
                     @input="stepErrors.name = ''"
                   />
@@ -140,7 +140,7 @@
                     type="text"
                     required
                     placeholder="Tiêu đề tóm tắt (ví dụ: Ảnh cưới truyền thống S'tiêng năm 1980)"
-                    class="w-full px-4 py-3.5 bg-charcoal-900 border border-charcoal-800 rounded-xl text-ivory text-sm placeholder-charcoal-600 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/20 transition-all"
+                    class="w-full px-4 py-3.5 bg-charcoal-900 border border-charcoal-800 rounded-xl text-ivory text-sm placeholder-charcoal-400 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/20 transition-all"
                   />
                 </div>
                 <div>
@@ -151,7 +151,7 @@
                     required
                     rows="6"
                     placeholder="Viết câu chuyện hoặc ghi lại xuất xứ hiện vật..."
-                    class="w-full px-4 py-3.5 bg-charcoal-900 border border-charcoal-800 rounded-xl text-ivory text-sm placeholder-charcoal-600 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/20 transition-all resize-none"
+                    class="w-full px-4 py-3.5 bg-charcoal-900 border border-charcoal-800 rounded-xl text-ivory text-sm placeholder-charcoal-400 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/20 transition-all resize-none"
                   />
                 </div>
                 <div>
@@ -251,14 +251,14 @@
                 <p class="text-charcoal-400 mt-0.5">Tiếp nhận ký ức và thông tin ban đầu gửi về.</p>
               </div>
               <div>
-                <span class="absolute -left-[25px] top-21 w-2.5 h-2.5 rounded-full bg-charcoal-600" />
+                <span class="absolute -left-[25px] top-[84px] w-2.5 h-2.5 rounded-full bg-charcoal-600" />
                 <p class="font-semibold text-charcoal-350">2. Xác minh khảo cổ</p>
-                <p class="text-charcoal-550 mt-0.5">Ban quản lý di tích đối chiếu sử liệu địa phương.</p>
+                <p class="text-charcoal-500 mt-0.5">Ban quản lý di tích đối chiếu sử liệu địa phương.</p>
               </div>
               <div>
-                <span class="absolute -left-[25px] top-41 w-2.5 h-2.5 rounded-full bg-charcoal-600" />
+                <span class="absolute -left-[25px] top-[164px] w-2.5 h-2.5 rounded-full bg-charcoal-600" />
                 <p class="font-semibold text-charcoal-350">3. Số hóa công khai</p>
-                <p class="text-charcoal-550 mt-0.5">Trưng bày chính thức lên bản đồ di sản số.</p>
+                <p class="text-charcoal-500 mt-0.5">Trưng bày chính thức lên bản đồ di sản số.</p>
               </div>
             </div>
           </div>

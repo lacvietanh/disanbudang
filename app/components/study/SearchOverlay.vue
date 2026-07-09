@@ -29,7 +29,7 @@
               @keydown.enter="selectActive"
             />
             <div class="flex items-center gap-2 shrink-0">
-              <span class="text-3xs text-charcoal-600 border border-charcoal-800 px-1.5 py-0.5 rounded font-mono">ESC</span>
+              <span class="text-3xs text-charcoal-400 border border-charcoal-800 px-1.5 py-0.5 rounded font-mono">ESC</span>
               <button
                 class="w-6 h-6 rounded-full flex items-center justify-center text-charcoal-500 hover:text-ivory hover:bg-charcoal-800 transition-all"
                 @click="emit('update:open', false)"
@@ -44,14 +44,14 @@
           <div class="max-h-[60vh] overflow-y-auto scrollbar-none">
             <!-- Empty state -->
             <div v-if="query.trim() && results.length === 0" class="py-12 text-center space-y-2">
-              <Icon name="mdi:magnify-remove-outline" class="w-10 h-10 text-charcoal-700 mx-auto" />
+              <Icon name="mdi:magnify-remove-outline" class="w-10 h-10 text-charcoal-400 mx-auto" />
               <p class="text-charcoal-500 text-sm">Không tìm thấy kết quả cho "<span class="text-ivory">{{ query }}</span>"</p>
-              <p class="text-charcoal-600 text-xs">Thử từ khóa khác: Chiến khu Đ, cồng chiêng, thổ cẩm...</p>
+              <p class="text-charcoal-400 text-xs">Thử từ khóa khác: Chiến khu Đ, cồng chiêng, thổ cẩm...</p>
             </div>
 
             <!-- Default hints (no query) -->
             <div v-else-if="!query.trim()" class="p-4 space-y-3">
-              <p class="text-3xs font-bold uppercase tracking-widest text-charcoal-600">GỢI Ý TÌM KIẾM NHANH</p>
+              <p class="text-3xs font-bold uppercase tracking-widest text-charcoal-400">GỢI Ý TÌM KIẾM NHANH</p>
               <div class="flex flex-wrap gap-2">
                 <button
                   v-for="hint in hints"
@@ -71,10 +71,10 @@
                 :key="gIdx"
                 class="mb-4 last:mb-0"
               >
-                <div class="px-3 py-1 text-3xs font-bold uppercase tracking-widest text-charcoal-600 flex items-center gap-2">
+                <div class="px-3 py-1 text-3xs font-bold uppercase tracking-widest text-charcoal-400 flex items-center gap-2">
                   <Icon :name="group.icon" class="w-3.5 h-3.5 text-gold-500" />
                   {{ group.label }}
-                  <span class="text-charcoal-700">({{ group.items.length }})</span>
+                  <span class="text-charcoal-400">({{ group.items.length }})</span>
                 </div>
 
                 <button
@@ -95,14 +95,14 @@
                     <p class="text-sm font-semibold text-ivory truncate group-hover:text-gold-300 transition-colors">{{ item.title }}</p>
                     <p v-if="item.subtitle" class="text-3xs text-charcoal-500 truncate">{{ item.subtitle }}</p>
                   </div>
-                  <Icon name="mdi:arrow-right" class="w-4 h-4 text-charcoal-700 group-hover:text-gold-400 shrink-0 transition-colors" />
+                  <Icon name="mdi:arrow-right" class="w-4 h-4 text-charcoal-400 group-hover:text-gold-400 shrink-0 transition-colors" />
                 </button>
               </div>
             </div>
           </div>
 
           <!-- Footer hint -->
-          <div class="border-t border-charcoal-800 px-4 py-2 flex items-center justify-between text-3xs text-charcoal-700">
+          <div class="border-t border-charcoal-800 px-4 py-2 flex items-center justify-between text-3xs text-charcoal-400">
             <span class="flex items-center gap-2">
               <kbd class="border border-charcoal-700 px-1 rounded font-mono">↑↓</kbd> Điều hướng
               <kbd class="border border-charcoal-700 px-1 rounded font-mono">↵</kbd> Chọn

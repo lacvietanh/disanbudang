@@ -4,7 +4,7 @@
     <div class="relative max-w-lg w-full h-full flex items-center justify-center">
       <img
         :src="artifactImage"
-        alt="Đàn đá Thành Phố Đồng Nai"
+        :alt="artifactAlt"
         class="max-h-[85%] w-auto object-contain rounded-xl shadow-lg border border-charcoal-800"
       />
 
@@ -61,6 +61,10 @@ const props = defineProps({
   artifactImage: {
     type: String,
     default: '/images/heritage/dan-da-stieng.png'
+  },
+  artifactAlt: {
+    type: String,
+    default: 'Đàn đá Thành Phố Đồng Nai'
   }
 })
 

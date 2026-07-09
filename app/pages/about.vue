@@ -45,7 +45,7 @@
       <!-- Slide counter top-right -->
       <div class="absolute top-24 right-8 z-20 hidden lg:flex items-center gap-1.5 pointer-events-none">
         <span class="font-heading font-bold text-ivory/80 text-sm tabular-nums">{{ String(currentSlide + 1).padStart(2, '0') }}</span>
-        <span class="text-charcoal-600 text-xs">/</span>
+        <span class="text-charcoal-400 text-xs">/</span>
         <span class="text-charcoal-500 text-xs tabular-nums">{{ String(slides.length).padStart(2, '0') }}</span>
       </div>
 
@@ -58,7 +58,7 @@
             <div class="flex items-center gap-3 mb-5 about-reveal" style="--delay: 0s">
               <span class="h-px w-10 bg-gold-400" />
               <span class="text-gold-400 text-[10px] uppercase tracking-[0.28em] font-bold">
-                Dự Án Số Hóa Di Sản · Thành Phố Đồng Nai
+                Dự Án Số Hóa Di Sản Bù Đăng · TP. Đồng Nai
               </span>
             </div>
 
@@ -68,7 +68,7 @@
               style="--delay: 0.12s; font-size: clamp(2.6rem, 7vw, 6rem)"
             >
               Giới Thiệu<br/>
-              <span class="text-gradient-gold">Di Sản Đồng Nai</span>
+              <span class="text-gradient-gold">Di Sản Bù Đăng</span>
             </h1>
 
             <!-- Tagline -->
@@ -76,7 +76,7 @@
               class="font-accent italic text-ivory/65 text-lg lg:text-xl xl:text-2xl max-w-2xl mb-10 leading-relaxed about-reveal"
               style="--delay: 0.24s"
             >
-              "Gìn giữ ký ức di sản địa phương — Dự án số hóa hỗ trợ giáo dục lịch sử và văn hóa Thành Phố Đồng Nai"
+              "Gìn giữ ký ức di sản vùng đất Bù Đăng — vùng lõi di sản đang lớn lên cùng Thành Phố Đồng Nai"
             </p>
 
             <div class="flex flex-wrap items-center gap-4 about-reveal" style="--delay: 0.36s">
@@ -109,7 +109,7 @@
          ══════════════════════════════════════════════════════════ -->
     <section id="mission" class="py-24 lg:py-36 bg-charcoal-900 border-t border-charcoal-800/60 relative overflow-hidden">
       <!-- Background pattern -->
-      <div class="absolute inset-0 pointer-events-none opacity-[0.02] bg-[radial-gradient(#C9922A_1px,transparent_1px)] [background-size:32px_32px]" />
+      <div class="absolute inset-0 pointer-events-none opacity-[0.02] bg-[radial-gradient(#C7A664_1px,transparent_1px)] [background-size:32px_32px]" />
 
       <div class="container-heritage relative z-10">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-start">
@@ -129,9 +129,10 @@
             </blockquote>
 
             <p class="text-charcoal-300 text-base leading-relaxed mb-8">
-              Di sản văn hóa phi vật thể của Thành Phố Đồng Nai đang đối mặt nguy cơ mai một khi
-              chưa có nền tảng số hóa xứng tầm. Dự án ra đời để thay đổi điều đó — biến ký ức
-              thành dữ liệu sống, biến lịch sử thành trải nghiệm.
+              Di sản văn hóa phi vật thể của vùng đất Bù Đăng — nay là vùng lõi di sản của
+              Thành Phố Đồng Nai — đang đối mặt nguy cơ mai một khi chưa có nền tảng số hóa
+              xứng tầm. Dự án ra đời để thay đổi điều đó — biến ký ức thành dữ liệu sống,
+              biến lịch sử thành trải nghiệm.
             </p>
 
             <!-- Mini stats inline -->
@@ -196,7 +197,7 @@
                 </div>
               </div>
               <div class="w-full h-px bg-charcoal-800 my-2" />
-              <p class="text-charcoal-400 text-[10px] leading-relaxed">7 tháng khảo sát thực địa khắp Thành Phố Đồng Nai</p>
+              <p class="text-charcoal-400 text-[10px] leading-relaxed">7 tháng khảo sát thực địa khắp vùng đất Bù Đăng</p>
             </div>
 
             <!-- Gold accent line -->
@@ -212,7 +213,7 @@
          3. NUMBERS — Stats với count-up animation
          ══════════════════════════════════════════════════════════ -->
     <section ref="statsSection" class="py-20 lg:py-28 bg-charcoal-950 border-t border-charcoal-800/60 relative overflow-hidden">
-      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,#C9922A08_0%,transparent_65%)] pointer-events-none" />
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,#C7A66408_0%,transparent_65%)] pointer-events-none" />
 
       <div class="container-heritage relative z-10">
         <div class="text-center mb-14 reveal">
@@ -390,7 +391,7 @@
                 <div class="relative w-56 h-72 rounded-3xl overflow-hidden border border-gold-500/30 shadow-2xl shadow-black/50">
 
                   <!-- Real photo -->
-                  <img
+                  <NuxtImg
                     src="/images/Fouderdisanbudang.jpg"
                     alt="Nguyễn Xuân Kiệt — Tác giả & Nhà phát triển"
                     class="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
@@ -434,7 +435,7 @@
 
               <p class="text-charcoal-300 text-base leading-relaxed mb-6">
                 Đề tài nghiên cứu khoa học học sinh — được thực hiện qua <strong class="text-ivory">7 tháng khảo sát thực địa</strong>,
-                gặp gỡ già làng, nghệ nhân S'tiêng khắp Thành Phố Đồng Nai để thu thập tư liệu
+                gặp gỡ già làng, nghệ nhân S'tiêng khắp vùng đất Bù Đăng để thu thập tư liệu
                 lịch sử, âm thanh và hình ảnh nguyên bản nhất.
               </p>
 
@@ -542,7 +543,7 @@ import { useHeritageStore } from '~/stores/heritage'
 definePageMeta({ layout: 'default' })
 useMuseumSeo({
   title: 'Giới Thiệu Dự Án',
-  description: 'Dự án số hóa di sản văn hóa Thành Phố Đồng Nai — nền tảng bảo tồn và giáo dục lịch sử địa phương tại thành phố trực thuộc Trung ương thứ 7 của Việt Nam.',
+  description: 'Dự án số hóa di sản văn hóa vùng đất Bù Đăng - vùng lõi di sản của Thành Phố Đồng Nai, nền tảng bảo tồn và giáo dục lịch sử địa phương.',
 })
 
 // AboutPage schema per RULE-seo page-type matrix
@@ -553,7 +554,7 @@ useHead({
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'AboutPage',
-        name: 'Giới Thiệu Dự Án Di Sản Đồng Nai',
+        name: 'Giới Thiệu Dự Án Di Sản Bù Đăng · Thành Phố Đồng Nai',
         url: 'https://disanbudang.com/about/',
         about: { '@id': 'https://disanbudang.com/#organization' },
         mainEntity: {
@@ -780,7 +781,7 @@ const roadmap = computed(() => [
     time: 'Giai đoạn hiện tại',
     active: true,
     title: 'Số hóa thí điểm',
-    desc: `${totalCount.value} di sản tiêu biểu khắp Thành Phố Đồng Nai đã được số hóa và triển khai thí điểm trong các tiết học giáo dục địa phương.`,
+    desc: `${totalCount.value} di sản tiêu biểu khắp vùng đất Bù Đăng đã được số hóa và triển khai thí điểm trong các tiết học giáo dục địa phương.`,
   },
   {
     time: 'Giai đoạn tiếp theo',

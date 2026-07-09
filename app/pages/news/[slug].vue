@@ -118,7 +118,7 @@
     <!-- 404 -->
     <div v-else class="min-h-screen flex items-center justify-center bg-charcoal-900 text-ivory">
       <div class="text-center">
-        <Icon name="mdi:alert-circle-outline" class="w-20 h-20 text-charcoal-700 mx-auto mb-6" />
+        <Icon name="mdi:alert-circle-outline" class="w-20 h-20 text-charcoal-400 mx-auto mb-6" />
         <h1 class="font-heading font-bold text-ivory text-3xl mb-3">Tin bài không tồn tại</h1>
         <NuxtLink to="/news" class="btn-primary">Về trang tin tức</NuxtLink>
       </div>

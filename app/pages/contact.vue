@@ -62,19 +62,19 @@
               <div>
                 <label class="block text-charcoal-300 text-sm font-medium mb-2" for="c-name">Họ Tên *</label>
                 <input id="c-name" v-model="form.name" type="text" required placeholder="Nguyễn Văn A"
-                  class="w-full px-4 py-3 bg-[#111111] border border-charcoal-800 rounded-xl text-ivory placeholder-charcoal-600 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/20 transition-all duration-300" />
+                  class="w-full px-4 py-3 bg-[#1A140F] border border-charcoal-800 rounded-xl text-ivory placeholder-charcoal-400 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/20 transition-all duration-300" />
               </div>
               <div>
                 <label class="block text-charcoal-300 text-sm font-medium mb-2" for="c-email">Email *</label>
                 <input id="c-email" v-model="form.email" type="email" required placeholder="email@example.com"
-                  class="w-full px-4 py-3 bg-[#111111] border border-charcoal-800 rounded-xl text-ivory placeholder-charcoal-600 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/20 transition-all duration-300" />
+                  class="w-full px-4 py-3 bg-[#1A140F] border border-charcoal-800 rounded-xl text-ivory placeholder-charcoal-400 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/20 transition-all duration-300" />
               </div>
             </div>
 
             <div>
               <label class="block text-charcoal-300 text-sm font-medium mb-2" for="c-subject">Chủ Đề</label>
               <select id="c-subject" v-model="form.subject" aria-label="Chủ đề liên hệ"
-                class="w-full px-4 py-3 bg-[#111111] border border-charcoal-800 rounded-xl text-ivory focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/20 transition-all duration-300">
+                class="w-full px-4 py-3 bg-[#1A140F] border border-charcoal-800 rounded-xl text-ivory focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/20 transition-all duration-300">
                 <option value="general">Thắc mắc chung</option>
                 <option value="contribute">Đóng góp tư liệu</option>
                 <option value="partnership">Hợp tác</option>
@@ -86,7 +86,7 @@
             <div>
               <label class="block text-charcoal-300 text-sm font-medium mb-2" for="c-message">Nội Dung *</label>
               <textarea id="c-message" v-model="form.message" required rows="5" placeholder="Nội dung tin nhắn..."
-                class="w-full px-4 py-3 bg-[#111111] border border-charcoal-800 rounded-xl text-ivory placeholder-charcoal-600 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/20 transition-all duration-300 resize-none" />
+                class="w-full px-4 py-3 bg-[#1A140F] border border-charcoal-800 rounded-xl text-ivory placeholder-charcoal-400 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/20 transition-all duration-300 resize-none" />
             </div>
 
             <button type="submit" class="btn-primary w-full justify-center py-4 text-base">
