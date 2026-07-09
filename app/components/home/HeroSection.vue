@@ -327,7 +327,7 @@ const questionCount = QUIZZES.reduce((sum, q) => sum + q.questions.length, 0)
 const bomBoAudio: HeritageAudio = {
   id: 'khu-bao-ton-soc-bom-bo',
   title: 'Thuyết minh: Khu Bảo Tồn Sóc Bom Bo',
-  narrator: 'Hướng dẫn viên Di Sản Bù Đăng',
+  narrator: 'Người kể chuyện Di Sản Bù Đăng',
   duration: 560,
   url: '/audio/khu-bao-ton-soc-bom-bo.mp3',
   coverImage: '/video/virtual-tour/bom-bo/poster.jpg',
