@@ -39,8 +39,7 @@
               </div>
               <div class="flex-1 min-w-0">
                 <h4 class="font-heading font-bold text-ivory text-lg leading-tight mb-1">{{ featuredHeritage.audio.title }}</h4>
-                <p class="text-charcoal-400 text-sm">{{ featuredHeritage.audio.narrator }}</p>
-                <p class="text-charcoal-500 text-xs">{{ featuredHeritage.audio.narratorRole }}</p>
+                <p class="text-charcoal-400 text-sm">Một câu chuyện được kể bởi {{ featuredHeritage.audio.narrator }}</p>
               </div>
             </div>
 

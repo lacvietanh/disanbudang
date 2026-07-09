@@ -16,6 +16,15 @@ export type HeritagePeriod =
   | 'khang-chien'
   | 'hien-dai'
 
+// Cụm địa lý — kết nối di sản khởi nguồn Bù Đăng ra toàn Thành Phố Đồng Nai.
+// Không phải ranh giới hành chính chặt, mà là nhóm điểm di sản gần nhau,
+// dùng để gợi ý hành trình tham quan liên xã trên bản đồ và thư viện.
+export type HeritageCluster =
+  | 'bu-dang'
+  | 'bom-bo'
+  | 'phuoc-long'
+  | 'loc-ninh'
+
 export interface HeritageCoordinates {
   lat: number
   lng: number
@@ -77,6 +86,7 @@ export interface Heritage {
   subtitle: string
   category: HeritageCategory
   period: HeritagePeriod
+  cluster: HeritageCluster
   year?: string
   coverImage: string
   gallery: HeritageGalleryImage[]
@@ -115,6 +125,14 @@ export interface HeritageCategory_Meta {
   textColor: string
   bgClass: string
   count?: number
+}
+
+export interface HeritageCluster_Meta {
+  id: HeritageCluster
+  label: string
+  description: string
+  icon: string
+  color: string
 }
 
 // =========================================================
@@ -241,6 +259,7 @@ export interface SchoolResource {
 export interface MapFilter {
   categories: HeritageCategory[]
   periods: HeritagePeriod[]
+  clusters: HeritageCluster[]
   search: string
 }
 

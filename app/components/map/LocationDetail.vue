@@ -57,7 +57,7 @@
       <div class="bg-gold-500/8 p-3 rounded-xl border border-gold-500/25 flex items-center justify-between gap-3">
         <div class="min-w-0 flex-1">
           <p class="text-sm font-semibold text-white truncate">{{ selectedHeritage.audio.title }}</p>
-          <p class="text-xs text-charcoal-400 truncate mt-0.5">Giọng đọc: {{ selectedHeritage.audio.narrator }}</p>
+          <p class="text-xs text-charcoal-400 truncate mt-0.5">Một câu chuyện được kể bởi {{ selectedHeritage.audio.narrator }}</p>
         </div>
         <div class="relative shrink-0">
           <!-- Pulse ring when playing -->

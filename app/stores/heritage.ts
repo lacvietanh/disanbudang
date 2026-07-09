@@ -10,6 +10,7 @@ export const useHeritageStore = defineStore('heritage', () => {
   const searchQuery = ref('')
   const activeCategory = ref<string>('')
   const activePeriod = ref<string>('')
+  const activeCluster = ref<string>('')
   const mapGesturesEnabled = ref(true)
 
   // Getters
@@ -33,6 +34,10 @@ export const useHeritageStore = defineStore('heritage', () => {
 
     if (activePeriod.value) {
       result = result.filter((h) => h.period === activePeriod.value)
+    }
+
+    if (activeCluster.value) {
+      result = result.filter((h) => h.cluster === activeCluster.value)
     }
 
     return result
@@ -88,10 +93,15 @@ export const useHeritageStore = defineStore('heritage', () => {
     activePeriod.value = period
   }
 
+  function setCluster(cluster: string) {
+    activeCluster.value = cluster
+  }
+
   function clearFilters() {
     searchQuery.value = ''
     activeCategory.value = ''
     activePeriod.value = ''
+    activeCluster.value = ''
   }
 
   return {
@@ -101,6 +111,7 @@ export const useHeritageStore = defineStore('heritage', () => {
     searchQuery,
     activeCategory,
     activePeriod,
+    activeCluster,
     mapGesturesEnabled,
     filteredHeritages,
     featuredHeritages,
@@ -114,6 +125,7 @@ export const useHeritageStore = defineStore('heritage', () => {
     setSearch,
     setCategory,
     setPeriod,
+    setCluster,
     clearFilters,
   }
 })

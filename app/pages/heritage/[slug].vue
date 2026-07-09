@@ -153,7 +153,7 @@
               <div class="flex-1 text-center sm:text-left space-y-1">
                 <span class="eyebrow text-gold-400 text-3xs">Thuyết minh chính thức</span>
                 <h4 class="font-heading font-bold text-ivory text-lg">{{ heritage.audio.title }}</h4>
-                <p class="text-charcoal-400 text-sm">Người kể: {{ heritage.audio.narrator }} • {{ heritage.audio.narratorRole }}</p>
+                <p class="text-charcoal-400 text-sm">Một câu chuyện được kể bởi {{ heritage.audio.narrator }}</p>
               </div>
               <button
                 class="w-14 h-14 rounded-full bg-gold-500 flex items-center justify-center hover:bg-gold-400 transition-colors shadow-gold shrink-0"

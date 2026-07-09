@@ -23,7 +23,7 @@
             <div class="flex items-center gap-4 text-xs text-charcoal-350">
               <span class="flex items-center gap-1">
                 <Icon name="mdi:account-outline" class="w-4 h-4 text-gold-450" />
-                {{ article.author || 'Di Sản Đồng Nai' }}
+                {{ article.author || 'Di Sản Bù Đăng' }}
               </span>
               <span>•</span>
               <span class="flex items-center gap-1">

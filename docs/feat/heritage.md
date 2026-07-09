@@ -11,6 +11,12 @@ Hệ thống lưu trữ và phân loại cốt lõi các di sản của Thành P
   - Giáo dục truyền thống (`giao-duc-truyen-thong`)
 - **`HeritagePeriod`:** Phân loại theo thời kỳ:
   - Tiền sử, Phong kiến, Pháp thuộc, Kháng chiến, Hiện đại.
+- **`HeritageCluster`:** Cụm địa lý — kết nối di sản khởi nguồn Bù Đăng ra toàn Thành Phố Đồng Nai. Không phải ranh giới hành chính, mà là nhóm điểm gần nhau dùng để gợi ý hành trình tham quan liên xã trên `/map` và `/explore`:
+  - `bu-dang` — Bù Đăng (căn cứ kháng chiến, rừng nguyên sinh, làng nghề, lễ hội bản địa)
+  - `bom-bo` — Sóc Bom Bo (cồng chiêng, nhà dài, huyền thoại nhịp chày)
+  - `phuoc-long` — Phước Long (núi Bà Rá, hồ Thác Mơ, Chiến thắng Phước Long 1975)
+  - `loc-ninh` — Lộc Ninh (Căn cứ Tà Thiết, Nhà Giao Tế)
+  - Nguồn dữ liệu: `app/data/clusters.ts`; filter UI trên `/map` (sidebar) và `/explore` (chip hàng thứ 2).
 
 ## 2. Thông tin chi tiết
 Mỗi điểm di sản được thiết kế để chứa thông tin phong phú và đa chiều:

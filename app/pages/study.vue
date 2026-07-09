@@ -1188,7 +1188,7 @@
                   <!-- Authentic Stamp -->
                   <div class="absolute top-8 right-8 w-20 h-20 rounded-full border-4 border-double border-red-600/15 flex flex-col items-center justify-center text-red-600/15 font-bold text-[7px] uppercase tracking-wider rotate-[15deg] pointer-events-none select-none">
                     <span class="leading-none mb-0.5">Hồ Sơ</span>
-                    <span class="leading-none mb-0.5 border-y border-red-600/10 py-0.5 px-1 font-extrabold text-[8px]">Di Sản Đồng Nai</span>
+                    <span class="leading-none mb-0.5 border-y border-red-600/10 py-0.5 px-1 font-extrabold text-[8px]">Di Sản Bù Đăng</span>
                     <span class="leading-none">Số Hóa</span>
                   </div>
 

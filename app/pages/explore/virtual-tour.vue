@@ -377,7 +377,7 @@ function toggleAudio() {
   const track: HeritageAudio = {
     id: currentChapter.value.audioId,
     title: `Thuyết minh: ${currentChapter.value.name}`,
-    narrator: 'Hướng dẫn viên Di Sản Đồng Nai',
+    narrator: 'Hướng dẫn viên Di Sản Bù Đăng',
     duration: currentChapter.value.audioDuration,
     url: currentChapter.value.audioUrl,
     coverImage: currentChapter.value.poster,

@@ -6,7 +6,7 @@
       <div class="container-heritage relative z-10">
         <span class="section-label text-gold-400">Góc Chia Sẻ & Nghiên Cứu</span>
         <h1 class="font-heading font-bold text-ivory text-5xl lg:text-6xl leading-[1.28] mb-5">
-          Bài Viết &<br/><span class="text-gradient-gold">Di Sản Đồng Nai</span>
+          Bài Viết &<br/><span class="text-gradient-gold">Di Sản Bù Đăng</span>
         </h1>
         <p class="text-charcoal-300 text-lg max-w-xl">
           Các bài viết chuyên sâu về đời sống văn hóa, phong tục độc đáo và tư liệu quý giá của Thành Phố Đồng Nai.

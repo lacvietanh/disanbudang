@@ -10,7 +10,7 @@
 
 | Thuộc tính | Giá trị |
 |---|---|
-| **Tên sản phẩm** | Bảo Tàng Số Di Sản Thành Phố Đồng Nai |
+| **Tên sản phẩm** | Bảo Tàng Số Di Sản Bù Đăng — Thành Phố Đồng Nai |
 | **Tên miền** | disanbudang.com |
 | **Tên repo** | `disanbudang` |
 | **Loại sản phẩm** | Web App — Bảo tàng số tương tác |
@@ -25,7 +25,9 @@ Website có **hai vai trò song hành**, không thể tách rời:
 1. **Công cụ giáo dục lịch sử địa phương** — Hỗ trợ học sinh tiếp cận tài liệu lịch sử, di sản văn hóa Thành Phố Đồng Nai theo cách tương tác và trực quan, thay thế sách giáo khoa truyền thống.
 2. **Cổng thông tin du lịch thông minh** — Giúp du khách tự túc khám phá, định hướng và tìm hiểu các điểm di sản khắp Thành Phố Đồng Nai.
 
-> **Ghi chú phạm vi (2026-07):** Từ 1/7/2025, tỉnh Bình Phước hợp nhất vào tỉnh Đồng Nai; từ 30/4/2026, Đồng Nai trở thành thành phố trực thuộc Trung ương thứ 7 của Việt Nam. Huyện Bù Đăng cũ (tỉnh Bình Phước) nay là **Xã Bù Đăng** — một trong 95 xã, phường của Thành Phố Đồng Nai. Dự án không còn lấy "Bù Đăng" làm tên thương hiệu/phạm vi; Bù Đăng, Sóc Bom Bo, Phước Long, Lộc Ninh... chỉ còn xuất hiện như tên địa danh cụ thể của từng di sản, không phải danh xưng của toàn dự án.
+> **Ghi chú phạm vi (2026-07):** Từ 1/7/2025, tỉnh Bình Phước hợp nhất vào tỉnh Đồng Nai; từ 30/4/2026, Đồng Nai trở thành thành phố trực thuộc Trung ương thứ 7 của Việt Nam. Huyện Bù Đăng cũ (tỉnh Bình Phước) nay là **Xã Bù Đăng** — một trong 95 xã, phường của Thành Phố Đồng Nai.
+>
+> **Quyết định thương hiệu:** "Bù Đăng" được giữ làm **tên riêng/khởi nguyên** của dự án (nơi văn hóa S'Tiêng, Sóc Bom Bo... được số hóa đầu tiên, gắn với domain `disanbudang.com`), không phải ranh giới hành chính. "Thành Phố Đồng Nai" là **phạm vi phục vụ thực tế** (tagline/subtitle). Vì vậy dữ liệu di sản KHÔNG bị giới hạn trong ranh giới xã Bù Đăng — Sóc Bom Bo, Phước Long, Lộc Ninh, núi Bà Rá... vẫn thuộc phạm vi dự án như các "cụm di sản" kết nối từ Bù Đăng ra toàn thành phố. Xem quy tắc đặt tên tại mục 9.5.
 
 ---
 
@@ -167,6 +169,19 @@ stores/
 ### 5.3 Phân loại theo Thời kỳ (`HeritagePeriod`)
 
 `Tiền sử` → `Phong kiến` → `Pháp thuộc` → `Kháng chiến` → `Hiện đại`
+
+### 5.3b Phân loại theo Cụm Di sản (`HeritageCluster`)
+
+Kết nối di sản khởi nguồn Bù Đăng ra toàn Thành Phố Đồng Nai — dùng cho filter trên `/map` và `/explore`, gợi ý hành trình tham quan liên xã (không phải ranh giới hành chính):
+
+| Slug | Tên hiển thị | Ghi chú |
+|---|---|---|
+| `bu-dang` | Bù Đăng | Căn cứ kháng chiến, rừng nguyên sinh, làng nghề, lễ hội bản địa |
+| `bom-bo` | Sóc Bom Bo | Cồng chiêng, nhà dài, huyền thoại nhịp chày giã gạo |
+| `phuoc-long` | Phước Long | Núi Bà Rá, hồ Thác Mơ, Chiến thắng Phước Long 06/01/1975 |
+| `loc-ninh` | Lộc Ninh | Căn cứ Tà Thiết, Nhà Giao Tế |
+
+Nguồn dữ liệu: `app/data/clusters.ts`.
 
 ### 5.4 Cấu trúc dữ liệu mỗi Di sản
 
@@ -316,9 +331,11 @@ Mỗi điểm di sản bắt buộc có đầy đủ các trường:
 ### 9.5 Quy tắc Nội dung (Content)
 
 - Tên thuật ngữ dân tộc phải nhất quán: **S'Tiêng**, **M'Nông**
-- Địa danh cấp thành phố (khung phạm vi dự án): **Thành Phố Đồng Nai** — dùng cho brand, tiêu đề, mô tả tổng quát. Không dùng "Bù Đăng" làm tên thương hiệu/phạm vi.
-- Địa danh cụ thể (chỉ dùng khi mô tả một di sản/sự kiện cụ thể, không dùng để đại diện toàn dự án): **Xã Bù Đăng**, **Sóc Bom Bo**, núi Bà Rá, Căn cứ Tà Thiết, Lộc Ninh...
-- Tên sản phẩm: **Bảo Tàng Số Di Sản Thành Phố Đồng Nai** (viết hoa đầy đủ); tên brand ngắn trên UI: **Di Sản Đồng Nai**
+- Tên thương hiệu ngắn (logo, UI, SEO site name): **Di Sản Bù Đăng** — dùng như tên riêng/khởi nguyên, không phải khẳng định ranh giới hành chính.
+- Tagline/subtitle mô tả phạm vi phục vụ: **Bảo Tàng Số Thành Phố Đồng Nai** — luôn đi kèm brand ngắn để làm rõ phạm vi thực tế.
+- Tên sản phẩm đầy đủ: **Bảo Tàng Số Di Sản Bù Đăng — Thành Phố Đồng Nai** (viết hoa đầy đủ).
+- Địa danh cấp thành phố (khung phạm vi phục vụ): **Thành Phố Đồng Nai** — dùng trong mô tả tổng quát, SEO, metadata phạm vi.
+- Địa danh cụ thể (khi mô tả một di sản/sự kiện cụ thể): **Xã Bù Đăng**, **Sóc Bom Bo**, núi Bà Rá, Căn cứ Tà Thiết, Lộc Ninh... Các cụm này được kết nối với nhau qua khái niệm "cụm/tuyến di sản" (xem roadmap mục 10), không dùng brand để gộp chúng.
 
 ---
 

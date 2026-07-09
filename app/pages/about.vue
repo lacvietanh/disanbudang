@@ -262,7 +262,7 @@
           </h2>
           <p class="text-charcoal-300 text-base leading-relaxed">
             Chưa đầy hai năm, bản đồ hành chính nơi dự án này bắt đầu đã thay đổi hoàn toàn.
-            Đây là lý do "Di Sản Đồng Nai" không còn dừng lại ở một vùng đất.
+            Đây là lý do "Di Sản Bù Đăng" không còn dừng lại ở một vùng đất — mà mở rộng thành bảo tàng số của cả Thành Phố Đồng Nai.
           </p>
         </div>
 

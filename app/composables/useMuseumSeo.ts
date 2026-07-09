@@ -1,8 +1,8 @@
 import type { Ref } from 'vue'
 import type { Heritage, NewsArticle } from '~/types'
 
-const SITE_NAME = 'Di Sản Đồng Nai'
-const SITE_DESCRIPTION = 'Bảo tàng số di sản văn hóa, lịch sử và thiên nhiên Thành Phố Đồng Nai - từ Biên Hòa, Sóc Bom Bo đến Chiến Khu Đ và núi Bà Rá.'
+const SITE_NAME = 'Di Sản Bù Đăng'
+const SITE_DESCRIPTION = 'Bảo tàng số khởi nguồn từ di sản văn hóa Bù Đăng, kết nối các điểm di tích Thành Phố Đồng Nai - từ Biên Hòa, Sóc Bom Bo đến Chiến Khu Đ và núi Bà Rá.'
 const SITE_URL = 'https://disanbudang.com'
 const DEFAULT_IMAGE = '/images/og-default.jpg'
 
@@ -148,12 +148,12 @@ export function useMuseumSeo(input: MuseumSeoInput = {}) {
             '@id': `${SITE_URL}/#organization`,
             'name': SITE_NAME,
             'alternateName': [
-              'Bảo Tàng Số Di Sản Thành Phố Đồng Nai',
-              'Di Sản Đồng Nai',
-              'di san dong nai',
+              'Bảo Tàng Số Thành Phố Đồng Nai',
+              'Di Sản Bù Đăng',
+              'di san bu dang',
               'disanbudang',
               'disanbudang.com',
-              'bao tang so di san thanh pho dong nai',
+              'bao tang so thanh pho dong nai',
             ],
             'url': `${SITE_URL}/`,
             'logo': `${SITE_URL}/favicon/icon-192.png`,
@@ -191,7 +191,7 @@ export function useMuseumSeo(input: MuseumSeoInput = {}) {
             '@id': `${SITE_URL}/#website`,
             'url': `${SITE_URL}/`,
             'name': SITE_NAME,
-            'alternateName': ['Di Sản Đồng Nai', 'di san dong nai', 'disanbudang'],
+            'alternateName': ['Bảo Tàng Số Thành Phố Đồng Nai', 'di san bu dang', 'disanbudang'],
             'publisher': {
               '@id': `${SITE_URL}/#organization`
             },

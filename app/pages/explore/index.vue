@@ -148,12 +148,39 @@
           </button>
         </div>
 
+        <!-- Cluster chips (regional trail) -->
+        <div class="flex items-center gap-2 overflow-x-auto scrollbar-none pb-1 -mx-1 px-1">
+          <button
+            class="flex-shrink-0 flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-3xs font-bold uppercase tracking-wider transition-all duration-300 border"
+            :class="!activeCluster
+              ? 'bg-charcoal-800 text-ivory border-charcoal-700'
+              : 'bg-charcoal-900 border-charcoal-800 text-charcoal-400 hover:text-ivory hover:border-charcoal-700'"
+            @click="activeCluster = ''"
+          >
+            <Icon name="mdi:map-marker-multiple-outline" class="w-3.5 h-3.5" />
+            Mọi cụm di sản
+          </button>
+          <button
+            v-for="clu in clusters"
+            :key="clu.id"
+            class="flex-shrink-0 flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-3xs font-bold uppercase tracking-wider transition-all duration-300 border"
+            :class="activeCluster === clu.id
+              ? 'text-ivory border-transparent'
+              : 'bg-charcoal-900 border-charcoal-800 text-charcoal-400 hover:text-ivory hover:border-charcoal-700'"
+            :style="activeCluster === clu.id ? { backgroundColor: clu.color } : {}"
+            @click="activeCluster = clu.id"
+          >
+            <Icon :name="clu.icon" class="w-3.5 h-3.5" />
+            {{ clu.label }}
+          </button>
+        </div>
+
         <!-- Sort + Result count -->
         <div class="flex items-center justify-between gap-4">
           <p class="text-charcoal-400 text-sm">
             <span class="text-gold-400 font-bold">{{ sortedAndFilteredHeritages.length }}</span>
             / {{ store.totalCount }} di sản
-            <span v-if="searchQuery || activeCategory" class="ml-2">
+            <span v-if="searchQuery || activeCategory || activeCluster" class="ml-2">
               <button class="text-gold-400 hover:text-gold-300 transition-colors underline underline-offset-2 text-xs" @click="clearFilters">Xóa bộ lọc</button>
             </span>
           </p>
@@ -389,6 +416,7 @@
 
 <script setup lang="ts">
 import { CATEGORIES, CATEGORY_MAP } from '~/data/categories'
+import { CLUSTERS } from '~/data/clusters'
 import { COMMUNITY_POSTS } from '~/data/posts'
 import { HERITAGES } from '~/data/heritages'
 import type { Heritage, HeritageCategory_Meta, PostType } from '~/types'
@@ -407,7 +435,7 @@ useHead({
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
-        name: 'Thư Viện Di Sản Đồng Nai',
+        name: 'Thư Viện Di Sản Bù Đăng',
         url: 'https://disanbudang.com/explore/',
         description: 'Danh sách toàn bộ di sản văn hóa, lịch sử và thiên nhiên Thành Phố Đồng Nai đã được số hóa.',
         mainEntity: {
@@ -431,8 +459,10 @@ const { getCategoryLabel } = useHeritage()
 const route = useRoute()
 
 const categories = CATEGORIES
+const clusters = CLUSTERS
 const searchQuery = ref('')
 const activeCategory = ref('')
+const activeCluster = ref('')
 const sortOrder = ref('views')
 // Data is a static local import — no artificial loading state needed
 const isLoading = ref(false)
@@ -486,6 +516,7 @@ onUnmounted(() => {
   if (debounceTimer) clearTimeout(debounceTimer)
 })
 watch(activeCategory, (c) => store.setCategory(c))
+watch(activeCluster, (c) => store.setCluster(c))
 
 const sortedAndFilteredHeritages = computed(() => {
   const result = [...store.filteredHeritages]
@@ -581,6 +612,7 @@ watch(() => route.query.search, (value) => {
 function clearFilters() {
   searchQuery.value = ''
   activeCategory.value = ''
+  activeCluster.value = ''
   store.clearFilters()
 }
 </script>
