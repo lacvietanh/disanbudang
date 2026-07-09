@@ -63,7 +63,7 @@
             <Icon name="mdi:compass-outline" class="w-6 h-6 text-gold-400" />
           </div>
           <p class="text-gold-400 text-[11px] uppercase tracking-[0.3em] font-bold mb-3">
-            Bảo Tàng Số Di Sản Bù Đăng
+            Bảo Tàng Số Di Sản Bù Đăng · TP. Đồng Nai
           </p>
           <h2 class="font-heading font-bold text-ivory text-2xl md:text-4xl mb-4 max-w-lg">
             Sẵn sàng bước vào<br class="hidden md:block" /> hành trình di sản?

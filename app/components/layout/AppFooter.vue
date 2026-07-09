@@ -20,7 +20,7 @@
                 Di Sản
               </span>
               <span class="font-heading font-bold text-gold-300 text-sm lg:text-base leading-tight -mt-0.5 whitespace-nowrap">
-                Bù Đăng
+                Đồng Nai
               </span>
             </div>
           </div>

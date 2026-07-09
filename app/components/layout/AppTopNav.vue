@@ -17,7 +17,7 @@
               Di Sản
             </span>
             <span class="font-heading font-bold text-heritage-600 text-sm lg:text-base leading-tight whitespace-nowrap -mt-0.5 group-hover:text-heritage-700 transition-colors duration-300">
-              Bù Đăng
+              Đồng Nai
             </span>
             <span class="hidden xl:block text-[9px] text-stone-400 tracking-[0.12em] uppercase font-normal mt-1 leading-none whitespace-nowrap">
               Bảo Tàng Số Thành Phố Đồng Nai
