@@ -24,7 +24,7 @@
             ]"
             @click="activeIndex = index"
           >
-            <p class="eyebrow text-2xs mb-1 group-hover:text-gold-300" :class="activeIndex === index ? 'text-gold-400' : 'text-charcoal-600'">Kỷ Nguyên {{ index + 1 }}</p>
+            <p class="eyebrow text-2xs mb-1 group-hover:text-gold-300" :class="activeIndex === index ? 'text-gold-400' : 'text-charcoal-400'">Kỷ Nguyên {{ index + 1 }}</p>
             <h4 class="font-heading font-bold text-lg leading-tight mb-1" :class="activeIndex === index ? 'text-gold-400' : 'text-ivory/80'">
               {{ item.year }}
             </h4>
@@ -74,7 +74,7 @@
 
         <!-- Image preview card -->
         <div class="lg:col-span-5 relative rounded-3xl overflow-hidden min-h-[300px] border border-charcoal-800 group">
-          <img
+          <NuxtImg
             :src="activeEra.image"
             :alt="activeEra.title"
             class="absolute inset-0 w-full h-full object-cover transition-transform duration-[12000ms] ease-out-expo scale-105 group-hover:scale-100"

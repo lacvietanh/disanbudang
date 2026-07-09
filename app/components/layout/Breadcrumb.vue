@@ -13,7 +13,7 @@
     </NuxtLink>
 
     <template v-for="(crumb, index) in crumbs" :key="crumb.path">
-      <Icon name="mdi:chevron-right" class="w-4 h-4 text-charcoal-600 shrink-0" />
+      <Icon name="mdi:chevron-right" class="w-4 h-4 text-charcoal-400 shrink-0" />
       
       <span v-if="index === crumbs.length - 1" class="text-gold-400 font-semibold truncate max-w-[200px] sm:max-w-xs">
         {{ (isMounted && leafLabel) ? leafLabel : crumb.label }}

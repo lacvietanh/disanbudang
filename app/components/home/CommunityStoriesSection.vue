@@ -37,7 +37,7 @@
         <div v-if="posts[0]" class="lg:col-span-7 reveal">
           <NuxtLink to="/explore" class="group block h-full">
             <article class="relative overflow-hidden rounded-2xl lg:rounded-3xl h-[360px] lg:h-[460px] border border-charcoal-800/60 hover:border-gold-500/25 transition-all duration-500 hover:shadow-2xl hover:shadow-gold-500/10">
-              <img
+              <NuxtImg
                 :src="posts[0].coverImage"
                 :alt="posts[0].title"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
@@ -90,7 +90,7 @@
           >
             <!-- Bigger thumbnail -->
             <div class="w-24 h-20 rounded-xl overflow-hidden flex-shrink-0 ring-1 ring-charcoal-700/60 group-hover:ring-gold-500/20 transition-all duration-300">
-              <img
+              <NuxtImg
                 :src="post.coverImage"
                 :alt="post.title"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
@@ -108,14 +108,14 @@
               </h4>
               <div class="flex items-center gap-2">
                 <p class="text-charcoal-500 text-xs">{{ post.author.name }}</p>
-                <span class="text-charcoal-700 text-xs">·</span>
-                <span class="flex items-center gap-1 text-charcoal-600 text-[10px]">
+                <span class="text-charcoal-400 text-xs">·</span>
+                <span class="flex items-center gap-1 text-charcoal-400 text-[10px]">
                   <Icon name="mdi:heart-outline" class="w-3 h-3 group-hover:text-gold-400/60 transition-colors" />
                   {{ post.likes }}
                 </span>
               </div>
             </div>
-            <Icon name="mdi:arrow-right" class="w-4 h-4 text-charcoal-700 group-hover:text-gold-400 group-hover:translate-x-0.5 transition-all flex-shrink-0 self-center" />
+            <Icon name="mdi:arrow-right" class="w-4 h-4 text-charcoal-400 group-hover:text-gold-400 group-hover:translate-x-0.5 transition-all flex-shrink-0 self-center" />
           </NuxtLink>
 
           <!-- CTA to contribute -->
@@ -130,7 +130,7 @@
               <p class="text-ivory text-sm font-semibold group-hover:text-gold-300 transition-colors leading-snug">Chia sẻ ký ức của bạn</p>
               <p class="text-charcoal-500 text-xs mt-0.5">Câu chuyện của bạn là một phần di sản cộng đồng</p>
             </div>
-            <Icon name="mdi:arrow-right" class="w-4 h-4 text-charcoal-600 group-hover:text-gold-400 group-hover:translate-x-1 transition-all flex-shrink-0" />
+            <Icon name="mdi:arrow-right" class="w-4 h-4 text-charcoal-400 group-hover:text-gold-400 group-hover:translate-x-1 transition-all flex-shrink-0" />
           </NuxtLink>
         </div>
 

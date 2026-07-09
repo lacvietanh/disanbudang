@@ -1,10 +1,10 @@
 <template>
   <header
-    class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-[env(safe-area-inset-top,0px)] bg-dark-earth"
+    class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-[env(safe-area-inset-top,0px)]"
     :class="[
       isScrolled
-        ? 'backdrop-blur-xl border-b border-gold-500/15 shadow-lg shadow-charcoal-950/50 py-1'
-        : 'backdrop-blur-xl border-b border-gold-500/5 py-2',
+        ? 'bg-white/95 backdrop-blur-xl border-b border-stone-200 shadow-sm py-1'
+        : 'bg-white/90 backdrop-blur-xl border-b border-stone-100/80 py-2',
     ]"
   >
     <div class="container-heritage">
@@ -13,14 +13,14 @@
         <NuxtLink to="/" class="flex items-center gap-3 group">
           <NuxtImg src="/favicon/icon-192.png" alt="Logo Di Sản Thành Phố Đồng Nai" class="h-10 sm:h-12 w-auto object-contain shrink-0 transition-transform duration-300 group-hover:scale-105" />
           <div class="hidden md:flex flex-col justify-center text-left min-w-0">
-            <span class="font-heading font-bold text-ivory text-sm lg:text-base leading-tight whitespace-nowrap group-hover:text-gold-300 transition-colors duration-300">
+            <span class="font-heading font-bold text-stone-800 text-sm lg:text-base leading-tight whitespace-nowrap group-hover:text-heritage-700 transition-colors duration-300">
               Di Sản
             </span>
-            <span class="font-heading font-bold text-gold-400 text-sm lg:text-base leading-tight whitespace-nowrap -mt-0.5 group-hover:text-gold-300 transition-colors duration-300">
-              Đồng Nai
+            <span class="font-heading font-bold text-heritage-600 text-sm lg:text-base leading-tight whitespace-nowrap -mt-0.5 group-hover:text-heritage-700 transition-colors duration-300">
+              Bù Đăng
             </span>
-            <span class="hidden xl:block text-[9px] text-charcoal-400 tracking-[0.12em] uppercase font-normal mt-1 leading-none whitespace-nowrap">
-              Bảo Tàng Số Di Sản
+            <span class="hidden xl:block text-[9px] text-stone-400 tracking-[0.12em] uppercase font-normal mt-1 leading-none whitespace-nowrap">
+              Bảo Tàng Số Thành Phố Đồng Nai
             </span>
           </div>
         </NuxtLink>
@@ -30,8 +30,8 @@
           <li v-for="item in navItems.filter((i) => i.to !== '/contribute')" :key="item.to">
             <NuxtLink
               :to="item.to"
-              class="px-2 py-1 xl:px-3 xl:py-2 rounded-lg text-xs xl:text-sm font-medium whitespace-nowrap transition-all duration-300 text-ivory/80 hover:text-ivory hover:bg-ivory/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500 focus-visible:outline-offset-2"
-              active-class="text-gold-400 bg-gold-500/10"
+              class="px-2 py-1 xl:px-3 xl:py-2 rounded-lg text-xs xl:text-sm font-medium whitespace-nowrap transition-all duration-300 text-stone-600 hover:text-heritage-700 hover:bg-heritage-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-heritage-600 focus-visible:outline-offset-2"
+              active-class="text-heritage-700 bg-heritage-50"
             >
               {{ item.label }}
             </NuxtLink>
@@ -42,13 +42,13 @@
         <div class="flex items-center gap-3">
           <!-- Search -->
           <button
-            class="hidden md:flex items-center gap-2 px-4 py-2 rounded-full border border-ivory/20 text-ivory/70 text-sm hover:border-gold-500/50 hover:text-gold-400 transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500"
+            class="hidden md:flex items-center gap-2 px-4 py-2 rounded-full border border-stone-200 bg-stone-50/60 text-stone-500 text-sm hover:border-brand-500/50 hover:bg-brand-50/60 hover:text-brand-700 transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-500"
             aria-label="Tìm kiếm di sản"
             @click="isSearchOpen = true"
           >
             <Icon name="mdi:magnify" class="w-4 h-4" />
             <span class="hidden xl:block">Tìm kiếm...</span>
-            <kbd class="hidden xl:inline-flex items-center gap-0.5 ml-1 px-1.5 py-0.5 text-[10px] font-mono bg-ivory/10 border border-ivory/20 rounded text-ivory/50">⌘K</kbd>
+            <kbd class="hidden xl:inline-flex items-center gap-0.5 ml-1 px-1.5 py-0.5 text-[10px] font-mono bg-stone-100 border border-stone-200 rounded text-stone-400">⌘K</kbd>
           </button>
 
           <!-- Đóng Góp — sits next to the map CTA so the two primary actions are grouped -->
@@ -68,7 +68,7 @@
 
           <!-- Mobile Search Button -->
           <button
-            class="xl:hidden p-2 rounded-lg text-ivory/70 hover:text-gold-400 hover:bg-ivory/10 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500"
+            class="xl:hidden p-2 rounded-lg text-stone-500 hover:text-heritage-700 hover:bg-heritage-50 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-heritage-600"
             aria-label="Tìm kiếm di sản"
             @click="isSearchOpen = true"
           >
@@ -77,7 +77,7 @@
 
           <!-- Hamburger -->
           <button
-            class="xl:hidden p-2 rounded-lg text-ivory hover:bg-ivory/10 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500"
+            class="xl:hidden p-2 rounded-lg text-stone-700 hover:bg-heritage-50 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-heritage-600"
             aria-label="Menu di động"
             :aria-expanded="isMobileOpen"
             @click="isMobileOpen = !isMobileOpen"
@@ -92,23 +92,23 @@
     <Transition name="mobile-menu">
       <div
         v-if="isMobileOpen"
-        class="xl:hidden bg-dark-earth backdrop-blur-xl border-t border-gold-500/15"
+        class="xl:hidden bg-white/98 backdrop-blur-xl border-t border-stone-100"
       >
         <div class="container-heritage py-6 space-y-1" aria-label="Menu di động">
           <NuxtLink
             v-for="item in navItems"
             :key="item.to"
             :to="item.to"
-            class="flex items-center gap-3 px-4 py-3 rounded-xl text-ivory/80 hover:text-ivory hover:bg-ivory/8 transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500"
-            active-class="text-gold-400 bg-gold-500/10"
+            class="flex items-center gap-3 px-4 py-3 rounded-xl text-stone-600 hover:text-heritage-700 hover:bg-heritage-50 transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-heritage-600"
+            active-class="text-heritage-700 bg-heritage-50"
             @click="isMobileOpen = false"
           >
-            <Icon :name="item.icon" class="w-5 h-5 text-gold-400" />
+            <Icon :name="item.icon" class="w-5 h-5 text-heritage-600" />
             {{ item.label }}
           </NuxtLink>
 
-          <div class="pt-4 border-t border-earth-800/30">
-            <NuxtLink to="/map" class="btn-primary w-full justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500" @click="isMobileOpen = false">
+          <div class="pt-4 border-t border-stone-100">
+            <NuxtLink to="/map" class="btn-primary w-full justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-heritage-600" @click="isMobileOpen = false">
               <Icon name="mdi:map-outline" class="w-4 h-4" />
               Khám Phá Bản Đồ
             </NuxtLink>
@@ -121,7 +121,7 @@
     <Transition name="search-modal">
       <div
         v-if="isSearchOpen"
-        class="fixed inset-0 z-[80] bg-charcoal-950/90 backdrop-blur-xl"
+        class="fixed inset-0 z-[80] bg-stone-900/80 backdrop-blur-xl"
         role="dialog"
         aria-modal="true"
         aria-label="Tìm kiếm di sản"
@@ -129,20 +129,21 @@
         @keydown="handleModalTab"
       >
         <div ref="modalContainerRef" class="container-narrow pt-28">
-          <div class="rounded-2xl border border-charcoal-800 bg-charcoal-950 shadow-2xl overflow-hidden">
-            <div class="flex items-center gap-3 border-b border-charcoal-850 px-4 py-3">
-              <Icon name="mdi:magnify" class="w-5 h-5 text-gold-400 shrink-0" />
+          <div class="rounded-3xl border border-stone-200/70 bg-white/95 backdrop-blur-2xl shadow-warm-xl ring-1 ring-brand-500/10 overflow-hidden">
+            <div class="flex items-center gap-3 border-b border-stone-100 px-5 py-4">
+              <Icon name="mdi:magnify" class="w-5 h-5 text-brand-500 shrink-0" />
               <input
                 ref="searchInput"
                 v-model="searchQuery"
                 type="search"
                 placeholder="Tìm di sản, danh thắng, văn hóa..."
-                class="w-full bg-transparent text-ivory placeholder-charcoal-500 focus:outline-none"
+                class="w-full bg-transparent text-stone-800 placeholder-stone-400 focus:outline-none"
                 @keydown.esc="closeSearch"
                 @keydown.enter="goToExplore"
               />
+              <kbd class="hidden sm:inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono bg-stone-100 border border-stone-200 rounded text-stone-400">ESC</kbd>
               <button
-                class="p-2 rounded-lg text-charcoal-400 hover:text-ivory hover:bg-charcoal-900"
+                class="p-2 rounded-lg text-stone-400 hover:text-stone-700 hover:bg-stone-100"
                 aria-label="Đóng tìm kiếm"
                 @click="closeSearch"
               >
@@ -155,13 +156,13 @@
                 v-for="heritage in searchResults"
                 :key="heritage.id"
                 :to="`/heritage/${heritage.slug}`"
-                class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-charcoal-900 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500 focus-visible:outline-offset-2"
+                class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-heritage-50 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-heritage-600 focus-visible:outline-offset-2"
                 @click="closeSearch"
               >
                 <NuxtImg :src="heritage.coverImage" :alt="heritage.title" class="w-14 h-12 rounded-lg object-cover" />
                 <span class="min-w-0">
-                  <span class="block text-ivory text-sm font-semibold truncate">{{ heritage.title }}</span>
-                  <span class="block text-charcoal-400 text-xs truncate">{{ heritage.subtitle }}</span>
+                  <span class="block text-stone-800 text-sm font-semibold truncate">{{ heritage.title }}</span>
+                  <span class="block text-stone-500 text-xs truncate">{{ heritage.subtitle }}</span>
                 </span>
               </NuxtLink>
 
@@ -174,10 +175,10 @@
                 <Icon name="mdi:arrow-right" class="w-4 h-4" />
               </button>
 
-              <p v-if="searchQuery && searchResults.length === 0" class="text-center text-charcoal-400 text-sm py-10">
+              <p v-if="searchQuery && searchResults.length === 0" class="text-center text-stone-400 text-sm py-10">
                 Không tìm thấy di sản phù hợp.
               </p>
-              <p v-if="!searchQuery" class="text-center text-charcoal-500 text-sm py-10">
+              <p v-if="!searchQuery" class="text-center text-stone-400 text-sm py-10">
                 Nhập tên di sản, địa danh hoặc từ khóa để tra cứu nhanh.
               </p>
             </div>

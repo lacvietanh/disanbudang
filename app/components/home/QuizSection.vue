@@ -22,7 +22,7 @@
           @click="quizStore.startQuiz(quiz)"
         >
           <!-- Color accent top -->
-          <div class="h-1.5 w-full" :style="{ background: quizColors[i] ?? '#C9922A' }" />
+          <div class="h-1.5 w-full" :style="{ background: quizColors[i] ?? '#C7A664' }" />
 
           <div class="p-6">
             <!-- Badge preview -->
@@ -72,13 +72,15 @@
         <div class="flex flex-col lg:flex-row items-center gap-8">
           <!-- Badges display -->
           <div class="flex gap-3 flex-wrap justify-center">
-            <div
+            <button
               v-for="badge in badges"
               :key="badge.id"
+              type="button"
               class="relative group/badge"
+              :aria-label="badge.name"
             >
               <div
-                class="w-16 h-16 rounded-2xl flex items-center justify-center border-2 transition-all duration-300 hover:scale-110"
+                class="w-16 h-16 rounded-2xl flex items-center justify-center border-2 transition-all duration-300 group-hover/badge:scale-110"
                 :style="{
                   background: `${badge.color}15`,
                   borderColor: `${badge.color}40`,
@@ -89,10 +91,10 @@
                 <Icon :name="badge.icon" class="w-8 h-8" :style="{ color: badge.color }" />
               </div>
               <!-- Tooltip -->
-              <div class="absolute -top-9 left-1/2 -translate-x-1/2 bg-charcoal-950 text-ivory text-[10px] sm:text-xs px-2.5 py-1 rounded-md whitespace-nowrap opacity-0 group-hover/badge:opacity-100 transition-all duration-300 scale-95 group-hover/badge:scale-100 pointer-events-none z-30 shadow-lg border border-charcoal-700/50">
+              <div class="absolute -top-9 left-1/2 -translate-x-1/2 bg-charcoal-950 text-ivory text-[10px] sm:text-xs px-2.5 py-1 rounded-md whitespace-nowrap opacity-0 group-hover/badge:opacity-100 group-focus-visible/badge:opacity-100 transition-all duration-300 scale-95 group-hover/badge:scale-100 group-focus-visible/badge:scale-100 pointer-events-none z-30 shadow-lg border border-charcoal-700/50">
                 {{ badge.name }}
               </div>
-            </div>
+            </button>
           </div>
 
           <!-- Text -->
@@ -131,7 +133,7 @@ onMounted(() => nextTick(() => observeAll()))
 const quizzes = QUIZZES.slice(0, 3)
 const badges = BADGES
 
-const quizColors = ['#8B3A2A', '#2D5016', '#C9922A']
+const quizColors = ['#F59E0B', '#12B981', '#C7A664']
 const quizIcons = ['mdi:castle', 'mdi:music-circle', 'mdi:water']
 const quizVariants: ('brick' | 'forest' | 'gold')[] = ['brick', 'forest', 'gold']
 

@@ -3,7 +3,7 @@
 
     <!-- Full bg image with strong overlay for readability -->
     <div class="absolute inset-0 z-0">
-      <img
+      <NuxtImg
         src="/images/heritage/img-disanbudang/le-hoi-mung-lua-moi.png"
         alt="Lễ hội mừng lúa mới"
         class="w-full h-full object-cover"
@@ -70,7 +70,7 @@
                 <p class="font-heading font-semibold text-ivory text-sm lg:text-base group-hover:text-gold-200 transition-colors leading-tight">{{ link.title }}</p>
                 <p class="text-charcoal-400 text-xs mt-0.5 leading-snug">{{ link.desc }}</p>
               </div>
-              <Icon name="mdi:arrow-right" class="w-4 h-4 text-charcoal-600 group-hover:text-gold-400 group-hover:translate-x-1 transition-all flex-shrink-0" />
+              <Icon name="mdi:arrow-right" class="w-4 h-4 text-charcoal-400 group-hover:text-gold-400 group-hover:translate-x-1 transition-all flex-shrink-0" />
             </NuxtLink>
           </div>
 

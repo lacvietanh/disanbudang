@@ -1,16 +1,33 @@
 <template>
   <section class="hero-root relative min-h-screen flex flex-col overflow-hidden" aria-label="Hero section">
 
-    <!-- ═══ BACKGROUND SLIDESHOW ═══ -->
-    <div class="absolute inset-0 z-0">
+    <!-- ═══ BACKGROUND VIDEO (primary) ═══ -->
+    <div class="absolute inset-0 z-0 bg-charcoal-950">
+      <!-- Video: Khu Bảo Tồn Sóc Bom Bo — preloads silently behind the entry gate,
+           only starts playing once the user clicks "Bắt Đầu Hành Trình" -->
+      <video
+        v-if="enableVideo"
+        ref="heroVideoRef"
+        class="hero-video"
+        :class="{ 'hero-video--loaded': videoLoaded && revealed }"
+        src="/video/virtual-tour/bom-bo/bom-bo-trailer.mp4"
+        poster="/video/virtual-tour/bom-bo/poster.jpg"
+        muted
+        loop
+        playsinline
+        preload="auto"
+        @canplay="markVideoReady"
+        @progress="onVideoProgress"
+      />
+      <!-- Fallback image slideshow shown while video loads -->
       <TransitionGroup name="hero-slide">
         <div
           v-for="(slide, i) in slides"
-          v-show="currentSlide === i"
+          v-show="(!videoLoaded || !revealed) && currentSlide === i"
           :key="i"
           class="absolute inset-0"
         >
-          <img
+          <NuxtImg
             :src="slide.image"
             :alt="slide.alt"
             class="w-full h-full object-cover"
@@ -23,14 +40,91 @@
     </div>
 
     <!-- ═══ LAYERED OVERLAYS ═══ -->
-    <!-- Cinematic vignette - brightened for better image visibility -->
-    <div class="absolute inset-0 z-10 bg-gradient-to-t from-charcoal-950 via-charcoal-950/45 to-charcoal-900/20" />
+    <!-- Cinematic vignette — lighter so video colors show through -->
+    <div class="absolute inset-0 z-10 bg-gradient-to-t from-charcoal-950 via-charcoal-950/35 to-charcoal-900/10" />
     <!-- Left content burn -->
-    <div class="absolute inset-0 z-10 bg-gradient-to-r from-charcoal-950/85 via-charcoal-950/25 to-transparent" />
+    <div class="absolute inset-0 z-10 bg-gradient-to-r from-charcoal-950/80 via-charcoal-950/20 to-transparent" />
     <!-- Top fade for header -->
-    <div class="absolute top-0 inset-x-0 h-32 z-10 bg-gradient-to-b from-charcoal-950/60 to-transparent" />
+    <div class="absolute top-0 inset-x-0 h-32 z-10 bg-gradient-to-b from-charcoal-950/50 to-transparent" />
     <!-- Amber cinematic tint -->
-    <div class="absolute inset-0 z-10 bg-gradient-to-br from-transparent via-transparent to-gold-900/12" />
+    <div class="absolute inset-0 z-10 bg-gradient-to-br from-transparent via-transparent to-gold-900/8" />
+
+    <!-- ═══ ENTRY GATE — shows instantly; stays up (with a loading state) until the
+         video actually can play, so the "journey" always starts on video, not a
+         silent drop to slides. Only a genuine timeout or a detected slow
+         connection falls back to the image slideshow. ═══ -->
+    <Transition name="gate-fade">
+      <div
+        v-if="!revealed"
+        class="absolute inset-0 z-40 flex flex-col items-center justify-center text-center px-6 bg-charcoal-950/90 backdrop-blur-md"
+      >
+        <template v-if="gateState === 'idle'">
+          <div class="w-14 h-14 rounded-full border border-gold-400/40 flex items-center justify-center mb-6">
+            <Icon name="mdi:compass-outline" class="w-6 h-6 text-gold-400" />
+          </div>
+          <p class="text-gold-400 text-[11px] uppercase tracking-[0.3em] font-bold mb-3">
+            Bảo Tàng Số Di Sản Bù Đăng
+          </p>
+          <h2 class="font-heading font-bold text-ivory text-2xl md:text-4xl mb-4 max-w-lg">
+            Sẵn sàng bước vào<br class="hidden md:block" /> hành trình di sản?
+          </h2>
+          <p class="text-charcoal-300 text-sm md:text-base max-w-md mb-8">
+            Video toàn cảnh Sóc Bom Bo và thuyết minh sẽ tự động phát khi bạn bắt đầu.
+          </p>
+          <button
+            class="gate-cta group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gold-500 text-charcoal-900 font-bold text-sm md:text-base hover:bg-gold-400 transition-all duration-300 hover:scale-105 active:scale-95 shadow-gold"
+            @click="startJourney"
+          >
+            <Icon name="mdi:play" class="w-5 h-5" />
+            Bắt Đầu Hành Trình
+          </button>
+          <p v-if="!enableVideo" class="mt-4 text-charcoal-500 text-xs max-w-xs">
+            Đã phát hiện mạng yếu — sẽ hiển thị ảnh minh hoạ thay video, thuyết minh vẫn phát đầy đủ.
+          </p>
+        </template>
+
+        <template v-else-if="gateState === 'loading'">
+          <div class="gate-spinner-lg mb-6" />
+          <h2 class="font-heading font-bold text-ivory text-xl md:text-2xl mb-2">
+            Đang tải video toàn cảnh...
+          </h2>
+          <p class="text-charcoal-300 text-sm max-w-xs mb-5">
+            Thuyết minh đã bắt đầu — video sẽ hiện ra ngay khi sẵn sàng.
+          </p>
+          <div class="w-56 h-1 rounded-full bg-charcoal-800 overflow-hidden mb-5">
+            <div
+              class="h-full bg-gold-400 rounded-full transition-all duration-300"
+              :style="{ width: `${Math.max(bufferPercent, 6)}%` }"
+            />
+          </div>
+          <button
+            class="text-charcoal-400 text-xs underline underline-offset-4 hover:text-gold-400 transition-colors"
+            @click="useFallback"
+          >
+            Mạng chậm? Dùng ảnh thay thế
+          </button>
+        </template>
+      </div>
+    </Transition>
+
+    <!-- ═══ UNMUTE / AUDIO GUIDE BUTTON ═══ -->
+    <button
+      id="hero-unmute-btn"
+      class="absolute top-24 right-5 lg:right-8 z-20 hero-audio-btn"
+      :class="{ 'is-active': isAudioGuideOn }"
+      :title="isAudioGuideOn ? 'Tắt thuyết minh' : 'Nghe thuyết minh Sóc Bom Bo'"
+      @click="toggleHeroAudio"
+    >
+      <div class="hero-audio-btn-inner">
+        <Icon
+          :name="isAudioGuideOn ? 'mdi:volume-high' : 'mdi:volume-off'"
+          class="w-4.5 h-4.5"
+        />
+        <span class="hero-audio-label">
+          {{ isAudioGuideOn ? 'Thuyết Minh ON' : 'Nghe Thuyết Minh' }}
+        </span>
+      </div>
+    </button>
 
     <!-- ═══ AMBIENT PARTICLES ═══ -->
     <div class="absolute inset-0 z-10 pointer-events-none">
@@ -71,7 +165,7 @@
     <!-- ═══ SLIDE COUNTER — top-right ═══ -->
     <div class="absolute top-24 right-6 lg:right-10 z-20 pointer-events-none hidden lg:flex items-center gap-2">
       <span class="font-heading font-bold text-ivory/80 text-sm tabular-nums">{{ String(currentSlide + 1).padStart(2,'0') }}</span>
-      <span class="text-charcoal-600 text-xs">/</span>
+      <span class="text-charcoal-400 text-xs">/</span>
       <span class="text-charcoal-500 text-xs tabular-nums">{{ String(slides.length).padStart(2,'0') }}</span>
     </div>
 
@@ -84,15 +178,15 @@
           <div class="hero-item flex items-center gap-3 mb-5 md:mb-7" style="--delay: 0s">
             <span class="h-px w-10 bg-gold-400" />
             <span class="text-gold-400 text-[10px] md:text-[11px] uppercase tracking-[0.28em] font-bold">
-              Bảo Tàng Số Di Sản · Thành Phố Đồng Nai
+              Bảo Tàng Số Di Sản Bù Đăng · TP. Đồng Nai
             </span>
           </div>
 
           <!-- H1 -->
           <h1 class="hero-item font-heading font-bold text-ivory leading-[1.15] mb-5 md:mb-7 text-shadow-hero" style="--delay: 0.12s; overflow: visible">
-            <span class="block text-[clamp(1.9rem,5vw,4.2rem)] tracking-[-0.02em]">Bảo Tàng Số</span>
-            <span class="block text-[clamp(1.9rem,5vw,4.2rem)] tracking-[-0.02em]">Di Sản Thành Phố</span>
-            <span class="block text-[clamp(1.9rem,5vw,4.2rem)] tracking-[-0.02em] text-gradient-gold">Đồng Nai</span>
+            <span class="block text-[clamp(1.9rem,5vw,4.2rem)] tracking-[-0.02em]">Bảo Tàng Số Di Sản</span>
+            <span class="block text-[clamp(1.9rem,5vw,4.2rem)] tracking-[-0.02em]">Bù Đăng</span>
+            <span class="block text-[clamp(1.9rem,5vw,4.2rem)] tracking-[-0.02em] text-gradient-gold">Thành Phố Đồng Nai</span>
           </h1>
 
           <!-- Tagline quote -->
@@ -100,7 +194,7 @@
             class="hero-item font-accent italic text-ivory/65 text-lg md:text-xl lg:text-2xl mb-4 leading-relaxed max-w-xl"
             style="--delay: 0.25s"
           >
-            "Kết nối di sản văn hóa, lịch sử và thiên nhiên Thành Phố Đồng Nai"
+            "Từ đại ngàn Bù Đăng đến trái tim Thành Phố Đồng Nai — vùng di sản trọng điểm đang lớn lên cùng đô thị mới"
           </p>
 
           <!-- Description -->
@@ -108,8 +202,8 @@
             class="hero-item text-charcoal-300 text-sm md:text-base leading-relaxed mb-9 md:mb-11 max-w-lg"
             style="--delay: 0.34s"
           >
-            Không gian số bảo tồn di sản văn hóa Thành Phố Đồng Nai — nơi thiên nhiên kỳ vĩ,
-            lịch sử hào hùng và văn hóa S'tiêng hội tụ cùng nhịp sống đô thị năng động.
+            Bảo tàng số tiên phong bảo tồn di sản văn hóa, lịch sử và thiên nhiên vùng Bù Đăng —
+            vùng lõi di sản của Thành Phố Đồng Nai, nơi văn hóa S'tiêng hội tụ cùng nhịp sống đô thị năng động.
           </p>
 
           <!-- CTAs -->
@@ -193,6 +287,7 @@
           ? 'w-1 h-7 bg-gold-400'
           : 'w-1 h-3 bg-ivory/25 hover:bg-ivory/50'"
         :aria-label="`Slide ${i + 1}`"
+        :aria-current="currentSlide === i ? 'true' : undefined"
         @click="goToSlide(i)"
       />
     </div>
@@ -210,13 +305,144 @@
 
 <script setup lang="ts">
 import { useHeritageStore } from '~/stores/heritage'
+import { useAudioStore } from '~/stores/audio'
 import { HERITAGES } from '~/data/heritages'
 import { COMMUNITY_POSTS } from '~/data/posts'
 import { QUIZZES } from '~/data/quizzes'
+import type { HeritageAudio } from '~/types'
 
 const heritageStore = useHeritageStore()
+const audioStore = useAudioStore()
+const heroVideoRef = ref<HTMLVideoElement | null>(null)
+const videoLoaded = ref(false)
+const gateState = ref<'idle' | 'loading' | 'ready' | 'fallback'>('idle')
+const revealed = computed(() => gateState.value === 'ready' || gateState.value === 'fallback')
+const bufferPercent = ref(0)
+const enableVideo = ref(true)
+const isAudioGuideOn = ref(false)
+let fallbackTimer: ReturnType<typeof setTimeout> | undefined
 const audioCount = HERITAGES.filter((h) => h.audio).length
 const questionCount = QUIZZES.reduce((sum, q) => sum + q.questions.length, 0)
+
+const bomBoAudio: HeritageAudio = {
+  id: 'khu-bao-ton-soc-bom-bo',
+  title: 'Thuyết minh: Khu Bảo Tồn Sóc Bom Bo',
+  narrator: 'Hướng dẫn viên Di Sản Đồng Nai',
+  duration: 560,
+  url: '/audio/khu-bao-ton-soc-bom-bo.mp3',
+  coverImage: '/video/virtual-tour/bom-bo/poster.jpg',
+}
+
+function playHeroAudio() {
+  audioStore.loadTrack(bomBoAudio, 'khu-bao-ton-soc-bom-bo')
+  audioStore.play()
+  isAudioGuideOn.value = true
+}
+
+// Toggle Bom Bo audio guide from hero section
+function toggleHeroAudio() {
+  if (isAudioGuideOn.value) {
+    audioStore.pause()
+    isAudioGuideOn.value = false
+  } else {
+    playHeroAudio()
+  }
+}
+
+// Track real download progress so the loading state feels alive instead of a bare spinner
+function onVideoProgress() {
+  const v = heroVideoRef.value
+  if (!v || !v.duration || !v.buffered.length) return
+  try {
+    const bufferedEnd = v.buffered.end(v.buffered.length - 1)
+    bufferPercent.value = Math.min(100, Math.round((bufferedEnd / v.duration) * 100))
+  } catch {
+    // buffered range can throw if the video has no data yet — ignore
+  }
+}
+
+function clearFallbackTimer() {
+  if (fallbackTimer) {
+    clearTimeout(fallbackTimer)
+    fallbackTimer = undefined
+  }
+}
+
+// Video actually able to play smoothly — this is the only path that shows video
+// instead of the fallback slideshow, matching what the visitor expects to see.
+function markVideoReady() {
+  videoLoaded.value = true
+  if (gateState.value === 'loading') {
+    gateState.value = 'ready'
+    clearFallbackTimer()
+  }
+}
+
+// Only reached by explicit user choice ("Dùng ảnh thay thế") or the loading timeout —
+// never as a silent default when video simply hasn't finished buffering yet.
+function useFallback() {
+  clearFallbackTimer()
+  if (gateState.value !== 'ready') gateState.value = 'fallback'
+}
+
+// Entry gate: user gesture unlocks autoplay-with-sound in every browser.
+// Narration starts immediately; video keeps the gate up (with visible progress)
+// until it can actually play, instead of dropping straight to static images.
+function startJourney() {
+  playHeroAudio()
+
+  if (!enableVideo.value) {
+    gateState.value = 'fallback'
+    return
+  }
+
+  // Video may have already finished buffering silently while the gate sat
+  // idle (fast connections, or localhost) — its 'canplay' event fired before
+  // there was a 'loading' state to resolve. Skip the loading screen entirely.
+  if (videoLoaded.value) {
+    gateState.value = 'ready'
+    nextTick(() => {
+      heroVideoRef.value?.play().catch(() => {})
+    })
+    return
+  }
+
+  gateState.value = 'loading'
+  nextTick(() => {
+    // Calling .play() on the click gesture matters most on iOS Safari, which
+    // otherwise throttles preload over cellular regardless of the attribute.
+    heroVideoRef.value?.play().catch(() => {})
+  })
+  fallbackTimer = setTimeout(useFallback, 10000)
+}
+
+onMounted(() => {
+  const conn = (navigator as unknown as { connection?: { saveData?: boolean; effectiveType?: string } }).connection
+  if (conn && (conn.saveData || ['slow-2g', '2g', '3g'].includes(conn.effectiveType ?? ''))) {
+    enableVideo.value = false
+  }
+
+  // With SSR the <video> tag is in the initial HTML and can start buffering —
+  // and fire 'canplay' — before Vue finishes hydrating and attaches the
+  // template listener. Check readyState directly to catch that missed event.
+  nextTick(() => {
+    if ((heroVideoRef.value?.readyState ?? 0) >= 3) {
+      markVideoReady()
+    }
+  })
+})
+
+// Sync button state with global audio store
+watch(() => audioStore.isPlaying, (playing) => {
+  if (!playing && isAudioGuideOn.value) {
+    isAudioGuideOn.value = false
+  }
+})
+
+onUnmounted(() => {
+  heroVideoRef.value?.pause()
+  clearFallbackTimer()
+})
 
 const slides = [
   {
@@ -283,6 +509,81 @@ const stats = computed(() => [
 </script>
 
 <style scoped>
+/* ── Hero video background ── */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  /* Natural, vibrant color grade */
+  filter: saturate(1.4) contrast(1.06) brightness(1.04);
+}
+.hero-video--loaded {
+  opacity: 1;
+}
+
+/* ── Entry gate ── */
+.gate-fade-enter-active { transition: opacity 0.4s ease; }
+.gate-fade-leave-active { transition: opacity 0.7s ease; }
+.gate-fade-enter-from,
+.gate-fade-leave-to { opacity: 0; }
+.gate-cta { animation: gatePulse 2.4s ease-in-out infinite; }
+@keyframes gatePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 169, 106, 0.35); }
+  50% { box-shadow: 0 0 0 10px rgba(201, 169, 106, 0); }
+}
+.gate-spinner-lg {
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  border: 3px solid rgba(201, 169, 106, 0.25);
+  border-top-color: rgba(201, 169, 106, 0.95);
+  animation: gateSpin 0.9s linear infinite;
+}
+@keyframes gateSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Hero audio guide button ── */
+.hero-audio-btn {
+  cursor: pointer;
+}
+.hero-audio-btn-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem 0.45rem 0.7rem;
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+.hero-audio-btn:hover .hero-audio-btn-inner {
+  background: rgba(201, 169, 106, 0.25);
+  border-color: rgba(201, 169, 106, 0.5);
+  color: #fff;
+}
+.hero-audio-btn.is-active .hero-audio-btn-inner {
+  background: rgba(201, 169, 106, 0.2);
+  border-color: rgba(201, 169, 106, 0.45);
+  color: #DEC89D;
+}
+.hero-audio-label {
+  display: none;
+}
+@media (min-width: 640px) {
+  .hero-audio-label { display: inline; }
+}
+
 /* ── Slideshow transition ── */
 .hero-slide-enter-active { transition: opacity 1.8s ease; }
 .hero-slide-leave-active { transition: opacity 1.8s ease; }
@@ -316,7 +617,7 @@ const stats = computed(() => [
 
 /* ── Ambient particles ── */
 .hero-particle {
-  background: radial-gradient(circle, rgba(201, 146, 42, 0.6) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(201, 169, 106, 0.6) 0%, transparent 70%);
   animation: floatParticle var(--dur, 7s) ease-in-out var(--delay, 0s) infinite alternate;
 }
 @keyframes floatParticle {

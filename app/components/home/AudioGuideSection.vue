@@ -1,9 +1,9 @@
 <template>
-  <section class="section bg-dark-earth relative overflow-hidden">
+  <section class="section bg-warm-paper text-charcoal-800 relative overflow-hidden">
     <!-- Background glow -->
     <div class="absolute inset-0 pointer-events-none">
-      <div class="absolute top-1/3 left-1/2 -translate-x-1/2 w-96 h-96 bg-gold-500/12 rounded-full blur-3xl" />
-      <div class="absolute bottom-0 left-1/4 w-72 h-72 bg-earth-600/10 rounded-full blur-3xl" />
+      <div class="absolute top-1/3 left-1/2 -translate-x-1/2 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl" />
+      <div class="absolute bottom-0 left-1/4 w-72 h-72 bg-earth-600/8 rounded-full blur-3xl" />
     </div>
 
     <div class="container-heritage relative z-10">
@@ -109,12 +109,12 @@
         <!-- Right: Info -->
         <div class="space-y-8">
           <div class="reveal">
-            <span class="section-label text-gold-400">Hệ Thống Audio Guide</span>
-            <h2 class="text-display-sm text-ivory mb-5 leading-tight">
+            <span class="section-label text-gold-700">Hệ Thống Audio Guide</span>
+            <h2 class="text-display-sm text-charcoal-900 mb-5 leading-tight">
               Nghe Kể Chuyện<br/>
               <span class="text-gradient-gold">Di Sản Địa Phương</span>
             </h2>
-            <p class="text-charcoal-300 text-lg leading-relaxed">
+            <p class="text-charcoal-600 text-lg leading-relaxed">
               Hệ thống audio guide — được thuyết minh bởi giọng đọc truyền cảm của các thuyết minh viên địa phương,
               ghi lại những câu chuyện di sản xúc động khắp Thành Phố Đồng Nai.
             </p>
@@ -127,18 +127,18 @@
               class="flex gap-4 reveal"
               :style="{ animationDelay: `${i * 0.1}s` }"
             >
-              <div class="w-10 h-10 rounded-xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <Icon :name="feat.icon" class="w-5 h-5 text-gold-400" />
+              <div class="w-10 h-10 rounded-xl bg-gold-500/10 border border-gold-500/25 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <Icon :name="feat.icon" class="w-5 h-5 text-gold-700" />
               </div>
               <div>
-                <h4 class="font-heading font-semibold text-ivory mb-1">{{ feat.title }}</h4>
-                <p class="text-charcoal-400 text-sm leading-relaxed">{{ feat.desc }}</p>
+                <h4 class="font-heading font-semibold text-charcoal-900 mb-1">{{ feat.title }}</h4>
+                <p class="text-charcoal-600 text-sm leading-relaxed">{{ feat.desc }}</p>
               </div>
             </div>
           </div>
 
           <div class="reveal">
-            <NuxtLink to="/explore" class="btn-outline-gold">
+            <NuxtLink to="/explore" class="btn-outline-gold !border-gold-700 !text-gold-700 hover:!bg-gold-700 hover:!text-ivory">
               <Icon name="mdi:headphones" class="w-4 h-4" />
               Khám Phá Audio Guide
             </NuxtLink>

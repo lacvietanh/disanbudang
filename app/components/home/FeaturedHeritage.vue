@@ -1,9 +1,9 @@
 <template>
-  <section class="section bg-charcoal-950 relative overflow-hidden" aria-label="Di sản nổi bật">
+  <section class="section bg-warm-paper text-stone-800 relative overflow-hidden" aria-label="Di sản nổi bật">
 
     <!-- Dot pattern background -->
-    <div class="absolute inset-0 pointer-events-none opacity-[0.025]
-      bg-[radial-gradient(#C9922A_1px,transparent_1px)]
+    <div class="absolute inset-0 pointer-events-none opacity-[0.04]
+      bg-[radial-gradient(#C7A664_1px,transparent_1px)]
       [background-size:28px_28px]" />
 
     <div class="container-heritage relative z-10">
@@ -12,19 +12,19 @@
       <div class="flex items-end justify-between mb-12 lg:mb-16">
         <div>
           <div class="flex items-center gap-3 mb-3">
-            <span class="w-8 h-px bg-gold-400" />
-            <span class="text-gold-400 text-[10px] uppercase tracking-[0.3em] font-bold">Bảo Tàng Thu Nhỏ</span>
+            <span class="w-8 h-px bg-heritage-600" />
+            <span class="text-heritage-700 text-[10px] uppercase tracking-[0.3em] font-bold">Bảo Tàng Thu Nhỏ</span>
           </div>
-          <h2 class="font-heading font-bold text-ivory text-3xl lg:text-5xl leading-tight">
+          <h2 class="font-heading font-bold text-stone-900 text-3xl lg:text-5xl leading-tight">
             Di Sản Nổi Bật
           </h2>
-          <p class="text-charcoal-400 text-sm mt-2 max-w-md">
+          <p class="text-stone-600 text-sm mt-2 max-w-md">
             Khám phá những điểm di sản văn hóa, lịch sử và thiên nhiên đặc sắc nhất của Thành Phố Đồng Nai.
           </p>
         </div>
         <NuxtLink
           to="/explore"
-          class="hidden lg:flex items-center gap-2 text-gold-400 text-sm font-semibold hover:text-gold-300 transition-colors group flex-shrink-0"
+          class="hidden lg:flex items-center gap-2 text-heritage-700 text-sm font-semibold hover:text-heritage-600 transition-colors group flex-shrink-0"
         >
           Xem tất cả {{ totalCount }} di sản
           <Icon name="mdi:arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -37,10 +37,10 @@
         <!-- LARGE HERO CARD -->
         <div v-if="topFeatured[0]" class="lg:col-span-7 xl:col-span-8 reveal">
           <article
-            class="relative overflow-hidden rounded-2xl lg:rounded-3xl cursor-pointer group h-[420px] lg:h-[580px] border border-charcoal-800/60 hover:border-gold-500/30 hover:shadow-2xl hover:shadow-gold-500/10 transition-all duration-700"
+            class="relative overflow-hidden rounded-2xl lg:rounded-3xl cursor-pointer group h-[420px] lg:h-[580px] border border-charcoal-200/70 hover:border-gold-500/40 hover:shadow-2xl hover:shadow-gold-500/10 transition-all duration-700"
             @click="navigateTo(`/heritage/${topFeatured[0].slug}`)"
           >
-            <img
+            <NuxtImg
               :src="topFeatured[0].coverImage"
               :alt="topFeatured[0].title"
               class="w-full h-full object-cover transition-transform duration-[1400ms] ease-out-expo group-hover:scale-[1.04]"
@@ -83,10 +83,10 @@
           <article
             v-for="(item, idx) in topFeatured.slice(1, 3)"
             :key="item.id"
-            class="relative overflow-hidden rounded-2xl cursor-pointer group flex-1 min-h-[200px] lg:min-h-0 border border-charcoal-800/60 hover:border-gold-500/25 transition-all duration-500 hover:shadow-xl hover:shadow-gold-500/8 reveal"
+            class="relative overflow-hidden rounded-2xl cursor-pointer group flex-1 min-h-[200px] lg:min-h-0 border border-charcoal-200/70 hover:border-gold-500/35 transition-all duration-500 hover:shadow-xl hover:shadow-gold-500/8 reveal"
             @click="navigateTo(`/heritage/${item.slug}`)"
           >
-            <img
+            <NuxtImg
               :src="item.coverImage"
               :alt="item.title"
               class="w-full h-full object-cover transition-transform duration-[1200ms] ease-out-expo group-hover:scale-[1.06]"
@@ -119,7 +119,7 @@
 
       <!-- ── MOBILE CTA ── -->
       <div class="flex lg:hidden justify-center mt-8">
-        <NuxtLink to="/explore" class="btn-secondary hover:shadow-lg hover:shadow-gold-500/15">
+        <NuxtLink to="/explore" class="btn-secondary text-charcoal-800 hover:shadow-lg hover:shadow-gold-500/15">
           Xem tất cả {{ totalCount }} di sản
           <Icon name="mdi:arrow-right" class="w-4 h-4" />
         </NuxtLink>

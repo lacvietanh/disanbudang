@@ -69,14 +69,14 @@
         <div class="lg:col-span-5 grid grid-cols-2 gap-4 relative reveal">
           <div class="space-y-4">
             <div class="rounded-2xl overflow-hidden aspect-[3/4] shadow-warm-lg border border-charcoal-700/50 group">
-              <img
+              <NuxtImg
                 src="/images/heritage/danh-thang/rung-nguyen-sinh-lg.webp"
                 alt="Rừng nguyên sinh Thành Phố Đồng Nai"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
             </div>
             <div class="rounded-2xl overflow-hidden aspect-square shadow-warm-lg border border-charcoal-700/50 group">
-              <img
+              <NuxtImg
                 src="/images/heritage/van-hoa-phi-vat-the/cong-chieng-lg.webp"
                 alt="Lễ hội cồng chiêng"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -85,14 +85,14 @@
           </div>
           <div class="space-y-4 pt-8">
             <div class="rounded-2xl overflow-hidden aspect-square shadow-warm-lg border border-charcoal-700/50 group">
-              <img
+              <NuxtImg
                 src="/images/heritage/danh-thang/thac-dung-lg.webp"
                 alt="Thác Mơ, Thành Phố Đồng Nai"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
             </div>
             <div class="rounded-2xl overflow-hidden aspect-[3/4] shadow-warm-lg border border-charcoal-700/50 group">
-              <img
+              <NuxtImg
                 src="/images/heritage/lich-su/soc-bom-bo-lg.webp"
                 alt="Chiến Khu Đ"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"

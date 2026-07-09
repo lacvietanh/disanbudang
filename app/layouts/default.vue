@@ -9,7 +9,7 @@
     <!-- Mini Audio Player -->
     <AudioMiniPlayer />
     <!-- Page loading bar -->
-    <NuxtLoadingIndicator color="#C9922A" :height="2" />
+    <NuxtLoadingIndicator color="#C7A664" :height="2" />
     <!-- Global Quiz Player -->
     <QuizPlayModal />
     <!-- Scroll To Top button -->

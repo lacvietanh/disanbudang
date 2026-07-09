@@ -33,7 +33,7 @@
 
             <div
               class="transition-all duration-300 ease-in-out overflow-hidden"
-              :style="{ maxHeight: openIndex === index ? '600px' : '0px' }"
+              :style="{ maxHeight: openIndex === index ? '2000px' : '0px' }"
             >
               <div class="px-6 py-5 pt-4 text-charcoal-200 text-sm leading-relaxed border-t border-charcoal-800/40 bg-charcoal-900/10">
                 {{ faq.answer }}

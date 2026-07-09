@@ -1,13 +1,13 @@
 <template>
-  <section class="section bg-dark-earth relative overflow-hidden">
+  <section class="section bg-warm-paper text-charcoal-800 relative overflow-hidden">
     <div class="container-heritage">
       <!-- Header -->
       <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
         <div>
-          <span class="section-label text-gold-400">Bài Viết & Sự Kiện</span>
-          <h2 class="text-display-sm text-ivory">Bài Viết & Di Sản Mới Nhất</h2>
+          <span class="section-label text-gold-700">Bài Viết & Sự Kiện</span>
+          <h2 class="text-display-sm text-charcoal-900">Bài Viết & Di Sản Mới Nhất</h2>
         </div>
-        <NuxtLink to="/news" class="btn-outline-gold flex-shrink-0">
+        <NuxtLink to="/news" class="btn-outline-gold !border-gold-700 !text-gold-700 hover:!bg-gold-700 hover:!text-ivory flex-shrink-0">
           Xem Tất Cả
           <Icon name="mdi:arrow-right" class="w-4 h-4" />
         </NuxtLink>
@@ -18,7 +18,7 @@
         <div v-if="news[0]" class="lg:col-span-7 reveal">
           <NuxtLink :to="'/news/' + news[0].slug" class="group block">
             <div class="relative overflow-hidden rounded-3xl aspect-[16/9]">
-              <img
+              <NuxtImg
                 :src="news[0].coverImage"
                 :alt="news[0].title"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -45,27 +45,27 @@
             v-for="item in news.slice(1, 4)"
             :key="item.id"
             :to="'/news/' + item.slug"
-            class="group flex gap-4 p-4 rounded-2xl border border-charcoal-700/50 hover:border-gold-500/30 hover:bg-charcoal-800/50 transition-all duration-300 reveal"
+            class="group flex gap-4 p-4 rounded-2xl border border-charcoal-200/70 hover:border-gold-500/35 hover:bg-charcoal-50 transition-all duration-300 reveal"
           >
-            <img :src="item.coverImage" :alt="item.title" class="w-20 h-16 rounded-xl object-cover flex-shrink-0 transition-transform duration-500 group-hover:scale-105" />
+            <NuxtImg :src="item.coverImage" :alt="item.title" class="w-20 h-16 rounded-xl object-cover flex-shrink-0 transition-transform duration-500 group-hover:scale-105" />
             <div class="flex-1 min-w-0">
               <BaseBadge :variant="categoryVariant[item.category]" size="sm" class="mb-1.5">
                 {{ categoryLabels[item.category] }}
               </BaseBadge>
-              <h4 class="font-heading font-semibold text-ivory text-sm leading-tight line-clamp-2 group-hover:text-gold-300 transition-colors">{{ item.title }}</h4>
+              <h4 class="font-heading font-semibold text-charcoal-900 text-sm leading-tight line-clamp-2 group-hover:text-gold-700 transition-colors">{{ item.title }}</h4>
               <p class="text-charcoal-500 text-xs mt-1">{{ formatDate(item.publishedAt) }}</p>
             </div>
           </NuxtLink>
 
           <!-- Upcoming event -->
-          <div v-if="nextEvent" class="p-4 rounded-2xl bg-gold-500/10 border border-gold-500/20 reveal">
+          <div v-if="nextEvent" class="p-4 rounded-2xl bg-gold-500/10 border border-gold-500/25 reveal">
             <div class="flex items-center gap-2 mb-3">
-              <Icon name="mdi:calendar-star" class="w-4 h-4 text-gold-400" />
-              <span class="eyebrow text-gold-400 text-2xs">Sự kiện sắp tới</span>
+              <Icon name="mdi:calendar-star" class="w-4 h-4 text-gold-700" />
+              <span class="eyebrow text-gold-700 text-2xs">Sự kiện sắp tới</span>
             </div>
-            <h4 class="font-heading font-bold text-ivory text-sm mb-1 leading-tight">{{ nextEvent.title }}</h4>
-            <p class="text-charcoal-400 text-xs">{{ nextEvent.location }}</p>
-            <p class="text-gold-400 text-xs font-medium mt-1">{{ formatDate(nextEvent.startDate) }}</p>
+            <h4 class="font-heading font-bold text-charcoal-900 text-sm mb-1 leading-tight">{{ nextEvent.title }}</h4>
+            <p class="text-charcoal-600 text-xs">{{ nextEvent.location }}</p>
+            <p class="text-gold-700 text-xs font-medium mt-1">{{ formatDate(nextEvent.startDate) }}</p>
           </div>
         </div>
       </div>

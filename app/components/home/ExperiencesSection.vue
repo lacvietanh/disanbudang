@@ -1,5 +1,5 @@
 <template>
-  <section class="section bg-charcoal-900 border-t border-charcoal-800/60 relative overflow-hidden" aria-label="Trải nghiệm số">
+  <section class="section bg-white border-t border-stone-100 relative overflow-hidden" aria-label="Trải nghiệm số">
 
     <!-- Ambient glow -->
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gold-500/4 rounded-full blur-[120px] pointer-events-none" />
@@ -9,14 +9,14 @@
       <!-- ── HEADER ── -->
       <div class="text-center mb-14 lg:mb-20 reveal">
         <div class="flex items-center justify-center gap-3 mb-4">
-          <span class="w-8 h-px bg-gold-400" />
-          <span class="text-gold-400 text-[10px] uppercase tracking-[0.3em] font-bold">Nền Tảng Số</span>
-          <span class="w-8 h-px bg-gold-400" />
+          <span class="w-8 h-px bg-heritage-500" />
+          <span class="text-heritage-600 text-[10px] uppercase tracking-[0.3em] font-bold">Nền Tảng Số</span>
+          <span class="w-8 h-px bg-heritage-500" />
         </div>
-        <h2 class="font-heading font-bold text-ivory text-3xl lg:text-5xl leading-tight mb-4">
+        <h2 class="font-heading font-bold text-stone-900 text-3xl lg:text-5xl leading-tight mb-4">
           Khám Phá Qua Công Nghệ
         </h2>
-        <p class="text-charcoal-400 text-base max-w-xl mx-auto">
+        <p class="text-stone-500 text-base max-w-xl mx-auto">
           Bốn cổng trải nghiệm số — mỗi cổng mở ra một chiều sâu khác nhau của di sản Thành Phố Đồng Nai.
         </p>
       </div>
@@ -29,7 +29,7 @@
           <NuxtLink to="/map" class="block">
             <div class="relative h-[340px] lg:h-[420px] rounded-2xl overflow-hidden border border-charcoal-800/60 hover:border-gold-500/30 transition-all duration-500 hover:shadow-xl hover:shadow-gold-500/10 cursor-pointer">
               <!-- Map visual background -->
-              <img
+              <NuxtImg
                 src="/images/heritage/img-disanbudang/Khu-Bao-Ton-2.jpg"
                 alt="Bản đồ di sản"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
@@ -85,7 +85,7 @@
         <div class="reveal group" style="animation-delay: 0.08s">
           <NuxtLink to="/library" class="block">
             <div class="relative h-[340px] lg:h-[420px] rounded-2xl overflow-hidden border border-charcoal-800/60 hover:border-earth-500/30 transition-all duration-500 hover:shadow-xl hover:shadow-earth-500/10 cursor-pointer">
-              <img
+              <NuxtImg
                 src="/images/heritage/img-disanbudang/chien-khu-D.png"
                 alt="Thư viện di sản"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
@@ -124,7 +124,7 @@
               <!-- Rich background: subtle audio-themed gradient -->
               <div class="absolute inset-0 bg-gradient-to-br from-gold-900/20 via-charcoal-950 to-charcoal-950" />
               <!-- Subtle dot grid pattern -->
-              <div class="absolute inset-0 opacity-[0.04] bg-[radial-gradient(#C9922A_1px,transparent_1px)] [background-size:20px_20px]" />
+              <div class="absolute inset-0 opacity-[0.04] bg-[radial-gradient(#C7A664_1px,transparent_1px)] [background-size:20px_20px]" />
 
               <!-- Waveform visual — larger and more prominent -->
               <div class="absolute top-7 right-7 flex items-end gap-0.5 h-14 pointer-events-none">
@@ -177,7 +177,7 @@
               <!-- Rich background -->
               <div class="absolute inset-0 bg-gradient-to-bl from-forest-900/20 via-charcoal-950 to-charcoal-950" />
               <!-- Triangle pattern -->
-              <div class="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#2D5016_1px,transparent_1px)] [background-size:24px_24px]" />
+              <div class="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#12B981_1px,transparent_1px)] [background-size:24px_24px]" />
 
               <!-- Badge icons floating top-right -->
               <div class="absolute top-6 right-6 flex gap-1.5 pointer-events-none">
@@ -253,11 +253,11 @@ const audioHeritages = HERITAGES.filter((h) => h.audio)
 const questionCount = QUIZZES.reduce((sum, q) => sum + q.questions.length, 0)
 
 const previewPins = [
-  { id: 1, x: 22, y: 32, color: '#8B3A2A' },
-  { id: 2, x: 48, y: 55, color: '#C9922A' },
-  { id: 3, x: 67, y: 28, color: '#2D5016' },
-  { id: 4, x: 35, y: 68, color: '#C9922A' },
-  { id: 5, x: 78, y: 48, color: '#8B3A2A' },
+  { id: 1, x: 22, y: 32, color: '#F59E0B' },
+  { id: 2, x: 48, y: 55, color: '#C7A664' },
+  { id: 3, x: 67, y: 28, color: '#12B981' },
+  { id: 4, x: 35, y: 68, color: '#C7A664' },
+  { id: 5, x: 78, y: 48, color: '#F59E0B' },
 ]
 
 const waveformBars = Array.from({ length: 18 }, (_, i) => {
