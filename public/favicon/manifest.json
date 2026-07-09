@@ -3,8 +3,8 @@
   "short_name": "Disan",
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#e18c1b",
-  "background_color": "#000000",
+  "theme_color": "#2D7FF9",
+  "background_color": "#0B1220",
   "icons": [
     {
       "src": "/favicon/icon-192.png",
