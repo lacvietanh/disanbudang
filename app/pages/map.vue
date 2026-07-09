@@ -865,6 +865,13 @@ onMounted(() => {
   if (route.query.select) {
     selectedId.value = route.query.select as string
   }
+
+  // Store là app-wide singleton (dùng chung với /explore) — luôn đồng bộ lại
+  // theo state cục bộ của trang này, tránh dính filter còn sót từ trang khác.
+  store.setSearch(searchQuery.value)
+  store.setCategory(activeCategory.value)
+  store.setPeriod(activePeriod.value)
+  store.setCluster(activeCluster.value)
 })
 
 function startTour() {

@@ -591,8 +591,15 @@ function onParallaxScroll() {
 onMounted(() => {
   nextTick(() => observeAll())
 
-  if (route.query.category) activeCategory.value = route.query.category as string
-  if (route.query.search) searchQuery.value = route.query.search as string
+  // Store là app-wide singleton (dùng chung với /map) — luôn đồng bộ lại theo
+  // query string hiện tại, tránh dính filter còn sót từ trang khác.
+  activeCategory.value = (route.query.category as string) || ''
+  searchQuery.value = (route.query.search as string) || ''
+  activeCluster.value = ''
+  store.setCategory(activeCategory.value)
+  store.setSearch(searchQuery.value)
+  store.setCluster('')
+
   if (route.query.tab === 'community') activeMainTab.value = 'community'
   if (route.query.tag) { activeTag.value = route.query.tag as string; activeMainTab.value = 'community' }
 
