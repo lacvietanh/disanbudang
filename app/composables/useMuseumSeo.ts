@@ -316,7 +316,7 @@ export function useStudySeo() {
   useMuseumSeo({
     title: 'Cổng Học Tập Số Di Sản',
     description: 'Nền tảng học tập di sản số hóa tương tác: flashcards, quiz, AI tra cứu, thư viện tài liệu và hành trình khám phá văn hóa Thành Phố Đồng Nai dành cho học sinh, giáo viên.',
-    image: '/images/heritage/op-og-preview.png',
+    image: '/images/heritage/op-og-preview.jpg',
     path: '/study',
   })
 

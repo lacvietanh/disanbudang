@@ -5,6 +5,45 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.2] - 2026-07-09
+
+Full-site UI/UX/content audit: dead features repaired, broken links fixed, accessibility gaps closed, SEO tightened.
+
+### Fixed
+
+- `/study`: the "Bài Học" tab and empty-state CTAs (`open-map`, `explore-map`, `explore-roadmap`) still set `activeTab = 'map'`, a tab removed from `navItems` in an earlier pass — clicking them blanked the page. Now navigates to `/map` directly. Removed the now-fully-dead `activeLandmark` ref along with unused `typeColors`, `resourceFormats`, `teacherUploadedFiles`/`mockUploadDocument`, and `startLandmarkQuiz` leftovers from a removed Teacher tab.
+- `/study` lesson catalog listed 4 lessons but `study/lesson/[id].vue` only has content for 2 (`chien-khu-d`, `cong-chieng-stieng`) — clicking "Sóc Bom Bo" or "Trảng Cỏ Bù Lạch" led straight to a 404. Those two cards are now marked `hasContent: false`, rendered as non-clickable "Sắp ra mắt" cards instead of dead links.
+- `/heritage/[slug]` gallery thumbnails set `lightboxIndex` but no lightbox modal was ever rendered — clicking a photo did nothing. Implemented the same lightbox pattern already used on `/map` (keyboard-free prev/next, fade transition, caption/photographer credit).
+- `/explore` tag chips on community posts (`searchTag()` in `explore/[id].vue`) pushed a `?tag=` query param that `explore/index.vue` never read — filtering silently no-opped. Added real tag filtering against `post.tags` with a clearable "Đang lọc theo thẻ" chip in the UI.
+- `/contribute` review-progress timeline used invalid Tailwind classes `top-21`/`top-41` (not in the spacing scale, compiled to nothing) — the step 2/3 dot markers were unpositioned. Replaced with `top-[84px]`/`top-[164px]`.
+- Footer "Góc Học Tập Học Sinh" linked to `/#school-corner`, an anchor that doesn't exist anywhere in the codebase. Points to `/study` now.
+- `MapContainer` heritage/cluster markers had `tabindex`/`aria-label` plus a `marker.on('keypress', ...)` handler that can never fire — Leaflet only forwards mouse events through its internal bus, not keyboard events. Keyboard users could focus a marker but never activate it. Now binds a native `keydown` listener on `marker.getElement()`.
+- `explore/virtual-tour.vue` (a new, previously unreviewed page) used a raw `<Head>` block instead of `useMuseumSeo` — missing canonical URL, OG tags, and breadcrumb JSON-LD, and its title used an em-dash that would fail `validate-seo.js`. Also had no `<h1>` in the DOM until the user pressed play. Migrated to `useMuseumSeo` and added a persistent `sr-only` `<h1>`.
+- `/about` meta description was 190 characters against the composable's 155-char cap, truncating mid-word ("... thành phố trự...") in search snippets. Shortened below the limit.
+- SSR-default `<title>` in `nuxt.config.ts` didn't match the runtime default set by `useMuseumSeo` ("Bảo Tàng Số Thành Phố Đồng Nai" vs "Bảo Tàng Số Địa Phương") — aligned both.
+- `npm run generate` never ran `validate-seo.js`, so title/description/canonical regressions could ship unnoticed. Chained it: `generate` now runs `nuxt generate && npm run validate:seo`.
+- `/library` redirected via a client-side `navigateTo()` in a page component while every other legacy redirect (`/community`, `/quiz`, `/school`) is a static `routeRules` entry — moved it into `routeRules` for a crawler-friendly static 301 and deleted the now-unnecessary page.
+- `app/data/categories.ts` had stale hardcoded `count` fields (7/4 for `lich-su`/`danh-thang`) that didn't match the actual heritage data (6/5) — corrected.
+- Hardcoded untranslated English strings in an otherwise fully Vietnamese UI: `/study` hero badge and timeline entry ("Digital Heritage Learning Hub" → "Cổng Học Tập Di Sản Số"), `/heritage/qr/[slug]` ("QR Experience" → "Trải Nghiệm QR", "Scan & continue" → "Quét mã & tiếp tục").
+
+### Changed (accessibility & consistency)
+
+- `QuizPlayModal`: `text-brick-450` was an invalid Tailwind class (the `brick` alias has no `450` shade) — silently rendered no color on the wrong-answer icon. Changed to `text-brick-500`.
+- `EmptyState` CTA buttons used `shadow-gold/25 hover:shadow-gold/45` with no base `shadow-*` utility to actually enable `box-shadow` — the color-opacity modifier alone renders nothing. Added `shadow-lg`.
+- `MapContainer` locate-me button used `w-13 h-13`, not a valid size in the spacing scale — added `shadow-lg`-sized fix by switching to `w-14 h-14`.
+- `AppFooter` decorative background dot pattern used semantic success-green (`#10B981`) instead of the brand's champagne gold (`#C7A664`) used by every other decorative pattern in the app.
+- `QuizSection` achievement badges were only inspectable via `:hover`, with no focus-visible/keyboard path and a non-interactive `<div>` wrapper — changed to a real `<button>` with `aria-label` and `group-focus-visible` tooltip reveal.
+- `HotspotImage` hotspot pins used `focus:outline-gold-500` (fires on any focus, including mouse clicks) instead of `focus-visible:outline-gold-500`, fighting the app's global `:focus-visible` convention.
+- `ArtifactHotspotViewer` hardcoded `alt="Đàn đá Thành Phố Đồng Nai"` regardless of which artifact image was passed in via the `artifactImage` prop — added an `artifactAlt` prop.
+- `FAQSection` answer expand animation capped `max-height` at a hardcoded `600px`; long answers on small viewports or larger user font sizes would silently clip. Raised to `2000px`.
+- `HeroSection` slide-indicator dots had `aria-label` but no `aria-current` for the active slide — added.
+- `news/index.vue`: removed dead `categoryVariant` map and `events` alias that were declared but never referenced in the template.
+
+### Verified (no changes needed)
+
+- Full local audit (3 parallel passes: pages/content, components/design-system, SEO) across every page and component. No missing images, no `console.log`/TODO litter, no `v-for` missing `:key`, sitemap/robots.txt configured correctly, rebrand to "Thành Phố Đồng Nai" consistently applied with no stale "Bình Phước" leftovers (remaining mentions are correctly-scoped historical references).
+- `npm run typecheck`, `npm run build`, and `npm run generate` (with the newly chained `validate:seo`) all pass clean; 121 routes prerendered, 38 HTML files validated.
+
 ## [0.3.1] - 2026-07-08
 
 Follow-up fixes from a targeted issue review: fake-interactive UI, verified GPS/stats, default OG image, mobile nav color.

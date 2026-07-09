@@ -1,13 +1,13 @@
 {
   "name": "disanbudang",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "type": "module",
   "private": true,
   "scripts": {
     "build": "nuxt build",
     "dev": "npm run killport && nuxt dev",
     "killport": "lsof -t -i:3000 | xargs kill -9 2>/dev/null || true",
-    "generate": "nuxt generate",
+    "generate": "nuxt generate && npm run validate:seo",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "typecheck": "vue-tsc --noEmit",

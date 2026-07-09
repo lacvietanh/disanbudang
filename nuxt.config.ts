@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     '/community': { redirect: { to: '/explore/', statusCode: 301 } },
     '/quiz': { redirect: { to: '/#quiz', statusCode: 301 } },
     '/school': { redirect: { to: '/study/', statusCode: 301 } },
+    '/library': { redirect: { to: '/explore/', statusCode: 301 } },
   },
 
   modules: [
@@ -91,14 +92,14 @@ export default defineNuxtConfig({
     head: {
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
-      title: 'Di Sản Đồng Nai | Bảo Tàng Số Thành Phố Đồng Nai',
+      title: 'Di Sản Đồng Nai - Bảo Tàng Số Địa Phương',
       meta: [
         {
           name: 'description',
           content:
             'Bảo tàng số di sản văn hóa, lịch sử và thiên nhiên Thành Phố Đồng Nai - từ Biên Hòa, Sóc Bom Bo đến Chiến Khu Đ, núi Bà Rá. Khám phá và bảo tồn di sản qua không gian số tương tác.',
         },
-        { name: 'theme-color', content: '#e18c1b' },
+        { name: 'theme-color', content: '#2D7FF9' },
         { property: 'og:type', content: 'website' },
         { property: 'og:locale', content: 'vi_VN' },
         {
@@ -121,7 +122,7 @@ export default defineNuxtConfig({
         },
         {
           rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap',
+          href: 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap',
         },
       ],
     },
