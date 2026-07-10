@@ -67,7 +67,7 @@
                 <Icon :name="link.icon" class="w-5 h-5" :class="link.iconColor" />
               </div>
               <div class="flex-1 min-w-0">
-                <p class="font-heading font-semibold text-ivory text-sm lg:text-base group-hover:text-gold-200 transition-colors leading-tight">{{ link.title }}</p>
+                <p class="font-heading font-semibold text-ivory text-sm lg:text-base group-hover:text-gold-200 transition-colors leading-snug">{{ link.title }}</p>
                 <p class="text-charcoal-400 text-xs mt-0.5 leading-snug">{{ link.desc }}</p>
               </div>
               <Icon name="mdi:arrow-right" class="w-4 h-4 text-charcoal-400 group-hover:text-gold-400 group-hover:translate-x-1 transition-all flex-shrink-0" />

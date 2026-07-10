@@ -31,7 +31,7 @@
                   +{{ lesson.xpReward }} XP
                 </span>
               </div>
-              <h1 class="font-heading font-bold text-2xl md:text-3xl text-ivory leading-tight">
+              <h1 class="font-heading font-bold text-2xl md:text-3xl text-ivory leading-snug">
                 {{ lesson.title }}
               </h1>
             </div>
@@ -177,6 +177,24 @@ const lessons: Record<string, LessonData> = {
         correct: 2,
         explanation: 'Nhạc sĩ Xuân Hồng đã sáng tác bài hát này dựa trên hình ảnh đồng bào S\'tiêng giã gạo nuôi quân trong đêm khuya.',
       },
+      {
+        question: 'Chiến Khu Đ được thành lập ngay sau sự kiện lịch sử nào?',
+        options: ['Cách mạng Tháng Tám 1945', 'Hiệp định Genève 1954', 'Chiến dịch Điện Biên Phủ', 'Chiến dịch Hồ Chí Minh 1975'],
+        correct: 0,
+        explanation: 'Ngay sau Cách mạng Tháng Tám năm 1945, các chiến sĩ đã bắt đầu xây dựng hệ thống căn cứ Chiến Khu Đ trong rừng già Bù Đăng.',
+      },
+      {
+        question: 'Theo tư liệu, Chiến Khu Đ đã trải qua khoảng bao nhiêu trận càn quét của địch mà không bị tiêu diệt?',
+        options: ['Khoảng 50 trận', 'Khoảng 100 trận', 'Hơn 200 trận', 'Hơn 500 trận'],
+        correct: 2,
+        explanation: 'Địch đã thực hiện hơn 200 trận càn quét vào Chiến Khu Đ nhưng chưa lần nào tiêu diệt được căn cứ này.',
+      },
+      {
+        question: '"Tiếp vận" trong bối cảnh Chiến Khu Đ có nghĩa là gì?',
+        options: ['Xây dựng công sự phòng thủ', 'Cung cấp lương thực, vũ khí, thuốc men cho lực lượng chiến đấu', 'Huấn luyện tân binh mới', 'Liên lạc vô tuyến với hậu phương'],
+        correct: 1,
+        explanation: 'Tiếp vận là hoạt động cung cấp lương thực, vũ khí, thuốc men cho lực lượng chiến đấu tại tiền tuyến — vai trò then chốt của Chiến Khu Đ.',
+      },
     ],
     essay: {
       prompt: 'Hãy mô tả ngắn gọn ý nghĩa lịch sử và văn hóa của Chiến Khu Đ đối với Xã Bù Đăng ngày nay (100–200 chữ).',
@@ -256,6 +274,24 @@ const lessons: Record<string, LessonData> = {
         correct: 1,
         explanation: 'Điệu Xoang là vũ điệu truyền thống của người S\'tiêng, thường được biểu diễn quanh bếp lửa kết hợp với tiếng cồng chiêng.',
       },
+      {
+        question: 'Chiếc chiêng lớn nhất, âm trầm ấm nhất, giữ nhịp nền cho cả dàn nhạc được gọi là gì?',
+        options: ['Ching Con', 'Ching Mẹ (Ching u)', 'Kơ-gơr', 'Ching Cha'],
+        correct: 1,
+        explanation: 'Ching Mẹ (Ching u) là chiêng lớn nhất trong dàn nhạc, đóng vai trò giữ nhịp nền trầm ấm cho toàn bộ dàn cồng chiêng.',
+      },
+      {
+        question: 'Kơ-gơr là loại nhạc cụ gì trong dàn nhạc cồng chiêng S\'tiêng?',
+        options: ['Sáo trúc thổi hơi', 'Trống da bò gõ đệm', 'Đàn dây kéo cung', 'Chiêng núm nhỏ nhất'],
+        correct: 1,
+        explanation: 'Kơ-gơr là trống da bò truyền thống, gõ đệm tạo nhịp điệu hùng hồn cho dàn cồng chiêng.',
+      },
+      {
+        question: 'Theo quan niệm truyền thống S\'tiêng, một bộ cồng chiêng hoàn chỉnh có giá trị tương đương với gì?',
+        options: ['Vài bao gạo dự trữ', 'Cả trâu, bò, lợn — tài sản cả đời của một gia đình', 'Một mảnh nương rẫy nhỏ', 'Không có giá trị vật chất cụ thể'],
+        correct: 1,
+        explanation: 'Một bộ chiêng hoàn chỉnh của người S\'tiêng có thể trị giá cả trâu, bò, lợn — tương đương tài sản tích lũy cả đời của một gia đình.',
+      },
     ],
     relatedEvents: [
       { name: 'Lễ hội Mừng Lúa Mới', year: 'Tháng 10–12 âm lịch', desc: 'Lễ hội lớn nhất của người S\'tiêng, nơi cồng chiêng giữ vai trò trung tâm trong nghi lễ cúng thần.' },
@@ -271,6 +307,217 @@ const lessons: Record<string, LessonData> = {
       { title: 'Chiến Khu Đ — Căn Cứ Địa Cách Mạng', lessonId: 'chien-khu-d', type: 'lesson' },
       { title: 'Tìm hiểu thổ cẩm S\'tiêng', type: 'resource' },
       { title: 'Khám phá bản đồ di sản', type: 'map' },
+    ],
+  },
+
+  'soc-bom-bo': {
+    id: 'soc-bom-bo',
+    title: 'Sóc Bom Bo — Tiếng Chày Giã Gạo Kháng Chiến',
+    subject: 'Lịch sử cách mạng',
+    xpReward: 90,
+    estimatedMinutes: 15,
+    tldr: 'Cuối năm 1965, đồng bào S\'tiêng Sóc Bom Bo đã đốt đuốc lồ ô giã gạo thâu đêm suốt sáng để nuôi bộ đội chủ lực phục vụ chiến dịch Phước Long – Đồng Xoài. Câu chuyện trở thành bài ca bất hủ "Tiếng Chày Trên Sóc Bom Bo" của nhạc sĩ Xuân Hồng, và ngày nay được lưu giữ tại Khu bảo tồn văn hóa dân tộc S\'tiêng sóc Bom Bo, xã Bom Bo, Thành Phố Đồng Nai.',
+    coreKnowledge: {
+      text: `<p>Sóc Bom Bo là địa danh lịch sử gắn liền với một trong những câu chuyện cảm động nhất của cuộc kháng chiến chống Mỹ cứu nước tại miền Đông Nam Bộ. Vào cuối năm 1965, để phục vụ <strong>chiến dịch Phước Long – Đồng Xoài</strong>, bộ đội chủ lực cần một lượng lớn gạo hậu cần trong thời gian gấp rút.</p>
+      <p>Không quản ngại hiểm nguy khi máy bay địch ngày đêm oanh tạc, toàn thể già trẻ, gái trai của Sóc Bom Bo đã chuyển sang <strong>giã gạo thâu đêm</strong> dưới ánh đuốc lồ ô. Tiếng chày đôi, chày ba nện xuống cối gỗ đều đặn, hòa cùng tiếng hát, biến nhịp lao động thành nhịp hành khúc kháng chiến.</p>
+      <blockquote>"Đuốc lồ ô bập bùng cháy sáng suốt đêm, tiếng chày như thúc giục lòng người." — mô tả trong các tư liệu về đêm giã gạo lịch sử năm 1965.</blockquote>
+      <h3>Từ nhịp chày đến bài ca bất hủ</h3>
+      <ul>
+        <li>Câu chuyện giã gạo nuôi quân trở thành cảm hứng cho ca khúc <strong>"Tiếng Chày Trên Sóc Bom Bo"</strong> của nhạc sĩ Xuân Hồng (1966) — một trong những bài hát cách mạng được yêu thích nhất Việt Nam.</li>
+        <li>Ngày nay, <strong>Khu bảo tồn văn hóa dân tộc S'tiêng sóc Bom Bo</strong> tại xã Bom Bo (Thành Phố Đồng Nai) phục dựng nhà dài truyền thống, lưu giữ chày cối, gùi tải đạn và tư liệu lịch sử quý báu.</li>
+        <li>Khu bảo tồn còn là nơi tổ chức trải nghiệm giã gạo, nghe cồng chiêng, thưởng thức cơm lam và rượu cần cùng đồng bào S'tiêng.</li>
+      </ul>`,
+      images: [
+        { url: '/images/heritage/lich-su/soc-bom-bo-lg.webp', caption: 'Khu di tích lịch sử Sóc Bom Bo tái hiện cảnh giã gạo nuôi quân năm 1965' },
+        { url: '/images/heritage/Bombo/TAN08220.jpg', caption: 'Nghệ nhân lớn tuổi truyền dạy nhạc cụ truyền thống cho thế hệ trẻ tại khu bảo tồn' },
+      ],
+    },
+    timeline: [
+      { date: '1965', event: 'Đêm giã gạo huyền thoại phục vụ chiến dịch Phước Long – Đồng Xoài', detail: 'Đồng bào S\'tiêng đốt đuốc lồ ô, giã gạo thâu đêm suốt sáng để kịp tiếp tế cho bộ đội chủ lực.' },
+      { date: '1966', event: 'Nhạc sĩ Xuân Hồng sáng tác "Tiếng Chày Trên Sóc Bom Bo"', detail: 'Ca khúc lấy cảm hứng trực tiếp từ tinh thần giã gạo nuôi quân, trở thành bài ca cách mạng bất hủ.' },
+      { date: '1975', event: 'Góp phần vào ngày toàn thắng', detail: 'Những đóng góp bền bỉ về hậu cần của Sóc Bom Bo được ghi nhận trong thắng lợi chung của cuộc kháng chiến.' },
+      { date: '2010', event: 'Khu bảo tồn văn hóa dân tộc S\'tiêng sóc Bom Bo được xây dựng', detail: 'Phục dựng nhà dài truyền thống, trở thành địa chỉ đỏ giáo dục truyền thống cách mạng.' },
+      { date: 'Nay', event: 'Điểm du lịch văn hóa – lịch sử tại xã Bom Bo, Thành Phố Đồng Nai', detail: 'Du khách có thể trải nghiệm giã gạo, nghe cồng chiêng và tìm hiểu đời sống S\'tiêng.' },
+    ],
+    didYouKnow: [
+      'Sóc Bom Bo nay thuộc xã Bom Bo (sáp nhập từ xã Bình Minh và xã Bom Bo cũ từ 01/07/2025), Thành Phố Đồng Nai.',
+      'Ban ngày giặc lùng sục oanh tạc, bà con Sóc Bom Bo chuyển hẳn sang giã gạo ban đêm để đảm bảo an toàn và kịp tiến độ.',
+      'Khu bảo tồn hiện lưu giữ hàng trăm hiện vật: chày cối sứt sẹo, gùi tự chế tải đạn xuyên rừng và nhiều tư liệu lịch sử quý.',
+    ],
+    glossary: [
+      { term: 'Đuốc lồ ô', definition: 'Đuốc làm từ thân cây lồ ô (một loại tre nứa) tẩm dầu, dùng để thắp sáng khi giã gạo ban đêm.' },
+      { term: 'Chày đôi, chày ba', definition: 'Cách giã gạo bằng 2-3 người cùng một cối, nhịp chày phối hợp nhanh và đều để tăng năng suất.' },
+      { term: 'Hậu cần', definition: 'Công tác đảm bảo lương thực, vũ khí, thuốc men cho lực lượng chiến đấu — vai trò chính của Sóc Bom Bo trong chiến dịch 1965.' },
+    ],
+    flashcards: [
+      { front: 'Sóc Bom Bo giã gạo thâu đêm để phục vụ chiến dịch nào?', back: 'Chiến dịch Phước Long – Đồng Xoài, cuối năm 1965.' },
+      { front: 'Ai đã sáng tác bài "Tiếng Chày Trên Sóc Bom Bo"?', back: 'Nhạc sĩ Xuân Hồng, sáng tác năm 1966 lấy cảm hứng từ đêm giã gạo lịch sử.' },
+      { front: 'Vì sao đồng bào chuyển sang giã gạo vào ban đêm?', back: 'Vì ban ngày máy bay địch lùng sục oanh tạc, giã gạo ban đêm dưới ánh đuốc lồ ô an toàn hơn.' },
+      { front: 'Sóc Bom Bo ngày nay thuộc địa phương nào?', back: 'Xã Bom Bo, Thành Phố Đồng Nai (sáp nhập từ xã Bình Minh và xã Bom Bo cũ, 01/07/2025).' },
+    ],
+    openQuestions: [
+      'Điều gì khiến câu chuyện giã gạo ở Sóc Bom Bo trở thành biểu tượng của tinh thần đoàn kết quân dân?',
+      'Nếu là một học sinh Bù Đăng hôm nay, bạn sẽ giới thiệu câu chuyện Sóc Bom Bo cho bạn bè quốc tế như thế nào?',
+    ],
+    quiz: [
+      {
+        question: 'Sự kiện giã gạo thâu đêm nổi tiếng của Sóc Bom Bo diễn ra vào năm nào?',
+        options: ['1954', '1965', '1975', '1986'],
+        correct: 1,
+        explanation: 'Cuối năm 1965, đồng bào S\'tiêng giã gạo thâu đêm để phục vụ chiến dịch Phước Long – Đồng Xoài.',
+      },
+      {
+        question: '"Tiếng Chày Trên Sóc Bom Bo" là sáng tác của nhạc sĩ nào?',
+        options: ['Văn Cao', 'Xuân Hồng', 'Trịnh Công Sơn', 'Phạm Duy'],
+        correct: 1,
+        explanation: 'Nhạc sĩ Xuân Hồng sáng tác ca khúc này năm 1966, lấy cảm hứng từ tinh thần giã gạo nuôi quân.',
+      },
+      {
+        question: 'Vì sao bà con Sóc Bom Bo chuyển sang giã gạo vào ban đêm?',
+        options: ['Ban đêm gạo dễ giã hơn', 'Vì phong tục truyền thống', 'Ban ngày máy bay địch lùng sục oanh tạc', 'Vì thời tiết ban ngày quá nóng'],
+        correct: 2,
+        explanation: 'Để tránh bị địch phát hiện và oanh tạc, bà con chuyển hẳn sang giã gạo thâu đêm dưới ánh đuốc lồ ô.',
+      },
+      {
+        question: 'Đuốc dùng để thắp sáng khi giã gạo ban đêm được làm từ vật liệu gì?',
+        options: ['Sáp ong rừng', 'Thân cây lồ ô tẩm dầu', 'Vỏ cây cao su', 'Dầu dừa'],
+        correct: 1,
+        explanation: 'Đuốc lồ ô — làm từ thân cây lồ ô tẩm dầu — là nguồn sáng chính trong những đêm giã gạo lịch sử.',
+      },
+      {
+        question: 'Sóc Bom Bo ngày nay thuộc địa bàn hành chính nào?',
+        options: ['Xã Bù Đăng', 'Xã Bom Bo, Thành Phố Đồng Nai', 'Phường Đồng Xoài', 'Xã Phước Long'],
+        correct: 1,
+        explanation: 'Từ 01/07/2025, xã Bình Minh và xã Bom Bo cũ sáp nhập thành xã Bom Bo, Thành Phố Đồng Nai.',
+      },
+    ],
+    essay: {
+      prompt: 'Hãy viết đoạn văn ngắn (100–200 chữ) nêu cảm nhận của bạn về tinh thần "quân dân một lòng" qua câu chuyện giã gạo ở Sóc Bom Bo.',
+      hint: 'Gợi ý: liên hệ với tinh thần đoàn kết cộng đồng ngày nay, ý nghĩa của lao động tập thể, và giá trị của ca khúc "Tiếng Chày Trên Sóc Bom Bo" trong việc lưu giữ ký ức lịch sử.',
+    },
+    relatedPlaces: [
+      { name: 'Chiến Khu Đ', desc: 'Hệ thống căn cứ địa cách mạng mà Sóc Bom Bo đã tiếp tế lương thực trong kháng chiến.' },
+      { name: 'Trảng Cỏ Bù Lạch', desc: 'Danh thắng thiên nhiên gần đó, điểm đến sinh thái nổi bật của Thành Phố Đồng Nai.' },
+    ],
+    relatedEvents: [
+      { name: 'Chiến dịch Phước Long – Đồng Xoài', year: '1965', desc: 'Chiến dịch quân sự lớn mà đêm giã gạo lịch sử của Sóc Bom Bo trực tiếp phục vụ hậu cần.' },
+    ],
+    relatedPeople: [
+      { name: 'Nhạc sĩ Xuân Hồng', role: 'Tác giả ca khúc "Tiếng Chày Trên Sóc Bom Bo"', desc: 'Sáng tác năm 1966, bất hủ hóa tinh thần giã gạo nuôi quân của đồng bào S\'tiêng Bù Đăng.' },
+    ],
+    references: [
+      { title: 'Kỷ yếu di tích lịch sử Sóc Bom Bo', source: 'Ủy ban nhân dân xã Bom Bo (trước là xã Bình Minh)' },
+      { title: '"Tiếng chày trên Sóc Bom Bo" — Lịch sử ra đời ca khúc', source: 'Nhạc sĩ Xuân Hồng, 1966' },
+    ],
+    nextSteps: [
+      { title: 'Chiến Khu Đ — Căn Cứ Địa Cách Mạng', lessonId: 'chien-khu-d', type: 'lesson' },
+      { title: 'Cồng Chiêng S\'tiêng — Tiếng Nói Của Đại Ngàn', lessonId: 'cong-chieng-stieng', type: 'lesson' },
+      { title: 'Khám phá bản đồ di sản Đồng Nai', type: 'map' },
+    ],
+  },
+
+  'trang-co-bu-lach': {
+    id: 'trang-co-bu-lach',
+    title: 'Danh Thắng Trảng Cỏ Bù Lạch — Kỳ Quan Thiên Nhiên',
+    subject: 'Địa lý địa phương',
+    xpReward: 70,
+    estimatedMinutes: 8,
+    tldr: 'Trảng cỏ Bù Lạch là thảo nguyên xanh mướt rộng hơn 140 ha ôm trọn một hồ nước ngọt tự nhiên giữa lòng rừng già xã Bù Đăng, Thành Phố Đồng Nai — một trong những danh thắng thiên nhiên độc đáo bậc nhất của địa phương.',
+    coreKnowledge: {
+      text: `<p>Cách trung tâm xã Bù Đăng khoảng <strong>20 km</strong>, Trảng cỏ Bù Lạch hiện lên như một thảo nguyên hoang sơ kỳ vĩ giữa lòng đại ngàn — sự kết hợp hiếm có giữa rừng nguyên sinh, trảng cỏ xanh mướt và hồ nước ngọt phẳng lặng.</p>
+      <p>Danh thắng này rộng <strong>hơn 140 ha</strong>, gồm hơn <strong>20 trảng cỏ lớn nhỏ</strong>. Loại cỏ mọc tự nhiên ở đây là <em>cỏ kim</em> — dai, mịn và giữ màu xanh quanh năm. Bao quanh là những khu rừng nguyên sinh rậm rạp, tạo thành bức tường thành thiên nhiên bảo vệ thảo nguyên nhỏ bé này.</p>
+      <blockquote>Người S'tiêng bản địa coi hồ nước Bù Lạch là "gương thần của trời đất" — nguồn sinh khí nuôi dưỡng buôn làng qua bao thế hệ.</blockquote>
+      <h3>Vì sao Bù Lạch đặc biệt?</h3>
+      <ul>
+        <li>Là <strong>một trong số ít</strong> địa điểm ở Nam Bộ có trảng cỏ tự nhiên kết hợp hồ nước ngọt giữa rừng già.</li>
+        <li>Hệ sinh thái đa dạng, là nơi lý tưởng để tìm hiểu về địa chất và thảm thực vật bản địa.</li>
+        <li>Gắn với đời sống văn hóa và truyền thuyết linh thiêng của đồng bào S'tiêng bản địa.</li>
+      </ul>`,
+      images: [
+        { url: '/images/heritage/img-disanbudang/Trang-co-Bu-Lach.png', caption: 'Cánh đồng cỏ xanh mướt trải rộng quanh lòng hồ tự nhiên giữa rừng già Bù Đăng' },
+      ],
+    },
+    hotspotImage: {
+      url: '/images/heritage/img-disanbudang/Trang-co-Bu-Lach.png',
+      alt: 'Toàn cảnh Trảng cỏ Bù Lạch với hồ nước trung tâm',
+      hotspots: [
+        { x: 50, y: 55, label: 'Hồ nước trung tâm', desc: 'Hồ nước ngọt tự nhiên mà người S\'tiêng gọi là "gương thần của trời đất" — trung tâm của cả quần thể trảng cỏ.' },
+        { x: 20, y: 35, label: 'Trảng cỏ kim', desc: 'Thảm cỏ kim tự nhiên, dai và mịn, giữ màu xanh quanh năm trên hơn 140 ha diện tích.' },
+        { x: 80, y: 25, label: 'Vành đai rừng nguyên sinh', desc: 'Rừng già rậm rạp bao quanh, tạo bức tường thành thiên nhiên bảo vệ hệ sinh thái trảng cỏ.' },
+      ],
+    },
+    timeline: [
+      { date: 'Hàng ngàn năm trước', event: 'Kiến tạo địa chất tự nhiên', detail: 'Trảng cỏ và hồ nước hình thành qua quá trình kiến tạo địa chất kỳ thú của vùng đất đỏ bazan.' },
+      { date: '2015', event: 'Quy hoạch bảo tồn danh thắng', detail: 'Trảng cỏ Bù Lạch được quy hoạch và bảo tồn nghiêm ngặt để phát triển du lịch sinh thái bền vững.' },
+      { date: 'Nay', event: 'Điểm du lịch sinh thái nổi bật của Thành Phố Đồng Nai', detail: 'Thu hút du khách yêu thiên nhiên hoang sơ, cắm trại dã ngoại và tìm hiểu đời sống bản địa.' },
+    ],
+    didYouKnow: [
+      'Trảng cỏ Bù Lạch rộng hơn 140 ha, gồm hơn 20 trảng cỏ lớn nhỏ nối liền nhau.',
+      'Loại cỏ mọc tự nhiên ở đây gọi là "cỏ kim" — dai, mịn, giữ màu xanh mướt quanh năm dù không có ai chăm bón.',
+      'Người S\'tiêng bản địa lưu truyền nhiều truyền thuyết linh thiêng, coi hồ nước Bù Lạch là nguồn sinh khí nuôi dưỡng buôn làng.',
+    ],
+    glossary: [
+      { term: 'Trảng cỏ', definition: 'Vùng đất trống có thảm cỏ tự nhiên mọc xen giữa rừng, không do con người trồng hay chăm sóc.' },
+      { term: 'Cỏ kim', definition: 'Loại cỏ lá nhỏ, dai và mịn, mọc tự nhiên tại Bù Lạch, giữ màu xanh quanh năm.' },
+      { term: 'Đất đỏ bazan', definition: 'Loại đất hình thành từ dung nham núi lửa phong hóa, phổ biến ở vùng Đông Nam Bộ và Tây Nguyên, rất màu mỡ.' },
+    ],
+    flashcards: [
+      { front: 'Trảng cỏ Bù Lạch rộng khoảng bao nhiêu?', back: 'Hơn 140 ha, gồm hơn 20 trảng cỏ lớn nhỏ khác nhau.' },
+      { front: 'Loại cỏ đặc trưng ở Bù Lạch tên là gì?', back: 'Cỏ kim — loại cỏ dai, mịn, giữ màu xanh quanh năm.' },
+      { front: 'Trảng cỏ Bù Lạch cách trung tâm xã Bù Đăng bao xa?', back: 'Khoảng 20 km.' },
+      { front: 'Người S\'tiêng gọi hồ nước Bù Lạch là gì?', back: '"Gương thần của trời đất" — nguồn sinh khí nuôi dưỡng buôn làng theo truyền thuyết bản địa.' },
+    ],
+    openQuestions: [
+      'Vì sao việc bảo tồn hệ sinh thái tự nhiên như Trảng cỏ Bù Lạch lại quan trọng với thế hệ trẻ hôm nay?',
+      'Bạn sẽ đề xuất những hoạt động du lịch sinh thái nào để vừa phát triển kinh tế vừa bảo vệ Trảng cỏ Bù Lạch?',
+    ],
+    quiz: [
+      {
+        question: 'Trảng cỏ Bù Lạch có diện tích khoảng bao nhiêu?',
+        options: ['Khoảng 50 ha', 'Hơn 140 ha', 'Hơn 500 ha', 'Khoảng 10 ha'],
+        correct: 1,
+        explanation: 'Trảng cỏ Bù Lạch rộng hơn 140 ha, gồm hơn 20 trảng cỏ lớn nhỏ khác nhau.',
+      },
+      {
+        question: 'Loại cỏ đặc trưng mọc tự nhiên tại Trảng cỏ Bù Lạch được gọi là gì?',
+        options: ['Cỏ voi', 'Cỏ kim', 'Cỏ lau', 'Cỏ tranh'],
+        correct: 1,
+        explanation: 'Cỏ kim là loại cỏ dai, mịn, mọc tự nhiên và giữ màu xanh mướt quanh năm tại Bù Lạch.',
+      },
+      {
+        question: 'Trảng cỏ Bù Lạch cách trung tâm xã Bù Đăng khoảng bao xa?',
+        options: ['5 km', '20 km', '50 km', '100 km'],
+        correct: 1,
+        explanation: 'Trảng cỏ Bù Lạch nằm cách trung tâm xã Bù Đăng khoảng 20 km.',
+      },
+      {
+        question: 'Điều gì bao quanh và bảo vệ trảng cỏ khỏi tác động bên ngoài?',
+        options: ['Sông lớn', 'Đồi cát', 'Rừng nguyên sinh rậm rạp', 'Vách đá cao'],
+        correct: 2,
+        explanation: 'Rừng nguyên sinh rậm rạp bao quanh tạo thành bức tường thành thiên nhiên bảo vệ trảng cỏ.',
+      },
+      {
+        question: 'Người S\'tiêng bản địa quan niệm như thế nào về hồ nước Bù Lạch?',
+        options: ['Là nơi cấm kỵ không ai lui tới', 'Là "gương thần của trời đất" nuôi dưỡng buôn làng', 'Chỉ là nơi lấy nước sinh hoạt thông thường', 'Là ranh giới giữa các buôn sóc'],
+        correct: 1,
+        explanation: 'Theo truyền thuyết bản địa, hồ nước Bù Lạch được coi là "gương thần của trời đất", cung cấp sinh khí cho buôn làng.',
+      },
+    ],
+    essay: {
+      prompt: 'Hãy viết đoạn văn ngắn (100–200 chữ) đề xuất một cách để bảo tồn và phát triển du lịch sinh thái bền vững tại Trảng cỏ Bù Lạch.',
+      hint: 'Gợi ý: cân bằng giữa thu hút du khách và bảo vệ hệ sinh thái tự nhiên, vai trò của cộng đồng S\'tiêng bản địa trong việc gìn giữ danh thắng.',
+    },
+    relatedPlaces: [
+      { name: 'Khu Bảo Tồn Sóc Bom Bo', desc: 'Địa danh lịch sử – văn hóa gần đó, nơi lưu giữ truyền thống của đồng bào S\'tiêng.' },
+      { name: 'Thác Đứng Bù Đăng', desc: 'Thắng cảnh thiên nhiên với cấu trúc đá bazan cột lục lăng độc đáo.' },
+    ],
+    references: [
+      { title: 'Cổng thông tin du lịch Bù Lạch', source: 'Sở Văn hóa Thể thao và Du lịch Thành Phố Đồng Nai' },
+    ],
+    nextSteps: [
+      { title: 'Sóc Bom Bo — Tiếng Chày Giã Gạo Kháng Chiến', lessonId: 'soc-bom-bo', type: 'lesson' },
+      { title: 'Khám phá bản đồ di sản Đồng Nai', type: 'map' },
+      { title: 'Làm bài kiểm tra hiểu biết di sản', type: 'quiz' },
     ],
   },
 }

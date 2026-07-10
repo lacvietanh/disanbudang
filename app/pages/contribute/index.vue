@@ -10,7 +10,7 @@
       <div class="absolute inset-0 bg-gradient-to-r from-charcoal-950 via-charcoal-900/60 to-transparent" />
       <div class="container-heritage relative z-10">
         <span class="section-label text-gold-400">Kiến Tạo Di Sản Số · Thành Phố Đồng Nai</span>
-        <h1 class="font-heading font-bold text-ivory text-5xl lg:text-6xl leading-none mb-5">
+        <h1 class="font-heading font-bold text-ivory text-5xl lg:text-6xl leading-[1.25] mb-5">
           Chung Tay Kiến Tạo<br/> <span class="text-gradient-gold">Bản Đồ Di Sản</span>
         </h1>
         <p class="text-charcoal-300 text-base lg:text-lg max-w-3xl leading-relaxed">

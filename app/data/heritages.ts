@@ -537,7 +537,7 @@ Vào mùa mưa, dòng suối Đăk Wuar cuồn cuộn đổ nước từ độ c
         caption: 'Nghệ nhân lớn tuổi hướng dẫn thanh thiếu niên sóc Bom Bo thực hành nhạc cụ dân tộc',
       },
     ],
-    coordinates: { lat: 11.8700, lng: 107.1500 },
+    coordinates: { lat: 11.8388, lng: 107.1942 }, // Xác minh qua OSM: trùng khu vực Sóc Bom Bo thật (khớp 2 điểm "Cồng Chiêng" và "Nhà Dài" cùng cụm) — tọa độ cũ (11.87, 107.15) lệch ~6km về phía tây bắc
     shortDescription:
       'Sóc Bom Bo (nay thuộc xã Bom Bo, Thành phố Đồng Nai — xã Bình Minh và xã Bom Bo cũ sáp nhập từ 01/07/2025) là địa danh lịch sử nổi tiếng, biểu tượng cho lòng yêu nước của đồng bào S\'tiêng nuôi quân thâu đêm. Khu bảo tồn lưu giữ nhà dài truyền thống — không gian sống cộng đồng đặc trưng nhất của người S\'tiêng.',
     longStory: `Nhắc đến xã Bù Đăng, không ai không biết đến Sóc Bom Bo — địa danh lịch sử anh hùng đã đi vào huyền thoại cách mạng và tâm thức của triệu triệu người Việt Nam qua ca khúc bất hủ "Tiếng chày trên Sóc Bom Bo" của nhạc sĩ Xuân Hồng. Trong những năm tháng kháng chiến chống Mỹ cứu nước gian lao và anh dũng nhất, đồng bào S'tiêng nơi đây đã biểu thị lòng yêu nước nồng nàn và tinh thần cách mạng quật khởi, một lòng sắt son theo Đảng, theo Bác Hồ.
@@ -699,7 +699,7 @@ Tượng đài Chiến thắng Phước Long tọa lạc tại trung tâm xã Th
         caption: 'Rừng già che phủ Căn cứ Tà Thiết — Bộ Chỉ huy Quân giải phóng miền Nam',
       },
     ],
-    coordinates: { lat: 11.8300, lng: 106.6800 },
+    coordinates: { lat: 11.7540, lng: 106.5124 }, // Xác minh qua OSM/Nominatim: làng Tà Thiết, xã Lộc Thành, Lộc Ninh — tọa độ cũ (11.83, 106.68) lệch ~20km về phía đông, rơi vào rừng trồng không có đường vào
     shortDescription:
       'Căn cứ Tà Thiết (xã Lộc Thành, Thành phố Đồng Nai) là Di tích Quốc gia đặc biệt — từng là Bộ Chỉ huy Quân giải phóng miền Nam Việt Nam và là nơi hoạch định Chiến dịch Hồ Chí Minh lịch sử năm 1975.',
     longStory: `Trong lòng rừng già xã Lộc Thành, có một vùng đất mà lịch sử cách mạng Việt Nam gọi là "Rừng Chính phủ" — Căn cứ Tà Thiết. Từ năm 1973 đến tháng 4/1975, đây là trụ sở của Bộ Tư lệnh Miền, nơi đặt cơ quan đầu não điều hành toàn bộ cuộc kháng chiến chống Mỹ trên chiến trường miền Nam.

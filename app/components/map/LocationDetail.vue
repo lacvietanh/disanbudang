@@ -17,7 +17,7 @@
 
     <!-- Title & Subtitle for Detailed View -->
     <div class="space-y-1">
-      <h3 class="font-heading font-bold text-white text-lg leading-tight">{{ selectedHeritage.title }}</h3>
+      <h3 class="font-heading font-bold text-white text-lg leading-snug">{{ selectedHeritage.title }}</h3>
       <p v-if="selectedHeritage.subtitle" class="text-gold-300 text-xs font-accent italic">{{ selectedHeritage.subtitle }}</p>
     </div>
 
@@ -137,7 +137,7 @@
             <img :src="place.coverImage" :alt="place.title" class="w-full h-full object-cover" />
           </div>
           <div class="min-w-0 flex-1 flex flex-col justify-center">
-            <p class="text-white text-xs font-semibold truncate leading-tight">{{ place.title }}</p>
+            <p class="text-white text-xs font-semibold truncate leading-snug">{{ place.title }}</p>
             <p class="text-[9px] uppercase tracking-wider font-bold text-gold-400/90 mt-1">
               {{ getCategoryLabel(place.category) }}
             </p>

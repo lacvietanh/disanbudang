@@ -71,8 +71,8 @@ const faqs = [
     answer: "Sau khi Bình Phước hợp nhất vào Đồng Nai và Đồng Nai lên thành phố trực thuộc Trung ương, bản đồ di sản của thành phố đã mở rộng đáng kể, không còn giới hạn ở một khu vực. Dự án số hóa toàn bộ di sản văn hóa, lịch sử và thiên nhiên trên địa bàn để cả thành phố cùng tiếp cận và tự hào."
   },
   {
-    question: "Cổng thông tin Di Sản Bù Đăng do ai thực hiện?",
-    answer: "Cổng thông tin Di Sản Bù Đăng do Nguyễn Xuân Kiệt thực hiện nhằm mục tiêu số hóa, lưu trữ và quảng bá các giá trị lịch sử, văn hóa và thiên nhiên của Thành Phố Đồng Nai đến với mọi thế hệ."
+    question: "Cổng thông tin Di Sản Đồng Nai do ai thực hiện?",
+    answer: "Cổng thông tin Di Sản Đồng Nai do Nguyễn Xuân Kiệt thực hiện nhằm mục tiêu số hóa, lưu trữ và quảng bá các giá trị lịch sử, văn hóa và thiên nhiên của Thành Phố Đồng Nai đến với mọi thế hệ."
   }
 ]
 

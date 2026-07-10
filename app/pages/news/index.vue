@@ -6,7 +6,7 @@
       <div class="container-heritage relative z-10">
         <span class="section-label text-gold-400">Góc Chia Sẻ & Nghiên Cứu</span>
         <h1 class="font-heading font-bold text-ivory text-5xl lg:text-6xl leading-[1.28] mb-5">
-          Bài Viết &<br/><span class="text-gradient-gold">Di Sản Bù Đăng</span>
+          Bài Viết &<br/><span class="text-gradient-gold">Di Sản Đồng Nai</span>
         </h1>
         <p class="text-charcoal-300 text-lg max-w-xl">
           Các bài viết chuyên sâu về đời sống văn hóa, phong tục độc đáo và tư liệu quý giá của Thành Phố Đồng Nai.
@@ -52,7 +52,7 @@
               <p class="text-charcoal-400 text-xs">{{ article.readTime }} phút đọc</p>
             </div>
           </div>
-          <h3 class="font-heading font-bold text-ivory text-base leading-tight mb-2 line-clamp-2 group-hover:text-gold-300 transition-colors">{{ article.title }}</h3>
+          <h3 class="font-heading font-bold text-ivory text-base leading-snug mb-2 line-clamp-2 group-hover:text-gold-300 transition-colors">{{ article.title }}</h3>
           <p class="text-charcoal-400 text-sm leading-relaxed line-clamp-3 mb-4 flex-1">{{ article.excerpt }}</p>
           
           <div class="flex items-center justify-between text-xs text-charcoal-400 mb-4 border-t border-charcoal-850 pt-3">

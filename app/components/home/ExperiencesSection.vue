@@ -13,7 +13,7 @@
           <span class="text-heritage-600 text-[10px] uppercase tracking-[0.3em] font-bold">Nền Tảng Số</span>
           <span class="w-8 h-px bg-heritage-500" />
         </div>
-        <h2 class="font-heading font-bold text-stone-900 text-3xl lg:text-5xl leading-tight mb-4">
+        <h2 class="font-heading font-bold text-stone-900 text-3xl lg:text-5xl leading-snug mb-4">
           Khám Phá Qua Công Nghệ
         </h2>
         <p class="text-stone-500 text-base max-w-xl mx-auto">
@@ -66,7 +66,7 @@
                   </div>
                   <span class="text-gold-400 text-xs font-bold uppercase tracking-wider">Bản Đồ Tương Tác</span>
                 </div>
-                <h3 class="font-heading font-bold text-ivory text-2xl lg:text-3xl mb-2 leading-tight">
+                <h3 class="font-heading font-bold text-ivory text-2xl lg:text-3xl mb-2 leading-snug">
                   Hành Trình Qua Bản Đồ Số
                 </h3>
                 <p class="text-charcoal-300 text-sm leading-relaxed mb-5">
@@ -102,7 +102,7 @@
                   </div>
                   <span class="text-earth-400 text-xs font-bold uppercase tracking-wider">Thư Viện Di Sản</span>
                 </div>
-                <h3 class="font-heading font-bold text-ivory text-2xl lg:text-3xl mb-2 leading-tight">
+                <h3 class="font-heading font-bold text-ivory text-2xl lg:text-3xl mb-2 leading-snug">
                   Kho Lưu Trữ Số Hóa
                 </h3>
                 <p class="text-charcoal-300 text-sm leading-relaxed mb-5">
@@ -145,7 +145,7 @@
 
                 <div>
                   <span class="text-gold-400 text-[10px] font-bold uppercase tracking-[0.2em] block mb-2">Audio Guide</span>
-                  <h3 class="font-heading font-bold text-ivory text-xl lg:text-2xl leading-tight mb-2">
+                  <h3 class="font-heading font-bold text-ivory text-xl lg:text-2xl leading-snug mb-2">
                     Nghe Kể Chuyện Di Sản
                   </h3>
                   <p class="text-charcoal-400 text-sm leading-relaxed mb-4">
@@ -200,7 +200,7 @@
 
                 <div>
                   <span class="text-forest-400 text-[10px] font-bold uppercase tracking-[0.2em] block mb-2">Góc Học Tập</span>
-                  <h3 class="font-heading font-bold text-ivory text-xl lg:text-2xl leading-tight mb-2">
+                  <h3 class="font-heading font-bold text-ivory text-xl lg:text-2xl leading-snug mb-2">
                     Quiz & Huy Hiệu
                   </h3>
                   <p class="text-charcoal-400 text-sm leading-relaxed mb-4">

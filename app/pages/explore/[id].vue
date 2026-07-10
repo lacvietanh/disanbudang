@@ -21,7 +21,7 @@
       <div class="relative z-10 container-heritage pb-12">
         <div class="max-w-3xl">
           <BaseBadge variant="gold" class="mb-4">{{ typeLabels[post.type] }}</BaseBadge>
-          <h1 class="font-heading font-bold text-ivory text-3xl md:text-4xl lg:text-5xl leading-tight mb-5 text-shadow-hero">
+          <h1 class="font-heading font-bold text-ivory text-3xl md:text-4xl lg:text-5xl leading-snug mb-5 text-shadow-hero">
             {{ post.title }}
           </h1>
 
@@ -61,7 +61,7 @@
               </div>
               <div>
                 <span class="text-charcoal-450 text-[10px] uppercase tracking-wider block">Người chia sẻ</span>
-                <h3 class="font-heading font-bold text-ivory text-lg leading-tight">{{ post.author.name }}</h3>
+                <h3 class="font-heading font-bold text-ivory text-lg leading-snug">{{ post.author.name }}</h3>
                 <p class="text-charcoal-400 text-xs mt-1">{{ post.author.role }}</p>
               </div>
             </div>

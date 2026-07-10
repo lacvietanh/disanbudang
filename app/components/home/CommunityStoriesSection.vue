@@ -14,7 +14,7 @@
             <span class="w-8 h-px bg-gold-400" />
             <span class="text-gold-400 text-[10px] uppercase tracking-[0.3em] font-bold">Di Sản Trong Tôi</span>
           </div>
-          <h2 class="font-heading font-bold text-ivory text-3xl lg:text-5xl leading-tight">
+          <h2 class="font-heading font-bold text-ivory text-3xl lg:text-5xl leading-snug">
             Ký Ức Cộng Đồng
           </h2>
           <p class="text-charcoal-400 text-sm mt-2 max-w-md">
@@ -57,7 +57,7 @@
                 <p class="font-accent italic text-gold-400/80 text-sm mb-2">
                   {{ posts[0].author.name }} · {{ posts[0].author.role }}
                 </p>
-                <h3 class="font-heading font-bold text-ivory text-2xl lg:text-3xl leading-tight mb-3 text-shadow-hero line-clamp-2">
+                <h3 class="font-heading font-bold text-ivory text-2xl lg:text-3xl leading-snug mb-3 text-shadow-hero line-clamp-2">
                   {{ posts[0].title }}
                 </h3>
                 <p class="text-ivory/55 text-sm leading-relaxed line-clamp-2 mb-5">{{ posts[0].excerpt }}</p>

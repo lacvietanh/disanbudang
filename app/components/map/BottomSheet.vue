@@ -40,7 +40,7 @@
               <span class="text-[10px] uppercase font-bold tracking-wider text-gold-400">
                 {{ getCategoryLabel(selectedHeritage.category) }}
               </span>
-              <h3 class="font-heading font-bold text-white text-base leading-tight mt-0.5 truncate">
+              <h3 class="font-heading font-bold text-white text-base leading-snug mt-0.5 truncate">
                 {{ selectedHeritage.title }}
               </h3>
             </div>

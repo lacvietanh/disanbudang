@@ -20,7 +20,7 @@
             <BaseBadge :variant="categoryVariant" class="mb-4">
               {{ getCategoryLabel(heritage.category) }}
             </BaseBadge>
-            <h1 class="font-heading font-bold text-ivory text-4xl md:text-5xl lg:text-6xl leading-tight mb-4 text-shadow-hero">
+            <h1 class="font-heading font-bold text-ivory text-4xl md:text-5xl lg:text-6xl leading-snug mb-4 text-shadow-hero">
               {{ heritage.title }}
             </h1>
             <p class="font-accent italic text-gold-300 text-xl md:text-2xl mb-6 leading-relaxed">"{{ heritage.subtitle }}"</p>

@@ -38,7 +38,7 @@
               </BaseBadge>
             </div>
 
-            <h3 class="font-heading font-bold text-ivory text-lg leading-tight mb-2 group-hover:text-gold-300 transition-colors">
+            <h3 class="font-heading font-bold text-ivory text-lg leading-snug mb-2 group-hover:text-gold-300 transition-colors">
               {{ quiz.title }}
             </h3>
             <p class="text-charcoal-400 text-sm leading-relaxed mb-5 line-clamp-2">

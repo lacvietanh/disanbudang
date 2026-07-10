@@ -166,7 +166,7 @@
               <Icon :name="earnedBadge.icon" class="w-10 h-10 animate-pulse-gold" :style="{ color: earnedBadge.color }" />
             </div>
             <div>
-              <h4 class="font-heading font-bold text-ivory text-lg leading-tight">{{ earnedBadge.name }}</h4>
+              <h4 class="font-heading font-bold text-ivory text-lg leading-snug">{{ earnedBadge.name }}</h4>
               <p class="text-charcoal-400 text-xs mt-1">{{ earnedBadge.description }}</p>
             </div>
           </div>

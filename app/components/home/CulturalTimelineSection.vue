@@ -25,7 +25,7 @@
             @click="activeIndex = index"
           >
             <p class="eyebrow text-2xs mb-1 group-hover:text-gold-300" :class="activeIndex === index ? 'text-gold-400' : 'text-charcoal-400'">Kỷ Nguyên {{ index + 1 }}</p>
-            <h4 class="font-heading font-bold text-lg leading-tight mb-1" :class="activeIndex === index ? 'text-gold-400' : 'text-ivory/80'">
+            <h4 class="font-heading font-bold text-lg leading-snug mb-1" :class="activeIndex === index ? 'text-gold-400' : 'text-ivory/80'">
               {{ item.year }}
             </h4>
             <p class="text-xs text-charcoal-500 line-clamp-1 mt-1">{{ item.title }}</p>
@@ -131,7 +131,7 @@ const timeline = [
     description: 'Bản đồ tương tác đa năng, audio guide tự nhiên, mã QR tra cứu di tích và kho lưu trữ số hóa do cộng đồng đóng góp giúp di sản Thành Phố Đồng Nai vươn xa, kết nối thế hệ trẻ trong và ngoài nước.',
     quote: 'Bảo tàng số đưa lịch sử Đồng Nai vượt không gian đến gần hơn với những người con xa xứ và du khách toàn cầu.',
     artifact: 'Bản đồ di sản thông minh',
-    related: 'Cổng thông tin Di Sản Bù Đăng',
+    related: 'Cổng thông tin Di Sản Đồng Nai',
     image: '/images/heritage/danh-thang/thac-dung-md.webp',
     imageTitle: 'Không gian số hóa danh thắng Thác Mơ',
   },

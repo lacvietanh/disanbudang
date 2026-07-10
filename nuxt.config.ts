@@ -99,7 +99,7 @@ export default defineNuxtConfig({
           content:
             'Bảo tàng số di sản văn hóa, lịch sử và thiên nhiên Thành Phố Đồng Nai - từ Biên Hòa, Sóc Bom Bo đến Chiến Khu Đ, núi Bà Rá. Khám phá và bảo tồn di sản qua không gian số tương tác.',
         },
-        { name: 'theme-color', content: '#2D7FF9' },
+        { name: 'theme-color', content: '#FBF8F2' },
         { property: 'og:type', content: 'website' },
         { property: 'og:locale', content: 'vi_VN' },
         {

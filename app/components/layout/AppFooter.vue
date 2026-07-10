@@ -16,11 +16,11 @@
           <div class="flex items-center gap-3">
             <NuxtImg src="/favicon/icon-192.png" alt="Logo Di Sản Thành Phố Đồng Nai" class="h-14 lg:h-16 w-auto object-contain shrink-0" />
             <div class="flex flex-col justify-center text-left min-w-0">
-              <span class="font-heading font-bold text-white text-sm lg:text-base leading-tight whitespace-nowrap">
+              <span class="font-heading font-bold text-white text-sm lg:text-base leading-snug whitespace-nowrap">
                 Di Sản
               </span>
-              <span class="font-heading font-bold text-gold-300 text-sm lg:text-base leading-tight -mt-0.5 whitespace-nowrap">
-                Đồng Nai
+              <span class="font-heading font-bold text-gold-300 text-sm lg:text-base leading-snug -mt-0.5 whitespace-nowrap">
+                Bù Đăng
               </span>
             </div>
           </div>

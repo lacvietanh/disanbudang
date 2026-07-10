@@ -112,7 +112,7 @@
 definePageMeta({ layout: 'default' })
 useMuseumSeo({
   title: 'Liên Hệ',
-  description: 'Liên hệ với ban quản lý dự án Di Sản Bù Đăng để hợp tác, đóng góp tư liệu hoặc tìm hiểu thêm về di sản văn hóa.'
+  description: 'Liên hệ với ban quản lý dự án Di Sản Đồng Nai để hợp tác, đóng góp tư liệu hoặc tìm hiểu thêm về di sản văn hóa.'
 })
 
 // ContactPage schema per RULE-seo page-type matrix
@@ -123,7 +123,7 @@ useHead({
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'ContactPage',
-        name: 'Liên Hệ Di Sản Bù Đăng',
+        name: 'Liên Hệ Di Sản Đồng Nai',
         url: 'https://disanbudang.com/contact/',
         about: { '@id': 'https://disanbudang.com/#organization' },
       }),
@@ -153,7 +153,7 @@ const contactInfo = [
 ]
 
 function handleSubmit() {
-  const subject = `[Di Sản Bù Đăng] ${subjectLabels[form.subject] ?? form.subject}`
+  const subject = `[Di Sản Đồng Nai] ${subjectLabels[form.subject] ?? form.subject}`
   const body = `Họ tên: ${form.name}\nEmail: ${form.email}\n\n${form.message}`
   window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
   submitted.value = true

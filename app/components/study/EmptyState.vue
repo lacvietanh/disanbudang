@@ -15,8 +15,8 @@
           <span class="text-xs font-bold text-gold-400 uppercase tracking-widest bg-gold-500/10 px-3 py-1 rounded-full border border-gold-500/20">
             Học viện số Di sản
           </span>
-          <h2 class="font-heading text-2xl md:text-4xl font-bold text-ivory tracking-tight leading-tight">
-            Chào mừng đến với Học Tập Di Sản Bù Đăng
+          <h2 class="font-heading text-2xl md:text-4xl font-bold text-ivory tracking-tight leading-snug">
+            Chào mừng đến với Học Tập Di Sản Đồng Nai
           </h2>
           <p class="text-charcoal-300 text-sm md:text-base leading-relaxed font-body">
             Khám phá lịch sử, văn hóa, con người và những giá trị di sản của Thành Phố Đồng Nai thông qua các tài liệu số, bài học tương tác và công cụ học tập thông minh.

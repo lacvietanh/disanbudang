@@ -19,7 +19,7 @@
       <div
         class="prose prose-sm max-w-none text-charcoal-200 leading-relaxed
                prose-headings:text-ivory prose-headings:font-heading
-               prose-strong:text-ivory prose-em:text-gold-300
+               prose-strong:text-gold-300 prose-strong:font-semibold prose-em:text-gold-300
                prose-blockquote:border-gold-500 prose-blockquote:bg-charcoal-900/50
                prose-blockquote:py-3 prose-blockquote:px-4 prose-blockquote:rounded-r-lg
                prose-a:text-gold-400 prose-ul:text-charcoal-300 prose-ol:text-charcoal-300"
@@ -281,21 +281,21 @@
           <Icon name="mdi:account-outline" class="w-4 h-4 text-gold-400 mb-1" />
           <p class="text-xs font-bold text-ivory">{{ person.name }}</p>
           <p class="text-3xs text-charcoal-500">{{ person.role }}</p>
-          <p class="text-3xs text-charcoal-400 mt-1 line-clamp-2">{{ person.desc }}</p>
+          <p class="text-xs text-charcoal-400 mt-1 line-clamp-2">{{ person.desc }}</p>
         </div>
         <div v-for="place in lesson.relatedPlaces" :key="place.name"
           class="bg-charcoal-900/40 border border-charcoal-800 rounded-xl p-3.5 hover:border-gold-500/25 transition-colors cursor-pointer"
           @click="place.poiId && navigateTo('/map?poi=' + place.poiId)">
           <Icon name="mdi:map-marker-outline" class="w-4 h-4 text-gold-400 mb-1" />
           <p class="text-xs font-bold text-ivory">{{ place.name }}</p>
-          <p class="text-3xs text-charcoal-400 mt-1 line-clamp-2">{{ place.desc }}</p>
+          <p class="text-xs text-charcoal-400 mt-1 line-clamp-2">{{ place.desc }}</p>
         </div>
         <div v-for="event in lesson.relatedEvents" :key="event.name"
           class="bg-charcoal-900/40 border border-charcoal-800 rounded-xl p-3.5 hover:border-gold-500/25 transition-colors">
           <Icon name="mdi:calendar-star" class="w-4 h-4 text-gold-400 mb-1" />
           <p class="text-xs font-bold text-ivory">{{ event.name }}</p>
           <p class="text-3xs text-gold-600">{{ event.year }}</p>
-          <p class="text-3xs text-charcoal-400 mt-1 line-clamp-2">{{ event.desc }}</p>
+          <p class="text-xs text-charcoal-400 mt-1 line-clamp-2">{{ event.desc }}</p>
         </div>
       </div>
     </section>

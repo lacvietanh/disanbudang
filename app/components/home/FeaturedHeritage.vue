@@ -15,7 +15,7 @@
             <span class="w-8 h-px bg-heritage-600" />
             <span class="text-heritage-700 text-[10px] uppercase tracking-[0.3em] font-bold">Bảo Tàng Thu Nhỏ</span>
           </div>
-          <h2 class="font-heading font-bold text-stone-900 text-3xl lg:text-5xl leading-tight">
+          <h2 class="font-heading font-bold text-stone-900 text-3xl lg:text-5xl leading-snug">
             Di Sản Nổi Bật
           </h2>
           <p class="text-stone-600 text-sm mt-2 max-w-md">
@@ -64,7 +64,7 @@
                   <span>{{ topFeatured[0].viewCount?.toLocaleString() }}</span>
                 </div>
               </div>
-              <h3 class="font-heading font-bold text-ivory text-3xl lg:text-4xl xl:text-5xl leading-tight mb-3 text-shadow-hero line-clamp-2">
+              <h3 class="font-heading font-bold text-ivory text-3xl lg:text-4xl xl:text-5xl leading-snug mb-3 text-shadow-hero line-clamp-2">
                 {{ topFeatured[0].title }}
               </h3>
               <p class="text-ivory/60 text-sm leading-relaxed mb-5 max-w-lg line-clamp-2">
@@ -102,7 +102,7 @@
               <BaseBadge :variant="getCategoryVariant(item.category)" size="sm" class="mb-3">
                 {{ getCategoryLabel(item.category) }}
               </BaseBadge>
-              <h3 class="font-heading font-bold text-ivory text-xl lg:text-2xl leading-tight mb-1 group-hover:text-gold-200 transition-colors text-shadow-sm line-clamp-2">
+              <h3 class="font-heading font-bold text-ivory text-xl lg:text-2xl leading-snug mb-1 group-hover:text-gold-200 transition-colors text-shadow-sm line-clamp-2">
                 {{ item.title }}
               </h3>
               <p class="text-charcoal-400 text-xs line-clamp-1">{{ item.subtitle }}</p>

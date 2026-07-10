@@ -11,7 +11,7 @@
           </div>
           <div>
             <span class="text-gold-400/70 text-3xs mb-0.5 block tracking-[0.18em] font-bold uppercase">Không Gian Tương Tác</span>
-            <h1 class="font-heading font-bold text-ivory text-xl leading-none tracking-tight">Bản Đồ Di Sản Thành Phố Đồng Nai</h1>
+            <h1 class="font-heading font-bold text-ivory text-xl leading-snug">Bản Đồ Di Sản Thành Phố Đồng Nai</h1>
           </div>
         </div>
         <div class="flex items-center gap-2.5">
@@ -60,7 +60,7 @@
 
       <!-- Sidebar -->
       <aside
-        class="map-sidebar absolute lg:relative z-20 w-80 lg:w-88 h-full flex flex-col transition-transform duration-300 lg:translate-x-0 relative overflow-hidden"
+        class="map-sidebar absolute lg:relative z-20 w-80 lg:w-88 h-full flex flex-col transition-transform duration-300 lg:translate-x-0 overflow-hidden"
         :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
         role="complementary"
         aria-label="Bảng tìm kiếm và bộ lọc"
@@ -172,7 +172,7 @@
           <!-- Period filter timeline -->
           <div class="p-4 border-b border-charcoal-850 space-y-3 shrink-0 bg-charcoal-950/20">
             <p class="eyebrow text-gold-400 text-3xs tracking-widest font-bold">THỜI KỲ LỊCH SỬ</p>
-            <div class="flex gap-2 overflow-x-auto scrollbar-none pb-1">
+            <div class="flex gap-2 overflow-x-auto scrollbar-none pb-1 [mask-image:linear-gradient(to_right,black_calc(100%-24px),transparent)]">
               <button
                 class="flex-shrink-0 px-3.5 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all border"
                 :class="activePeriod === '' ? 'bg-gold-500/10 text-gold-300 border-gold-500/30 shadow-md' : 'text-charcoal-400 bg-charcoal-900/20 border-charcoal-800 hover:border-charcoal-700 hover:text-ivory'"
@@ -197,7 +197,7 @@
           <!-- Cluster filter (regional trail) -->
           <div class="p-4 border-b border-charcoal-850 space-y-3 shrink-0 bg-charcoal-950/20">
             <p class="eyebrow text-gold-400 text-3xs tracking-widest font-bold">CỤM DI SẢN</p>
-            <div class="flex gap-2 overflow-x-auto scrollbar-none pb-1">
+            <div class="flex gap-2 overflow-x-auto scrollbar-none pb-1 [mask-image:linear-gradient(to_right,black_calc(100%-24px),transparent)]">
               <button
                 class="flex-shrink-0 px-3.5 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all border"
                 :class="activeCluster === '' ? 'bg-gold-500/10 text-gold-300 border-gold-500/30 shadow-md' : 'text-charcoal-400 bg-charcoal-900/20 border-charcoal-800 hover:border-charcoal-700 hover:text-ivory'"
@@ -301,7 +301,7 @@
                   <Icon :name="route.icon" class="w-5.5 h-5.5" />
                 </div>
                 <div>
-                  <h4 class="font-heading font-bold text-sm text-ivory leading-tight">{{ route.name }}</h4>
+                  <h4 class="font-heading font-bold text-sm text-ivory leading-snug">{{ route.name }}</h4>
                   <p class="text-3xs text-charcoal-400 font-bold uppercase mt-0.5 tracking-wider">{{ route.stops.length }} điểm khám phá</p>
                 </div>
               </div>
@@ -384,7 +384,7 @@
                   <BaseBadge :variant="getCategoryVariant(selectedHeritage.category)" size="sm" class="uppercase tracking-widest font-bold mb-2">
                     {{ getCategoryLabel(selectedHeritage.category) }}
                   </BaseBadge>
-                  <h3 class="font-heading font-bold text-white text-base leading-tight tracking-tight drop-shadow-lg line-clamp-2">{{ selectedHeritage.title }}</h3>
+                  <h3 class="font-heading font-bold text-white text-base leading-snug tracking-tight drop-shadow-lg line-clamp-2">{{ selectedHeritage.title }}</h3>
                   <p v-if="selectedHeritage.subtitle" class="text-gold-300 text-3xs font-accent italic mt-0.5 drop-shadow line-clamp-1">{{ selectedHeritage.subtitle }}</p>
                 </div>
 

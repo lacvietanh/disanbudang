@@ -29,7 +29,7 @@
               </div>
               <div class="absolute bottom-0 left-0 right-0 p-7">
                 <p class="text-charcoal-300 text-xs mb-2">{{ formatDate(news[0].publishedAt) }} • {{ news[0].readTime }} phút đọc</p>
-                <h3 class="font-heading font-bold text-ivory text-2xl leading-tight mb-2 text-shadow-hero line-clamp-2 group-hover:text-gold-200 transition-colors">
+                <h3 class="font-heading font-bold text-ivory text-2xl leading-snug mb-2 text-shadow-hero line-clamp-2 group-hover:text-gold-200 transition-colors">
                   {{ news[0].title }}
                 </h3>
                 <p class="text-ivory/70 text-sm line-clamp-2">{{ news[0].excerpt }}</p>
@@ -52,7 +52,7 @@
               <BaseBadge :variant="categoryVariant[item.category]" size="sm" class="mb-1.5">
                 {{ categoryLabels[item.category] }}
               </BaseBadge>
-              <h4 class="font-heading font-semibold text-charcoal-900 text-sm leading-tight line-clamp-2 group-hover:text-gold-700 transition-colors">{{ item.title }}</h4>
+              <h4 class="font-heading font-semibold text-charcoal-900 text-sm leading-snug line-clamp-2 group-hover:text-gold-700 transition-colors">{{ item.title }}</h4>
               <p class="text-charcoal-500 text-xs mt-1">{{ formatDate(item.publishedAt) }}</p>
             </div>
           </NuxtLink>
@@ -63,7 +63,7 @@
               <Icon name="mdi:calendar-star" class="w-4 h-4 text-gold-700" />
               <span class="eyebrow text-gold-700 text-2xs">Sự kiện sắp tới</span>
             </div>
-            <h4 class="font-heading font-bold text-charcoal-900 text-sm mb-1 leading-tight">{{ nextEvent.title }}</h4>
+            <h4 class="font-heading font-bold text-charcoal-900 text-sm mb-1 leading-snug">{{ nextEvent.title }}</h4>
             <p class="text-charcoal-600 text-xs">{{ nextEvent.location }}</p>
             <p class="text-gold-700 text-xs font-medium mt-1">{{ formatDate(nextEvent.startDate) }}</p>
           </div>

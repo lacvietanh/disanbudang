@@ -13,13 +13,13 @@
         <NuxtLink to="/" class="flex items-center gap-3 group">
           <NuxtImg src="/favicon/icon-192.png" alt="Logo Di Sản Thành Phố Đồng Nai" class="h-10 sm:h-12 w-auto object-contain shrink-0 transition-transform duration-300 group-hover:scale-105" />
           <div class="hidden md:flex flex-col justify-center text-left min-w-0">
-            <span class="font-heading font-bold text-stone-800 text-sm lg:text-base leading-tight whitespace-nowrap group-hover:text-heritage-700 transition-colors duration-300">
+            <span class="font-heading font-bold text-stone-800 text-sm lg:text-base leading-snug whitespace-nowrap group-hover:text-heritage-700 transition-colors duration-300">
               Di Sản
             </span>
-            <span class="font-heading font-bold text-heritage-600 text-sm lg:text-base leading-tight whitespace-nowrap -mt-0.5 group-hover:text-heritage-700 transition-colors duration-300">
+            <span class="font-heading font-bold text-heritage-600 text-sm lg:text-base leading-snug whitespace-nowrap -mt-0.5 group-hover:text-heritage-700 transition-colors duration-300">
               Bù Đăng
             </span>
-            <span class="hidden xl:block text-[9px] text-stone-400 tracking-[0.12em] uppercase font-normal mt-1 leading-none whitespace-nowrap">
+            <span class="hidden xl:block text-[9px] text-stone-700 tracking-[0.12em] uppercase font-semibold mt-1 leading-snug whitespace-nowrap">
               Bảo Tàng Số Thành Phố Đồng Nai
             </span>
           </div>

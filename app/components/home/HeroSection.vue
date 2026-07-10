@@ -235,7 +235,7 @@
                 />
               </div>
               <div class="flex flex-col">
-                <span class="text-gold-300 text-xs font-bold uppercase tracking-wider leading-none mb-0.5">Audio Thuyết Minh</span>
+                <span class="text-gold-300 text-xs font-bold uppercase tracking-wider leading-snug mb-0.5">Audio Thuyết Minh</span>
                 <span class="text-ivory/60 text-[10px]">{{ audioCount }} track · Giọng đọc địa phương · Nghe ngay trên trình duyệt</span>
               </div>
               <Icon name="mdi:arrow-right" class="w-3.5 h-3.5 text-gold-400/60 group-hover:text-gold-400 group-hover:translate-x-0.5 transition-all ml-1" />
@@ -256,7 +256,7 @@
                     {{ stat.value }}{{ stat.suffix }}
                   </span>
                 </div>
-                <p class="text-charcoal-500 text-[10px] uppercase tracking-wider leading-none group-hover:text-charcoal-400 transition-colors">
+                <p class="text-charcoal-500 text-[10px] uppercase tracking-wider leading-snug group-hover:text-charcoal-400 transition-colors">
                   {{ stat.label }}
                 </p>
               </div>
@@ -266,7 +266,7 @@
                   <Icon name="mdi:city" class="w-3.5 h-3.5 text-forest-400" />
                 </div>
                 <div>
-                  <p class="font-heading font-semibold text-ivory text-xs leading-none mb-0.5">Thành Phố Đồng Nai</p>
+                  <p class="font-heading font-semibold text-ivory text-xs leading-snug mb-0.5">Thành Phố Đồng Nai</p>
                   <p class="text-charcoal-500 text-[10px]">TPTT thứ 7 · Từ 30/04/2026</p>
                 </div>
               </div>
@@ -327,7 +327,7 @@ const questionCount = QUIZZES.reduce((sum, q) => sum + q.questions.length, 0)
 const bomBoAudio: HeritageAudio = {
   id: 'khu-bao-ton-soc-bom-bo',
   title: 'Thuyết minh: Khu Bảo Tồn Sóc Bom Bo',
-  narrator: 'Người kể chuyện Di Sản Bù Đăng',
+  narrator: 'Người kể chuyện Di Sản Đồng Nai',
   duration: 560,
   url: '/audio/khu-bao-ton-soc-bom-bo.mp3',
   coverImage: '/video/virtual-tour/bom-bo/poster.jpg',

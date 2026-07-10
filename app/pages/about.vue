@@ -402,7 +402,7 @@
 
                   <!-- Name overlay -->
                   <div class="absolute bottom-0 left-0 right-0 p-4 text-center">
-                    <p class="font-heading font-bold text-ivory text-base leading-tight drop-shadow-lg">Nguyễn Xuân Kiệt</p>
+                    <p class="font-heading font-bold text-ivory text-base leading-snug drop-shadow-lg">Nguyễn Xuân Kiệt</p>
                     <div class="flex items-center justify-center gap-1.5 mt-1">
                       <span class="w-4 h-px bg-gold-400/70" />
                       <p class="text-gold-400 text-[10px] font-semibold tracking-wider">Tác giả · Nhà phát triển</p>

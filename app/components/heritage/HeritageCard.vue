@@ -36,7 +36,7 @@
     <!-- Caption panel: slim title bar at rest, expands to full detail on hover/focus -->
     <div class="absolute bottom-0 left-0 right-0 bg-charcoal-950/95 backdrop-blur-sm px-5 pt-3.5 pb-3.5">
       <!-- Title (always visible) -->
-      <h3 class="font-heading font-bold text-ivory text-base leading-tight line-clamp-1 group-hover:text-gold-200 group-focus-within:text-gold-200 transition-colors duration-300">
+      <h3 class="font-heading font-bold text-ivory text-base leading-snug line-clamp-1 group-hover:text-gold-200 group-focus-within:text-gold-200 transition-colors duration-300">
         {{ heritage.title }}
       </h3>
 

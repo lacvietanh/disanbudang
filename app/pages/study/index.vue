@@ -187,43 +187,49 @@
       <!-- ================================================ -->
       <div v-if="activeTab === 'research'" class="space-y-10 animate-section-in">
 
-        <!-- DASHBOARD STATS GRID -->
+        <!-- DASHBOARD STATS BAR -->
         <section aria-labelledby="dashboard-title">
           <div class="flex items-end justify-between mb-6">
             <div>
               <span id="dashboard-title" class="section-label">Tổng quan học tập</span>
               <h3 class="font-heading text-2xl font-bold text-ivory mt-1">Dashboard Di Sản Số</h3>
             </div>
-            <span class="text-charcoal-500 text-3xs font-semibold uppercase tracking-wider hidden sm:block">Kho dữ liệu học tập số</span>
+            <span class="text-charcoal-500 text-3xs font-semibold uppercase tracking-wider hidden sm:block">Chạm để đi đến từng mục</span>
           </div>
-          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-            <div
-              v-for="(stat, i) in dashboardStats"
-              :key="stat.label"
-              class="group relative overflow-hidden rounded-2xl border p-4 hover:-translate-y-1 transition-all duration-300 cursor-default"
-              :class="i === 0 ? 'bg-gradient-to-br from-gold-500/12 via-charcoal-950 to-charcoal-950 border-gold-500/30 col-span-2 sm:col-span-1 lg:col-span-2 shadow-lg shadow-gold-500/5' : 'bg-charcoal-950 border-charcoal-850 hover:border-charcoal-700'"
-            >
-              <div class="absolute -top-6 -right-6 w-20 h-20 rounded-full opacity-10 group-hover:opacity-20 transition-opacity" :class="stat.glowColor" />
-              <div class="relative z-10">
-                <div class="flex items-center justify-between mb-3">
-                  <div class="w-9 h-9 rounded-xl flex items-center justify-center" :class="stat.iconBg">
-                    <Icon :name="stat.icon" class="w-5 h-5" :class="stat.iconColor" />
-                  </div>
-                  <span class="text-3xs font-bold px-2 py-0.5 rounded-full" :class="stat.trendBg">{{ stat.trend }}</span>
+          <div class="bg-charcoal-950 border border-charcoal-850 rounded-2xl overflow-x-auto scrollbar-none">
+            <div class="flex divide-x divide-charcoal-850 min-w-max sm:min-w-0">
+              <button
+                v-for="stat in dashboardStats"
+                :key="stat.label"
+                class="group flex-1 min-w-[132px] flex items-center gap-3 px-5 py-4 hover:bg-charcoal-900/50 transition-colors text-left"
+                @click="goToDashboardStat(stat)"
+                :aria-label="`Đi đến ${stat.label}`"
+              >
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-transform group-hover:scale-110" :class="stat.iconBg">
+                  <Icon :name="stat.icon" class="w-5 h-5" :class="stat.iconColor" />
                 </div>
-                <span class="block text-2xl font-bold font-heading" :class="i === 0 ? 'text-gold-400' : 'text-ivory'">{{ stat.value }}</span>
-                <span class="block text-3xs text-charcoal-400 uppercase tracking-wider mt-0.5 font-semibold">{{ stat.label }}</span>
-              </div>
+                <div class="min-w-0">
+                  <span class="block text-xl font-bold font-heading text-ivory group-hover:text-gold-400 transition-colors leading-none">{{ stat.value }}</span>
+                  <span class="block text-3xs text-charcoal-400 uppercase tracking-wider mt-1 font-semibold truncate">{{ stat.label }}</span>
+                </div>
+                <Icon name="mdi:chevron-right" class="w-4 h-4 text-charcoal-600 group-hover:text-gold-400 group-hover:translate-x-0.5 transition-all ml-auto shrink-0 hidden sm:block" />
+              </button>
             </div>
           </div>
         </section>
 
         <!-- LEARNING PATH -->
         <section aria-labelledby="learning-path-title">
-          <div class="flex items-end justify-between mb-6">
+          <div class="flex items-end justify-between mb-4 gap-4 flex-wrap">
             <div>
               <span class="section-label">Hành trình học tập</span>
               <h3 id="learning-path-title" class="font-heading text-2xl font-bold text-ivory mt-1">Learning Path Di Sản</h3>
+            </div>
+            <div class="flex items-center gap-3 shrink-0">
+              <span class="text-xs font-bold text-gold-400">{{ completedStepsCount }}/{{ learningPath.length }} hoàn thành</span>
+              <div class="w-28 h-1.5 bg-charcoal-850 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-earth-600 to-gold-500 rounded-full transition-all duration-500" :style="{ width: (completedStepsCount / learningPath.length * 100) + '%' }" />
+              </div>
             </div>
           </div>
           <div class="relative">
@@ -234,25 +240,33 @@
                 v-for="(step, idx) in learningPath"
                 :key="step.title"
                 class="group flex flex-col items-center text-center gap-3 cursor-pointer"
-                @click="activeTab = step.tab; scrollToContent()"
+                @click="goToLearningStep(step)"
                 :aria-label="`Bước ${idx + 1}: ${step.title}`"
               >
                 <div
                   class="w-20 h-20 rounded-2xl flex items-center justify-center border-2 transition-all duration-500 relative"
                   :class="step.done
                     ? 'bg-gold-500 border-gold-300 shadow-gold/25 shadow-lg'
-                    : 'bg-charcoal-950 border-charcoal-800 group-hover:border-gold-500/50 group-hover:bg-charcoal-900'"
+                    : idx === currentStepIndex
+                      ? 'bg-charcoal-900 border-gold-500/70 shadow-lg shadow-gold-500/10 animate-pulse-slow'
+                      : 'bg-charcoal-950 border-charcoal-800 group-hover:border-gold-500/50 group-hover:bg-charcoal-900'"
                 >
                   <span v-if="step.done" class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-green-500 border-2 border-charcoal-900 flex items-center justify-center">
                     <Icon name="mdi:check" class="w-3 h-3 text-white" />
                   </span>
-                  <Icon :name="step.icon" class="w-9 h-9 transition-transform group-hover:scale-110" :class="step.done ? 'text-charcoal-950' : 'text-gold-400/60 group-hover:text-gold-400'" />
+                  <span v-else-if="idx === currentStepIndex" class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-gold-500 border-2 border-charcoal-900 flex items-center justify-center">
+                    <Icon name="mdi:arrow-right" class="w-3 h-3 text-charcoal-950" />
+                  </span>
+                  <Icon :name="step.icon" class="w-9 h-9 transition-transform group-hover:scale-110" :class="step.done ? 'text-charcoal-950' : idx === currentStepIndex ? 'text-gold-400' : 'text-gold-400/60 group-hover:text-gold-400'" />
                 </div>
                 <div>
-                  <span class="block text-xs font-bold text-ivory leading-tight group-hover:text-gold-400 transition-colors">{{ step.title }}</span>
-                  <span class="block text-3xs text-charcoal-500 mt-0.5">{{ step.desc }}</span>
-                  <span class="inline-block mt-1 text-3xs font-bold px-2 py-0.5 rounded-full" :class="step.done ? 'bg-green-500/10 text-green-400' : 'bg-charcoal-900 text-charcoal-500'">
-                    {{ step.done ? 'Hoàn thành' : `+${step.xp} XP` }}
+                  <span class="block text-xs font-bold text-ivory leading-snug group-hover:text-gold-400 transition-colors">{{ step.title }}</span>
+                  <span class="block text-xs text-charcoal-400 mt-0.5">{{ step.desc }}</span>
+                  <span
+                    class="inline-block mt-1 text-3xs font-bold px-2 py-0.5 rounded-full"
+                    :class="step.done ? 'bg-green-500/10 text-green-400' : idx === currentStepIndex ? 'bg-gold-500/15 text-gold-400' : 'bg-charcoal-900 text-charcoal-500'"
+                  >
+                    {{ step.done ? 'Hoàn thành' : idx === currentStepIndex ? 'Tiếp theo' : `+${step.xp} XP` }}
                   </span>
                 </div>
               </div>
@@ -333,6 +347,15 @@
             </div>
           </div>
 
+          <!-- Active collection filter banner -->
+          <div v-if="activeCollectionFilter" class="flex items-center gap-2 mb-6 px-4 py-2.5 bg-gold-500/10 border border-gold-500/25 rounded-xl">
+            <Icon name="mdi:folder-open" class="w-4 h-4 text-gold-400 shrink-0" />
+            <span class="text-xs text-ivory font-semibold">Đang xem bộ sưu tập: <span class="text-gold-400">{{ activeCollectionName }}</span></span>
+            <button class="ml-auto text-charcoal-400 hover:text-ivory text-2xs font-bold flex items-center gap-1 transition-colors" @click="activeCollectionFilter = null" aria-label="Thoát xem bộ sưu tập">
+              <Icon name="mdi:close" class="w-3.5 h-3.5" /> Thoát
+            </button>
+          </div>
+
           <!-- Loading State -->
           <div v-if="pending" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-12 animate-pulse">
             <div v-for="i in 3" :key="i" class="bg-charcoal-950/60 border border-charcoal-850 p-6 rounded-2xl h-[380px] flex flex-col justify-between">
@@ -409,7 +432,7 @@
                         <div class="w-5 h-5 rounded-md bg-gold-500/20 flex items-center justify-center">
                           <Icon name="mdi:robot" class="w-3 h-3 text-gold-400" />
                         </div>
-                        <span class="text-3xs text-charcoal-300 font-body"><span class="font-bold text-gold-400">AI Tóm tắt:</span> {{ featuredResource.motivation }}</span>
+                        <span class="text-xs text-charcoal-300 font-body"><span class="font-bold text-gold-400">AI Tóm tắt:</span> {{ featuredResource.motivation }}</span>
                       </div>
                     </div>
                     <!-- Key findings preview -->
@@ -466,17 +489,42 @@
                       <span class="px-2.5 py-1 rounded bg-charcoal-900 border border-charcoal-800 text-3xs font-semibold text-gold-400 tracking-wider uppercase">
                         {{ typeLabels[res.type] }}
                       </span>
-                      <button
-                        class="w-7 h-7 rounded-full bg-charcoal-900/80 border border-charcoal-850 text-charcoal-500 hover:text-gold-400 flex items-center justify-center transition-colors shadow-inner"
-                        @click.stop="toggleBookmark(res.id)"
-                        :aria-label="savedBooks.includes(res.id) ? 'Bỏ bookmark' : 'Bookmark tài liệu'"
-                      >
-                        <Icon :name="savedBooks.includes(res.id) ? 'mdi:bookmark' : 'mdi:bookmark-outline'" class="w-4 h-4" />
-                      </button>
+                      <div class="flex items-center gap-1.5">
+                        <button
+                          class="w-7 h-7 rounded-full bg-charcoal-900/80 border border-charcoal-850 text-charcoal-500 hover:text-gold-400 flex items-center justify-center transition-colors shadow-inner"
+                          @click.stop="addToCollectionPrompt(res.id)"
+                          aria-label="Thêm vào bộ sưu tập"
+                        >
+                          <Icon name="mdi:folder-plus-outline" class="w-4 h-4" />
+                        </button>
+                        <button
+                          class="w-7 h-7 rounded-full bg-charcoal-900/80 border border-charcoal-850 text-charcoal-500 hover:text-gold-400 flex items-center justify-center transition-colors shadow-inner"
+                          @click.stop="toggleBookmark(res.id)"
+                          :aria-label="savedBooks.includes(res.id) ? 'Bỏ bookmark' : 'Bookmark tài liệu'"
+                        >
+                          <Icon :name="savedBooks.includes(res.id) ? 'mdi:bookmark' : 'mdi:bookmark-outline'" class="w-4 h-4" />
+                        </button>
+                      </div>
                     </div>
                     <h4 class="font-heading font-bold text-ivory text-sm leading-snug line-clamp-2 group-hover:text-gold-300 transition-colors">{{ res.title }}</h4>
+                    <p class="text-charcoal-400 text-xs leading-relaxed line-clamp-3">{{ res.description }}</p>
                   </div>
-                  <!-- Content summary ... -->
+
+                  <!-- Meta + action footer -->
+                  <div class="space-y-3">
+                    <div class="flex items-center gap-2 text-3xs text-charcoal-450 flex-wrap">
+                      <span class="flex items-center gap-1"><Icon name="mdi:account-circle-outline" class="w-3.5 h-3.5" />{{ res.author }}</span>
+                      <span class="text-charcoal-700">•</span>
+                      <span class="flex items-center gap-1"><Icon name="mdi:download-outline" class="w-3.5 h-3.5" />{{ res.downloadCount }} lượt tải</span>
+                      <span v-if="res.quizId" class="ml-auto text-3xs px-2 py-0.5 bg-gold-500/10 border border-gold-500/30 text-gold-400 rounded font-bold">Quiz</span>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 border-t border-charcoal-850/60">
+                      <span class="text-charcoal-500 text-3xs font-semibold">{{ res.school }} · Lớp {{ res.grade }}</span>
+                      <span class="text-gold-400 text-2xs font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                        Đọc & Nghiên Cứu <Icon name="mdi:arrow-right" class="w-3.5 h-3.5" />
+                      </span>
+                    </div>
+                  </div>
                 </div>
 
                 <!-- LIST VIEW ROW -->
@@ -495,9 +543,16 @@
                       <span class="text-charcoal-500 text-3xs">{{ res.school }}</span>
                     </div>
                     <h4 class="font-heading font-bold text-sm text-ivory truncate group-hover:text-gold-300 transition-colors">{{ res.title }}</h4>
-                    <p class="text-charcoal-500 text-2xs mt-0.5 truncate">{{ res.author }} · {{ res.downloadCount }} lượt tải · {{ res.fileSize }}</p>
+                    <p class="text-charcoal-400 text-xs mt-0.5 truncate">{{ res.author }} · {{ res.downloadCount }} lượt tải · {{ res.fileSize }}</p>
                   </div>
                   <div class="flex items-center gap-3 shrink-0">
+                    <button
+                      class="w-7 h-7 rounded-full bg-charcoal-900/80 border border-charcoal-850 text-charcoal-500 hover:text-gold-400 flex items-center justify-center transition-colors"
+                      @click.stop="addToCollectionPrompt(res.id)"
+                      aria-label="Thêm vào bộ sưu tập"
+                    >
+                      <Icon name="mdi:folder-plus-outline" class="w-3.5 h-3.5" />
+                    </button>
                     <span v-if="res.quizId" class="text-3xs px-2 py-0.5 bg-gold-500/10 border border-gold-500/30 text-gold-400 rounded font-bold">Quiz</span>
                     <Icon name="mdi:chevron-right" class="w-5 h-5 text-charcoal-400 group-hover:text-gold-400 transition-colors" />
                   </div>
@@ -515,14 +570,14 @@
             <div class="relative z-10 flex flex-col md:flex-row items-center gap-8">
               <div class="flex-1 space-y-4">
                 <span class="section-label">Mới ra mắt</span>
-                <h3 id="lab-title" class="font-heading text-3xl font-bold text-ivory">Heritage Lab</h3>
-                <p class="text-charcoal-300 text-sm leading-relaxed max-w-lg">Trải nghiệm di sản theo cách hoàn toàn mới — Timeline tương tác, Story Map, Bản đồ 3D, Audio Guide và Virtual Tour được số hóa từ tư liệu thực địa.</p>
-                <button class="px-6 py-3 bg-earth-700/30 hover:bg-earth-700/50 border border-earth-600/30 hover:border-earth-500/50 text-earth-200 font-bold rounded-xl text-sm transition-all duration-300 flex items-center gap-2 group" @click="activeTab = 'lab'; scrollToContent()" aria-label="Khám phá Heritage Lab">
+                <h3 id="lab-title" class="font-heading text-3xl font-bold text-ivory">Trải Nghiệm Số Di Sản</h3>
+                <p class="text-charcoal-300 text-sm leading-relaxed max-w-lg">Trải nghiệm di sản theo cách hoàn toàn mới — Dòng thời gian tương tác, So sánh xưa & nay và Xem hiện vật 3D được số hóa từ tư liệu thực địa.</p>
+                <button class="px-6 py-3 bg-earth-700/30 hover:bg-earth-700/50 border border-earth-600/30 hover:border-earth-500/50 text-earth-200 font-bold rounded-xl text-sm transition-all duration-300 flex items-center gap-2 group" @click="activeTab = 'lab'; scrollToContent()" aria-label="Khám phá Trải Nghiệm Số Di Sản">
                   <Icon name="mdi:flask-outline" class="w-5 h-5 group-hover:rotate-12 transition-transform" />
-                  Khám phá Heritage Lab
+                  Khám phá ngay
                 </button>
               </div>
-              <!-- Lab feature pills -->
+              <!-- Lab feature pills — chỉ giới thiệu tính năng đã hoạt động -->
               <div class="grid grid-cols-2 gap-3 shrink-0">
                 <div v-for="(feat, fi) in labFeatures" :key="fi" class="flex items-center gap-2 bg-charcoal-950/50 border border-charcoal-800 px-3 py-2.5 rounded-xl text-3xs text-charcoal-300 font-semibold">
                   <Icon :name="feat.icon" class="w-4 h-4 text-earth-400 shrink-0" />
@@ -558,7 +613,7 @@
                 <Icon name="mdi:robot" class="w-4 h-4" />
               </div>
               <div class="space-y-1.5 text-left">
-                <span class="block text-3xs font-bold uppercase tracking-wider text-charcoal-450">Trợ lý AI Di sản Đồng Nai</span>
+                <span class="block text-2xs font-bold uppercase tracking-wider text-charcoal-350">Trợ lý AI Di sản Đồng Nai</span>
                 <p class="leading-relaxed text-charcoal-200 select-text whitespace-pre-wrap">{{ aiMessages[0]?.text || 'Xin chào! Tôi là trợ lý AI di sản Thành Phố Đồng Nai. Bạn muốn tìm hiểu lịch sử nào hôm nay?' }}</p>
               </div>
             </div>
@@ -586,7 +641,7 @@
                 <Icon :name="msg.role === 'user' ? 'mdi:account' : 'mdi:robot'" class="w-4 h-4" />
               </div>
               <div class="space-y-1.5 text-left flex-1">
-                <span class="block text-3xs font-bold uppercase tracking-wider text-charcoal-450">{{ msg.role === 'user' ? 'Bạn' : 'Trợ lý AI Di sản' }}</span>
+                <span class="block text-2xs font-bold uppercase tracking-wider text-charcoal-350">{{ msg.role === 'user' ? 'Bạn' : 'Trợ lý AI Di sản' }}</span>
                 <p class="leading-relaxed text-charcoal-200 select-text whitespace-pre-wrap font-body">{{ msg.text }}</p>
               </div>
             </div>
@@ -597,7 +652,7 @@
               <Icon name="mdi:robot" class="w-4 h-4 animate-spin" />
             </div>
             <div class="space-y-2 text-left flex-1">
-              <span class="block text-3xs font-bold uppercase tracking-wider text-charcoal-450">Trợ lý AI Di sản</span>
+              <span class="block text-2xs font-bold uppercase tracking-wider text-charcoal-350">Trợ lý AI Di sản</span>
               <div class="flex gap-1 items-center">
                 <div v-for="d in 3" :key="d" class="w-2 h-2 rounded-full bg-gold-400 animate-bounce" :style="{ animationDelay: (d * 0.15) + 's' }" />
                 <span class="text-charcoal-400 text-2xs ml-2">Đang đọc kho dữ liệu di sản...</span>
@@ -670,7 +725,7 @@
                   </button>
                 </div>
                 <h4 class="font-heading font-bold text-ivory text-lg">{{ word.term }}</h4>
-                <p class="text-charcoal-450 text-3xs italic mt-0.5">{{ word.pronunciation }}</p>
+                <p class="text-charcoal-400 text-xs italic mt-0.5">{{ word.pronunciation }}</p>
                 <p class="text-charcoal-300 text-xs leading-relaxed pt-3 border-t border-charcoal-850 mt-3 select-text font-body">{{ word.definition }}</p>
               </div>
             </div>
@@ -686,7 +741,7 @@
                     <div>
                       <span class="text-charcoal-500 text-3xs font-bold uppercase tracking-wider block">Thuật ngữ S'tiêng</span>
                       <h4 class="font-heading font-bold text-gold-400 text-xl mt-2">{{ card.term }}</h4>
-                      <p class="text-charcoal-350 text-2xs mt-1 italic">{{ card.pronunciation }}</p>
+                      <p class="text-charcoal-300 text-xs mt-1 italic">{{ card.pronunciation }}</p>
                     </div>
                     <div class="flex items-center justify-between text-charcoal-500 text-3xs font-bold uppercase">
                       <span>{{ card.category }}</span>
@@ -733,11 +788,11 @@
           <!-- Photos -->
           <div v-if="activeMediaSubtab === 'photos'" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <div v-for="(item, idx) in imageStories" :key="idx" class="group relative rounded-3xl overflow-hidden border border-charcoal-800 bg-charcoal-950 cursor-pointer shadow-lg shadow-black/20 h-72 hover:border-gold-500/25 transition-all duration-400 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/40" @click="openImageModal(item)" :aria-label="`Xem ảnh: ${item.title}`">
-              <img :src="item.image" :alt="item.title" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+              <img :src="item.image" :alt="item.title" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" @error="hideOnImageError" />
               <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-950/30 to-transparent" />
               <div class="absolute bottom-0 inset-x-0 p-5 space-y-1.5">
                 <span class="text-gold-400 text-3xs font-bold uppercase tracking-wider">{{ item.tag }}</span>
-                <h4 class="font-heading font-bold text-ivory text-base leading-tight">{{ item.title }}</h4>
+                <h4 class="font-heading font-bold text-ivory text-base leading-snug">{{ item.title }}</h4>
               </div>
               <div class="absolute top-4 right-4 w-9 h-9 rounded-full bg-charcoal-950/70 backdrop-blur-sm border border-charcoal-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                 <Icon name="mdi:fullscreen" class="w-4 h-4 text-ivory" />
@@ -748,7 +803,7 @@
           <!-- Videos -->
           <div v-else-if="activeMediaSubtab === 'videos'" class="space-y-6">
             <div class="relative w-full aspect-video bg-charcoal-950 border border-charcoal-850 rounded-3xl overflow-hidden group cursor-pointer" @click="startVideoPlayback">
-              <img src="/images/heritage/danh-thang/thac-dung-lg.webp" alt="Video: Thác Dung Bù Đăng" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500" loading="lazy" />
+              <img src="/images/heritage/danh-thang/thac-dung-lg.webp" alt="Video: Thác Dung Bù Đăng" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500" loading="lazy" @error="hideOnImageError" />
               <div class="absolute inset-0 flex items-center justify-center">
                 <div class="w-20 h-20 rounded-full bg-charcoal-950/70 backdrop-blur-sm border-2 border-gold-500/50 flex items-center justify-center group-hover:scale-110 transition-transform shadow-gold/20 shadow-xl">
                   <Icon name="mdi:play" class="w-9 h-9 text-gold-400 translate-x-0.5" />
@@ -764,7 +819,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div v-for="video in mockVideos" :key="video.title" class="flex gap-4 p-4 bg-charcoal-950 border border-charcoal-850 rounded-2xl hover:border-gold-500/25 transition-colors cursor-pointer group" @click="startVideoPlayback">
                 <div class="w-24 h-16 rounded-xl bg-charcoal-900 overflow-hidden relative shrink-0">
-                  <img :src="video.thumb" :alt="video.title" class="w-full h-full object-cover group-hover:scale-105 transition-transform" loading="lazy" />
+                  <img :src="video.thumb" :alt="video.title" class="w-full h-full object-cover group-hover:scale-105 transition-transform" loading="lazy" @error="hideOnImageError" />
                   <div class="absolute inset-0 flex items-center justify-center bg-charcoal-950/40">
                     <Icon name="mdi:play-circle" class="w-7 h-7 text-gold-400/80" />
                   </div>
@@ -818,7 +873,7 @@
               <h3 class="font-heading font-bold text-xl text-ivory">Nhà Khám Phá Di Sản</h3>
               <div class="flex items-center gap-2 mt-1 flex-wrap">
                 <span class="text-2xs bg-gold-500/10 border border-gold-500/30 text-gold-400 font-bold px-2.5 py-1 rounded-lg uppercase">Cấp độ {{ userLevel }}</span>
-                <span class="text-charcoal-400 text-2xs">{{ streakDays }} ngày có hoạt động học tập</span>
+                <span class="text-charcoal-300 text-xs">{{ streakDays }} ngày có hoạt động học tập</span>
               </div>
               <!-- XP bar -->
               <div class="mt-4 space-y-1.5">
@@ -876,11 +931,18 @@
             <h4 class="font-heading font-bold text-lg text-ivory">Bộ Sưu Tập Của Tôi</h4>
             <button class="btn-ghost border border-charcoal-800 hover:border-gold-500/40 text-gold-400 text-3xs py-2 px-4 rounded-xl font-bold transition-all" @click="createNewCollection" aria-label="Tạo bộ sưu tập mới">+ Tạo mới</button>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-            <div v-for="col in collections" :key="col.name" class="p-5 rounded-2xl bg-charcoal-950 border border-charcoal-800 hover:border-gold-500/25 transition-colors cursor-pointer group" @click="activeTab = 'research'; scrollToContent()">
+          <div v-if="collectionsStore.collections.length === 0" class="text-center py-10 border border-dashed border-charcoal-800 rounded-2xl">
+            <Icon name="mdi:folder-plus-outline" class="w-10 h-10 text-charcoal-500 mx-auto mb-3" />
+            <p class="text-charcoal-400 text-xs">Chưa có bộ sưu tập nào. Tạo bộ sưu tập rồi bấm biểu tượng <Icon name="mdi:folder-plus-outline" class="w-3.5 h-3.5 inline text-gold-400" /> trên tài liệu để lưu vào đây.</p>
+          </div>
+          <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div v-for="col in collectionsStore.collections" :key="col.id" class="relative p-5 rounded-2xl bg-charcoal-950 border border-charcoal-800 hover:border-gold-500/25 transition-colors cursor-pointer group" @click="openCollection(col)" role="button" :aria-label="`Mở bộ sưu tập: ${col.name}`">
+              <button class="absolute top-4 right-4 w-7 h-7 rounded-full bg-charcoal-900/80 border border-charcoal-850 text-charcoal-500 hover:text-red-400 flex items-center justify-center transition-colors opacity-0 group-hover:opacity-100" @click.stop="deleteCollectionPrompt(col)" aria-label="Xóa bộ sưu tập">
+                <Icon name="mdi:trash-can-outline" class="w-3.5 h-3.5" />
+              </button>
               <Icon name="mdi:folder-outline" class="w-8 h-8 text-gold-400/60 group-hover:text-gold-400 transition-colors mb-3" />
-              <span class="block font-heading font-bold text-sm text-ivory mb-1">{{ col.name }}</span>
-              <span class="text-charcoal-450 text-3xs">{{ col.count }} tài liệu lưu trữ</span>
+              <span class="block font-heading font-bold text-sm text-ivory mb-1 pr-6">{{ col.name }}</span>
+              <span class="text-charcoal-450 text-3xs">{{ col.resourceIds.length }} tài liệu lưu trữ</span>
             </div>
           </div>
         </div>
@@ -926,7 +988,7 @@
         <template v-else>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <component
-              :is="lesson.hasContent ? 'NuxtLink' : 'div'"
+              :is="lesson.hasContent ? NuxtLink : 'div'"
               v-for="lesson in lessonCatalog"
               :key="lesson.id"
               :to="lesson.hasContent ? `/study/lesson/${lesson.id}` : undefined"
@@ -979,19 +1041,18 @@
       <div v-if="activeTab === 'lab'" class="max-w-6xl mx-auto space-y-10 animate-section-in">
         <div>
           <span class="section-label">Công cụ số hóa di sản</span>
-          <h3 class="font-heading text-3xl font-bold text-ivory mt-1">Heritage Lab</h3>
-          <p class="text-charcoal-300 text-sm mt-2 max-w-2xl leading-relaxed">Trải nghiệm di sản theo cách chưa từng có — Timeline tương tác, Story Map, Trước/Sau, Audio Guide và Virtual Tour được xây dựng từ tư liệu thực địa.</p>
+          <h3 class="font-heading text-3xl font-bold text-ivory mt-1">Trải Nghiệm Số Di Sản</h3>
+          <p class="text-charcoal-300 text-sm mt-2 max-w-2xl leading-relaxed">Trải nghiệm di sản theo cách chưa từng có — Dòng thời gian tương tác, Bản đồ câu chuyện, So sánh xưa & nay, Lời kể nhân chứng và Tham quan ảo được xây dựng từ tư liệu thực địa.</p>
         </div>
 
-        <!-- Lab Features Grid -->
+        <!-- Lab Features Grid — chỉ hiện các trải nghiệm đã hoạt động, không để "sắp ra mắt" chiếm chỗ ngang hàng -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div
-            v-for="(labItem, labIdx) in heritageLabItems"
+            v-for="(labItem, labIdx) in activeLabItems"
             :key="labIdx"
-            class="group relative overflow-hidden rounded-3xl border transition-all duration-400"
-            :class="labItem.active ? 'border-gold-500/20 bg-gradient-to-br from-charcoal-950 to-charcoal-900 hover:border-gold-500/40 cursor-pointer hover:-translate-y-1' : 'border-charcoal-850 bg-charcoal-950/40 opacity-70 cursor-default'"
-            @click="labItem.active ? (activeLabItem = labItem.id) : null"
-            :aria-label="labItem.active ? `Mở ${labItem.title}` : `${labItem.title} - Sắp ra mắt`"
+            class="group relative overflow-hidden rounded-3xl border border-gold-500/20 bg-gradient-to-br from-charcoal-950 to-charcoal-900 hover:border-gold-500/40 cursor-pointer hover:-translate-y-1 transition-all duration-400"
+            @click="activeLabItem = labItem.id"
+            :aria-label="`Mở ${labItem.title}`"
           >
             <div class="absolute -top-12 -right-12 w-40 h-40 rounded-full opacity-5 group-hover:opacity-10 transition-opacity" :class="labItem.gradientBg" />
             <div class="p-6 space-y-4 relative z-10">
@@ -999,18 +1060,27 @@
                 <div class="w-12 h-12 rounded-2xl flex items-center justify-center" :class="labItem.iconBg">
                   <Icon :name="labItem.icon" class="w-6 h-6" :class="labItem.iconColor" />
                 </div>
-                <span v-if="!labItem.active" class="text-3xs px-2 py-1 bg-charcoal-900 border border-charcoal-800 text-charcoal-500 rounded-full font-bold uppercase tracking-wider">Sắp ra mắt</span>
-                <span v-else class="text-3xs px-2 py-1 bg-green-500/10 border border-green-500/20 text-green-400 rounded-full font-bold uppercase tracking-wider">Hoạt động</span>
+                <span class="text-3xs px-2 py-1 bg-green-500/10 border border-green-500/20 text-green-400 rounded-full font-bold uppercase tracking-wider">Hoạt động</span>
               </div>
               <div>
                 <h4 class="font-heading font-bold text-ivory text-base group-hover:text-gold-300 transition-colors">{{ labItem.title }}</h4>
                 <p class="text-charcoal-400 text-xs mt-1 leading-relaxed">{{ labItem.desc }}</p>
               </div>
-              <div class="flex items-center gap-1 text-3xs font-bold" :class="labItem.active ? 'text-gold-400' : 'text-charcoal-400'">
-                {{ labItem.active ? 'Mở trải nghiệm' : 'Đang phát triển' }}
-                <Icon v-if="labItem.active" name="mdi:arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+              <div class="flex items-center gap-1 text-3xs font-bold text-gold-400">
+                Mở trải nghiệm
+                <Icon name="mdi:arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
               </div>
             </div>
+          </div>
+        </div>
+
+        <!-- Sắp ra mắt — gọn thành một dải nhỏ, không cạnh tranh sự chú ý với các tính năng đã hoạt động -->
+        <div v-if="comingSoonLabItems.length" class="flex items-center gap-3 flex-wrap bg-charcoal-950/40 border border-dashed border-charcoal-800 rounded-2xl px-5 py-4">
+          <span class="text-3xs font-bold uppercase tracking-wider text-charcoal-500 shrink-0">Sắp ra mắt</span>
+          <div class="w-px h-4 bg-charcoal-800 shrink-0" />
+          <div v-for="(labItem, labIdx) in comingSoonLabItems" :key="labIdx" class="flex items-center gap-1.5 text-2xs text-charcoal-400 font-semibold">
+            <Icon :name="labItem.icon" class="w-3.5 h-3.5 text-charcoal-500" />
+            {{ labItem.title }}
           </div>
         </div>
 
@@ -1031,7 +1101,7 @@
           </div>
         </div>
 
-        <!-- Active Lab: Before/After Slider -->
+        <!-- Active Lab: So Sánh Xưa/Nay -->
         <div v-if="activeLabItem === 'compare'" class="bg-charcoal-950 border border-charcoal-850 rounded-3xl p-6 md:p-8 space-y-6">
           <div class="flex items-center justify-between">
             <div>
@@ -1188,7 +1258,7 @@
                   <!-- Authentic Stamp -->
                   <div class="absolute top-8 right-8 w-20 h-20 rounded-full border-4 border-double border-red-600/15 flex flex-col items-center justify-center text-red-600/15 font-bold text-[7px] uppercase tracking-wider rotate-[15deg] pointer-events-none select-none">
                     <span class="leading-none mb-0.5">Hồ Sơ</span>
-                    <span class="leading-none mb-0.5 border-y border-red-600/10 py-0.5 px-1 font-extrabold text-[8px]">Di Sản Bù Đăng</span>
+                    <span class="leading-none mb-0.5 border-y border-red-600/10 py-0.5 px-1 font-extrabold text-[8px]">Di Sản Đồng Nai</span>
                     <span class="leading-none">Số Hóa</span>
                   </div>
 
@@ -1264,7 +1334,7 @@
                         <Icon name="mdi:close-circle" class="w-4 h-4" />
                       </button>
                       <span class="text-[9px] font-bold text-gold-400 uppercase">Trang {{ hl.page }}</span>
-                      <p class="text-2xs italic leading-relaxed text-charcoal-300 border-l border-gold-500/40 pl-2">"{{ hl.text }}"</p>
+                      <p class="text-xs italic leading-relaxed text-charcoal-300 border-l border-gold-500/40 pl-2">"{{ hl.text }}"</p>
                       <p v-if="hl.note" class="text-xs font-medium text-ivory">👉 {{ hl.note }}</p>
                     </div>
                     <div v-if="bookHighlights.length === 0" class="py-10 text-center text-charcoal-500 text-xs">
@@ -1275,7 +1345,7 @@
                 </div>
                 <div v-if="selectedText" class="p-3 rounded-xl bg-charcoal-950 border border-charcoal-850 space-y-3">
                   <span class="text-[9px] font-bold uppercase tracking-wider text-gold-400 block">Đang highlight</span>
-                  <p class="text-3xs italic line-clamp-2 text-charcoal-400">"{{ selectedText }}"</p>
+                  <p class="text-xs italic line-clamp-2 text-charcoal-300">"{{ selectedText }}"</p>
                   <input v-model="activeNoteInput" type="text" placeholder="Viết ghi chú ngắn..." class="w-full px-3 py-2 bg-charcoal-900 border border-charcoal-800 rounded-lg text-xs placeholder-charcoal-400 text-ivory focus:outline-none" @keydown.enter="saveActiveNote" />
                   <div class="flex justify-end gap-2 text-3xs">
                     <button class="px-2 py-1 text-charcoal-400 hover:text-ivory transition-colors" @click="selectedText = ''">Hủy</button>
@@ -1316,7 +1386,7 @@
                 <span class="text-gold-400 font-bold uppercase tracking-wider">{{ selectedImageItem.tag }}</span>
                 <span class="text-charcoal-450 flex items-center gap-1"><Icon name="mdi:map-marker" class="w-3.5 h-3.5 text-gold-500" />Thành Phố Đồng Nai</span>
               </div>
-              <h3 class="font-heading font-bold text-ivory text-xl leading-tight">{{ selectedImageItem.title }}</h3>
+              <h3 class="font-heading font-bold text-ivory text-xl leading-snug">{{ selectedImageItem.title }}</h3>
               <p class="text-charcoal-300 text-sm leading-relaxed text-justify border-t border-charcoal-850 pt-3 select-text">{{ selectedImageItem.story }}</p>
             </div>
             <div class="pt-6 flex justify-end">
@@ -1333,7 +1403,9 @@
 import { useStudySeo } from '~/composables/useMuseumSeo'
 import { useSwal } from '~/composables/useSwal'
 import { useQuizStore } from '~/stores/quiz'
+import { useCollectionsStore } from '~/stores/collections'
 import EmptyState from '~/components/study/EmptyState.vue'
+import { NuxtLink } from '#components'
 
 // Inject EducationalOrganization + LearningResource schema
 useStudySeo()
@@ -1342,6 +1414,7 @@ const route = useRoute()
 const { observeAll } = useScrollReveal()
 const swal = useSwal()
 const quizStore = useQuizStore()
+const collectionsStore = useCollectionsStore()
 
 // Refs for scroll navigation
 const stickyNavRef = ref<HTMLElement | null>(null)
@@ -1360,7 +1433,7 @@ let scrollHandler: () => void
 
 onMounted(() => {
   nextTick(() => observeAll())
-  if (route.query.tab && navItems.some(i => i.id === route.query.tab)) {
+  if (route.query.tab && navItems.value.some(i => i.id === route.query.tab)) {
     activeTab.value = route.query.tab as string
   }
   if (import.meta.client) {
@@ -1392,7 +1465,7 @@ onUnmounted(() => {
 })
 
 watch(() => route.query.tab, (newTab) => {
-  if (newTab && navItems.some(i => i.id === newTab)) {
+  if (newTab && navItems.value.some(i => i.id === newTab)) {
     activeTab.value = newTab as string
     scrollToContent()
   }
@@ -1459,8 +1532,8 @@ const difficultyFilters = [
 const lessonCatalog = ref([
   { id: 'chien-khu-d', title: 'Chiến Khu Đ - Căn Cứ Địa Cách Mạng Huyền Thoại', subject: 'Lịch sử địa phương', tldr: 'Hệ thống căn cứ địa cách mạng nằm sâu trong rừng nguyên sinh Thành Phố Đồng Nai, đóng vai trò quyết định trong kháng chiến chống Pháp và Mỹ.', coverImage: '/images/heritage/lich-su/chien-khu-d-md.webp', xpReward: 80, estimatedMinutes: 12, availableBlocks: ['Timeline', 'Flashcards', 'Quiz', 'Tự luận', 'Hotspot'], hasContent: true },
   { id: 'cong-chieng-stieng', title: 'Cồng Chiêng S\'tiêng - Tiếng Nói Của Đại Ngàn', subject: 'Văn hóa dân tộc', tldr: 'Di sản văn hóa phi vật thể UNESCO, cồng chiêng là tiếng nói tâm linh của đồng bào S\'tiêng Thành Phố Đồng Nai.', coverImage: '/images/heritage/van-hoa-phi-vat-the/cong-chieng-md.webp', xpReward: 75, estimatedMinutes: 10, availableBlocks: ['Flashcards', 'Quiz', 'Thuật ngữ', 'Gợi mở'], hasContent: true },
-  { id: 'soc-bom-bo', title: 'Sóc Bom Bo - Tiếng Chày Giã Gạo Kháng Chiến', subject: 'Lịch sử cách mạng', tldr: 'Nơi khởi nguồn bài ca bất hủ, ghi dấu sự đồng lòng kiên trung giã gạo thâu đêm nuôi quân của đồng bào S\'tiêng.', coverImage: '/images/heritage/lich-su/soc-bom-bo-md.webp', xpReward: 90, estimatedMinutes: 15, availableBlocks: ['Timeline', 'Quiz', 'Audio', 'Văn bản'], hasContent: false },
-  { id: 'trang-co-bu-lach', title: 'Danh Thắng Trảng Cỏ Bù Lạch - Kỳ Quan Thiên Nhiên', subject: 'Địa lý địa phương', tldr: 'Khám phá thung lũng trảng cỏ xanh mướt tự nhiên bao quanh hồ nước trong veo giữa lòng rừng già Thành Phố Đồng Nai.', coverImage: '/images/heritage/img-disanbudang/Trang-co-Bu-Lach.png', xpReward: 70, estimatedMinutes: 8, availableBlocks: ['Hotspot', 'Quiz', 'Gallery'], hasContent: false }
+  { id: 'soc-bom-bo', title: 'Sóc Bom Bo - Tiếng Chày Giã Gạo Kháng Chiến', subject: 'Lịch sử cách mạng', tldr: 'Nơi khởi nguồn bài ca bất hủ, ghi dấu sự đồng lòng kiên trung giã gạo thâu đêm nuôi quân của đồng bào S\'tiêng.', coverImage: '/images/heritage/lich-su/soc-bom-bo-md.webp', xpReward: 90, estimatedMinutes: 15, availableBlocks: ['Timeline', 'Flashcards', 'Quiz', 'Tự luận'], hasContent: true },
+  { id: 'trang-co-bu-lach', title: 'Danh Thắng Trảng Cỏ Bù Lạch - Kỳ Quan Thiên Nhiên', subject: 'Địa lý địa phương', tldr: 'Khám phá thung lũng trảng cỏ xanh mướt tự nhiên bao quanh hồ nước trong veo giữa lòng rừng già Thành Phố Đồng Nai.', coverImage: '/images/heritage/img-disanbudang/Trang-co-Bu-Lach.png', xpReward: 70, estimatedMinutes: 8, availableBlocks: ['Hotspot', 'Quiz', 'Gallery'], hasContent: true }
 ])
 
 // Real badges earned through quizzes (persisted by quizStore)
@@ -1472,21 +1545,21 @@ const userBadges = computed(() =>
   })),
 )
 
-const collections = ref([
-  { name: 'Tài liệu Ôn thi Địa phương', count: 3 },
-  { name: 'Văn hóa cổ truyền S\'tiêng', count: 5 }
-])
+const activeCollectionFilter = ref<string | null>(null)
+const activeCollectionName = computed(() =>
+  activeCollectionFilter.value ? (collectionsStore.getById(activeCollectionFilter.value)?.name ?? '') : '',
+)
 
 // 7 tabs cốt lõi — đã loại 'map' (trùng /map) và 'teacher' (trùng /contribute)
-const navItems = [
+const navItems = computed(() => [
   { id: 'lessons', label: 'Bài Học', icon: 'mdi:book-open-variant', badge: 'Mới' },
-  { id: 'research', label: 'Thư Viện', icon: 'mdi:library-outline', badge: '5' },
-  { id: 'lab', label: 'Heritage Lab', icon: 'mdi:flask-outline', badge: '✨' },
+  { id: 'research', label: 'Thư Viện', icon: 'mdi:library-outline', badge: String(resources.value.length) },
+  { id: 'lab', label: 'Trải Nghiệm Số', icon: 'mdi:flask-outline', badge: '✨' },
   { id: 'glossary', label: 'Từ Điển', icon: 'mdi:translate' },
   { id: 'media', label: 'Đa Phương Tiện', icon: 'mdi:image-multiple-outline' },
   { id: 'achievements', label: 'Thành Tích', icon: 'mdi:trophy-outline' },
   { id: 'ai', label: 'AI Trợ Lý', icon: 'mdi:robot' },
-]
+])
 
 // ──────────────────────────────────────────────
 // STATIC DATA: Dashboard, Hero, Gamification
@@ -1499,41 +1572,74 @@ const heroStats = computed(() => [
 ])
 
 const dashboardStats = computed(() => [
-  { value: String(resources.value.length), label: 'Nghiên cứu', icon: 'mdi:file-document-outline', iconBg: 'bg-gold-500/10', iconColor: 'text-gold-400', glowColor: 'bg-gold-400', trendBg: 'bg-gold-500/10 text-gold-400', trend: 'Số hóa' },
-  { value: String(lessonCatalog.value.length), label: 'Bài học', icon: 'mdi:school-outline', iconBg: 'bg-blue-500/10', iconColor: 'text-blue-400', glowColor: 'bg-blue-400', trendBg: 'bg-blue-500/10 text-blue-400', trend: 'Tương tác' },
-  { value: String(resources.value.reduce((sum, r) => sum + (r.downloadCount ?? 0), 0)), label: 'Lượt tải', icon: 'mdi:download-outline', iconBg: 'bg-green-500/10', iconColor: 'text-green-400', glowColor: 'bg-green-400', trendBg: 'bg-green-500/10 text-green-400', trend: 'Miễn phí' },
-  { value: String(mapLandmarks.value.length), label: 'Địa danh', icon: 'mdi:map-marker-outline', iconBg: 'bg-purple-500/10', iconColor: 'text-purple-400', glowColor: 'bg-purple-400', trendBg: 'bg-purple-500/10 text-purple-400', trend: 'Bản đồ' },
-  { value: String(glossary.value.length), label: 'Flashcard', icon: 'mdi:cards-outline', iconBg: 'bg-earth-500/10', iconColor: 'text-earth-400', glowColor: 'bg-earth-400', trendBg: 'bg-earth-500/10 text-earth-400', trend: 'S\'tiêng' },
-  { value: String(quizStore.badges.length), label: 'Huy hiệu', icon: 'mdi:trophy-outline', iconBg: 'bg-orange-500/10', iconColor: 'text-orange-400', glowColor: 'bg-orange-400', trendBg: 'bg-orange-500/10 text-orange-400', trend: 'Gamification' },
+  { value: String(resources.value.length), label: 'Nghiên cứu', icon: 'mdi:file-document-outline', iconBg: 'bg-gold-500/10', iconColor: 'text-gold-400', tab: 'research' },
+  { value: String(lessonCatalog.value.length), label: 'Bài học', icon: 'mdi:school-outline', iconBg: 'bg-blue-500/10', iconColor: 'text-blue-400', tab: 'lessons' },
+  { value: String(resources.value.reduce((sum, r) => sum + (r.downloadCount ?? 0), 0)), label: 'Lượt tải', icon: 'mdi:download-outline', iconBg: 'bg-green-500/10', iconColor: 'text-green-400', tab: 'research' },
+  { value: String(mapLandmarks.value.length), label: 'Địa danh', icon: 'mdi:map-marker-outline', iconBg: 'bg-purple-500/10', iconColor: 'text-purple-400', href: '/map' },
+  { value: String(glossary.value.length), label: 'Flashcard', icon: 'mdi:cards-outline', iconBg: 'bg-earth-500/10', iconColor: 'text-earth-400', tab: 'glossary' },
+  { value: String(quizStore.badges.length), label: 'Huy hiệu', icon: 'mdi:trophy-outline', iconBg: 'bg-orange-500/10', iconColor: 'text-orange-400', tab: 'achievements' },
 ])
+
+function goToDashboardStat(stat: { tab?: string; href?: string }) {
+  if (stat.href) {
+    navigateTo(stat.href)
+    return
+  }
+  if (stat.tab) {
+    activeTab.value = stat.tab
+    scrollToContent()
+  }
+}
+
+function goToLearningStep(step: { tab: string; action?: string }) {
+  if (step.action === 'quiz') {
+    const nextQuiz = quizStore.quizzes.find(q => !quizStore.userProgress.completedQuizzes.includes(q.id)) ?? quizStore.quizzes[0]
+    if (nextQuiz) {
+      quizStore.startQuiz(nextQuiz)
+      return
+    }
+  }
+  if (step.action === 'read') {
+    activeTab.value = step.tab
+    const unread = resources.value.find(r => !quizStore.userProgress.visitedHeritages.includes(r.id))
+    const target = unread ?? featuredResource.value ?? resources.value[0]
+    if (target) {
+      nextTick(() => openResource(target))
+      return
+    }
+  }
+  activeTab.value = step.tab
+  scrollToContent()
+}
 
 // "done" states derive from real persisted progress in quizStore
 const learningPath = computed(() => [
   { title: 'Khám phá', desc: 'Tìm hiểu tổng quan', icon: 'mdi:compass-outline', tab: 'research', xp: 20, done: quizStore.userProgress.visitedHeritages.length > 0 },
-  { title: 'Hiểu sâu', desc: 'Đọc toàn văn tài liệu', icon: 'mdi:book-open-variant', tab: 'research', xp: 40, done: quizStore.userProgress.visitedHeritages.length >= 3 },
+  { title: 'Hiểu sâu', desc: 'Đọc toàn văn tài liệu', icon: 'mdi:book-open-variant', tab: 'research', action: 'read', xp: 40, done: quizStore.userProgress.visitedHeritages.length >= 3 },
   { title: 'Nghiên cứu', desc: 'Phân tích học thuật', icon: 'mdi:magnify', tab: 'ai', xp: 60, done: false },
   { title: 'Từ điển S\'tiêng', desc: 'Học thuật ngữ bản địa', icon: 'mdi:translate', tab: 'glossary', xp: 80, done: false },
-  { title: 'Làm Quiz', desc: 'Kiểm tra hiểu biết', icon: 'mdi:help-circle-outline', tab: 'lessons', xp: 100, done: quizStore.userProgress.completedQuizzes.length > 0 },
+  { title: 'Làm Quiz', desc: 'Kiểm tra hiểu biết', icon: 'mdi:help-circle-outline', tab: 'lessons', action: 'quiz', xp: 100, done: quizStore.userProgress.completedQuizzes.length > 0 },
   { title: 'Nhận huy hiệu', desc: 'Chứng chỉ di sản', icon: 'mdi:trophy', tab: 'achievements', xp: 150, done: quizStore.userProgress.earnedBadges.length > 0 },
 ])
 
-const labFeatures = [
-  { label: 'Timeline tương tác', icon: 'mdi:timeline-clock' },
-  { label: 'Story Map', icon: 'mdi:map-legend' },
-  { label: 'Before/After', icon: 'mdi:compare' },
-  { label: 'Audio Guide', icon: 'mdi:headphones' },
-  { label: 'Oral History', icon: 'mdi:microphone' },
-  { label: 'Virtual Tour', icon: 'mdi:rotate-3d' }
-]
+const completedStepsCount = computed(() => learningPath.value.filter(s => s.done).length)
+const currentStepIndex = computed(() => {
+  const idx = learningPath.value.findIndex(s => !s.done)
+  return idx
+})
 
 const heritageLabItems = [
-  { id: 'timeline', title: 'Timeline Lịch Sử', desc: 'Hành trình thời gian từ thời kỳ tiền sử đến hiện đại qua các sự kiện quan trọng của Thành Phố Đồng Nai.', icon: 'mdi:timeline-clock', iconBg: 'bg-gold-500/10', iconColor: 'text-gold-400', gradientBg: 'bg-gold-400', active: true },
-  { id: 'storymap', title: 'Story Map', desc: 'Bản đồ câu chuyện tích hợp ảnh, văn bản và audio theo từng địa điểm di sản.', icon: 'mdi:map-legend', iconBg: 'bg-blue-500/10', iconColor: 'text-blue-400', gradientBg: 'bg-blue-400', active: false },
-  { id: 'compare', title: 'Before / After', desc: 'So sánh hình ảnh di sản xưa và nay — thấy sự thay đổi qua thời gian.', icon: 'mdi:compare', iconBg: 'bg-purple-500/10', iconColor: 'text-purple-400', gradientBg: 'bg-purple-400', active: true },
-  { id: 'audio', title: 'Oral History', desc: 'Lời kể của nhân chứng lịch sử — những câu chuyện sống động chưa được viết thành sách.', icon: 'mdi:microphone', iconBg: 'bg-orange-500/10', iconColor: 'text-orange-400', gradientBg: 'bg-orange-400', active: false },
-  { id: 'artifact', title: 'Artifact Viewer', desc: 'Xem hiện vật bảo tàng với chú thích học thuật và thông tin phân tích.', icon: 'mdi:museum', iconBg: 'bg-earth-500/10', iconColor: 'text-earth-400', gradientBg: 'bg-earth-400', active: true },
-  { id: 'tour', title: 'Virtual Tour', desc: 'Tour tham quan ảo 360° tại các địa điểm di tích lịch sử và danh thắng Thành Phố Đồng Nai.', icon: 'mdi:rotate-3d', iconBg: 'bg-green-500/10', iconColor: 'text-green-400', gradientBg: 'bg-green-400', active: false }
+  { id: 'timeline', title: 'Dòng Thời Gian Lịch Sử', desc: 'Hành trình thời gian từ thời kỳ tiền sử đến hiện đại qua các sự kiện quan trọng của Thành Phố Đồng Nai.', icon: 'mdi:timeline-clock', iconBg: 'bg-gold-500/10', iconColor: 'text-gold-400', gradientBg: 'bg-gold-400', active: true },
+  { id: 'storymap', title: 'Bản Đồ Câu Chuyện', desc: 'Bản đồ câu chuyện tích hợp ảnh, văn bản và audio theo từng địa điểm di sản.', icon: 'mdi:map-legend', iconBg: 'bg-blue-500/10', iconColor: 'text-blue-400', gradientBg: 'bg-blue-400', active: false },
+  { id: 'compare', title: 'So Sánh Xưa & Nay', desc: 'So sánh hình ảnh di sản xưa và nay — thấy sự thay đổi qua thời gian.', icon: 'mdi:compare', iconBg: 'bg-purple-500/10', iconColor: 'text-purple-400', gradientBg: 'bg-purple-400', active: true },
+  { id: 'audio', title: 'Lời Kể Nhân Chứng', desc: 'Lời kể của nhân chứng lịch sử — những câu chuyện sống động chưa được viết thành sách.', icon: 'mdi:microphone', iconBg: 'bg-orange-500/10', iconColor: 'text-orange-400', gradientBg: 'bg-orange-400', active: false },
+  { id: 'artifact', title: 'Xem Hiện Vật', desc: 'Xem hiện vật bảo tàng với chú thích học thuật và thông tin phân tích.', icon: 'mdi:museum', iconBg: 'bg-earth-500/10', iconColor: 'text-earth-400', gradientBg: 'bg-earth-400', active: true },
+  { id: 'tour', title: 'Tham Quan Ảo', desc: 'Tour tham quan ảo 360° tại các địa điểm di tích lịch sử và danh thắng Thành Phố Đồng Nai.', icon: 'mdi:rotate-3d', iconBg: 'bg-green-500/10', iconColor: 'text-green-400', gradientBg: 'bg-green-400', active: false }
 ]
+
+const activeLabItems = heritageLabItems.filter(i => i.active)
+const comingSoonLabItems = heritageLabItems.filter(i => !i.active)
+const labFeatures = activeLabItems.map(i => ({ label: i.title, icon: i.icon }))
 
 const historyTimeline = [
   { year: 'Thế kỷ 3-4', tag: 'Khảo cổ', tagBg: 'bg-earth-500/10 text-earth-400', title: 'Đàn đá tiền sử', desc: 'Những bộ đàn đá cổ đại nhất được phát hiện trong lòng đất đỏ bazan Thành Phố Đồng Nai, âm thanh từ thời tiền sử.' },
@@ -1704,7 +1810,9 @@ const filteredPapers = computed(() => {
   const diff = activeDifficultyFilter.value
   const diffMap: Record<string, number> = { easy: 1, medium: 2, hard: 3 }
   const featuredId = featuredResource.value?.id
+  const activeCollection = activeCollectionFilter.value ? collectionsStore.getById(activeCollectionFilter.value) : null
   return resources.value.filter(res => {
+    if (activeCollection) return activeCollection.resourceIds.includes(res.id)
     if (res.id === featuredId && type === 'all' && !q) return false
     const matchesType = type === 'all' || res.type === type
     const matchesDiff = diff === 'all' || (res.difficulty || 2) === diffMap[diff]
@@ -1753,6 +1861,9 @@ const imageStories = ref<ImageStory[]>([
   { title: 'Cồng Chiêng & Vũ Điệu Xoang', tag: 'Văn Hóa', image: '/images/heritage/van-hoa-phi-vat-the/cong-chieng-md.webp', story: 'Âm thanh cồng chiêng ngân vang kết nối buôn làng, là linh hồn sinh hoạt tâm linh và nghệ thuật biểu diễn của đồng bào dân tộc thiểu số Bù Đăng đã được UNESCO vinh danh.' }
 ])
 const selectedImageItem = ref<ImageStory | null>(null)
+function hideOnImageError(e: Event) {
+  (e.target as HTMLImageElement).style.display = 'none'
+}
 
 const mockVideos = [
   { title: 'Flycam Trảng Cỏ Bù Lạch Mùa Khô', cat: 'Thiên nhiên', duration: '3:22', thumb: '/images/heritage/danh-thang/bu-lach-lg.webp' },
@@ -1815,7 +1926,57 @@ function toggleBookmark(id: string) {
 
 function createNewCollection() {
   swal.fire({ title: 'Tạo bộ sưu tập học tập', input: 'text', inputPlaceholder: 'Nhập tên bộ sưu tập...', showCancelButton: true, confirmButtonText: 'Tạo thư mục', cancelButtonText: 'Hủy', confirmButtonColor: '#C7A664' }).then((result) => {
-    if (result.isConfirmed && result.value) { collections.value.push({ name: result.value, count: 0 }) }
+    if (result.isConfirmed && result.value) collectionsStore.createCollection(result.value)
+  })
+}
+
+function openCollection(col: { id: string }) {
+  activeCollectionFilter.value = col.id
+  activeTab.value = 'research'
+  scrollToContent()
+}
+
+function deleteCollectionPrompt(col: { id: string; name: string }) {
+  swal.fire({ title: `Xóa bộ sưu tập "${col.name}"?`, text: 'Các tài liệu bên trong sẽ không bị xóa, chỉ bộ sưu tập bị gỡ bỏ.', icon: 'warning', showCancelButton: true, confirmButtonText: 'Xóa', cancelButtonText: 'Hủy', confirmButtonColor: '#C7A664' }).then((result) => {
+    if (result.isConfirmed) {
+      collectionsStore.deleteCollection(col.id)
+      if (activeCollectionFilter.value === col.id) activeCollectionFilter.value = null
+    }
+  })
+}
+
+function addToCollectionPrompt(resourceId: string) {
+  const existing = collectionsStore.collections
+  const inputOptions: Record<string, string> = {}
+  existing.forEach((c) => { inputOptions[c.id] = c.name })
+
+  swal.fire({
+    title: 'Thêm vào bộ sưu tập',
+    input: 'select',
+    inputOptions,
+    inputPlaceholder: existing.length ? 'Chọn bộ sưu tập...' : 'Chưa có bộ sưu tập nào',
+    showCancelButton: true,
+    showDenyButton: true,
+    confirmButtonText: 'Thêm',
+    denyButtonText: '+ Tạo mới',
+    cancelButtonText: 'Hủy',
+    confirmButtonColor: '#C7A664',
+  }).then((result) => {
+    if (result.isConfirmed && result.value) {
+      collectionsStore.addResource(result.value, resourceId)
+      swal.fire({ title: 'Đã thêm vào bộ sưu tập!', icon: 'success', toast: true, position: 'top-end', showConfirmButton: false, timer: 1800, background: '#221D17', color: '#F5F1EA' })
+    } else if (result.isDenied) {
+      createCollectionAndAdd(resourceId)
+    }
+  })
+}
+
+function createCollectionAndAdd(resourceId: string) {
+  swal.fire({ title: 'Tạo bộ sưu tập học tập', input: 'text', inputPlaceholder: 'Nhập tên bộ sưu tập...', showCancelButton: true, confirmButtonText: 'Tạo & thêm', cancelButtonText: 'Hủy', confirmButtonColor: '#C7A664' }).then((result) => {
+    if (result.isConfirmed && result.value) {
+      const col = collectionsStore.createCollection(result.value)
+      collectionsStore.addResource(col.id, resourceId)
+    }
   })
 }
 
@@ -1850,6 +2011,7 @@ function openResource(res: SchoolResourceExtended) {
   selectedResource.value = res
   activeModalTab.value = 'overview'
   currentDocPage.value = 0
+  quizStore.markHeritageVisited(res.id)
 }
 
 function downloadFile(resource: SchoolResourceExtended) {

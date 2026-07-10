@@ -38,7 +38,7 @@
                 />
               </div>
               <div class="flex-1 min-w-0">
-                <h4 class="font-heading font-bold text-ivory text-lg leading-tight mb-1">{{ featuredHeritage.audio.title }}</h4>
+                <h4 class="font-heading font-bold text-ivory text-lg leading-snug mb-1">{{ featuredHeritage.audio.title }}</h4>
                 <p class="text-charcoal-400 text-sm">Một câu chuyện được kể bởi {{ featuredHeritage.audio.narrator }}</p>
               </div>
             </div>
@@ -109,7 +109,7 @@
         <div class="space-y-8">
           <div class="reveal">
             <span class="section-label text-gold-700">Hệ Thống Audio Guide</span>
-            <h2 class="text-display-sm text-charcoal-900 mb-5 leading-tight">
+            <h2 class="text-display-sm text-charcoal-900 mb-5 leading-snug">
               Nghe Kể Chuyện<br/>
               <span class="text-gradient-gold">Di Sản Địa Phương</span>
             </h2>

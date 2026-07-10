@@ -245,7 +245,7 @@
               <p class="eyebrow text-gold-400 mb-2">
                 {{ getCategoryLabel(h.category) }}<span v-if="h.year"> · {{ h.year }}</span>
               </p>
-              <h3 class="font-heading font-bold text-ivory text-2xl sm:text-3xl leading-tight mb-1.5 group-hover:text-gold-200 transition-colors">
+              <h3 class="font-heading font-bold text-ivory text-2xl sm:text-3xl leading-snug mb-1.5 group-hover:text-gold-200 transition-colors">
                 {{ h.title }}
               </h3>
               <p v-if="h.subtitle" class="text-ivory/60 text-sm italic">{{ h.subtitle }}</p>
@@ -377,7 +377,7 @@
                 <Icon name="mdi:account" class="w-4 h-4 text-gold-400/70" />
               </div>
               <div class="min-w-0">
-                <p class="text-ivory text-xs font-semibold truncate leading-tight">{{ post.author.name }}</p>
+                <p class="text-ivory text-xs font-semibold truncate leading-snug">{{ post.author.name }}</p>
                 <p class="text-charcoal-500 text-[10px] truncate">
                   {{ post.author.role }}{{ post.author.grade ? ` · Lớp ${post.author.grade}` : '' }}
                 </p>
@@ -435,7 +435,7 @@ useHead({
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
-        name: 'Thư Viện Di Sản Bù Đăng',
+        name: 'Thư Viện Di Sản Đồng Nai',
         url: 'https://disanbudang.com/explore/',
         description: 'Danh sách toàn bộ di sản văn hóa, lịch sử và thiên nhiên Thành Phố Đồng Nai đã được số hóa.',
         mainEntity: {

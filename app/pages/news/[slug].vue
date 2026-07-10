@@ -13,7 +13,7 @@
             <BaseBadge :variant="(getCategoryVariant(article.category) as any)" class="mb-4">
               {{ getCategoryLabel(article.category) }}
             </BaseBadge>
-            <h1 class="font-heading font-bold text-ivory text-3xl md:text-4xl lg:text-5xl leading-tight mb-4">
+            <h1 class="font-heading font-bold text-ivory text-3xl md:text-4xl lg:text-5xl leading-snug mb-4">
               {{ article.title }}
             </h1>
             <p v-if="article.subtitle" class="font-accent italic text-gold-300 text-lg md:text-xl mb-6">
@@ -23,7 +23,7 @@
             <div class="flex items-center gap-4 text-xs text-charcoal-350">
               <span class="flex items-center gap-1">
                 <Icon name="mdi:account-outline" class="w-4 h-4 text-gold-450" />
-                {{ article.author || 'Di Sản Bù Đăng' }}
+                {{ article.author || 'Di Sản Đồng Nai' }}
               </span>
               <span>•</span>
               <span class="flex items-center gap-1">
