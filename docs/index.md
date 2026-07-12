@@ -36,7 +36,10 @@ Nơi lưu trữ các kế hoạch triển khai đã chốt hoặc đang thực h
 ### 4. Báo cáo (Reports)
 - [Báo Cáo Nghiên Cứu Dự Án](./BAO_CAO_DU_AN.md): Bản báo cáo nghiên cứu dự án chi tiết, chính thức và chuẩn xác về mặt công nghệ và tính năng.
 
-### 5. Hướng dẫn & Tài liệu phụ trợ (References)
+### 5. Nghiên cứu & Quyết định (Research)
+- [Repo visibility khi tích hợp backend (2026-07-12)](./research/2026-07-12-repo-visibility-akithink.md): Decision record — giữ repo public kèm điều kiện hardening bắt buộc trước khi ship endpoint backend (giai đoạn 2).
+
+### 6. Hướng dẫn & Tài liệu phụ trợ (References)
 - [Kịch Bản Thu Âm Audio Guide](./ref/audio-recording-guide.md): Hướng dẫn thuyết minh & kịch bản thu âm giọng đọc thực tế cho các điểm di sản (thay thế giọng AI hiện tại).
 
 ---
