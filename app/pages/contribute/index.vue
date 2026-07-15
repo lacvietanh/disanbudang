@@ -10,7 +10,7 @@
       <div class="absolute inset-0 bg-gradient-to-r from-charcoal-950 via-charcoal-900/60 to-transparent" />
       <div class="container-heritage relative z-10">
         <span class="section-label text-gold-400">Kiến Tạo Di Sản Số · Thành Phố Đồng Nai</span>
-        <h1 class="font-heading font-bold text-ivory text-5xl lg:text-6xl leading-[1.25] mb-5">
+        <h1 class="font-heading font-bold text-ivory text-5xl lg:text-6xl leading-[1.35] md:leading-[1.3] lg:leading-[1.25] mb-6 md:mb-8 text-balance tracking-[-0.03em]">
           Chung Tay Kiến Tạo<br/> <span class="text-gradient-gold">Bản Đồ Di Sản</span>
         </h1>
         <p class="text-charcoal-300 text-base lg:text-lg max-w-3xl leading-relaxed">
@@ -166,18 +166,7 @@
                   </select>
                 </div>
 
-                <div>
-                  <label class="block text-charcoal-400 text-xs font-semibold uppercase tracking-wider mb-2" for="files">Tệp tư liệu đính kèm</label>
-                  <input
-                    id="files"
-                    ref="fileInput"
-                    type="file"
-                    multiple
-                    accept="image/*,video/*,audio/*,.pdf,.doc,.docx"
-                    class="block w-full text-sm text-charcoal-300 file:mr-4 file:rounded-lg file:border-0 file:bg-gold-500 file:px-4 file:py-2.5 file:text-sm file:font-semibold file:text-charcoal-900 hover:file:bg-gold-400"
-                  />
-                  <p class="mt-2 text-xs text-charcoal-500">Có thể gửi ảnh, video, audio, PDF hoặc tài liệu văn bản.</p>
-                </div>
+
 
                 <!-- Trust verification checkbox list -->
                 <div class="bg-charcoal-900 border border-charcoal-800 rounded-2xl p-5 space-y-3">
@@ -198,19 +187,24 @@
 
               <div class="pt-6 flex justify-between">
                 <button type="button" class="btn-ghost text-xs" @click="currentStep = 2">Quay lại</button>
-                <button type="submit" class="btn-primary">
-                  <Icon name="mdi:email-edit-outline" class="w-4 h-4" />
-                  Soạn Email Hiến Tặng
+                <button type="submit" class="btn-primary" :disabled="isPending || !turnstileToken">
+                  <Icon v-if="isPending" name="mdi:loading" class="w-4 h-4 animate-spin" />
+                  <Icon v-else name="mdi:send-check-outline" class="w-4 h-4" />
+                  {{ isPending ? 'Đang Gửi...' : 'Gửi Đóng Góp' }}
                 </button>
               </div>
+
+              <!-- Cloudflare Turnstile widget (renders when step 3 is active) -->
+              <div id="turnstile-container" class="flex justify-center mt-4"></div>
+              <p v-if="!turnstileToken" class="text-center text-charcoal-500 text-xs mt-1">Vui lòng hoàn thành xác minh bên trên để gửi.</p>
 
               <!-- Success Alert -->
               <Transition name="fade-in-up">
                 <div v-if="isSubmitted" class="p-4 rounded-xl bg-green-950/30 border border-green-800/40 flex items-center gap-3.5 mt-4">
                   <Icon name="mdi:check-circle" class="w-6 h-6 text-green-500 shrink-0 animate-bounce" />
                   <div>
-                    <p class="text-green-400 font-semibold text-sm">Trình soạn email đã mở với hồ sơ của bạn!</p>
-                    <p class="text-green-500/80 text-xs mt-0.5">Đính kèm tệp tư liệu (nếu có) rồi nhấn Gửi trong email để hoàn tất việc hiến tặng.</p>
+                    <p class="text-green-400 font-semibold text-sm">Cảm ơn bạn!</p>
+                    <p class="text-green-500/80 text-xs mt-0.5">Đóng góp của bạn đã được ghi nhận vào hệ thống và đang chờ duyệt.</p>
                   </div>
                 </div>
               </Transition>
@@ -265,11 +259,126 @@
         </div>
       </div>
     </div>
+
+    <!-- ===== Approved Contributions Section ===== -->
+    <section class="border-t border-charcoal-850 py-20">
+      <div class="container-heritage">
+        <div class="text-center mb-12">
+          <span class="section-label text-gold-400">Ký Ức Cộng Đồng</span>
+          <h2 class="font-heading font-bold text-ivory text-3xl lg:text-4xl leading-tight">
+            Những Tư Liệu Đã Được Lưu Giữ
+          </h2>
+          <p class="text-charcoal-400 mt-3 max-w-xl mx-auto text-sm leading-relaxed">
+            Các đóng góp đã được kiểm duyệt và chính thức trở thành một phần của kho di sản số Thành Phố Đồng Nai.
+          </p>
+        </div>
+
+        <!-- Loading skeleton -->
+        <div v-if="approvedPending" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div
+            v-for="n in 6"
+            :key="n"
+            class="bg-charcoal-950/40 border border-charcoal-850 rounded-2xl p-6 space-y-3 animate-pulse"
+          >
+            <div class="w-20 h-5 rounded-full bg-charcoal-800" />
+            <div class="w-full h-4 rounded bg-charcoal-800" />
+            <div class="w-3/4 h-4 rounded bg-charcoal-800" />
+            <div class="space-y-2 mt-4">
+              <div class="w-full h-3 rounded bg-charcoal-800" />
+              <div class="w-full h-3 rounded bg-charcoal-800" />
+              <div class="w-2/3 h-3 rounded bg-charcoal-800" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty state -->
+        <div
+          v-else-if="!approvedPending && (!approvedData?.contributions || approvedData.contributions.length === 0)"
+          class="text-center py-16"
+        >
+          <div class="w-16 h-16 rounded-2xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center mx-auto mb-4">
+            <Icon name="mdi:archive-outline" class="w-8 h-8 text-gold-400" />
+          </div>
+          <p class="text-charcoal-400 text-sm">Các đóng góp được duyệt sẽ xuất hiện tại đây.</p>
+        </div>
+
+        <!-- Contribution cards -->
+        <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <article
+            v-for="item in approvedData!.contributions"
+            :key="(item as ApprovedContribution).id"
+            class="group bg-charcoal-950/40 border border-charcoal-850 rounded-2xl p-6 flex flex-col gap-4 hover:border-gold-500/30 transition-all duration-300"
+          >
+            <div class="flex items-start justify-between gap-3">
+              <span
+                class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider border"
+                :class="typeStyle((item as ApprovedContribution).type)"
+              >
+                <Icon :name="typeIcon((item as ApprovedContribution).type)" class="w-3 h-3" />
+                {{ typeLabel((item as ApprovedContribution).type) }}
+              </span>
+              <time
+                class="text-charcoal-500 text-[10px] shrink-0 mt-0.5"
+                :datetime="(item as ApprovedContribution).created_at"
+              >
+                {{ formatDate((item as ApprovedContribution).created_at) }}
+              </time>
+            </div>
+
+            <h3 class="font-heading font-bold text-ivory text-base leading-snug group-hover:text-gold-300 transition-colors duration-200 line-clamp-2">
+              {{ (item as ApprovedContribution).title }}
+            </h3>
+
+            <p class="text-charcoal-400 text-xs leading-relaxed line-clamp-4 flex-1">
+              {{ (item as ApprovedContribution).excerpt }}
+            </p>
+
+            <div class="flex items-center gap-2 pt-2 border-t border-charcoal-850">
+              <div class="w-6 h-6 rounded-full bg-gold-500/15 border border-gold-500/25 flex items-center justify-center shrink-0">
+                <Icon name="mdi:account" class="w-3.5 h-3.5 text-gold-400" />
+              </div>
+              <span class="text-charcoal-400 text-xs truncate">
+                {{ (item as ApprovedContribution).author_name }}
+                <span class="text-charcoal-600 mx-1">·</span>
+                {{ roleLabel((item as ApprovedContribution).author_role) }}
+              </span>
+            </div>
+          </article>
+        </div>
+
+        <!-- "Xem thêm" footer -->
+        <div
+          v-if="approvedData && approvedData.total > approvedData.contributions.length"
+          class="text-center mt-10"
+        >
+          <p class="text-charcoal-500 text-xs">
+            Đang hiển thị {{ approvedData.contributions.length }}
+            trong tổng số {{ approvedData.total }} tư liệu được lưu giữ.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Project Rating ===== -->
+    <ProjectRating />
+
   </div>
 </template>
 
 <script setup lang="ts">
 import { HERITAGES } from '~/data/heritages'
+import { useMuseumSeo } from '~/composables/useMuseumSeo'
+
+interface ApprovedContribution {
+  id: string
+  type: string
+  title: string
+  author_name: string
+  author_role: string
+  heritage_id: string | null
+  created_at: string
+  excerpt: string
+}
 
 definePageMeta({ layout: 'default' })
 useMuseumSeo({
@@ -277,13 +386,71 @@ useMuseumSeo({
   description: 'Đóng góp công sức của bạn vào cổng bảo tồn di sản số. Gửi tranh vẽ, hình ảnh, văn bản tư liệu đã qua kiểm chứng.'
 })
 
+// ── Approved contributions (public, no auth) ────────────────────────────────
+const { data: approvedData, pending: approvedPending } = await useFetch<{
+  ok: boolean
+  contributions: ApprovedContribution[]
+  total: number
+}>('/api/contributions/approved', { default: () => ({ ok: false, contributions: [], total: 0 }) })
+
+// ── Type/role display helpers ────────────────────────────────────────────────
+const TYPE_META: Record<string, { label: string; icon: string; style: string }> = {
+  story:    { label: 'Câu Chuyện',   icon: 'mdi:book-open-variant', style: 'bg-blue-950/40 text-blue-300 border-blue-800/50' },
+  photo:    { label: 'Ảnh / Video',  icon: 'mdi:camera',            style: 'bg-purple-950/40 text-purple-300 border-purple-800/50' },
+  document: { label: 'Hiện Vật',     icon: 'mdi:file-document',     style: 'bg-amber-950/40 text-amber-300 border-amber-800/50' },
+  memory:   { label: 'Ký Ức',        icon: 'mdi:heart',             style: 'bg-rose-950/40 text-rose-300 border-rose-800/50' },
+  artwork:  { label: 'Tranh Vẽ',     icon: 'mdi:palette',           style: 'bg-emerald-950/40 text-emerald-300 border-emerald-800/50' },
+  research: { label: 'Khảo Cứu',     icon: 'mdi:magnify',           style: 'bg-gold-950/40 text-gold-300 border-gold-800/50' },
+}
+const ROLE_LABELS: Record<string, string> = {
+  resident: 'Người dân bản địa',
+  student:  'Học sinh / Sinh viên',
+  teacher:  'Giáo viên / Học giả',
+  visitor:  'Du khách',
+  other:    'Khác',
+}
+function typeLabel(t: string)  { return TYPE_META[t]?.label ?? t }
+function typeIcon(t: string)   { return TYPE_META[t]?.icon  ?? 'mdi:tag' }
+function typeStyle(t: string)  { return TYPE_META[t]?.style ?? 'bg-charcoal-900 text-charcoal-400 border-charcoal-700' }
+function roleLabel(r: string)  { return ROLE_LABELS[r] ?? r }
+function formatDate(iso: string) {
+  try {
+    return new Date(iso).toLocaleDateString('vi-VN', { year: 'numeric', month: 'long', day: 'numeric' })
+  } catch { return iso }
+}
+
+
+// Load Turnstile script (only on this page, only once)
+function loadTurnstileScript() {
+  if (!import.meta.client) return
+  if (window.turnstile) return // already available
+  if (document.querySelector('script[src*="turnstile"]')) return // already loading
+  const script = document.createElement('script')
+  script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'
+  script.defer = true
+  document.head.appendChild(script)
+}
+
+// Turnstile
+const config = useRuntimeConfig()
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (container: string | HTMLElement, options: Record<string, unknown>) => string
+      reset: (widgetId: string) => void
+      remove: (widgetId: string) => void
+    }
+  }
+}
+const turnstileToken = ref('')
+const turnstileWidgetId = ref<string | null>(null)
+
 const heritages = HERITAGES
-const CONTRIBUTE_EMAIL = 'nguyenxuankiet294@gmail.com'
 const selectedType = ref('story')
 const currentStep = ref(1)
 const isSubmitted = ref(false)
+const isPending = ref(false)
 const submitError = ref('')
-const fileInput = ref<HTMLInputElement | null>(null)
 
 // Checkboxes and inline errors
 const acceptQuality = ref(false)
@@ -336,7 +503,7 @@ function handleNextStep() {
   }
 }
 
-function handleSubmit() {
+async function handleSubmit() {
   if (!form.name.trim()) {
     currentStep.value = 2
     stepErrors.name = 'Vui lòng nhập họ và tên của bạn'
@@ -357,23 +524,41 @@ function handleSubmit() {
 
   isSubmitted.value = false
   submitError.value = ''
+  isPending.value = true
 
-  const typeLabel = contributionTypes.find((t) => t.id === selectedType.value)?.label ?? selectedType.value
-  const hasFiles = (fileInput.value?.files?.length ?? 0) > 0
-  const subject = `[Hiến tặng tư liệu] ${form.title}`
-  const bodyLines = [
-    `Loại tư liệu: ${typeLabel}`,
-    `Họ tên: ${form.name}`,
-    `Vai trò: ${form.role}`,
-    form.heritageId ? `Di sản liên quan: ${form.heritageId}` : '',
-    '',
-    form.content,
-    '',
-    hasFiles ? '(Vui lòng đính kèm các tệp tư liệu của bạn vào email này trước khi gửi.)' : '',
-  ].filter(Boolean)
-  window.location.href = `mailto:${CONTRIBUTE_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`
+  try {
+    await $fetch('/api/contribute', {
+      method: 'POST',
+      body: {
+        type: selectedType.value,          // send the ID, not the label
+        authorName: form.name,
+        authorRole: form.role,
+        title: form.title,
+        content: form.content,
+        heritageId: form.heritageId || null,
+        turnstileToken: turnstileToken.value || undefined,
+      }
+    })
 
-  isSubmitted.value = true
+    isSubmitted.value = true
+    form.title = ''
+    form.content = ''
+    // Reset Turnstile after successful submit
+    if (window.turnstile && turnstileWidgetId.value) {
+      window.turnstile.reset(turnstileWidgetId.value)
+      turnstileToken.value = ''
+    }
+  } catch (err: unknown) {
+    const e = err as { data?: { statusMessage?: string } }
+    submitError.value = e.data?.statusMessage || 'Đã có lỗi xảy ra. Vui lòng thử lại sau.'
+    // Reset Turnstile on error so user can retry
+    if (window.turnstile && turnstileWidgetId.value) {
+      window.turnstile.reset(turnstileWidgetId.value)
+      turnstileToken.value = ''
+    }
+  } finally {
+    isPending.value = false
+  }
 }
 
 // Caching form inputs in sessionStorage
@@ -391,19 +576,40 @@ watch(
 )
 
 onMounted(() => {
+  loadTurnstileScript()
   if (import.meta.client) {
     const draftJson = sessionStorage.getItem('disanbudang_contribute_draft')
     if (draftJson) {
       try {
         const draft = JSON.parse(draftJson)
         if (draft.selectedType) selectedType.value = draft.selectedType
-        if (draft.form) {
-          Object.assign(form, draft.form)
-        }
+        if (draft.form) Object.assign(form, draft.form)
       } catch (e) {
         console.error('Failed to parse draft form data', e)
       }
     }
+  }
+})
+
+// Init Turnstile widget when user reaches step 3
+watch(() => currentStep.value, (step) => {
+  if (step !== 3 || !import.meta.client) return
+  nextTick(() => {
+    if (!window.turnstile || turnstileWidgetId.value) return
+    turnstileWidgetId.value = window.turnstile.render('#turnstile-container', {
+      sitekey: config.public.turnstileSiteKey || '1x00000000000000000000AA', // test key fallback
+      callback: (token: string) => { turnstileToken.value = token },
+      'expired-callback': () => { turnstileToken.value = '' },
+      'error-callback': () => { turnstileToken.value = '' },
+      theme: 'dark',
+    })
+  })
+})
+
+onUnmounted(() => {
+  if (import.meta.client && window.turnstile && turnstileWidgetId.value) {
+    window.turnstile.remove(turnstileWidgetId.value)
+    turnstileWidgetId.value = null
   }
 })
 </script>

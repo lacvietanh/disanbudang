@@ -21,7 +21,7 @@
       <div class="relative z-10 container-heritage pb-12">
         <div class="max-w-3xl">
           <BaseBadge variant="gold" class="mb-4">{{ typeLabels[post.type] }}</BaseBadge>
-          <h1 class="font-heading font-bold text-ivory text-3xl md:text-4xl lg:text-5xl leading-snug mb-5 text-shadow-hero">
+          <h1 class="font-heading font-bold text-ivory text-3xl md:text-4xl lg:text-5xl leading-[1.35] md:leading-[1.3] lg:leading-[1.25] mb-6 md:mb-8 text-shadow-hero text-balance tracking-[-0.03em]">
             {{ post.title }}
           </h1>
 

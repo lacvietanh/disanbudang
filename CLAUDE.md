@@ -55,6 +55,17 @@ implementation is obscure, it is not shippable here.
 - **Security**: `nuxt-security` — CSP img-src whitelist (`images.unsplash.com`, `*.tile.openstreetmap.org`, `*.basemaps.cartocdn.com`), rate limiter 150 tokens/hour. Xem thêm mục 0 (public-read rule) khi thêm backend mới.
 - **Docs**: Mọi doc feature/arch/plan mới phải cập nhật `docs/index.md`. Xem `docs/PROJECT_MASTER.md` mục 9 cho quy tắc phát triển đầy đủ (code, commit, docs, content).
 
+### 3. Backend Architecture Rules (BINDING)
+- **SPA routes**: `/admin/**` và `/me/**` là `ssr: false` (routeRules). Phải dùng `layouts/admin.vue` riêng cho admin — không import AppTopNav/AppFooter/Breadcrumb vào admin layout.
+- **Không dùng `firebase-admin`**: Verify Firebase ID token phía server bằng cách fetch GCP public keys và dùng `crypto.subtle` (RS256). Xem `server/utils/auth.ts`.
+- **Không dùng KV**: Chỉ D1 cho toàn bộ persistence. KV tăng complexity không cần thiết ở quy mô này.
+- **Admin email**: `nguyenxuankiet294@gmail.com` — hardcoded trong `server/utils/auth.ts` (BE) và `runtimeConfig.public.adminEmail` (FE). FE chỉ dùng để hiển thị nút admin trong `/me`.
+- **Client guard**: Mọi write endpoint public phải qua `requireClient()` (Origin check + Cloudflare Turnstile). Xem `server/utils/turnstile.ts`.
+- **Mọi admin API**: Phải gọi `requireAdmin(event)` từ `server/utils/auth.ts` trước bất kỳ thao tác nào.
+- **Visitor tracking**: Upsert D1 `visitor_logs` theo `(ip, path)` — gọi từ `default.vue` layout qua `useVisitorTrack()`.
+- **Auth composable boundary**: Mọi Firebase Auth interaction phải qua `useAuth()` — không import Firebase SDK trực tiếp trong page/layout.
+
+
 ### 3. Vibe / Styling
 - **Vibe**: Dark mode mặc định, màu chủ đạo `#e18c1b` (amber, cảm hứng thổ cẩm S'tiêng). Typography: Playfair Display (tiêu đề), Inter (body), Cormorant Garamond (quote/caption). Animation qua GSAP (hero, scroll-trigger) + VueUse Motion (`v-motion`, micro-animation component-level). Mobile-first, tối ưu cho bản đồ và quiz trên điện thoại.
 - **Ngôn ngữ nội dung**: Tiếng Việt. Thuật ngữ dân tộc nhất quán: **S'Tiêng**, **M'Nông** (xem `docs/PROJECT_MASTER.md` mục 9.5 cho quy tắc đặt tên brand/địa danh đầy đủ).

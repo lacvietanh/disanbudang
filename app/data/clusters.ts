@@ -12,7 +12,7 @@ export const CLUSTERS: HeritageCluster_Meta[] = [
     id: 'bom-bo',
     label: 'Sóc Bom Bo',
     description: 'Khu bảo tồn văn hóa S\'tiêng — cồng chiêng, nhà dài, huyền thoại nhịp chày giã gạo.',
-    icon: 'mdi:drum',
+    icon: 'mdi:music-circle-outline',
     color: '#D4952B',
   },
   {

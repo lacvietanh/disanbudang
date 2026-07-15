@@ -80,23 +80,23 @@
     /* Vietnamese diacritics (breves, circumflexes, horns, tone marks) need
        horizontal room — negative tracking pushes marks into neighboring
        glyphs and reads as "dính chữ" (letters sticking together). */
-    letter-spacing: -0.005em;
+    letter-spacing: 0em;
   }
 
   h1 {
-    @apply text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.25];
+    @apply text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.38];
   }
 
   h2 {
-    @apply text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.25];
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.38];
   }
 
   h3 {
-    @apply text-2xl md:text-3xl font-semibold leading-[1.3];
+    @apply text-2xl md:text-3xl font-semibold leading-[1.38];
   }
 
   h4 {
-    @apply text-xl md:text-2xl font-semibold leading-[1.3];
+    @apply text-xl md:text-2xl font-semibold leading-[1.38];
   }
 
   h5 {
@@ -175,15 +175,15 @@
 
   /* ——— Typography ——— */
   .text-display {
-    @apply font-heading font-bold leading-[1.22];
+    @apply font-heading font-bold leading-[1.35];
     font-size: clamp(2.5rem, 6vw, 5rem);
-    letter-spacing: -0.008em;
+    letter-spacing: 0em;
   }
 
   .text-display-sm {
-    @apply font-heading font-bold leading-[1.22];
+    @apply font-heading font-bold leading-[1.35];
     font-size: clamp(1.8rem, 4vw, 3.5rem);
-    letter-spacing: -0.008em;
+    letter-spacing: 0em;
   }
 
   .text-cinematic {
@@ -192,8 +192,8 @@
   }
 
   .eyebrow {
-    @apply text-xs uppercase tracking-widest font-body font-semibold;
-    letter-spacing: 0.2em;
+    @apply text-xs uppercase font-body font-semibold;
+    letter-spacing: 0.12em; /* reduced from 0.2em — prevents diacritics collision in Vietnamese */
   }
 
   .drop-cap::first-letter {
@@ -398,7 +398,7 @@
 
   /* ——— Section Headings ——— */
   .section-label {
-    @apply eyebrow mb-3 block;
+    @apply eyebrow mb-5 block;
     color: #8C723F;
   }
 

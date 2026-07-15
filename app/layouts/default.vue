@@ -25,4 +25,9 @@ watch(
   () => route.path,
   () => nextTick(() => observeAll()),
 )
+
+// Visitor tracking — client-only, fire-and-forget
+onMounted(() => {
+  useVisitorTrack()
+})
 </script>

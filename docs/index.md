@@ -27,6 +27,7 @@ Mô tả về các tính năng nghiệp vụ, logic và các hệ thống cốt 
 ### 2. Kiến trúc (Architecture)
 Mô tả các quyết định kỹ thuật, stack công nghệ, quản lý trạng thái và cấu trúc mã nguồn.
 - [Tech Stack Overview](./arch/tech-stack.md): Tổng quan về Nuxt 4, Pinia, và các quyết định kiến trúc khác.
+- [**Backend — Vận Hành & Tìm Hiểu**](./arch/backend-operations.md): Luồng request đầy đủ (contribute, admin review, visitor tracking), cách đọc D1 bằng wrangler CLI, mô hình bảo mật, schema bảng, checklist setup production.
 
 ### 3. Kế hoạch (Plans)
 Nơi lưu trữ các kế hoạch triển khai đã chốt hoặc đang thực hiện.

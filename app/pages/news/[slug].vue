@@ -13,7 +13,7 @@
             <BaseBadge :variant="(getCategoryVariant(article.category) as any)" class="mb-4">
               {{ getCategoryLabel(article.category) }}
             </BaseBadge>
-            <h1 class="font-heading font-bold text-ivory text-3xl md:text-4xl lg:text-5xl leading-snug mb-4">
+            <h1 class="font-heading font-bold text-ivory text-3xl md:text-4xl lg:text-5xl leading-[1.35] md:leading-[1.3] lg:leading-[1.25] mb-6 md:mb-8 text-balance tracking-[-0.03em]">
               {{ article.title }}
             </h1>
             <p v-if="article.subtitle" class="font-accent italic text-gold-300 text-lg md:text-xl mb-6">

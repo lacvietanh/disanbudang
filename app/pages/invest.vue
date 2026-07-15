@@ -20,7 +20,7 @@
       <div class="container-heritage relative z-10 py-24 lg:py-32">
         <div class="max-w-3xl">
           <span class="eyebrow text-gold-400 mb-4 block">CƠ HỘI PHÁT TRIỂN</span>
-          <h1 class="font-heading font-bold text-ivory text-5xl lg:text-6xl leading-[1.28] mb-6 text-shadow-hero">
+          <h1 class="font-heading font-bold text-ivory text-5xl lg:text-6xl leading-[1.35] md:leading-[1.3] lg:leading-[1.25] mb-6 md:mb-8 text-shadow-hero text-balance tracking-[-0.03em]">
             Đầu Tư Vùng<br/>
             <span class="text-gradient-gold">Cao Nguyên Đồng Nai</span>
           </h1>

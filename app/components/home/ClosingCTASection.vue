@@ -31,7 +31,7 @@
               <span class="w-8 h-px bg-gold-400" />
               <span class="text-gold-400 text-[10px] uppercase tracking-[0.3em] font-bold">Bắt Đầu Hành Trình</span>
             </div>
-            <h2 class="font-heading font-bold text-ivory text-4xl lg:text-5xl xl:text-6xl leading-[1.28] mb-6">
+            <h2 class="font-heading font-bold text-ivory text-4xl lg:text-5xl xl:text-6xl leading-[1.38] mb-6">
               Khám Phá<br/>
               <span class="text-gradient-gold">Di Sản Số</span>
             </h2>

@@ -4,7 +4,7 @@
 
 ## Bối cảnh
 
-- Repo `disanbudang` (public tại `github.com/lacvietanh/disanbudang`) đang chuyển từ giai đoạn 1 (frontend thuần, Nuxt + Cloudflare Pages) sang giai đoạn 2: tích hợp backend **cùng repo** (Nitro server routes / Pages Functions).
+- Repo `disanbudang` (public tại `github.com/xk294/disanbudang`) đang chuyển từ giai đoạn 1 (frontend thuần, Nuxt + Cloudflare Pages) sang giai đoạn 2: tích hợp backend **cùng repo** (Nitro server routes / Pages Functions).
 - Phạm vi backend dự kiến: auth/tài khoản người dùng, ghi dữ liệu người dùng (D1/KV), proxy AI/API trả phí — và mở rộng dần.
 - Cuộc thi còn **1–3 tháng** đến lúc chấm. Public không phải yêu cầu cuộc thi — là lựa chọn chủ động để khẳng định chất lượng code và tạo hiệu ứng lan truyền.
 - Secrets đã quản lý chuẩn: env var ở Cloudflare Pages + GitHub Secrets, không nằm trong repo.

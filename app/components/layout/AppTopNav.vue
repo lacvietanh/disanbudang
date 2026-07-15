@@ -1,7 +1,8 @@
 <template>
   <header
-    class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-[env(safe-area-inset-top,0px)]"
+    class="fixed top-0 left-0 right-0 transition-all duration-500 pt-[env(safe-area-inset-top,0px)]"
     :class="[
+      isSearchOpen ? 'z-[90]' : 'z-50',
       isScrolled
         ? 'bg-white/95 backdrop-blur-xl border-b border-stone-200 shadow-sm py-1'
         : 'bg-white/90 backdrop-blur-xl border-b border-stone-100/80 py-2',
@@ -13,25 +14,27 @@
         <NuxtLink to="/" class="flex items-center gap-3 group">
           <NuxtImg src="/favicon/icon-192.png" alt="Logo Di Sản Thành Phố Đồng Nai" class="h-10 sm:h-12 w-auto object-contain shrink-0 transition-transform duration-300 group-hover:scale-105" />
           <div class="hidden md:flex flex-col justify-center text-left min-w-0">
-            <span class="font-heading font-bold text-stone-800 text-sm lg:text-base leading-snug whitespace-nowrap group-hover:text-heritage-700 transition-colors duration-300">
-              Di Sản
-            </span>
-            <span class="font-heading font-bold text-heritage-600 text-sm lg:text-base leading-snug whitespace-nowrap -mt-0.5 group-hover:text-heritage-700 transition-colors duration-300">
-              Bù Đăng
-            </span>
-            <span class="hidden xl:block text-[9px] text-stone-700 tracking-[0.12em] uppercase font-semibold mt-1 leading-snug whitespace-nowrap">
-              Bảo Tàng Số Thành Phố Đồng Nai
+            <div class="flex items-center gap-1 font-heading font-bold text-sm lg:text-base leading-none">
+              <span class="text-stone-800 group-hover:text-gold-600 transition-colors duration-300">
+                Di Sản
+              </span>
+              <span class="text-heritage-600 group-hover:text-gold-700 transition-colors duration-300">
+                Bù Đăng
+              </span>
+            </div>
+            <span class="hidden lg:block text-[9px] text-stone-500 tracking-[0.12em] uppercase font-semibold mt-1.5 leading-none whitespace-nowrap">
+              Bảo Tàng Số Đồng Nai
             </span>
           </div>
         </NuxtLink>
 
         <!-- Desktop Nav — Đóng Góp lives with the CTAs in Actions, not here -->
-        <ul class="hidden xl:flex items-center gap-1.5 xl:gap-2.5" aria-label="Menu điều hướng chính">
+        <ul class="hidden xl:flex items-center gap-1 xl:gap-2" aria-label="Menu điều hướng chính">
           <li v-for="item in navItems.filter((i) => i.to !== '/contribute')" :key="item.to">
             <NuxtLink
               :to="item.to"
-              class="px-2 py-1 xl:px-3 xl:py-2 rounded-lg text-xs xl:text-sm font-medium whitespace-nowrap transition-all duration-300 text-stone-600 hover:text-heritage-700 hover:bg-heritage-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-heritage-600 focus-visible:outline-offset-2"
-              active-class="text-heritage-700 bg-heritage-50"
+              class="px-3 py-1.5 rounded-full text-xs xl:text-sm font-medium whitespace-nowrap transition-all duration-300 text-stone-600 hover:text-gold-700 hover:bg-gold-50/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500 focus-visible:outline-offset-2"
+              active-class="text-gold-700 bg-gold-50"
             >
               {{ item.label }}
             </NuxtLink>
@@ -39,31 +42,47 @@
         </ul>
 
         <!-- Actions -->
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2 xl:gap-3">
           <!-- Search -->
           <button
-            class="hidden md:flex items-center gap-2 px-4 py-2 rounded-full border border-stone-200 bg-stone-50/60 text-stone-500 text-sm hover:border-brand-500/50 hover:bg-brand-50/60 hover:text-brand-700 transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-500"
+            class="hidden md:flex items-center justify-center xl:justify-start gap-2 h-9 rounded-full border border-stone-200 bg-stone-50/60 text-stone-500 hover:border-gold-500/50 hover:bg-gold-50/60 hover:text-gold-700 transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500 xl:px-4 w-9 xl:w-auto shrink-0"
             aria-label="Tìm kiếm di sản"
             @click="isSearchOpen = true"
           >
-            <Icon name="mdi:magnify" class="w-4 h-4" />
-            <span class="hidden xl:block">Tìm kiếm...</span>
+            <Icon name="mdi:magnify" class="w-4 h-4 shrink-0" />
+            <span class="hidden xl:block text-xs xl:text-sm font-medium">Tìm kiếm...</span>
             <kbd class="hidden xl:inline-flex items-center gap-0.5 ml-1 px-1.5 py-0.5 text-[10px] font-mono bg-stone-100 border border-stone-200 rounded text-stone-400">⌘K</kbd>
           </button>
+
+          <!-- Visitor counter chip -->
+          <div
+            class="hidden md:flex items-center gap-1.5 h-9 px-3.5 rounded-full border border-stone-200 bg-stone-50/60 text-stone-500 text-xs select-none shrink-0 whitespace-nowrap"
+            aria-label="Tổng lượt ghé thăm"
+          >
+            <Icon name="mdi:eye-outline" class="w-3.5 h-3.5 text-gold-600 shrink-0" />
+            <span v-if="visitCount !== null" class="tabular-nums font-semibold text-stone-700">
+              {{ visitCount.toLocaleString('vi-VN') }}
+            </span>
+            <span v-else class="w-8 h-3 rounded bg-stone-200/70 animate-pulse inline-block" />
+            <span class="hidden xl:inline text-stone-400 font-medium">lượt ghé thăm</span>
+          </div>
 
           <!-- Đóng Góp — sits next to the map CTA so the two primary actions are grouped -->
           <NuxtLink
             to="/contribute"
-            class="btn-outline-gold text-sm hidden md:inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-500"
+            class="btn-outline-gold text-xs xl:text-sm !py-0 h-9 px-4 rounded-full flex items-center justify-center shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-500"
           >
-            <Icon name="mdi:hand-heart-outline" class="w-4 h-4" />
-            Đóng Góp
+            <Icon name="mdi:hand-heart-outline" class="w-4 h-4 shrink-0" />
+            <span class="font-medium">Đóng Góp</span>
           </NuxtLink>
 
           <!-- Explore CTA -->
-          <NuxtLink to="/map" class="btn-primary text-sm hidden md:inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-500">
-            <Icon name="mdi:map-outline" class="w-4 h-4" />
-            Bản Đồ
+          <NuxtLink
+            to="/map"
+            class="btn-primary text-xs xl:text-sm !py-0 h-9 px-4 rounded-full flex items-center justify-center shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-500"
+          >
+            <Icon name="mdi:map-outline" class="w-4 h-4 shrink-0" />
+            <span class="font-medium">Bản Đồ</span>
           </NuxtLink>
 
           <!-- Mobile Search Button -->
@@ -121,7 +140,7 @@
     <Transition name="search-modal">
       <div
         v-if="isSearchOpen"
-        class="fixed inset-0 z-[80] bg-stone-900/80 backdrop-blur-xl"
+        class="fixed inset-0 z-[80] bg-stone-950/45 backdrop-blur-md"
         role="dialog"
         aria-modal="true"
         aria-label="Tìm kiếm di sản"
@@ -129,21 +148,21 @@
         @keydown="handleModalTab"
       >
         <div ref="modalContainerRef" class="container-narrow pt-28">
-          <div class="rounded-3xl border border-stone-200/70 bg-white/95 backdrop-blur-2xl shadow-warm-xl ring-1 ring-brand-500/10 overflow-hidden">
-            <div class="flex items-center gap-3 border-b border-stone-100 px-5 py-4">
-              <Icon name="mdi:magnify" class="w-5 h-5 text-brand-500 shrink-0" />
+          <div class="rounded-3xl border border-stone-200/70 bg-white/95 backdrop-blur-2xl shadow-warm-xl ring-1 ring-gold-500/10 overflow-hidden">
+            <div class="flex items-center gap-3 border-b border-stone-100 px-5 py-4 focus-within:border-gold-200 transition-colors duration-300">
+              <Icon name="mdi:magnify" class="w-5 h-5 text-gold-500 shrink-0" />
               <input
                 ref="searchInput"
                 v-model="searchQuery"
                 type="search"
                 placeholder="Tìm di sản, danh thắng, văn hóa..."
-                class="w-full bg-transparent text-stone-800 placeholder-stone-400 focus:outline-none"
+                class="w-full bg-transparent text-stone-800 placeholder-stone-400 focus:outline-none text-base font-medium"
                 @keydown.esc="closeSearch"
                 @keydown.enter="goToExplore"
               />
               <kbd class="hidden sm:inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono bg-stone-100 border border-stone-200 rounded text-stone-400">ESC</kbd>
               <button
-                class="p-2 rounded-lg text-stone-400 hover:text-stone-700 hover:bg-stone-100"
+                class="p-2 rounded-lg text-stone-400 hover:text-stone-700 hover:bg-stone-100 transition-colors duration-200"
                 aria-label="Đóng tìm kiếm"
                 @click="closeSearch"
               >
@@ -156,7 +175,7 @@
                 v-for="heritage in searchResults"
                 :key="heritage.id"
                 :to="`/heritage/${heritage.slug}`"
-                class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-heritage-50 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-heritage-600 focus-visible:outline-offset-2"
+                class="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-gold-50 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-500 focus-visible:outline-offset-2"
                 @click="closeSearch"
               >
                 <NuxtImg :src="heritage.coverImage" :alt="heritage.title" class="w-14 h-12 rounded-lg object-cover" />
@@ -196,6 +215,7 @@ const isSearchOpen = ref(false)
 const searchQuery = ref('')
 const searchInput = ref<HTMLInputElement | null>(null)
 const heritageStore = useHeritageStore()
+const visitCount = useSiteVisitCount()
 
 const searchResults = computed(() => {
   const q = searchQuery.value.trim().toLowerCase()

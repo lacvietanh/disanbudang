@@ -3,6 +3,10 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
 
+  nitro: {
+    preset: 'cloudflare-pages',
+  },
+
   site: {
     url: 'https://disanbudang.com',
     name: 'Di Sản Đồng Nai',
@@ -14,6 +18,28 @@ export default defineNuxtConfig({
     '/quiz': { redirect: { to: '/#quiz', statusCode: 301 } },
     '/school': { redirect: { to: '/study/', statusCode: 301 } },
     '/library': { redirect: { to: '/explore/', statusCode: 301 } },
+    '/admin/**': { ssr: false },
+    '/me/**': { ssr: false },
+  },
+
+  runtimeConfig: {
+    // Server-only secrets — populated from NUXT_* env vars
+    turnstileSecretKey: '',      // NUXT_TURNSTILE_SECRET_KEY
+    public: {
+      // Admin email — used by FE to show admin button and by server to guard admin routes
+      adminEmail: 'nguyenxuankiet294@gmail.com',
+      // Turnstile public site key — populated from NUXT_PUBLIC_TURNSTILE_SITE_KEY
+      turnstileSiteKey: '',
+      firebase: {
+        apiKey: process.env.FIREBASE_API_KEY || "AIzaSyCzaEbGasksGT9nSoplZi57J_IDtJ0Mq_o",
+        authDomain: process.env.FIREBASE_AUTH_DOMAIN || "disanbudang.firebaseapp.com",
+        projectId: process.env.FIREBASE_PROJECT_ID || "disanbudang",
+        storageBucket: process.env.FIREBASE_STORAGE_BUCKET || "disanbudang.firebasestorage.app",
+        messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID || "41824788557",
+        appId: process.env.FIREBASE_APP_ID || "1:41824788557:web:94670b175896359e137c04",
+        measurementId: process.env.FIREBASE_MEASUREMENT_ID || "G-FMLQGHRMC1"
+      }
+    }
   },
 
   modules: [
@@ -46,7 +72,24 @@ export default defineNuxtConfig({
           'https://*.tile.openstreetmap.org',
           'https://tile.openstreetmap.org',
           'https://*.basemaps.cartocdn.com',
-          'https://basemaps.cartocdn.com'
+          'https://basemaps.cartocdn.com',
+          'https://lh3.googleusercontent.com',  // Firebase Auth Google avatars
+        ],
+        // Allow Turnstile challenge scripts, Firebase/Google Auth scripts, and WebAssembly compilation
+        'script-src': [
+          "'self'",
+          "'unsafe-inline'",
+          "'unsafe-eval'",
+          "'wasm-unsafe-eval'",
+          'https://challenges.cloudflare.com',
+          'https://apis.google.com',
+          'https://*.googleapis.com',
+          'https://*.gstatic.com',
+        ],
+        'frame-src': [
+          "'self'",
+          'https://challenges.cloudflare.com',
+          'https://*.firebaseapp.com',
         ],
       },
     },
@@ -56,7 +99,7 @@ export default defineNuxtConfig({
     },
     corsHandler: {
       origin: '*',
-      methods: ['GET', 'POST'],
+      methods: ['GET', 'POST', 'PATCH', 'DELETE'],
     },
   },
 

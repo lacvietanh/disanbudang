@@ -9,7 +9,7 @@
       </div>
       <div class="container-heritage relative z-10">
         <span class="section-label text-gold-400">Di Sản & Ký Ức Cộng Đồng</span>
-        <h1 class="font-heading font-bold text-ivory text-4xl md:text-5xl lg:text-6xl leading-[1.28] mb-5">
+        <h1 class="font-heading font-bold text-ivory text-4xl md:text-5xl lg:text-6xl leading-[1.35] md:leading-[1.3] lg:leading-[1.25] mb-6 md:mb-8 text-balance tracking-[-0.03em]">
           Thư Viện Di Sản<br/>
           <span class="text-gradient-gold">Thành Phố Đồng Nai</span>
         </h1>

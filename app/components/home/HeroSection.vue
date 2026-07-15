@@ -183,10 +183,10 @@
           </div>
 
           <!-- H1 -->
-          <h1 class="hero-item font-heading font-bold text-ivory leading-[1.15] mb-5 md:mb-7 text-shadow-hero" style="--delay: 0.12s; overflow: visible">
-            <span class="block text-[clamp(1.9rem,5vw,4.2rem)] tracking-[-0.02em]">Bảo Tàng Số Di Sản</span>
-            <span class="block text-[clamp(1.9rem,5vw,4.2rem)] tracking-[-0.02em]">Bù Đăng</span>
-            <span class="block text-[clamp(1.9rem,5vw,4.2rem)] tracking-[-0.02em] text-gradient-gold">Thành Phố Đồng Nai</span>
+          <h1 class="hero-item font-heading font-bold text-ivory leading-[1.35] md:leading-[1.3] lg:leading-[1.25] mb-6 md:mb-8 text-shadow-hero text-balance tracking-[-0.03em]" style="--delay: 0.12s; overflow: visible">
+            <span class="block text-[clamp(1.9rem,5vw,4.2rem)]">Bảo Tàng Số Di Sản</span>
+            <span class="block text-[clamp(1.9rem,5vw,4.2rem)]">Bù Đăng</span>
+            <span class="block text-[clamp(1.9rem,5vw,4.2rem)] text-gradient-gold">Thành Phố Đồng Nai</span>
           </h1>
 
           <!-- Tagline quote -->

@@ -53,7 +53,7 @@
 
         <!-- Main headline -->
         <div style="animation: fadeSlideUp 0.9s 0.15s cubic-bezier(0.16,1,0.3,1) both">
-          <h2 class="font-heading font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-ivory leading-[1.28] tracking-tight">
+          <h2 class="font-heading font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-ivory leading-[1.38] tracking-tight">
             Học. Khám phá.<br />
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 via-gold-300 to-earth-400">Gìn giữ di sản.</span>
           </h2>

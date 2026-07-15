@@ -1,0 +1,15 @@
+name = "disanbudang"
+pages_build_output_dir = "dist"
+compatibility_date = "2024-04-05"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "disanbudang-db"
+database_id = "1bb16f42-8de0-44c3-93c1-b12f8301d464"
+
+# Public vars (safe to commit)
+[vars]
+NUXT_PUBLIC_TURNSTILE_SITE_KEY = ""   # paste your Turnstile site key here
+
+# Secrets — set with: wrangler secret put <NAME>
+#   NUXT_TURNSTILE_SECRET_KEY
