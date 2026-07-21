@@ -1,5 +1,6 @@
 # Kế Hoạch Triển Khai: Init DB & Docs Refactor (jul12-init-db)
 
+> **Trạng thái:** Đã hoàn thành (Phần Backend/Auth). Phần cấu trúc Docs đã bị thay thế (supersede) bởi kiến trúc `CLAUDE.md` mới.
 Bản kế hoạch này giải quyết hai mục tiêu chính:
 1. **Dọn dẹp và chuẩn hoá hệ thống tài liệu (Docs):** Gộp nguồn sự thật vào `README.md` để tuân thủ SRP, và tái bố trí tài liệu báo cáo.
 2. **Khởi tạo Backend thực tế (Cloudflare D1 & Firebase):** Tập trung toàn lực hệ thống DB cho duy nhất tính năng "Đóng góp tư liệu" (Contribute), giữ các tính năng còn lại ở dạng dữ liệu tĩnh để bảo vệ giá trị cốt lõi. Đồng thời thiết lập Firebase Auth cho admin.

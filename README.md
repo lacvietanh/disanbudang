@@ -2,6 +2,21 @@
 
 Một không gian số hiện đại nhằm lưu trữ, tôn vinh và lan tỏa các giá trị di sản văn hóa, lịch sử và thiên nhiên của Thành Phố Đồng Nai (Bù Đăng, Phước Long, Lộc Ninh, Bom Bo...).
 
+## 🎯 Mục tiêu cốt lõi
+Website có **hai vai trò song hành**, không thể tách rời:
+1. **Công cụ giáo dục lịch sử địa phương** — Hỗ trợ học sinh tiếp cận tài liệu lịch sử, di sản văn hóa Thành Phố Đồng Nai theo cách tương tác và trực quan, thay thế sách giáo khoa truyền thống.
+2. **Cổng thông tin du lịch thông minh** — Giúp du khách tự túc khám phá, định hướng và tìm hiểu các điểm di sản khắp Thành Phố Đồng Nai.
+
+## 💡 Vấn đề được giải quyết
+Các hạn chế của các giải pháp hiện tại mà dự án này khắc phục triệt để:
+| Vấn đề | Giải pháp của dự án |
+|---|---|
+| Thiếu bản đồ di sản tương tác | Bản đồ Leaflet.js + GPS Geolocation (`/map`) |
+| Thiếu hệ thống trắc nghiệm sinh động | Góc Học Tập với Quiz + Huy hiệu điện tử (`/study`) |
+| Không có hướng dẫn bằng âm thanh | Audio Guide toàn cục chạy ngầm (Howler.js + Pinia) |
+| Nội dung rời rạc, không hệ thống | 11 di sản số hóa đầy đủ qua Nuxt Content v3 |
+| Giao diện truyền thống, thiếu tương tác | Dark mode nghệ thuật, animation GSAP/VueUse Motion |
+
 ## 📖 Báo Cáo Công Nghệ và Xây Dựng Sản Phẩm
 
 Dự án được xây dựng trong **6 tháng** với các nguyên vật liệu và công nghệ chính:
@@ -31,6 +46,36 @@ Dự án được xây dựng trong **6 tháng** với các nguyên vật liệu
 - **Xã Bù Đăng, Sóc Bom Bo...**: Địa danh cụ thể khi mô tả di sản.
 
 ---
+
+## 🗺️ Khả năng Mở rộng (Roadmap)
+
+### Giai đoạn hiện tại (Đã hoàn thành)
+- [x] 11 di sản số hóa
+- [x] Bản đồ tương tác + GPS
+- [x] Audio Guide toàn cục (4 track hoàn thiện)
+- [x] Góc Học Tập với Quiz + Huy hiệu
+- [x] Flashcard thuật ngữ S'tiêng
+- [x] 6 ký ức cộng đồng thu âm
+
+### Giai đoạn tiếp theo (Ưu tiên cao)
+- [ ] Thêm audio guide cho các di sản còn lại (7 di sản chưa có audio)
+- [ ] Thêm nội dung Markdown chi tiết cho tất cả 11 di sản
+- [ ] Tích hợp Video phục dựng lễ hội Mừng Lúa Mới
+
+### Tương lai (Sau khi có đủ nguồn lực)
+- [ ] VR 360° cho các điểm di tích
+- [ ] AI Chatbot hỗ trợ giải đáp thắc mắc du khách
+- [ ] Mở rộng mô hình sang các phường/xã khác của TP. Đồng Nai
+- [ ] Phiên bản đa ngôn ngữ (Anh, Khmer)
+
+## ⏳ Giai đoạn Phát triển
+Dự án được xây dựng trong **6 tháng**:
+| Giai đoạn | Thời gian | Nội dung |
+|---|---|---|
+| **1 — Thu thập tư liệu** | Tháng 1–2 | Khảo sát địa bàn, thu thập tư liệu lịch sử, ảnh di sản thực tế, thu âm giọng đọc mẫu |
+| **2 — Thiết kế UI/UX** | Tháng 3 | Thiết kế giao diện trên Figma — gam màu ấm nóng cảm hứng thổ cẩm S'tiêng |
+| **3 — Lập trình** | Tháng 4–5 | Nuxt 4 + Leaflet + Audio Guide (Howler.js + Pinia) + GSAP |
+| **4 — Số hóa & kiểm thử** | Tháng 6 | Nuxt Content v3, kết nối SQLite, kiểm thử, đóng gói |
 
 ## 🚀 Bắt đầu (Setup)
 

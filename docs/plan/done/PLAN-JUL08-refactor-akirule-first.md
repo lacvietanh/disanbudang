@@ -1,6 +1,6 @@
 # PLAN — Refactor theo Aki-RULE (đợt 1)
 
-Trạng thái: **đề xuất, chưa thực thi**. Kết quả rà soát toàn dự án theo bộ rule Aki-RULE (full load: RULE-agent-behavior, RULE-coding, RULE-docs, RULE-content-write, RULE-stack-akiNuxtCf, RULE-seo, RULE-release, RULE-db-design, METHOD-flow-audit, METHOD-deep-think), ngày rà soát: 2026-07-08.
+Trạng thái: **đã hoàn thành**. Kết quả rà soát toàn dự án theo bộ rule Aki-RULE (full load: RULE-agent-behavior, RULE-coding, RULE-docs, RULE-content-write, RULE-stack-akiNuxtCf, RULE-seo, RULE-release, RULE-db-design, METHOD-flow-audit, METHOD-deep-think), ngày rà soát: 2026-07-08.
 
 Điểm sáng đã đạt chuẩn (không cần sửa): TypeScript strict + typecheck pass, `trailingSlash: true`, favicon/manifest đầy đủ đúng chuẩn, breadcrumb duy nhất render ở layout, `useSwal()` (không có `window.alert/confirm`), Organization schema có `alternateName`/`founder`, useMuseumSeo tự cắt title/description và loại em-dash, robots + sitemap cấu hình đúng.
 

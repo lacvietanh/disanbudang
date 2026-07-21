@@ -1,51 +1,6 @@
-# PROJECT MASTER — DI SẢN THÀNH PHỐ ĐỒNG NAI
+# Kiến trúc Hệ thống
 
-> **Đây là nguồn sự thật (Single Source of Truth) tối thượng của dự án.**
-> Mọi quyết định kỹ thuật, nội dung, tính năng, và quy tắc phát triển đều phải tuân theo tài liệu này.
-> Developer và AI agent đều phải đọc file này trước khi bắt đầu bất kỳ thay đổi nào.
-
----
-
-## 1. Tổng quan Dự án
-
-| Thuộc tính | Giá trị |
-|---|---|
-| **Tên sản phẩm** | Bảo Tàng Số Di Sản Bù Đăng — Thành Phố Đồng Nai |
-| **Tên miền** | disanbudang.com |
-| **Tên repo** | `disanbudang` |
-| **Loại sản phẩm** | Web App — Bảo tàng số tương tác |
-| **Tác giả** | Nguyễn Xuân Kiệt 
-|
-
-
-### Mục tiêu cốt lõi
-
-Website có **hai vai trò song hành**, không thể tách rời:
-
-1. **Công cụ giáo dục lịch sử địa phương** — Hỗ trợ học sinh tiếp cận tài liệu lịch sử, di sản văn hóa Thành Phố Đồng Nai theo cách tương tác và trực quan, thay thế sách giáo khoa truyền thống.
-2. **Cổng thông tin du lịch thông minh** — Giúp du khách tự túc khám phá, định hướng và tìm hiểu các điểm di sản khắp Thành Phố Đồng Nai.
-
-> **Ghi chú phạm vi (2026-07):** Từ 1/7/2025, tỉnh Bình Phước hợp nhất vào tỉnh Đồng Nai; từ 30/4/2026, Đồng Nai trở thành thành phố trực thuộc Trung ương thứ 7 của Việt Nam. Huyện Bù Đăng cũ (tỉnh Bình Phước) nay là **Xã Bù Đăng** — một trong 95 xã, phường của Thành Phố Đồng Nai.
->
-> **Quyết định thương hiệu:** "Bù Đăng" được giữ làm **tên riêng/khởi nguyên** của dự án (nơi văn hóa S'Tiêng, Sóc Bom Bo... được số hóa đầu tiên, gắn với domain `disanbudang.com`), không phải ranh giới hành chính. "Thành Phố Đồng Nai" là **phạm vi phục vụ thực tế** (tagline/subtitle). Vì vậy dữ liệu di sản KHÔNG bị giới hạn trong ranh giới xã Bù Đăng — Sóc Bom Bo, Phước Long, Lộc Ninh, núi Bà Rá... vẫn thuộc phạm vi dự án như các "cụm di sản" kết nối từ Bù Đăng ra toàn thành phố. Xem quy tắc đặt tên tại mục 9.5.
-
----
-
-## 2. Vấn đề được giải quyết
-
-Các hạn chế của các giải pháp hiện tại mà dự án này khắc phục triệt để:
-
-| Vấn đề | Giải pháp của dự án |
-|---|---|
-| Thiếu bản đồ di sản tương tác | Bản đồ Leaflet.js + GPS Geolocation (`/map`) |
-| Thiếu hệ thống trắc nghiệm sinh động | Góc Học Tập với Quiz + Huy hiệu điện tử (`/study`) |
-| Không có hướng dẫn bằng âm thanh | Audio Guide toàn cục chạy ngầm (Howler.js + Pinia) |
-| Nội dung rời rạc, không hệ thống | 11 di sản số hóa đầy đủ qua Nuxt Content v3 |
-| Giao diện truyền thống, thiếu tương tác | Dark mode nghệ thuật, animation GSAP/VueUse Motion |
-
----
-
-## 3. Tech Stack (Bất biến — Không thay thế nếu không có lý do kỹ thuật cụ thể)
+## 1. Tech Stack (Bất biến — Không thay thế nếu không có lý do kỹ thuật cụ thể)
 
 | STT | Tên công nghệ | Phiên bản | Chức năng |
 |---|---|---|---|
@@ -70,9 +25,9 @@ Các hạn chế của các giải pháp hiện tại mà dự án này khắc p
 
 ---
 
-## 4. Kiến trúc Hệ thống
+## 2. Cấu trúc Hệ thống
 
-### 4.1 Cấu trúc thư mục
+### 2.1 Cấu trúc thư mục
 
 ```
 disanbudang/
@@ -103,11 +58,11 @@ disanbudang/
 ├── content/            # Bài viết Markdown (Nuxt Content v3)
 ├── public/             # Static assets
 ├── server/             # API routes (Nuxt server)
-├── docs/               # Tài liệu dự án (thư mục này)
+├── docs/               # Tài liệu dự án
 └── nuxt.config.ts      # Cấu hình Nuxt — nguồn sự thật config
 ```
 
-### 4.2 Định tuyến (Route Map)
+### 2.2 Định tuyến (Route Map)
 
 | URL | Trang | Ghi chú |
 |---|---|---|
@@ -127,7 +82,7 @@ disanbudang/
 | `/school` | *(redirect)* | → `/study/` (301) |
 | `/community` | *(redirect)* | → `/explore/` (301) |
 
-### 4.3 State Management (Pinia Stores)
+### 2.3 State Management (Pinia Stores)
 
 ```
 stores/
@@ -140,7 +95,7 @@ stores/
 
 > **Quy tắc Store:** Không dùng `reactive()` hay `ref()` trực tiếp ở component-level cho dữ liệu cần chia sẻ giữa các trang. Mọi shared state phải đi qua Pinia store.
 
-### 4.4 Nguyên tắc Nội dung Số (Content Layer)
+### 2.4 Nguyên tắc Nội dung Số (Content Layer)
 
 - **Bài viết thuyết minh di sản:** Lưu dưới dạng Markdown trong `content/`. Nuxt Content v3 biên dịch tự động thành JSON khi build.
 - **Dữ liệu câu hỏi Quiz:** Lưu trong SQLite (`better-sqlite3`) phía server, truy vấn qua API route.
@@ -148,15 +103,15 @@ stores/
 
 ---
 
-## 5. Dữ liệu Di sản Cốt lõi
+## 3. Dữ liệu Di sản Cốt lõi
 
-### 5.1 Số liệu đã số hóa
+### 3.1 Số liệu đã số hóa
 
 - **11 di sản** được tổ chức lưu trữ và biên soạn tài liệu khoa học
 - **6 Ký ức cộng đồng** — câu chuyện truyền miệng từ già làng, nghệ nhân S'Tiêng, M'Nông
 - **4 Audio Guide** hoàn thiện — tệp âm thanh thuyết minh giọng đọc truyền cảm
 
-### 5.2 Phân loại Di sản (`HeritageCategory`)
+### 3.2 Phân loại Di sản (`HeritageCategory`)
 
 | Slug | Tên hiển thị |
 |---|---|
@@ -166,11 +121,11 @@ stores/
 | `doi-song-cong-dong` | Đời sống cộng đồng |
 | `giao-duc-truyen-thong` | Giáo dục truyền thống |
 
-### 5.3 Phân loại theo Thời kỳ (`HeritagePeriod`)
+### 3.3 Phân loại theo Thời kỳ (`HeritagePeriod`)
 
 `Tiền sử` → `Phong kiến` → `Pháp thuộc` → `Kháng chiến` → `Hiện đại`
 
-### 5.3b Phân loại theo Cụm Di sản (`HeritageCluster`)
+### 3.4 Phân loại theo Cụm Di sản (`HeritageCluster`)
 
 Kết nối di sản khởi nguồn Bù Đăng ra toàn Thành Phố Đồng Nai — dùng cho filter trên `/map` và `/explore`, gợi ý hành trình tham quan liên xã (không phải ranh giới hành chính):
 
@@ -183,7 +138,7 @@ Kết nối di sản khởi nguồn Bù Đăng ra toàn Thành Phố Đồng Nai
 
 Nguồn dữ liệu: `app/data/clusters.ts`.
 
-### 5.4 Cấu trúc dữ liệu mỗi Di sản
+### 3.5 Cấu trúc dữ liệu mỗi Di sản
 
 Mỗi điểm di sản bắt buộc có đầy đủ các trường:
 
@@ -205,9 +160,9 @@ Mỗi điểm di sản bắt buộc có đầy đủ các trường:
 
 ---
 
-## 6. Tính năng Chính — Đặc tả Kỹ thuật
+## 4. Tính năng Chính — Đặc tả Kỹ thuật
 
-### 6.1 Bản đồ Di sản Tương tác (`/map`)
+### 4.1 Bản đồ Di sản Tương tác (`/map`)
 
 - **Thư viện:** Leaflet.js + vue-leaflet
 - **Tile layer:** OpenStreetMap / CartoCDN (đã whitelist trong CSP)
@@ -220,7 +175,7 @@ Mỗi điểm di sản bắt buộc có đầy đủ các trường:
   - **GPS Locate Me** — HTML5 Geolocation API, hiện vị trí thực của người dùng
   - Xác nhận GPS qua SweetAlert2 trước khi truy cập location
 
-### 6.2 Audio Guide Toàn cục
+### 4.2 Audio Guide Toàn cục
 
 - **Thư viện:** Howler.js
 - **State:** `stores/audio.ts` — chạy độc lập với luồng UI
@@ -228,7 +183,7 @@ Mỗi điểm di sản bắt buộc có đầy đủ các trường:
 - **Tích hợp:** Mỗi trang chi tiết di sản inject `heritageId` vào audioStore để load đúng track
 - **Transcript:** Tuỳ chọn hiển thị văn bản thuyết minh chạy song song
 
-### 6.3 Góc Học Tập & Gamification (`/study`)
+### 4.3 Góc Học Tập & Gamification (`/study`)
 
 - **Quiz Engine:** Câu hỏi từ SQLite, phân loại theo di sản cụ thể
 - **Huy hiệu (Badges):**
@@ -243,7 +198,7 @@ Mỗi điểm di sản bắt buộc có đầy đủ các trường:
 - **Persistence:** Điểm số + Huy hiệu lưu vào LocalStorage qua `pinia-plugin-persistedstate`
 - **Flashcard:** Widget lật thẻ 3D — từ vựng bản địa S'tiêng (Yang Ching, Đ'rắp S'lung, Dak Mơ...)
 
-### 6.4 Thư viện Di sản (`/library`)
+### 4.4 Thư viện Di sản (`/library`)
 
 - Danh sách đầy đủ 11 di sản với filter và search
 - Card-based layout với lazy-loading ảnh
@@ -251,9 +206,9 @@ Mỗi điểm di sản bắt buộc có đầy đủ các trường:
 
 ---
 
-## 7. Thiết kế & UX
+## 5. Thiết kế & UX
 
-### 7.1 Bảng màu & Nhận diện thương hiệu
+### 5.1 Bảng màu & Nhận diện thương hiệu
 
 - **Màu chủ đạo:** `#e18c1b` (amber/ấm nóng — cảm hứng thổ cẩm S'tiêng)
 - **Theme:** Dark mode là mặc định và chủ đạo
@@ -262,141 +217,31 @@ Mỗi điểm di sản bắt buộc có đầy đủ các trường:
   - **Inter** — Body text, sans-serif hiện đại
   - **Cormorant Garamond** — Quote, caption, italic
 
-### 7.2 Animation
+### 5.2 Animation
 
 - **GSAP:** Hero sections, scroll-triggered reveals, complex timelines
 - **VueUse Motion:** Directive-based micro-animations trên components (`v-motion`)
 - **Nuxt Page Transition:** `out-in` mode cho page-level transitions
 - **View Transitions API:** `experimental.viewTransition: true` bật trong nuxt.config
 
-### 7.3 Responsive
+### 5.3 Responsive
 
 - Breakpoints: `xs:320` / `sm:640` / `md:768` / `lg:1024` / `xl:1280` / `xxl:1536`
 - Mobile-first design — Bản đồ và Quiz tối ưu trên điện thoại
 
 ---
 
-## 8. Security & Performance
+## 6. Security & Performance
 
-### 8.1 Security (nuxt-security)
+### 6.1 Security (nuxt-security)
 
 - **CSP img-src whitelist:** `self`, `data:`, `images.unsplash.com`, `*.tile.openstreetmap.org`, `*.basemaps.cartocdn.com`
 - **Rate Limiter:** 150 tokens/hour
 - **CORS:** GET + POST từ mọi origin (phù hợp với API public)
 
-### 8.2 Hình ảnh
+### 6.2 Hình ảnh
 
 - Format ưu tiên: WebP → JPG
 - Quality: 85%
 - Domain whitelist: `images.unsplash.com`
 - Xử lý qua `@nuxt/image` — bắt buộc dùng `<NuxtImg>` thay cho `<img>` raw
-
----
-
-## 9. Quy tắc Phát triển (Development Rules)
-
-> Những quy tắc này là bất biến. Mọi AI agent và developer đều phải tuân theo.
-
-### 9.1 Nguyên tắc chung
-
-- **Scope discipline:** Làm đúng và đủ những gì được yêu cầu. Không tự ý thêm tính năng, refactor hay cleanup nếu không được yêu cầu.
-- **YAGNI:** Không xây dựng những gì "có thể cần trong tương lai" — chỉ xây dựng những gì cần ngay bây giờ.
-- **Source of truth:** Code thực tế > Docs này > Memory. Luôn đọc file nguồn trước khi chỉnh sửa.
-
-### 9.2 Quy tắc Code
-
-- **Ngôn ngữ code & comment:** Tiếng Anh
-- **TypeScript:** Strict mode bắt buộc (`strict: true` trong tsconfig)
-- **Component naming:** PascalCase, đặt theo chức năng rõ ràng
-- **Không dùng `any`** trừ khi có lý do kỹ thuật được document rõ
-- **Result pattern** cho mọi external call:
-  ```typescript
-  type Result<T> = { ok: true; data: T } | { ok: false; error: string }
-  ```
-
-### 9.3 Quy tắc Commit
-
-- Commit message: Tiếng Anh, imperative style (`Add`, `Fix`, `Update`, không phải `Added`, `Fixed`)
-- **Không** thêm co-author signatures của AI vào commit message
-
-### 9.4 Quy tắc Docs
-
-- Tài liệu feature: `docs/feat/<tên>.md`
-- Tài liệu kiến trúc: `docs/arch/<tên>.md`
-- Kế hoạch triển khai: `docs/plan/<PLAN-XXX-tên>.md`
-- Khi hoàn thành plan: chuyển vào `docs/plan/done/`
-- **Luôn cập nhật `docs/index.md`** khi thêm file doc mới
-- Không tạo top-level thư mục mới trong `docs/` trừ khi thực sự cần thiết
-
-### 9.5 Quy tắc Nội dung (Content)
-
-- Tên thuật ngữ dân tộc phải nhất quán: **S'Tiêng**, **M'Nông**
-- Tên thương hiệu ngắn (logo, UI, SEO site name): **Di Sản Bù Đăng** — dùng như tên riêng/khởi nguyên, không phải khẳng định ranh giới hành chính.
-- Tagline/subtitle mô tả phạm vi phục vụ: **Bảo Tàng Số Thành Phố Đồng Nai** — luôn đi kèm brand ngắn để làm rõ phạm vi thực tế.
-- Tên sản phẩm đầy đủ: **Bảo Tàng Số Di Sản Bù Đăng — Thành Phố Đồng Nai** (viết hoa đầy đủ).
-- Địa danh cấp thành phố (khung phạm vi phục vụ): **Thành Phố Đồng Nai** — dùng trong mô tả tổng quát, SEO, metadata phạm vi.
-- Địa danh cụ thể (khi mô tả một di sản/sự kiện cụ thể): **Xã Bù Đăng**, **Sóc Bom Bo**, núi Bà Rá, Căn cứ Tà Thiết, Lộc Ninh... Các cụm này được kết nối với nhau qua khái niệm "cụm/tuyến di sản" (xem roadmap mục 10), không dùng brand để gộp chúng.
-
----
-
-## 10. Khả năng Mở rộng (Roadmap)
-
-### Giai đoạn hiện tại (Đã hoàn thành)
-- [x] 11 di sản số hóa
-- [x] Bản đồ tương tác + GPS
-- [x] Audio Guide toàn cục (4 track hoàn thiện)
-- [x] Góc Học Tập với Quiz + Huy hiệu
-- [x] Flashcard thuật ngữ S'tiêng
-- [x] 6 ký ức cộng đồng thu âm
-
-### Giai đoạn tiếp theo (Ưu tiên cao)
-- [ ] Thêm audio guide cho các di sản còn lại (7 di sản chưa có audio)
-- [ ] Thêm nội dung Markdown chi tiết cho tất cả 11 di sản
-- [ ] Tích hợp Video phục dựng lễ hội Mừng Lúa Mới
-
-### Tương lai (Sau khi có đủ nguồn lực)
-- [ ] VR 360° cho các điểm di tích
-- [ ] AI Chatbot hỗ trợ giải đáp thắc mắc du khách
-- [ ] Mở rộng mô hình sang các phường/xã khác của TP. Đồng Nai
-- [ ] Phiên bản đa ngôn ngữ (Anh, Khmer)
-
----
-
-## 11. Giai đoạn Phát triển
-
-Dự án được xây dựng trong **6 tháng**:
-
-| Giai đoạn | Thời gian | Nội dung |
-|---|---|---|
-| **1 — Thu thập tư liệu** | Tháng 1–2 | Khảo sát địa bàn, thu thập tư liệu lịch sử, ảnh di sản thực tế, thu âm giọng đọc mẫu |
-| **2 — Thiết kế UI/UX** | Tháng 3 | Thiết kế giao diện trên Figma — gam màu ấm nóng cảm hứng thổ cẩm S'tiêng |
-| **3 — Lập trình** | Tháng 4–5 | Nuxt 4 + Leaflet + Audio Guide (Howler.js + Pinia) + GSAP |
-| **4 — Số hóa & kiểm thử** | Tháng 6 | Nuxt Content v3, kết nối SQLite, kiểm thử, đóng gói |
-
----
-
-## 12. Tài liệu Liên quan
-
-Đọc kỹ các file sau trước khi làm việc trên từng mảng:
-
-| Tài liệu | Đường dẫn | Mô tả |
-|---|---|---|
-| Docs Index | `docs/index.md` | Mục lục toàn bộ tài liệu |
-| PROJECT MASTER | `docs/PROJECT_MASTER.md` | Nguồn sự thật tối thượng — tổng quan, tech stack, kiến trúc, quy tắc phát triển và roadmap đầy đủ. |
-| Tech Stack Chi tiết | `docs/arch/tech-stack.md` | Quyết định kiến trúc chi tiết |
-| Di sản (Heritage) | `docs/feat/heritage.md` | Data model và phân loại |
-| Bản đồ | `docs/feat/map.md` | Leaflet, GPS, clustering |
-| Audio Guide | `docs/feat/audio-guide.md` | Howler.js, global player |
-| Gamification | `docs/feat/gamification.md` | Quiz, huy hiệu, rewards |
-| Góc Học Đường | `docs/feat/school.md` | Tài nguyên giáo dục, flashcard |
-| Gallery | `docs/feat/gallery.md` | Triển lãm ảnh |
-| Đóng góp CĐ | `docs/feat/contribute.md` | Form đóng góp tư liệu |
-| Du lịch | `docs/feat/tourism.md` | Tourism MVP |
-| Đầu tư | `docs/feat/invest.md` | Invest MVP |
-| Audio Script | `docs/ref/audio-recording-guide.md` | Kịch bản thu âm thuyết minh |
-| Báo cáo Công nghệ | `docs/BAO_CAO_DU_AN.md` | Bảng công nghệ dành cho báo cáo cuộc thi |
-
----
-
-*Cập nhật lần cuối: 2026-07-07 — Phiên bản 1.0*
-*Tài liệu này phải được cập nhật đồng thời khi có thay đổi lớn về kiến trúc, tech stack, hoặc phạm vi tính năng.*
